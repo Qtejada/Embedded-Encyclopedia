@@ -1,0 +1,75 @@
+site_name: Embedded Encyclopedia
+site_description: Personal encyclopedia for embedded firmware + hardware
+site_url: https://<your-username>.github.io/<your-repo>
+repo_url: https://github.com/<your-username>/<your-repo>
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+    - search.suggest
+  palette:
+    - scheme: default
+      primary: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+plugins:
+  - search
+  - glightbox
+markdown_extensions:
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+nav:
+  - Project Demonstration:
+      - Overview: projects/index.md
+      - Sample: projects/blink-led/index.md
+  - Encyclopedia:
+      - Software:
+          - Overview: encyclopedia/software/index.md
+          - C/C++: encyclopedia/software/c_cpp.md
+          - FreeRTOS: encyclopedia/software/freertos/index.md
+          - IoT:
+              - BLE: encyclopedia/software/iot/ble.md
+              - Wi‑Fi: encyclopedia/software/iot/wifi.md
+              - 802.x: encyclopedia/software/iot/ieee802.md
+      - Hardware:
+          - Overview: encyclopedia/hardware/index.md
+          - Basics:
+              - Resistors: encyclopedia/hardware/basics/resistors.md
+              - Capacitors: encyclopedia/hardware/basics/capacitors.md
+              - Inductors: encyclopedia/hardware/basics/inductors.md
+              - Transformers: encyclopedia/hardware/basics/transformers.md
+              - Diodes: encyclopedia/hardware/basics/diodes.md
+          - Power:
+              - LDOs: encyclopedia/hardware/power/ldo-selection.md
+              - Buck converters: encyclopedia/hardware/power/buck-converters.md
+              - Buck‑Boost converters: encyclopedia/hardware/power/buck-boost-converters.md
+          - Data Converters:
+              - ADCs: encyclopedia/hardware/data-converters/adc.md
+              - DACs: encyclopedia/hardware/data-converters/dac.md
+          - PCB Layout:
+              - Overview: encyclopedia/hardware/pcb-layout/index.md
+              - Traces & impedance: encyclopedia/hardware/pcb-layout/traces.md
+              - Planes & return paths: encyclopedia/hardware/pcb-layout/planes.md
+              - High‑speed notes: encyclopedia/hardware/pcb-layout/highspeed.md
+              - Phil's Lab notes: encyclopedia/hardware/pcb-layout/phils-lab.md
+  - About Me: about/index.md
