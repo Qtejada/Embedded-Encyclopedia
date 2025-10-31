@@ -9,20 +9,23 @@ theme:
     - navigation.tabs.sticky    
     - navigation.sections
     - navigation.top
+    - navigation.indexes 
     - content.code.copy
     - search.highlight
     - search.suggest
   palette:
     - scheme: default
-      primary: indigo
+      primary: green
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - scheme: slate
-      primary: indigo
+      primary: green
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
+  extra_css:
+  - assets/brand.css
 plugins:
   - search
   - glightbox
