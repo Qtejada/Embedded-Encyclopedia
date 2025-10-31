@@ -43,39 +43,110 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
 nav:
-  - Project Demonstration:
+  - About Me: index.md
+
+  - Project Demonstrations:
       - Overview: projects/index.md
       - Sample: projects/blink-led/index.md
 
-  - Software:
-      - Overview: encyclopedia/software/index.md
-      - C/C++: encyclopedia/software/c_cpp.md
-      - FreeRTOS: encyclopedia/software/freertos/index.md
-      - IoT:
+  - Encyclopedia:
+      - Software: encyclopedia/software/index.md     # landing page for software
+      - Hardware: encyclopedia/hardware/index.md     # landing page for hardware
+
+      # ----- SOFTWARE subtree -----
+      - Software • Languages & RTOS:
+          - C/C++: encyclopedia/software/c_cpp.md
+          - FreeRTOS: encyclopedia/software/freertos/index.md
+      - Software • IoT:
           - BLE: encyclopedia/software/iot/ble.md
           - Wi-Fi: encyclopedia/software/iot/wifi.md
           - 802.x: encyclopedia/software/iot/ieee802.md
 
-  - Hardware:
-      - Overview: encyclopedia/hardware/index.md
-      - Basics:
-          - Resistors: encyclopedia/hardware/basics/resistors.md
-          - Capacitors: encyclopedia/hardware/basics/capacitors.md
-          - Inductors: encyclopedia/hardware/basics/inductors.md
-          - Transformers: encyclopedia/hardware/basics/transformers.md
-          - Diodes: encyclopedia/hardware/basics/diodes.md
-      - Power:
-          - LDOs: encyclopedia/hardware/power/ldo-selection.md
-          - Buck converters: encyclopedia/hardware/power/buck-converters.md
-          - Buck-Boost converters: encyclopedia/hardware/power/buck-boost-converters.md
-      - Data Converters:
-          - ADCs: encyclopedia/hardware/data-converters/adc.md
-          - DACs: encyclopedia/hardware/data-converters/dac.md
+      # ----- HARDWARE subtree -----
+      - Hardware • Discrete Components:
+          - Passives:
+              - Resistors: encyclopedia/hardware/discrete/passives/resistors.md
+              - Capacitors: encyclopedia/hardware/discrete/passives/capacitors.md
+              - Inductors: encyclopedia/hardware/discrete/passives/inductors.md
+          - Magnetics:
+              - Transformers: encyclopedia/hardware/discrete/magnetics/transformers.md
+              - Common-mode chokes: encyclopedia/hardware/discrete/magnetics/common-mode-chokes.md
+          - Discrete semiconductors:
+              - Diodes: encyclopedia/hardware/discrete/semis/diodes.md
+              - BJTs: encyclopedia/hardware/discrete/semis/bjts.md
+              - MOSFETs: encyclopedia/hardware/discrete/semis/mosfets.md
+              - IGBTs: encyclopedia/hardware/discrete/semis/igbts.md
+              - Opto: encyclopedia/hardware/discrete/semis/opto.md
+
+      - Hardware • Power (building blocks):
+          - Power entry & protection:
+              - Fuses / polyfuses: encyclopedia/hardware/power/entry/fuses.md
+              - TVS / surge / ESD: encyclopedia/hardware/power/entry/tvs-esd.md
+              - Reverse polarity protection: encyclopedia/hardware/power/entry/rev-protection.md
+              - Ideal diode / OR-ing: encyclopedia/hardware/power/entry/ideal-diode-oring.md
+          - Regulation & conversion:
+              - LDOs: encyclopedia/hardware/power/reg/ldos.md
+              - Buck: encyclopedia/hardware/power/reg/buck.md
+              - Boost: encyclopedia/hardware/power/reg/boost.md
+              - Buck-boost / SEPIC / flyback: encyclopedia/hardware/power/reg/buck-boost-sepic-flyback.md
+              - Controllers (ext MOSFET): encyclopedia/hardware/power/reg/controllers-ext-fet.md
+              - Battery charging: encyclopedia/hardware/power/reg/charging.md
+              - Fuel-gauge / battery monitor: encyclopedia/hardware/power/reg/fuel-gauges.md
+              - PoE front-ends: encyclopedia/hardware/power/reg/poe.md
+          - Power control:
+              - High-/low-side switches, load switches: encyclopedia/hardware/power/control/switches.md
+              - Gate drivers: encyclopedia/hardware/power/control/gate-drivers.md
+              - Motor drivers: encyclopedia/hardware/power/control/motor-drivers.md
+          - Measurement & support:
+              - Current-sense amps / monitors: encyclopedia/hardware/power/support/current-sense-amps.md
+              - Shunt resistors: encyclopedia/hardware/power/support/shunt-resistors.md
+              - Supervisors / reset ICs: encyclopedia/hardware/power/support/supervisors.md
+              - Power-good / sequencers: encyclopedia/hardware/power/support/pg-sequencers.md
+
+      - Hardware • Signal chain:
+          - Amplifiers:
+              - Op-amps: encyclopedia/hardware/signal-chain/amps/op-amps.md
+              - Instrumentation amps: encyclopedia/hardware/signal-chain/amps/in-amps.md
+              - Difference amps: encyclopedia/hardware/signal-chain/amps/diff-amps.md
+              - Comparators: encyclopedia/hardware/signal-chain/amps/comparators.md
+          - Filters & conditioning:
+              - Active filters: encyclopedia/hardware/signal-chain/filters/active-filters.md
+              - PGAs: encyclopedia/hardware/signal-chain/filters/pga.md
+          - Data converters:
+              - ADCs (SAR/ΔΣ): encyclopedia/hardware/signal-chain/data-converters/adcs.md
+              - DACs: encyclopedia/hardware/signal-chain/data-converters/dacs.md
+              - Sample-and-hold: encyclopedia/hardware/signal-chain/data-converters/sample-hold.md
+          - Timing & clocks:
+              - Crystals/oscillators: encyclopedia/hardware/signal-chain/timing/crystals-oscillators.md
+              - PLL/clock generators: encyclopedia/hardware/signal-chain/timing/pll-clock-gens.md
+              - RTCs: encyclopedia/hardware/signal-chain/timing/rtcs.md
+
+      - Hardware • Digital / interfaces:
+          - Serial buses:
+              - I²C / SMBus: encyclopedia/hardware/digital-interfaces/serial/i2c.md
+              - SPI / QSPI / OSPI: encyclopedia/hardware/digital-interfaces/serial/spi.md
+              - UART / LIN: encyclopedia/hardware/digital-interfaces/serial/uart.md
+              - CAN / CAN-FD: encyclopedia/hardware/digital-interfaces/serial/can.md
+              - 1-Wire: encyclopedia/hardware/digital-interfaces/serial/onewire.md
+              - RS-232 / RS-485 / PROFIBUS: encyclopedia/hardware/digital-interfaces/serial/rs232-485-profibus.md
+          - USB (PHYs / hubs): encyclopedia/hardware/digital-interfaces/usb/usb.md
+          - Ethernet (PHY / MAC+PHY): encyclopedia/hardware/digital-interfaces/ethernet/ethernet.md
+          - Level shifters / bus switches: encyclopedia/hardware/digital-interfaces/level/level-shifters.md
+          - I/O expanders / LED drivers: encyclopedia/hardware/digital-interfaces/expanders/io-expanders-led.md
+          - Bridge ICs (USB↔UART/I²C/SPI): encyclopedia/hardware/digital-interfaces/bridge/bridges.md
+          - Memory & storage:
+              - EEPROM: encyclopedia/hardware/digital-interfaces/memory/eeprom.md
+              - FRAM: encyclopedia/hardware/digital-interfaces/memory/fram.md
+              - SPI/QSPI NOR flash: encyclopedia/hardware/digital-interfaces/memory/nor-flash.md
+              - eMMC / SD (sockets, level shifting): encyclopedia/hardware/digital-interfaces/memory/emmc-sd.md
+          - Security / ID:
+              - Secure elements: encyclopedia/hardware/digital-interfaces/security/secure-elements.md
+              - Authentication / crypto: encyclopedia/hardware/digital-interfaces/security/auth-chips.md
+              - Unique ID / MAC: encyclopedia/hardware/digital-interfaces/security/unique-id.md
+
       - PCB Layout:
           - Overview: encyclopedia/hardware/pcb-layout/index.md
           - Traces & impedance: encyclopedia/hardware/pcb-layout/traces.md
           - Planes & return paths: encyclopedia/hardware/pcb-layout/planes.md
           - High-speed notes: encyclopedia/hardware/pcb-layout/highspeed.md
           - Phil's Lab notes: encyclopedia/hardware/pcb-layout/phils-lab.md
-
-  - About Me: about/index.md
