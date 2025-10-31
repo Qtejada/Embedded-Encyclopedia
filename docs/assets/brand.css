@@ -1,0 +1,8 @@
+/* Slightly darker, richer green */
+:root {
+  --md-primary-fg-color: #0b7d5e;          /* brand green */
+  --md-accent-fg-color:  #7cd1a9;          /* soft accent */
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0b7d5e;
+}
