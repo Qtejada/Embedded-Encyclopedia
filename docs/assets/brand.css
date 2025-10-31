@@ -6,3 +6,9 @@
 [data-md-color-scheme="slate"] {
   --md-primary-fg-color: #0b7d5e;
 }
+
+/* Sidebar group headers (the clickable labels that expand/collapse) */
+.md-nav--primary .md-nav__item--nested > .md-nav__link {
+  color: #7cd1a9;       /* light green accent */
+  font-weight: 700;
+}
