@@ -30,6 +30,14 @@ plugins:
   - search
   - glightbox
 markdown_extensions:
+  - toc:
+      permalink: true          # adds link icons to headings
+  - pymdownx.arithmatex:
+      generic: true            # MathJax-friendly math blocks
+
+extra_javascript:
+  - assets/mathjax.js          # you'll add this file next
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - admonition
   - tables
   - attr_list
