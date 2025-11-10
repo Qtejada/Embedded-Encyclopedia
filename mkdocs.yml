@@ -71,21 +71,25 @@ nav:
           - 802.x: encyclopedia/software/iot/ieee802.md
 
       # ----- HARDWARE subtree -----
-      - Hardware • Discrete Components:
-          - Passives:
-              - Foundations & Laws: encyclopedia/hardware/basics/foundations-laws.md
-              - Resistors: encyclopedia/hardware/discrete/passives/resistors.md
-              - Capacitors: encyclopedia/hardware/discrete/passives/capacitors.md
-              - Inductors: encyclopedia/hardware/discrete/passives/inductors.md
-          - Magnetics:
-              - Transformers: encyclopedia/hardware/discrete/magnetics/transformers.md
-              - Common-mode chokes: encyclopedia/hardware/discrete/magnetics/common-mode-chokes.md
-          - Discrete semiconductors:
-              - Diodes: encyclopedia/hardware/discrete/semis/diodes.md
-              - BJTs: encyclopedia/hardware/discrete/semis/bjts.md
-              - MOSFETs: encyclopedia/hardware/discrete/semis/mosfets.md
-              - IGBTs: encyclopedia/hardware/discrete/semis/igbts.md
-              - Opto: encyclopedia/hardware/discrete/semis/opto.md
+      # ----- HARDWARE subtree (matches your current tree) -----
+- Hardware • Discrete Components:
+    - Passives:
+        - Foundations & Laws: encyclopedia/hardware/basics/foundations-laws.md
+        - Resistors: encyclopedia/hardware/basics/resistors.md
+        - Capacitors: encyclopedia/hardware/basics/capacitors.md
+        - Inductors: encyclopedia/hardware/basics/inductors.md
+    - Magnetics:
+        - Transformers: encyclopedia/hardware/basics/transformers.md
+        # Add common-mode chokes later when you create the file:
+        # - Common-mode chokes: encyclopedia/hardware/discrete/magnetics/common-mode-chokes.md
+    - Discrete semiconductors:
+        - Diodes: encyclopedia/hardware/basics/diodes.md
+        # Add these when you create the files:
+        # - BJTs: encyclopedia/hardware/discrete/semis/bjts.md
+        # - MOSFETs: encyclopedia/hardware/discrete/semis/mosfets.md
+        # - IGBTs: encyclopedia/hardware/discrete/semis/igbts.md
+        # - Opto: encyclopedia/hardware/discrete/semis/opto.md
+
 
     
       - Hardware • Power (building blocks):
