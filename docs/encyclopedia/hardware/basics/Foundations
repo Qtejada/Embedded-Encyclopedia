@@ -63,3 +63,13 @@
 ## Noise
 - Random electrical fluctuation from several mechanisms. 
 - Main types: thermal (Johnson), shot, and 1/f (flicker). We describe them with spectral density (V/sqrt(Hz) or A/sqrt(Hz)).
+
+## Parasitics
+
+- All conductors have an inductance, including Caps, resistors, PCB traces, inductors, etc.
+- Change in current induces a voltage on that conductor (and nearby ones) that opposes that current (Inductive Reactance, form of impedance)
+- A parasitic inductance on a capacitor will reduce the reactance of an inductor and vice versa: $Z - j(-1/wC + wLparasitic)$
+- This kind of issue will blow up as you get to higher frequencies. Inductors act like caps, caps act like inductors
+- ESR also varies by frequency caused by the skin effect.
+- Parasitic inductance is caused by conductors in close proximity accidentally acting as 2 plates (PCB tracks) causing issues with signal integrity oscillations and self resonance
+
