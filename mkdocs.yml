@@ -73,6 +73,7 @@ nav:
       # ----- HARDWARE subtree -----
       - Hardware • Discrete Components:
           - Passives:
+              - Foundations & Laws: encyclopedia/hardware/basics/foundations-laws.md
               - Resistors: encyclopedia/hardware/discrete/passives/resistors.md
               - Capacitors: encyclopedia/hardware/discrete/passives/capacitors.md
               - Inductors: encyclopedia/hardware/discrete/passives/inductors.md
