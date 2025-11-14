@@ -29,7 +29,7 @@
 
 # RC Snubbers & RCD Clamps
 
-
+[TOC]
 
 ## What a snubber does
 Switching edges plus stray inductance and capacitance form a resonant LC that rings and overshoots. An **RC snubber** damps that LC and reduces dV/dt so the switch and nearby circuits see less stress and EMI.
@@ -39,14 +39,17 @@ Switching edges plus stray inductance and capacitance form a resonant LC that ri
 - **Across the inductive load (series RC across the coil/winding):** damps the load’s own resonance so current/voltage settle faster and reflect less to the switch.
 
 ## Measurement-based sizing (bench method)
-1) **Measure ringing frequency** \(f_r\) on the switch/load node after a step.  
-   Approximate parasitics: \(L\cdot C \approx \dfrac{1}{(2\pi f_r)^2}\).
-2) **Pick the capacitor:** \(C_{\text{snub}} \approx 2\text{–}5 \times C_{\text{parasitic}}\). Larger C → stronger damping but more loss.
-3) **Pick the resistor:** \(R_{\text{snub}} \approx \sqrt{\dfrac{L}{C_{\text{snub}}}}\) for ~critical damping.  
+1) **Measure ringing frequency** ($f_r$) on the switch/load node after a step.  
+   Approximate parasitics: $L \cdot C \approx \dfrac{1}{(2\pi f_r)^2}$.
+
+2) **Pick the capacitor:** $C_{\mathrm{snub}} \approx 2\!-\!5 \times C_{\mathrm{parasitic}}$.  
+   Larger $C_{\mathrm{snub}}$ → stronger damping but more loss.
+
+3) **Pick the resistor:** $R_{\mathrm{snub}} \approx \sqrt{\dfrac{L}{C_{\mathrm{snub}}}}$ for ~critical damping.  
    Then **trim on the bench** while watching peak overshoot and the number of ringing cycles.
 
 **Power check (across-switch type):**  
-Average dissipation \(\approx P \approx C_{\text{snub}} \cdot V^2 \cdot f_{\text{sw}}\). Don’t oversize \(C_{\text{snub}}\) without reason.
+Average dissipation $\approx P \approx C_{\mathrm{snub}} \cdot V^{2} \cdot f_{\mathrm{sw}}$. Don’t oversize $C_{\mathrm{snub}}$ without reason.
 
 ## Practical rules of thumb
 - Place the snubber **at** the node you’re damping; keep the loop **short** with a solid return.
@@ -71,6 +74,7 @@ An **RCD clamp** limits the **peak** voltage on a switch node and bleeds excess 
 - Size for worst-case **leakage** and any **magnetizing** energy that doesn’t transfer.
 - Ensure the resistor can handle the **average** power and the capacitor the **pulse** stress.
 - Place the clamp close to the switch node with a **short, tight return**.
+
 
 
 
