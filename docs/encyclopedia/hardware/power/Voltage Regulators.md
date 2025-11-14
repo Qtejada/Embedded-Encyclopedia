@@ -2,22 +2,22 @@
 
 [TOC]
 
-## Basics
+# Basics
 - Set a fraction of a voltage source, $V_{out} = V_{in}\,\dfrac{R_2}{R_1 + R_2}$
 
-## With load
+# With load
 - With load: If $R_L$ is not $>> R_{th}$, $V_{out}$ sags. 
 
-## Thevenin view
+# Thevenin view
 - $R_{TH}$ Is the parallel resistance of $R_1$ and $R_2$
 
-## Efficiency
+# Efficiency
 - Inefficient: current through $R_1$ and $R_2$ flows all the time. To reduce sag you make $R_{th}$ small, which increases wasted current.
 
-## Rule of thumb
+# Rule of thumb
 - Rule of thumb: make divider current 5–10x the maximum load current if you must use a divider as a reference..
 
-## Buffering
+# Buffering
 - Can use a unity op-amp to reduce voltage sag
 
 
