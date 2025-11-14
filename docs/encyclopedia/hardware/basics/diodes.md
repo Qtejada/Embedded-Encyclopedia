@@ -21,11 +21,16 @@
 ## ESD use (regular diodes)
 - You can protect slow control lines with **steering diodes** to the rails: one diode to **GND**, one to **VCC**. A surge is shunted into the rails instead of into the IC.
 - This assumes your rails + decoupling can absorb the hit. Keep the **traces short** and the return to ground tight. Not ideal for high-speed signals (adds capacitance and injects into the rails).
+- Say for example you got a line that shouldn't pass 5v. Using a Diode from your line to a 5v source, so that the diode is 5v reverse biased. if 5.6v appears on the line, then youll pull up to your 5v source to take in that ESD.
+- 
 
 ## TVS diodes (purpose-built surge/ESD protection)
 - **TVS (Transient Voltage Suppressor) diodes** look like Zeners but are built to **turn on fast** and **absorb high-energy, short events** (ESD, EFT, surge).
 - Available as **unidirectional** (for DC lines referenced to ground) and **bidirectional** (for AC/differential lines).
 - For high-speed interfaces, use **low-capacitance TVS arrays** sized for the standard (USB, HDMI, Ethernet, etc.). Place them **at the connector** with a **short path to ground** (single via right at the pad), and keep stubs tiny.
+- A TVS (Transient Voltage Suppressor) is a purpose-built avalanche diode that sits from line to ground:
+- **Unidirectional TVS**: behaves like a Zener to ground for positive spikes and like a regular diode to ground for negative spikes. Good for DC/single-ended lines referenced to 0 V.
+- **Bidirectional TVS**: clamps symmetrically around 0 V. Good for AC/differential lines (RS-485 pairs, audio, etc.).
 
 # RC Snubbers & RCD Clamps
 
