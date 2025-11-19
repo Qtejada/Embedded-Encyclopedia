@@ -26,18 +26,26 @@ N-channel enhancement-mode MOSFET Rules:
 
 
 Ohmic
-- If VGS > VTH and VDS < VGS-VTH, then the MOSFET will act like a resistor. As VDS increases, ID increases
+- If VGS > VTH and VDS < VGS, then the MOSFET will act like a resistor. As VDS increases, ID increases
 - In this region it has a small on-resistance `RDS(on)`, whose value depends on the device and on `VGS`.
-
+- What this means is that As VDS is < VGS, and VDS inreases, ID increases like if it were a resistor getting more voltage applied to it.
 
   
 Active
-- If VGS > VTH and VDS >= VGS-VTH, then the MOSFET will act as a current source and current is steady.
-- Amount of current is determined by the drive of the gate
+- If VGS > VTH and VDS >= VGS, then the MOSFET will act as a current source and current is steady.
+- Amount of current is now determined by the amount of drive of the gate, as long as the above conditinos hold true
+- A Change in VDS, as long as it stays above VGS, does nothing to ID.
 
-  
-- How much drain–source current flows mainly depends on `VGS` when in saturation
-  - If `VGS` is higher above `VTH`, the channel is stronger and more current flows for the same `VDS`.
+
+
+- Best way to think about it IM: VGS is like a tube, VDS is the pressure in that tube
+- We need a certain tube size to even get any ID out, so VGS > VTH.
+
+- When we have a VDS (pressure) < VGS (tube size), then as VDS (tube size) increases, we can increase either VDS or VGS to get more ID. As long as the original conditions stay true, either will increase ID using this formula: ID = 1/R_on * VDS
+
+- When we have a VDS (Pressure) > VGS (tube size), we have the maximum amount of ID that can flow through that tube. Only way we can get more is if we increase our tube size. We are saturated (active) ID = k(VGS - Vth)^2
+
+
  
 
 
