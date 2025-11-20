@@ -33,7 +33,7 @@ Ohmic (linear)
   
 Active (saturation)
 - If VGS > VTH and VDS >= VGS, then the MOSFET will act as a current source and current is steady.
-- Amount of current is now determined by the amount of drive of the gate, as long as the above conditinos hold true
+- Amount of current is now determined by the amount of drive of the gate, as long as the above conditinos hold true. It increases quadratically with VGS.
 - A Change in VDS, as long as it stays above VGS, does nothing to ID (Ideally. IRL there is channel length modulation, that will increase ID very slightly)
 
 
@@ -155,6 +155,7 @@ So:
 - In the Ohmic Region, it gets a little funky and ID is somewhat proportional to VDS but VGS will also effect it. Its more like a resistor
 - In saturation, you get your amplifier model, in the ohmic you get your switch model.
 
+- Gain = -gm*RD
 ## Device variation and precision
 
 - `VGS` for a MOSFET can vary a lot between parts, sometimes by up to a few volts in `VGS(th)` and in the `ID` vs. `VGS` curves.
@@ -256,3 +257,20 @@ Uses a second bjt/jfet in a current sink to keep drain-source voltage constant
 - Second JFET is one with a higher IDSS and passes Q1s drain current through the load while holding Q1s drain at a constant voltage which is Vgs of what makes Q2 pull the same current as Q1
 - Q1 then wont see any variations of drain source voltage, output current wont change
 
+General Cascodes
+
+- Kind of like a shield, that prevents variations of the input from messing with the output. Helps with Miller effect and Early effect.
+
+Miller Effect
+- Speed killer. When your input-to-output varies wildly at very fast rates, the capacitances between terminal start to fight each other and voltage leaks into the input capacitor, causing distortion to your input. This limits the bandwidth you can operate at
+
+- Early Effect
+- As your input changes, the output wobbles just a little bit, killing your precision.
+-JFET Common Source Circuits
+
+
+Common Source circuits
+- Very similar to BJT emitter follower circuits, just much less gain, much more input impedance.
+- Remember that RS there as a self biasing mechanism. Stops JFET from pulling maximum IDSS by providing a voltage on the source, therefore VGS != 0.
+- Bypass capacitors work in the same way. WIll increase gain, while making it so you're not stuck with IDSS current
+- Having a negative supply is awesome, because you no longer have to assume how much current the FET will pull. Can use node voltage with RS to see what ID is, You dont have to know what VGS gives you an ID.
