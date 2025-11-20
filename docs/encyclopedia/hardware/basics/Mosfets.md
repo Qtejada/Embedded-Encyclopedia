@@ -25,16 +25,16 @@ N-channel enhancement-mode MOSFET Rules:
 - If `VGS` < `VTH`, IDS = 0 because no conduction channel can form. The MOSFET is in cutoff
 
 
-Ohmic
+Ohmic (linear)
 - If VGS > VTH and VDS < VGS, then the MOSFET will act like a resistor. As VDS increases, ID increases
 - In this region it has a small on-resistance `RDS(on)`, whose value depends on the device and on `VGS`.
 - What this means is that As VDS is < VGS, and VDS inreases, ID increases like if it were a resistor getting more voltage applied to it.
 
   
-Active
+Active (saturation)
 - If VGS > VTH and VDS >= VGS, then the MOSFET will act as a current source and current is steady.
 - Amount of current is now determined by the amount of drive of the gate, as long as the above conditinos hold true
-- A Change in VDS, as long as it stays above VGS, does nothing to ID.
+- A Change in VDS, as long as it stays above VGS, does nothing to ID (Ideally. IRL there is channel length modulation, that will increase ID very slightly)
 
 
 
@@ -120,7 +120,7 @@ MOSFETs structure is symmetric, so the “source” and “drain” swap roles d
 -  Between the drain and the source, whichever has the lower voltage is  the source at that moment. So  `VD > VS` for an N-channel device when we call the top terminal the drain.
 
 
-Example: N-MOSFET switching a line to ground
+## Example: N-MOSFET switching a line to ground
 
 - You have an N-MOSFET switching a line to ground.
 - You assume the drain is the high side, and `VG = 0 V` turns it off.
@@ -141,11 +141,19 @@ So:
 - The other terminal is the drain.
 - For an N-channel device with `VD > VS`, current (conventional) flows from drain to source (though if you swap labels, the “drain” and “source” names change accordingly).
 
+- You want the switch to be in the ohmic region (VGS > VDS)  because that will give you the best switch action
+- The MOSFET when in ohmic, has a Ron of say 0.1 ohms, very small. Why? Your tube is huge, your pressure is small. little resistance. Voltage at the source is = VD*(RL/Ron*RL)
+- When your MOSFET is in Active moed (saturation) then your pressure is high, but your tube is small, high resistance. Maybe the tube only allows 1A. So Ron would be VD/1A which is way higher. 
 ---
 
 
 
+## As Transconductance devices
 
+- gm = ID/VGS
+- MOSFETS act like pretty good transconductnace, particularly in saturation. When VDS is high (VDS > VGS) Then ID is determined by VGS. A change in VGS keeps ID constant
+- In the Ohmic Region, it gets a little funky and ID is somewhat proportional to VDS but VGS will also effect it. Its more like a resistor
+- In saturation, you get your amplifier model, in the ohmic you get your switch model.
 
 ## Device variation and precision
 
