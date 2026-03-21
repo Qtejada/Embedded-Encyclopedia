@@ -1,0 +1,3 @@
+# Battery Charging
+
+Notes coming soon...

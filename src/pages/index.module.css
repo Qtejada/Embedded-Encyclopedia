@@ -1,0 +1,280 @@
+/* =============================================================
+   HOMEPAGE STYLES — Hardware Encyclopedia
+   ============================================================= */
+
+/* --- HERO --- */
+
+.hero {
+  padding: 80px 24px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(212, 160, 23, 0.08), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(168, 85, 247, 0.04), transparent);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.heroBadge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ifm-color-primary);
+  background: rgba(212, 160, 23, 0.1);
+  border: 1px solid rgba(212, 160, 23, 0.2);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.heroTitle {
+  font-size: 3.8rem;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  color: var(--ifm-heading-color);
+}
+
+@media (max-width: 600px) {
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+}
+
+.heroAccent {
+  background: linear-gradient(135deg, var(--ifm-color-primary), #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--hw-text-secondary, #6b7280);
+  max-width: 520px;
+  margin: 0 auto 32px;
+}
+
+.heroCTA {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 28px;
+  background: var(--ifm-color-primary);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.92rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary:hover {
+  color: #000;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.25);
+}
+
+/* --- MAIN CONTENT --- */
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.sectionHeader {
+  margin-bottom: 36px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  border: none;
+  padding: 0;
+}
+
+.sectionTitle::before {
+  display: none;
+}
+
+.sectionSub {
+  font-size: 0.92rem;
+  color: var(--hw-text-secondary, #6b7280);
+}
+
+/* --- CARD GRID — 3 columns horizontal --- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- SECTION CARD --- */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--hw-border, #262626);
+  background: var(--hw-surface-1, #111111);
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  text-decoration: none;
+  color: inherit;
+  border-color: rgba(212, 160, 23, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cardInner {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardGlow {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+}
+
+.card:hover .cardGlow {
+  opacity: 1;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cardNumber {
+  font-size: 0.72rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+.cardIcon {
+  font-size: 1.3rem;
+  opacity: 0.7;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+  color: var(--ifm-heading-color);
+}
+
+.cardDesc {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--hw-text-secondary, #6b7280);
+  margin-bottom: 16px;
+}
+
+.cardTopics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+  margin-top: auto;
+}
+
+.topicChip {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--hw-border, #262626);
+  color: var(--hw-text-secondary, #6b7280);
+}
+
+.topicMore {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  color: var(--ifm-color-primary);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--hw-border, #262626);
+}
+
+.topicCount {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--hw-text-tertiary, #6b7280);
+}
+
+.cardArrow {
+  font-size: 1rem;
+  color: var(--hw-text-tertiary, #6b7280);
+  transition: all 0.2s ease;
+}
+
+.card:hover .cardArrow {
+  color: var(--ifm-color-primary);
+  transform: translateX(4px);
+}

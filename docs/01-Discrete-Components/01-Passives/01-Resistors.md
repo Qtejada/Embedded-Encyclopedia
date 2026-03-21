@@ -1,0 +1,3 @@
+# Resistors
+
+Notes coming soon...

@@ -1,0 +1,820 @@
+/* =============================================================
+   HARDWARE ENCYCLOPEDIA — Dark Theme v3
+   ============================================================= */
+
+/* 1. FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* =============================================================
+   2. CSS VARIABLES
+   ============================================================= */
+
+:root {
+  /* Core accent — Dark Gold / Amber */
+  --ifm-color-primary: #d4a017;
+  --ifm-color-primary-dark: #b8860b;
+  --ifm-color-primary-darker: #9a7209;
+  --ifm-color-primary-darkest: #7a5a07;
+  --ifm-color-primary-light: #e6b930;
+  --ifm-color-primary-lighter: #f0d060;
+  --ifm-color-primary-lightest: #fae8a0;
+
+  /* Semantic accents */
+  --hw-accent-purple: #a855f7;
+  --hw-accent-amber: #f59e0b;
+  --hw-accent-red: #ef4444;
+  --hw-accent-blue: #3b82f6;
+  --hw-accent-teal: #14b8a6;
+
+  /* Surfaces */
+  --hw-surface-0: #0a0a0a;
+  --hw-surface-1: #111111;
+  --hw-surface-2: #171717;
+  --hw-surface-3: #1e1e1e;
+
+  /* Borders */
+  --hw-border: #262626;
+  --hw-border-subtle: #1c1c1c;
+
+  /* Text */
+  --hw-text-primary: #f3f4f6;
+  --hw-text-secondary: #9ca3af;
+  --hw-text-tertiary: #6b7280;
+  --hw-text-muted: #4b5563;
+
+  /* Fonts */
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+  --ifm-heading-font-family: 'Inter', sans-serif;
+
+  /* Layout */
+  --ifm-container-width: 920px;
+  --ifm-spacing-vertical: 1.5rem;
+  --ifm-global-radius: 8px;
+
+  /* Backgrounds */
+  --ifm-background-color: #0a0a0a;
+  --ifm-background-surface-color: #111111;
+
+  /* Text */
+  --ifm-font-color-base: #d1d5db;
+  --ifm-heading-color: #f9fafb;
+
+  /* Code */
+  --ifm-code-font-size: 0.875rem;
+  --ifm-code-padding-horizontal: 0.4rem;
+  --ifm-code-padding-vertical: 0.15rem;
+  --ifm-code-background: rgba(255, 255, 255, 0.07);
+  --ifm-code-border-radius: 5px;
+
+  /* Docusaurus overrides */
+  --doc-sidebar-width: 260px;
+  --ifm-toc-border-color: var(--hw-border-subtle);
+}
+
+/* =============================================================
+   3. GLOBAL
+   ============================================================= */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+body {
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+::selection {
+  background: rgba(212, 160, 23, 0.3);
+}
+
+/* =============================================================
+   4. DOC PAGE LAYOUT
+   ============================================================= */
+
+/* Breadcrumb row */
+.theme-doc-breadcrumbs {
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumbs__link {
+  font-size: 0.78rem;
+  color: var(--hw-text-tertiary);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.breadcrumbs__link:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: rgba(212, 160, 23, 0.1);
+  color: var(--ifm-color-primary);
+}
+
+/* Content area — slightly tighter width for readability */
+.theme-doc-markdown {
+  max-width: 760px;
+}
+
+/* =============================================================
+   5. TYPOGRAPHY — Headings
+   ============================================================= */
+
+/* Page title (h1) */
+.markdown h1:first-child,
+article header h1 {
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--hw-border);
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--hw-accent-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--hw-accent-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section headings (h2) — clean divider with accent bar (docs only) */
+.markdown h2 {
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-top: 3rem;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--hw-surface-2);
+  border-left: 3px solid var(--ifm-color-primary);
+  border-radius: 0 8px 8px 0;
+  color: var(--ifm-heading-color);
+  display: block;
+}
+
+.markdown h2::before {
+  display: none;
+}
+
+/* Non-docs h2 fallback */
+h2 {
+  font-weight: 700;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--ifm-heading-color);
+}
+
+h2::before {
+  display: none;
+}
+
+/* Subsection (h3) — subtle accent (docs only) */
+.markdown h3 {
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-color-primary-light);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--hw-border-subtle);
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  margin-top: 2rem;
+  color: var(--ifm-heading-color);
+}
+
+/* Sub-subsection (h4) — label style */
+h4 {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--hw-text-secondary);
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+h5 {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--hw-text-secondary);
+  margin-top: 1.25rem;
+}
+
+/* =============================================================
+   6. TYPOGRAPHY — Prose
+   ============================================================= */
+
+.markdown p {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: var(--ifm-font-color-base);
+}
+
+/* Bullet lists — tighter, cleaner */
+.markdown ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.markdown ul li {
+  line-height: 1.7;
+  margin-bottom: 0.4rem;
+  position: relative;
+}
+
+.markdown ul li::marker {
+  color: var(--hw-accent-purple);
+}
+
+/* Nested list bullets — different color */
+.markdown ul ul li::marker {
+  color: var(--hw-text-muted);
+}
+
+/* Ordered lists */
+.markdown ol {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.markdown ol li {
+  line-height: 1.7;
+  margin-bottom: 0.4rem;
+  padding-left: 0.25rem;
+}
+
+.markdown ol li::marker {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.88em;
+}
+
+/* Bold text in lists = definitions → highlight green */
+.markdown li > strong:first-child {
+  color: var(--ifm-color-primary);
+}
+
+/* Inline code */
+code {
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 500;
+  padding: 0.15em 0.45em;
+  border-radius: 5px;
+  font-size: 0.86em;
+  background: rgba(212, 160, 23, 0.08);
+  border: 1px solid rgba(212, 160, 23, 0.12);
+  color: var(--ifm-color-primary-light);
+}
+
+/* Strong / emphasis */
+.markdown strong {
+  font-weight: 700;
+  color: var(--hw-text-primary);
+}
+
+.markdown em {
+  color: var(--hw-text-secondary);
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 3px solid var(--hw-accent-purple);
+  background: var(--hw-surface-1);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.95rem;
+  color: var(--hw-text-secondary);
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* =============================================================
+   7. DIVIDERS
+   ============================================================= */
+
+hr {
+  height: 1px;
+  border: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--hw-accent-purple) 20%,
+    var(--hw-accent-purple) 80%,
+    transparent
+  );
+  margin: 3rem 0;
+  opacity: 0.35;
+}
+
+/* =============================================================
+   8. TABLES
+   ============================================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.88rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--hw-border);
+}
+
+th {
+  background: var(--hw-surface-2);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: var(--ifm-color-primary);
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 2px solid var(--hw-border);
+}
+
+td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--hw-border-subtle);
+  vertical-align: top;
+  color: var(--hw-text-secondary);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: rgba(212, 160, 23, 0.02);
+}
+
+/* =============================================================
+   9. ADMONITIONS (info, tip, note, warning, danger)
+   ============================================================= */
+
+.alert, .theme-admonition {
+  border-radius: 8px;
+  border: 1px solid var(--hw-border);
+  border-left: 4px solid;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  background: var(--hw-surface-1);
+  box-shadow: none;
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+}
+
+.theme-admonition-tip {
+  border-left-color: var(--ifm-color-primary);
+}
+
+.theme-admonition-info {
+  border-left-color: var(--hw-accent-blue);
+}
+
+.theme-admonition-note {
+  border-left-color: var(--hw-accent-purple);
+}
+
+.theme-admonition-caution {
+  border-left-color: var(--hw-accent-amber);
+}
+
+.theme-admonition-danger {
+  border-left-color: var(--hw-accent-red);
+}
+
+/* =============================================================
+   10. SIDEBAR
+   ============================================================= */
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--hw-border-subtle);
+  background: var(--hw-surface-0);
+}
+
+/* Category headings */
+.menu__list-item--collapsed .menu__link--sublist,
+.menu__link--sublist {
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--hw-text-secondary);
+  padding: 8px 12px;
+}
+
+/* Regular links */
+.menu__link {
+  font-size: 0.85rem;
+  font-weight: 450;
+  color: var(--hw-text-tertiary);
+  border-radius: 6px;
+  padding: 5px 12px;
+  transition: all 0.15s ease;
+}
+
+.menu__link:hover {
+  color: var(--hw-text-primary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Active link */
+.menu__link--active:not(.menu__link--sublist) {
+  color: var(--ifm-color-primary);
+  background: rgba(212, 160, 23, 0.08);
+  font-weight: 600;
+  border-left: 3px solid var(--ifm-color-primary);
+  padding-left: 9px;
+}
+
+.menu__caret::before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
+  filter: none;
+}
+
+/* Sidebar scrollbar */
+.theme-doc-sidebar-container ::-webkit-scrollbar {
+  width: 4px;
+}
+
+.theme-doc-sidebar-container ::-webkit-scrollbar-thumb {
+  background: var(--hw-border);
+  border-radius: 4px;
+}
+
+/* =============================================================
+   11. TABLE OF CONTENTS (right side)
+   ============================================================= */
+
+.table-of-contents {
+  border-left: 1px solid var(--hw-border-subtle);
+  padding-left: 12px;
+}
+
+.table-of-contents__link {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--hw-text-muted);
+  transition: color 0.15s ease;
+  display: block;
+  padding: 3px 0;
+}
+
+.table-of-contents__link:hover {
+  color: var(--hw-text-primary);
+}
+
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* Left border indicator for active TOC item */
+.table-of-contents__left-border {
+  border-left-color: transparent;
+}
+
+/* =============================================================
+   12. NAVBAR
+   ============================================================= */
+
+.navbar {
+  box-shadow: none;
+  border-bottom: 1px solid var(--hw-border);
+  backdrop-filter: blur(12px);
+  background: rgba(10, 10, 10, 0.85);
+}
+
+.navbar__title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.navbar__link {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* =============================================================
+   13. SEARCH BAR
+   ============================================================= */
+
+.navbar .DocSearch-Button,
+.navbar .navbar__search-input {
+  background: var(--hw-surface-2);
+  border: 1px solid var(--hw-border);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: var(--hw-text-secondary);
+}
+
+.search-result-match {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+/* =============================================================
+   14. INTERACTIVE COMPONENTS
+   ============================================================= */
+
+.component-wrapper,
+.interactive-block {
+  border: 1px solid var(--hw-border);
+  background: var(--hw-surface-1);
+  border-radius: 12px;
+  padding: 0;
+  margin: 2rem 0;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.component-wrapper:hover,
+.interactive-block:hover {
+  border-color: rgba(212, 160, 23, 0.3);
+}
+
+.interactive-block__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--hw-surface-2);
+  border-bottom: 1px solid var(--hw-border);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ifm-color-primary);
+}
+
+.interactive-block__header::before {
+  content: "▶";
+  font-size: 0.6rem;
+}
+
+.interactive-block__body {
+  padding: 24px;
+}
+
+/* Range inputs */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--hw-border);
+  outline: none;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+  cursor: pointer;
+  border: none;
+}
+
+/* =============================================================
+   15. CODE BLOCKS
+   ============================================================= */
+
+.prism-code {
+  border-radius: 8px;
+  font-size: 0.86rem;
+  line-height: 1.65;
+  background: var(--hw-surface-1);
+  border: 1px solid var(--hw-border);
+  padding: 1rem;
+}
+
+/* Code block title bar */
+.codeBlockTitle_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module {
+  background: var(--hw-surface-2);
+  border-bottom: 1px solid var(--hw-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--hw-text-secondary);
+}
+
+/* =============================================================
+   16. CONTENT LAYOUT CLASSES (used in markdown)
+   ============================================================= */
+
+/* Two-column grid */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tech panel — card-style container */
+.tech-panel {
+  background: var(--hw-surface-1);
+  border: 1px solid var(--hw-border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--hw-accent-blue));
+  opacity: 0.5;
+}
+
+/* Panel header label */
+.panel-header {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ifm-color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--hw-border-subtle);
+}
+
+/* Definition box */
+.def-box strong {
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+}
+
+.definition-list strong {
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+}
+
+/* =============================================================
+   17. IMAGES
+   ============================================================= */
+
+.invert-in-dark,
+.invert-on-dark {
+  transition: filter 0.3s ease;
+  max-width: 100%;
+  filter: invert(1) hue-rotate(180deg) contrast(0.9);
+}
+
+.markdown img {
+  border-radius: 8px;
+  margin: 1rem 0;
+  border: 1px solid var(--hw-border-subtle);
+}
+
+/* =============================================================
+   18. PAGINATION
+   ============================================================= */
+
+.pagination-nav__link {
+  border: 1px solid var(--hw-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  background: var(--hw-surface-1);
+  transition: all 0.2s ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  background: rgba(212, 160, 23, 0.03);
+  transform: translateY(-1px);
+}
+
+.pagination-nav__sublabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--hw-text-muted);
+  font-weight: 700;
+}
+
+.pagination-nav__label {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--hw-text-primary);
+}
+
+/* =============================================================
+   19. FOOTER
+   ============================================================= */
+
+.footer {
+  background: #050505;
+  border-top: 1px solid var(--hw-border);
+}
+
+.footer__title {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--hw-text-secondary);
+}
+
+.footer__link-item {
+  font-size: 0.86rem;
+  color: var(--hw-text-tertiary);
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* =============================================================
+   20. SCROLLBAR
+   ============================================================= */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--hw-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hw-text-tertiary);
+}
+
+/* =============================================================
+   21. SUBTLE ENTRANCE ANIMATION
+   ============================================================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.theme-doc-markdown > *:first-child {
+  animation: fadeIn 0.35s ease both;
+}

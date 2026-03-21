@@ -1,0 +1,3 @@
+# Trace Impedance
+
+Notes coming soon...

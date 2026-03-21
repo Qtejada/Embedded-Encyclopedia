@@ -1,0 +1,3 @@
+# Ideal Diodes
+
+Notes coming soon...
