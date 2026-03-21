@@ -11,11 +11,12 @@ const config = {
     v4: true,
   },
 
-  url: 'https://hardware-encyclopedia.dev',
-  baseUrl: '/',
+  url: 'https://qtejada.github.io',
+  baseUrl: '/Embedded-Encyclopedia/',
 
-  organizationName: 'quincy-tejada',
-  projectName: 'hardware-encyclopedia',
+  organizationName: 'Qtejada',
+  projectName: 'Embedded-Encyclopedia',
+  trailingSlash: false,
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
