@@ -6,15 +6,15 @@
 
 ## About
 
-This is a personal reference encyclopedia covering core topics in electrical engineering and embedded systems. The notes were originally written during my undergraduate studies as a way to retain and organize the material I learned — and I continue to expand them as I encounter new concepts in my professional work.
+This is a personal reference encyclopedia covering core topics in electrical engineering/ Embeddded Systems. The notes were originally written while i was in college as a way to retain the material I learned and continue to expand them as I encounter new concepts at work.
 
-The content spans foundational circuit theory, discrete components, signal modulation, digital logic, embedded systems, communication protocols, power electronics, and more. It is structured to serve as a quick-lookup resource rather than a textbook replacement.
+The content covers circuit theory, discrete components, signal modulation, digital logic, embedded systems, communication protocols, power electronics, and more. 
 
 You'll find many pages that are empty or some sections that have more information than they should. These will be organized and fixed when I need to. For now I'll keep it as is.
 
 ## Primary Source
 
-The primary reference for much of this material is *The Art of Electronics* by Paul Horowitz and Winfield Hill. Additional content draws from coursework, datasheets, and hands-on experience, comapany seminars, and general research on certain topics
+The primary reference for much of this material is *The Art of Electronics* by Paul Horowitz and Winfield Hill. Other content comes from coursework, datasheets, and hands-on experience, comapany seminars, and general research on certain topics
 
 ## A Note on AI Usage
 
