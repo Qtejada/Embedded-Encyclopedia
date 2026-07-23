@@ -10,9 +10,10 @@ sidebar_label: Data Conversion
 ### Digital-to-Analog Converters (DACs)
 **Primary Parameters:**
 * **Resolution:** Number of bits (determines the smallest output step size).
-* **Accuracy:**
-    * *Monotonicity:* Does the output always increase as the input code increases?
-    * *Linearity:* How close is the transfer function to a straight line?
+* **How to Determine Accuracy:**
+    * *Monotonicity:* Does the output always increase as the input code increases? i.e does 100 and 101 and 102 drastically change the expected output?
+    * *Linearity:* How close is the transfer function to a straight line? i.e the INL (integran non-linearity) DAC spec usually specififed in dBs. For a
+         12-bit DAC, it can say +/- 0.5 LSB which equals 2.44mv.
     * *DC Stability:* Drift over time/temperature.
 * **Reference:** Can be Internal or External.
     * *Multiplying DAC (MDAC):* A specific type where V<sub>ref</sub> can vary, allowing the output to be the product of the reference signal and the digital code.
