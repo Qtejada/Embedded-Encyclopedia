@@ -11,7 +11,9 @@ sidebar_label: Data Conversion
 **Primary Parameters:**
 * **Resolution:** Number of bits (determines the smallest output step size).
 * **How to Determine Accuracy:**
-    * *Monotonicity:* Does the output always increase as the input code increases? i.e does 100 and 101 and 102 drastically change the expected output?
+    * *Monotonicity:* Does the output always increase as the input code increases? i.e does 100 and 101 and 102 always increase the voltage?
+         The increase can vary slightly, and not by the expected voltage 5v/2^12 bits is your typical steps for a 5v DAC
+         "Monotonic to 16 bits" would mean that for 16 bits of code input, the output will alway increase.
     * *Linearity:* How close is the transfer function to a straight line? i.e the INL (integran non-linearity) DAC spec usually specififed in dBs. For a
          12-bit DAC, it can say +/- 0.5 LSB which equals 2.44mv.
     * *DC Stability:* Drift over time/temperature.
