@@ -5,7 +5,7 @@ sidebar_label: ADCs & DACs
 
 # Chapter 13: Digital-to-Analog & Analog-to-Digital Conversion
 
-## 1. Converter Selection Criteria & Checklist
+## 1. Converters
 
 ### Digital-to-Analog Converters (DACs)
 **Primary Parameters:**
