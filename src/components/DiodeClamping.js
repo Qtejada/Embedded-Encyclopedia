@@ -6,8 +6,15 @@ export default function DiodeClamping() {
 
   return (
     <div style={{ textAlign: 'center', margin: '30px 0', padding: '20px', background: 'var(--ifm-background-surface-color)', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-200)' }}>
-      <h4 style={{marginBottom: '20px'}}>Diode Voltage Clamp (Limiter)</h4>
-      <svg width="100%" height="180" viewBox="0 0 400 180" style={{maxWidth: '400px'}}>
+      <h4 style={{marginBottom: '20px'}}>Diode voltage clamp (limiter)</h4>
+      <svg
+        width="100%"
+        height="180"
+        viewBox="0 0 400 180"
+        role="img"
+        aria-label="Diode circuit that limits the output to approximately 0.7 volts"
+        style={{maxWidth: '400px'}}
+      >
         
         {/* Input Side */}
         <text x="30" y="95" fill={strokeColor} fontSize="14" textAnchor="end">Input</text>
@@ -19,9 +26,9 @@ export default function DiodeClamping() {
         <text x="125" y="70" fill="var(--ifm-color-emphasis-600)" fontSize="12" textAnchor="middle">R_limit</text>
 
         {/* Output Line */}
-        <line x1="150" y1="90" x2="350" y2="90" stroke={strokeColor} strokeWidth="2" />
-        <circle cx="350" cy="90" r="3" fill={strokeColor} />
-        <text x="360" y="95" fill={highlightColor} fontSize="14" fontWeight="bold">Output</text>
+        <line x1="150" y1="90" x2="330" y2="90" stroke={strokeColor} strokeWidth="2" />
+        <circle cx="330" cy="90" r="3" fill={strokeColor} />
+        <text x="340" y="95" fill={highlightColor} fontSize="14" fontWeight="bold">Output</text>
 
         {/* Clamping Diode (Points Down to Ground) */}
         {/* Connection Dot */}
@@ -47,7 +54,7 @@ export default function DiodeClamping() {
 
         {/* Explanation Text */}
         <text x="200" y="40" fill="var(--ifm-color-emphasis-600)" fontSize="12" fontStyle="italic">
-             Max V_out ≈ 0.7V
+             Maximum V_out ≈ 0.7 V
         </text>
 
       </svg>
