@@ -371,6 +371,17 @@ tr:last-child td {
   border-bottom: none;
 }
 
+.capacitor-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.capacitor-table table {
+  min-width: 680px;
+  margin: 0;
+}
+
 tr:hover td {
   background: rgba(212, 160, 23, 0.02);
 }
@@ -560,6 +571,20 @@ tr:hover td {
 .component-wrapper:hover,
 .interactive-block:hover {
   border-color: rgba(212, 160, 23, 0.3);
+}
+
+.diagram-scroll-hint {
+  display: none;
+  margin-bottom: 0.4rem;
+  color: var(--hw-text-secondary);
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .diagram-scroll-hint {
+    display: block;
+  }
 }
 
 .interactive-block__header {
