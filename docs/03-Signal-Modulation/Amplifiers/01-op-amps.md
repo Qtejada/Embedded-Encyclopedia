@@ -4,6 +4,9 @@ sidebar_label: Op-Amps
 ---
 
 import GainBandwidthGraph from '@site/src/components/GainBandwidthGraph';
+import AdcDriverIsolation from '@site/src/components/AdcDriverIsolation';
+import SarAdcInputModel from '@site/src/components/SarAdcInputModel';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
 
@@ -42,7 +45,7 @@ When analyzing op-amp circuits with negative feedback, two simple rules allow yo
 * **Output:** 180 degrees out of phase.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/InvertingAmplifierFigure4.7.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/InvertingAmplifierFigure4.7.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -61,14 +64,14 @@ Both inputs have to equal each other, so V<sub>A</sub> = V<sub>in</sub>.
 * R1 and R2 are attenuators. Which means they reduce the input signal's magnitude by a set ratio to prevent saturation.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/Non-InvertingAmplifierFigure4.6.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/Non-InvertingAmplifierFigure4.6.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
 These circuits can work as either inverters or unity gain amplifiers dependent on switch.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/AdjustableInvertersFigure4.20.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/AdjustableInvertersFigure4.20.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -80,7 +83,7 @@ This is a special case of the Non-Inverting Amplifier where the feedback resisto
 * **Math:** V<sub>out</sub> = V<sub>in</sub>.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/op-ampFollowerFigure4.8.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/op-ampFollowerFigure4.8.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -128,7 +131,7 @@ If that output signal (V<sub>error</sub> or I<sub>error</sub>) is opposite in va
 Let's look at a Non-Inverting Op-Amp circuit.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/Non-InvertingAmplifierFigure4.6.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/Non-InvertingAmplifierFigure4.6.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -225,7 +228,7 @@ Simple Current to voltage converter.
 * **Result:** This is a transimpedance amplifier. You are converting an input current into an output voltage.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/PhotodiodeAmplifierFigure4.22.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/PhotodiodeAmplifierFigure4.22.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -244,7 +247,7 @@ An issue with real photodiodes is that their capacitance can still cause a phase
 Figure 4.25 demonstrates a method to increase output current capability using an external NPN bipolar junction transistor (BJT) configured as an emitter follower.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/EmitterFollowerFigure4.25.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/EmitterFollowerFigure4.25.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -274,7 +277,7 @@ The circuit in Figure 4.25 is a single-ended stage using an NPN transistor.
 To handle AC signals or loads that require both sourcing and sinking current, a complementary "push-pull" stage is needed (mentioned as Figure 4.26 in the text). This utilizes an NPN transistor to source current and a PNP transistor to sink current.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/PushPullFigure4.26.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/PushPullFigure4.26.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -321,7 +324,7 @@ When the feedback is taken from the final push-pull output (where the load is co
 * **Circuit 2:** DC is gained off to 1, unity gain. Because DC can't see C1, it can't see R1 either, gain turning into `R2/infinity + 1 = 1`. Otherwise AC acts as usual.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/AcAmplifierFigure4.7.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/AcAmplifierFigure4.7.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -332,7 +335,7 @@ When the feedback is taken from the final push-pull output (where the load is co
 * The output is just the difference between the 2 signals.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/DifferentialAmplifierFigure4.9.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/DifferentialAmplifierFigure4.9.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -347,7 +350,7 @@ When the feedback is taken from the final push-pull output (where the load is co
 * *Note: Built just like a non-inverting amplifier btw.*
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/BasicCurrentSourceFigure4.10.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/BasicCurrentSourceFigure4.10.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -358,7 +361,7 @@ When the feedback is taken from the final push-pull output (where the load is co
 * Voltage on top of R is V<sub>CC</sub>, at the bottom its at V<sub>in</sub>. So current flowing through R is `(VCC - Vin) / R`.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/CurrentSOurce.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/CurrentSOurce.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -378,7 +381,7 @@ When the feedback is taken from the final push-pull output (where the load is co
 * The source voltage (top of the FET) is fed back to inverting input stabilizing R3 and R2.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/SecondCurrentSource.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/SecondCurrentSource.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -443,7 +446,7 @@ You mentioned the Integrator having one. This is actually the reverse situation!
 * **The Resistor Fix:** In a real integrator, we put a large Resistor (R<sub>f</sub>) in parallel with the capacitor. This gives the DC bias currents a path to flow. It puts a "limit" on the DC gain so the Op-Amp doesn't drift into saturation.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/integratorFigure4.16.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/integratorFigure4.16.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -467,7 +470,7 @@ A switch can be used to bypass the capacitor. This is done to reset the integrat
 Op-amps can provide gain for a feedback voltage regulator by comparing the output to a zener reference.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/VoltageRegulatorFigure4.29.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/VoltageRegulatorFigure4.29.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -498,7 +501,7 @@ Op-amps can provide gain for a feedback voltage regulator by comparing the outpu
 Rectification with small signals can't be done with diodes because of the 0.6V drop or 1.2V drop.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/HalfWaveRectifierFigure4.38.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/HalfWaveRectifierFigure4.38.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -517,7 +520,7 @@ D1 makes the circuit a unity-gain inverter for negative input signals. D2 clamps
 Normal filters have a soft roll-off, meaning the response versus frequency is not a sharp end in their passband and stopband. The **Sallen-Key** topology improves this.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/SallenKeyLowPassFigure4.42.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/SallenKeyLowPassFigure4.42.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -685,7 +688,7 @@ In order to combat circuits in which the output wants to swing negative (AC Audi
 3. **Note:** You would need to bias *each stage* if there are multiple.
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/SingleSupplyFigure4.71.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/SingleSupplyFigure4.71.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -694,7 +697,7 @@ In order to combat circuits in which the output wants to swing negative (AC Audi
 * By grounding the reference output, you split the single supply into a negative and positive pair (relative to that new center ground).
 
 <div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/SplitSupllyGeneratorFigure4.73.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
+  <img src={useBaseUrl('/img/SplitSupllyGeneratorFigure4.73.png')} className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
   <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: The Art of Electronics</p>
 </div>
 
@@ -807,10 +810,7 @@ A specific challenge in modern design is driving **Successive Approximation Regi
 * **The Glitch:** Because C<sub>SH</sub> is often at a different voltage (e.g., Reset Voltage) than the input, a sudden **Transient Current** surge flows to equalize them.
 * **Impact:** This causes a voltage dip or "glitch" at the op-amp input. If the op-amp cannot settle this glitch before the acquisition phase ends, the sample is corrupted, degrading accuracy.
 
-<div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/sar_adc_input_model.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
-  <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: Analog Devices</p>
-</div>
+<SarAdcInputModel />
 
 ### 2. SAR Internals & Glitch Mechanics
 To understand the glitch, you must understand the internal components of the ADC front end.
@@ -846,10 +846,7 @@ You must **isolate** the op-amp from the load capacitor using a series resistor 
 * **Mechanism:** The resistor becomes the dominant resistance. It "de-Qs" (dampens) the LC resonance, preventing oscillation.
 * **Pole Management:** It ensures the capacitor does not interact directly with the op-amp's feedback loop to create a destabilizing pole.
 
-<div style={{textAlign: 'center', margin: '20px 0'}}>
-  <img src="/img/opamp_adc_driver_rc.png" className="invert-on-dark" style={{maxWidth: '80%', borderRadius: '8px'}} />
-  <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Image Source: TI Precision Labs</p>
-</div>
+<AdcDriverIsolation />
 
 ### 5. Selecting Components (The Trade-offs)
 
