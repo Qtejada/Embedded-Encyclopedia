@@ -56,6 +56,16 @@ When analyzing op-amp circuits with negative feedback, two simple rules allow yo
     * `Vin / R1 = - Vout / R2`
 * From this it follows that **Gain = - R2 / R1**.
 
+<div style={{textAlign: 'center', margin: '20px 0'}}>
+  <img
+    src={useBaseUrl('/img/SummingAmpliferFigure4.24.png')}
+    alt="Summing amplifier with three input resistors and one feedback resistor"
+    className="invert-on-dark"
+    style={{maxWidth: '80%', borderRadius: '8px'}}
+  />
+  <p style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>Summing-amplifier configuration. Image Source: The Art of Electronics, Figure 4.24.</p>
+</div>
+
 ### Non-Inverting Amplifier
 **Analysis:**
 Both inputs have to equal each other, so V<sub>A</sub> = V<sub>in</sub>.
