@@ -1,6 +1,6 @@
 ---
 title: Digital-to-Analog & Analog-to-Digital Conversion
-sidebar_label: ADCs
+sidebar_label: ADCs & DACs
 ---
 
 # Chapter 13: Digital-to-Analog & Analog-to-Digital Conversion
