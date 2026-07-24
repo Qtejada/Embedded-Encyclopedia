@@ -133,7 +133,7 @@ export default function InductorFlybackAnim() {
           
           ctx.font = "bold 12px sans-serif";
           ctx.shadowBlur = 0;
-          ctx.fillText("⚠ HIGH VOLTAGE SURGE", cx, meterY + 52);
+          ctx.fillText("HIGH-VOLTAGE SURGE", cx, meterY + 52);
       } else if (isSwitchClosed) {
           ctx.fillStyle = "#34d399"; // Light Green LED
           ctx.shadowColor = "#10b981";
@@ -342,7 +342,7 @@ export default function InductorFlybackAnim() {
       boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
       width: '100%',
       maxWidth: '800px',
-      margin: '2rem auto'
+      margin: '0 auto'
   };
 
   const titleStyle = {
@@ -387,7 +387,7 @@ export default function InductorFlybackAnim() {
   return (
     <div style={containerStyle}>
       <h3 style={titleStyle}>
-        Inductive Flyback Demonstration
+        Inductive flyback demonstration
       </h3>
 
       <div style={canvasContainerStyle}>
@@ -408,12 +408,12 @@ export default function InductorFlybackAnim() {
             onTouchEnd={(e) => { e.preventDefault(); setSwitchClosed(false); }}
             style={buttonStyle}
         >
-            {switchClosed ? "⚡ CHARGING ⚡" : "HOLD TO CHARGE"}
+            {switchClosed ? "ENERGIZING" : "HOLD TO ENERGIZE"}
         </button>
       </div>
       
       <p style={{marginTop: '10px', fontStyle: 'italic', color: 'var(--ifm-color-emphasis-600)', textAlign: 'center'}}>
-         Hold to build field. Release to see the <strong style={{color: '#fa5252'}}>High Voltage Spike</strong>.
+         Hold the button to build the magnetic field. Release it to see the <strong style={{color: '#fa5252'}}>high-voltage spike</strong>.
       </p>
 
     </div>

@@ -5,135 +5,146 @@ sidebar_label: Inductors
 
 import InductorFlybackAnim from '@site/src/components/InductorFlybackAnim';
 import InductorPhaseDiagram from '@site/src/components/InductorPhaseDiagram';
+import InductorBuckCycleDiagram from '@site/src/components/InductorBuckCycleDiagram';
 
 # Inductors
 
-## 1. Core Relations
+## 1. Core Relationships
 
 <div className="grid-2">
 
   <div className="tech-panel">
-    
-    
-    * **Voltage:** *v(t) = L · (di / dt)*
-    * **Energy stored:** *E = ½ · L · I²*
-    * **Impedance:** *Z = jωL*
-    
- 
+
+  * **Voltage:** <i>v(t) = L &middot; (di/dt)</i>
+  * **Stored energy:** <i>E = &frac12; &middot; L &middot; I<sup>2</sup></i>
+  * **Impedance:** <i>Z = j&omega;L</i>
+
   </div>
 
   <div className="tech-panel">
-    
-    :::note Inertia for Current
-    Think of an Inductor like a **Heavy Flywheel** inside a water pipe.
-    * It takes pressure (Voltage) to get it spinning (Current).
-    * Once spinning, it doesn't want to stop.
-    * If you cut the flow instantly, the momentum creates a massive pressure spike (**Flyback**).
-    :::
+
+  :::note Inertia for Current
+  Think of an inductor as a **heavy flywheel** in a water pipe.
+
+  * Pressure (**voltage**) starts the flywheel. This action starts the flow (**current**).
+  * After the flywheel turns, it does not stop easily.
+* If the flow stops suddenly, momentum causes a very large pressure spike. This spike represents **flyback**.
+  :::
+
   </div>
 
 </div>
 
-
-
-## 2. Physics & Operation
+## 2. Physics and Operation
 
 **Current in an inductor cannot change instantaneously.**
-If the drive (voltage) is removed, the inductor will generate **whatever voltage is needed** (even thousands of volts) to keep the current flowing across the gap. This is the **Flyback Kick**.
+
+When current flows, the inductor stores energy in its magnetic field.
+
+If you remove the drive voltage, the magnetic field starts to collapse. The inductor then becomes a voltage source.
+
+The inductor generates **whatever voltage is necessary** to keep current flowing. This voltage can be thousands of volts.
+
+The current can flow across the opening switch gap. This effect is the **flyback kick**.
 
 ### Interactive: The Inductive Kick
-*Charge the coil and release to see the voltage spike.*
+
+Hold the control to energize the coil. Release the control to see the voltage spike.
 
 <div className="component-wrapper">
   <InductorFlybackAnim />
 </div>
 
-
-
-## 3. Frequency Behavior
+## 3. Frequency and Phase Behavior
 
 <div className="grid-2">
 
   <div className="tech-panel">
 
-    
-    **The Rules of Thumb:**
-    * **DC (f=0):** Z is Zero. Acts like a **Short Circuit** (Wire).
-    * **High Freq:** Z is High. Acts like an **Open Circuit**.
-    
-    *This is the exact opposite of a Capacitor.*
+  **Rules of thumb:**
+
+  * **DC (<i>f</i> = 0):** Impedance is zero. The inductor acts like a **short circuit** or wire.
+  * **High frequency:** Impedance is high. The inductor acts like an **open circuit**.
+
+  *This behavior is the exact opposite of capacitor behavior.*
+
   </div>
 
   <div className="tech-panel">
-    <span className="panel-header">04. Phase Relationship</span>
-    
+    <span className="panel-header">Phase Relationship</span>
+
     <InductorPhaseDiagram />
-    
-    **"ELI the ICE man"**
-    * **Voltage (E) leads Current (I)** by 90°.
-    * You must apply Voltage *before* Current can start ramping up.
+
+    **ELI the ICE man**
+
+  * **Voltage (E) leads current (I)** by 90&deg;.
+  * You must apply voltage before current can start to increase.
+
   </div>
 
 </div>
 
+## 4. RL Time Constants
 
+Like an RC circuit, an RL circuit has a time constant. The circuit contains an inductor and a resistor.
 
-## 4. Common Uses
+* **Time constant:** <i>&tau; = L / R</i>
+* **Current rise:** <i>I(t) = (V / R) &middot; (1 - e<sup>-t/&tau;</sup>)</i>
 
-### Switching Regulators (Buck/Boost)
-Used very often in modern power systems. The inductor stores energy during the "On" cycle and releases it to the load during the "Off" cycle.
+**Key takeaway:**
+
+Current takes time to increase. Lower resistance gives a larger time constant and a slower exponential rise.
+
+* **Contrast with capacitors:** Higher resistance makes a capacitor charge more slowly.
+* **Contrast with inductors:** Lower resistance makes an inductor current rise more slowly because <i>&tau; = L/R</i>.
+
+## 5. Common Uses
+
+### Switching Regulators (Buck and Boost)
+
+Engineers use inductors very often in modern power systems.
+
+The inductor stores energy during the **ON cycle**. It releases energy to the load during the **OFF cycle**.
 
 ### Filtering (Chokes)
-* **Series Choke:** Blocks high-frequency noise from entering a circuit.
-* **Ferrite Bead:** A lossy inductor that turns RF noise into heat.
+
+* **Series choke:** It blocks high-frequency noise from entering a circuit.
+* **Ferrite bead:** It is a lossy inductor. It converts radio-frequency (**RF**) noise into heat.
 
 ### Transformers
-Two coupled inductors. Used to step voltage up/down or isolate grounds.
 
+A transformer contains two coupled inductors.
 
+It can increase or decrease voltage. It can also isolate grounds.
 
-## 5. Core Types & Selection
+## 6. Core Types and Selection
 
-The material inside the coil determines how much energy it can hold before it "saturates" (stops working).
+The coil-core material determines how much energy the inductor can store before it **saturates**. At saturation, the core stops operating correctly.
 
-| Type | Material | Pros/Cons | Best Application |
+| Type | Material | Advantages and Disadvantages | Best Application |
 | :--- | :--- | :--- | :--- |
-| **Ferrite** | MnZn / NiZn | **High Permeability.** Low losses. <br/>*Con:* Hard Saturation (Inductance falls off a cliff). | Switch-Mode Power (Discontinuous), Signal Filtering. |
-| **Powder** | Iron / Alloy | **Soft Saturation.** Inductance drops gracefully. <br/>*Con:* Higher core losses. | High-Current Power (Continuous Mode). |
-| **Air Core** | Air / Plastic | **No Saturation.** Perfect linearity. <br/>*Con:* Huge physical size for low inductance. | RF Circuits, Tuned Radios. |
+| **Ferrite** | MnZn or NiZn | **High permeability** and low losses.<br/>**Disadvantage:** Hard saturation. The inductance decreases abruptly. | Switch-mode power in discontinuous mode and signal filtering. |
+| **Powder** | Iron or alloy | **Soft saturation.** The inductance decreases gradually.<br/>**Disadvantage:** Higher core losses. | High-current power in continuous mode. |
+| **Air core** | Air or plastic | **No saturation** and ideal linearity.<br/>**Disadvantage:** A low-inductance part has a very large physical size. | RF circuits and tuned radios. |
 
+## 7. Switch-Mode Basics (The Integrator)
 
-
-## 6. RL Time Constants
-
-Just like RC circuits, Inductors have a time constant when paired with a resistor.
-
-* **Time Constant:** *τ = L / R*
-* **Current Rise:** *I(t) = (V / R) · (1 - e<sup>-t/τ</sup>)*
-
-**Key Takeaway:**
-Current takes time to ramp up. Lower Resistance = Slower Ramp (Higher τ).
-* *Contrast with Caps:* Capacitors charge slower with *Higher* resistance. Inductors charge slower with *Lower* resistance (because L/R).
-
-
-
-## 7. Switch-Mode Basics (The "Integrator")
-
-While Capacitors smooth out Voltage, Inductors smooth out **Current**.
+Capacitors smooth **voltage**. Inductors smooth **current**.
 
 ### The Buck Converter (Step-Down)
-This is the primary use case for inductors in digital hardware.
 
-1.  **Switch ON:** Voltage is applied. Current ramps up linearly (*V = L·di/dt*). Energy is stored in the magnetic field.
-2.  **Switch OFF:** Field collapses. The Inductor acts as a source, pushing current through the diode to the load.
-3.  **Result:** The output sees a smooth average DC voltage, even though the input was chopped pulses.
+This circuit is the primary inductor application in digital hardware.
+
+1. **Switch ON:** The circuit applies voltage to the inductor. Current increases linearly according to <i>V = L &middot; di/dt</i>. The magnetic field stores energy.
+2. **Switch OFF:** The magnetic field collapses. The inductor becomes a source and pushes current through the diode to the load.
+3. **Result:** The output receives a smooth average DC voltage. The input voltage consists of chopped pulses.
+
+<InductorBuckCycleDiagram />
 
 :::info Design Choice
-* **Ferrite Drum:** Better for High Ripple / Discontinuous mode.
-* **Powder Core:** Better for Low Ripple / Continuous mode (handles DC bias better).
+* **Ferrite drum:** It is better for high ripple or discontinuous mode.
+* **Powder core:** It is better for low ripple or continuous mode. It also handles DC bias better.
 :::
-
-
 
 ## 8. Real-World Parasitics
 
@@ -141,41 +152,47 @@ This is the primary use case for inductors in digital hardware.
 
   <div className="tech-panel">
     <span className="panel-header">DCR (DC Resistance)</span>
-    
-    Real wire has resistance.
-    * **Effect:** Simple *I²R* heating.
-    * **Trade-off:** Thicker wire = Lower DCR but larger size.
+
+  Real wire has resistance.
+
+  * **Effect:** The resistance causes <i>I<sup>2</sup>R</i> heating.
+  * **Trade-off:** Thicker wire gives lower **DCR**, but it increases the part size.
+
   </div>
 
   <div className="tech-panel">
-    <span className="panel-header">SRF (Self-Resonance)</span>
-    
-    Windings are close together, creating tiny **Inter-winding Capacitance**.
-    * **Above SRF:** The inductor stops blocking noise and acts like a Capacitor (passes high freq!).
-    * **Rule:** Always operate well below the SRF.
+    <span className="panel-header">SRF (Self-Resonant Frequency)</span>
+
+  Adjacent windings create a small **interwinding capacitance**.
+
+  * **Above SRF:** The inductor stops blocking noise. It acts like a capacitor and passes high-frequency signals.
+  * **Rule:** Always operate the inductor well below its **SRF**.
+
   </div>
 
 </div>
 
-
-
-## 9. Non-Ideal Properties (The "Gotchas")
+## 9. Nonideal Properties (The Gotchas)
 
 ### A. Saturation Current (I<sub>sat</sub>)
-The most dangerous spec.
-* **Concept:** The magnetic core can only hold so much flux. Once full, it acts like Air.
-* **The Danger:** Inductance drops to near zero instantly. Current spikes massively, potentially blowing up your MOSFET.
-* **Rule:** Never exceed *I<sub>sat</sub>*, even for a microsecond.
 
+**Saturation current** is the most dangerous inductor specification.
 
-### B. Audible Noise ("Coil Whine")
-* **Magnetostriction:** The magnetic field physically squeezes the core material.
-* At certain frequencies (2kHz - 20kHz), the core vibrates like a speaker, creating an audible whine.
-* **Fix:** Use molded inductors (solid block) or shift switching frequency above 20kHz.
+* **Concept:** The magnetic core can hold only a limited magnetic flux. When the core is full, it acts like an air core.
+* **Danger:** Inductance decreases to almost zero immediately. A very large current spike can destroy the metal-oxide-semiconductor field-effect transistor (**MOSFET**).
+* **Rule:** Never exceed <i>I<sub>sat</sub></i>, even for one microsecond.
+
+### B. Audible Noise (Coil Whine)
+
+* **Magnetostriction:** The magnetic field physically compresses the core material.
+* At frequencies from 2 kHz to 20 kHz, the core can vibrate like a speaker. This vibration causes an audible whine.
+* **Fix:** Use a molded inductor, which is a solid block. You can also increase the switching frequency above 20 kHz.
 
 ### C. EMI (Electromagnetic Interference)
-* **Shielded Inductors:** Have a magnetic housing to keep the field inside.
-* **Unshielded:** Cheaper, but spew magnetic field lines everywhere, inducing noise in nearby traces.
+
+* **Shielded inductors:** A magnetic housing keeps the magnetic field inside the component.
+* **Unshielded inductors:** These parts cost less, but they do not contain the magnetic field. The field induces noise in nearby traces.
+
 :::danger Layout Tip
-Never route sensitive signal traces under an inductor! It acts like a transformer primary and will inject noise into your signal.
+Never route a sensitive signal trace under an inductor. The inductor acts like a transformer primary and injects noise into the signal.
 :::
