@@ -22,14 +22,15 @@ export default function BJTBasicActive() {
   const ic_ideal = ib * beta;
 
   // Step C: Calculate Max Possible Current (Saturation Limit)
-  const ic_max = vcc / R_COLL;
+  const V_CE_SAT = 0.1;
+  const ic_max = Math.max(0, (vcc - V_CE_SAT) / R_COLL);
 
   // Step D: Determine Region & Real Values
   let ic = 0;
   let vce = vcc;
   let region = "CUTOFF";
   let statusColor = "#e9ecef"; // Grey
-  let desc = "Base voltage is too low to turn on the diode.";
+  let desc = "Base voltage is too low to forward bias the base-emitter junction.";
 
   if (vin <= V_BE) {
     // CUTOFF
@@ -37,7 +38,7 @@ export default function BJTBasicActive() {
     statusColor = "#343a40"; // Dark Grey
     ic = 0;
     vce = vcc;
-    desc = `Vin (${vin.toFixed(1)}V) < 0.7V. The Switch is Open.`;
+    desc = `Vin (${vin.toFixed(1)} V) < 0.7 V. The switch is open.`;
   } 
   else if (ic_ideal < ic_max) {
     // ACTIVE
@@ -45,15 +46,15 @@ export default function BJTBasicActive() {
     statusColor = "#2b8a3e"; // Green
     ic = ic_ideal;
     vce = vcc - (ic * R_COLL);
-    desc = `Amplifying! Ic = β × Ib. Output follows input.`;
+    desc = `IC = β × IB. Collector current increases with base drive.`;
   } 
   else {
     // SATURATION
     region = "SATURATION";
     statusColor = "#e03131"; // Red
     ic = ic_max; // Clamped
-    vce = 0.1; // V_CE(sat) approx
-    desc = `Switch Closed! Current is maxed out by the 1kΩ resistor. Increasing Base drive does nothing.`;
+    vce = V_CE_SAT;
+    desc = `The switch is closed. The 1 kΩ resistor limits collector current. More base drive does not increase it.`;
   }
 
   // Helper for unit display
@@ -63,7 +64,7 @@ export default function BJTBasicActive() {
   return (
     <div style={{border: '1px solid var(--ifm-color-emphasis-300)', borderRadius: '8px', padding: '25px', margin: '30px 0', background: 'var(--ifm-background-surface-color)'}}>
       <h4 style={{textTransform: 'uppercase', color: 'var(--ifm-color-primary)', marginBottom: '20px', borderBottom: '1px solid var(--ifm-color-emphasis-200)', paddingBottom: '10px'}}>
-        🎛️ BJT Region Explorer (NPN)
+        BJT operating-region explorer (NPN)
       </h4>
       
       <div style={{display: 'grid', gap: '20px', marginBottom: '25px'}}>

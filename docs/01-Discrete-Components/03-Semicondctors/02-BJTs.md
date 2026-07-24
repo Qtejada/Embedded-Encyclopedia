@@ -1,9 +1,11 @@
 ---
-title: BJTs & Amplifiers
+title: BJTs and Amplifiers
 sidebar_label: BJTs
 ---
 
 import BJTBasicActive from '@site/src/components/BJTBasicActive';
+import BJTFeedbackLoopDiagram from '@site/src/components/BJTFeedbackLoopDiagram';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # BJTs, Amplifiers, and Feedback
 
@@ -13,32 +15,34 @@ import BJTBasicActive from '@site/src/components/BJTBasicActive';
 
 <div className="definition-list">
 
-- A small base current is used to control a large current flowing from collector to emitter.
-- The base–emitter and base–collector junctions behave like diodes.
+* A small **base current** controls a larger current from collector to emitter.
+* The base-emitter and base-collector junctions operate like diodes.
 
-Rules of operation (NPN, general rule):
+**General NPN operating rules:**
 
-- If *VC > VB* and *VBE ≈ 0.7 V*, you are in **active mode**.
-- If *VBE > 0.7 V* and *VB > VC*, you are in **saturation**.
-- If *VBE < 0.7 V*, you are in **cutoff**.
+* If <i>V<sub>C</sub> &gt; V<sub>B</sub></i> and <i>V<sub>BE</sub> &asymp; 0.7 V</i>, the transistor is in **active mode**.
+* If <i>V<sub>BE</sub> &gt; 0.7 V</i> and <i>V<sub>B</sub> &gt; V<sub>C</sub></i>, the transistor is in **saturation**.
+* If <i>V<sub>BE</sub> &lt; 0.7 V</i>, the transistor is in **cutoff**.
 
-When looking at transistors, you have 2 methods:
+You can use two analysis methods:
 
-- **General rule**: quick hand analysis, assumes *VBE ≈ 0.7 V*, etc.
-- **Ebers–Moll**: exponential model for more accurate analysis.
+* **General rule:** This method gives a quick hand analysis. It assumes values such as <i>V<sub>BE</sub> &asymp; 0.7 V</i>.
+* **Ebers-Moll:** This exponential model gives a more accurate analysis.
 
-Use the general rule most of the time for simple analysis.
+Use the general rule for most simple analyses.
 
-Under general analysis:
+**General-analysis relationships:**
 
-- *IC = beta * IB*
-  Your circuit designs should **not** rely on *beta*. It can vary wildly. Do not design a circuit that needs an accurate *beta*.
+* <i>I<sub>C</sub> = &beta; &times; I<sub>B</sub></i>
 
-- *VB ≈ VE + 0.7 V*
-  This will hold whenever the transistor is conducting (in active or saturation, roughly).
-  If this is not true, the transistor is in cutoff.
+  Do **not** make a circuit depend on an exact value of <i>&beta;</i>. The value can change by a very large amount.
 
-- As base current increases, collector current increases. With enough base drive, the transistor ends up like a short between collector and emitter (saturation). With no base current, it acts like an open between collector and emitter (cutoff).
+* <i>V<sub>B</sub> &asymp; V<sub>E</sub> + 0.7 V</i>
+
+  This relationship applies approximately when the transistor conducts. It applies in active mode and saturation. Otherwise, the transistor is in cutoff.
+
+* More base current causes more collector current. Sufficient base drive makes the collector-emitter path operate like a short circuit. This condition is saturation.
+* With no base current, the collector-emitter path operates like an open circuit. This condition is cutoff.
 
 </div>
 
@@ -46,359 +50,460 @@ Under general analysis:
 
 <div className="definition-list">
 
-**Active mode**
-- Occurs when:
-  - *VB > VE* by about *0.7 V*, and
-  - *VC > VB*
-- You can bias your transistor at a certain point. The point you choose is the **quiescent point (Q-point)** that your circuit operates around.
+**Active Mode**
+
+Active mode occurs when:
+
+* <i>V<sub>B</sub></i> is approximately 0.7 V higher than <i>V<sub>E</sub></i>.
+* <i>V<sub>C</sub> &gt; V<sub>B</sub></i>.
+
+You can bias the transistor at a selected operating point. This point is the **quiescent point (Q-point)**.
+
+The circuit operates around the Q-point.
 
 **Saturation**
-- Occurs when the base drive would like to force more collector current than the circuit can supply:
-  *IB * beta > IC(max allowed by circuit)*
-- Because (in the simple model) *IC = beta * IB*, the collector *tries* to pull more current than the circuit can give it.
-- More and more voltage drops across the collector resistor, leaving almost no voltage left between collector and emitter. So the collector voltage goes very close to the emitter voltage (for NPN with emitter at ground, *VC ≈ 0 V*).
-- The base–collector junction becomes forward biased (base–collector diode conducts).
 
-*What it means:*
-- *VCE* goes as close to 0 as it can.
-- The transistor effectively acts like a **closed switch** (from collector to emitter).
-- All possible current from the supply through the load flows through the transistor.
+Saturation occurs when the base drive requests more collector current than the circuit can supply:
 
-*Uses:*
-- You can use a transistor as a **switch** by saturating it.
-- To guarantee saturation, you make *IB* large enough that even with a low *beta* you still get *IB * beta > IC*.
-  Do **not** rely on the exact value of *beta*; overdrive the base.
+<i>I<sub>B</sub> &times; &beta; &gt; I<sub>C(maximum allowed by the circuit)</sub></i>
+
+In the simple model, <i>I<sub>C</sub> = &beta; &times; I<sub>B</sub></i>. The collector tries to draw more current than the circuit can supply.
+
+The voltage across the collector resistor continues to increase. Almost no voltage remains between collector and emitter.
+
+Therefore, the collector voltage becomes very close to the emitter voltage. For an NPN transistor with a grounded emitter, <i>V<sub>C</sub> &asymp; 0 V</i>.
+
+The base-collector junction becomes forward biased. The base-collector diode then conducts.
+
+**What Saturation Means:**
+
+* <i>V<sub>CE</sub></i> becomes as close to 0 V as possible.
+* The transistor operates like a **closed switch** from collector to emitter.
+* All available current flows from the supply, through the load, and through the transistor.
+
+**Uses:**
+
+* You can use a saturated transistor as a **switch**.
+* To guarantee saturation, use sufficient <i>I<sub>B</sub></i>. The condition <i>I<sub>B</sub> &times; &beta; &gt; I<sub>C</sub></i> must remain true when <i>&beta;</i> is low.
+* Do **not** use the exact value of <i>&beta;</i>. Overdrive the base.
 
 **Cutoff**
-- Occurs when *VBE* is not forward biased, or *IB ≈ 0*.
-- Achieved by grounding the base (for NPN) or making *VE > VB*.
 
-*What it means:*
-- Collector current does not flow (ignoring tiny leakage).
-- All terminals are basically “for themselves” (open circuit between collector and emitter).
-- The transistor acts like an **open switch**.
+Cutoff occurs when <i>V<sub>BE</sub></i> is not forward biased or <i>I<sub>B</sub> &asymp; 0</i>.
+
+For an NPN transistor, ground the base or make <i>V<sub>E</sub> &gt; V<sub>B</sub></i> to get cutoff.
+
+**What Cutoff Means:**
+
+* Collector current does not flow. This statement ignores the small leakage current.
+* The terminals are effectively separate. The collector-emitter path is an open circuit.
+* The transistor operates like an **open switch**.
 
 </div>
 
-
-
-## 2. Ebers–Moll (Exponential Behavior)
+## 2. Ebers-Moll (Exponential Behavior)
 
 <div className="definition-list">
 
-Important formula (Ebers–Moll):
+**Important Ebers-Moll Formula:**
 
-- *IC = IS * exp(VBE / VT)*
+* <i>I<sub>C</sub> = I<sub>S</sub> &times; exp(V<sub>BE</sub> / V<sub>T</sub>)</i>
 
-  where:
-  - *IS* is the saturation current (very temperature dependent),
-  - *VT = kT/q* is the thermal voltage (about *25 mV* at room temperature).
+  In this formula:
 
-- This shows that **IC is fundamentally set by VBE**, not by base current. The relationship *IC = beta * IB* is a consequence of this exponential behavior.
+  * <i>I<sub>S</sub></i> is the saturation current. It is very temperature dependent.
+  * <i>V<sub>T</sub> = kT/q</i> is the thermal voltage. It is approximately 25 mV at room temperature.
 
-Inverse relation:
+This formula shows that **V<sub>BE</sub> fundamentally sets I<sub>C</sub>**. Base current does not fundamentally set it.
 
-- *VBE = VT * ln(IC / IS)*
+The relationship <i>I<sub>C</sub> = &beta; &times; I<sub>B</sub></i> is a result of this exponential behavior.
 
-So *VBE* is affected by temperature through both *VT* and *IS*.
+**Inverse Relationship:**
 
-Relationship between two operating points:
+* <i>V<sub>BE</sub> = V<sub>T</sub> &times; ln(I<sub>C</sub> / I<sub>S</sub>)</i>
 
-- *IC2 / IC1 = exp(ΔVBE / VT)*
-  so
-  *ΔVBE = VT * ln(IC2 / IC1)*
+Temperature affects <i>V<sub>BE</sub></i> through both <i>V<sub>T</sub></i> and <i>I<sub>S</sub></i>.
 
-**Internal emitter resistance re:**
+**Relationship Between Two Operating Points:**
 
-- Small-signal emitter resistance:
-  *re = VT / IC ≈ 25 mV / IC* (IC in amperes, room temperature)
+* <i>I<sub>C2</sub> / I<sub>C1</sub> = exp(&Delta;V<sub>BE</sub> / V<sub>T</sub>)</i>
+* Therefore, <i>&Delta;V<sub>BE</sub> = V<sub>T</sub> &times; ln(I<sub>C2</sub> / I<sub>C1</sub>)</i>.
 
-- If *IC* changes (with temperature or bias), *re* changes.
-- If your circuit relies **only** on *re* for its emitter resistance, then small changes in *IC* cause **non-linear** changes in gain/impedance.
+**Internal Emitter Resistance, r<sub>e</sub>:**
+
+* The small-signal emitter resistance is <i>r<sub>e</sub> = V<sub>T</sub> / I<sub>C</sub></i>.
+* At room temperature, <i>r<sub>e</sub> &asymp; 25 mV / I<sub>C</sub></i>. Use amperes for <i>I<sub>C</sub></i>.
+* If temperature or bias changes <i>I<sub>C</sub></i>, then <i>r<sub>e</sub></i> also changes.
+* If the circuit uses only <i>r<sub>e</sub></i> for emitter resistance, small changes in <i>I<sub>C</sub></i> cause **nonlinear** changes in gain and impedance.
 
 </div>
 
-
-## 3. Stability & Temperature
+## 3. Stability and Temperature
 
 <div className="definition-list">
 
-**Emitter degeneration**: having an explicit resistor *RE* in the emitter.
+**Emitter Degeneration:** Add an explicit resistor, <i>R<sub>E</sub></i>, in the emitter path.
 
-- Usually you want *RE >> re*.
-  Then most of the emitter “resistance” is a fixed resistor, not the temperature-dependent *re*.
+* Usually, make <i>R<sub>E</sub> &gt;&gt; r<sub>e</sub></i>.
+* Most emitter resistance then comes from a fixed resistor instead of the temperature-dependent <i>r<sub>e</sub></i>.
 
-- If your circuit relies solely on *re*:
-  - Linear changes in *VBE* do **not** give linear changes in collector current because of the exponential relationship.
-  - As *IC* varies, *re* varies → impedance and gain vary.
+If the circuit uses only <i>r<sub>e</sub></i>:
 
-- Adding an external emitter resistor *RE* acts as **negative feedback**:
-  - *IC* increases → *IE* increases → voltage across *RE* increases → *VE* goes up → *VBE* goes down → *IC* is pushed back down.
-  - This helps prevent **thermal runaway**, where increased temperature causes increased *IC*, causing more power dissipation and even more temperature.
+* Linear changes in <i>V<sub>BE</sub></i> do **not** cause linear changes in collector current. The relationship is exponential.
+* Changes in <i>I<sub>C</sub></i> change <i>r<sub>e</sub></i>. Therefore, impedance and gain also change.
 
-**Bypass capacitor idea:**
+An external emitter resistor, <i>R<sub>E</sub></i>, supplies **negative feedback**:
 
-- You can use a large *RE* for DC stability, and **bypass** it with a capacitor for AC.
-- DC: *RE* is seen, stabilizing bias and fighting thermal runaway.
-- AC: the capacitor shorts *RE*, so the AC gain is mostly set by *RC / re*.
-  “Your AC signal has a straight path to ground, so your gain is *RC / re*, but now you have *RE* to maintain your bias stability.”
+* <i>I<sub>C</sub></i> increases &rarr; <i>I<sub>E</sub></i> increases &rarr; the voltage across <i>R<sub>E</sub></i> increases.
+* <i>V<sub>E</sub></i> increases &rarr; <i>V<sub>BE</sub></i> decreases &rarr; <i>I<sub>C</sub></i> is pushed down.
 
-**Temperature parts:**
+<BJTFeedbackLoopDiagram />
 
-- Both *VT = kT/q* and *IS* change with temperature.
-- The temperature dependence of *IS* is generally stronger and tends to dominate.
+This feedback helps prevent **thermal runaway**.
+
+During thermal runaway, temperature increases collector current. The higher current increases power dissipation, which causes a further temperature increase.
+
+**Bypass Capacitor Idea:**
+
+* Use a large <i>R<sub>E</sub></i> for DC stability. **Bypass** the resistor with a capacitor for AC operation.
+* **DC:** The circuit sees <i>R<sub>E</sub></i>. The resistor stabilizes the bias and opposes thermal runaway.
+* **AC:** The capacitor shorts <i>R<sub>E</sub></i>. The AC gain is then set primarily by <i>R<sub>C</sub> / r<sub>e</sub></i>.
+* The AC signal has a direct path to ground. The circuit still uses <i>R<sub>E</sub></i> to maintain stable DC bias.
+
+**Temperature-Dependent Parts:**
+
+* Temperature changes both <i>V<sub>T</sub> = kT/q</i> and <i>I<sub>S</sub></i>.
+* The temperature dependence of <i>I<sub>S</sub></i> is generally stronger and usually dominates.
 
 </div>
-
-
 
 ## 4. Biasing Techniques
 
 <div className="definition-list">
 
-**Dual supply biasing vs. voltage divider biasing**
+**Dual-Supply Biasing and Voltage-Divider Biasing**
 
-- **Voltage divider biasing**:
-  - You use a resistor divider from a single supply to set the base DC voltage.
-  - A coupling capacitor lets the AC signal ride on top of this DC bias.
-  - The signal can swing around a mid-rail bias point toward the supply rails.
+**Voltage-Divider Biasing:**
 
-- **Dual supply biasing**:
-  - You have *+VCC* and *-VEE*.
-  - Both base and input signal can be biased at *0 V*.
-  - The signal can swing from *+VCC* to *-VEE* symmetrically.
-  - LTspice examples help visualize this.
+* A resistor divider from one supply sets the base DC voltage.
+* A coupling capacitor lets the AC signal operate on top of this DC bias.
+* The signal can move around a mid-rail bias point and toward the supply rails.
 
-**Using 2 resistors for high-gain applications**
+**Dual-Supply Biasing:**
 
-- Using a simple base bias resistor alone might need a very low base voltage for a high gain target, which makes *VBE* very unstable there.
-- Using two resistors can give you:
-  - A more stable base bias (voltage divider or feedback).
-  - A way to set gain while keeping the transistor in a more comfortable region.
-- For some circuits, the gain is related to the ratio of the unbypassed emitter resistor voltage to the collector voltage (think of a “re voltage divider” idea).
+* The circuit has <i>+V<sub>CC</sub></i> and <i>-V<sub>EE</sub></i>.
+* You can bias the base and input signal at 0 V.
+* The signal can move symmetrically from <i>+V<sub>CC</sub></i> to <i>-V<sub>EE</sub></i>.
+* LTspice examples help you see this operation.
 
-**Collector-to-base (feedback) bias**
+**Using Two Resistors for High-Gain Applications**
 
-Another way to bias:
-- *VBE* is set by the current pulled by the collector node *VC*.
-- The collector is connected back to the base through a resistor (for example 10 kΩ), providing **DC feedback**.
-- It can be set up mathematically so that the base settles to about *0.7 V* above the emitter (for NPN), keeping *IC* roughly constant.
-- The 10 kΩ is chosen so that the current flowing through it provides the required base current for Q1.
-- Since the transistors are matched and share the same *VBE*, they behave similarly at the same bias.
+A single base-bias resistor can require a very low base voltage for a high-gain target. At this voltage, <i>V<sub>BE</sub></i> can be very unstable.
 
-You can think of something like:
-- Collector voltage (say *0.8 V* across a 10 kΩ resistor) sets a base current, and this base current defines *IC*, which then defines *VC*, closing the loop.
+Two resistors can provide:
+
+* A more stable base bias through a voltage divider or feedback.
+* A method to set gain while the transistor stays in a better operating region.
+
+In some circuits, gain is related to a voltage ratio. The ratio uses the unbypassed emitter-resistor voltage and the collector voltage.
+
+You can think of this relationship as an **r<sub>e</sub> voltage-divider idea**.
+
+**Collector-to-Base (Feedback) Bias**
+
+This is another bias method:
+
+* The current from the collector node, <i>V<sub>C</sub></i>, sets <i>V<sub>BE</sub></i>.
+* A resistor connects the collector to the base and supplies **DC feedback**. An example resistor value is 10 k&Omega;.
+* You can calculate the circuit so that the base settles approximately 0.7 V above the emitter. This action keeps <i>I<sub>C</sub></i> approximately constant.
+* Select the 10 k&Omega; resistor so that its current supplies the necessary base current for Q1.
+* Matched transistors with the same <i>V<sub>BE</sub></i> operate similarly at the same bias.
+
+For example, a collector voltage can put 0.8 V across a 10 k&Omega; resistor. This voltage sets base current.
+
+The base current sets <i>I<sub>C</sub></i>. The collector current then sets <i>V<sub>C</sub></i> and closes the feedback loop.
 
 </div>
 
 **KVL with BJTs**
-- When you’re solving for voltages and currents, remember that the base and emitter are “tied” by about *0.7 V* (for a conducting transistor).
-- For NPN: *VB ≈ VE + 0.7 V*.
-- For PNP: *VE ≈ VB + 0.7 V*.
-- Include this drop correctly in your KVL loops.
 
+When you calculate voltages and currents, include the approximate 0.7 V connection between base and emitter.
 
+* **NPN:** <i>V<sub>B</sub> &asymp; V<sub>E</sub> + 0.7 V</i>.
+* **PNP:** <i>V<sub>E</sub> &asymp; V<sub>B</sub> + 0.7 V</i>.
+* Include this voltage drop correctly in Kirchhoff's voltage-law (**KVL**) loops.
 
 ## 5. Amplifier Configurations
 
 <div className="definition-list">
 
-**Common emitter amplifier**
+**Common-Emitter Amplifier**
 
-Another use: the **common emitter amplifier**.
-- DC output voltage:
-  *Vout = VCC - IC * RC*
-- Small-signal gain (with an unbypassed emitter resistor *RE*) is roughly:
-  *Av ≈ -RC / RE*
-  (More accurately, it should include *re* and any bypassing details.)
-- The output is **180° out of phase** with the input.
+The **common-emitter amplifier** is another transistor application.
 
-You should be able to perform basic DC and AC analysis to see why:
-- Increase in base/emitter current → increase in *IC* → larger drop across *RC* → *Vout* goes down.
+* **DC output voltage:** <i>V<sub>out</sub> = V<sub>CC</sub> - I<sub>C</sub> &times; R<sub>C</sub></i>
+* **Approximate small-signal gain with an unbypassed R<sub>E</sub>:** <i>A<sub>v</sub> &asymp; -R<sub>C</sub> / R<sub>E</sub></i>
+* A more accurate gain calculation includes <i>r<sub>e</sub></i> and the bypass details.
+* The output is **180&deg; out of phase** with the input.
 
-**Emitter follower (common collector)**
+Basic DC and AC analysis shows the cause:
 
-Another use for transistors:
-- The emitter follower has **high input impedance** and **low output impedance**.
-- This means you can drive a relatively low-impedance load from a high-impedance source without loading the source too much.
+* Base or emitter current increases &rarr; <i>I<sub>C</sub></i> increases.
+* The voltage drop across <i>R<sub>C</sub></i> increases &rarr; <i>V<sub>out</sub></i> decreases.
 
-Key relationships:
-- *Rin ≈ (beta + 1) * RL* where *RL* is the load (seen at the emitter).
-- There’s usually no collector resistor in a simple emitter follower, because you don’t want to saturate the transistor.
+**Emitter Follower (Common Collector)**
 
-Biasing and bootstrapping:
-- When biasing an emitter follower with a divider, the divider should not be extremely high impedance compared to the base input impedance, otherwise the bias becomes unstable.
-- **Bootstrapping**: by feeding a portion of the output back to the bias network, you can greatly increase the **AC input impedance** without loading down your signal.
-  The AC voltage at one end of a resistor moves with the output, so there is very little AC across that resistor, making its effective AC resistance huge.
+The emitter follower has **high input impedance** and **low output impedance**.
 
-**Unity phase splitter (transconductance amplifier idea)**
+Therefore, it can drive a relatively low-impedance load from a high-impedance source. It does not load the source excessively.
 
-- In a certain topology, the transistor can act like a **transconductance amplifier**.
-- The ratio of small-signal changes is current/voltage:
-  *gm = ΔIC / ΔVBE ≈ 1 / re*
-- A change in base current (or base voltage) results in a change in collector current, which through *RC* results in a change in collector voltage.
-- If *RE* is not present (pure emitter at ground), general 0.7 V analysis may no longer be accurate for small-signal behavior; you use the **Ebers–Moll model** and small-signal parameters (*gm*, *rpi*, *ro*).
+**Key Relationships:**
 
-**Differential amplifiers and CMRR**
+* <i>R<sub>in</sub> &asymp; (&beta; + 1) &times; R<sub>L</sub></i>. The load, <i>R<sub>L</sub></i>, is connected at the emitter.
+* A simple emitter follower usually has no collector resistor. A collector resistor can cause transistor saturation.
 
-**Differential amplifier**:
-- Used to amplify the **voltage difference** between two points.
-- Think of measuring across a component or between two nodes on an IC.
-- For ECG:
-  - You have LL, LA, RL, RA electrodes.
-  - The differential outputs of these give you lead I, lead II, lead III, etc.
-- A differential amplifier **removes the common noise** that appears on both inputs and outputs mostly the difference.
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/EmitterFollowerFigure4.25.png')}
+    alt="Single-ended emitter-follower output-current booster"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    Single-ended emitter-follower output-current booster. Image source: <i>The Art of Electronics</i>, Figure 4.25.
+  </figcaption>
+</figure>
 
-**CMRR (Common Mode Rejection Ratio)**:
-- A measure of how well the amplifier rejects signals that are **common** to both inputs.
-- Usually expressed in dB.
-- High CMRR means the amplifier is very good at rejecting noise that appears on both inputs (for example 60 Hz hum on both ECG leads).
+**Biasing and Bootstrapping:**
 
-**Transconductance (general idea)**
+* When a divider biases an emitter follower, do not use an extremely high divider impedance.
+* If divider impedance is too high relative to base input impedance, the bias becomes unstable.
+* **Bootstrapping** feeds part of the output back to the bias network. It can greatly increase **AC input impedance** without loading the signal.
+* The AC voltage at one resistor terminal moves with the output. Very little AC voltage then occurs across the resistor.
+* Therefore, the effective AC resistance becomes very large.
 
-- **Transconductance**: change in output current per change in input voltage.
-- *gm = ΔI / ΔV*.
+**Unity Phase Splitter (Transconductance-Amplifier Idea)**
 
-To describe the transconductance of a circuit, ask yourself: “How does the current change with respect to the input voltage?”
+* In some topologies, the transistor operates as a **transconductance amplifier**.
+* The small-signal current-to-voltage ratio is <i>g<sub>m</sub> = &Delta;I<sub>C</sub> / &Delta;V<sub>BE</sub> &asymp; 1 / r<sub>e</sub></i>.
+* A base-current or base-voltage change causes a collector-current change.
+* The collector-current change causes a collector-voltage change through <i>R<sub>C</sub></i>.
+* Without <i>R<sub>E</sub></i>, the emitter connects directly to ground. The general 0.7 V model can be inaccurate for small-signal operation.
+* Use the **Ebers-Moll model** and the small-signal parameters <i>g<sub>m</sub></i>, <i>r<sub>&pi;</sub></i>, and <i>r<sub>o</sub></i>.
 
-For BJTs specifically (in active region):
-- *gm ≈ IC / VT*.
+**Differential Amplifiers and CMRR**
+
+**Differential Amplifier:**
+
+* It amplifies the **voltage difference** between two points.
+* You can use it to measure across a component or between two integrated-circuit (**IC**) nodes.
+* An electrocardiogram (**ECG**) system uses LL, LA, RL, and RA electrodes.
+* Differential electrode outputs produce lead I, lead II, lead III, and other leads.
+* A differential amplifier removes noise that is common to both inputs. It primarily outputs the difference.
+
+**CMRR (Common-Mode Rejection Ratio):**
+
+* **CMRR** measures how well the amplifier rejects a signal that is **common** to both inputs.
+* CMRR is usually specified in decibels (**dB**).
+* High CMRR gives strong rejection of common noise. An example is 60 Hz hum on both ECG leads.
+
+**Transconductance (General Idea)**
+
+* **Transconductance** is the output-current change for an input-voltage change.
+* <i>g<sub>m</sub> = &Delta;I / &Delta;V</i>
+
+To describe circuit transconductance, ask: "How does the current change with respect to the input voltage?"
+
+For a BJT in the active region:
+
+* <i>g<sub>m</sub> &asymp; I<sub>C</sub> / V<sub>T</sub></i>
 
 </div>
 
-
-
-## 6. Current Sources & Mirrors
+## 6. Current Sources and Mirrors
 
 <div className="definition-list">
 
-**Simple transistor current source**
+**Simple Transistor Current Source**
 
-- Transistors can act as current sources by adding a load to the collector and using an emitter resistor.
+Add a collector load and an emitter resistor to make a transistor current source.
 
-Example:
-- *VE = VB - 0.7 V*
-- *IE = VE / RE = (VB - 0.7 V) / RE*
-- For large *beta*, *IE ≈ IC*, so:
-  *IC ≈ (VB - 0.7 V) / RE*
-- As long as the transistor stays in active region (not saturated), this current is fairly constant even if the load changes (within limits).
-- You can provide *VB* with a voltage divider, as long as the divider impedance is much less than *beta * RE*.
-- By varying *VB*, you get a **voltage-controlled current source**.
+**Example:**
 
-Also:
-- A simple conceptual current source: a voltage applied through a very large source resistance. As long as *Rsource >> Rload*, the load current doesn’t change much when the load changes.
-- Real resistive current sources waste power; BJTs can do a better job with less loss.
+* <i>V<sub>E</sub> = V<sub>B</sub> - 0.7 V</i>
+* <i>I<sub>E</sub> = V<sub>E</sub> / R<sub>E</sub> = (V<sub>B</sub> - 0.7 V) / R<sub>E</sub></i>
+* For large <i>&beta;</i>, <i>I<sub>E</sub> &asymp; I<sub>C</sub></i>.
+* Therefore, <i>I<sub>C</sub> &asymp; (V<sub>B</sub> - 0.7 V) / R<sub>E</sub></i>.
 
-**Current mirror**
+The current remains relatively constant while the transistor stays in active mode. This statement applies within the load limits.
 
-- A **current mirror** takes some input current and outputs a copy of that current, so you can “replicate” current to multiple loads.
-- It has a **high output impedance** to keep its output current nearly constant over changes in output voltage.
+You can supply <i>V<sub>B</sub></i> with a voltage divider. Make the divider impedance much less than <i>&beta; &times; R<sub>E</sub></i>.
 
-Basic BJT current mirror example (conceptually):
-- Q1 has its emitter at *+15 V* and its base at about *14.4 V* (depending on the setup).
-- Q1’s collector is adjusted so that its collector current is the reference current (say *1 mA*).
-- Bases and emitters of Q1 and Q2 are tied together, so they share the same *VBE*.
-- Because they have the same *VBE* and are matched devices, Q2 will also conduct about the same collector current (around *1 mA*) into its load.
+Changing <i>V<sub>B</sub></i> produces a **voltage-controlled current source**.
 
-Reality:
-- Because output impedance is not infinite, the mirrored current *IC* can vary if the load severely changes the output voltage or draws too much current.
+**Conceptual Resistive Current Source:**
+
+* Apply a voltage through a very large source resistance.
+* If <i>R<sub>source</sub> &gt;&gt; R<sub>load</sub></i>, load-current change is small when the load changes.
+* Resistive current sources waste power. BJTs can supply current with less power loss.
+
+**Current Mirror**
+
+* A **current mirror** receives an input current and supplies a copy of that current.
+* You can use this circuit to replicate current into multiple loads.
+* It has **high output impedance**. This impedance keeps output current almost constant when output voltage changes.
+
+**Basic BJT Current-Mirror Example:**
+
+* Q1 has its emitter at <i>+15 V</i>. Its base is approximately 14.4 V, depending on the circuit.
+* Adjust the collector of Q1 to make its collector current the reference current. An example reference current is 1 mA.
+* Connect the bases and emitters of Q1 and Q2 together. The transistors then have the same <i>V<sub>BE</sub></i>.
+* If Q1 and Q2 are matched, Q2 conducts approximately the same collector current. It supplies approximately 1 mA to its load.
+
+**Real Behavior:**
+
+Output impedance is not infinite. The mirrored <i>I<sub>C</sub></i> can change if the load causes a very large output-voltage change.
+
+The current can also change if the load tries to draw too much current.
+
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/AoE3.png')}
+    alt="BJT current-sink and current-mirror circuit alternatives"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    BJT current-sink and current-mirror alternatives. Image source: <i>The Art of Electronics</i>, Figure 3.26.
+  </figcaption>
+</figure>
 
 </div>
 
-
-
-## 7. Advanced Configurations & Power
+## 7. Advanced Configurations and Power
 
 <div className="definition-list">
 
-**Using a PNP**
+**Using a PNP Transistor**
 
-- If you want a load to start off at ground and then be switched to a **positive supply**, you’d often use a PNP high-side transistor.
-  - Otherwise, with an NPN on the high side, the emitter would need to be at the supply, and *VBE* can’t be > *0.7 V* without exceeding the supply.
-- You can also use a PNP cascaded with an NPN emitter follower to remove the *0.7 V* offset that a single NPN emitter follower introduces.
+* Use a PNP high-side transistor when a grounded load must connect to a **positive supply**.
+* An NPN transistor is difficult to use in this high-side position. Its emitter must be at the supply.
+* The NPN base would have to be more than 0.7 V above the emitter. This voltage would exceed the supply.
+* You can cascade a PNP transistor with an NPN emitter follower. This arrangement removes the 0.7 V offset from one NPN emitter follower.
 
-**Darlington configuration**
+**Darlington Configuration**
 
-- Two transistors cascaded so that the overall behaves like a single transistor with **very high beta**:
-  *beta_total ≈ beta1 * beta2*
-- The base–emitter drop is about twice normal (around *1.2–1.4 V*).
-- Disadvantage: it acts **slow** because Q1 must turn Q2 off, and charge storage can be large.
-- This can be helped with a resistor from Q2’s base to emitter to speed up turn-off.
+* Two cascaded transistors operate like one transistor with **very high beta**.
+* <i>&beta;<sub>total</sub> &asymp; &beta;<sub>1</sub> &times; &beta;<sub>2</sub></i>
+* The base-emitter voltage is approximately twice the normal value. It is approximately 1.2 V to 1.4 V.
+* **Disadvantage:** The configuration operates **slowly**. Q1 must turn off Q2, and stored charge can be large.
+* A resistor from the base of Q2 to its emitter can increase turn-off speed.
 
-**Push–pull, crossover distortion, and amplifier classes**
+**Push-Pull, Crossover Distortion, and Amplifier Classes**
 
-**Push–pull output stage**:
-- Allows you to get a swing near the full range of the positive and negative supplies.
-- During the positive half of the signal:
-  - The NPN (Q1) turns on and sources current into the load (for example a speaker).
-- During the negative half of the signal:
-  - The PNP (Q2) turns on when its base is about *0.7 V* below its emitter (for PNP), allowing current to flow in the opposite direction.
+**Push-Pull Output Stage:**
 
-**Crossover distortion**:
-- There is a region around *0 V* where **both transistors are off**, because each one needs about *0.7 V* of *VBE* to turn on.
-- This dead zone causes crossover distortion in the output waveform.
+This stage gives an output swing near the full positive-to-negative supply range.
 
-**Fixing crossover distortion (Class AB)**:
-- Add diodes D1 and D2 between the bases so they are always forward-biased and provide about *0.6–0.7 V* drop each.
-- This pre-biases the transistors so that at least one is always slightly on.
-- This is a **Class AB amplifier** since both transistors conduct for a significant portion of the cycle.
-- Tradeoff: they dissipate more power at idle because they are always somewhat on, acting like a kind of “voltage divider” between the rails.
+* **Positive half-cycle:** The NPN transistor, Q1, turns on. It supplies current to the load, such as a speaker.
+* **Negative half-cycle:** The PNP transistor, Q2, turns on. Its base is approximately 0.7 V below its emitter.
+* The PNP transistor lets current flow through the load in the opposite direction.
 
-**Class D amplifiers**:
-- **Switching amplifiers** that drive the output with high-frequency pulses.
-- Very high efficiency (transistors mostly fully on or fully off).
-- But high-frequency switching causes more EMI emissions and requires filtering.
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/PushPullFigure4.26.png')}
+    alt="Push-pull emitter-follower output-current booster"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    Push-pull emitter-follower output stage. Image source: <i>The Art of Electronics</i>, Figure 4.26.
+  </figcaption>
+</figure>
+
+**Crossover Distortion:**
+
+* Near 0 V, **both transistors are off**. Each transistor needs approximately 0.7 V of <i>V<sub>BE</sub></i> to turn on.
+* This dead zone causes crossover distortion in the output waveform.
+
+**Correction for Crossover Distortion (Class AB):**
+
+* Add diodes D1 and D2 between the bases. Keep the diodes forward biased.
+* Each diode supplies approximately 0.6 V to 0.7 V.
+* This voltage pre-biases the transistors. At least one transistor is always slightly on.
+* This is a **Class AB amplifier** because both transistors conduct during a significant part of the cycle.
+* **Trade-off:** The transistors dissipate more power at idle because they are always partially on.
+* In this condition, the transistors operate like a type of voltage divider between the rails.
+
+**Class D Amplifiers:**
+
+* These **switching amplifiers** drive the output with high-frequency pulses.
+* Efficiency is very high because the transistors are usually fully on or fully off.
+* High-frequency switching causes more electromagnetic-interference (**EMI**) emissions and requires filtering.
 
 </div>
 
-
-
-## 8. Negative Feedback & Stability
+## 8. Negative Feedback and Stability
 
 <div className="definition-list">
 
-**Negative feedback**:
-- A technique where a portion of a circuit’s output is fed back into the input in a way that **opposes** the original signal.
-- Example: emitter resistor *RE* in a common emitter amplifier:
-  - If *IC* increases, *IE* increases → *VE* increases → *VBE* decreases → *IC* is reduced.
-  - This stabilizes the circuit against changes in temperature, transistor *beta*, supply variations, etc.
+**Negative Feedback:**
 
-**Stabilized operation / thermal runaway**:
-- Negative feedback helps prevent **thermal runaway**:
-  - Temperature ↑ → *IC* ↑ → power ↑ → temperature ↑ (positive feedback)
-  - With emitter degeneration, the feedback loop opposes this, making the circuit more stable.
+Negative feedback returns part of the circuit output to the input. The returned signal **opposes** the original signal.
 
-**Lower output impedance**:
-- Negative feedback generally **lowers the output impedance** of an amplifier, making the output voltage less sensitive to load changes.
+**Emitter-Resistor Example:**
 
-**Gain stability example**:
-- If an amplifier has open-loop gain *A* and feedback factor *B*, then the closed-loop gain is:
-  *Acl = A / (1 + A*B)*
-- When *A*B* is large, this is approximately:
-  *Acl ≈ 1 / B*
-- So *B* (set by resistors) is what really controls the gain.
-  If *B* is made of stable parts like resistors (instead of temperature-sensitive transistors), then the gain is very stable.
+* <i>I<sub>C</sub></i> increases &rarr; <i>I<sub>E</sub></i> increases &rarr; <i>V<sub>E</sub></i> increases.
+* <i>V<sub>BE</sub></i> decreases &rarr; <i>I<sub>C</sub></i> decreases.
+* This process stabilizes the circuit against temperature, transistor <i>&beta;</i>, supply changes, and other variations.
 
-**Voltage feedback and current feedback**
+**Stabilized Operation and Thermal Runaway:**
 
-**Voltage feedback**:
-- You subtract a portion of the **output voltage** from the input.
-- This makes the voltage across the actual input of the amplifier very small.
-- Because the input voltage is small, very little current needs to flow, so the **input impedance increases**, often by a factor on the order of *gain * feedback*.
+Negative feedback helps prevent **thermal runaway**.
 
-**Current feedback**:
-- You feed back a portion of the **output current** into the input node in such a way that it opposes the input.
-- The input voltage barely moves (it is held nearly constant).
-- Since the voltage doesn’t move much, the input can accept more current → **input impedance is reduced**.
+* Without stabilization: temperature increases &rarr; <i>I<sub>C</sub></i> increases &rarr; power increases &rarr; temperature increases again.
+* With emitter degeneration, the feedback loop opposes this process and makes the circuit more stable.
+
+**Lower Output Impedance:**
+
+Negative feedback generally **decreases amplifier output impedance**. The output voltage then becomes less sensitive to load changes.
+
+**Gain-Stability Example:**
+
+If open-loop gain is <i>A</i> and feedback factor is <i>B</i>, closed-loop gain is:
+
+* <i>A<sub>CL</sub> = A / (1 + A &times; B)</i>
+
+When <i>A &times; B</i> is large:
+
+* <i>A<sub>CL</sub> &asymp; 1 / B</i>
+
+Therefore, <i>B</i> controls the gain. Resistors usually set <i>B</i>.
+
+Stable resistors produce more stable gain than temperature-sensitive transistors.
+
+**Voltage Feedback and Current Feedback**
+
+**Voltage Feedback:**
+
+* Subtract part of the **output voltage** from the input.
+* This action makes the voltage across the actual amplifier input very small.
+* The small input voltage requires very little current. Therefore, **input impedance increases**.
+* The increase is often approximately the product of gain and feedback.
+
+**Current Feedback:**
+
+* Return part of the **output current** to the input so that it opposes the input.
+* The input voltage changes very little and remains almost constant.
+* The input can then accept more current. Therefore, **input impedance decreases**.
 
 </div>
 
+## 9. BJTs Compared with FETs
 
-
-## 9. BJTs vs FETs
-
-- FETs are very popular (MOSFETs dominate digital and power switching).
-- BJTs can outperform FETs in some analog areas:
-  - Accuracy (for example predictable VBE vs current relationships).
-  - Low noise in certain configurations.
-  - Higher transconductance *gm* at a given current (compared to MOSFETs).
+* Field-effect transistors (**FETs**) are very popular.
+* Metal-oxide-semiconductor field-effect transistors (**MOSFETs**) dominate digital circuits and power switching.
+* BJTs can perform better than FETs in some analog applications:
+  * **Accuracy:** An example is the predictable relationship between <i>V<sub>BE</sub></i> and current.
+  * **Low noise:** BJTs have low noise in some configurations.
+  * **Higher transconductance:** At a specified current, a BJT has higher <i>g<sub>m</sub></i> than a MOSFET.
