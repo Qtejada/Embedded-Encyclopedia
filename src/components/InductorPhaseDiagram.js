@@ -42,7 +42,7 @@ export default function InductorPhaseDiagram() {
         <text x="25" y="115" fill={strokeColor} fontSize="10">Time →</text>
       </svg>
       <p style={{fontSize: '0.8rem', marginTop: '5px'}}>
-        <span style={{color: colorV, fontWeight: 'bold'}}>Voltage (Green)</span> must exist across the inductor <i>before</i> <span style={{color: colorI, fontWeight: 'bold'}}>Current (Red)</span> can start ramping up.
+        <span style={{color: colorV, fontWeight: 'bold'}}>Voltage (Yellow)</span> must exist across the inductor <i>before</i> <span style={{color: colorI, fontWeight: 'bold'}}>current (Red)</span> can start to increase.
       </p>
     </div>
   );
