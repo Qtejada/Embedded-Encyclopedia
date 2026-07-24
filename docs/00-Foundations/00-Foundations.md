@@ -18,55 +18,62 @@ This page gives the basic quantities, analysis tools, and nonideal effects that 
   <div className="tech-panel def-box">
     <span className="panel-header">Electrical quantities</span>
 
-    * **Voltage (V)** is the electric-potential difference between two points. Voltage supplies the force that moves electric charge.
-      * A positive *V<sub>ab</sub>* means that point *a* has a higher potential than point *b*.
+    * **Voltage (V)** is the electric-potential difference between two points. It is analogous to the force or pressure that moves electric charge.
+      * **Sign:** A positive *V<sub>ab</sub>* means that point *a* has a higher potential than point *b*.
 
     * **Current (I)** is the rate of charge flow. The applicable formula is *I = dQ / dt*.
-      * Conventional current flows from positive potential to negative potential.
+      * **Direction:** Conventional current flows from positive potential to negative potential.
       * Electron flow has the opposite direction. Circuit design normally uses conventional current.
 
     * **Conductance (G)** is the inverse of resistance. The applicable formula is *G = 1 / R*.
-      * The unit of conductance is the siemens (S).
+      * **Math:** The unit of conductance is the siemens (S).
   </div>
 
   <div className="tech-panel def-box">
     <span className="panel-header">Conservation laws</span>
 
-    * **Kirchhoff's current law (KCL)** states that the sum of all currents at a node is zero.
-      * This law comes from the conservation of electric charge. Electric charge cannot be created or destroyed.
+    * **Kirchhoff's current law (KCL)** states that the algebraic sum of currents entering and leaving a node is zero.
+      * Equivalently, the total current entering the node equals the total current leaving the node.
+      * **Why:** This law comes from the conservation of electric charge. Electric charge cannot be created or destroyed.
 
     * **Kirchhoff's voltage law (KVL)** states that the sum of all voltage changes in a closed loop is zero.
-      * This law comes from the conservation of energy. A closed path cannot give a net energy increase.
+      * **Why:** This law comes from the conservation of energy. A closed path cannot give a net energy increase.
   </div>
 
 </div>
 
 ## 2. Equivalent Circuits and Loading
 
+### Circuit Theorems (Analysis Tools)
+
 <div className="definition-list">
 
-The Thevenin and Norton theorems replace a complex linear circuit with a two-component model.
+The Thevenin and Norton theorems are **analysis tools**. They replace a complex linear black-box circuit with a two-component model.
 
 | Theorem | Equivalent model | Calculation |
 | :--- | :--- | :--- |
-| **Thevenin** | **Voltage source and series resistor** | **V<sub>th</sub>:** The open-circuit voltage at the port.<br/>**R<sub>th</sub>:** The resistance measured at the port. |
+| **Thevenin** | **Voltage source and series resistor** | **V<sub>th</sub>:** The open-circuit voltage at the port.<br/>**R<sub>th</sub>:** The resistance looking into the port. |
 | **Norton** | **Current source and parallel resistor** | **I<sub>n</sub>:** The short-circuit current at the port.<br/>**R<sub>n</sub>:** A resistance equal to *R<sub>th</sub>*. |
 
 </div>
 
 <CircuitEquivalents />
 
-Every real source has **source resistance**. Examples of real sources include sensors, batteries, and output pins.
+### Impedance and Loading (Design Philosophy)
+
+Loading is a practical application of the Thevenin theorem. Every real source has internal **source resistance**.
+
+Examples of real sources include sensors, batteries, and output pins.
 
 <VoltageDivider />
 
 <div className="definition-list">
 
-### Source and Load Resistance
+### The "Ideal" Source and the Real Source
 
 1. **Source resistance (R<sub>s</sub>)** must usually be low.
    * A high *R<sub>s</sub>* causes an internal voltage decrease when the load takes current.
-   * A low *R<sub>s</sub>* keeps the source voltage stable. Engineers frequently call this type of source a stiff source.
+   * A low *R<sub>s</sub>* keeps the source voltage stable under load. Engineers call this a **stiff source**.
 
 2. **Load resistance (R<sub>L</sub>)** must usually be high.
    * A high *R<sub>L</sub>* takes a small current and limits the voltage decrease caused by source resistance.
@@ -75,9 +82,11 @@ Every real source has **source resistance**. Examples of real sources include se
 
 ### Maximum Power Transfer
 
-For high efficiency, use a load resistance much higher than the source resistance. This condition is important in battery-powered circuits.
+For high efficiency, use a load resistance much higher than the source resistance.
 
-For maximum load power, match the load to the source. RF systems and audio amplifiers frequently use this condition.
+This condition improves efficiency and can increase battery life in a battery-powered circuit.
+
+For maximum load power, match the load to the source. RF antenna systems and audio amplifiers frequently use this condition.
 
 * **DC circuit:** *R<sub>load</sub> = R<sub>source</sub>*.
 * **AC circuit:** <em>Z<sub>load</sub> = Z<sub>source</sub><sup>∗</sup></em>. The asterisk identifies the complex conjugate.
@@ -90,7 +99,8 @@ For maximum load power, match the load to the source. RF systems and audio ampli
 
 Electrical systems use sine waves for two reasons:
 
-1. **AC power:** Generators produce the sine-wave voltage in an AC power system.
+1. **AC power:** Rotating generators produce sinusoidal voltage.
+   * AC power systems supply this voltage at wall outlets.
 2. **Linearity:** A linear circuit gives a sine-wave output for a sine-wave input.
    * The circuit can change only the amplitude and phase. This property is unique to sine-wave signals in a linear circuit.
 
@@ -104,8 +114,10 @@ Electrical systems use sine waves for two reasons:
 
     * **Power types**
       * **Average power (P):** The power that does real work. *P = V<sub>rms</sub> I<sub>rms</sub> cos(&phi;)*.
-      * **Apparent power (S):** The total power in the circuit. *S = V<sub>rms</sub> I<sub>rms</sub>*.
+      * **Apparent power (S):** The total RMS voltage-current product. *S = V<sub>rms</sub> I<sub>rms</sub>*.
+        * Average power equals apparent power multiplied by power factor. *P = S PF*.
       * **Power factor (PF):** The ratio of average power to apparent power. *PF = P / S = cos(&phi;)*.
+        * This efficiency ratio shows how effectively apparent power produces real work.
   </div>
 
   <div className="tech-panel def-box">
@@ -115,7 +127,7 @@ Electrical systems use sine waves for two reasons:
 
     **Formulas**
     * **Power ratio:** *dB = 10 log<sub>10</sub>(P<sub>2</sub> / P<sub>1</sub>)*.
-    * **Amplitude ratio:** *dB = 20 log<sub>10</sub>(A<sub>2</sub> / A<sub>1</sub>)*.
+    * **Amplitude ratio, for example voltage:** *dB = 20 log<sub>10</sub>(A<sub>2</sub> / A<sub>1</sub>)*.
 
     **Useful values**
     * **+3 dB:** This change doubles the power.
@@ -136,7 +148,7 @@ Electrical systems use sine waves for two reasons:
 
 <PhaseDiagram />
 
-## 4. Frequency Response
+## 4. Frequency-Domain Response
 
 <div className="definition-list">
 
@@ -160,10 +172,10 @@ The **transfer function** gives the ratio of output to input in the frequency do
 
 Each real component includes resistance, inductance, and capacitance. These unwanted properties are **parasitic effects**.
 
-* **Parasitic inductance:** Each wire and PCB trace has inductance because it has length.
+* **Everything is an inductor — parasitic inductance:** Each wire and PCB trace has inductance because it has length.
   * **Result:** High-frequency signals can have more impedance than the designer expects.
 
-* **Parasitic capacitance:** Two conductors near each other have capacitance.
+* **Everything is a capacitor — parasitic capacitance:** Two conductors near each other have capacitance.
   * **Result:** This capacitance can cause crosstalk between PCB traces.
   * **Result:** This capacitance also causes self-capacitance in an inductor.
 
@@ -186,7 +198,7 @@ Noise sets a fundamental limit on system resolution.
 
 * **Presence:** Thermal noise is present in all resistive elements. Current flow is not necessary.
 * **Characteristics:** Thermal noise has a flat power spectral density. Thus, it is a type of white noise.
-* **Dependency:** Thermal-noise power is proportional to absolute temperature and resistance.
+* **Dependency:** Thermal-noise power is proportional to absolute temperature, measured in kelvins, and to resistance.
 * **Magnitude:** At room temperature, a 1 k&Omega; resistor has approximately **4 nV/&radic;Hz** of voltage-noise density.
 
 #### Shot Noise
@@ -198,10 +210,13 @@ Noise sets a fundamental limit on system resolution.
 
 #### 1/f Noise
 
-Carrier traps and crystal defects in semiconductor devices cause **1/f noise**. This noise is also called flicker noise.
+**1/f noise** is associated with DC current flow. Carrier traps and crystal defects in semiconductor devices contribute to this noise.
+
+This noise is also called flicker noise. It is frequently dominant in MOSFETs and other active devices at low frequencies.
 
 * **Behavior:** The noise energy is inversely proportional to frequency. Thus, the noise amplitude increases when the frequency decreases.
-* **1/f corner:** The 1/f corner is the frequency where 1/f noise equals broadband thermal noise. The 1/f noise is dominant below this frequency.
+* **1/f corner:** The 1/f corner is the frequency where 1/f noise-amplitude density equals broadband noise-amplitude density.
+  * The 1/f noise is dominant below this frequency.
 
 #### Popcorn Noise
 
@@ -211,16 +226,25 @@ Popcorn noise appears as step changes in voltage. These changes are random teleg
 
 ### Noise Spectral Density
 
-Noise spectral density (NSD) gives the noise amplitude in a specified bandwidth.
+Noise is described statistically with **noise spectral density (NSD)**.
+
+Noise-amplitude spectral density gives noise amplitude per square root of bandwidth.
 
 * **Voltage NSD units:** nV/&radic;Hz.
 * **Current NSD units:** fA/&radic;Hz or pA/&radic;Hz.
 
 ### Total RMS Noise
 
-* **Calculation:** The total RMS noise equals the integral of the noise-power spectral-density curve over the applicable frequency range.
-* **Concept:** The total noise is related to the area below the density curve.
-* **Bandwidth:** A wider bandwidth increases the area below the density curve and increases the total noise.
+Calculate the total RMS noise voltage in three steps:
+
+1. **Noise-power density:** If the curve gives voltage-noise density, square the density value.
+2. **Integration:** Integrate the noise-power spectral-density curve across the applicable frequency range.
+   * The integral is the mean-square noise voltage. It is the area below the power-density curve.
+3. **RMS conversion:** Take the square root of the integrated value to get the total RMS noise voltage.
+
+> *V<sub>n,rms</sub> = &radic;(&int;<sub>f1</sub><sup>f2</sup> e<sub>n</sub><sup>2</sup>(f) df)*
+
+* **Bandwidth:** A wider bandwidth increases the integrated area and increases the total noise.
 
 Calculate the 1/f noise and the broadband noise separately. Then, combine the values with the root-sum-square method:
 
@@ -230,7 +254,7 @@ Calculate the 1/f noise and the broadband noise separately. Then, combine the va
 
 Amplifiers contain transistors, resistors, and capacitors. These components produce internal noise.
 
-An amplifier noise model puts an equivalent **voltage-noise source** and **current-noise source** at the amplifier inputs.
+An amplifier noise model puts an equivalent **voltage-noise source (e<sub>n</sub>)** and **current-noise source (i<sub>n</sub>)** at the amplifier inputs.
 
 Amplifier datasheets usually give two noise specifications:
 
@@ -240,6 +264,8 @@ Amplifier datasheets usually give two noise specifications:
 The low-frequency specification characterizes the 1/f noise contribution.
 
 #### Current Noise Variation
+
+Current noise varies significantly with transistor technology.
 
 * **JFET and CMOS operational amplifiers:** These amplifiers have very low current noise. Typical values are in the fA/&radic;Hz range.
 * **Bipolar operational amplifiers:** These amplifiers have more current noise. Typical values are in the pA/&radic;Hz range.
