@@ -6,8 +6,15 @@ export default function RCDClamp() {
 
   return (
     <div style={{ textAlign: 'center', margin: '30px 0', padding: '20px', background: 'var(--ifm-background-surface-color)', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-200)' }}>
-      <h4 style={{marginBottom: '20px'}}>Dissipative RCD Snubber</h4>
-      <svg width="100%" height="350" viewBox="0 0 400 350" style={{maxWidth: '450px'}}>
+      <h4 style={{marginBottom: '20px'}}>Dissipative RCD snubber</h4>
+      <svg
+        width="100%"
+        height="350"
+        viewBox="0 0 400 350"
+        role="img"
+        aria-label="RCD clamp connected across a flyback-converter primary winding and switch"
+        style={{maxWidth: '450px'}}
+      >
         
         {/* --- 1. Main Loop Outline --- */}
         {/* Top Wire */}

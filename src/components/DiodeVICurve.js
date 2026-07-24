@@ -14,8 +14,15 @@ export default function DiodeVICurve() {
 
   return (
     <div style={{ textAlign: 'center', margin: '30px 0', padding: '20px', background: 'var(--ifm-background-surface-color)', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-200)' }}>
-      <h4 style={{marginBottom: '20px'}}>Typical Silicon Diode I-V Characteristic</h4>
-      <svg width="100%" height="auto" viewBox={`0 0 ${width} ${height}`} style={{maxWidth: '500px', overflow: 'visible'}}>
+      <h4 style={{marginBottom: '20px'}}>Typical silicon-diode I-V characteristic</h4>
+      <svg
+        width="100%"
+        height="auto"
+        viewBox={`0 0 ${width} ${height}`}
+        role="img"
+        aria-label="Current-voltage curve for a typical silicon diode"
+        style={{maxWidth: '500px', overflow: 'visible'}}
+      >
         
         {/* Grids */}
         <g stroke={gridColor} strokeWidth="1" strokeDasharray="4,4">
@@ -57,16 +64,16 @@ export default function DiodeVICurve() {
 
         <g fill={textColor} fontSize="14" fontFamily="sans-serif">
             {/* Key Points */}
-            <text x={originX + 60} y={originY + 25} fontSize="12" textAnchor="start">Vf (≈0.7V)</text>
+            <text x={originX + 60} y={originY + 25} fontSize="12" textAnchor="start">Vf (≈0.7 V)</text>
             <text x={padding} y={originY - 10} fontSize="12" textAnchor="start">PIV / Breakdown</text>
 
             {/* Regions - Adjusted to +/- 55 for better centering */}
             <g fontWeight="bold" fill={curveColor} textAnchor="middle">
                 {/* Moved right to +55 */}
-                <text x={originX + 48} y={70}>Forward Bias</text> 
+                <text x={originX + 48} y={70}>Forward bias</text>
                 
                 {/* Moved left to -55 */}
-                <text x={originX - 80} y={height - 50}>Reverse Bias</text>
+                <text x={originX - 80} y={height - 50}>Reverse bias</text>
             </g>
         </g>
       </svg>

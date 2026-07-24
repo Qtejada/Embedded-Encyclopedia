@@ -19,12 +19,19 @@ export default function ESDSteering() {
 
   return (
     <div style={{ textAlign: 'center', margin: '30px 0', padding: '20px', background: 'var(--ifm-background-surface-color)', borderRadius: '8px', border: '1px solid var(--ifm-color-emphasis-200)' }}>
-      <h3 style={{marginBottom: '25px', color: strokeColor}}>ESD Steering Protection</h3>
-      <svg width="100%" height="250" viewBox="0 0 500 250" style={{maxWidth: '600px', margin: 'auto', display: 'block'}}>
+      <h3 style={{marginBottom: '25px', color: strokeColor}}>ESD steering protection</h3>
+      <svg
+        width="100%"
+        height="250"
+        viewBox="0 0 500 250"
+        role="img"
+        aria-label="Two steering diodes that clamp a signal line to VCC and ground"
+        style={{maxWidth: '600px', margin: 'auto', display: 'block'}}
+      >
 
         {/* --- Rails --- */}
         {/* VCC Rail (Top) */}
-        <text x="490" y="45" fill={strokeColor} fontWeight="bold" textAnchor="end" fontSize="18">VCC (+5V)</text>
+        <text x="490" y="45" fill={strokeColor} fontWeight="bold" textAnchor="end" fontSize="18">VCC (+5 V)</text>
         <line x1="150" y1="50" x2="400" y2="50" stroke={strokeColor} strokeWidth="3" />
         <circle cx="275" cy="50" r="5" fill={strokeColor} />
 
@@ -44,7 +51,7 @@ export default function ESDSteering() {
         <line x1="130" y1="135" x2="420" y2="135" stroke={strokeColor} strokeWidth="3" />
         {/* Arrow head */}
         <polygon points="420,135 405,125 405,145" fill={strokeColor} /> 
-        <text x="430" y="140" fill={strokeColor} fontWeight="bold" fontSize="18" dominantBaseline="middle">To IC Pin</text>
+        <text x="430" y="140" fill={strokeColor} fontWeight="bold" fontSize="18" dominantBaseline="middle">To IC pin</text>
 
         {/* Central Junction Dot */}
         <circle cx="275" cy="135" r="5" fill={strokeColor} />
