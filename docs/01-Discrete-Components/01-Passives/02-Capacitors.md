@@ -142,7 +142,7 @@ By arranging the capacitor and resistor, we can perform calculus operations on s
 
 * At high frequencies, capacitor reactance is low, and the capacitor behaves more like a wire. At low frequencies, it acts like an open circuit and blocks DC.
 * As input frequency increases, the output becomes more similar to the input. This response is the behavior of a **high-pass filter**.
-* The resistor voltage depends on capacitor current. The relation is *I<sub>C</sub> = C · (dV/dt)*. Therefore, *V<sub>out</sub> = R · C · (dV<sub>in</sub>/dt)*. The output is the input derivative.
+* The resistor voltage depends on capacitor current. The relation is *I<sub>C</sub> = C · (dV/dt)*. As a result, *V<sub>out</sub> = R · C · (dV<sub>in</sub>/dt)*. The output is the input derivative.
 
 ### Differentiator: RC High-Pass Filter
 

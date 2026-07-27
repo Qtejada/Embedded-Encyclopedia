@@ -197,7 +197,7 @@ Noise sets a fundamental limit on system resolution.
 **Thermal noise** is also called Johnson noise. Random motion of thermally excited electrons causes this noise in a conductor.
 
 * **Presence:** Thermal noise is present in all resistive elements. Current flow is not necessary.
-* **Characteristics:** Thermal noise has a flat power spectral density. Thus, it is a type of white noise.
+* **Characteristics:** Thermal noise has a flat power spectral density. It is a type of white noise.
 * **Dependency:** Thermal-noise power is proportional to absolute temperature, measured in kelvins, and to resistance.
 * **Magnitude:** At room temperature, a 1 k&Omega; resistor has approximately **4 nV/&radic;Hz** of voltage-noise density.
 
@@ -214,7 +214,7 @@ Noise sets a fundamental limit on system resolution.
 
 This noise is also called flicker noise. It is frequently dominant in MOSFETs and other active devices at low frequencies.
 
-* **Behavior:** The noise energy is inversely proportional to frequency. Thus, the noise amplitude increases when the frequency decreases.
+* **Behavior:** The noise energy is inversely proportional to frequency. As a result, the noise amplitude increases when the frequency decreases.
 * **1/f corner:** The 1/f corner is the frequency where 1/f noise-amplitude density equals broadband noise-amplitude density.
   * The 1/f noise is dominant below this frequency.
 

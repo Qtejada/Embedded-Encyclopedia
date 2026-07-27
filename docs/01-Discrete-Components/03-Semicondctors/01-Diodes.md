@@ -141,7 +141,7 @@ The junction usually contains platinum or tungsten on N-type silicon.
 
 **Why Use Them?**
 
-A Schottky diode does not have a P-N junction. Therefore, it does not have minority-carrier injection.
+A Schottky diode does not have a P-N junction. As a result, it does not have minority-carrier injection.
 
 The diode turns off **immediately** and has zero reverse-recovery time. This behavior makes it ideal for high-speed switching regulators.
 

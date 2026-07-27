@@ -16,7 +16,7 @@ A field-effect transistor (**FET**) is a voltage-controlled current source.
 
 This page covers metal-oxide-semiconductor FETs (**MOSFETs**) and junction FETs (**JFETs**).
 
-In the ideal model, the **gate** draws zero direct current (**DC**). Thus, the input impedance is infinite.
+In the ideal model, the **gate** draws zero direct current (**DC**). As a result, the input impedance is infinite.
 
 A real gate has small leakage current and capacitance. Current flows briefly when the gate charges or discharges during switching.
 
@@ -135,7 +135,7 @@ Junction field-effect transistors (**JFETs**) are **normally on**. Their zero-bi
 * **Difference:** A depletion MOSFET has an insulated gate.
 * You can drive a depletion-MOSFET gate positive to get more current without forward-biasing a gate junction.
 * JFETs are useful for **low-noise** linear circuits, audio front ends, and amplifiers.
-* JFETs have no thin gate-oxide layer. Thus, they are generally less susceptible to electrostatic-discharge damage than MOSFETs.
+* JFETs have no thin gate-oxide layer. As a result, they are generally less susceptible to electrostatic-discharge damage than MOSFETs.
 
 ## 4. Basic Applications
 
@@ -239,7 +239,7 @@ Assume that an emitter follower must supply a fixed current, <i>X</i>.
 
 ### JFET Current-Sink Example
 
-A JFET is a normally-on depletion device. Thus, you can use source resistance for self-bias.
+A JFET is a normally-on depletion device. As a result, you can use source resistance for self-bias.
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
   <img
@@ -257,7 +257,7 @@ A JFET is a normally-on depletion device. Thus, you can use source resistance fo
 
 1. Tie the gate to -12 V.
 2. The source voltage is <i>-12 V + I<sub>D</sub> &times; R<sub>S</sub></i>.
-3. Therefore:
+3. The result is:
 
    <i>V<sub>GS</sub> = V<sub>G</sub> - V<sub>S</sub> = -12 V - (-12 V + I<sub>D</sub>R<sub>S</sub>) = -I<sub>D</sub>R<sub>S</sub></i>
 
@@ -268,7 +268,7 @@ A JFET is a normally-on depletion device. Thus, you can use source resistance fo
 
 **JFET-Sink Limitation:**
 
-<i>I<sub>DSS</sub></i> can change greatly between parts. Thus, JFET current can be difficult to predict.
+<i>I<sub>DSS</sub></i> can change greatly between parts. As a result, JFET current can be difficult to predict.
 
 A JFET sink is usually not consistent enough for a tight tolerance. Use a BJT sink when the application needs better predictability.
 
@@ -288,7 +288,7 @@ A JFET sink is usually not consistent enough for a tight tolerance. Use a BJT si
 
 * **Concept:** Set collector current by setting a fixed emitter current.
 * **Benefit:** The circuit does not require an exact <i>V<sub>BE</sub></i> bias. Collector current is approximately equal to the selected emitter current.
-* **Common-emitter application:** An emitter current sink keeps <i>I<sub>E</sub></i>, and therefore <i>I<sub>C</sub></i>, almost constant.
+* **Common-emitter application:** An emitter current sink keeps <i>I<sub>E</sub></i> almost constant. As a result, <i>I<sub>C</sub></i> is also almost constant.
 * The collector DC voltage is:
 
   <i>V<sub>C</sub> &asymp; V<sub>CC</sub> - I<sub>sink</sub> &times; R<sub>C</sub></i>
@@ -370,7 +370,7 @@ This circuit combines a **JFET** high-input-impedance stage with **BJT** gain an
 5. Current into the JFET source increases.
 6. Source voltage increases.
 7. Gate and source voltages then increase together.
-8. Thus, <i>V<sub>GS</sub></i> remains almost constant.
+8. As a result, <i>V<sub>GS</sub></i> remains almost constant.
 
 The feedback-resistor ratio, <i>R<sub>f</sub> / R<sub>g</sub></i>, sets the closed-loop gain. Transistor parameters no longer set it directly.
 
@@ -403,7 +403,7 @@ The feedback-resistor ratio, <i>R<sub>f</sub> / R<sub>g</sub></i>, sets the clos
 * A BJT current mirror, Q3 and Q4, replaces the drain resistors.
 * The mirror operates as a high-resistance constant-current source.
 * Gain is <i>A<sub>v</sub> = g<sub>m</sub> &times; R<sub>load</sub></i>.
-* The mirror has high output resistance. Thus, it increases gain significantly.
+* The mirror has high output resistance. As a result, it increases gain significantly.
 
 ### JFET Differential Amplifier with Feedback
 
@@ -544,19 +544,19 @@ An integrated **high-side driver** performs essentially this function internally
 
 ### FET "Softness" Compared with BJT "Stiffness"
 
-At a specified current, BJTs usually have higher <i>g<sub>m</sub></i> than FETs. A BJT follower therefore usually has lower output impedance.
+At a specified current, BJTs usually have higher <i>g<sub>m</sub></i> than FETs. As a result, a BJT follower usually has lower output impedance.
 
 The original notes call the BJT output "stiff" and the FET output "soft."
 
 * Approximate follower output impedance is <i>1/g<sub>m</sub></i>.
 * A FET follower usually has higher output impedance than a BJT follower at the same current.
-* Thus, its output voltage changes more when load current changes.
+* As a result, its output voltage changes more when load current changes.
 * At extremely low currents, the difference becomes smaller.
 
 ### Precision Current Setting
 
 * MOSFET <i>V<sub>GS(th)</sub></i> can differ by as much as 3 V between devices in the same batch.
-* Therefore, a fixed gate voltage cannot set an accurate drain current.
+* As a result, a fixed gate voltage cannot set an accurate drain current.
 * BJT <i>V<sub>BE</sub></i> at a specified current is more predictable, but approximately 0.7 V is not an exact constant.
 * BJTs usually give better results in high-precision discrete current mirrors and sources.
 

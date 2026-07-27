@@ -15,7 +15,7 @@ A simple **Zener regulator** has important limitations.
 
 * You cannot easily select or adjust its output voltage with high precision.
 * Zener voltage changes with Zener current.
-* Thus, source-voltage changes and load-current changes can move the output voltage.
+* As a result, source-voltage changes and load-current changes can move the output voltage.
 
 ### Development of the Series-Pass Regulator
 
@@ -314,7 +314,7 @@ The original notes call this the standard general-purpose method.
 
 1. **Lower voltage loss:** The sense resistor drops approximately 1.25 V instead of 5 V.
 2. **Better precision:** Most regulator operating current flows through the sense resistor.
-   It is therefore part of the regulated path.
+   As a result, it is part of the regulated path.
 3. **Remaining error:** Adjustment-pin current is approximately 50 &mu;A.
 
 > **I<sub>load</sub> = 1.25 V / R + 50 &mu;A**
@@ -453,7 +453,7 @@ It also limits noise that the equipment sends to the power line.
   Fire and component-failure risks still require the correct class and rating.
 * **Y-class capacitor, such as Y1 or Y2:** Connect it from line to protective earth or across an isolation barrier.
   Its failure can create a shock path.
-  It therefore has stringent safety requirements.
+  As a result, it has stringent safety requirements.
 * **Transient suppressor:** A metal-oxide varistor (**MOV**) or bidirectional Zener or TVS diode can shunt a high surge current.
   Some correctly selected devices can conduct hundreds of amperes during a short surge.
   Select it from the expected surge waveform and energy.
