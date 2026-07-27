@@ -1,367 +1,630 @@
 ---
-title: FETs (MOSFETs & JFETs)
+title: FETs (MOSFETs and JFETs)
 sidebar_label: FETs
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import MosfetCalc from '@site/src/components/MosfetCalc';
 
-# Field Effect Transistors (FETs)
+# Field-Effect Transistors (FETs)
 
-## 1. Fundamentals
+## 1. Fundamentals and Device Types
 
 **Core Concept**
-A voltage-controlled current source. Ideally, the Gate draws **zero DC current** (Infinite Input Impedance). In reality, there is tiny leakage and gate capacitance, so current flows briefly during switching.
+
+A field-effect transistor (**FET**) is a voltage-controlled current source.
+
+This page covers metal-oxide-semiconductor FETs (**MOSFETs**) and junction FETs (**JFETs**).
+
+In the ideal model, the **gate** draws zero direct current (**DC**). Thus, the input impedance is infinite.
+
+A real gate has small leakage current and capacitance. Current flows briefly when the gate charges or discharges during switching.
 
 **Key Definitions**
-* **V<sub>GS</sub> (Gate-Source Voltage):** The "Valve." Controls how wide the channel opens.
-* **V<sub>DS</sub> (Drain-Source Voltage):** The "Pressure." Pushes current through the channel.
-* **V<sub>th</sub> (Threshold Voltage):** The specific V<sub>GS</sub> where the channel turns ON.
-* **I<sub>DSS</sub> (Saturation Current):** The max current a JFET/Depletion FET flows when V<sub>GS</sub>=0.
+
+* **Gate-source voltage, V<sub>GS</sub>:** This is the control voltage. It changes the channel conduction. You can think of it as a valve control.
+* **Drain-source voltage, V<sub>DS</sub>:** This voltage drives current through the channel. You can think of it as pressure across the channel.
+* **Threshold voltage, V<sub>th</sub>:** This is the specified <i>V<sub>GS</sub></i> where an enhancement channel starts to form.
+* **Zero-gate drain current, I<sub>DSS</sub>:** This is the specified JFET or depletion-device current at <i>V<sub>GS</sub> = 0</i>.
+
+The original notes describe <i>I<sub>DSS</sub></i> as the maximum zero-bias current. A depletion MOSFET can conduct more current when positive gate drive is permitted.
 
 **Core Equations**
-* **Current (Saturation):** *I<sub>D</sub> = k · (V<sub>GS</sub> - V<sub>th</sub>)²*
-* **Transconductance:** *g<sub>m</sub> = I<sub>D</sub> / V<sub>GS</sub>*
-* **Gain (Common Source):** *A<sub>v</sub> = -g<sub>m</sub> · R<sub>D</sub>*
 
-## 2. MOSFET Operation
+For a simplified square-law MOSFET in saturation:
+
+* <i>I<sub>D</sub> = k &times; (V<sub>GS</sub> - V<sub>th</sub>)<sup>2</sup></i>
+
+The original rough current-to-voltage ratio is <i>I<sub>D</sub> / V<sub>GS</sub></i>. The small-signal definition of **transconductance** is:
+
+* <i>g<sub>m</sub> = dI<sub>D</sub> / dV<sub>GS</sub></i>
+
+For the simplified square-law model:
+
+* <i>g<sub>m</sub> = 2I<sub>D</sub> / (V<sub>GS</sub> - V<sub>th</sub>)</i>
+
+For an unloaded common-source stage:
+
+* <i>A<sub>v</sub> &asymp; -g<sub>m</sub> &times; R<sub>D</sub></i>
+
+**Enhancement and Depletion Devices**
+
+**Enhancement Mode (Normally Off):**
+
+* If <i>V<sub>GS</sub> &lt; V<sub>th</sub></i>, no strong channel exists. In the ideal model, <i>I<sub>DS</sub> = 0</i>.
+* Apply gate bias to turn the device on.
+* Enhancement MOSFETs are standard devices for logic and power applications.
+
+**Depletion Mode (Normally On):**
+
+* A channel exists at <i>V<sub>GS</sub> = 0</i>.
+* For an N-channel device, negative gate bias decreases the current and can stop it.
+* The specified zero-bias current is <i>I<sub>DSS</sub></i>.
+
+## 2. MOSFET Operation and Terminal Roles
 
 <MosfetCalc />
 
-### Enhancement vs Depletion
-* **Enhancement Mode (Normally OFF):**
-  * If V<sub>GS</sub> < V<sub>th</sub>, no channel exists (I<sub>DS</sub>=0).
-  * You must apply bias to turn it ON. (Standard for logic/power).
-* **Depletion Mode (Normally ON):**
-  * The channel exists at V<sub>GS</sub>=0.
-  * You need a **Negative** bias on the Gate to stop current flow.
-  * Max current flows when V<sub>GS</sub>=0.
+### N-Channel Operating Regions
 
-### Regions of Operation (N-Channel)
+The following boundaries use the ideal long-channel model.
 
-1.  **Cutoff (Open Switch)**
-    * **Condition:** V<sub>GS</sub> < V<sub>th</sub>.
-    * **Result:** I<sub>DS</sub> ≈ 0. The switch is **OFF**.
+1. **Cutoff (Open Switch)**
 
-2.  **Ohmic / Linear (Resistor)**
-    * **Condition:** V<sub>GS</sub> > V<sub>th</sub> AND V<sub>DS</sub> is small.
-    * **Behavior:** Acts like a voltage-controlled resistor.
-    * As V<sub>DS</sub> increases, I<sub>D</sub> increases linearly (I = V/R).
-    * **Use Case:** Variable resistors, Power switching (minimize heat).
+   * **Condition:** <i>V<sub>GS</sub> &lt; V<sub>th</sub></i>.
+   * **Result:** <i>I<sub>DS</sub> &asymp; 0</i>. The switch is **off**.
+   * A real device can have a small leakage current.
 
-3.  **Active / Saturation (Current Source)**
-    * **Condition:** V<sub>DS</sub> >= (V<sub>GS</sub> - V<sub>th</sub>).
-    * **Behavior:** Acts as a constant current source.
-    * The channel is "pinched off" at the drain. Increasing V<sub>DS</sub> does **not** increase current. Current is determined *only* by the Gate drive (V<sub>GS</sub>).
+2. **Ohmic or Linear Region (Resistor)**
 
-## 3. JFETs & Depletion Mode
+   * **Condition:** <i>V<sub>GS</sub> &gt; V<sub>th</sub></i> and <i>V<sub>DS</sub> &lt; V<sub>GS</sub> - V<sub>th</sub></i>.
+   * **Behavior:** The device operates as a voltage-controlled resistor.
+   * For small <i>V<sub>DS</sub></i>, drain current increases approximately linearly with <i>V<sub>DS</sub></i>. The basic relationship is <i>I = V/R</i>.
+   * **Uses:** Variable resistance and low-loss power switching.
 
-JFETs are **Normally ON**. They act like the "Reverse" of an Enhancement MOSFET.
+3. **Active or Saturation Region (Current Source)**
 
-**How JFETs Work**
-* At 0V bias, maximum current flows (I ≈ I<sub>DSS</sub>).
-* As you apply **Negative** voltage to the gate, the channel pinches off.
-* **Critical Warning:** The Gate is a diode junction to the channel. **Never forward bias it** (don't make Gate positive vs Source) or you will conduct current and destroy it.
+   * **Condition:** <i>V<sub>DS</sub> &ge; V<sub>GS</sub> - V<sub>th</sub></i>.
+   * **Behavior:** The device operates approximately as a constant-current source.
+   * The channel is pinched off near the drain.
+   * In the ideal model, a further increase in <i>V<sub>DS</sub></i> does not increase current.
+   * Gate drive, <i>V<sub>GS</sub></i>, primarily sets the current.
+   * A real device has some current change because of channel-length modulation.
 
-**JFET vs Depletion MOSFET**
-* **Similarities:** Both are Normally ON. Both turn off with negative V<sub>GS</sub>.
-* **Differences:** Depletion MOSFETs have an insulated gate, so you *can* drive the gate positive (to get even more current) without damage.
-* **Why use JFETs?** They are excellent for **Low Noise** linear applications (audio front-ends, amplifiers) and are less susceptible to ESD than MOSFETs (no oxide layer to puncture).
+### Source and Drain Design Intuition
 
-## 4. Design Intuition: Source vs Drain
+Some small-signal FET structures are approximately symmetrical. In those devices, terminal voltage can determine the effective source and drain.
 
-MOSFET structure is symmetric. The "Source" and "Drain" labels are determined by the voltage potentials, not the package.
+* **N-channel source:** The lower-voltage channel terminal operates as the source.
+* **P-channel source:** The higher-voltage channel terminal operates as the source.
 
-**The Rule**
-* **N-Channel Source:** Whichever terminal has the **Lower** voltage.
-* **P-Channel Source:** Whichever terminal has the **Higher** voltage.
+Power MOSFETs are not fully symmetrical. Their body connection and intrinsic body diode give the terminals a fixed practical orientation.
 
-### The "Negative Drain" Trap (Example)
-Imagine an N-MOSFET switching a line to Ground.
-* You assume the Drain is the high side and Gate = 0V turns it off.
-* **Scenario:** The "Drain" line goes negative (e.g., -2V).
-* **Reality:** That "Drain" terminal is now lower voltage than the Source (GND). It becomes the **True Source**.
-* **Calculation:** V<sub>GS</sub> = V<sub>G</sub> - V<sub>TrueSource</sub> = 0V - (-2V) = +2V.
-* **Result:** The FET turns **ON** unintentionally!
-* *Fix:* To keep it off, the Gate must be more negative than the most negative signal.
+### Negative-Drain Trap
 
-## 5. Applications
+Consider an N-channel MOSFET that switches a signal line to ground.
 
-### 1. High-Z Buffers & Source Followers
-* Used where BJT input current would load down the source.
-* **Gain Formula:** *A<sub>v</sub> = 1 / (1 + 1 / (g<sub>m</sub> · R<sub>L</sub>))*
-* **Impedance Issue:** Output Z is *1/g<sub>m</sub>*. Since *g<sub>m</sub>* changes with signal current, Output Z "wobbles," causing distortion.
-* **Fix:** Use a constant current source load or negative supply to stabilize the operation point.
+1. You assume that the drain is the high-side terminal.
+2. You set the gate to 0 V to turn the MOSFET off.
+3. The signal line then decreases to -2 V.
+4. That terminal is now below the grounded terminal.
+5. It becomes the effective source in a symmetrical small-signal device.
+6. The gate-source voltage becomes:
 
-### 2. Analog Switches
-* FETs in the **Ohmic** region act as low-resistance switches. Used in multiplexers and sample-and-hold circuits.
+   <i>V<sub>GS</sub> = V<sub>G</sub> - V<sub>true source</sub> = 0 V - (-2 V) = +2 V</i>
 
-### 3. Variable Resistors
-* In the Ohmic region, changing V<sub>GS</sub> changes R<sub>DS</sub>. You can use this for voltage-controlled volume control (limiting factors apply).
+7. The FET can turn on unintentionally.
 
-### 4. Power Switching
-* MOSFETs dominate here due to low R<sub>DS(on)</sub> and resistive nature (easy to parallel).
+To keep the device off, make the gate more negative than the most-negative signal. Also check the body-diode path in a practical MOSFET.
 
+## 3. JFET and Depletion-Mode Operation
 
+Junction field-effect transistors (**JFETs**) are **normally on**. Their zero-bias behavior is the reverse of an enhancement MOSFET.
 
-## 6. Analog Signal Switching
+**How an N-Channel JFET Operates**
 
-Detailed considerations for using FETs to switch audio/data signals.
+* At 0 V gate bias, current is approximately <i>I<sub>DSS</sub></i>.
+* A more-negative gate voltage narrows the channel and eventually pinches it off.
+* The gate is a diode junction to the channel.
+* **Do not forward bias the gate.** For an N-channel JFET, do not make the gate positive relative to the source.
+* Forward bias causes gate current and can damage the device.
 
-![MOSFET Analog Switch Diagram](/img/AoE1.png)
-<center>*Image Source: The Art of Electronics*</center>
+**JFET Compared with a Depletion MOSFET**
 
-### The Feedthrough Problem
-Ideally, an OFF switch is an air gap. In reality, a MOSFET has **Drain-Source Capacitance (C<sub>ds</sub>)**.
-* **Effect:** High-frequency signals jump across the capacitor, appearing at the output even when the switch is OFF.
-* **Solution:** Use a "T-Switch" or SPDT configuration to ground the signal path when OFF.
+* **Similarity:** Both devices are normally on. Negative <i>V<sub>GS</sub></i> decreases N-channel current.
+* **Difference:** A depletion MOSFET has an insulated gate.
+* You can drive a depletion-MOSFET gate positive to get more current without forward-biasing a gate junction.
+* JFETs are useful for **low-noise** linear circuits, audio front ends, and amplifiers.
+* JFETs have no thin gate-oxide layer. Thus, they are generally less susceptible to electrostatic-discharge damage than MOSFETs.
 
-### The Floating Output (Ghost Signals)
-If the switch output is floating (High-Z), it picks up noise/leakage easily.
-* **Resistor Fix:** Add a load resistor to ground (1kΩ - 100kΩ).
-  * *Too Low (1k):* Kills feedthrough, but creates a voltage divider with R<sub>on</sub> (Signal loss).
-  * *Too High (1M):* No signal loss, but too weak to drain capacitive leakage.
-* **Best Fix:** Use a second switch (SPDT) to actively ground the output when the signal is disconnected.
+## 4. Basic Applications
 
-### The CMOS Transmission Gate
-**Problem:** An N-MOS passes "Low" well but chokes on "High" signals (as Source voltage rises, V<sub>GS</sub> drops, turning it off). A P-MOS does the opposite.
-**Solution:** Put an N-MOS and P-MOS in parallel.
-* One handles the low voltages, the other handles the high voltages.
-* This allows **Rail-to-Rail** switching.
+### High-Impedance Buffers and Source Followers
 
-### Distortion & Charge Injection
-* **THD (Distortion):** R<sub>on</sub> varies as the signal voltage changes (since V<sub>GS</sub> effectively changes). This non-linear resistance creates distortion in audio.
-* **Charge Injection:** When the switch turns OFF, the charge stored in the Gate capacitance has to go somewhere. It often squirts out into the signal path, causing voltage spikes.
-  * *Fix:* Use specialized "Low Charge Injection" analog switch ICs.
-## 7. Current Sinks & Sources
+Use a FET when bipolar-junction-transistor (**BJT**) input current would load the signal source.
 
-**Definition:** Circuits that draw (sink) or push (source) a specified current regardless of the voltage at that node.
+The approximate source-follower gain is:
 
-### Why use a Current Sink?
-Imagine an Emitter Follower where you want to draw a fixed current X from the emitter.
-* **Resistor Method:** You could just use a resistor to the negative rail.
-  * *Problem:* Requires more power dissipation and reduces input impedance.
-* **Active Sink Method:** Using a JFET or BJT maintains high impedance and precision.
+* <i>A<sub>v</sub> = 1 / [1 + 1 / (g<sub>m</sub> &times; R<sub>L</sub>)]</i>
 
-### The JFET Current Sink (Example)
-Since JFETs are depletion mode (On at 0V), we can self-bias them.
+The approximate output impedance is <i>1/g<sub>m</sub></i>.
 
-![JFET Current Sink Circuit](/img/AoE2.png)
-<center>*Image Source: The Art of Electronics*</center>
+Because <i>g<sub>m</sub></i> changes with signal current, output impedance also changes. The original notes call this change a "wobble." It can cause distortion.
 
-* **Setup:** Gate tied to **-12V**. Source tied to **-12V + (I<sub>D</sub> · R<sub>S</sub>)**.
-* **The Math:** V<sub>GS</sub> = V<sub>G</sub> - V<sub>S</sub> = -12 - (-12 + I<sub>D</sub>R<sub>S</sub>) = -I<sub>D</sub>R<sub>S</sub>.
-* **Design:** You select R<sub>S</sub> such that the V<sub>GS</sub> drop gives you the exact current you want.
-  * *Formula:* R<sub>S</sub> = V<sub>GS(required)</sub> / 5mA.
+Use a constant-current-source load or a negative supply to stabilize the operating point.
 
-**Cons of JFET Sinks:**
-You cannot easily predict I<sub>D</sub> because I<sub>DSS</sub> varies wildly between parts. It is not consistent enough for tight tolerances. **Better to use a BJT sink.**
+### Analog Switches
 
-### The BJT Current Sink / Mirror
+FETs in the **ohmic region** operate as low-resistance switches. Applications include multiplexers and sample-and-hold circuits.
 
-![BJT Current Sink Alternatives](/img/AoE3.png)
-<center>*Image Source: The Art of Electronics (Figure 3.26)*</center>
+### Variable Resistors
 
-* **Concept:** You specify the collector current by sinking a fixed amount at the emitter.
-* **Benefit:** You don't need precise V<sub>BE</sub> biasing. The collector current will roughly equal the emitter current you set.
-* **Common Emitter Application:** Placing a current sink in the emitter sets a nearly constant I<sub>E</sub> (and therefore I<sub>C</sub>).
-  * The DC collector voltage becomes: V<sub>C</sub> ≈ V<sub>CC</sub> - (I<sub>sink</sub> · R<sub>C</sub>).
-  * This decouples the bias point from the transistor's Beta and V<sub>BE</sub>.
+In the ohmic region, a change in <i>V<sub>GS</sub></i> changes <i>R<sub>DS</sub></i>.
 
-## 8. Gate Drive Dynamics
+You can use this effect for voltage-controlled volume. Device range and distortion limit this application.
 
-This section matters for switching, motor drivers, and power supplies.
+### Power Switching
 
-### A. Static Gate Current (The Leakage)
-* **The Ideal:** The Gate is isolated by glass. I<sub>G</sub> = 0.
-* **The Reality:** Tiny pico-amp leakage exists.
-* **Protection Diodes:** Many discrete MOSFETs have built-in Zener diodes for ESD protection. These leak **much more** (nano-amps/micro-amps).
-* **Lesson:** Do not use generic protected MOSFETs for ultra-high impedance electrometer circuits.
+MOSFETs dominate many power-switching applications because <i>R<sub>DS(on)</sub></i> can be low.
 
-### B. Dynamic Gate Current (The Bucket)
-Think of the Gate as a **Bucket (Capacitor)**, not a switch.
-* **DC:** Once the bucket is full, no more water flows.
-* **AC (Switching):** To turn ON, you must fill the bucket. To turn OFF, you must dump it.
-* **The Math:** *I = Q<sub>gate</sub> / time*.
-* **Example:** If Q<sub>g</sub> = 50nC and you want to switch in 100ns:
-  * *I = 50nC / 100ns = 0.5 Amps.*
-* **Takeaway:** You need a dedicated **Gate Driver Chip** to provide these high current spikes. A standard GPIO pin (20mA) is too weak to switch fast.
+Their resistive on-state and positive temperature coefficient make parallel operation comparatively easy.
 
-### C. The Miller Effect (The Plateau)
-As you charge the gate, the voltage rises, stops (flat), then rises again.
+## 5. Analog Signal Switching
 
+This section gives detailed requirements for FET audio and data switches.
 
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/AoE1.png')}
+    alt="MOSFET used as an analog signal switch"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    MOSFET analog signal switch. Image source: <i>The Art of Electronics</i>, Figure 3.4.
+  </figcaption>
+</figure>
 
-1.  **Region 1 (Charging C<sub>GS</sub>):** Voltage rises linearly. MOSFET is OFF.
-2.  **Region 2 (The Miller Plateau):** MOSFET turns ON. Drain voltage drops.
-    * The falling Drain "sucks" charge away from the Gate via the **Gate-Drain Capacitor (C<sub>gd</sub>)**.
-    * You keep pumping current in, but voltage stays flat because the feedback capacitor eats it all.
-3.  **Region 3 (Saturation):** Switching is done. Voltage rises to driver level.
+### Feedthrough
 
-**Why it matters:** During the plateau, the MOSFET is half-on/half-off (Acting as a resistor). It gets **HOT**. You want to blast enough current to push through this plateau ASAP.
+An ideal off switch is an air gap. A real MOSFET has **drain-source capacitance, C<sub>ds</sub>**.
 
+* **Effect:** High-frequency signals can cross this capacitance when the switch is off. The unwanted signal then appears at the output.
+* **Solution:** Use a T-switch or single-pole, double-throw (**SPDT**) arrangement. Ground the signal path when the switch is off.
 
+### Floating Output and Ghost Signals
 
-## 9. Circuit Analysis: Feedback Pairs
+A floating, high-impedance output can receive noise and leakage signals.
 
-This circuit combines the best of both worlds: **JFETs** (High Input Z) and **BJTs** (High Gain).
+* **Resistor solution:** Add a load resistor from the output to ground. A typical starting range is 1 k&Omega; to 100 k&Omega;.
+* **Low-value example:** A 1 k&Omega; resistor decreases feedthrough. It also forms a divider with <i>R<sub>on</sub></i> and causes signal loss.
+* **High-value example:** A 1 M&Omega; resistor causes little signal loss. It can be too weak to discharge capacitive leakage.
+* **Preferred solution:** Use a second switch or an SPDT switch. Actively ground the output when the signal is disconnected.
 
-![Series Feedback Pair Circuit](/img/AoE4.png)
-<center>*Image Source: The Art of Electronics (Figure 3.31)*</center>
+### CMOS Transmission Gate
 
-**Block 1: Input Stage (JFET)**
-* **Role:** Provides extremely high Input Impedance.
-* **Current:** I<sub>D</sub> is dictated by the source resistor (R2).
+A complementary metal-oxide-semiconductor (**CMOS**) transmission gate uses two device types.
 
-**Block 2: Gain Stage (BJT Q2)**
-* **Role:** High Gain Amplifier.
-* **Bias:** Collector is biased by R3 to a certain current.
-* **Gain Formula:** *Gain ≈ g<sub>m</sub> · R<sub>Load</sub>*
+**Problem:**
 
-**Block 3: Output Stage (BJT Q3 - Emitter Follower)**
-* **Role:** Buffer. High Input Z, Low Output Z.
-* **Why it matters:** Q3 pulls very little current from Q2.
-  * **Without Q3:** The load (e.g., 3.3kΩ) would appear in parallel with Q2's collector, dragging the gain "into the gutter."
-  * **With Q3:** The load is isolated. Q2 sees a high impedance, so the gain "skyrockets."
+1. An N-channel MOSFET passes a low voltage well.
+2. As its source voltage increases, <i>V<sub>GS</sub></i> decreases.
+3. The device then passes a high voltage poorly and can turn off.
+4. A P-channel MOSFET has the complementary behavior.
 
-## 10. Advanced JFET Circuits
+**Solution:**
 
-### A. Hybrid JFET / Op-Amp Amplifier
-*(Reference: Art of Electronics Fig 3.34)*
+* Connect an N-channel MOSFET and a P-channel MOSFET in parallel.
+* One device handles low voltages, and the other handles high voltages.
+* The pair permits **rail-to-rail** signal switching.
 
-![Hybrid JFET Op-Amp Circuit](/img/AoE5.png)
-<center>*Image Source: The Art of Electronics*</center>
+### Distortion and Charge Injection
 
-**Open Loop Analysis (No R<sub>f</sub>)**
-* You bias your JFET, and an AC current I<sub>D</sub> flows.
-* The Op-Amp is a Current-to-Voltage converter.
-* **Output:** *V<sub>out</sub> = g<sub>m</sub> · R<sub>gain</sub>*.
-* *Example:* If g<sub>m</sub> = 25mS and R = 100k, Gain = 2500. A 1mV input creates 2.5V output.
+* **Total harmonic distortion (THD):** <i>R<sub>on</sub></i> changes as signal voltage changes. The effective <i>V<sub>GS</sub></i> also changes. This nonlinear resistance causes distortion.
+* **Charge injection:** Gate capacitance stores charge. When the switch turns off, some charge can enter the signal path and cause a voltage spike.
+* **Correction:** Use an analog-switch integrated circuit (**IC**) that specifies low charge injection.
 
-**Closed Loop (Negative Feedback)**
-* **Mechanism:** If Input $\uparrow$ $\to$ JFET turns on harder (V<sub>GS</sub> closer to 0) $\to$ Op-Amp Output $\uparrow$ $\to$ Current into Source $\uparrow$ $\to$ V<sub>Source</sub> $\uparrow$.
-* V<sub>G</sub> and V<sub>S</sub> increase together, so V<sub>GS</sub> stays constant.
-* **Result:** The gain is now set by the feedback resistors (R<sub>f</sub> / R<sub>g</sub>), not the transistor parameters.
+## 6. Current Sinks and Sources
 
-### B. JFET Differential Amplifiers
-*(Reference: Art of Electronics Fig 3.36)*
+A **current sink** draws a specified current. A **current source** supplies a specified current.
 
+An ideal circuit keeps this current constant for all node voltages. A real circuit does this only within its compliance-voltage range.
 
-![JFET Differential Amplifier Circuit](/img/AoE6.png)
-<center>*Image Source: The Art of Electronics*</center>
+### Why Use a Current Sink?
 
+Assume that an emitter follower must supply a fixed current, <i>X</i>.
+
+* **Resistor method:** Connect a resistor to the negative rail. This method uses more power and decreases input impedance.
+* **Active-sink method:** Use a JFET or BJT. An active device maintains higher impedance and better current control.
+
+### JFET Current-Sink Example
+
+A JFET is a normally-on depletion device. Thus, you can use source resistance for self-bias.
+
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/AoE2.png')}
+    alt="NPN emitter follower with a JFET current sink"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    NPN emitter follower with a JFET current sink. Image source: <i>The Art of Electronics</i>, Figure 3.24.
+  </figcaption>
+</figure>
+
+**Self-Bias Sequence:**
+
+1. Tie the gate to -12 V.
+2. The source voltage is <i>-12 V + I<sub>D</sub> &times; R<sub>S</sub></i>.
+3. Therefore:
+
+   <i>V<sub>GS</sub> = V<sub>G</sub> - V<sub>S</sub> = -12 V - (-12 V + I<sub>D</sub>R<sub>S</sub>) = -I<sub>D</sub>R<sub>S</sub></i>
+
+4. Select <i>R<sub>S</sub></i> to produce the necessary negative <i>V<sub>GS</sub></i>.
+5. For a 5 mA design:
+
+   <i>R<sub>S</sub> = |V<sub>GS(required)</sub>| / 5 mA</i>
+
+**JFET-Sink Limitation:**
+
+<i>I<sub>DSS</sub></i> can change greatly between parts. Thus, JFET current can be difficult to predict.
+
+A JFET sink is usually not consistent enough for a tight tolerance. Use a BJT sink when the application needs better predictability.
+
+### BJT Current Sink and Mirror
+
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/AoE3.png')}
+    alt="BJT current-sink and current-mirror alternatives"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    BJT current-sink and current-mirror alternatives. Image source: <i>The Art of Electronics</i>, Figure 3.26.
+  </figcaption>
+</figure>
+
+* **Concept:** Set collector current by setting a fixed emitter current.
+* **Benefit:** The circuit does not require an exact <i>V<sub>BE</sub></i> bias. Collector current is approximately equal to the selected emitter current.
+* **Common-emitter application:** An emitter current sink keeps <i>I<sub>E</sub></i>, and therefore <i>I<sub>C</sub></i>, almost constant.
+* The collector DC voltage is:
+
+  <i>V<sub>C</sub> &asymp; V<sub>CC</sub> - I<sub>sink</sub> &times; R<sub>C</sub></i>
+
+This method decreases bias dependence on transistor <i>&beta;</i> and <i>V<sub>BE</sub></i>.
+
+## 7. Hybrid and Advanced JFET Circuits
+
+### JFET-BJT Series-Feedback Pair
+
+This circuit combines a **JFET** high-input-impedance stage with **BJT** gain and output stages.
+
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/AoE4.png')}
+    alt="JFET-BJT series-feedback amplifier pair"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    JFET-BJT series-feedback pair. Image source: <i>The Art of Electronics</i>, Figure 3.31.
+  </figcaption>
+</figure>
+
+**Block 1: JFET Input Stage**
+
+* **Function:** Supplies extremely high input impedance.
+* **Current:** Source resistor R2 sets <i>I<sub>D</sub></i>.
+
+**Block 2: BJT Q2 Gain Stage**
+
+* **Function:** Supplies high voltage gain.
+* **Bias:** R3 sets the collector bias current.
+* **Approximate gain:** <i>g<sub>m</sub> &times; R<sub>load</sub></i>.
+
+**Block 3: BJT Q3 Emitter-Follower Output Stage**
+
+* **Function:** Supplies high input impedance and low output impedance.
+* Q3 draws very little current from Q2.
+* Without Q3, a load such as 3.3 k&Omega; is in parallel with the Q2 collector load. This condition greatly decreases gain.
+* With Q3, the load is isolated. Q2 sees high impedance, and gain increases greatly.
+
+### Hybrid JFET and Op-Amp Amplifier
+
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/AoE5.png')}
+    alt="Hybrid JFET and op-amp wideband amplifier"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    Hybrid JFET and op-amp amplifier. Image source: <i>The Art of Electronics</i>, Figure 3.34.
+  </figcaption>
+</figure>
+
+**Open-Loop Analysis Without R<sub>f</sub>:**
+
+* Bias the JFET. An alternating-current (**AC**) drain current, <i>I<sub>D</sub></i>, then flows.
+* The op-amp operates as a current-to-voltage converter.
+* The original notes write <i>V<sub>out</sub> = g<sub>m</sub> &times; R<sub>gain</sub></i>. Dimensionally, this product is the voltage-gain magnitude.
+* The voltage relationship is:
+
+  <i>V<sub>out</sub> = V<sub>in</sub> &times; g<sub>m</sub> &times; R<sub>gain</sub></i>
+
+**Numerical Example:**
+
+* <i>g<sub>m</sub> = 25 mS</i>.
+* <i>R = 100 k&Omega;</i>.
+* Gain is 2500.
+* A 1 mV input produces a 2.5 V output.
+
+**Closed-Loop Negative Feedback:**
+
+1. Input voltage increases.
+2. <i>V<sub>GS</sub></i> moves closer to 0 V.
+3. The JFET conducts more current.
+4. The op-amp output increases.
+5. Current into the JFET source increases.
+6. Source voltage increases.
+7. Gate and source voltages then increase together.
+8. Thus, <i>V<sub>GS</sub></i> remains almost constant.
+
+The feedback-resistor ratio, <i>R<sub>f</sub> / R<sub>g</sub></i>, sets the closed-loop gain. Transistor parameters no longer set it directly.
+
+### JFET Differential Amplifiers
+
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/AoE6.png')}
+    alt="Two JFET differential-amplifier circuits"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    JFET differential amplifiers. Image source: <i>The Art of Electronics</i>, Figure 3.36.
+  </figcaption>
+</figure>
 
 **Circuit A: Resistive Load**
-* **Current Sink:** Sets the *total* current for the pair.
-* **Steering:** If V<sub>Q1</sub> > V<sub>Q2</sub>, Q1 pulls more current. Since the total is fixed, Q2 *must* pull less.
-* **Result:** Voltage at D1 drops, Voltage at D2 rises. The difference is amplified.
-* **Common Mode:** If both inputs rise by 1V, they "fight" for current equally. No change in output.
-* **Issue:** Very little gain; variation in g<sub>m</sub> between parts.
 
-**Circuit B: Active Load (Current Mirror)**
-* Replaces the drain resistors with a BJT Current Mirror (Q3 & Q4).
-* The mirror acts as a Constant Current Source (High Resistance).
-* **Result:** High Gain. Since *Gain = g<sub>m</sub> · R<sub>load</sub>*, and the mirror provides a huge R<sub>load</sub>, the gain increases significantly.
+* A current sink sets the total current for the pair.
+* If <i>V<sub>Q1</sub> &gt; V<sub>Q2</sub></i>, Q1 draws more current.
+* Because total current is fixed, Q2 must draw less current.
+* The D1 voltage decreases, and the D2 voltage increases.
+* The circuit amplifies this difference.
+* In an ideal matched pair, a 1 V increase at both inputs causes no differential-output change.
+* Limitations are low gain and part-to-part <i>g<sub>m</sub></i> variation.
 
-### C. JFET Diff Amp with Feedback
-*(Reference: Art of Electronics Fig 3.37)*
+**Circuit B: Active Load**
 
-![JFET Diff Amp with Feedback](/img/AoE7.png)
-<center>*Image Source: The Art of Electronics*</center>
+* A BJT current mirror, Q3 and Q4, replaces the drain resistors.
+* The mirror operates as a high-resistance constant-current source.
+* Gain is <i>A<sub>v</sub> = g<sub>m</sub> &times; R<sub>load</sub></i>.
+* The mirror has high output resistance. Thus, it increases gain significantly.
 
-* **Setup:** A current sink (e.g., 10mA) sets the total current.
-* **Initial State:** V<sub>in</sub> = 0. Q1 and Q2 share current equally (5mA each). No differential output.
-* **Signal Applied:** If Q1 Input rises, Q1 conducts more. Q2 conducts less. This *difference* is amplified.
-* **Feedback:** The negative feedback loop limits this amplified difference to a manageable gain, stabilizing the circuit against g<sub>m</sub> variations.
+### JFET Differential Amplifier with Feedback
 
+<figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/AoE7.png')}
+    alt="JFET differential amplifier with op-amp feedback"
+    className="invert-on-dark"
+    style={{width: 'auto', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    JFET differential amplifier with feedback. Image source: <i>The Art of Electronics</i>, Figure 3.37.
+  </figcaption>
+</figure>
 
+1. A current sink, such as 10 mA, sets the total pair current.
+2. At <i>V<sub>in</sub> = 0</i>, Q1 and Q2 each conduct 5 mA.
+3. The differential output is zero.
+4. If the Q1 input increases, Q1 conducts more current.
+5. Q2 then conducts less current.
+6. The circuit amplifies the current difference.
+7. Negative feedback limits this difference to a manageable gain.
+8. Feedback also stabilizes the circuit against <i>g<sub>m</sub></i> variation.
 
-## 11. Power MOSFET Specifics
+## 8. Gate-Drive Dynamics
 
-Detailed requirements for driving high-current devices.
+Gate-drive behavior is important in switching circuits, motor drivers, and power supplies.
 
-### Thermal Stability (R<sub>ds(on)</sub> vs Temp)
-* **Relationship:** R<sub>ds(on)</sub> **increases** with temperature (Positive Temp Coefficient).
-* **The Benefit:** MOSFETs are thermally stable (unlike BJTs). If one part of the die gets hot, its resistance goes up, forcing current to cooler areas. This makes paralleling MOSFETs easy.
-* **Design Rule:** Always calculate power dissipation using the **Worst Case** resistance (usually at 125°C), which can be 1.5x higher than the 25°C spec.
+### Static Gate Current
 
-### The Body Diode
-* **Structure:** Every Power MOSFET has an intrinsic P-N diode built-in between Source and Drain.
-* **Use:** Provides a path for Inductive Kickback current (Flyback) so the FET doesn't explode.
-* **Gotcha:** This diode is often **slow** (Reverse Recovery Time). If it doesn't turn off fast enough, you get "Shoot Through" currents in H-Bridges. Look for "Fast Recovery" FETs.
+* **Ideal:** The gate is isolated by an oxide or another insulator. The "glass" analogy describes this insulation. In the ideal model, <i>I<sub>G</sub> = 0</i>.
+* **Real:** Small leakage current exists. It can be in the picoampere range.
+* **Protection devices:** Some discrete MOSFETs include Zener or other electrostatic-discharge protection. These devices can leak nanoamperes or microamperes.
+* **Design rule:** Check the datasheet before you use a protected MOSFET in an ultra-high-impedance electrometer circuit.
 
-### SOA (Safe Operating Area)
+### Dynamic Gate Current
 
-* The datasheet "Map of Death." It tells you the safe combination of **V<sub>DS</sub>** and **I<sub>D</sub>**.
-* **Linear Mode Warning:** Power MOSFETs are terrible at acting as variable resistors (Linear Region). They develop "Hot Spots" on the die and fail even if you are theoretically inside the power limit.
+Use a **bucket or capacitor analogy** for the gate.
 
-### Ways to Kill a MOSFET
-1.  **Resistive Heating (Under-driving):**
-    * *Cause:* Applying 3.3V to a Gate that needs 10V.
-    * *Result:* The FET isn't fully ON. R<sub>ds</sub> stays high. I²R heat burns it up.
-2.  **Inductive Spike (Over-voltage):**
-    * *Cause:* Turning off a motor/solenoid too fast without a snubber.
-    * *Result:* The inductor forces voltage infinitely high until it punches a hole through the silicon dielectric.
+* **DC:** After the gate capacitance charges, drive current stops except for leakage.
+* **Turn-on:** The driver must put charge into the gate.
+* **Turn-off:** The driver must remove charge from the gate.
+* **Average switching-current relationship:** <i>I = Q<sub>gate</sub> / time</i>.
 
-## 12. Real World Gotchas (General)
+**Example:**
 
-### FETs are "Soft" vs BJTs "Stiff"
-* **BJTs** have very high transconductance (g<sub>m</sub>) and very low output impedance. They are "Stiff" voltage sources.
-* **FETs** generally have much lower g<sub>m</sub> (at the same current).
-* **Consequence:** The output impedance (1/g<sub>m</sub>) of a FET follower is higher than a BJT follower. It sags more under load.
-* **Exception:** At extremely low currents, the difference narrows.
+* Gate charge is 50 nC.
+* Necessary switching time is 100 ns.
+* Required current is <i>50 nC / 100 ns = 0.5 A</i>.
+
+Use a dedicated **gate-driver IC** to supply these short high-current pulses.
+
+A standard 20 mA general-purpose input/output (**GPIO**) pin is too weak for fast switching in this example.
+
+### Miller Plateau
+
+During gate charging, gate voltage first increases, then becomes almost constant, and then increases again.
+
+1. **Region 1: Charge C<sub>GS</sub>**
+
+   * Gate voltage increases approximately linearly.
+   * The MOSFET is off.
+
+2. **Region 2: Miller Plateau**
+
+   * The MOSFET turns on, and drain voltage decreases.
+   * The changing drain voltage moves charge through gate-drain capacitance, <i>C<sub>gd</sub></i>.
+   * Driver current continues, but gate voltage stays almost constant.
+   * The feedback capacitance uses the supplied charge during this interval.
+
+3. **Region 3: Complete the Gate Charge**
+
+   * The drain transition is complete.
+   * The device moves toward the fully enhanced ohmic on-state.
+   * Gate voltage increases to the driver level.
+
+During the plateau, the MOSFET is partially on and operates as a resistor. It dissipates heat.
+
+Supply sufficient gate current to move through the plateau quickly.
+
+## 9. Power MOSFET Design
+
+This section gives requirements for high-current devices.
+
+### Thermal Stability of R<sub>DS(on)</sub>
+
+* <i>R<sub>DS(on)</sub></i> increases with temperature. This is a positive temperature coefficient.
+* In the fully enhanced switching state, a hot die area develops more resistance.
+* Current then moves toward cooler die areas.
+* This behavior gives a sharing advantage relative to BJTs and makes parallel MOSFET operation easier.
+* Calculate power dissipation with the worst-case resistance.
+* At 125&deg;C, resistance can be 1.5 times its specified 25&deg;C value.
+
+This sharing benefit does not remove the linear-mode hot-spot risk described later.
+
+### Body Diode
+
+* A power MOSFET has an intrinsic P-N body diode between its source and drain.
+* In a suitable circuit orientation, this diode can carry inductive flyback current.
+* This path can prevent damaging drain-source overvoltage.
+* The body diode can have slow reverse recovery.
+* Slow diode turn-off can cause shoot-through current in an H-bridge.
+* Select a device with suitable fast-recovery behavior when the application requires it.
+
+### Safe Operating Area
+
+The safe-operating-area (**SOA**) graph shows safe combinations of <i>V<sub>DS</sub></i> and <i>I<sub>D</sub></i>.
+
+Designers sometimes call this graph the datasheet "map of death."
+
+**Linear-mode warning:** A switching MOSFET can be a poor variable resistor. Local die hot spots can cause failure inside the calculated total-power limit.
+
+### Ways to Damage a MOSFET
+
+1. **Resistive Heating from Insufficient Gate Voltage**
+
+   * **Cause:** Apply 3.3 V to a gate that requires 10 V for low <i>R<sub>DS(on)</sub></i>.
+   * **Result:** The FET does not turn fully on.
+   * <i>R<sub>DS</sub></i> stays high, and <i>I<sup>2</sup>R</i> heating can destroy the device.
+
+2. **Inductive Overvoltage**
+
+   * **Cause:** Turn off a motor or solenoid quickly without a snubber or clamp.
+   * **Result:** Inductor current forces voltage to increase until a clamp, breakdown path, or parasitic path conducts.
+   * Excess voltage can puncture device insulation and destroy the MOSFET.
+
+### High-Side Floating Gate
+
+**Scenario:** A ground-referenced logic signal must control a high-side N-channel MOSFET.
+
+**Technique:** Use a discrete current source that pushes current against a gate-source resistor.
+
+This circuit lets the gate-control voltage move upward with the source voltage.
+
+An integrated **high-side driver** performs essentially this function internally.
+
+## 10. Real-World Limitations and Selection
+
+### FET "Softness" Compared with BJT "Stiffness"
+
+At a specified current, BJTs usually have higher <i>g<sub>m</sub></i> than FETs. A BJT follower therefore usually has lower output impedance.
+
+The original notes call the BJT output "stiff" and the FET output "soft."
+
+* Approximate follower output impedance is <i>1/g<sub>m</sub></i>.
+* A FET follower usually has higher output impedance than a BJT follower at the same current.
+* Thus, its output voltage changes more when load current changes.
+* At extremely low currents, the difference becomes smaller.
 
 ### Precision Current Setting
-* **MOSFET Problem:** V<sub>GS(th)</sub> can vary by **up to 3V** between parts in the same batch! You cannot set a precise current just by applying a fixed Gate voltage.
-* **BJT Advantage:** V<sub>BE</sub> is highly predictable (~0.7V).
-* **Conclusion:** For high-precision discrete current mirrors or sources, **BJTs usually win**.
 
-### Miller Effect & Bandwidth
-* **The Interaction:** High Impedance Input Signals reduce your bandwidth.
-* **Why:** The Miller Capacitance acts like a low-pass filter with the source impedance. If source Z is high, the cutoff frequency drops.
-* **Fix:** Use a **Cascode** to isolate the input from the large voltage swings at the output.
+* MOSFET <i>V<sub>GS(th)</sub></i> can differ by as much as 3 V between devices in the same batch.
+* Therefore, a fixed gate voltage cannot set an accurate drain current.
+* BJT <i>V<sub>BE</sub></i> at a specified current is more predictable, but approximately 0.7 V is not an exact constant.
+* BJTs usually give better results in high-precision discrete current mirrors and sources.
 
-### Cascodes (The Solution)
-* Stack a common-gate FET on top of a common-source FET.
-* **Benefit:** It holds the Drain voltage constant, killing the Miller Effect and drastically increasing Output Impedance.
+### Miller Effect and Bandwidth
 
+* A high source impedance decreases bandwidth when it interacts with Miller capacitance.
+* The capacitance and source impedance make a low-pass network.
+* Higher source impedance decreases the cutoff frequency.
+* Use a **cascode** to isolate the input device from large output-voltage changes.
 
+### Cascode
 
+* Put a common-gate FET above a common-source FET.
+* The upper device keeps the lower-device drain voltage almost constant.
+* This arrangement greatly decreases the Miller effect.
+* It also greatly increases output impedance.
 
-## 13. Linear Examples & The "Danger Zone"
+## 11. Linear Examples and the Danger Zone
 
-*Based on The Art of Electronics: "You can use discrete MOSFETs for linear amplifiers... but usually, you shouldn't."*
+The original Art of Electronics note gives this guidance: discrete MOSFETs can make linear amplifiers, but they are frequently not the best choice.
 
-### A. The "Sloppiness" Problem
-Discrete MOSFETs (like the 2N7000) are sloppy compared to BJTs or JFETs.
-* **V<sub>th</sub> Wildness:** Threshold voltage can vary from 0.8V to 3V in the same batch. Setting a precise DC bias point without feedback is impossible.
-* **Noise:** MOSFETs have higher **1/f Noise** (Popcorn noise) at audio frequencies than JFETs.
-* **Rule:** For low-noise microphone preamps, use a JFET or BJT. Do not grab a generic MOSFET.
+### Discrete-MOSFET Variability and Noise
 
-### B. The CMOS Inverter Trick (74HCU04)
-This is a classic "MacGyver" trick for building a cheap, high-speed amplifier.
-* **Concept:** A digital inverter (like CD4069 or 74HCU04) is just a P-FET on top of an N-FET.
-* **The Hack:** Connect a high-value resistor (e.g., 1MΩ) from Output to Input.
-* **Result:** This forces the inverter to self-bias at V<sub>DD</sub>/2, turning it into a **High-Gain Linear Amplifier**.
-* **Warning:** Use **Unbuffered** (U series) parts. Buffered inverters have too much gain and will oscillate.
+A device such as the 2N7000 is less predictable than a BJT or JFET in a precision linear circuit.
 
-### C. The Matching Trap (Current Mirrors)
+* **Threshold variation:** <i>V<sub>th</sub></i> can range from 0.8 V to 3 V in one batch.
+* A precise DC bias point is not possible without feedback.
+* **Noise:** Generic MOSFETs can have higher low-frequency <i>1/f</i> noise than JFETs in audio applications.
+* Popcorn noise is a separate burst-noise mechanism. Do not use it as another name for <i>1/f</i> noise.
+* Use a JFET or BJT for a low-noise microphone preamplifier. Do not select a generic MOSFET without a noise evaluation.
 
+### CMOS Inverter Linear-Amplifier Method
 
+This is an unconventional low-cost method. The original notes call it a "MacGyver" method.
 
-[Image of mosfet current mirror circuit]
+* A CD4069 or 74HCU04 digital inverter contains a P-channel FET above an N-channel FET.
+* Connect a high-value resistor, such as 1 M&Omega;, from output to input.
+* This resistor makes the inverter self-bias at <i>V<sub>DD</sub> / 2</i>.
+* The inverter then operates as a high-gain linear amplifier.
+* **Warning:** Use an **unbuffered** U-series device.
+* A buffered inverter has too much gain and can oscillate.
 
+### Discrete-MOSFET Current-Mirror Matching
 
-* **Theory:** Connecting Gates together should make current equal.
-* **Reality:** Two discrete MOSFETs from the same bag can have V<sub>th</sub> differences of 0.5V. One might pass 1mA, the other 10mA.
-* **Fix:** You **must** use a matched pair (two FETs on one die, like CD4007) for mirrors. BJTs are much more forgiving here.
+<figure id="mosfet-current-mirror" style={{textAlign: 'center', margin: '1.5rem 0'}}>
+  <img
+    src={useBaseUrl('/img/MOSFETCurrentMirrorIRF530.png')}
+    alt="Two IRF530 MOSFETs connected as a current mirror with a 100 mA reference source, a 100 ohm load, and a 36 V supply"
+    style={{width: '600px', maxWidth: '100%', height: 'auto', margin: '0 auto'}}
+  />
+  <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
+    MOSFET current-mirror example with IRF530 devices.
+  </figcaption>
+</figure>
 
-### D. Linear Power (The Hot Spot Danger)
-If you use a MOSFET as a variable resistor (Linear Regulator or Class A Amp):
-* **The Problem:** Modern "Switching" FETs are optimized for high density. In linear mode (High Voltage + High Current), current "hogs" into one tiny spot on the silicon.
-* **Result:** **Thermal Runaway** at that specific spot. The FET explodes even if you are below the total power rating.
-* **Fix:** Use "Linear Rated" MOSFETs (older planar tech) or check the **DC line** on the SOA graph.
+* **Theory:** If the gates are connected, equal gate-source voltage should produce equal currents in matched devices.
+* **Reality:** Two discrete MOSFETs from one bag can differ in <i>V<sub>th</sub></i> by 0.5 V.
+* One device can conduct 1 mA while the other conducts 10 mA.
+* **Correction:** Use a matched pair on one die. The CD4007 is one example.
+* BJTs are more tolerant of discrete-device variation in this application.
 
-### E. High-Side Floating Gate
-* **Scenario:** You need to switch a High-Side N-Channel FET, but your logic is at Ground.
-* **Technique:** Use a discrete current source to push current against a Gate-Source resistor. This allows the Gate control voltage to "float" up with the Source voltage.
-* **Note:** This is essentially what integrated "High Side Driver" chips do internally.
+### Linear-Power Hot Spots
+
+This problem occurs when a MOSFET operates as a variable resistor in a linear regulator or Class A amplifier.
+
+* Modern switching MOSFETs are optimized for high cell density.
+* With high voltage and high current at the same time, current can concentrate in a small die area.
+* This concentration causes localized thermal runaway.
+* The MOSFET can fail below its total power rating.
+* Use a linear-rated MOSFET, frequently made with older planar technology.
+* Also check the **DC line** on the SOA graph.

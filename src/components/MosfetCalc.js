@@ -1,70 +1,103 @@
 import React, { useState } from 'react';
 
 export default function MosfetCalc() {
-  // 1. Define State (The Variables)
   const [vth, setVth] = useState(2.0);
   const [vgs, setVgs] = useState(1.0);
-  const [vds, setVds] = useState(5.0); // <--- Variable for Slider 3
+  const [vds, setVds] = useState(5.0);
 
-  // 2. Logic
   let region = "";
   let statusColor = "#e9ecef";
   let desc = "";
 
-  if (vgs < vth) {
-      region = "CUTOFF";
-      desc = `Vgs (${vgs}V) < Vth. Channel is closed.`;
-      statusColor = "#343a40"; 
+  if (vgs <= vth) {
+    region = "CUTOFF";
+    desc = `VGS (${vgs.toFixed(1)} V) ≤ Vth (${vth.toFixed(1)} V). The channel is off.`;
+    statusColor = "#343a40";
   } else if (vds < (vgs - vth)) {
-      region = "OHMIC (LINEAR)";
-      desc = "Mosfet acting like a resistor.";
-      statusColor = "#2f9e44"; 
+    region = "OHMIC (LINEAR)";
+    desc = "VDS is less than VGS − Vth. The MOSFET operates as a voltage-controlled resistor.";
+    statusColor = "#1b5e20";
   } else {
-      region = "SATURATION";
-      desc = "Current is constant (Amplifier region).";
-      statusColor = "#e03131"; 
+    region = "SATURATION";
+    desc = "VDS is at least VGS − Vth. The MOSFET operates in the constant-current amplifier region.";
+    statusColor = "#e03131";
   }
 
-  // 3. The UI
   return (
-    <div style={{border: '1px solid #ddd', borderRadius: '8px', padding: '20px', margin: '20px 0'}}>
-      <h3>🎛️ Interactive Region Explorer</h3>
-      
+    <div style={{
+      border: '1px solid var(--ifm-color-emphasis-300)',
+      borderRadius: '8px',
+      padding: '20px',
+      margin: '20px 0',
+      background: 'var(--ifm-background-surface-color)'
+    }}>
+      <h3 style={{color: 'var(--ifm-color-primary)'}}>
+        N-channel MOSFET operating-region explorer
+      </h3>
+
       <div style={{display: 'grid', gap: '15px', marginBottom: '20px'}}>
-        
-        {/* SLIDER 1: Vth */}
         <label>
-          Threshold (Vth): <strong>{vth}V</strong>
-          <input type="range" min="0.5" max="5" step="0.1" 
-                 value={vth} 
-                 onChange={(e) => setVth(Number(e.target.value))} 
-                 style={{width: '100%'}}/>
-        </label>
-        
-        {/* SLIDER 2: Vgs */}
-        <label>
-          Gate-Source (Vgs): <strong>{vgs}V</strong>
-          <input type="range" min="0" max="10" step="0.1" 
-                 value={vgs} 
-                 onChange={(e) => setVgs(Number(e.target.value))} 
-                 style={{width: '100%'}}/>
-        </label>
-        
-        {/* SLIDER 3: Vds (Double Check this section!) */}
-        <label>
-          Drain-Source (Vds): <strong>{vds}V</strong>
-          <input type="range" min="0" max="12" step="0.1" 
-                 value={vds}  
-                 onChange={(e) => setVds(Number(e.target.value))} 
-                 style={{width: '100%'}}/>
+          Threshold (V<sub>th</sub>): <strong>{vth.toFixed(1)} V</strong>
+          <input
+            type="range"
+            min="0.5"
+            max="5"
+            step="0.1"
+            value={vth}
+            onChange={(e) => setVth(Number(e.target.value))}
+            style={{width: '100%'}}
+          />
         </label>
 
+        <label>
+          Gate-source voltage (V<sub>GS</sub>): <strong>{vgs.toFixed(1)} V</strong>
+          <input
+            type="range"
+            min="0"
+            max="10"
+            step="0.1"
+            value={vgs}
+            onChange={(e) => setVgs(Number(e.target.value))}
+            style={{width: '100%'}}
+          />
+        </label>
+
+        <label>
+          Drain-source voltage (V<sub>DS</sub>): <strong>{vds.toFixed(1)} V</strong>
+          <input
+            type="range"
+            min="0"
+            max="12"
+            step="0.1"
+            value={vds}
+            onChange={(e) => setVds(Number(e.target.value))}
+            style={{width: '100%'}}
+          />
+        </label>
       </div>
 
-      <div style={{textAlign: 'center', padding: '15px', backgroundColor: statusColor, color: 'white', borderRadius: '4px', fontWeight: 'bold'}}>
+      <div style={{
+        textAlign: 'center',
+        padding: '15px',
+        backgroundColor: statusColor,
+        color: 'white',
+        borderRadius: '4px',
+        fontWeight: 'bold'
+      }} aria-live="polite">
         {region}
       </div>
-      <p style={{textAlign: 'center', marginTop: '10px', fontStyle: 'italic'}}>{desc}</p>
+
+      <p style={{textAlign: 'center', marginTop: '10px', fontStyle: 'italic'}}>
+        {desc}
+      </p>
+
+      <p style={{
+        fontSize: '0.85rem',
+        color: 'var(--ifm-color-emphasis-700)',
+        marginBottom: 0
+      }}>
+        This explorer uses the ideal long-channel region boundaries.
+      </p>
     </div>
   );
 }
