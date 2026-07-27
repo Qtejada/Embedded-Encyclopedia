@@ -28,7 +28,7 @@ export default function AdcDriverIsolation() {
 
         <path d="M 112 88 L 270 170 L 112 252 Z" fill="var(--hw-surface-2)" stroke={sourceColor} strokeWidth="3" />
         <text x="148" y="145" fill={textColor} fontSize="20" fontWeight="800">+</text>
-        <text x="148" y="211" fill={textColor} fontSize="24" fontWeight="800">−</text>
+        <text x="148" y="211" fill={textColor} fontSize="24" fontWeight="800">{'\u2212'}</text>
         <text x="177" y="176" textAnchor="middle" fill={sourceColor} fontSize="16" fontWeight="800">OP-AMP</text>
 
         <line x1="270" y1="170" x2="332" y2="170" stroke={lineColor} strokeWidth="3" />
