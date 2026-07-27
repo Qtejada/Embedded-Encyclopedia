@@ -382,6 +382,19 @@ tr:last-child td {
   margin: 0;
 }
 
+.responsive-table {
+  width: 100%;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+.responsive-table table {
+  display: table;
+  min-width: 680px;
+  margin: 0;
+  overflow: visible;
+}
+
 tr:hover td {
   background: rgba(212, 160, 23, 0.02);
 }
