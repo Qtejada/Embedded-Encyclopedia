@@ -71,7 +71,7 @@ In the simple model, <i>I<sub>C</sub> = &beta; &times; I<sub>B</sub></i>. The co
 
 The voltage across the collector resistor continues to increase. Almost no voltage remains between collector and emitter.
 
-Therefore, the collector voltage becomes very close to the emitter voltage. For an NPN transistor with a grounded emitter, <i>V<sub>C</sub> &asymp; 0 V</i>.
+As a result, the collector voltage becomes very close to the emitter voltage. For an NPN transistor with a grounded emitter, <i>V<sub>C</sub> &asymp; 0 V</i>.
 
 The base-collector junction becomes forward biased. The base-collector diode then conducts.
 
@@ -127,7 +127,7 @@ Temperature affects <i>V<sub>BE</sub></i> through both <i>V<sub>T</sub></i> and 
 **Relationship Between Two Operating Points:**
 
 * <i>I<sub>C2</sub> / I<sub>C1</sub> = exp(&Delta;V<sub>BE</sub> / V<sub>T</sub>)</i>
-* Therefore, <i>&Delta;V<sub>BE</sub> = V<sub>T</sub> &times; ln(I<sub>C2</sub> / I<sub>C1</sub>)</i>.
+* As a result, <i>&Delta;V<sub>BE</sub> = V<sub>T</sub> &times; ln(I<sub>C2</sub> / I<sub>C1</sub>)</i>.
 
 **Internal Emitter Resistance, r<sub>e</sub>:**
 
@@ -150,7 +150,7 @@ Temperature affects <i>V<sub>BE</sub></i> through both <i>V<sub>T</sub></i> and 
 If the circuit uses only <i>r<sub>e</sub></i>:
 
 * Linear changes in <i>V<sub>BE</sub></i> do **not** cause linear changes in collector current. The relationship is exponential.
-* Changes in <i>I<sub>C</sub></i> change <i>r<sub>e</sub></i>. Therefore, impedance and gain also change.
+* Changes in <i>I<sub>C</sub></i> change <i>r<sub>e</sub></i>. As a result, impedance and gain also change.
 
 An external emitter resistor, <i>R<sub>E</sub></i>, supplies **negative feedback**:
 
@@ -255,7 +255,7 @@ Basic DC and AC analysis shows the cause:
 
 The emitter follower has **high input impedance** and **low output impedance**.
 
-Therefore, it can drive a relatively low-impedance load from a high-impedance source. It does not load the source excessively.
+As a result, it can drive a relatively low-impedance load from a high-impedance source. It does not load the source excessively.
 
 **Key Relationships:**
 
@@ -280,7 +280,7 @@ Therefore, it can drive a relatively low-impedance load from a high-impedance so
 * If divider impedance is too high relative to base input impedance, the bias becomes unstable.
 * **Bootstrapping** feeds part of the output back to the bias network. It can greatly increase **AC input impedance** without loading the signal.
 * The AC voltage at one resistor terminal moves with the output. Very little AC voltage then occurs across the resistor.
-* Therefore, the effective AC resistance becomes very large.
+* As a result, the effective AC resistance becomes very large.
 
 **Unity Phase Splitter (Transconductance-Amplifier Idea)**
 
@@ -333,7 +333,7 @@ Add a collector load and an emitter resistor to make a transistor current source
 * <i>V<sub>E</sub> = V<sub>B</sub> - 0.7 V</i>
 * <i>I<sub>E</sub> = V<sub>E</sub> / R<sub>E</sub> = (V<sub>B</sub> - 0.7 V) / R<sub>E</sub></i>
 * For large <i>&beta;</i>, <i>I<sub>E</sub> &asymp; I<sub>C</sub></i>.
-* Therefore, <i>I<sub>C</sub> &asymp; (V<sub>B</sub> - 0.7 V) / R<sub>E</sub></i>.
+* As a result, <i>I<sub>C</sub> &asymp; (V<sub>B</sub> - 0.7 V) / R<sub>E</sub></i>.
 
 The current remains relatively constant while the transistor stays in active mode. This statement applies within the load limits.
 
@@ -478,7 +478,7 @@ When <i>A &times; B</i> is large:
 
 * <i>A<sub>CL</sub> &asymp; 1 / B</i>
 
-Therefore, <i>B</i> controls the gain. Resistors usually set <i>B</i>.
+As a result, <i>B</i> controls the gain. Resistors usually set <i>B</i>.
 
 Stable resistors produce more stable gain than temperature-sensitive transistors.
 
@@ -488,14 +488,14 @@ Stable resistors produce more stable gain than temperature-sensitive transistors
 
 * Subtract part of the **output voltage** from the input.
 * This action makes the voltage across the actual amplifier input very small.
-* The small input voltage requires very little current. Therefore, **input impedance increases**.
+* The small input voltage requires very little current. As a result, **input impedance increases**.
 * The increase is often approximately the product of gain and feedback.
 
 **Current Feedback:**
 
 * Return part of the **output current** to the input so that it opposes the input.
 * The input voltage changes very little and remains almost constant.
-* The input can then accept more current. Therefore, **input impedance decreases**.
+* The input can then accept more current. As a result, **input impedance decreases**.
 
 </div>
 

@@ -21,7 +21,7 @@ An ideal op-amp amplifies the difference between its two input voltages:
 > **V<sub>out</sub> = A<sub>OL</sub>(V<sub>+</sub> - V<sub>-</sub>)**
 
 The **open-loop gain**, <i>A<sub>OL</sub></i>, is frequently more than 100,000 at low frequencies.
-Thus, designers rarely use an op-amp without feedback.
+As a result, designers rarely use an op-amp without feedback.
 
 **Feedback** controls this large gain.
 External resistors, capacitors, and diodes then set the circuit function.
@@ -96,14 +96,14 @@ Its output is 180&deg; out of phase with the input.
 
 1. The non-inverting input is at ground.
 2. Negative feedback keeps point A at approximately 0 V.
-3. Thus, the voltage across <i>R<sub>1</sub></i> is approximately <i>V<sub>in</sub></i>.
+3. As a result, the voltage across <i>R<sub>1</sub></i> is approximately <i>V<sub>in</sub></i>.
 4. The op-amp input takes almost no current.
-5. Thus, current through <i>R<sub>1</sub></i> must flow through <i>R<sub>2</sub></i>.
+5. As a result, current through <i>R<sub>1</sub></i> must flow through <i>R<sub>2</sub></i>.
 6. The feedback-current direction gives the output a negative polarity.
 
 > **V<sub>in</sub> / R<sub>1</sub> = -V<sub>out</sub> / R<sub>2</sub>**
 
-Thus:
+The result is:
 
 > **Gain = V<sub>out</sub> / V<sub>in</sub> = -R<sub>2</sub> / R<sub>1</sub>**
 
@@ -295,7 +295,7 @@ Instead, its internal circuit drives the output downward as strongly as its limi
 
 As the output moves from 4.1 V toward 4.0 V, the feedback voltage moves toward 2.0 V.
 The input error becomes smaller.
-Thus, the internal drive also becomes smaller.
+As a result, the internal drive also becomes smaller.
 
 #### Step 5: Equilibrium
 
@@ -330,7 +330,7 @@ The equation then becomes approximately:
 
 > **A<sub>CL</sub> &asymp; A / A&beta; = 1 / &beta;**
 
-Thus, accurate external components set most of the closed-loop gain.
+As a result, accurate external components set most of the closed-loop gain.
 The gain changes less when the internal op-amp gain changes.
 
 ### Other Feedback Improvements
@@ -346,7 +346,7 @@ Negative feedback can also:
 For a voltage amplifier, feedback opposes output-voltage movement.
 A heavy load can pull the output down.
 The loop detects this movement and increases its drive.
-Thus, the closed-loop output impedance becomes lower.
+As a result, the closed-loop output impedance becomes lower.
 
 The feedback path returns a signal from output to input.
 Source and load impedances can still change the loop, depending on the feedback topology.
@@ -416,7 +416,7 @@ The original example uses these approximate values:
 * At 10 kHz, a gain of 100 still supports the required gain of 10.
 * Near 100 kHz, available open-loop gain can decrease below 10.
 
-Thus, a lower closed-loop gain gives a wider closed-loop bandwidth.
+As a result, a lower closed-loop gain gives a wider closed-loop bandwidth.
 The design trades gain for bandwidth.
 
 <GainBandwidthGraph />
@@ -454,11 +454,11 @@ If the total phase shift approaches 180&deg; while loop gain exceeds 1, oscillat
 ### Finite Loop-Gain Effects
 
 Closed-loop gain cannot stay accurate after available open-loop gain becomes insufficient.
-Thus, gain starts to decrease near the closed-loop bandwidth.
+As a result, gain starts to decrease near the closed-loop bandwidth.
 
 For voltage feedback, loop gain decreases output impedance by approximately <i>1 + A&beta;</i>.
 Open-loop gain decreases as frequency increases.
-Thus, closed-loop output impedance usually increases with frequency.
+As a result, closed-loop output impedance usually increases with frequency.
 
 This rising impedance can look inductive.
 A capacitive load can then make a resonant circuit.
@@ -505,7 +505,7 @@ An RC corner frequency is:
 
 A **pole** changes magnitude slope by -20 dB/decade.
 Its total phase contribution approaches -90&deg;.
-Thus, a pole can decrease phase margin.
+As a result, a pole can decrease phase margin.
 
 Examples that can add poles include:
 
@@ -569,7 +569,7 @@ This method can destabilize many op-amps.
 Use it only when the datasheet explicitly permits that capacitive load.
 
 High closed-loop gain gives lower loop gain.
-Thus, some non-unity-gain circuits cross unity before higher poles cause excessive phase shift.
+As a result, some non-unity-gain circuits cross unity before higher poles cause excessive phase shift.
 
 Useful related topics include:
 
@@ -602,7 +602,7 @@ This provides a controlled high-frequency feedback path.
 #### Noise Filter
 
 A capacitor has high impedance at low frequencies and low impedance at high frequencies.
-Thus, it decreases the feedback impedance at high frequencies.
+As a result, it decreases the feedback impedance at high frequencies.
 
 * At low frequencies, <i>R<sub>f</sub></i> mainly sets the gain.
 * At high frequencies, the capacitor decreases the feedback impedance.
@@ -615,7 +615,7 @@ It can prevent amplification of radio interference and high-frequency noise.
 
 An ideal **integrator** has only a capacitor in the feedback path.
 At DC, the capacitor is open.
-Thus, the circuit has no DC negative feedback.
+As a result, the circuit has no DC negative feedback.
 
 Input offset and bias current then move the output into saturation.
 A large resistor in parallel with the capacitor gives a DC feedback path.
@@ -702,7 +702,7 @@ A **Sallen-Key filter** can make a second-order response.
   C1 then acts approximately as a capacitor to ground.
 * At low frequencies, the output follows the input.
   The voltage across C1 is then small.
-* Thus, C1 has less effect in the low-frequency passband.
+* As a result, C1 has less effect in the low-frequency passband.
 * Component ratios and amplifier gain set the **Q factor** near cutoff.
 
 #### Filter Order and Roll-Off
@@ -738,7 +738,7 @@ A photodiode is a common current source for this circuit.
 2. Negative feedback keeps the inverting input near 0 V.
    This node is a **virtual ground**.
 3. The op-amp input takes almost no current.
-4. Thus, almost all photodiode current flows through <i>R<sub>f</sub></i>.
+4. As a result, almost all photodiode current flows through <i>R<sub>f</sub></i>.
 5. The output supplies the voltage across <i>R<sub>f</sub></i>.
 6. The current direction sets the output polarity.
 
@@ -752,7 +752,7 @@ For the usual photodiode-current direction:
    A direct resistor connection makes an RC time constant and decreases bandwidth.
 2. **Voltage across the diode:** A changing diode voltage charges and discharges the capacitance.
 3. **Virtual ground:** The op-amp keeps the summing node almost constant.
-   Thus, signal voltage does not move the diode capacitance as much.
+   As a result, signal voltage does not move the diode capacitance as much.
 4. **Bandwidth:** Less capacitance charging can give a faster response.
 5. **Output impedance:** The op-amp gives the next stage a low-impedance voltage output.
 
@@ -799,7 +799,7 @@ The transistor then supplies a larger emitter current to the load.
 7. The two op-amp inputs are then almost equal.
 
 The feedback point is after the transistor.
-Thus, feedback corrects the approximate 0.7 V base-emitter drop.
+As a result, feedback corrects the approximate 0.7 V base-emitter drop.
 It also corrects changes in this drop with current and temperature.
 
 #### Source-and-Sink Limitation
@@ -912,7 +912,7 @@ The basic circuit uses feedback to control the voltage across a sense resistor.
 1. <i>V<sub>in</sub></i> is the command voltage.
 2. Feedback makes the inverting-input voltage almost equal to <i>V<sub>in</sub></i>.
 3. The sense resistor then has <i>V<sub>in</sub></i> across it.
-4. Thus, its current is <i>V<sub>in</sub>/R</i>.
+4. As a result, its current is <i>V<sub>in</sub>/R</i>.
 5. Load changes initially change the sensed voltage.
 6. The op-amp changes its output to restore the commanded current.
 
@@ -944,18 +944,18 @@ The next circuit uses a PNP transistor for high-side current control.
 3. The inverting input monitors the PNP emitter.
 4. The op-amp output is approximately 0.7 V below the PNP emitter.
 5. The sense resistor is between <i>V<sub>CC</sub></i> and the controlled emitter voltage.
-6. Thus, the resistor current is:
+6. As a result, the resistor current is:
 
 > **I = (V<sub>CC</sub> - V<sub>in</sub>) / R**
 
 #### Error Sources
 
 1. **Base current:** Some sense-resistor current enters the PNP base.
-   Thus, the load current is not exactly equal to the calculated current.
+   As a result, the load current is not exactly equal to the calculated current.
 2. **Early effect:** Changes in <i>V<sub>CE</sub></i> can change transistor beta.
    This changes base current and its error.
 3. **Darlington correction:** A Darlington pair has much higher current gain.
-   Thus, base-current changes cause a smaller error.
+   As a result, base-current changes cause a smaller error.
 4. **MOSFET correction:** A MOSFET has almost no DC gate current.
    This removes the BJT base-current error.
 5. **MOSFET caution:** Gate capacitance adds delay to the feedback loop.
@@ -1126,7 +1126,7 @@ Recovery from saturation can delay this transition.
 ### Input Offset Voltage
 
 Internal input devices are not perfectly matched.
-Thus, a small differential input voltage can be necessary to make the output 0 V.
+As a result, a small differential input voltage can be necessary to make the output 0 V.
 This voltage is **input offset voltage**, <i>V<sub>OS</sub></i>.
 
 If the two inputs are connected together, open-loop operation can still drive the output to a rail.
@@ -1148,7 +1148,7 @@ This current produces voltage across source, bias, and feedback resistances.
 > **V<sub>error</sub> = I<sub>B</sub>R**
 
 A large resistance can convert a very small bias current to a large voltage error.
-Thus, input bias current limits the practical resistance values.
+As a result, input bias current limits the practical resistance values.
 
 ### Input Offset Current
 
@@ -1431,7 +1431,7 @@ For a suitable signal, this error contributes to the converter noise floor.
 The actual sampling instant differs from the intended instant.
 
 A changing input has a different voltage at each instant.
-Thus, timing error becomes amplitude error.
+As a result, timing error becomes amplitude error.
 
 High-frequency input signals are more sensitive to jitter.
 Their signal-to-noise ratio (**SNR**) can be limited by the external clock instead of the ADC.

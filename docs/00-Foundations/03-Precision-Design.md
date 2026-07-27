@@ -179,11 +179,11 @@ Noise spectral density increases below the **1/f corner frequency**. Calculate t
 > *v<sub>n</sub><sup>2</sup> = &int; e<sub>n</sub><sup>2</sup> df*
 
 * **Bandwidth factor:** Low-frequency noise density is high, but the low-frequency span is frequently small.
-  * Thus, the total low-frequency noise can remain acceptable.
+  * As a result, the total low-frequency noise can remain acceptable.
 * **Corner frequency:** The 1 kHz white-noise value can give an incorrect comparison for low-frequency applications.
   * The LT1012 has 14 nV/&radic;Hz white noise and a 2.5 Hz corner.
   * The OPA277 has 8 nV/&radic;Hz white noise and a 20 Hz corner.
-  * Thus, the LT1012 can have less low-frequency noise than the OPA277.
+  * As a result, the LT1012 can have less low-frequency noise than the OPA277.
 * **Auto-zero exception:** Auto-zero and chopper amplifiers do not have 1/f noise.
   * Their noise density stays flat to DC.
   * This behavior makes them superior for very-low-frequency measurements.
@@ -192,7 +192,7 @@ Noise spectral density increases below the **1/f corner frequency**. Calculate t
   * This value is a proxy for DC noise and is a strong indicator of long-term drift stability.
 * **Scaling rule:** For a lower start frequency, multiply *V<sub>npp</sub>* by the square root of the additional frequency decades.
   * For example, the lower band edge can change from 0.1 Hz to 0.01 Hz.
-  * Equal noise power occurs in each decade. Therefore, the total noise increases with &radic;decades.
+  * Equal noise power occurs in each decade. As a result, the total noise increases with &radic;decades.
 * **ECG relevance:** Diagnostic ECG bandwidth extends to 0.05 Hz.
   * The 0.1 Hz to 10 Hz *V<sub>npp</sub>* value is the primary noise value for baseline stability.
   * A high 1/f corner causes the ECG baseline to move.
@@ -322,7 +322,7 @@ Different input-stage designs increase slew rate without a very large bandwidth 
 
 Loop gain decreases when signal frequency increases. Less loop gain decreases error correction and causes output distortion to rise sharply.
 
-Manufacturers do not use one standardized distortion test. Thus, do not directly compare all distortion graphs.
+Manufacturers do not use one standardized distortion test. Do not directly compare all distortion graphs.
 
 #### Distortion-Measurement Traps
 
