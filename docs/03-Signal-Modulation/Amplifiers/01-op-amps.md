@@ -624,12 +624,12 @@ It limits DC gain and decreases drift into saturation.
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
     src={useBaseUrl('/img/integratorFigure4.16.png')}
-    alt="Practical op-amp integrator with a capacitor and resistor in the feedback path"
+    alt="Ideal op-amp integrator with an input resistor and capacitor-only feedback"
     className="invert-on-dark"
     style={{maxWidth: '80%', borderRadius: '8px'}}
   />
   <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
-    Practical integrator. Image source: <i>The Art of Electronics</i>, Figure 4.16.
+    Ideal capacitor-only feedback integrator. The parallel DC-feedback resistor described above is not shown. Image source: <i>The Art of Electronics</i>, Figure 4.16.
   </figcaption>
 </figure>
 
