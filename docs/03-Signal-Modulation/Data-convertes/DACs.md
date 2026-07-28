@@ -869,12 +869,12 @@ This ramp-and-comparator method is also used to generate **pulse-width modulatio
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
     src={useBaseUrl('/img/integratorFigure4.16.png')}
-    alt="Practical operational-amplifier integrator building block"
+    alt="Ideal operational-amplifier integrator building block with capacitor-only feedback"
     className="invert-on-dark"
     style={{width: '100%', maxWidth: '360px', height: 'auto', borderRadius: '8px'}}
   />
   <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
-    This practical integrator is a basic building block for integrating conversion methods. It is not a complete ADC. Image source: <i>The Art of Electronics</i>, Figure 4.16.
+    This ideal capacitor-only feedback integrator is a basic building block for integrating conversion methods. It is not a complete ADC and does not show practical DC feedback or reset control. Image source: <i>The Art of Electronics</i>, Figure 4.16.
   </figcaption>
 </figure>
 
