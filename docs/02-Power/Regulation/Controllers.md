@@ -1,3 +1,0 @@
-# Controllers
-
-Notes coming soon...

@@ -1,3 +1,0 @@
-# EEPROM
-
-Notes coming soon...

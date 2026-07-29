@@ -1,3 +1,0 @@
-# Opto
-
-Notes coming soon...

@@ -1,3 +1,0 @@
-# EMMC-SD
-
-Notes coming soon...

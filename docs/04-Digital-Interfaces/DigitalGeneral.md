@@ -414,7 +414,6 @@ Isolation also requires the correct working-voltage rating, transient rating, cr
 
 ## Related Pages
 
-* [Level Shifters](./level-shifters.md)
 * [UART](./Serial-Buses/01-UART.md)
 * [SPI](./Serial-Buses/02-SPI.md)
 * [I²C](./Serial-Buses/03-I2C.md)

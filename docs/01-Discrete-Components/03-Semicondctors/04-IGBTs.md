@@ -1,3 +1,0 @@
-# IGBTs
-
-Notes coming soon...

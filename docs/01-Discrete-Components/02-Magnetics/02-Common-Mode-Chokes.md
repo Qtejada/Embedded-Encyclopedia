@@ -1,3 +1,3 @@
-# Commmon-Mode-Chokes
+# Common-Mode Chokes
 
 Notes coming soon...
