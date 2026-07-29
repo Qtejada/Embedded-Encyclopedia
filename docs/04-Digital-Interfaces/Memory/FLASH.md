@@ -1,3 +1,0 @@
-# FLASH
-
-Notes coming soon...

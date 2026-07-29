@@ -1,3 +1,3 @@
-# Phils Lab
+# Phil's Lab
 
 Notes coming soon...

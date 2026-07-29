@@ -1,3 +1,0 @@
-# Level Shifters
-
-Notes coming soon...

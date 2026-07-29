@@ -1,3 +1,0 @@
-# Reverse Polarity
-
-Notes coming soon...
