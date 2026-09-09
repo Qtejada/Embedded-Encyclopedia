@@ -172,7 +172,7 @@ export default function CapacitorBlockingAnim() {
                 padding: '8px 20px', borderRadius: '20px', border: '2px solid var(--ifm-color-primary)', 
                 cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem',
                 backgroundColor: mode === 'DC' ? 'var(--ifm-color-primary)' : 'transparent',
-                color: mode === 'DC' ? '#000' : 'var(--ifm-color-primary)'
+                color: mode === 'DC' ? 'var(--hw-on-primary)' : 'var(--ifm-color-primary)'
             }}
         >
             DC Step (Loop)
@@ -183,7 +183,7 @@ export default function CapacitorBlockingAnim() {
                 padding: '8px 20px', borderRadius: '20px', border: '2px solid var(--ifm-color-primary)', 
                 cursor: 'pointer', fontWeight: 'bold', fontSize: '0.9rem',
                 backgroundColor: mode === 'AC' ? 'var(--ifm-color-primary)' : 'transparent',
-                color: mode === 'AC' ? '#000' : 'var(--ifm-color-primary)'
+                color: mode === 'AC' ? 'var(--hw-on-primary)' : 'var(--ifm-color-primary)'
             }}
         >
             AC Sine (Pass)

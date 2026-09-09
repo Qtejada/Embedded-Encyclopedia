@@ -53,7 +53,7 @@ const config = {
         },
         blog: false,
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: ['./src/css/custom.css', './src/css/field-guide.css'],
         },
       }),
     ],
@@ -64,13 +64,12 @@ const config = {
     ({
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
-        defaultMode: 'dark',
-        disableSwitch: true,
+        defaultMode: 'light',
+        disableSwitch: false,
         respectPrefersColorScheme: false,
       },
       navbar: {
         title: 'Hardware Encyclopedia',
-        style: 'dark',
         items: [
           {
             type: 'docSidebar',
@@ -79,14 +78,13 @@ const config = {
             label: 'Reference',
           },
           {
-            href: 'https://github.com/quincy-tejada/hardware-encyclopedia',
+            href: 'https://github.com/Qtejada/Embedded-Encyclopedia',
             label: 'GitHub',
             position: 'right',
           },
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Sections',
@@ -109,7 +107,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/quincy-tejada/hardware-encyclopedia',
+                href: 'https://github.com/Qtejada/Embedded-Encyclopedia',
               },
             ],
           },
@@ -117,7 +115,7 @@ const config = {
         copyright: `Hardware Encyclopedia · Built by Quincy Tejada · ${new Date().getFullYear()}`,
       },
       prism: {
-        theme: prismThemes.dracula,
+        theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
         additionalLanguages: ['c', 'cpp', 'python', 'bash'],
       },

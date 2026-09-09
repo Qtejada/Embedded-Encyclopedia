@@ -380,7 +380,7 @@ export default function InductorFlybackAnim() {
       borderBottom: switchClosed ? 'none' : '4px solid rgba(0,0,0,0.2)', // 3D lip effect
       transform: switchClosed ? 'translateY(4px)' : 'translateY(0)',
       backgroundColor: switchClosed ? 'var(--ifm-color-primary)' : 'var(--ifm-color-emphasis-200)',
-      color: switchClosed ? '#ffffff' : 'var(--ifm-color-emphasis-700)',
+      color: switchClosed ? 'var(--hw-on-primary)' : 'var(--ifm-color-emphasis-700)',
       boxShadow: switchClosed ? 'inset 0 2px 4px rgba(0,0,0,0.1)' : '0 2px 4px rgba(0,0,0,0.05)'
   };
 

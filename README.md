@@ -1,6 +1,6 @@
 # Embedded Systems & Hardware Encyclopedia
 
-**[Live Site →](https://qtejada.github.io/Embedded-Encyclopedia/)**
+**Live Site:** [Hardware Encyclopedia](https://qtejada.github.io/Embedded-Encyclopedia/)
 
 ---
 
