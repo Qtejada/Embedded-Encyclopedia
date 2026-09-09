@@ -1525,3 +1525,27 @@ The reference circuit must also:
 * Remain stable with its bypass capacitor.
 * Supply the necessary dynamic current.
 * Keep DC error, temperature drift, and long-term drift within the error budget.
+
+
+## Supplemental Circuit Views
+
+The original figure requests above remain as source pointers. The following original and existing site diagrams illustrate the associated circuit functions.
+
+### Instrumentation-Amplifier Topology
+
+import InAmpTopologyDiagram from '@site/src/components/InAmpTopologyDiagram';
+import ComparatorHysteresisExplorer from '@site/src/components/ComparatorHysteresisExplorer';
+
+<InAmpTopologyDiagram />
+
+The two input amplifiers provide high input impedance. Their gain resistor controls differential gain before the final subtraction stage.
+
+### Threshold and Hysteresis
+
+<ComparatorHysteresisExplorer />
+
+Use the threshold controls to observe the different rising and falling transition levels. Positive feedback produces this hysteresis.
+
+Use a comparator intended for the required input and output conditions. An op-amp used open-loop can have slow recovery or an unsuitable output interface.
+
+See the [comparator page](./comparators.md) for output types, propagation delay, and threshold design.

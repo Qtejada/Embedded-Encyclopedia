@@ -431,3 +431,49 @@ Isolation also requires the correct working-voltage rating, transient rating, cr
 * [Texas Instruments: DS90LV012A Data Sheet](https://www.ti.com/lit/ds/symlink/ds90lv012a.pdf)
 * [Texas Instruments: Transmission-Line and Termination Guidance](https://www.ti.com/lit/an/sdya018/sdya018.pdf)
 * [Analog Devices: Practical Photodiode Design Techniques](https://www.analog.com/media/en/training-seminars/design-handbooks/Practical-Design-Techniques-Sensor-Signal/Section5.PDF)
+
+
+## Sequential Logic Study Supplement
+
+### Storage at a Clock Edge
+
+A D flip-flop transfers its input to its output at the specified clock edge. Between active edges, it retains the stored value.
+
+The input must satisfy setup and hold time. An asynchronous reset can change the output independently of that clock edge.
+
+A JK flip-flop has these ideal next-state operations:
+
+| J | K | Operation at the active edge |
+| --- | --- | --- |
+| 0 | 0 | Retain the state |
+| 0 | 1 | Reset to zero |
+| 1 | 0 | Set to one |
+| 1 | 1 | Toggle the state |
+
+### State-Machine Experiment
+
+import SequentialLogicExplorer from '@site/src/components/SequentialLogicExplorer';
+
+<SequentialLogicExplorer />
+
+This example has an idle state and an active state. Request = 1 selects the active state on the next clock edge.
+
+The Moore output reports the stored active state. The example Mealy output reports request only while the stored state is idle.
+
+Change the request without applying a clock. Observe which output can change immediately.
+
+### Clock-Domain Crossing
+
+An input that changes near a sampling edge can cause **metastability**. The flip-flop can take extra time to reach a valid state.
+
+A synchronizer gives a sampled signal additional settling time. It reduces failure probability but does not guarantee zero failures.
+
+Do not synchronize each bit of an arbitrary data word independently. Use a suitable handshake or asynchronous first-in, first-out buffer for coherent transfer.
+
+**Reference:** [TI, metastability in clocked buffers](https://www.ti.com/lit/an/scza004a/scza004a.pdf).
+
+### Programmable-Logic Implementation
+
+Define the state encoding, next-state equations, output equations, reset state, and clock constraints before implementation.
+
+After synthesis, check timing and clock-domain crossings. A correct logic simulation does not establish physical timing margin.

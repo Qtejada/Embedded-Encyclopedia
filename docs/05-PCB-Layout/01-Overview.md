@@ -365,3 +365,119 @@ These primary references provide additional constraints for the design rules in 
 * [NXP Semiconductors, *Hardware and Layout Design Considerations for DDR4 SDRAM Memory Interfaces*](https://www.nxp.com/webapp/Download?colCode=AN5097)
 * [Texas Instruments, *Digital Isolator Design Guide*](https://www.ti.com/lit/pdf/SLLA284)
 * [Analog Devices, *Should the digital and analog GND planes on my board be separated?*](https://www.analog.com/en/resources/faqs/faq_dds_digital_and_analog_gnd_planes.html)
+
+
+import LearningEquation from '@site/src/components/LearningEquation';
+
+
+## BGA Planning Supplement
+
+The following notes extend the study checklist with guidance from **AMD UG1099, revision 2.1**. They concern the device families covered by that guide.
+
+### Package Pitch and Landing Pads
+
+**Pitch** is the center-to-center distance between adjacent balls. A smaller pitch leaves less space for routes and vias.
+
+AMD recommends **non-solder-mask-defined (NSMD)** landing pads for the covered devices. In an NSMD pad, the copper edge defines the solder land.
+
+In a solder-mask-defined pad, the mask overlaps the copper. Use the package-specific footprint and assembly requirements before selecting either structure.
+
+Source: [AMD, BGA overview and landing pads](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/General-BGA-and-PCB-Layout-Overview).
+
+### Count Routing Channels
+
+For a full square array with **n** ball positions along each side, AMD's simple channel count is:
+
+<LearningEquation tex={"N_{channels}=4(n-1)"} />
+
+The guide uses approximately 60% signal balls for an early estimate of its covered packages. Replace that assumption with the actual used signals when available.
+
+**Original planning example:** An 18-by-18 array has **68 channels**. Assume that 194 signals need escape routing.
+
+With one route per channel, simple division gives **2.85 layer-equivalents**. Rounding upward gives an initial allowance of **3 signal layers**.
+
+This calculation does not prove routability. Fixed pins, blocked channels, reference planes, and power distribution can require additional layers.
+
+Source: [AMD, layer-count estimation](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Layer-Count-Estimation-and-Optimization).
+
+### Check the Space Between Pads
+
+The following geometry is an original straight-channel check. It does not replace the package breakout drawings.
+
+For pad pitch **p**, pad diameter **d**, trace width **w**, clearance **s**, and **m** traces:
+
+<LearningEquation tex={"g=p-d\\qquad m w+(m+1)s\\le g"} />
+
+The inequality checks whether the traces and clearances fit in the available gap **g**.
+
+import BgaEscapeExplorer from '@site/src/components/BgaEscapeExplorer';
+
+<BgaEscapeExplorer />
+
+**Example:** With 0.8 mm pitch and 0.4 mm pads, the gap is **0.4 mm**.
+
+Two 0.08 mm traces with three 0.08 mm clearances need **0.4 mm**. This nominal fit leaves no extra allowance for a tighter process limit.
+
+AMD's dimensional tables contain package and process assumptions. Check units against the original drawing before transferring a table value.
+
+The guide identifies via-in-pad as an option when conventional fine-pitch via escape becomes impractical.
+
+Source: [AMD, pad, via, and trace dimensions](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Recommended-BGA-Ball-Pad-Via-and-Trace-Dimensions-for-1.0-mm-0.92-mm-0.8-mm-and-0.5-mm-Devices).
+
+### Select Via Construction Early
+
+Blind vias stop at an internal layer. Buried vias connect internal layers. These structures can release routing space but require different fabrication steps.
+
+A **via-in-pad** structure places the via within the landing pad. Agree on filling, plating, and final surface requirements with the fabricator and assembler.
+
+The via span and the pad location are separate properties. A via-in-pad structure is not automatically a microvia.
+
+Source: [AMD, fabrication technologies](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Fabrication-Technologies).
+
+### Board Thickness and Aspect Ratio
+
+Define the diameter convention before comparing aspect ratios. A drilled diameter differs from a finished plated-hole diameter.
+
+<LearningEquation tex={"Aspect\\ ratio=\\frac{drilled\\ depth}{drill\\ diameter}"} />
+
+**Original example:** A 1.6 mm through-hole depth and 0.2 mm drill diameter give **8:1**.
+
+This arithmetic does not establish process approval. Obtain the permitted ratio for the actual via structure.
+
+Source: [AMD, board thickness and aspect ratio](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Maximum-Board-Thickness-and-Aspect-Ratio).
+
+### Power Delivery Through the Via Field
+
+A plane can have narrow copper channels between via clearances. These restrictions can limit current delivery to central power balls.
+
+AMD gives a preliminary estimate of **0.05 A per mil of channel width for 0.5 oz copper**. This is a guide-specific planning estimate.
+
+**Original arithmetic example:** A 6 mil channel gives **0.3 A** with that estimate. Ten identical channels give **3 A** only if current distributes evenly.
+
+Check voltage drop, temperature, plane geometry, and current distribution separately. Do not use this estimate as a universal copper-current rating.
+
+Source: [AMD, FPGA power delivery](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Power-Delivery-to-the-FPGA).
+
+### Answers to the Study Checklist
+
+1. **Length matching:** Convert the interface time budget to length with the approved layer delay. Include package delay where the controller guide requires it.
+2. **Bit and byte swapping:** Create a permitted-swap table from the exact controller and memory documents. Keep each required strobe and mask with its lane.
+3. **PCIe routing:** Record lane skew, loss, termination, and coupling requirements for the selected generation and device. Component placement must preserve pair symmetry.
+4. **HDI stackup:** Compare approved via spans, lamination cycles, reliability requirements, and fabrication quotations before selecting high-density interconnect construction.
+5. **Impedance profiles:** Enter the approved stackup into the design tool. Calculate width and pair spacing, then assign those dimensions to the applicable routing rules.
+6. **Microvias:** Check depth, diameter, stacking, filling, and qualification with the fabricator. A through-hole aspect-ratio limit does not apply automatically to a microvia.
+7. **Reference plane and crosstalk:** Keep a nearby continuous reference. Evaluate adjacent-route spacing and coupled length together.
+8. **Uncoupled lengths:** Account for each separation near pads, vias, and components. Check the total against the interface's specific requirement.
+9. **Via types:** Compare electrical discontinuity, unused stub, routing area, process cost, and reliability before selecting the structure.
+
+These answers provide a method. Exact device pin swaps and interface tolerances remain specific to the selected hardware.
+
+**Implementation references:** [KiCad calculator tools](https://docs.kicad.org/9.0/en/pcb_calculator/pcb_calculator.html), [TI interface routing guidance](https://www.ti.com/lit/an/spraar7j/spraar7j.pdf).
+
+### Use the Breakout Examples
+
+Compare the intended pin map with AMD's [1.0 mm, 0.92 mm, and 0.8 mm examples](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Sample-Breakouts-for-1.0-mm-0.92-and-0.8mm-Pitch-Devices).
+
+The [0.5 mm example](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Sample-Breakout-for-0.5-mm-Pitch-Devices) uses a specific UBVA530 package. Treat it as an example, not a substitute footprint.
+
+Check signal escape and power access on every used layer before fixing the final layer count.

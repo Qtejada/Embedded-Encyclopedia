@@ -584,3 +584,20 @@ This circuit stores an input value. It then amplifies subsequent input changes w
 * **High-speed or audio signal:** Examine the applicable THD+N graphs.
   * Treat a flat low-frequency line skeptically.
   * It can show the measurement-system noise floor instead of the amplifier limit.
+
+
+## Separate Error Limits from Random Noise
+
+A worst-case limit and a random-noise estimate answer different questions. Do not combine every error with the same arithmetic.
+
+**Original example assumptions:** A measurement has ±10 µV offset error and ±5 µV reference error. Their signs are unknown.
+
+The worst-case combined limit is **±15 µV** if both errors can align. A statistical combination needs justified distributions and dependence assumptions.
+
+For two independent random noise contributions of 3 µV and 4 µV root mean square, the combined noise is **5 µV root mean square**.
+
+Use the [noise-budget experiment](./00-Foundations.md#noise-budget-experiment) to compare noise density and bandwidth.
+
+Record the bandwidth and measurement point for every noise value. Keep calibration residuals, drift limits, and random noise separate until the final requirement defines their combination.
+
+**Reference:** [Analog Devices, noise-source combination](https://www.analog.com/en/resources/analog-dialogue/articles/what-should-i-know-about-opamp-noise.html).

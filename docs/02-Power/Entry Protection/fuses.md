@@ -985,3 +985,56 @@ A motherboard microcontroller unit (**MCU**) reads PMBus data in a high-end CPU 
 If processor temperature increases, the controller can increase fan speed.
 It can also command a small decrease in core voltage.
 These software actions decrease heat generation.
+
+
+import LearningEquation from '@site/src/components/LearningEquation';
+
+
+## Fuse Selection Supplement
+
+A **fuse** opens a circuit after sufficient heating melts its element. Select it from normal current, transient current, available fault current, and voltage.
+
+### Ratings That Need Separate Checks
+
+* **Current rating:** A specified continuous-current capability under stated conditions.
+* **Voltage rating:** A limit for interrupting the circuit under the specified conditions.
+* **Interrupting rating:** The maximum fault current the fuse can interrupt at its rated conditions.
+* **Time-current curve:** The expected opening-time range for a stated overcurrent.
+
+A fuse does not open immediately when current exceeds its nominal rating. An AC voltage rating does not automatically establish the same DC rating.
+
+### Pulse Energy Measure
+
+The current-squared time integral is:
+
+<LearningEquation tex={"I^2t=\\int i(t)^2dt"} />
+
+**Original example assumptions:** A rectangular startup pulse is 8 A for 2 ms.
+
+Its pulse integral is **0.128 A²s**. Compare this value with the manufacturer's repetitive-pulse method and derating factors.
+
+Do not use melting I²t alone to predict every fault. Total clearing behavior includes the interval after melting while current interruption occurs.
+
+### Coordination
+
+Check that the fuse protects the intended wiring or component under the available fault current. Coordinate upstream and downstream protection where selective interruption matters.
+
+A current-limited source might not deliver enough current to open a fuse quickly. Check that fault condition explicitly.
+
+**Reference:** [Littelfuse, Fuseology selection guide](https://www.littelfuse.com/assetdocs/fuseology-selection-guide?assetguid=d812dff2-1c47-4dc3-bce7-07a4001ddc32).
+
+## Power Architecture Drawings
+
+These original functional drawings supplement the figure requests above. They show energy paths and regulation functions.
+
+They do not reproduce the referenced source figures or provide a complete 15 W flyback schematic.
+
+import PowerArchitectureDiagram from '@site/src/components/PowerArchitectureDiagram';
+
+<PowerArchitectureDiagram />
+
+In a flyback stage, primary current increases stored magnetic energy during switch on-time. The secondary receives that energy during off-time.
+
+The complete design also needs leakage-energy control, feedback compensation, insulation, startup, and fault protection.
+
+**Related pages:** [AC-to-DC calculations](../Regulation/05-AC-to-DC-Converters.md), [buck calculations](../Regulation/01-Buck%20Converter.md), [LDO thermal example](../Regulation/04-LDOs.md).

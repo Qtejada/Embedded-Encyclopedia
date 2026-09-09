@@ -1,3 +1,60 @@
 # Load Switches
 
 Notes coming soon...
+
+import LearningEquation from '@site/src/components/LearningEquation';
+
+
+## 1. Controlled Power Connection
+
+A **load switch** connects a supply to a load under logic control. It can reduce standby consumption and control supply startup.
+
+Features vary. Check the data sheet for current limiting, reverse blocking, output discharge, and thermal protection.
+
+An enable input does not imply that every protection function exists.
+
+## 2. Inrush Current
+
+A discharged load capacitor draws current while its voltage rises:
+
+<LearningEquation tex={"I_C=C_{load}\\frac{dV}{dt}"} />
+
+For a linear ramp from zero to **Vout** in time **tr**:
+
+<LearningEquation tex={"I_{inrush}\\approx\\frac{C_{load}V_{out}}{t_r}"} />
+
+Add the load's operating current to obtain the total switch current during startup.
+
+import PowerBudgetExplorer from '@site/src/components/PowerBudgetExplorer';
+
+<PowerBudgetExplorer mode="inrush" />
+
+## 3. Worked Example: Ramp Time
+
+**Assumptions:** The load has 100 µF of capacitance. The supply is 5 V. The permitted capacitor charging current is 0.1 A.
+
+1. The required linear ramp time is **5 ms**.
+2. A 50 mA operating load increases total startup current to approximately **150 mA**.
+3. A 1 ms ramp would require **0.5 A** for the capacitor alone.
+
+Real ramp shapes and capacitance tolerance change the peak current. Verify the waveform with the complete load connected.
+
+## 4. Dissipation and Discharge
+
+During normal conduction:
+
+<LearningEquation tex={"P_{switch}\\approx I^2R_{on}"} />
+
+During a slow startup, the switch can have high voltage and current simultaneously. Check its startup limits and the permitted load capacitance.
+
+An output-discharge function removes stored charge after shutdown. Check whether another source can drive the output during discharge.
+
+## 5. Design Checks
+
+1. Check enable behavior while the input supply is absent.
+2. Check maximum input voltage and on-resistance at temperature.
+3. Check reverse current with the output precharged.
+4. Check fault recovery and repeated startup.
+5. Check the load's minimum permitted ramp rate.
+
+**References:** [TI, managing inrush current](https://www.ti.com/lit/an/slva670a/slva670a.pdf), [TI, reverse-current protection](https://www.ti.com/lit/an/slva730/slva730.pdf).

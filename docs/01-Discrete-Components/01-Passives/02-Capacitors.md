@@ -299,3 +299,23 @@ Why do they not use one 10.1 µF capacitor?
 In high-speed digital circuits, **physical size** matters more than capacitance value. A small **0402** 0.1 µF capacitor has less inductance and filters better than a large **1206** 0.1 µF capacitor in GHz designs.
 
 :::
+
+
+import LearningEquation from '@site/src/components/LearningEquation';
+
+
+## Worked Example: Effective Capacitance
+
+**Assumptions:** A nominal 10 µF ceramic capacitor has −20% initial tolerance. Its selected operating point retains 60% of that capacitance.
+
+<LearningEquation tex={"C_{effective}=10\\ \\mu F\\times0.8\\times0.6=4.8\\ \\mu F"} />
+
+A circuit that requires at least 6 µF does not meet that requirement with this example part.
+
+The 60% factor is illustrative. Obtain the actual bias and temperature curves for the exact part number.
+
+Do not multiply separate factors if the manufacturer's combined curve already includes the same effect. Include aging when it applies to the dielectric.
+
+Check the resulting capacitance against the regulator's stability range. Check ripple current and voltage limits separately.
+
+**Reference:** [TI, capacitance under operating conditions](https://www.ti.com/document-viewer/lit/html/SSZT654/GUID-310EE2AA-44D3-4067-97D9-F97CEDDFBBF8).

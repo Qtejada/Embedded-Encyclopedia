@@ -591,3 +591,27 @@ This decreases leakage through the PCB surface.
 Do not assume that an instrumentation amplifier works near its input or output supply rails.
 Check common-mode range, gain, reference voltage, and output swing together.
 :::
+
+
+import LearningEquation from '@site/src/components/LearningEquation';
+
+
+## Complete Three-Amplifier Topology
+
+This original schematic supplements the missing complete circuit noted above. It shows an ideal symmetrical topology, not an integrated device's internal circuit.
+
+import InAmpTopologyDiagram from '@site/src/components/InAmpTopologyDiagram';
+
+<InAmpTopologyDiagram />
+
+The first stage has two equal feedback resistors **R** and one gain resistor **RG**. The difference stage uses two matched **R2/R1** ratios.
+
+<LearningEquation tex={"V_{out}=V_{ref}+\\left(1+\\frac{2R}{R_G}\\right)\\frac{R_2}{R_1}(V_2-V_1)"} />
+
+**Original example assumptions:** R = 10 kΩ, RG = 2 kΩ, and both output-stage ratios equal one.
+
+The differential gain is **11**. A 10 mV input difference produces **110 mV** above Vref in the ideal model.
+
+Check each first-stage output against its swing limits. The final output can be in range while an earlier amplifier saturates.
+
+Supply pins and decoupling are omitted from the schematic for clarity.

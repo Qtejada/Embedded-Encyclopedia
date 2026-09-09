@@ -276,3 +276,29 @@ Noise performance and power consumption usually have an inverse relation.
 
 * **Mechanism:** In a bipolar transistor, voltage noise is inversely proportional to the square root of collector current (*I<sub>C</sub>*).
 * **Trade-off:** More input-transistor bias current decreases voltage noise. As a result, low-noise amplifiers usually use more power.
+
+
+import LearningEquation from '@site/src/components/LearningEquation';
+
+
+## Noise-Budget Experiment
+
+The explorer below combines two independent white-noise sources. It uses an ideal rectangular measurement bandwidth.
+
+<LearningEquation tex={"e_{total}=\\sqrt{e_1^2+e_2^2}\\qquad V_{rms}=e_{total}\\sqrt{B}"} />
+
+**e1** and **e2** are voltage-noise densities. **B** is bandwidth in hertz.
+
+import NoiseBudgetExplorer from '@site/src/components/NoiseBudgetExplorer';
+
+<NoiseBudgetExplorer />
+
+**Worked example assumptions:** The densities are 3 nV/√Hz and 4 nV/√Hz. Bandwidth is 10 kHz.
+
+The combined density is **5 nV/√Hz**. Integrated noise is **0.5 µV root mean square**.
+
+Multiplying bandwidth by four doubles this noise voltage. It does not multiply the voltage by four.
+
+For correlated sources, include correlation in the noise-power calculation. For a real filter, integrate the squared response instead of substituting its cutoff frequency blindly.
+
+**Reference:** [Analog Devices, combining noise sources](https://www.analog.com/en/resources/analog-dialogue/articles/what-should-i-know-about-opamp-noise.html).

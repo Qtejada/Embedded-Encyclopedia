@@ -196,3 +196,20 @@ This circuit is the primary inductor application in digital hardware.
 :::danger Layout Tip
 Never route a sensitive signal trace under an inductor. The inductor acts like a transformer primary and injects noise into the signal.
 :::
+
+
+## Data-Sheet Qualification: Saturation Is a Curve
+
+The saturation description above needs a component-specific qualification. **Isat** is commonly the current at a specified percentage decrease in inductance.
+
+It is not a universal point at which inductance instantly becomes zero. Different cores have different saturation curves.
+
+Check the complete inductance-versus-current curve at temperature. Also check the separate root-mean-square current rating for heating.
+
+**Original example assumptions:** An inductor starts at 10 µH. The manufacturer defines Isat at a 20% inductance decrease.
+
+At that test point, inductance is **8 µH**. Under the same voltage, current slope is **25% higher** than it was at 10 µH.
+
+This faster slope can increase peak current further. Include minimum inductance and the controller's protection delay in the current calculation.
+
+**Reference:** [Coilcraft, current and temperature ratings](https://www.coilcraft.com/en-us/resources/application-notes/current-and-temperature-ratings/).
