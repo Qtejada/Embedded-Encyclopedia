@@ -19,7 +19,7 @@ Check that the selected device supports this reference arrangement.
 
 ## 2. High-Side and Low-Side Measurement
 
-* **High-side measurement:** The shunt is between the positive supply and load. The amplifier must support the supply common-mode voltage.
+* **High-side measurement:** The shunt is between the positive supply and load. The amplifier must support the supply [common-mode voltage](<../../03-Signal-Modulation/Amplifiers/02-differential-amps.md#common-mode-voltage>).
 * **Low-side measurement:** The shunt is between the load and return. Its voltage raises the load ground above the supply ground.
 
 Check the common-mode range during startup and faults, not only during normal operation.
@@ -54,3 +54,31 @@ Shunt tolerance, temperature drift, and amplifier gain error add separate errors
 Check output swing, input offset, bandwidth, bidirectional range, and transient recovery. Compare the measured current with a reference at low and high current.
 
 For switching loads, distinguish the instantaneous waveform from its average. Set the filter bandwidth to match the measurement requirement.
+
+
+## Other sensing methods
+
+| Method | Useful property | Main limitation |
+| --- | --- | --- |
+| Hall sensor | Can measure direct and alternating current with isolation | Offset, bandwidth, and external magnetic fields |
+| Current [transformer](<../../01-Discrete-Components/02-Magnetics/01-Transformers.md#1-magnetic-coupling>) | Isolated alternating-current measurement | Does not measure steady DC and can saturate |
+| Rogowski coil | Measures changing current without a magnetic core | Needs integration and cannot measure steady DC |
+| [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) voltage | Uses the conducting switch as a sense element | On-resistance varies with gate drive and temperature |
+| Inductor [winding resistance](<../../01-Discrete-Components/01-Passives/03-Inductors.md#winding-losses-and-a-practical-model>) | Avoids another series power resistor | Needs a matched sensing network and temperature correction |
+
+A **current-sense amplifier (CSA)** amplifies a small differential voltage across a shunt. Some devices tolerate common-mode voltages outside their own supply range.
+
+An ordinary op amp might not tolerate those inputs. Check common-mode range, input offset, gain error, bandwidth, [PWM](<../../03-Signal-Modulation/Filters/Digital-filters.md#pulse-width-modulation-pwm>) rejection, and recovery after switching edges.
+
+For an assumed 10 A maximum current and 10 milliohm shunt, full-scale sense voltage is 100 mV. A gain of 20 produces 2 V.
+
+That choice leaves 0.5 V headroom in an assumed 2.5 V [ADC](<../../03-Signal-Modulation/Data-convertes/DACs.md#3-sampling-and-resolution>) range. Check offset and output swing at both ends before accepting it.
+
+For bidirectional current, add an output reference or use a bipolar measurement path. Include reference error in the current error budget.
+
+A [comparator](<../../03-Signal-Modulation/Amplifiers/comparators.md#1-comparator-decision>) can compare the sense output with an overcurrent threshold. A latch can retain the fault until a controlled reset.
+
+The protection response must fit the allowable fault energy. Software monitoring alone might be too slow for a short circuit.
+
+
+See [TI current-sensing methods](https://www.ti.com/technologies/current-sensing-solutions.html) and [PWM common-mode rejection](https://www.ti.com/document-viewer/lit/html/SSZTAN8/GUID-CD67DF11-4215-47AE-A24F-FE2470933275).

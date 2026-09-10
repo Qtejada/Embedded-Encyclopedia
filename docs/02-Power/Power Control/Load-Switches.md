@@ -9,7 +9,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 A **load switch** connects a supply to a load under logic control. It can reduce standby consumption and control supply startup.
 
-Features vary. Check the data sheet for current limiting, reverse blocking, output discharge, and thermal protection.
+Features vary. Check the data sheet for [current limiting](<../Entry%20Protection/fuses.md#overcurrent-protection>), [reverse blocking](<../Entry%20Protection/ideal-diodes.md#4-body-diode-and-off-state>), output discharge, and thermal protection.
 
 An enable input does not imply that every protection function exists.
 

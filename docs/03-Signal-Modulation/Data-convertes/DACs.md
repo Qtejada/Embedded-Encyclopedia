@@ -20,7 +20,7 @@ The original notes refer to Figure 13.9, Table 13.4, Section 13.9 (&sect;13.9), 
 
 ## Digital-to-Analog Converters (DACs)
 
-A **digital-to-analog converter (DAC)** converts a binary or binary-coded decimal (**BCD**) number into an analog voltage or current.
+A **digital-to-analog converter (DAC)** converts a binary or [binary-coded decimal](<../../04-Digital-Interfaces/DigitalGeneral.md#binary-coded-decimal>) (**BCD**) number into an analog voltage or current.
 The analog output is proportional to the digital input value.
 
 DACs differ in resolution, accuracy, speed, reference type, output structure, and digital interface.
@@ -118,11 +118,11 @@ The update rate and the settling time are different specifications.
 
 The digital interface can be:
 
-* **Serial**, such as I<sup>2</sup>C or SPI.
+* **Serial**, such as I<sup>2</sup>C or [SPI](<../../04-Digital-Interfaces/Serial-Buses/02-SPI.md#1-clocked-serial-communication>).
 * **Parallel**, which can be faster but requires more pins.
 
 Check whether the input is latched.
-Also check compatibility with CMOS, TTL, or ECL logic when these logic families apply.
+Also check compatibility with CMOS, [TTL](<../../04-Digital-Interfaces/DigitalGeneral.md#logic-levels>), or ECL logic when these logic families apply.
 
 #### Other Important Parameters
 
@@ -141,7 +141,7 @@ Check these device behaviors:
 
 A **resistor-string DAC**, also called a **Kelvin-divider DAC**, connects 2<sup>n</sup> equal-value resistors between a stable voltage reference and ground.
 The resistor string makes a sequence of voltage taps.
-MOSFET switches connect the selected tap to an output buffer.
+[MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) switches connect the selected tap to an output buffer.
 
 #### Advantages
 
@@ -154,7 +154,7 @@ MOSFET switches connect the selected tap to an output buffer.
 
 * **Large area:** The resistor count increases as 2<sup>n</sup>.
   A high-resolution design, such as a 16-bit resistor string, is usually impractical.
-* **Lower speed:** The large switch network has an RC time constant that increases settling time.
+* **Lower speed:** The large switch network has an [RC time constant](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#4-rc-time-constants>) that increases settling time.
 * **Cumulative mismatch:** Resistor mismatch accumulates along the string and limits absolute accuracy.
 
 ---
@@ -182,7 +182,7 @@ Current-steering architectures are common in very-high-speed DACs.
 #### Advantages
 
 1. **Speed and price:** Current-output devices are usually faster and can cost less than comparable voltage-output devices.
-2. **Output-amplifier selection:** The designer can select the external current-to-voltage op-amp.
+2. **Output-amplifier selection:** The designer can select the external current-to-voltage [op-amp](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>).
    This choice can reduce noise or produce a larger output swing than the DAC can produce by itself.
 3. **Current summing:** Several current outputs can connect to one summing node.
    It is easier to sum currents directly than to sum voltage outputs directly.
@@ -280,7 +280,7 @@ The DAC output must remain inside its compliance-voltage range.
 
 #### Transimpedance Amplifier
 
-Use an op-amp **transimpedance amplifier (TIA)** for a large load capacitance or a large output-voltage swing.
+Use an op-amp **[transimpedance amplifier](<../Amplifiers/01-op-amps.md#7-transimpedance-amplifier>) (TIA)** for a large load capacitance or a large output-voltage swing.
 The op-amp operates in a transresistance configuration and converts the DAC current into voltage.
 
 #### Phase Lag and Settling
@@ -310,7 +310,7 @@ The residual gain drift can be approximately 100 times worse than the drift obta
 
 ### 9. Delta-Sigma DACs
 
-A **delta-sigma DAC** uses oversampling and noise shaping.
+A **delta-sigma DAC** uses [oversampling](<../Filters/Digital-filters.md#23-oversampling>) and noise shaping.
 The modulator can use a 1-bit output or a multibit output.
 
 For a 1-bit variant, the conversion occurs in these steps:
@@ -340,7 +340,7 @@ The name does not apply to a multibit delta-sigma output stage.
 
 ### 10. PWM as a DAC
 
-**Pulse-width modulation (PWM)** can operate as a simple DAC.
+**[Pulse-width modulation](<../Filters/Digital-filters.md#pulse-width-modulation-pwm>) (PWM)** can operate as a simple DAC.
 A low-pass filter or another averaging load converts the pulse duty cycle into an average analog value.
 
 PWM is widely used in **Class D amplifiers**.
@@ -404,7 +404,7 @@ Zero DC voltage produces approximately zero DC leakage current through the capac
 
 #### Kelvin Connections
 
-Use a **Kelvin connection**, also called a **4-wire connection**, on a current-sense resistor when the current is high.
+Use a **[Kelvin connection](<../../02-Power/Measurment/Current-sense.md#3-kelvin-connections>)**, also called a **4-wire connection**, on a current-[sense resistor](<../../02-Power/Measurment/Current-sense.md#1-convert-current-to-voltage>) when the current is high.
 Separate the high-current path from the voltage-sense path.
 This connection prevents PCB trace resistance from adding to the measured resistor voltage.
 
@@ -590,8 +590,8 @@ Start the selection process with the ADC as a **black box**. Use this checklist:
 - **Reference:** Decide if the design requires an internal reference or an external reference.
 - **Input scaling:** Select a unipolar input range or a bipolar input range.
 - **Speed:** Examine conversion time, throughput, and latency. Throughput is the completed-sample rate. Latency is the delay from an input sample to its digital result.
-- **Digital output interface:** Select a parallel interface, a serial interface such as I2C or SPI, or a high-speed interface such as LVDS.
-- **Integration:** Select a stand-alone ADC or an ADC that is integrated into a microcontroller.
+- **Digital output interface:** Select a parallel interface, a serial interface such as [I2C](<../../04-Digital-Interfaces/Serial-Buses/03-I2C.md#1-shared-clock-and-data>) or SPI, or a high-speed interface such as LVDS.
+- **Integration:** Select a stand-alone ADC or an ADC that is integrated into a [microcontroller](<../../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>).
 - **Additional features:** Examine features such as an internal **programmable-gain amplifier (PGA)** and the specified **spur-free dynamic range (SFDR)**.
 
 ### 2. ADC Selection by Speed
@@ -638,7 +638,7 @@ Use high-speed **flash variants**, such as folding or interpolating architecture
 
 Applications include:
 
-- Oscilloscope front ends
+- [Oscilloscope](<../../00-Foundations/05-Measurement-and-Debug.md#oscilloscope-bandwidth-and-sampling>) front ends
 - Digital radio
 
 Examples:
@@ -729,7 +729,7 @@ Here, <em>f</em><sub>s</sub> is the sample rate and <em>f</em><sub>max</sub> is 
 
 If the input contains frequencies above the permitted limit, the sampled points can represent a false lower-frequency signal. This false signal is an **alias**. The false frequency did not exist at the analog input.
 
-Install an **anti-aliasing low-pass filter** before a baseband ADC. The filter must attenuate frequencies that can fold into the required signal band.
+Install an **[anti-aliasing](<../Filters/Digital-filters.md#18-aliasing-at-the-initial-adc>) low-pass filter** before a baseband ADC. The filter must attenuate frequencies that can fold into the required signal band.
 
 #### Guard band
 
@@ -759,13 +759,13 @@ ADC architectures range from fast and expensive types to slow and precise types.
 
 #### Flash ADC
 
-A **flash ADC**, also called a **parallel ADC**, is the fastest basic ADC architecture. The analog input connects to all comparators at the same time. A resistor reference ladder supplies equally spaced threshold voltages to the other comparator inputs.
+A **flash ADC**, also called a **parallel ADC**, is the fastest basic ADC architecture. The analog input connects to all [comparators](<../Amplifiers/comparators.md#1-comparator-decision>) at the same time. A resistor reference ladder supplies equally spaced threshold voltages to the other comparator inputs.
 
 An ideal <em>n</em>-bit flash ADC uses 2<sup><em>n</em></sup>-1 comparators. For example, an 8-bit flash ADC uses 255 comparators.
 
 The active comparator outputs form a **thermometer code**, such as `0000111`. This code identifies the highest threshold that the input crossed. A priority encoder converts the thermometer code to a standard binary output. The source notes refer to this operation in Table 13.4.
 
-A flash ADC has a short **aperture interval**. The input changes very little during the conversion interval. For this reason, some flash ADC applications do not require the external sample-and-hold circuit that a slower ADC can require.
+A flash ADC has a short **aperture interval**. The input changes very little during the conversion interval. For this reason, some flash ADC applications do not require the external [sample-and-hold](<./Sample-holding.md#1-basic-circuit>) circuit that a slower ADC can require.
 
 The comparator count increases exponentially with resolution. The practical resolution limit for a pure flash ADC is usually approximately 8 bits.
 
@@ -807,7 +807,7 @@ Latency is the delay from a given analog sample to its digital result. Throughpu
 
 A **folding ADC** supports very high sample rates, such as 3.6 Gsps. It is useful when a long pipeline is too slow or too complex.
 
-Cross-connected differential pairs transform a linear input ramp into a repeating triangular waveform. Each repetition is a **fold**.
+Cross-connected [differential pairs](<../Amplifiers/02-differential-amps.md#5-transistor-differential-pair>) transform a linear input ramp into a repeating triangular waveform. Each repetition is a **fold**.
 
 The conversion uses two measurements:
 
@@ -893,7 +893,7 @@ The same integrator resistor and capacitor affect both slopes.
 The ratio measurement cancels much of their common scale error.
 This two-slope operation does not automatically remove comparator offset.
 
-A **quad-slope ADC** adds an **auto-zero cycle**. The converter holds the input at zero, measures the offset, and subtracts the offset from later conversions.
+A **quad-slope ADC** adds an **[auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) cycle**. The converter holds the input at zero, measures the offset, and subtracts the offset from later conversions.
 
 A **multislope ADC** uses a complex sequence of fast dual-slope operations. It integrates continuously and corrects the result with the residues from partial cycles. This method is closely related to the **delta-sigma** architecture.
 
@@ -941,7 +941,7 @@ The two resistors isolate the op-amp outputs from the filter capacitor and the s
 
 #### Op-amp stability with capacitive loads
 
-A high-bandwidth op-amp, including a device with approximately 1000 MHz bandwidth, can become unstable with a capacitive load. The capacitor interacts with the op-amp's open-loop output impedance, <em>R</em><sub>o</sub>. This interaction adds a pole to the loop response. The pole reduces phase margin and can cause oscillation.
+A high-bandwidth op-amp, including a device with approximately 1000 MHz bandwidth, can become unstable with a capacitive load. The capacitor interacts with the op-amp's open-loop output impedance, <em>R</em><sub>o</sub>. This interaction adds a pole to the loop response. The pole reduces [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>) and can cause oscillation.
 
 Install an external **isolation resistor**, <em>R</em><sub>ext</sub> or <em>R</em><sub>s</sub>, between the amplifier output and the capacitor.
 
@@ -1021,7 +1021,7 @@ This method can remove a separate analog down-conversion stage.
 The circuit in Figure 13.29 includes these features:
 
 - **Termination:** Two 100 &Omega; resistors form a 50 &Omega; load when they are in parallel. This load matches standard RF impedance.
-- **AC coupling and bias:** The ADC uses a single supply. It cannot accept an input that moves below its permitted input range. A coupling capacitor removes the source's DC component. The circuit then biases the ADC input near +0.6 V, which is the required common-mode level in this example. The +0.6 V value is not the midpoint of a 0 V to +3 V supply.
+- **[AC coupling](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#ac-coupling-blocking>) and bias:** The ADC uses a single supply. It cannot accept an input that moves below its permitted input range. A coupling capacitor removes the source's DC component. The circuit then biases the ADC input near +0.6 V, which is the required common-mode level in this example. The +0.6 V value is not the midpoint of a 0 V to +3 V supply.
 - **Supply filtering:** A 100 &mu;H choke isolates the sensitive analog supply pin from noise on the digital supply pin.
 
 ### 8. Multiplexed Data-Acquisition Systems
@@ -1032,9 +1032,9 @@ A **multiplexed data-acquisition system (DAQ)** uses one high-quality ADC to mea
 
 ##### Break-before-make switching
 
-Use a multiplexer with **break-before-make** operation. The switch disconnects Channel 1 before it connects Channel 2.
+Use a multiplexer with **[break-before-make](<./Sample-holding.md#break-before-make-operation>)** operation. The switch disconnects Channel 1 before it connects Channel 2.
 
-This operation prevents a short circuit between two sensors. For example, Channel 1 can be at +10 V while Channel 2 is at -10 V. A make-before-break switch would connect the two sources for a short interval. The connection could cause a large inrush current and crosstalk.
+This operation prevents a short circuit between two sensors. For example, Channel 1 can be at +10 V while Channel 2 is at -10 V. A make-before-break switch would connect the two sources for a short interval. The connection could cause a large inrush current and [crosstalk](<../../05-PCB-Layout/01-Overview.md#53-crosstalk-and-separation>).
 
 Break-before-make operation adds **dead time**. An example dead time is 80 ns. Include this interval in the acquisition timing.
 
@@ -1048,7 +1048,7 @@ Use a robust **high-voltage multiplexer** or external **MOSFET clamps** when the
 
 Do not select a switch only because it has the lowest on-resistance, <em>R</em><sub>on</sub>. For example, a 0.5 &Omega; switch can require large internal transistors. Large transistors have high capacitance.
 
-When the switch changes state, this capacitance transfers a charge pulse to the signal. This effect is **charge injection**.
+When the switch changes state, this capacitance transfers a charge pulse to the signal. This effect is **[charge injection](<./Sample-holding.md#charge-injection-and-pedestal-error>)**.
 
 For a high-impedance sensor, select a switch with **low leakage** and **low capacitance**. An on-resistance of 80 &Omega; can be acceptable when the next amplifier has a very high input impedance.
 
@@ -1238,14 +1238,14 @@ Disadvantages:
 
 ## Appendix: Phase-Locked Loops
 
-A **phase-locked loop (PLL)** is a feedback system.
+A **[phase-locked loop](<../Timing/PLL.md#1-core-pll-architecture>) (PLL)** is a feedback system.
 It combines analog and digital functions.
 
 A basic PLL contains:
 
 * A **phase detector** or **phase-frequency detector**.
 * An amplifier and **loop filter**.
-* A **voltage-controlled oscillator (VCO)**.
+* A **[voltage-controlled oscillator](<../Timing/PLL.md#voltage-controlled-oscillator>) (VCO)**.
 
 The phase detector compares the input with the feedback signal.
 The loop filter converts the detector output into a control voltage.
@@ -1346,7 +1346,7 @@ The output frequency is:
 
 > **f<sub>out</sub> = Nf<sub>in</sub>**
 
-A digital flip-flop can divide frequency.
+A digital [flip-flop](<../../04-Digital-Interfaces/DigitalGeneral.md#storage-at-a-clock-edge>) can divide frequency.
 A passive resistor or capacitor cannot insert new cycles to multiply frequency.
 A PLL multiplier uses the VCO to generate the higher-frequency signal.
 The feedback loop synchronizes this signal with the input.

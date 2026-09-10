@@ -15,7 +15,7 @@ Precision design requires a complete error budget. It also requires the correct 
 Do not use only typical error values for a precision design. Use maximum values when the datasheet supplies them.
 
 * **Accumulation problem:** A 1% error in one stage can be acceptable.
-  * Errors from the input buffer, gain stage, filter, and ADC driver add together.
+  * Errors from the input buffer, gain stage, filter, and [ADC](<../03-Signal-Modulation/Data-convertes/DACs.md#3-sampling-and-resolution>) driver add together.
   * Repeated 1% errors add to a failed system specification.
 * **Error budget:** The error budget gives the maximum total error, *V<sub>err</sub>*.
   * The basic budget includes input-offset voltage and the voltage caused by input-bias current.
@@ -29,7 +29,7 @@ Do not use only typical error values for a precision design. Use maximum values 
 
 ## 2. BJT and FET Input Trade-Offs
 
-The primary amplifier-selection decision is the input technology. The main options are bipolar junction transistor (BJT), JFET, and CMOS inputs.
+The primary amplifier-selection decision is the input technology. The main options are bipolar junction transistor (BJT), [JFET](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>), and CMOS inputs.
 
 ### BJT Inputs
 
@@ -44,23 +44,23 @@ The primary amplifier-selection decision is the input technology. The main optio
 ### JFET and CMOS Inputs
 
 * **Primary advantage:** FET inputs have extremely low bias current and current noise.
-  * This property is essential for photodiodes, pH probes, ECG electrodes, and other high-impedance sources.
+  * This property is essential for [photodiodes](<../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>), pH probes, ECG electrodes, and other high-impedance sources.
 * **Primary disadvantage:** FET inputs usually have more voltage noise.
   * FET inputs often have more offset voltage.
   * Modern trim methods continue to decrease the offset voltage.
 * **Temperature behavior:** The room-temperature bias current can be very low.
   * However, the bias current doubles for each 10&deg;C temperature increase.
-* **Speed:** FET inputs usually give a higher slew rate for a specified bandwidth.
+* **Speed:** FET inputs usually give a higher [slew rate](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#slew-rate>) for a specified bandwidth.
 
 ### Temperature Drift Example
 
 <div className="definition-list">
 
-* **Condition:** A FET operational amplifier has 1 pA bias current at room temperature.
+* **Condition:** A FET [operational amplifier](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) has 1 pA bias current at room temperature.
 * **Environment:** The circuit operates in a vehicle at 85&deg;C.
 * **Calculation:** The bias current doubles for each 10&deg;C increase. At 85&deg;C, the bias current becomes **64 pA**.
 * **Result:** The precision circuit drifts wildly in this condition.
-* **Alternative:** A BJT input can be better when the source impedance is sufficiently low.
+* **Alternative:** A BJT input can be better when the [source impedance](<./00-Foundations.md#the-ideal-source-and-the-real-source>) is sufficiently low.
   * The BJT bias current is more stable across temperature.
 
 </div>
@@ -89,7 +89,7 @@ The BJT current noise swamps the ECG signal in this example. This requirement ex
   * **Example:** A 1 k&Omega; source and a nanoampere-level bias current produce a microvolt-level error.
 * **FET amplifiers:** FET inputs take very little current, but they do have increased voltage offset.
 * **Bipolar super-beta amplifiers:** These BJT amplifiers can also be applicable to low-bias-current designs.
-* **Common-mode variation:** The input current of some amplifiers changes with input common-mode voltage.
+* **Common-mode variation:** The input current of some amplifiers changes with input [common-mode voltage](<../03-Signal-Modulation/Amplifiers/02-differential-amps.md#common-mode-voltage>).
   * Compare the input-current specification across the required input-voltage range.
 
 </div>
@@ -109,10 +109,10 @@ The BJT current noise swamps the ECG signal in this example. This requirement ex
 
 ### Rejection Ratios and Gain
 
-* **Common-mode rejection ratio (CMRR):** Insufficient CMRR produces an offset that changes with the DC input level.
+* **[Common-mode rejection ratio](<../03-Signal-Modulation/Amplifiers/02-differential-amps.md#2-common-mode-rejection-ratio>) (CMRR):** Insufficient CMRR produces an offset that changes with the DC input level.
   * **RRIO risk:** An RRIO amplifier can have a large offset change when its input common-mode voltage changes.
   * This behavior acts like poor CMRR.
-  * This offset shift occurs unless the amplifier uses an internal charge pump.
+  * This offset shift occurs unless the amplifier uses an internal [charge pump](<../02-Power/Regulation/06-Charge-Pumps.md#two-phase-voltage-doubler>).
   * The OPA364 is an example of an amplifier that uses this exception.
 * **Power-supply rejection ratio (PSRR):** A supply-voltage change produces a small operational-amplifier error.
   * Use the PSRR specification to estimate this error.
@@ -133,7 +133,7 @@ The noise-density curve has two important regions:
 * **High-frequency region:** The density is usually flat and is called white noise.
   * Datasheets frequently give this value at 1 kHz.
 * **Low-frequency region:** The density increases when frequency decreases.
-  * This region contains 1/f noise, which is also called pink noise.
+  * This region contains [1/f noise](<./00-Foundations.md#1f-noise>), which is also called pink noise.
   * Standard operational amplifiers become noisy near DC.
   * Auto-zero amplifiers keep a flat density near DC.
 
@@ -157,7 +157,7 @@ The 3.16 &micro;V noise is a substantial fraction of a 10 &micro;V EEG signal. O
 
 **Specific danger**
 
-This effect is important for photodiode and other transimpedance amplifiers.
+This effect is important for photodiode and other [transimpedance amplifiers](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#7-transimpedance-amplifier>).
 
 At high frequencies, voltage noise interacts with the sensor input capacitance, *C<sub>in</sub>*. This interaction produces a large equivalent current noise:
 
@@ -174,7 +174,7 @@ The selected noise parameter determines if the device measures a signal or produ
 
 ### 1/f Noise
 
-Noise spectral density increases below the **1/f corner frequency**. Calculate the total RMS noise by integrating the density squared across the applicable band:
+[Noise spectral density](<./00-Foundations.md#noise-spectral-density>) increases below the **1/f corner frequency**. Calculate the total RMS noise by integrating the density squared across the applicable band:
 
 > *v<sub>n</sub><sup>2</sup> = &int; e<sub>n</sub><sup>2</sup> df*
 
@@ -214,7 +214,7 @@ Compare *Z<sub>n</sub>* with the signal-source impedance, *Z<sub>s</sub>*:
 
 ### Current Noise and Bias Cancellation
 
-* **Standard relation:** Current noise in a standard operational amplifier follows the shot noise of its bias current.
+* **Standard relation:** Current noise in a standard operational amplifier follows the [shot noise](<./00-Foundations.md#shot-noise>) of its bias current.
   > *i<sub>n</sub> = &radic;(2qI<sub>B</sub>)*
 * **Bias-cancellation exception:** Many precision BJT amplifiers use an internal circuit to cancel DC input-bias current.
   * This circuit decreases DC drift but significantly increases AC current noise.
@@ -269,7 +269,7 @@ These are the critical failure mechanisms for the medical applications in these 
 
 ### Gain-Bandwidth Product
 
-High gain-bandwidth product is not only for high-speed signals.
+High [gain-bandwidth product](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#gain-bandwidth-trade>) is not only for high-speed signals.
 
 * **Loop gain:** A high gain-bandwidth product (GBW) gives spare loop gain at lower frequencies.
   * More loop gain improves linearity and decreases distortion.
@@ -311,7 +311,7 @@ Different input-stage designs increase slew rate without a very large bandwidth 
 
 * **JFET inputs:** Lower transconductance gives more slew rate for a specified bandwidth.
   * The LF411 has an enhancement factor of approximately *m = 12*.
-* **Emitter degeneration:** Adding resistance to the input transistors decreases gain but increases speed.
+* **[Emitter degeneration](<../01-Discrete-Components/03-Semicondctors/02-BJTs.md#4-biasing-techniques>):** Adding resistance to the input transistors decreases gain but increases speed.
 * **Cross-coupled or Butler stages:** These designs increase the current available to the compensation capacitor.
   * The TLE2142 and OP275 are examples.
 * **Current-feedback amplifiers:** This topology can give very high slew rates.
@@ -380,7 +380,7 @@ An ideal operational amplifier has zero output impedance. A real open-loop outpu
 * **Capacitive-load risk:** *R<sub>o</sub>* reacts with an output load capacitor, *C<sub>load</sub>*.
   * The resistance and capacitance make a low-pass filter inside the feedback loop.
 * **Result:** The filter adds phase lag.
-  * Excessive lag changes negative feedback into positive feedback.
+  * Excessive lag changes [negative feedback](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#negative-feedback>) into positive feedback.
   * The operational amplifier then becomes unstable and oscillates.
 
 :::tip Design Summary
@@ -398,7 +398,7 @@ Rail-to-rail operation is useful in low-voltage systems, but it introduces addit
 
 ### Definitions
 
-* **Rail-to-rail input (RRI):** The input common-mode range extends to both supply rails.
+* **Rail-to-rail input (RRI):** The [input common-mode range](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#common-mode-input-range>) extends to both supply rails.
 * **Rail-to-rail output (RRO):** The output voltage goes from rail to rail in the topology description.
   * The exact distance from each rail depends on the output load.
 * **Rail-to-rail input/output (RRIO):** The amplifier has RRI and RRO operation.
@@ -418,7 +418,7 @@ Rail-to-rail operation is useful in low-voltage systems, but it introduces addit
 
 ### RRO Output Impedance
 
-* **Output stage:** The RRO mechanism in these notes uses a common-source output instead of a complementary push-pull output.
+* **Output stage:** The RRO mechanism in these notes uses a common-source output instead of a complementary [push-pull](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#complementary-push-pull-output>) output.
 * **Output impedance:** This stage has high output impedance that changes with load resistance.
 * **Capacitive load:** A load capacitor causes a large phase shift in this output stage.
 * **Distortion:** These rail-to-rail output amplifiers frequently have much worse distortion than standard output stages.
@@ -432,13 +432,13 @@ Rail-to-rail operation is useful in low-voltage systems, but it introduces addit
   * It corrects input-offset voltage, offset drift, and 1/f noise.
 * **Supply limit:** These amplifiers frequently have a low maximum supply voltage.
   * A typical maximum value is 6 V.
-* **Clock feedthrough:** Internal switching can add noise and cause small output changes.
+* **[Clock feedthrough](<../03-Signal-Modulation/Data-convertes/Sample-holding.md#clock-feedthrough>):** Internal switching can add noise and cause small output changes.
   * A low-pass filter can decrease this clock feedthrough.
 * **Application:** Use this topology for slow, accurate transducer measurements and normal-bandwidth applications.
 
 ### Difference Amplifiers
 
-* **Function:** A difference amplifier receives two signals, usually a differential signal pair, and produces their amplified difference.
+* **Function:** A [difference amplifier](<../03-Signal-Modulation/Amplifiers/02-differential-amps.md#3-four-resistor-op-amp-difference-amplifier>) receives two signals, usually a differential signal pair, and produces their amplified difference.
   > *V<sub>out</sub> = G &times; (V<sub>in+</sub> - V<sub>in-</sub>)*
 * **Characteristics:**
   * High CMRR.
@@ -449,7 +449,7 @@ Rail-to-rail operation is useful in low-voltage systems, but it introduces addit
 
 ### Instrumentation Amplifiers
 
-* **Function:** An instrumentation amplifier receives a differential input and gives a single-ended output.
+* **Function:** An [instrumentation amplifier](<../03-Signal-Modulation/Amplifiers/03-instrumentation-amps.md#2-classic-three-op-amp-architecture>) receives a differential input and gives a single-ended output.
 * **Input impedance:** Buffered inputs give very high input impedance and prevent source loading.
 * **Gain:** The user can set the gain across a wide range.
 * **CMRR:** Very high CMRR rejects common-mode noise.
@@ -489,7 +489,7 @@ This example applies a complete precision-design method to a high-performance an
 
 <div className="definition-list">
 
-* **R4 (100 &Omega;, 0.1%): Current-sense resistor**
+* **R4 (100 &Omega;, 0.1%): Current-[sense resistor](<../02-Power/Measurment/Current-sense.md#1-convert-current-to-voltage>)**
   * **Role:** Precision scaling.
   * **Operation:** Operational-amplifier feedback forces the input voltage exactly across R4.
   * Ohm's law changes the input voltage into an accurate current for the meter movement.
@@ -500,7 +500,7 @@ This example applies a complete precision-design method to a high-performance an
   * **Operation:** R3 limits current if the amplifier output moves to the full battery voltage during startup or saturation.
   * The limited current is a safe value of approximately 0.3 mA.
 
-* **R2 (10 k&Omega;): Input-current limiter**
+* **R2 (10 k&Omega;): Input-[current limiter](<../02-Power/Entry%20Protection/fuses.md#overcurrent-protection>)**
   * **Role:** Input-protection current limit.
   * **Operation:** R2 protects the clamp diodes during a high-voltage input overload.
   * For example, R2 limits current if a 9 V battery is accidentally connected to the input.
@@ -564,9 +564,9 @@ This circuit stores an input value. It then amplifies subsequent input changes w
 * **Leakage example:** The capacitor leakage resistance is 100 G&Omega;, and the output is 10 V.
   * The leakage current produces **3 mV/min** of drift.
   * This value is not acceptable for the 1 &micro;V/min null-drift requirement.
-* **Dielectric absorption:** A capacitor can return toward a previous charge state after discharge.
+* **[Dielectric absorption](<../01-Discrete-Components/01-Passives/02-Capacitors.md#a-dielectric-absorption>):** A capacitor can return toward a previous charge state after discharge.
   * This effect is also called the memory effect.
-  * In a sample-and-hold circuit, the switch opens after the capacitor discharges.
+  * In a [sample-and-hold](<../03-Signal-Modulation/Data-convertes/Sample-holding.md#1-basic-circuit>) circuit, the switch opens after the capacitor discharges.
   * The capacitor voltage then jumps slightly toward its previous value before it becomes stable.
   * This voltage change adds an error.
 

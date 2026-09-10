@@ -32,7 +32,7 @@ External resistors must hold critical signals in their required state before the
 
 ## 4. Worked Example: Transaction Delay
 
-**Assumptions:** An I²C write sends an address byte, a register byte, and one data byte. The bus clock is 100 kHz.
+**Assumptions:** An [I²C](<./Serial-Buses/03-I2C.md#1-shared-clock-and-data>) write sends an address byte, a register byte, and one data byte. The bus clock is 100 kHz.
 
 Each byte requires eight data clocks and one acknowledgment clock.
 
@@ -44,7 +44,7 @@ An application that needs a 10 µs output response cannot meet that requirement 
 
 ## 5. Interrupt and Output Limits
 
-An interrupt output can report input changes. Check whether a register read clears the interrupt and whether brief pulses are captured.
+An [interrupt](<./Embedded-Systems.md#interrupts-and-data-transfer>) output can report input changes. Check whether a register read clears the interrupt and whether brief pulses are captured.
 
 An expander is not automatically a hardware debounce circuit. Check pin current, total package current, and output voltage at the intended load.
 

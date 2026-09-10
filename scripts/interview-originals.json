@@ -1,0 +1,362 @@
+{
+  "baselineCommit": "4d08ec7039eb61d603edb4b9691b0b9d1fa587e4",
+  "files": [
+    {
+      "path": "docs/00-Foundations/00-Foundations.md",
+      "bytes": 13771,
+      "sha256": "2c4b92737e318d25149a39a360f150d306ec4ba1f5a200aaa728a91c9b623671",
+      "normalizedLength": 13454,
+      "normalizedSha256": "a23667791149d337bde3f855466fb760d91e24a52affa4424ffac0ec10ac8a98"
+    },
+    {
+      "path": "docs/00-Foundations/03-Precision-Design.md",
+      "bytes": 33262,
+      "sha256": "670e861928b65f6a0fd90c8bd476566c53a6922ede1a8db9e6e8db677c247ab1",
+      "normalizedLength": 32648,
+      "normalizedSha256": "c9bd19041c6064e40ae255bd5e46389e48ede031dbc793af1e45722cdb4c680f"
+    },
+    {
+      "path": "docs/01-Discrete-Components/01-Passives/01-Resistors.md",
+      "bytes": 2944,
+      "sha256": "1d6db217acb487f93d727bc9f3bcc3c03c4e328e6079f1e796da408f75fd61a3",
+      "normalizedLength": 2937,
+      "normalizedSha256": "208cbb842e3a198de957c3c0688d55e955f48df3cc49228d6f717f5eb4aa6e98"
+    },
+    {
+      "path": "docs/01-Discrete-Components/01-Passives/02-Capacitors.md",
+      "bytes": 15256,
+      "sha256": "6c89b772d0053629906cc8f64c8e22817b0c0b4622c4fa0976372b3dc79c3e2a",
+      "normalizedLength": 14885,
+      "normalizedSha256": "9e947da2ca56da738ec02c91df8e56767bc224fd117221e08e08b18588e9f6c8"
+    },
+    {
+      "path": "docs/01-Discrete-Components/01-Passives/03-Inductors.md",
+      "bytes": 8425,
+      "sha256": "c37693fb4524f4a62fe6d364a8a771cdc1b15d96b812232cd3c028963be7e28d",
+      "normalizedLength": 8207,
+      "normalizedSha256": "c9ad3d26edd0d824f6d73fea361219fca90fb779e470e50461939161e7341eb5"
+    },
+    {
+      "path": "docs/01-Discrete-Components/02-Magnetics/01-Transformers.md",
+      "bytes": 2899,
+      "sha256": "211e12946726e418a4d9dfc4bd1894c4c9a9521923dd842c7c0e74f60b8b293e",
+      "normalizedLength": 2894,
+      "normalizedSha256": "84bb37df68a94e9036bc2a49f01d72e1aa2e9603739ac5ee3f0169c0d2cc7494"
+    },
+    {
+      "path": "docs/01-Discrete-Components/02-Magnetics/02-Common-Mode-Chokes.md",
+      "bytes": 2644,
+      "sha256": "9382f25548ce0e101d97dc3d9f5db11448881ae13a51d80ea0169243fae2ad1f",
+      "normalizedLength": 2643,
+      "normalizedSha256": "a39f0b9f92df0bd25daa344d0753bd45333187fa781f0d7e11d6da9149f0627e"
+    },
+    {
+      "path": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+      "bytes": 7482,
+      "sha256": "11bb5533b3d2d9a3353c5926748062ebbccdb868b053460ad15f233bc3cea1ee",
+      "normalizedLength": 7312,
+      "normalizedSha256": "23afdaf5b01187cb62bcdc1fa6dfab83fbb4e7bc5386727f5137f2d7cc955bf8"
+    },
+    {
+      "path": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "bytes": 23221,
+      "sha256": "d5fa2ad545532f0404cc0225ab52ef5bd8e941860760e1f2b103d9af046349cf",
+      "normalizedLength": 22712,
+      "normalizedSha256": "1b425b32839799c471250d96ea769aa18f7d8365a708d01d4844e7895d6088d5"
+    },
+    {
+      "path": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "bytes": 28417,
+      "sha256": "3aebf1e89f2d50cc784f191699fb3ab690c192ba5839a48b4abe827907eeb708",
+      "normalizedLength": 27787,
+      "normalizedSha256": "08d4c32e19bf007dc6a9f3c7ed1b95c8da30b79fb1d17dcc293f49d70a010d55"
+    },
+    {
+      "path": "docs/02-Power/Entry Protection/fuses.md",
+      "bytes": 45071,
+      "sha256": "1e49c46491e57f581592d7c4b843652473da3760619a16d4f1da9aecd9a72be5",
+      "normalizedLength": 44029,
+      "normalizedSha256": "e34bdda1ad7715600e967ceb660cf86ca729a203fd0c94811b89d3ebf4a6d2aa"
+    },
+    {
+      "path": "docs/02-Power/Entry Protection/ideal-diodes.md",
+      "bytes": 2326,
+      "sha256": "cdc86d66190e9004eb87d5c6e13b88642181b9e3aa44eb809e4698ea782e01de",
+      "normalizedLength": 2323,
+      "normalizedSha256": "54de92c52e344becb5e56bfcd39ceaf449434000d857c5b420920352b6321c82"
+    },
+    {
+      "path": "docs/02-Power/Entry Protection/tvs-surge.md",
+      "bytes": 2469,
+      "sha256": "35e5ae215d2728244a03c1fd1e81e0e437456686019713e6de5aabc502ed603f",
+      "normalizedLength": 2466,
+      "normalizedSha256": "d9f7be63575bf2c2905fb58106d2a1a69fd6a9584385510aff6b795756192f20"
+    },
+    {
+      "path": "docs/02-Power/Measurment/Current-sense.md",
+      "bytes": 2320,
+      "sha256": "93fc1fd228cd12e9cc39eb0930e1371f5177b82df7d8ec563a92947ef2e3e75e",
+      "normalizedLength": 2316,
+      "normalizedSha256": "8a6fb87939bdadd32ae066da99a36b088755427747b1a892d2e4a3227dfa59dc"
+    },
+    {
+      "path": "docs/02-Power/Measurment/Power-good-Seq.md",
+      "bytes": 2238,
+      "sha256": "ec793d324b78dadb4d33a61ac3d375aac2e3bf2f3fabd7e206373e241cd4f60b",
+      "normalizedLength": 2236,
+      "normalizedSha256": "598809336d09b42b0fd2dd266ec24c9afc329260f1ae535678b85f879cde6479"
+    },
+    {
+      "path": "docs/02-Power/Measurment/Supervisors.md",
+      "bytes": 2251,
+      "sha256": "51ed2d790b9e8fcbeb222a04539a1ccd88262c86998f6a81a7b68be4cfb12cb7",
+      "normalizedLength": 2248,
+      "normalizedSha256": "3a6cf849ee9abf9c671b9b4bcfaeff1140edf3436d986334262b5541912ef752"
+    },
+    {
+      "path": "docs/02-Power/Power Control/Gate-Drivers.md",
+      "bytes": 2431,
+      "sha256": "7cd2045959086a5e529c016e9c644e4a473b6d428d39a56f184f17813d44d349",
+      "normalizedLength": 2427,
+      "normalizedSha256": "13bea2ade3d16c9a34890e72f9941d5d5518009a68b250cea1867a7ee81e6016"
+    },
+    {
+      "path": "docs/02-Power/Power Control/Load-Switches.md",
+      "bytes": 2301,
+      "sha256": "31bfcd041632b41d53065caa1e315398ca271bd1c5750e351563d2a16e072148",
+      "normalizedLength": 2298,
+      "normalizedSha256": "49f8e4e99309e66d27437507c1cc1ab6fffbaee1a01c685c0421b54f74fd816c"
+    },
+    {
+      "path": "docs/02-Power/Regulation/01-Buck Converter.md",
+      "bytes": 2672,
+      "sha256": "0ac40a7512370a3be458273326d8a74a94c02e7c742c2d700866b13ff25d6f6e",
+      "normalizedLength": 2670,
+      "normalizedSha256": "b69ffc76a8aaa3f307edd1768d87c4d0e38147e0f30ee2a0c89bd9fb5702858a"
+    },
+    {
+      "path": "docs/02-Power/Regulation/02-Boost Converter.md",
+      "bytes": 2517,
+      "sha256": "3214565369c684bb01979f577e64b62a6e15c371972a80e138dfece296dcda60",
+      "normalizedLength": 2514,
+      "normalizedSha256": "f2daf2cd31195eee870a9d16d205a7b6019ea9a3977b0075fc1b97b403ba9093"
+    },
+    {
+      "path": "docs/02-Power/Regulation/03-Buck-Boost Converter.md",
+      "bytes": 2518,
+      "sha256": "27204c037cce701c8e351195357a86bd1eeaa41bb2eb070097000bee50511e86",
+      "normalizedLength": 2513,
+      "normalizedSha256": "62ae6f6c520e8bd1d6008157c3a0935bd0b647936245d9b8759730aaad29cfc1"
+    },
+    {
+      "path": "docs/02-Power/Regulation/04-LDOs.md",
+      "bytes": 2540,
+      "sha256": "ffbfb83f5a6e214df4ec22c973e7be39302aa67f8c55ff252dc08aa858bf6b8e",
+      "normalizedLength": 2533,
+      "normalizedSha256": "ab0cee1ea77ddc8d50967f84b0a07382e0b6e179f036b5f6ce5b630cfd1fcd6a"
+    },
+    {
+      "path": "docs/02-Power/Regulation/05-AC-to-DC-Converters.md",
+      "bytes": 2792,
+      "sha256": "ad30d371018f2675d383235889d8e07169c710a3fa3e13e9a01754ce7325441e",
+      "normalizedLength": 2787,
+      "normalizedSha256": "207625dbacae07bdc1ac1964541b90ae81de1d6a3d90a7d99c29a6aac0e76fef"
+    },
+    {
+      "path": "docs/02-Power/Regulation/Battery-Charging.md",
+      "bytes": 2637,
+      "sha256": "b373621911a43f550d1302690c86486b659951046a439d06a031a641e7eb20a9",
+      "normalizedLength": 2634,
+      "normalizedSha256": "3c0c566e5b04b19f79597a23a5c354d497b05068248ae36dffa29bf582e6e712"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "bytes": 60716,
+      "sha256": "a923e4260a1a46a85072fb44939ea6af053973389fb15604ef20fed1796e878b",
+      "normalizedLength": 59165,
+      "normalizedSha256": "10446be9895b0c1e34f9d8649caf7297fecba2c89c1725f355181ef781221f12"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+      "bytes": 16497,
+      "sha256": "f2a16d144ce99ab4c652b164021feaf4422ea5e3b1e89b64664af42cf0ac5f7e",
+      "normalizedLength": 16026,
+      "normalizedSha256": "b49c1539ae5a9f04ec1b9f4e294b544a6b76884073564df4e238b2b1c89f01b3"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Amplifiers/03-instrumentation-amps.md",
+      "bytes": 18904,
+      "sha256": "a22edf17e1f252c3d30436d75beb3a9101a4d334d2d56dafc2b8435deef4b85e",
+      "normalizedLength": 18285,
+      "normalizedSha256": "0dc7aee48a4cf2bb6806323d5dbea09ebc241bc3399fb6f6be7161bc0586a2eb"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+      "bytes": 24975,
+      "sha256": "5f38cf63603c0629577c6c4ab0e616b5f18af508405da51934a585b09b132109",
+      "normalizedLength": 24273,
+      "normalizedSha256": "b0f23a5fbbbf4504e4d2ce3064f52df3291c18390a188f30ebb4e0b988c59b0e"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Data-convertes/DACs.md",
+      "bytes": 66218,
+      "sha256": "448e98f262b3c8c4ef50e0d2e979a8bf0774e43349c4bca2d3f8e6d4ba9d4b31",
+      "normalizedLength": 64782,
+      "normalizedSha256": "2dd6fe90e233754ded7f60e38c5d989d2be26894c93562221193db761814d30a"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Data-convertes/Sample-holding.md",
+      "bytes": 40378,
+      "sha256": "818942d20330682c20791c8ade618034e7b5f7597d376ca90888991047ee7493",
+      "normalizedLength": 39499,
+      "normalizedSha256": "5e4ebad4acaae2a94fb22338f8bf1211de661f96712a73f66d0a88fdc182c494"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+      "bytes": 58503,
+      "sha256": "422866f0d006d42c4e769e4bc748e771670b0107eabf292bbe67aad51f22525b",
+      "normalizedLength": 57088,
+      "normalizedSha256": "fcb805a71373b951981dfaa96632402cfb19b6940ff5a2d4e29a5be03d8422d3"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Filters/Digital-filters.md",
+      "bytes": 45707,
+      "sha256": "a138dc7d70f142736202a187b462fdc2258b09bfeb94bf22814546a5582957ec",
+      "normalizedLength": 44464,
+      "normalizedSha256": "aa5c597fbf86eaeac8a77cae2d631b2e88a9b2af3d07299973273dd4fa9fa752"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Timing/Crystal-oscillators.md",
+      "bytes": 28883,
+      "sha256": "123969e4c343f51537eb966795d1f2c87dcc323936674b90e7d1c35497ad8f8e",
+      "normalizedLength": 28205,
+      "normalizedSha256": "c521f6375eb9b4802d08928fc59da6ac39ab46814613eb4a8a8e58593dab0607"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Timing/PLL.md",
+      "bytes": 42201,
+      "sha256": "32ba79cfed5d61ed06e394e99ec63512e02c0af816a0b465bfc263a708a01ccd",
+      "normalizedLength": 41262,
+      "normalizedSha256": "ccd1a52ea555b1767fc4d5c4da5f70e74472cb60f7725c6e07e80e28b5f697df"
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Timing/RTCs.md",
+      "bytes": 2425,
+      "sha256": "24a9b9e5663b14d327fa15d07fc326613174a36f6394adeac0f93c616188a595",
+      "normalizedLength": 2423,
+      "normalizedSha256": "5a3a8dd145bd8458d664e3f18b71742fd713cbfc93eb91006f1b8117e69e9bcc"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/bridges.md",
+      "bytes": 2347,
+      "sha256": "f64594da67c01a56cc00ffddc1354eb5e69cd09d55f708c826cec081dc4dfb8c",
+      "normalizedLength": 2344,
+      "normalizedSha256": "283060a93457f2955c9af26100c750c10464c494cb1860b5ce47aecbcd96511d"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/DigitalGeneral.md",
+      "bytes": 36088,
+      "sha256": "c3e352776a50c97dd2a2ce830a0e36c6bbaeb7bba9ed1a65149d195a89f97464",
+      "normalizedLength": 35573,
+      "normalizedSha256": "b67ecd45d0dcc23d3ab11bde335fd1a4697c9b1107d3fa8b0f4b6362c3c5e640"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Ethernet.md",
+      "bytes": 2678,
+      "sha256": "ad03273a18a30694f3e007a748630733ab3dab239fef0dbac09dc7f3500d50e7",
+      "normalizedLength": 2676,
+      "normalizedSha256": "c008767c7b7fa563822808d681153f64e500d12a85ccedfed49aeafe00607e15"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/io-expanders.md",
+      "bytes": 2275,
+      "sha256": "9278aa3fd312ce1fec2b3c6b6a92edabbe5c0db3543dfb04ca77b2a524caf181",
+      "normalizedLength": 2270,
+      "normalizedSha256": "34f635f35dbb63265b299de858a4ac32a9cc320f5c2e94f6350532f059684362"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Memory.md",
+      "bytes": 2793,
+      "sha256": "66de2e398c99caa27ee88647a381da422cef269a3f7172a7fc98748a003ff4bb",
+      "normalizedLength": 2740,
+      "normalizedSha256": "c1f02bc8a7ea2c30d1ba4a4ed1580e48f9c3d70c76ba6a17c146a721e80b283e"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/01-UART.md",
+      "bytes": 2356,
+      "sha256": "3db405b6bea296e5452cf858de0be198bc5f001541174607b562963e5180d5a8",
+      "normalizedLength": 2353,
+      "normalizedSha256": "dfd0814a80fe3eda8a7cf83f24e66fb8badc76a5ca31ff5a25cd58cde1c708c4"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/02-SPI.md",
+      "bytes": 2390,
+      "sha256": "e88ee5d6fd2a81af9d0e2ea859ef26245eb065798a31e70a34702f490609cc6f",
+      "normalizedLength": 2388,
+      "normalizedSha256": "da09fb509b9924ca27b53f955dfa3567a91723c0ff45c1faf5a9789c549e75ed"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/03-I2C.md",
+      "bytes": 2498,
+      "sha256": "25b28e33313eab0d2a4a50c8b5a7e79f2fa0416c5b17b1504553e50c64111355",
+      "normalizedLength": 2491,
+      "normalizedSha256": "48916bdeba6018c1c046f8169f3325a127b2981419fc810b95e001ca494024e5"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/CAN.md",
+      "bytes": 2409,
+      "sha256": "8949f407b35b35f82c9c6ec35d0147c2704d11dac6cb30fedc8c834b1993f3c4",
+      "normalizedLength": 2404,
+      "normalizedSha256": "525b301e2161daecd889831939ef808ae2d25ea6b35e15d628a373363a9e4fe7"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/rs232-rs485.md",
+      "bytes": 2613,
+      "sha256": "0a3559c96244311288c433453619cdfa551afbc333393505acf781d68ca6c7bc",
+      "normalizedLength": 2608,
+      "normalizedSha256": "8c986badd49ecb4c4bc2aaee834684569c9a62e194df6fc728bb4d529467a879"
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/USB.md",
+      "bytes": 2601,
+      "sha256": "5ce958c37204e8b3bd35e0095e6c03510ef77d00be3cf56edd8b24f808e60617",
+      "normalizedLength": 2597,
+      "normalizedSha256": "411ce5982bef8fd9824314a9de840baa4640cf7cc185a2fb0f71940e7b622875"
+    },
+    {
+      "path": "docs/05-PCB-Layout/01-Overview.md",
+      "bytes": 40102,
+      "sha256": "a5f35e3b9fad78b2051abf7001067691bbaedb3ee31dad53319677615826c34a",
+      "normalizedLength": 39592,
+      "normalizedSha256": "09876209b04748ff9b0cd240875943055aae7657bf9823b91d0d528f4d7b7453"
+    },
+    {
+      "path": "docs/05-PCB-Layout/02-Return-Paths.md",
+      "bytes": 2694,
+      "sha256": "38c23b3c0d3f1624ebdc4bfc2511df23b18fcafbed8bf8a4c60bcf05c7f193e1",
+      "normalizedLength": 2692,
+      "normalizedSha256": "f21c856827fb1a8d37905a0f60c109709402e344d5cac42139d722dd889d4420"
+    },
+    {
+      "path": "docs/05-PCB-Layout/03-trace-impedance.md",
+      "bytes": 2637,
+      "sha256": "f1dc5eb0f8a9785ae9789bee99d3e7de5484a4ff6695ed317977683298f0b5f2",
+      "normalizedLength": 2628,
+      "normalizedSha256": "76feb98c1b587ad21e183d342a05c014660b939235337eeab7e29a606bd9f951"
+    },
+    {
+      "path": "docs/05-PCB-Layout/High-Speed.md",
+      "bytes": 2643,
+      "sha256": "943d3b39744f83b06f5bbbdf52c13231be73f9c6e88248513f62643b0d0a52c6",
+      "normalizedLength": 2641,
+      "normalizedSha256": "8f4b12dc5aed1a8f6fbdc52668c290f54c3b4ef652ff441642b9d4eb00dd4aee"
+    },
+    {
+      "path": "docs/05-PCB-Layout/Phils-lab.md",
+      "bytes": 36,
+      "sha256": "0a4edcd7ddb0534b6b8fe84fba924aafad45813a279431b03aa536a523b087dd",
+      "normalizedLength": 35,
+      "normalizedSha256": "db63dc0b9867cdd68eac9f5b3ab7970cdd7eed3af4c50a5f6d2d32d26aa016ff"
+    }
+  ]
+}

@@ -155,7 +155,7 @@ Use a constant-current-source load or a negative supply to stabilize the operati
 
 ### Analog Switches
 
-FETs in the **ohmic region** operate as low-resistance switches. Applications include multiplexers and sample-and-hold circuits.
+FETs in the **ohmic region** operate as low-resistance switches. Applications include multiplexers and [sample-and-hold](<../../03-Signal-Modulation/Data-convertes/Sample-holding.md#1-basic-circuit>) circuits.
 
 ### Variable Resistors
 
@@ -221,7 +221,7 @@ A complementary metal-oxide-semiconductor (**CMOS**) transmission gate uses two 
 ### Distortion and Charge Injection
 
 * **Total harmonic distortion (THD):** <i>R<sub>on</sub></i> changes as signal voltage changes. The effective <i>V<sub>GS</sub></i> also changes. This nonlinear resistance causes distortion.
-* **Charge injection:** Gate capacitance stores charge. When the switch turns off, some charge can enter the signal path and cause a voltage spike.
+* **[Charge injection](<../../03-Signal-Modulation/Data-convertes/Sample-holding.md#charge-injection-and-pedestal-error>):** Gate capacitance stores charge. When the switch turns off, some charge can enter the signal path and cause a voltage spike.
 * **Correction:** Use an analog-switch integrated circuit (**IC**) that specifies low charge injection.
 
 ## 6. Current Sinks and Sources
@@ -232,7 +232,7 @@ An ideal circuit keeps this current constant for all node voltages. A real circu
 
 ### Why Use a Current Sink?
 
-Assume that an emitter follower must supply a fixed current, <i>X</i>.
+Assume that an [emitter follower](<./02-BJTs.md#5-amplifier-configurations>) must supply a fixed current, <i>X</i>.
 
 * **Resistor method:** Connect a resistor to the negative rail. This method uses more power and decreases input impedance.
 * **Active-sink method:** Use a JFET or BJT. An active device maintains higher impedance and better current control.
@@ -348,7 +348,7 @@ This circuit combines a **JFET** high-input-impedance stage with **BJT** gain an
 **Open-Loop Analysis Without R<sub>f</sub>:**
 
 * Bias the JFET. An alternating-current (**AC**) drain current, <i>I<sub>D</sub></i>, then flows.
-* The op-amp operates as a current-to-voltage converter.
+* The [op-amp](<../../03-Signal-Modulation/Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) operates as a current-to-voltage converter.
 * The original notes write <i>V<sub>out</sub> = g<sub>m</sub> &times; R<sub>gain</sub></i>. Dimensionally, this product is the voltage-gain magnitude.
 * The voltage relationship is:
 
@@ -361,7 +361,7 @@ This circuit combines a **JFET** high-input-impedance stage with **BJT** gain an
 * Gain is 2500.
 * A 1 mV input produces a 2.5 V output.
 
-**Closed-Loop Negative Feedback:**
+**Closed-Loop [Negative Feedback](<../../03-Signal-Modulation/Amplifiers/01-op-amps.md#negative-feedback>):**
 
 1. Input voltage increases.
 2. <i>V<sub>GS</sub></i> moves closer to 0 V.
@@ -400,7 +400,7 @@ The feedback-resistor ratio, <i>R<sub>f</sub> / R<sub>g</sub></i>, sets the clos
 
 **Circuit B: Active Load**
 
-* A BJT current mirror, Q3 and Q4, replaces the drain resistors.
+* A BJT [current mirror](<./02-BJTs.md#6-current-sources-and-mirrors>), Q3 and Q4, replaces the drain resistors.
 * The mirror operates as a high-resistance constant-current source.
 * Gain is <i>A<sub>v</sub> = g<sub>m</sub> &times; R<sub>load</sub></i>.
 * The mirror has high output resistance. As a result, it increases gain significantly.
@@ -450,13 +450,13 @@ Use a **bucket or capacitor analogy** for the gate.
 
 **Example:**
 
-* Gate charge is 50 nC.
+* [Gate charge](<../../02-Power/Power%20Control/Gate-Drivers.md#1-gate-charge-and-switching>) is 50 nC.
 * Necessary switching time is 100 ns.
 * Required current is <i>50 nC / 100 ns = 0.5 A</i>.
 
 Use a dedicated **gate-driver IC** to supply these short high-current pulses.
 
-A standard 20 mA general-purpose input/output (**GPIO**) pin is too weak for fast switching in this example.
+A standard 20 mA general-purpose input/output (**[GPIO](<../../04-Digital-Interfaces/Embedded-Systems.md#pins-and-external-circuits>)**) pin is too weak for fast switching in this example.
 
 ### Miller Plateau
 
@@ -502,10 +502,10 @@ This sharing benefit does not remove the linear-mode hot-spot risk described lat
 ### Body Diode
 
 * A power MOSFET has an intrinsic P-N body diode between its source and drain.
-* In a suitable circuit orientation, this diode can carry inductive flyback current.
+* In a suitable circuit orientation, this diode can carry [inductive flyback](<../01-Passives/03-Inductors.md#interactive-the-inductive-kick>) current.
 * This path can prevent damaging drain-source overvoltage.
 * The body diode can have slow reverse recovery.
-* Slow diode turn-off can cause shoot-through current in an H-bridge.
+* Slow diode turn-off can cause [shoot-through](<../../02-Power/Power%20Control/Gate-Drivers.md#4-high-side-drive-and-dead-time>) current in an [H-bridge](<../../02-Power/Power%20Control/Motor-Drives.md#drive-paths-and-braking>).
 * Select a device with suitable fast-recovery behavior when the application requires it.
 
 ### Safe Operating Area
@@ -526,7 +526,7 @@ Designers sometimes call this graph the datasheet "map of death."
 
 2. **Inductive Overvoltage**
 
-   * **Cause:** Turn off a motor or solenoid quickly without a snubber or clamp.
+   * **Cause:** Turn off a motor or [solenoid](<../../02-Power/Power%20Control/Motor-Drives.md#electrical-and-mechanical-behavior>) quickly without a [snubber](<./01-Diodes.md#c-rc-snubbers-and-rcd-clamps>) or clamp.
    * **Result:** Inductor current forces voltage to increase until a clamp, breakdown path, or parasitic path conducts.
    * Excess voltage can puncture device insulation and destroy the MOSFET.
 
@@ -562,7 +562,7 @@ The original notes call the BJT output "stiff" and the FET output "soft."
 
 ### Miller Effect and Bandwidth
 
-* A high source impedance decreases bandwidth when it interacts with Miller capacitance.
+* A high [source impedance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>) decreases bandwidth when it interacts with Miller capacitance.
 * The capacitance and source impedance make a low-pass network.
 * Higher source impedance decreases the cutoff frequency.
 * Use a **cascode** to isolate the input device from large output-voltage changes.
@@ -628,3 +628,29 @@ This problem occurs when a MOSFET operates as a variable resistor in a linear re
 * The MOSFET can fail below its total power rating.
 * Use a linear-rated MOSFET, frequently made with older planar technology.
 * Also check the **DC line** on the SOA graph.
+
+
+## Geometry and the body connection
+
+The **width-to-length ratio (W/L)** describes channel geometry in a simple MOSFET model. Greater width can increase current capability and gate capacitance.
+
+A shorter channel can increase current for the same bias in a long-channel approximation. Short-channel effects limit direct use of that approximation in modern devices.
+
+Discrete power MOSFETs usually connect the body to the source internally. This controls body potential and helps suppress unwanted parasitic transistor operation.
+
+Integrated MOSFET bodies can use a shared well connection. Their body voltage can change threshold through the body effect. Do not assume every body is separately accessible.
+
+Gate oxide is thin and tolerates limited electric field. Check gate-to-source limits even when drain voltage remains within its rating.
+
+
+## Output characteristic family
+
+import TransistorCurves from '@site/src/components/learning/TransistorCurves';
+
+<TransistorCurves />
+
+These curves use an ideal long-channel model with a 1 V threshold and a 1 mA/V² model factor. They exclude channel-length modulation and breakdown.
+
+The linear region ends when drain-to-source voltage equals gate overdrive. The saturation current then remains constant in this simplified model.
+
+See [MIT MOSFET and CMOS operation](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c3/c3s1/) for the model's circuit context.

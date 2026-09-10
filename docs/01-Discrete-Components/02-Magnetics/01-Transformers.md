@@ -37,7 +37,7 @@ import PassiveDesignExplorer from '@site/src/components/PassiveDesignExplorer';
 
 ## 3. Real Transformer Limits
 
-* **Winding resistance** causes copper loss.
+* **[Winding resistance](<../01-Passives/03-Inductors.md#winding-losses-and-a-practical-model>)** causes copper loss.
 * **Leakage inductance** stores energy that does not couple fully to the other winding.
 * **Magnetizing inductance** draws excitation current even with no load.
 * **Interwinding capacitance** transfers displacement current across the windings.

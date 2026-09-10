@@ -21,7 +21,7 @@ Applications include:
 * Rejecting interference on a balanced sensor cable.
 * Measuring electrocardiogram (**ECG**) electrode signals.
 * Converting a differential signal to a single-ended signal.
-* Driving an analog-to-digital converter (**ADC**).
+* Driving an [analog-to-digital converter](<../Data-convertes/DACs.md#3-sampling-and-resolution>) (**ADC**).
 
 ---
 
@@ -114,7 +114,7 @@ For an ECG, also check it at respiration, pacing, or other applicable signal fre
 
 ## 3. Four-Resistor Op-Amp Difference Amplifier
 
-A four-resistor **difference amplifier** uses one op-amp.
+A four-resistor **difference amplifier** uses one [op-amp](<./01-op-amps.md#1-op-amp-fundamentals>).
 Two resistor pairs set its gain and common-mode rejection.
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
@@ -144,7 +144,7 @@ The sign depends on which signal connects to each input.
 ### Step-by-Step Operation
 
 1. The non-inverting resistor network applies a fraction of <i>V<sub>2</sub></i> to the positive input.
-2. Negative feedback makes the inverting input almost equal to the non-inverting input.
+2. [Negative feedback](<./01-op-amps.md#negative-feedback>) makes the inverting input almost equal to the non-inverting input.
 3. Input <i>V<sub>1</sub></i> produces current through its input resistor.
 4. Almost none of this current enters the op-amp input.
 5. The current flows through the feedback resistor.
@@ -175,7 +175,7 @@ Its input impedance is set mainly by its input resistors.
 The two source impedances can also become part of the resistor network.
 
 Drive this topology from low-impedance sources when possible.
-Use an instrumentation amplifier when the source cannot supply this current.
+Use an [instrumentation amplifier](<./03-instrumentation-amps.md#2-classic-three-op-amp-architecture>) when the source cannot supply this current.
 
 ### Inputs Beyond the Supply Rails
 
@@ -184,7 +184,7 @@ The resistor network attenuates these voltages before they reach the input pins.
 
 This operation is permitted only when:
 
-* Both op-amp pins stay inside the common-mode input range.
+* Both op-amp pins stay inside the [common-mode input range](<./01-op-amps.md#common-mode-input-range>).
 * Input current stays inside its limit.
 * Resistor voltage and power ratings are sufficient.
 * External voltages stay inside the difference-amplifier specifications.
@@ -224,7 +224,7 @@ A monolithic network can keep the ratios much closer over temperature.
 
 ## 5. Transistor Differential Pair
 
-A transistor **differential pair** is the input stage inside many op-amps and comparators.
+A transistor **differential pair** is the input stage inside many op-amps and [comparators](<./comparators.md#1-comparator-decision>).
 Two matched transistors share a fixed tail current.
 
 ### Current Steering
@@ -261,7 +261,7 @@ Device matching, tail-source output resistance, and collector-load matching limi
 
 ## 6. JFET Differential Pair
 
-JFET inputs give very high input impedance.
+[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>) inputs give very high input impedance.
 They are useful when source current must be very small.
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
@@ -288,7 +288,7 @@ They are useful when source current must be very small.
 
 ### Circuit B: Active Load
 
-The second circuit replaces drain resistors with BJT current mirror Q3 and Q4.
+The second circuit replaces drain resistors with BJT [current mirror](<../../01-Discrete-Components/03-Semicondctors/02-BJTs.md#6-current-sources-and-mirrors>) Q3 and Q4.
 The mirror operates as a high-resistance active load.
 
 > **A<sub>v</sub> &asymp; g<sub>m</sub>R<sub>load</sub>**
@@ -378,7 +378,7 @@ Include:
 
 ### Input Bias Current
 
-Bias currents flow through source resistance.
+Bias currents flow through [source resistance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>).
 Unequal voltage drops then make a differential error.
 
 Match the resistance seen by both inputs when this method decreases error.
@@ -392,7 +392,7 @@ A large common-mode error or excessive differential gain can cause saturation.
 ### Bandwidth and Slew Rate
 
 Differential gain and CMRR decrease with frequency.
-The output must also stay inside the slew-rate limit.
+The output must also stay inside the [slew-rate](<./01-op-amps.md#slew-rate>) limit.
 
 A high DC CMRR does not ensure good rejection of a fast common-mode signal.
 
@@ -402,7 +402,7 @@ Include:
 
 * Input-voltage noise.
 * Input-current noise multiplied by source impedance.
-* Resistor thermal noise.
+* Resistor [thermal noise](<../../00-Foundations/00-Foundations.md#thermal-noise>).
 * Reference-input noise.
 * Common-mode noise that finite CMRR converts to output error.
 

@@ -113,7 +113,7 @@ The inductor stores energy during the **ON cycle**. It releases energy to the lo
 
 ### Transformers
 
-A transformer contains two coupled inductors.
+A [transformer](<../02-Magnetics/01-Transformers.md#1-magnetic-coupling>) contains two coupled inductors.
 
 It can increase or decrease voltage. It can also isolate grounds.
 
@@ -163,7 +163,7 @@ This circuit is the primary inductor application in digital hardware.
   <div className="tech-panel">
     <span className="panel-header">SRF (Self-Resonant Frequency)</span>
 
-  Adjacent windings create a small **interwinding capacitance**.
+  Adjacent windings create a small **[interwinding capacitance](<../02-Magnetics/01-Transformers.md#3-real-transformer-limits>)**.
 
   * **Above SRF:** The inductor stops blocking noise. It acts like a capacitor and passes high-frequency signals.
   * **Rule:** Always operate the inductor well below its **SRF**.
@@ -179,7 +179,7 @@ This circuit is the primary inductor application in digital hardware.
 **Saturation current** is the most dangerous inductor specification.
 
 * **Concept:** The magnetic core can hold only a limited magnetic flux. When the core is full, it acts like an air core.
-* **Danger:** Inductance decreases to almost zero immediately. A very large current spike can destroy the metal-oxide-semiconductor field-effect transistor (**MOSFET**).
+* **Danger:** Inductance decreases to almost zero immediately. A very large current spike can destroy the metal-oxide-semiconductor field-effect transistor (**[MOSFET](<../03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**).
 * **Rule:** Never exceed <i>I<sub>sat</sub></i>, even for one microsecond.
 
 ### B. Audible Noise (Coil Whine)
@@ -208,8 +208,30 @@ Check the complete inductance-versus-current curve at temperature. Also check th
 
 **Original example assumptions:** An inductor starts at 10 µH. The manufacturer defines Isat at a 20% inductance decrease.
 
-At that test point, inductance is **8 µH**. Under the same voltage, current slope is **25% higher** than it was at 10 µH.
+At that [test point](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#design-for-access>), inductance is **8 µH**. Under the same voltage, current slope is **25% higher** than it was at 10 µH.
 
 This faster slope can increase peak current further. Include minimum inductance and the controller's protection delay in the current calculation.
 
 **Reference:** [Coilcraft, current and temperature ratings](https://www.coilcraft.com/en-us/resources/application-notes/current-and-temperature-ratings/).
+
+
+## Winding losses and a practical model
+
+import PassiveModels from '@site/src/components/learning/PassiveModels';
+
+<PassiveModels kind="inductor" />
+
+**Alternating-current resistance (ACR)** includes frequency-dependent winding loss. [Skin effect](<../../00-Foundations/04-Fields-and-Materials.md#dielectrics-and-conductor-losses>) and proximity effect redistribute current and increase this loss.
+
+Core hysteresis and eddy currents add magnetic loss. Core material, frequency, flux swing, and temperature affect it. Winding ACR and core loss are separate contributions.
+
+Insulation damage can short turns. Overheating can damage wire or terminations. A cracked core can change inductance and loss.
+
+An ideal inductor's impedance increases without bound with frequency. A real inductor reaches self resonance and then its [parasitic capacitance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>) can dominate.
+
+For a series resistor and inductor, output across the resistor gives a low-pass response. Output across the inductor gives a high-pass response.
+
+Both ideal first-order forms have a corner frequency of R divided by 2 pi L. Source and load resistance change the effective R.
+
+
+See [Coilcraft winding and core losses](https://www.coilcraft.com/en-us/resources/application-notes/choosing-inductors-for-energy-efficient-power-appl/) for loss-model limits.

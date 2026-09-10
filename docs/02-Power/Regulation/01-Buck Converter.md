@@ -47,7 +47,7 @@ For triangular ripple and an ideal output capacitor **C**:
 
 <LearningEquation tex={"\\Delta V_C\\approx\\frac{\\Delta I_L}{8 f_s C}"} />
 
-Equivalent series resistance adds a ripple component. The regulator's stability requirements also constrain the capacitor and inductor values.
+[Equivalent series resistance](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#equivalent-series-resistance>) adds a ripple component. The regulator's stability requirements also constrain the capacitor and inductor values.
 
 Check minimum on-time at high input voltage. Check maximum duty cycle at low input voltage. Use the minimum current-limit specification when checking load capacity.
 
@@ -58,3 +58,117 @@ Keep the input-capacitor switching loop compact. Keep the feedback trace away fr
 Test input extremes, light load, full load, startup, and load steps. Check both output ripple and component temperature.
 
 **Reference:** [TI, buck power-stage calculations](https://www.ti.com/lit/an/slva477b/slva477b.pdf). The explorer uses ideal equations, without the report's loss adjustment.
+
+
+## Switching states and complete waveforms
+
+import {BuckCircuit} from '@site/src/components/learning/CircuitDiagrams';
+
+<BuckCircuit />
+
+The switches represent a synchronous [half bridge](<../Power%20Control/Motor-Drives.md#drive-paths-and-braking>). [Body diodes](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#body-diode>) and control connections are omitted from this topology drawing.
+
+import BuckWaveforms from '@site/src/components/learning/BuckWaveforms';
+
+<BuckWaveforms />
+
+The diagram assumes an ideal synchronous buck in continuous conduction. The load current is constant during one cycle. Output ripple is small relative to output voltage.
+
+With the upper switch on, the switch node approaches the input voltage. Inductor voltage is positive when input voltage exceeds output voltage.
+
+With the lower switch on, the switch node approaches ground. Inductor voltage is negative, but positive inductor current still flows toward the load.
+
+Capacitor current equals inductor current minus load current. The capacitor charges when this difference is positive and discharges when it is negative.
+
+Capacitor voltage is the integral of capacitor current. A triangular current produces curved voltage segments, not an exactly linear ramp.
+
+In an asynchronous buck, the diode carries the off-state current from ground toward the switch node. Its forward drop puts that node slightly below ground.
+
+During the on state, that diode blocks approximately the input voltage. During the off state, it carries approximately the inductor current.
+
+A synchronous lower [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) replaces most diode conduction. Its channel carries reverse drain-to-source current during the usual positive-current off interval.
+
+[Dead time](<../Power%20Control/Gate-Drivers.md#4-high-side-drive-and-dead-time>) still permits body-diode conduction. Reverse recovery, output capacitance, and [parasitic inductance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>) can produce current spikes and ringing.
+
+Gate voltage must be measured relative to each MOSFET's source. The upper gate's ground-referenced waveform includes the moving switch-node voltage.
+
+The input switch current is pulsed. A nearby input capacitor supplies much of its alternating component. The upstream source supplies the average and residual ripple current.
+
+For small inductor ripple and an approximately constant source current:
+
+<LearningEquation tex={"I_{Cin,rms}\\approx I_{out}\\sqrt{D(1-D)}"} />
+
+The input capacitor needs suitable ripple-current, voltage, and effective-capacitance ratings. Long connections can make a large capacitor ineffective against fast switching current.
+
+See [TI capacitor selection](https://www.ti.com/document-viewer/lit/html/SSZTAL7) for the distinct input and output requirements.
+
+## Operating modes and practical duty limits
+
+Ideal zero duty supplies no input energy. Ideal full duty connects the input through the upper switch and inductor. Real losses prevent exact equality with input voltage.
+
+Minimum on time limits small duty cycles at high frequency. Minimum off time or bootstrap refresh limits maximum duty. Some controllers support a separate full-duty mode.
+
+**Pulse-frequency modulation (PFM)** changes pulse timing with load. Pulse skipping or burst operation can reduce light-load switching loss.
+
+These modes can increase low-frequency ripple or audible noise. Forced continuous operation keeps switching regular but can allow negative inductor current and greater light-load loss.
+
+A diode-emulation mode stops reverse inductor current. In discontinuous conduction, a zero-current interval appears and the ideal continuous-mode duty relation no longer fully describes operation.
+
+See [TI light-load mode operation](https://www.ti.com/document-viewer/lit/html/SLVAFC3) for a device-specific example.
+
+## Load line and multiple outputs
+
+A **DC load line** intentionally reduces regulated voltage as load current increases. It can allocate voltage margin between load application and load removal.
+
+<LearningEquation tex={"V_{target}=V_0-R_{LL}I_{out}"} />
+
+Use a load line only when the load specification permits it. It trades steady-state voltage variation for a controlled transient envelope.
+
+A **single-input multiple-output (SIMO)** converter supplies several rails from one input. A single-inductor implementation allocates energy among outputs through controlled switches.
+
+This arrangement can save magnetic components. Cross-regulation and simultaneous transient demands constrain its use. Other multi-output architectures use separate inductors.
+
+A **multiphase buck** interleaves several inductor phases into one output. Current sharing distributes conduction loss and heat.
+
+Interleaving can reduce combined ripple and improve transient capability. It adds control and layout complexity. Phase shedding can improve light-load efficiency.
+
+The ripple cancellation depends on duty and phase count. More phases do not automatically increase efficiency at every load.
+
+See [TI multiphase operation](https://www.ti.com/document-viewer/lit/html/SSZTC61).
+
+## Loop response and component trade-offs
+
+The output LC network is a second-order energy-storage system. A load increase initially draws extra capacitor current and reduces output voltage.
+
+The controller must increase inductor current to restore balance. Record peak deviation, settling time, and ringing during a specified load step.
+
+A stable loop reduces small disturbances with time. A marginal loop sustains them. An unstable loop increases them until nonlinear limits change the behavior.
+
+A **feedforward capacitor** across the upper feedback resistor adds a zero and a higher-frequency pole to the feedback network. It changes loop gain and phase.
+
+Use the controller's recommended range or a validated loop model. Increasing output capacitance or changing its resistance can also change stability.
+
+Feedback divider resistance trades static loss against leakage error and noise sensitivity. Route the sense connection from the intended regulation point with a quiet reference.
+
+Inductor current sensing supports cycle control and [current limiting](<../Entry%20Protection/fuses.md#overcurrent-protection>). Load-side sensing measures delivered current more directly. The correct location depends on the control function.
+
+Larger inductance reduces ripple but slows current slew. More capacitance supports a transient but increases startup energy. Both must fit the controller's compensation limits.
+
+Higher switching frequency can reduce required energy-storage values. It also increases gate-drive and switching losses. Very low frequency demands larger storage for the same ripple.
+
+Select MOSFETs from voltage stress, resistance, [gate charge](<../Power%20Control/Gate-Drivers.md#1-gate-charge-and-switching>), switching behavior, and thermal limits. Identical upper and lower devices are not always the lowest-loss choice.
+
+## Design and fault checks
+
+1. Define input range, output tolerance, load steps, and thermal conditions.
+2. Select a controller with suitable current limits, timing limits, and operating modes.
+3. Calculate inductance, current peaks, and effective input and output capacitance.
+4. Check losses, loop response, and component ratings across temperature.
+5. Verify startup, shutdown, short-circuit behavior, and recovery.
+6. Measure efficiency, ripple, and load response across the operating range.
+
+An output short, open feedback path, saturated inductor, or failed switch can prevent regulation. Check enable, bias supply, feedback, current limit, and switching activity.
+
+Do not bypass a protection function to force regulation. Identify the condition that activates it.
+
+Capacitor aging, solder fatigue, and thermal stress can change ripple or resistance. Component tolerance and temperature also change limits before any aging occurs.

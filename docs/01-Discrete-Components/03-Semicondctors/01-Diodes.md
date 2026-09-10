@@ -93,14 +93,14 @@ You can protect slow control lines with **steering diodes** connected to the rai
 <ESDSteering />
 
 :::warning Layout Note
-The power rails and decoupling capacitors must absorb the event energy. Keep the **traces short** and keep the ground-return path tight.
+The power rails and [decoupling capacitors](<../01-Passives/02-Capacitors.md#bypass--decoupling>) must absorb the event energy. Keep the **traces short** and keep the ground-[return path](<../../05-PCB-Layout/02-Return-Paths.md#1-a-signal-needs-a-return>) tight.
 
 This arrangement is not ideal for high-speed signals because the diodes add capacitance.
 :::
 
 ### C. RC Snubbers and RCD Clamps
 
-Fast switching of an inductive load can cause ringing and voltage spikes. Examples of inductive loads are motors and transformers.
+Fast switching of an inductive load can cause ringing and voltage spikes. Examples of inductive loads are motors and [transformers](<../02-Magnetics/01-Transformers.md#1-magnetic-coupling>).
 
 **1. RC Snubber (Damping)**
 
@@ -108,7 +108,7 @@ An RC snubber contains a resistor and capacitor in series. It damps the ringing,
 
 The snubber also decreases the voltage rate of rise, <i>dV/dt</i>.
 
-* **Placement:** Connect the snubber across the switch or across the load. For a metal-oxide-semiconductor field-effect transistor (**MOSFET**), connect it across drain and source.
+* **Placement:** Connect the snubber across the switch or across the load. For a metal-oxide-semiconductor field-effect transistor (**[MOSFET](<./03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**), connect it across drain and source.
 
 **2. RCD Clamp (Peak Limiting)**
 
@@ -147,7 +147,7 @@ The diode turns off **immediately** and has zero reverse-recovery time. This beh
 
 * **Pros:**
   * **Lower forward drop:** The typical value is 0.2 V to 0.4 V. A silicon diode has a typical value of 0.7 V. The lower voltage causes less heat loss.
-  * **Fast switching:** Schottky diodes are ideal for buck and boost converters that operate from kilohertz (kHz) to megahertz (MHz).
+  * **Fast switching:** Schottky diodes are ideal for buck and [boost converters](<../../02-Power/Regulation/02-Boost%20Converter.md#1-step-up-conversion>) that operate from kilohertz (kHz) to megahertz (MHz).
 * **Cons:**
   * **High reverse leakage:** More current leaks through the diode when it is off. The leakage increases at high temperatures.
   * **Low breakdown voltage:** Schottky diodes with ratings greater than 100 V are difficult to find.
@@ -156,15 +156,15 @@ The diode turns off **immediately** and has zero reverse-recovery time. This beh
 
 **Transient-voltage-suppressor (TVS) diodes** are special avalanche diodes.
 
-They **turn on quickly** and **absorb short, high-energy events**. These events include ESD, lightning, and inductive kickback.
+They **turn on quickly** and **absorb short, high-energy events**. These events include ESD, lightning, and [inductive kickback](<../01-Passives/03-Inductors.md#interactive-the-inductive-kick>).
 
 * **Unidirectional:** This device operates like a Zener diode connected to ground. It blocks positive voltage until the clamp voltage occurs. It conducts freely for negative voltage. It is suitable for DC power lines.
-* **Bidirectional:** This device contains two back-to-back diodes. It clamps positive and negative spikes symmetrically. It is suitable for AC or data lines, such as RS-485.
+* **Bidirectional:** This device contains two back-to-back diodes. It clamps positive and negative spikes symmetrically. It is suitable for AC or data lines, such as [RS-485](<../../04-Digital-Interfaces/Serial-Buses/rs232-rs485.md#1-electrical-interfaces>).
 
 <TVSSymbol />
 
 :::tip High-Speed Design
-For USB, HDMI, or Ethernet interfaces, select **low-capacitance** TVS arrays.
+For USB, HDMI, or [Ethernet](<../../04-Digital-Interfaces/Ethernet.md#1-mac-phy-and-cable>) interfaces, select **low-capacitance** TVS arrays.
 
 Place the array **at the connector**. Use a short ground path and one via directly at the pad. This layout minimizes stub length.
 :::

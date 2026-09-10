@@ -1,5 +1,6 @@
 // @ts-check
 import {themes as prismThemes} from 'prism-react-renderer';
+import remarkImageDimensions from './scripts/remark-image-dimensions.mjs';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -50,6 +51,7 @@ const config = {
         docs: {
           sidebarPath: './sidebars.js',
           routeBasePath: 'docs',
+          remarkPlugins: [[remarkImageDimensions, {staticDir: './static'}]],
         },
         blog: false,
         theme: {

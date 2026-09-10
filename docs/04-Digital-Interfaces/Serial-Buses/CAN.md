@@ -7,7 +7,7 @@ Notes coming soon...
 **Controller Area Network (CAN)** separates message control from the electrical bus interface.
 
 * The **CAN controller** handles frames, arbitration, acknowledgment, and error reporting.
-* The **CAN transceiver** connects the controller to the differential bus wires.
+* The **CAN transceiver** connects the controller to the [differential bus wires](<../../03-Signal-Modulation/Amplifiers/02-differential-amps.md#common-mode-voltage>).
 
 The following physical-layout notes describe a conventional high-speed CAN bus. Other CAN physical layers have different requirements.
 
@@ -25,7 +25,7 @@ import CanArbitrationExplorer from '@site/src/components/CanArbitrationExplorer'
 
 ## 3. Worked Example: Two Messages
 
-**Assumptions:** Two standard data frames start together. Their identifiers are hexadecimal **0x120** and **0x128**.
+**Assumptions:** Two standard data frames start together. Their identifiers are [hexadecimal](<../DigitalGeneral.md#hexadecimal>) **0x120** and **0x128**.
 
 1. Compare the identifiers from the most significant bit.
 2. The first difference has a zero in 0x120 and a one in 0x128.
@@ -36,11 +36,11 @@ This example excludes extended identifiers, remote frames, and bit stuffing. Equ
 
 ## 4. Bus Layout and Timing
 
-Use a trunk with short node branches. For a conventional 120 Ω cable, install matching termination at both physical ends.
+Use a trunk with short node branches. For a conventional 120 Ω cable, install matching [termination](<../../05-PCB-Layout/03-trace-impedance.md#distributed-loss-and-termination>) at both physical ends.
 
 Do not add one termination at every node. Two 120 Ω terminators appear as approximately **60 Ω** across an unpowered bus.
 
-The bit timing must accommodate cable delay, transceiver delay, and clock tolerance. Cable length and bit rate cannot be selected independently.
+The bit timing must accommodate cable delay, transceiver delay, and [clock tolerance](<../../03-Signal-Modulation/Timing/Crystal-oscillators.md#9-frequency-accuracy-and-time-error>). Cable length and bit rate cannot be selected independently.
 
 ## 5. Error Handling and Verification
 

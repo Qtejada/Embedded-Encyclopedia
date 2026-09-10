@@ -7,7 +7,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 ## 1. Low-Loss Reverse Blocking
 
-An **ideal-diode circuit** uses a controller and a metal-oxide-semiconductor field-effect transistor (**MOSFET**) to reduce forward loss.
+An **ideal-diode circuit** uses a controller and a metal-oxide-semiconductor field-effect transistor (**[MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**) to reduce forward loss.
 
 The controller senses the voltage across the power path. It controls the gate to conduct forward current and limit reverse current.
 
@@ -37,7 +37,7 @@ These values exclude controller consumption and switching events. They show why 
 
 ## 4. Body Diode and Off State
 
-A single MOSFET has a body diode. Its orientation controls the passive current path before the gate receives drive.
+A single MOSFET has a [body diode](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#body-diode>). Its orientation controls the passive current path before the gate receives drive.
 
 An ideal-diode function does not necessarily disconnect forward current when disabled. Two opposed MOSFETs can provide blocking in both directions when the controller supports that arrangement.
 
@@ -48,7 +48,7 @@ An ideal-diode function does not necessarily disconnect forward current when dis
 1. Draw the body-diode direction on the schematic.
 2. Check startup with the output already powered.
 3. Check reverse input voltage and output-to-input current.
-4. Check forward surge current and the MOSFET safe operating area.
+4. Check forward surge current and the MOSFET [safe operating area](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#safe-operating-area>).
 5. Check controller supply limits and gate-voltage limits.
 6. Add separate inrush control when the load capacitance requires it.
 

@@ -32,7 +32,7 @@ import SerialTimingExplorer from '@site/src/components/SerialTimingExplorer';
 
 ## 3. Timing Budget
 
-Check data **setup time** before the sampling edge and **hold time** after it. Include target output delay, route delay, and controller input requirements.
+Check data **[setup time](<../DigitalGeneral.md#storage-at-a-clock-edge>)** before the sampling edge and **hold time** after it. Include target output delay, route delay, and controller input requirements.
 
 **Worked example assumptions:** The clock is 10 MHz with equal high and low times. One half-period is 50 ns.
 
@@ -57,3 +57,16 @@ Start below the target's maximum clock frequency. Read a known register and comp
 Check both directions. A correct write does not prove that return-data timing is valid.
 
 **Reference:** [Analog Devices, SPI interface and clock modes](https://www.analog.com/en/resources/analog-dialogue/articles/introduction-to-spi-interface.html).
+
+
+## Daisy-chain connections
+
+In a supported daisy chain, controller data output connects to the first device input. Each device output connects to the next device input.
+
+The final device output returns to the controller. The devices share clock and a compatible select signal. Each device acts as a shift stage.
+
+For three assumed 16-bit stages, a complete chain transfer shifts 48 bits. Standard single-data-rate operation needs 48 clock cycles.
+
+The first transmitted word reaches the farthest stage after the complete shift. Check when each device latches data and drives its output.
+
+Ordinary SPI devices do not necessarily support this arrangement. Separate chip selects permit independent transactions but consume more control pins.

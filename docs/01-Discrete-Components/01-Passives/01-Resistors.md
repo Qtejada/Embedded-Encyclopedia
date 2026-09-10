@@ -61,6 +61,29 @@ For two independent 1% resistors without a load, the extreme outputs are **2.475
 2. Check the package power rating at the actual temperature.
 3. Check the working voltage and pulse rating separately.
 4. Use the TCR and tolerance to calculate the required error limit.
-5. Use separate sense connections for a low-resistance current shunt.
+5. Use separate sense connections for a low-resistance [current shunt](<../../02-Power/Measurment/Current-sense.md#1-convert-current-to-voltage>).
 
 For example, 12 V across 1 kΩ gives **144 mW**. A nominal 125 mW resistor does not meet that dissipation requirement.
+
+
+## Construction, preferred values, and failure
+
+For a uniform conductor, resistance is approximately resistivity times length divided by cross-sectional area. Material, geometry, and temperature all affect the result.
+
+A real resistor includes connection inductance and stray capacitance. A wirewound structure can have substantial inductance. A low-inductance layout reduces loop area.
+
+import PassiveModels from '@site/src/components/learning/PassiveModels';
+
+<PassiveModels kind="resistor" />
+
+Preferred-value series distribute values approximately logarithmically within each decade. E12 includes 1.0, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, and 8.2.
+
+Multiply those values by powers of ten. E24, E96, and other series provide more choices. See [Vishay preferred values](https://www.vishay.com/docs/28372/e-series.pdf).
+
+Common imperial surface-mount codes include 0402, 0603, and 0805. Their approximate bodies are 1.0 × 0.5, 1.6 × 0.8, and 2.0 × 1.25 mm.
+
+Confirm the coding system and footprint drawing. Metric codes can look similar. Package size alone does not establish power or pulse capability.
+
+Overload can change resistance or open the resistive element. Board flex and solder fatigue can break connections. Contamination can create an unintended parallel leakage path.
+
+Check pulse energy, working voltage, temperature derating, and mechanical conditions. A correct average power calculation does not prove pulse survival.

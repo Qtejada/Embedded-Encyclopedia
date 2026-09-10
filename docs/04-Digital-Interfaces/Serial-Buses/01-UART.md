@@ -11,7 +11,7 @@ A **universal asynchronous receiver/transmitter (UART)** sends data without a se
 
 A basic logic-level connection has a transmit signal, a receive signal, and a common reference. Connect each transmitter to the opposite receiver.
 
-UART framing does not define the cable voltage levels. Use a suitable transceiver for RS-232 or RS-485.
+UART framing does not define the cable voltage levels. Use a suitable transceiver for [RS-232](<./rs232-rs485.md#1-electrical-interfaces>) or RS-485.
 
 ## 2. Frame Format
 
@@ -48,6 +48,19 @@ Parity detects some bit errors. It does not replace a packet checksum or a cycli
 
 Check bit rate, data length, parity, stop bits, polarity, and logic voltage at both ends. Check overflow, framing errors, and missing bytes under maximum traffic.
 
-Use the oscilloscope to verify voltage and timing. Use a protocol decoder to verify the intended byte values.
+Use the [oscilloscope](<../../00-Foundations/05-Measurement-and-Debug.md#oscilloscope-bandwidth-and-sampling>) to verify voltage and timing. Use a protocol decoder to verify the intended byte values.
 
 **Reference:** [Analog Devices, UART operation](https://www.analog.com/en/resources/analog-dialogue/articles/uart-a-hardware-communication-protocol.html).
+
+
+## Receiver timing and oversampling
+
+A UART receiver detects the start edge and then samples near each bit center. It uses its local clock because the data link carries no separate clock.
+
+Receivers commonly use 8× or 16× oversampling. Some use several nearby samples for a majority decision. The implementation determines noise tolerance and baud error limits.
+
+Clock mismatch accumulates through the frame. Oversampling improves sample placement but does not remove the need for compatible baud rates.
+
+Common configured rates include 9600, 19200, 38400, 57600, and 115200 bit/s. Both ends must support the chosen rate and frame format.
+
+A basic TX/RX connection supports two endpoints and full-duplex data with a shared reference. Multidrop operation needs an appropriate physical layer and access protocol.

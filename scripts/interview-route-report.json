@@ -1,0 +1,505 @@
+[
+  {
+    "source": "docs/00-Foundations/00-Foundations.md",
+    "title": "Electrical Foundations",
+    "url": "/Embedded-Encyclopedia/docs/Foundations/",
+    "equations": 1,
+    "tools": [
+      "Independent white-noise budget"
+    ]
+  },
+  {
+    "source": "docs/00-Foundations/03-Precision-Design.md",
+    "title": "Precision Design",
+    "url": "/Embedded-Encyclopedia/docs/Foundations/Precision-Design",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/00-Foundations/04-Fields-and-Materials.md",
+    "title": "Fields and Materials",
+    "url": "/Embedded-Encyclopedia/docs/Foundations/Fields-and-Materials",
+    "equations": 2,
+    "tools": []
+  },
+  {
+    "source": "docs/00-Foundations/05-Measurement-and-Debug.md",
+    "title": "Measurement and Debug",
+    "url": "/Embedded-Encyclopedia/docs/Foundations/Measurement-and-Debug",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/00-Foundations/06-System-Design.md",
+    "title": "System Design",
+    "url": "/Embedded-Encyclopedia/docs/Foundations/System-Design",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/01-Discrete-Components/01-Passives/01-Resistors.md",
+    "title": "Resistors",
+    "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Passives/Resistors",
+    "equations": 4,
+    "tools": [
+      "Loaded-divider explorer"
+    ]
+  },
+  {
+    "source": "docs/01-Discrete-Components/01-Passives/02-Capacitors.md",
+    "title": "Capacitors",
+    "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Passives/Capacitors",
+    "equations": 1,
+    "tools": []
+  },
+  {
+    "source": "docs/01-Discrete-Components/01-Passives/03-Inductors.md",
+    "title": "Inductors",
+    "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Passives/Inductors",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/01-Discrete-Components/02-Magnetics/01-Transformers.md",
+    "title": "Transformers",
+    "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Magnetics/Transformers",
+    "equations": 3,
+    "tools": [
+      "Transformer ratio explorer"
+    ]
+  },
+  {
+    "source": "docs/01-Discrete-Components/02-Magnetics/02-Common-Mode-Chokes.md",
+    "title": "Common-Mode Chokes",
+    "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Magnetics/Common-Mode-Chokes",
+    "equations": 1,
+    "tools": [
+      "Common-mode choke current paths"
+    ]
+  },
+  {
+    "source": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+    "title": "Diodes",
+    "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/Diodes",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "title": "BJTs and Amplifiers",
+    "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/BJTs",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "title": "FETs (MOSFETs and JFETs)",
+    "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/MOSFETs",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/02-Power/Entry Protection/fuses.md",
+    "title": "Power Regulation",
+    "url": "/Embedded-Encyclopedia/docs/Power/Entry Protection/fuses",
+    "equations": 1,
+    "tools": [
+      "Power-conversion architecture"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Entry Protection/ideal-diodes.md",
+    "title": "Ideal Diodes",
+    "url": "/Embedded-Encyclopedia/docs/Power/Entry Protection/ideal-diodes",
+    "equations": 2,
+    "tools": []
+  },
+  {
+    "source": "docs/02-Power/Entry Protection/tvs-surge.md",
+    "title": "TVS Surge",
+    "url": "/Embedded-Encyclopedia/docs/Power/Entry Protection/tvs-surge",
+    "equations": 1,
+    "tools": [
+      "Transient-current path"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Measurment/Current-sense.md",
+    "title": "Current Sense",
+    "url": "/Embedded-Encyclopedia/docs/Power/Measurment/Current-sense",
+    "equations": 2,
+    "tools": [
+      "Shunt measurement error"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Measurment/Power-good-Seq.md",
+    "title": "Power Good Sequencing",
+    "url": "/Embedded-Encyclopedia/docs/Power/Measurment/Power-good-Seq",
+    "equations": 0,
+    "tools": [
+      "Power-sequence timeline"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Measurment/Supervisors.md",
+    "title": "Supervisors",
+    "url": "/Embedded-Encyclopedia/docs/Power/Measurment/Supervisors",
+    "equations": 0,
+    "tools": [
+      "Reset-release timeline"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Power Control/Gate-Drivers.md",
+    "title": "Gate Drivers",
+    "url": "/Embedded-Encyclopedia/docs/Power/Power Control/Gate-Drivers",
+    "equations": 2,
+    "tools": []
+  },
+  {
+    "source": "docs/02-Power/Power Control/Load-Switches.md",
+    "title": "Load Switches",
+    "url": "/Embedded-Encyclopedia/docs/Power/Power Control/Load-Switches",
+    "equations": 3,
+    "tools": [
+      "Capacitor inrush explorer"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Power Control/Motor-Drives.md",
+    "title": "Motors and Solenoid Drives",
+    "url": "/Embedded-Encyclopedia/docs/Power/Power Control/Motor-Drives",
+    "equations": 1,
+    "tools": [
+      "Motor torque and speed"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Regulation/01-Buck Converter.md",
+    "title": "Buck Converter",
+    "url": "/Embedded-Encyclopedia/docs/Power/Regulation/Buck Converter",
+    "equations": 5,
+    "tools": [
+      "Buck current explorer",
+      "Buck switching waveforms"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Regulation/02-Boost Converter.md",
+    "title": "Boost",
+    "url": "/Embedded-Encyclopedia/docs/Power/Regulation/Boost Converter",
+    "equations": 2,
+    "tools": [
+      "Boost current explorer",
+      "Boost current paths"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Regulation/03-Buck-Boost Converter.md",
+    "title": "Buck-Boost",
+    "url": "/Embedded-Encyclopedia/docs/Power/Regulation/Buck-Boost Converter",
+    "equations": 2,
+    "tools": [
+      "Inverting buck-boost current explorer"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Regulation/04-LDOs.md",
+    "title": "LDOs",
+    "url": "/Embedded-Encyclopedia/docs/Power/Regulation/LDOs",
+    "equations": 3,
+    "tools": [
+      "LDO heat estimate"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Regulation/05-AC-to-DC-Converters.md",
+    "title": "AC-to-DC Converters",
+    "url": "/Embedded-Encyclopedia/docs/Power/Regulation/AC-to-DC-Converters",
+    "equations": 2,
+    "tools": [
+      "Rectifier ripple estimate"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Regulation/06-Charge-Pumps.md",
+    "title": "Charge Pumps",
+    "url": "/Embedded-Encyclopedia/docs/Power/Regulation/Charge-Pumps",
+    "equations": 1,
+    "tools": [
+      "Doubler switch connections"
+    ]
+  },
+  {
+    "source": "docs/02-Power/Regulation/Battery-Charging.md",
+    "title": "Battery Charging",
+    "url": "/Embedded-Encyclopedia/docs/Power/Regulation/Battery-Charging",
+    "equations": 1,
+    "tools": [
+      "Lithium-ion charging states"
+    ]
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "title": "Operational Amplifiers",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Amplifiers/op-amps",
+    "equations": 0,
+    "tools": [
+      "Three-op-amp instrumentation circuit"
+    ]
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+    "title": "Differential Amplifiers",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Amplifiers/differential-amps",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Amplifiers/03-instrumentation-amps.md",
+    "title": "Instrumentation Amplifiers",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Amplifiers/instrumentation-amps",
+    "equations": 1,
+    "tools": [
+      "Three-op-amp instrumentation circuit"
+    ]
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+    "title": "Comparators",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Amplifiers/comparators",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Data-convertes/DACs.md",
+    "title": "Digital-to-Analog & Analog-to-Digital Conversion",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Data-convertes/DACs",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Data-convertes/Sample-holding.md",
+    "title": "Sample-and-Hold Circuits",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Data-convertes/Sample-holding",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+    "title": "Active Filters",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Filters/Active-filters",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Filters/Digital-filters.md",
+    "title": "Digital Filters",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Filters/Digital-filters",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Sensors.md",
+    "title": "Sensors and Measurement Chains",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Sensors",
+    "equations": 1,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Timing/Crystal-oscillators.md",
+    "title": "Crystal Oscillators",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Timing/Crystal-oscillators",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Timing/PLL.md",
+    "title": "Phase-Locked Loops",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Timing/PLL",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/03-Signal-Modulation/Timing/RTCs.md",
+    "title": "RTCs",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Timing/RTCs",
+    "equations": 1,
+    "tools": [
+      "Clock drift explorer"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/bridges.md",
+    "title": "Bridges",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/bridges",
+    "equations": 1,
+    "tools": [
+      "Protocol bridge path"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Computer-Architecture.md",
+    "title": "Computer Architecture",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Computer-Architecture",
+    "equations": 1,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/DigitalGeneral.md",
+    "title": "Digital Logic & Interfacing",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/DigitalGeneral",
+    "equations": 0,
+    "tools": [
+      "Moore and Mealy state experiment",
+      "CMOS logic connections"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Embedded-Systems.md",
+    "title": "Embedded Systems",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Embedded-Systems",
+    "equations": 1,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Ethernet.md",
+    "title": "Ethernet",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Ethernet",
+    "equations": 1,
+    "tools": [
+      "Ethernet interface path"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Firmware.md",
+    "title": "Firmware and Registers",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Firmware",
+    "equations": 0,
+    "tools": [
+      "Read a register field"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/io-expanders.md",
+    "title": "IO-Expanders",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/io-expanders",
+    "equations": 1,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Memory.md",
+    "title": "Memory",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Memory",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Serial-Buses/01-UART.md",
+    "title": "UART",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Serial-Buses/UART",
+    "equations": 1,
+    "tools": [
+      "UART frame explorer"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Serial-Buses/02-SPI.md",
+    "title": "SPI",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Serial-Buses/SPI",
+    "equations": 1,
+    "tools": [
+      "SPI sampling-edge explorer"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Serial-Buses/03-I2C.md",
+    "title": "I2C",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Serial-Buses/I2C",
+    "equations": 2,
+    "tools": [
+      "I²C pull-up window"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Serial-Buses/CAN.md",
+    "title": "CAN",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Serial-Buses/CAN",
+    "equations": 0,
+    "tools": [
+      "CAN arbitration stepper"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Serial-Buses/rs232-rs485.md",
+    "title": "RS232 to RS485",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Serial-Buses/rs232-rs485",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/USB.md",
+    "title": "USB",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/USB",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/05-PCB-Layout/01-Overview.md",
+    "title": "The PCB Designer's Field Guide",
+    "url": "/Embedded-Encyclopedia/docs/PCB-Layout/Overview",
+    "equations": 3,
+    "tools": [
+      "BGA straight-channel fit"
+    ]
+  },
+  {
+    "source": "docs/05-PCB-Layout/02-Return-Paths.md",
+    "title": "Return Paths",
+    "url": "/Embedded-Encyclopedia/docs/PCB-Layout/Return-Paths",
+    "equations": 1,
+    "tools": [
+      "Reference-plane continuity"
+    ]
+  },
+  {
+    "source": "docs/05-PCB-Layout/03-trace-impedance.md",
+    "title": "Trace Impedance",
+    "url": "/Embedded-Encyclopedia/docs/PCB-Layout/trace-impedance",
+    "equations": 4,
+    "tools": [
+      "First-arrival reflection explorer"
+    ]
+  },
+  {
+    "source": "docs/05-PCB-Layout/04-Manufacturing-and-Test.md",
+    "title": "Manufacturing and Test",
+    "url": "/Embedded-Encyclopedia/docs/PCB-Layout/Manufacturing-and-Test",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/05-PCB-Layout/05-Packaging.md",
+    "title": "Semiconductor Fabrication and Packaging",
+    "url": "/Embedded-Encyclopedia/docs/PCB-Layout/Packaging",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/05-PCB-Layout/High-Speed.md",
+    "title": "High Speed Digital",
+    "url": "/Embedded-Encyclopedia/docs/PCB-Layout/High-Speed",
+    "equations": 3,
+    "tools": [
+      "Eye opening: timing and voltage"
+    ]
+  },
+  {
+    "source": "docs/05-PCB-Layout/Phils-lab.md",
+    "title": "Phil's Lab",
+    "url": "/Embedded-Encyclopedia/docs/PCB-Layout/Phils-lab",
+    "equations": 0,
+    "tools": []
+  }
+]

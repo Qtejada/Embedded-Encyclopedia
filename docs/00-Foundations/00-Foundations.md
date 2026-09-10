@@ -78,7 +78,7 @@ Examples of real sources include sensors, batteries, and output pins.
 2. **Load resistance (R<sub>L</sub>)** must usually be high.
    * A high *R<sub>L</sub>* takes a small current and limits the voltage decrease caused by source resistance.
    * This connection method is called **bridging**.
-   * **Example:** A typical multimeter has an input impedance of 10 M&Omega; to limit circuit disturbance.
+   * **Example:** A typical [multimeter](<./05-Measurement-and-Debug.md#multimeter-measurements>) has an input impedance of 10 M&Omega; to limit circuit disturbance.
 
 ### Maximum Power Transfer
 
@@ -176,10 +176,10 @@ Each real component includes resistance, inductance, and capacitance. These unwa
   * **Result:** High-frequency signals can have more impedance than the designer expects.
 
 * **Everything is a capacitor — parasitic capacitance:** Two conductors near each other have capacitance.
-  * **Result:** This capacitance can cause crosstalk between PCB traces.
+  * **Result:** This capacitance can cause [crosstalk](<../05-PCB-Layout/01-Overview.md#53-crosstalk-and-separation>) between PCB traces.
   * **Result:** This capacitance also causes self-capacitance in an inductor.
 
-* **Skin effect:** High-frequency AC moves near the outer surface of a conductor.
+* **[Skin effect](<./04-Fields-and-Materials.md#dielectrics-and-conductor-losses>):** High-frequency AC moves near the outer surface of a conductor.
   * **Result:** This effect decreases the effective conductor area and increases resistance.
 
 </div>
@@ -212,7 +212,7 @@ Noise sets a fundamental limit on system resolution.
 
 **1/f noise** is associated with DC current flow. Carrier traps and crystal defects in semiconductor devices contribute to this noise.
 
-This noise is also called flicker noise. It is frequently dominant in MOSFETs and other active devices at low frequencies.
+This noise is also called flicker noise. It is frequently dominant in [MOSFETs](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) and other active devices at low frequencies.
 
 * **Behavior:** The noise energy is inversely proportional to frequency. As a result, the noise amplitude increases when the frequency decreases.
 * **1/f corner:** The 1/f corner is the frequency where 1/f noise-amplitude density equals broadband noise-amplitude density.
@@ -246,7 +246,7 @@ Calculate the total RMS noise voltage in three steps:
 
 * **Bandwidth:** A wider bandwidth increases the integrated area and increases the total noise.
 
-Calculate the 1/f noise and the broadband noise separately. Then, combine the values with the root-sum-square method:
+Calculate the 1/f noise and the broadband noise separately. Then, combine the values with the [root-sum-square](<./03-Precision-Design.md#separate-error-limits-from-random-noise>) method:
 
 > Total noise = &radic;((Noise<sub>1/f</sub>)<sup>2</sup> + (Noise<sub>broadband</sub>)<sup>2</sup>)
 
@@ -267,7 +267,7 @@ The low-frequency specification characterizes the 1/f noise contribution.
 
 Current noise varies significantly with transistor technology.
 
-* **JFET and CMOS operational amplifiers:** These amplifiers have very low current noise. Typical values are in the fA/&radic;Hz range.
+* **[JFET](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>) and CMOS [operational amplifiers](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#1-op-amp-fundamentals>):** These amplifiers have very low current noise. Typical values are in the fA/&radic;Hz range.
 * **Bipolar operational amplifiers:** These amplifiers have more current noise. Typical values are in the pA/&radic;Hz range.
 
 ### Power and Noise
@@ -302,3 +302,10 @@ Multiplying bandwidth by four doubles this noise voltage. It does not multiply t
 For correlated sources, include correlation in the noise-power calculation. For a real filter, integrate the squared response instead of substituting its cutoff frequency blindly.
 
 **Reference:** [Analog Devices, combining noise sources](https://www.analog.com/en/resources/analog-dialogue/articles/what-should-i-know-about-opamp-noise.html).
+
+
+## Further study
+
+- [Fields and Materials](./04-Fields-and-Materials.md) connects circuit quantities to charge transport and device materials.
+- [Measurement and Debug](./05-Measurement-and-Debug.md) explains instruments, [probe loading](<./05-Measurement-and-Debug.md#probe-selection>), and controlled fault tests.
+- [System Design](./06-System-Design.md) connects subsystem requirements and verification.

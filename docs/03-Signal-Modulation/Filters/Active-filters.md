@@ -11,13 +11,13 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Active Filters
 
-An **active filter** uses an active device, usually an operational amplifier, with resistors and capacitors.
+An **active filter** uses an active device, usually an [operational amplifier](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>), with resistors and capacitors.
 The circuit changes signal magnitude and phase as a function of frequency.
 It can also provide gain, buffering, a low output impedance, or a controlled filter response.
 
 A passive RC section can make a basic low-pass or high-pass response.
 An active circuit can isolate RC sections from a load and can make a higher-order response without an inductor.
-The operational amplifier also introduces bandwidth, slew-rate, noise, output-current, and stability limits.
+The operational amplifier also introduces bandwidth, [slew-rate](<../Amplifiers/01-op-amps.md#slew-rate>), noise, output-current, and stability limits.
 
 The page has five ordered parts: foundations, active-filter topologies, amplifier and component limits, converter applications, and design verification.
 The explanations include passive RC building blocks, active first-order circuits, practical integrators, Sallen-Key filters, amplifier limits, noise control, converter filters, and a complete design procedure.
@@ -115,13 +115,13 @@ Poles can come from:
 
 * A deliberate RC filter section.
 * An operational-amplifier internal stage.
-* Source resistance with input capacitance.
+* [Source resistance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>) with input capacitance.
 * Output resistance with load capacitance.
 * Sensor capacitance.
 * PCB and package parasitics.
 
 A filter pole shapes the wanted response.
-A pole inside a feedback loop can also decrease phase margin and cause oscillation.
+A pole inside a feedback loop can also decrease [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>) and cause oscillation.
 Always distinguish the signal transfer function from the loop-gain transfer function.
 
 #### Zeros
@@ -198,7 +198,7 @@ The capacitor acts as an open circuit.
 As frequency increases, impedance decreases.
 At a sufficiently high frequency in the ideal model, the capacitor acts approximately as a short circuit.
 
-A real capacitor stops following this ideal trend above its self-resonant frequency.
+A real capacitor stops following this ideal trend above its [self-resonant frequency](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#impedance-v-curve-and-self-resonance>).
 
 #### Capacitor Phase
 
@@ -266,7 +266,7 @@ The operation changes with frequency:
 5. The output amplitude decreases at 20 dB/decade.
 
 The circuit smooths fast signals and passes DC.
-It can average a **pulse-width modulation (PWM)** waveform.
+It can average a **[pulse-width modulation](<./Digital-filters.md#pulse-width-modulation-pwm>) (PWM)** waveform.
 
 <div className="component-wrapper">
   <RCLowPass />
@@ -378,7 +378,7 @@ It replaces them with active-device limits that must be included in the design.
 
 #### Feedback Capacitor as a Low-Pass Filter
 
-Put a **feedback capacitor**, <i>C<sub>f</sub></i>, in parallel with the **feedback resistor**, <i>R<sub>f</sub></i>, of an inverting amplifier.
+Put a **feedback capacitor**, <i>C<sub>f</sub></i>, in parallel with the **feedback resistor**, <i>R<sub>f</sub></i>, of an [inverting amplifier](<../Amplifiers/01-op-amps.md#inverting-amplifier>).
 The feedback impedance is:
 
 > **Z<sub>f</sub> = R<sub>f</sub> / (1 + sR<sub>f</sub>C<sub>f</sub>)**
@@ -412,7 +412,7 @@ It reduces high-frequency closed-loop gain.
 
 ##### Stability Compensation
 
-A sensor, such as a photodiode, can add input capacitance and phase delay.
+A sensor, such as a [photodiode](<../../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>), can add input capacitance and phase delay.
 A small capacitor, such as 10 pF, can change noise gain and restore phase margin when correctly selected.
 It also limits high-frequency bandwidth.
 
@@ -441,7 +441,7 @@ Circuit B changes gain with frequency but does not block input DC.
 
 #### Circuit 1: High-Pass Input
 
-A high-pass RC network drives a non-inverting amplifier.
+A high-pass RC network drives a [non-inverting amplifier](<../Amplifiers/01-op-amps.md#non-inverting-amplifier>).
 The capacitor blocks DC.
 The circuit amplifies signals above the input corner frequency.
 
@@ -487,8 +487,8 @@ Its transfer function is:
 
 #### Bias-Current Path for an AC-Coupled Input
 
-An AC-coupled op-amp input still needs a DC bias-current path.
-Without this path, input bias current can move the input and output into saturation.
+An [AC-coupled](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#ac-coupling-blocking>) op-amp input still needs a DC bias-current path.
+Without this path, [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) can move the input and output into saturation.
 Make sure that the bias-return resistance does not make an unwanted corner or excessive noise.
 
 ### 8. Practical Active Integrator
@@ -505,8 +505,8 @@ For a constant input:
 > **dV<sub>out</sub>/dt = -V<sub>in</sub> / RC**
 
 At DC, the ideal feedback capacitor is open.
-The circuit has no DC negative feedback.
-Input offset voltage and bias current then move the output into saturation.
+The circuit has no DC [negative feedback](<../Amplifiers/01-op-amps.md#negative-feedback>).
+[Input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>) and bias current then move the output into saturation.
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
@@ -590,7 +590,7 @@ Check:
 
 * Input and feedback corner frequencies.
 * Noise gain.
-* Operational-amplifier gain-bandwidth product.
+* Operational-amplifier [gain-bandwidth product](<../Amplifiers/01-op-amps.md#gain-bandwidth-trade>).
 * Slew rate.
 * Source impedance.
 * Input capacitance.
@@ -796,7 +796,7 @@ Use the datasheet slew-rate specification for the design.
 
 Examples of slew-enhancement designs:
 
-* **LF411:** A junction-field-effect-transistor (**JFET**) input design with an enhancement factor of approximately 12.
+* **LF411:** A junction-field-effect-transistor (**[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>)**) input design with an enhancement factor of approximately 12.
 * **TLE2142 and OP275:** Cross-coupled or Butler stages that increase current available to the compensation capacitor.
 * **LT1210:** A current-feedback amplifier with an enhancement factor greater than 55.
 
@@ -855,7 +855,7 @@ Without sufficient compensation:
 3. Phase can approach 180 degrees while loop gain is greater than one.
 4. The circuit can oscillate.
 
-With dominant-pole compensation:
+With [dominant-pole compensation](<../Amplifiers/01-op-amps.md#dominant-pole-compensation>):
 
 1. The first roll-off starts at a lower frequency.
 2. Phase remains nearer -90 degrees through much of the useful loop-gain range.
@@ -976,10 +976,10 @@ Example device data:
 
 The LT1012 can have less low-frequency noise even though its white-noise density is higher.
 
-Auto-zero and chopper amplifiers can suppress the conventional low-frequency 1/f rise.
+[Auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) and chopper amplifiers can suppress the conventional low-frequency 1/f rise.
 Some devices keep an approximately flat noise density toward DC.
 Use the applicable datasheet curve because the exact response depends on the device.
-Their internal switching can add clock feedthrough.
+Their internal switching can add [clock feedthrough](<../Data-convertes/Sample-holding.md#clock-feedthrough>).
 A low-pass filter can decrease this feedthrough when the signal bandwidth permits it.
 
 #### Photodiode and Transimpedance Noise
@@ -994,7 +994,7 @@ Calculate the value from photodiode capacitance, amplifier input capacitance, fe
 
 #### Settling-Time and Noise-Bandwidth Trade-Off
 
-A successive-approximation-register analog-to-digital converter (**SAR ADC**) driver needs enough bandwidth to settle input kickback.
+A successive-approximation-register [analog-to-digital converter](<../Data-convertes/DACs.md#3-sampling-and-resolution>) (**[SAR ADC](<../Data-convertes/DACs.md#successive-approximation-adc>)**) driver needs enough bandwidth to settle input kickback.
 More bandwidth also passes more noise.
 
 For example, a 100 MHz driver can pass noise far above a 100 kHz signal band.
@@ -1004,7 +1004,7 @@ Balance settling time and integrated noise.
 
 #### Equivalent Series Resistance
 
-**Equivalent series resistance (ESR)** represents conductor resistance and dielectric loss.
+**[Equivalent series resistance](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#equivalent-series-resistance>) (ESR)** represents conductor resistance and [dielectric loss](<../../00-Foundations/04-Fields-and-Materials.md#dielectrics-and-conductor-losses>).
 It produces heat and changes damping.
 
 For ripple current:
@@ -1014,15 +1014,15 @@ For ripple current:
 In a signal filter, ESR can reduce Q.
 It can also add a zero or change attenuation.
 
-Some older low-dropout regulators need a minimum ESR for stability.
+Some older [low-dropout regulators](<../../02-Power/Regulation/04-LDOs.md#1-linear-regulation>) need a minimum ESR for stability.
 Replacing their tantalum capacitor with a near-zero-ESR ceramic can cause oscillation.
 
 #### Equivalent Series Inductance
 
-**Equivalent series inductance (ESL)** comes from leads and internal geometry.
+**[Equivalent series inductance](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#equivalent-series-inductance>) (ESL)** comes from leads and internal geometry.
 It limits high-frequency capacitor performance.
 
-Below self-resonance, the device is capacitive.
+Below [self-resonance](<../../01-Discrete-Components/01-Passives/03-Inductors.md#winding-losses-and-a-practical-model>), the device is capacitive.
 At self-resonance, its impedance reaches a minimum that is approximately ESR in the simple series model.
 Above self-resonance, the device behaves as an inductor and filters high-frequency noise less effectively.
 
@@ -1033,7 +1033,7 @@ Use a small package near a high-frequency current path.
 
 Example parallel-capacitor set:
 
-* A 10 &micro;F bulk capacitor for lower-frequency current changes.
+* A 10 &micro;F [bulk capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bulk-capacitance>) for lower-frequency current changes.
 * A 0.1 &micro;F ceramic capacitor for higher-frequency current changes.
 
 In this example, the 0.1 &micro;F part can stay capacitive to approximately 100 MHz.
@@ -1045,7 +1045,7 @@ High-K ceramic capacitance changes with DC bias.
 This change moves filter cutoff and Q as signal voltage changes.
 
 The **OPA1641** is an example of this effect.
-Its JFET input capacitance can change with common-mode voltage when the source impedance is high.
+Its JFET input capacitance can change with [common-mode voltage](<../Amplifiers/02-differential-amps.md#common-mode-voltage>) when the source impedance is high.
 The changing capacitance changes filter cutoff and signal phase.
 Distortion can increase from 20 ppm to 100 ppm.
 
@@ -1063,18 +1063,18 @@ Include operational-amplifier gain, phase, bias current, offset, input capacitan
 #### Leakage and Dielectric Absorption
 
 A real capacitor has leakage current and finite insulation resistance.
-Leakage changes long RC time constants and makes an integrator drift.
+Leakage changes long [RC time constants](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#4-rc-time-constants>) and makes an integrator drift.
 
-**Dielectric absorption** stores part of the charge in slow dielectric processes.
+**[Dielectric absorption](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#a-dielectric-absorption>)** stores part of the charge in slow dielectric processes.
 After discharge, some voltage can return.
-This memory effect causes errors in long-period integrators and sample-and-hold circuits.
+This memory effect causes errors in long-period integrators and [sample-and-hold](<../Data-convertes/Sample-holding.md#1-basic-circuit>) circuits.
 
 Use low-leakage parts and include board-surface leakage in high-impedance designs.
 Use a dielectric with low absorption when the stored voltage must remain accurate.
 
 #### Piezoelectric and Microphonic Noise
 
-High-K ceramic capacitors, including X7R, Z5U, and Y5V types, can be piezoelectric.
+High-K ceramic capacitors, including [X7R](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#7-dielectric-types>), Z5U, and Y5V types, can be piezoelectric.
 Mechanical vibration can produce an electrical signal.
 An applied AC voltage can also make the capacitor move.
 
@@ -1094,7 +1094,7 @@ If the analog input contains energy above the permitted limit, sampling can crea
 This false signal is an **alias**.
 
 Noise at 50 MHz can affect a 100 kHz measurement if the sampling system aliases it.
-After aliasing occurs, a digital filter cannot identify the original out-of-band signal.
+After [aliasing](<./Digital-filters.md#18-aliasing-at-the-initial-adc>) occurs, a digital filter cannot identify the original out-of-band signal.
 Install an analog **anti-alias filter** before the ADC.
 
 #### Guard Band
@@ -1106,7 +1106,7 @@ The nominal corner is usually the -3 dB point.
 Frequencies immediately above the corner still pass.
 Even a six-pole Butterworth filter has a finite transition band.
 
-Use **oversampling** to make a guard band.
+Use **[oversampling](<./Digital-filters.md#23-oversampling>)** to make a guard band.
 Example: Run the sample clock 25% faster than the theoretical minimum.
 Putting a -3 dB corner at the edge of the required signal band gives 3.01 dB of loss at that edge.
 Use this location only when the passband specification permits the loss.
@@ -1148,7 +1148,7 @@ The sequence is:
 3. **Digital low-pass filter:** Remove digital noise above the final signal band.
 4. **Decimate:** Reduce the output sample rate after filtering.
 
-Example decimation: Keep one output for each 100 input samples when the digital filter permits this ratio.
+Example [decimation](<./Digital-filters.md#20-downsampling-and-decimation>): Keep one output for each 100 input samples when the digital filter permits this ratio.
 A digital filter cannot remove interference that already aliased into the same baseband frequency.
 
 For suitable uncorrelated quantization noise and signal bandwidth <i>B<sub>signal</sub></i>:
@@ -1177,7 +1177,7 @@ This **2R + C low-pass filter** has three functions:
 Example converter conditions:
 
 * Sample rate: 80 Msps.
-* Nyquist frequency: 40 MHz.
+* [Nyquist frequency](<../Data-convertes/DACs.md#nyquist-criterion>): 40 MHz.
 * ADC analog input bandwidth: 700 MHz.
 
 Without a filter, noise across much of the 700 MHz input bandwidth can fold into baseband and reduce the SNR.
@@ -1205,7 +1205,7 @@ Single-ended drive can:
 
 #### Delta-Sigma Reconstruction
 
-A delta-sigma DAC uses oversampling and noise shaping.
+A delta-sigma [DAC](<../Data-convertes/DACs.md#1-dac-fundamentals>) uses oversampling and noise shaping.
 A 1-bit output variant produces a high-rate sequence with two amplitude states.
 
 The reconstruction sequence is:
@@ -1232,7 +1232,7 @@ Check broadband noise and clock noise.
 
 The **TI DAC1220** example has a noise density of approximately 1000 nV/&radic;Hz.
 An example resistor-ladder DAC has approximately 10 nV/&radic;Hz.
-A reconstruction filter cannot correct unsuitable DC drift, differential nonlinearity (**DNL**), or in-band noise.
+A reconstruction filter cannot correct unsuitable DC drift, [differential nonlinearity](<../Data-convertes/DACs.md#differential-non-linearity>) (**DNL**), or in-band noise.
 
 #### PWM as a DAC
 
@@ -1245,7 +1245,7 @@ Here, <i>D</i> is duty cycle from 0 to 1.
 
 PWM is widely used in Class D amplifiers.
 Digital counters can generate PWM.
-The PWM signal can command MOSFET power switches.
+The PWM signal can command [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) power switches.
 
 For <i>N</i> timer steps and clock frequency <i>f<sub>clk</sub></i>:
 
@@ -1283,7 +1283,7 @@ In the retained comparison, its noise is approximately four times higher than a 
 The reference filter must:
 
 * Settle after ADC or DAC charge transients.
-* Remain stable with the bypass capacitor.
+* Remain stable with the [bypass capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>).
 * Supply required dynamic current.
 * Keep DC error, drift, and long-term drift within the budget.
 
@@ -1328,7 +1328,7 @@ Use this sequence.
 2. **Define magnitude limits.**
    Specify passband gain, ripple, cutoff definition, stopband attenuation, and allowed peaking.
 3. **Define phase and time limits.**
-   Specify phase error, group delay, overshoot, ringing, and settling time.
+   Specify phase error, [group delay](<./Digital-filters.md#14-phase-and-group-delay>), overshoot, ringing, and settling time.
 4. **Define the noise limit.**
    Integrate all noise sources across the required band.
 5. **Select filter order and topology.**
@@ -1336,7 +1336,7 @@ Use this sequence.
 6. **Calculate poles, zeros, and Q.**
    Use the exact equations for the selected circuit.
 7. **Select practical R and C values.**
-   Check loading, bias-current error, thermal noise, leakage, ESR, ESL, self-resonant frequency (**SRF**), voltage coefficient, and package.
+   Check loading, bias-current error, [thermal noise](<../../00-Foundations/00-Foundations.md#thermal-noise>), leakage, ESR, ESL, self-resonant frequency (**SRF**), voltage coefficient, and package.
 8. **Select the amplifier.**
    Check GBW, noise gain, slew rate, phase margin, input/output range, current, noise, and distortion.
 9. **Add converter constraints when applicable.**
@@ -1354,7 +1354,7 @@ Use this sequence.
 
 ### 24. Worked Buffered-RC Active-Filter Example
 
-Put a unity-gain voltage follower after a passive RC section.
+Put a unity-gain [voltage follower](<../Amplifiers/01-op-amps.md#voltage-follower>) after a passive RC section.
 This arrangement is the simplest active-filter form.
 The buffer isolates the RC output from the load when its input impedance is high and its output impedance is low.
 

@@ -152,7 +152,7 @@ If the circuit uses only <i>r<sub>e</sub></i>:
 * Linear changes in <i>V<sub>BE</sub></i> do **not** cause linear changes in collector current. The relationship is exponential.
 * Changes in <i>I<sub>C</sub></i> change <i>r<sub>e</sub></i>. As a result, impedance and gain also change.
 
-An external emitter resistor, <i>R<sub>E</sub></i>, supplies **negative feedback**:
+An external emitter resistor, <i>R<sub>E</sub></i>, supplies **[negative feedback](<../../03-Signal-Modulation/Amplifiers/01-op-amps.md#negative-feedback>)**:
 
 * <i>I<sub>C</sub></i> increases &rarr; <i>I<sub>E</sub></i> increases &rarr; the voltage across <i>R<sub>E</sub></i> increases.
 * <i>V<sub>E</sub></i> increases &rarr; <i>V<sub>BE</sub></i> decreases &rarr; <i>I<sub>C</sub></i> is pushed down.
@@ -163,7 +163,7 @@ This feedback helps prevent **thermal runaway**.
 
 During thermal runaway, temperature increases collector current. The higher current increases power dissipation, which causes a further temperature increase.
 
-**Bypass Capacitor Idea:**
+**[Bypass Capacitor](<../01-Passives/02-Capacitors.md#bypass--decoupling>) Idea:**
 
 * Use a large <i>R<sub>E</sub></i> for DC stability. **Bypass** the resistor with a capacitor for AC operation.
 * **DC:** The circuit sees <i>R<sub>E</sub></i>. The resistor stabilizes the bias and opposes thermal runaway.
@@ -181,7 +181,7 @@ During thermal runaway, temperature increases collector current. The higher curr
 
 <div className="definition-list">
 
-**Dual-Supply Biasing and Voltage-Divider Biasing**
+**Dual-Supply Biasing and [Voltage-Divider](<../01-Passives/01-Resistors.md#3-voltage-divider-and-loading>) Biasing**
 
 **Voltage-Divider Biasing:**
 
@@ -225,7 +225,7 @@ The base current sets <i>I<sub>C</sub></i>. The collector current then sets <i>V
 
 </div>
 
-**KVL with BJTs**
+**[KVL](<../../00-Foundations/00-Foundations.md#circuit-theorems-analysis-tools>) with BJTs**
 
 When you calculate voltages and currents, include the approximate 0.7 V connection between base and emitter.
 
@@ -291,9 +291,9 @@ As a result, it can drive a relatively low-impedance load from a high-impedance 
 * Without <i>R<sub>E</sub></i>, the emitter connects directly to ground. The general 0.7 V model can be inaccurate for small-signal operation.
 * Use the **Ebers-Moll model** and the small-signal parameters <i>g<sub>m</sub></i>, <i>r<sub>&pi;</sub></i>, and <i>r<sub>o</sub></i>.
 
-**Differential Amplifiers and CMRR**
+**Differential Amplifiers and [CMRR](<../../03-Signal-Modulation/Amplifiers/02-differential-amps.md#2-common-mode-rejection-ratio>)**
 
-**Differential Amplifier:**
+**[Differential Amplifier](<../../03-Signal-Modulation/Amplifiers/02-differential-amps.md#3-four-resistor-op-amp-difference-amplifier>):**
 
 * It amplifies the **voltage difference** between two points.
 * You can use it to measure across a component or between two integrated-circuit (**IC**) nodes.
@@ -343,7 +343,7 @@ Changing <i>V<sub>B</sub></i> produces a **voltage-controlled current source**.
 
 **Conceptual Resistive Current Source:**
 
-* Apply a voltage through a very large source resistance.
+* Apply a voltage through a very large [source resistance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>).
 * If <i>R<sub>source</sub> &gt;&gt; R<sub>load</sub></i>, load-current change is small when the load changes.
 * Resistive current sources waste power. BJTs can supply current with less power loss.
 
@@ -399,7 +399,7 @@ The current can also change if the load tries to draw too much current.
 * **Disadvantage:** The configuration operates **slowly**. Q1 must turn off Q2, and stored charge can be large.
 * A resistor from the base of Q2 to its emitter can increase turn-off speed.
 
-**Push-Pull, Crossover Distortion, and Amplifier Classes**
+**[Push-Pull](<../../03-Signal-Modulation/Amplifiers/01-op-amps.md#complementary-push-pull-output>), Crossover Distortion, and Amplifier Classes**
 
 **Push-Pull Output Stage:**
 
@@ -439,7 +439,7 @@ This stage gives an output swing near the full positive-to-negative supply range
 
 * These **switching amplifiers** drive the output with high-frequency pulses.
 * Efficiency is very high because the transistors are usually fully on or fully off.
-* High-frequency switching causes more electromagnetic-interference (**EMI**) emissions and requires filtering.
+* High-frequency switching causes more electromagnetic-interference (**[EMI](<../../05-PCB-Layout/High-Speed.md#eye-diagrams-and-interference>)**) emissions and requires filtering.
 
 </div>
 
@@ -502,8 +502,19 @@ Stable resistors produce more stable gain than temperature-sensitive transistors
 ## 9. BJTs Compared with FETs
 
 * Field-effect transistors (**FETs**) are very popular.
-* Metal-oxide-semiconductor field-effect transistors (**MOSFETs**) dominate digital circuits and power switching.
+* Metal-oxide-semiconductor field-effect transistors (**[MOSFETs](<./03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**) dominate digital circuits and power switching.
 * BJTs can perform better than FETs in some analog applications:
   * **Accuracy:** An example is the predictable relationship between <i>V<sub>BE</sub></i> and current.
   * **Low noise:** BJTs have low noise in some configurations.
   * **Higher transconductance:** At a specified current, a BJT has higher <i>g<sub>m</sub></i> than a MOSFET.
+
+
+## Output characteristic family
+
+import TransistorCurves from '@site/src/components/learning/TransistorCurves';
+
+<TransistorCurves kind="bjt" />
+
+These illustrative curves show collector current versus collector-to-emitter voltage at three base currents. The active-region slopes represent finite output resistance.
+
+The low-voltage knee marks the approach to saturation. This drawing does not model breakdown or specify a real transistor's current rating.

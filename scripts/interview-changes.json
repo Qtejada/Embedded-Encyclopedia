@@ -1,0 +1,122 @@
+{
+  "docs/04-Digital-Interfaces/Embedded-Systems.md": {
+    "type": "new page",
+    "summary": "Added MCU selection, GPIO circuits, timers, interrupts, DMA, startup, debugging, and operating-system trade-offs."
+  },
+  "docs/04-Digital-Interfaces/Computer-Architecture.md": {
+    "type": "new page",
+    "summary": "Added ISA and processor execution, pipelines, GPU operation, SoC and memory organization, PVT, power control, and memory-fault handling."
+  },
+  "docs/04-Digital-Interfaces/Firmware.md": {
+    "type": "new page",
+    "summary": "Added data representation, register fields, volatile limits, memory lifetime, code analysis, text algorithms, API design, and software debugging."
+  },
+  "docs/00-Foundations/04-Fields-and-Materials.md": {
+    "type": "new page",
+    "summary": "Added charge transport, bands, doping, mobility, junction physics, photoelectric conversion, dielectric losses, and breakdown."
+  },
+  "docs/00-Foundations/05-Measurement-and-Debug.md": {
+    "type": "new page",
+    "summary": "Added instrument selection, probe loading, scope timing, VNA measurements, bring-up, validation, and unattended test practices."
+  },
+  "docs/00-Foundations/06-System-Design.md": {
+    "type": "new page",
+    "summary": "Added requirements allocation, concrete system paths, bandwidth budgeting, and redundancy trade-offs."
+  },
+  "docs/02-Power/Power Control/Motor-Drives.md": {
+    "type": "new page",
+    "summary": "Added motor and solenoid models, drive states, motor types, ESCs, braking, isolation, sensing, and fault limits."
+  },
+  "docs/03-Signal-Modulation/Sensors.md": {
+    "type": "new page",
+    "summary": "Added inertial, optical, camera, and LiDAR sensing, fusion limits, calibration, and measurement uncertainty."
+  },
+  "docs/05-PCB-Layout/04-Manufacturing-and-Test.md": {
+    "type": "new page",
+    "summary": "Added PCB materials, fabrication and assembly, via treatment, inspection coverage, test access, and rework."
+  },
+  "docs/05-PCB-Layout/05-Packaging.md": {
+    "type": "new page",
+    "summary": "Added semiconductor process steps, package trade-offs, node terminology, yield, chiplets, PoP, bond wires, and flip-chip connections."
+  },
+  "docs/02-Power/Regulation/01-Buck Converter.md": {
+    "type": "addition",
+    "summary": "Added full buck waveforms, input capacitor current, duty limits, PFM, load line, SIMO, multiphase operation, loop trade-offs, and validation."
+  },
+  "docs/02-Power/Regulation/02-Boost Converter.md": {
+    "type": "addition",
+    "summary": "Added a boost circuit-state drawing and qualified the efficiency comparison."
+  },
+  "docs/02-Power/Regulation/06-Charge-Pumps.md": {
+    "type": "new page",
+    "summary": "Added charge-pump switching phases, sizing, output resistance, and efficiency with an original circuit drawing."
+  },
+  "docs/02-Power/Regulation/04-LDOs.md": {
+    "type": "addition",
+    "summary": "Added the limits of the variable-resistance model and an efficiency relation that includes quiescent current."
+  },
+  "docs/02-Power/Measurment/Current-sense.md": {
+    "type": "addition",
+    "summary": "Added magnetic and lossless sensing comparisons, CSA selection, an ADC sizing example, and hardware fault detection."
+  },
+  "docs/02-Power/Regulation/Battery-Charging.md": {
+    "type": "addition",
+    "summary": "Added chemistry selection, capacity and energy, fuel gauging, aging, storage, and physical fault mechanisms."
+  },
+  "docs/01-Discrete-Components/01-Passives/01-Resistors.md": {
+    "type": "addition",
+    "summary": "Added resistor parasitic drawing, physical resistance, preferred values, package examples, and failure modes."
+  },
+  "docs/01-Discrete-Components/01-Passives/02-Capacitors.md": {
+    "type": "addition",
+    "summary": "Added a capacitor equivalent-circuit drawing and mechanical and aging failure mechanisms."
+  },
+  "docs/01-Discrete-Components/01-Passives/03-Inductors.md": {
+    "type": "addition",
+    "summary": "Added an inductor equivalent-circuit drawing, ACR and core loss, failure modes, and RL filter connections."
+  },
+  "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx": {
+    "type": "addition",
+    "summary": "Added MOSFET W/L effects and body-connection qualifications. Added an output-characteristic family."
+  },
+  "docs/04-Digital-Interfaces/DigitalGeneral.md": {
+    "type": "addition",
+    "summary": "Added CMOS gate construction, truth tables, Karnaugh reduction, latch and mux distinctions, RTL reuse, dividers, arbiters, and single-FET translation."
+  },
+  "docs/04-Digital-Interfaces/Serial-Buses/03-I2C.md": {
+    "type": "addition",
+    "summary": "Added I²C address limits, arbitration, final-byte NACK, speed modes, recovery, and rise-time terminology."
+  },
+  "docs/04-Digital-Interfaces/Serial-Buses/02-SPI.md": {
+    "type": "addition",
+    "summary": "Added SPI daisy-chain wiring, transfer length, and device compatibility limits."
+  },
+  "docs/04-Digital-Interfaces/Serial-Buses/01-UART.md": {
+    "type": "addition",
+    "summary": "Added UART oversampling, clock mismatch, common rates, and endpoint topology."
+  },
+  "docs/05-PCB-Layout/03-trace-impedance.md": {
+    "type": "addition",
+    "summary": "Added the lossy RLGC model, termination comparisons, stackup-error implications, and preemphasis."
+  },
+  "docs/05-PCB-Layout/High-Speed.md": {
+    "type": "addition",
+    "summary": "Added an interactive eye diagram, mask and error-rate limits, EMI and desense, and a PI impedance budget."
+  },
+  "docs/03-Signal-Modulation/Filters/Digital-filters.md": {
+    "type": "addition",
+    "summary": "Added Fourier series versus transform and qualified square-wave harmonic and edge-bandwidth rules."
+  },
+  "docs/03-Signal-Modulation/Timing/PLL.md": {
+    "type": "addition",
+    "summary": "Added receiver clock high/low pulse-width checks beyond average PLL frequency."
+  },
+  "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md": {
+    "type": "addition",
+    "summary": "Added an original BJT output-characteristic family and model limits."
+  },
+  "docs/00-Foundations/00-Foundations.md": {
+    "type": "addition",
+    "summary": "Added links from Electrical Foundations to the three new foundation topics."
+  }
+}

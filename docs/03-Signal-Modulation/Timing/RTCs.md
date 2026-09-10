@@ -13,7 +13,7 @@ A backup supply can maintain timekeeping. It does not necessarily keep the seria
 
 ## 2. Frequency Error and Time Error
 
-Oscillator error often uses **parts per million (ppm)**. For constant fractional frequency error:
+Oscillator error often uses **[parts per million](<./Crystal-oscillators.md#9-frequency-accuracy-and-time-error>) (ppm)**. For constant fractional frequency error:
 
 <LearningEquation tex={"\\Delta t=t\\frac{error_{ppm}}{10^6}"} />
 
@@ -37,7 +37,7 @@ Temperature changes and aging make real error vary. A calibration performed at o
 
 Time registers can change while the processor reads them. Use the device's snapshot or coherent-read method.
 
-Some devices store digits in **binary-coded decimal (BCD)**. For example, hexadecimal 0x25 represents decimal 25 in BCD, not decimal 37.
+Some devices store digits in **[binary-coded decimal](<../../04-Digital-Interfaces/DigitalGeneral.md#binary-coded-decimal>) (BCD)**. For example, [hexadecimal](<../../04-Digital-Interfaces/DigitalGeneral.md#hexadecimal>) 0x25 represents decimal 25 in BCD, not decimal 37.
 
 Check oscillator-stop and power-loss flags before trusting a timestamp. Set a known time before clearing a flag that indicates invalid timekeeping.
 
@@ -45,9 +45,9 @@ Check oscillator-stop and power-loss flags before trusting a timestamp. Set a kn
 
 1. Use the permitted backup-voltage range.
 2. Check whether the device includes a charging path.
-3. Do not charge a primary cell through an enabled charging circuit.
+3. Do not charge a [primary cell](<../../02-Power/Regulation/Battery-Charging.md#chemistry-and-stored-energy>) through an enabled charging circuit.
 4. Include leakage and backup current in the retention estimate.
-5. Check alarm polarity, pull-ups, and the method to clear an alarm.
+5. Check alarm polarity, [pull-ups](<../../04-Digital-Interfaces/Serial-Buses/03-I2C.md#3-pull-up-limits>), and the method to clear an alarm.
 
 The [Analog Devices DS3231 data sheet](https://www.analog.com/media/en/technical-documentation/data-sheets/ds3231.pdf) describes battery switchover, status flags, and time registers for one RTC.
 

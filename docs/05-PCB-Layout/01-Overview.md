@@ -48,7 +48,7 @@ This guide describes a practical workflow for **printed circuit board (PCB)** de
 * **Signal-Layer Planning:** When a design needs four signal layers, use the top layer, the bottom layer, and two internal signal layers.
 * **Four-Layer Board:** For a physical four-layer board, put signal routing on the top and bottom layers. Use the two inner layers for the reference and power functions that the design requires.
 * **Fabrication Approval:** Agree on the stackup with the PCB fabricator before you route controlled-impedance signals. Specify the material, copper thickness, dielectric thickness, layer symmetry, and manufacturing tolerances.
-* **Electromagnetic Interference:** A ground layer can extend near the board edge when the electromagnetic interference (EMI), creepage, clearance, and fabrication requirements permit it. Pull a power plane back from the board edge when this action reduces edge radiation and does not violate another requirement.
+* **[Electromagnetic Interference](<./High-Speed.md#eye-diagrams-and-interference>):** A ground layer can extend near the board edge when the electromagnetic interference (EMI), creepage, clearance, and fabrication requirements permit it. Pull a power plane back from the board edge when this action reduces edge radiation and does not violate another requirement.
 
 ### 2.2 Recommended Stackups
 
@@ -137,18 +137,18 @@ Start placement with the largest components, but apply the mechanical and electr
 
 ### 3.2 Thermal and Design-for-Manufacturing (DFM) Rules
 
-* **Heat Management:** A central processing unit (CPU) usually dissipates more heat than a typical microcontroller unit (MCU). Identify the thermal path through the package, copper, vias, heat sink, enclosure, and airflow. On a vertical board that uses bottom-to-top natural convection, an upper location can help cool a hot component because heated air rises. Use this placement only when the installed orientation and airflow support it. Use enclosure-orientation and airflow analysis for other installations. Plan a heat sink when the thermal analysis requires one.
+* **Heat Management:** A central processing unit (CPU) usually dissipates more heat than a typical [microcontroller](<../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>) unit (MCU). Identify the thermal path through the package, copper, vias, heat sink, enclosure, and airflow. On a vertical board that uses bottom-to-top natural convection, an upper location can help cool a hot component because heated air rises. Use this placement only when the installed orientation and airflow support it. Use enclosure-orientation and airflow analysis for other installations. Plan a heat sink when the thermal analysis requires one.
 * **Height:** Record all component heights. Put tall components where the enclosure, airflow, assembly process, and cable access permit them. For a vertical assembly with bottom-to-top natural convection, the upper enclosure region can be suitable when all other constraints permit this position.
 * **CPU Space:** Keep sufficient placement and routing space around the CPU and memories. Use previous designs for the first area estimate. Verify the required area with package-escape studies and routing-density estimates.
 
 ### 3.3 Critical Component Rules
 
-* **Power Supplies:** Read the device-specific PCB layout guidelines, especially for power supplies. Identify the high-current switching loops and keep them small. When you route on other layers below a supply, make sure that the routes do not disturb the supply or interrupt its return path. Use a clean, fabricator-approved stackup.
-* **Decoupling Capacitors:** Put decoupling capacitors close to the applicable power pins. Use short, wide connections and a low-inductance current loop between the power pin, capacitor, and reference plane.
+* **Power Supplies:** Read the device-specific PCB layout guidelines, especially for power supplies. Identify the high-current switching loops and keep them small. When you route on other layers below a supply, make sure that the routes do not disturb the supply or interrupt its [return path](<./02-Return-Paths.md#1-a-signal-needs-a-return>). Use a clean, fabricator-approved stackup.
+* **[Decoupling Capacitors](<../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>):** Put decoupling capacitors close to the applicable power pins. Use short, wide connections and a low-inductance current loop between the power pin, capacitor, and reference plane.
 * **Passives:**
     * **0 Ω resistors, beads, and ferrites:** Put these parts close to the applicable power pins, decoupling capacitors, or planes, as the circuit requires.
-    * **Precision resistors and capacitors:** Use short tracks where track resistance, leakage, noise pickup, or parasitic capacitance can cause an error.
-    * **Series-termination resistors and alternating-current (AC) coupling capacitors:** Put a series-termination resistor close to its output driver. Put an AC-coupling capacitor at the location specified by the interface standard or device guide.
+    * **Precision resistors and capacitors:** Use short tracks where track resistance, leakage, noise pickup, or [parasitic capacitance](<../00-Foundations/00-Foundations.md#5-parasitic-effects>) can cause an error.
+    * **Series-termination resistors and alternating-current (AC) coupling capacitors:** Put a series-[termination resistor](<./03-trace-impedance.md#distributed-loss-and-termination>) close to its output driver. Put an [AC-coupling](<../01-Discrete-Components/01-Passives/02-Capacitors.md#ac-coupling-blocking>) capacitor at the location specified by the interface standard or device guide.
 * **Crystals and Oscillators:** Put crystals and oscillators close to their device pins. Keep the crystal tracks as short as the device guide requires.
     * **Routing Rule:** Do not route below a crystal when the device guide specifies a keepout. Avoid routes below or between crystal-component pads when this routing increases coupling or parasitic capacitance.
 * **Connectors:** Use a through-hole connector when the mechanical load and assembly process make it the more robust choice. Use a surface-mount connector when its mechanical retention, signal-integrity performance, density, and manufacturing process satisfy the design.
@@ -190,7 +190,7 @@ This workflow divides routing into a connection phase and an improvement phase. 
 4. Do the preliminary differential-pair length matching.
 5. Do the preliminary length matching for all other signals that have a specified length or skew requirement.
 6. Reduce routing congestion and increase track spacing where the design rules or crosstalk limits require it. Keep the required controlled geometry.
-7. Clear all applicable electrical **Design Rule Check (DRC)** violations.
+7. Clear all applicable electrical **Design Rule Check ([DRC](<./04-Manufacturing-and-Test.md#design-for-access>))** violations.
 8. Create power planes and polygons. Check the high-current tracks.
 9. Check each net for connectivity, clearance, return-path continuity, and compliance with the applicable design rules.
 10. Add the required same-net ground stitching vias. See Section 5.4.
@@ -231,7 +231,7 @@ This section defines **uncoupled lengths** and explains their effect on differen
 When you route a **differential pair**, such as Universal Serial Bus (USB) D+ and D−, the two conductors usually remain close and electromagnetically coupled. Near a pin or via, the conductors can separate to enter the pads.
 
 * **Uncoupled length:** The distance for which the positive and negative conductors do not maintain the intended coupled geometry.
-* **Risk:** This segment creates an impedance discontinuity that can cause reflections and convert some differential energy to common-mode energy. For example, a **90 Ω differential pair** can transition to two segments designed for **50 Ω single-ended impedance**. Do not assume that this conversion occurs automatically. The actual impedances depend on the stackup and geometry.
+* **Risk:** This segment creates an impedance discontinuity that can cause [reflections](<./03-trace-impedance.md#3-reflections>) and convert some differential energy to common-mode energy. For example, a **90 Ω differential pair** can transition to two segments designed for **50 Ω single-ended impedance**. Do not assume that this conversion occurs automatically. The actual impedances depend on the stackup and geometry.
 * **Goal:** Minimize the uncoupled length. Keep the pair together until the final connection, within the pad, escape, and fabrication constraints. Maintain the coupled geometry until the last millimeter where practical.
 :::
 
@@ -239,14 +239,14 @@ When you route a **differential pair**, such as Universal Serial Bus (USB) D+ an
 
 * **Parallel Tracks:** Identify tracks that run parallel. Where the stackup and return paths permit it, route one signal layer mainly horizontally and the adjacent signal layer mainly vertically. This arrangement reduces long broadside-parallel sections. Do not use orthogonal routing as a substitute for adequate spacing and reference planes.
 * **Isolation:** Keep unrelated differential pairs sufficiently far apart. Give clocks more separation when their fast edges can couple into other signals. Isolate sensitive asynchronous signals, such as interrupt and reset signals, as the noise-margin analysis requires.
-* **Inter-Integrated Circuit Bus:** The Inter-Integrated Circuit (I2C) clock (`SCL`) and data (`SDA`) lines are separate single-ended, open-drain signals. They are not a differential pair. Give them sufficient separation from each other and from signals that can cause interference.
+* **Inter-Integrated Circuit Bus:** The Inter-Integrated Circuit ([I2C](<../04-Digital-Interfaces/Serial-Buses/03-I2C.md#1-shared-clock-and-data>)) clock (`SCL`) and data (`SDA`) lines are separate single-ended, [open-drain](<../04-Digital-Interfaces/DigitalGeneral.md#output-architectures>) signals. They are not a differential pair. Give them sufficient separation from each other and from signals that can cause interference.
 * **Integrated-Circuit Pads:** Use the package-manufacturer land pattern or an IPC land-pattern guideline or applicable standard. Do not reduce the pad-to-pad clearance below that approved pattern. Match the footprint to the package lead and pin geometry.
 
 ### 5.4 Return Paths
 
 * **Reference-Transition Vias:** Give every high-speed signal a short, continuous return path when it changes layers.
     * **Same-Net Reference:** When a signal changes between two layers that both use ground as the reference, put a ground stitching via close to the signal-transition via. A starting point is **one nearby stitching via for each track** that changes its reference layer. Verify the required number and location from the return-current geometry.
-    * **Different Reference Nets:** A signal can change from a ground-referenced layer, such as Layer 1, to a power-referenced layer, such as Layer 4. Never connect the two reference planes directly with a stitching via. If a route must make this reference change, use a low-inductance reference-plane capacitor where the return current transfers, when the power-distribution design permits it. A safer option is to change the route or stackup so that the signal keeps the same reference net. Follow the interface and power-integrity guidance.
+    * **Different Reference Nets:** A signal can change from a ground-referenced layer, such as Layer 1, to a power-referenced layer, such as Layer 4. Never connect the two reference planes directly with a stitching via. If a route must make this reference change, use a low-inductance reference-plane capacitor where the return current transfers, when the power-distribution design permits it. A safer option is to change the route or stackup so that the signal keeps the same reference net. Follow the interface and [power-integrity](<./High-Speed.md#power-integrity-as-an-impedance-budget>) guidance.
     * **Placement:** Minimize the distance between the return-path feature and the signal-transition via. Apply the maximum distance in the interface or device guide.
 * **Plane Integrity:** Do not route a high-speed signal across a split, void, or edge in its reference plane. A broken reference path forces the return current to take a longer route and can cause EMI, crosstalk, and impedance problems. Keep reference and ground planes as continuous as the complete design permits.
 
@@ -293,7 +293,7 @@ The four principal via types differ in span, fabrication method, cost, and routi
 
 If a plated through-hole via connects Layer 1 to Layer 10 and the signal uses the complete span, it has no unused barrel below the destination layer.
 
-**Problem:** If a plated through-hole via connects a signal from Layer 1 to Layer 3, the unused barrel from Layer 3 to Layer 10 is an open transmission-line **stub**.
+**Problem:** If a plated through-hole via connects a signal from Layer 1 to Layer 3, the unused barrel from Layer 3 to Layer 10 is an open [transmission-line](<./03-trace-impedance.md#1-characteristic-impedance>) **stub**.
 
 **Physics:** At a bandwidth for which the stub electrical length is significant, the stub can resonate and reflect signal energy. The risk depends on edge rate, stub length, dielectric properties, and interface loss budget. It is not set only by a frequency label such as gigahertz (GHz).
 
@@ -420,7 +420,7 @@ Two 0.08 mm traces with three 0.08 mm clearances need **0.4 mm**. This nominal f
 
 AMD's dimensional tables contain package and process assumptions. Check units against the original drawing before transferring a table value.
 
-The guide identifies via-in-pad as an option when conventional fine-pitch via escape becomes impractical.
+The guide identifies [via-in-pad](<./04-Manufacturing-and-Test.md#via-treatment-and-defects>) as an option when conventional fine-pitch via escape becomes impractical.
 
 Source: [AMD, pad, via, and trace dimensions](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Recommended-BGA-Ball-Pad-Via-and-Trace-Dimensions-for-1.0-mm-0.92-mm-0.8-mm-and-0.5-mm-Devices).
 

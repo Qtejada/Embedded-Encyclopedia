@@ -25,7 +25,7 @@ A first thermal estimate is:
 
 <LearningEquation tex={"T_J\\approx T_A+P_D\\theta_{JA}"} />
 
-**TJ** is junction temperature. **TA** is ambient temperature. **θJA** is junction-to-ambient thermal resistance for the specified board conditions.
+**TJ** is [junction temperature](<../Entry%20Protection/fuses.md#junction-temperature-equation>). **TA** is ambient temperature. **θJA** is junction-to-ambient [thermal resistance](<../Entry%20Protection/fuses.md#thermal-resistance-chain>) for the specified board conditions.
 
 Do not treat a data-sheet thermal resistance as independent of the printed circuit board.
 
@@ -54,6 +54,19 @@ Check PSRR at the relevant frequency, current, and headroom. A low dropout speci
 
 ## 5. Startup and Reverse Current
 
-Check current limit, startup overshoot, minimum load, and behavior with a precharged output. Some LDOs need external protection against reverse current.
+Check current limit, startup overshoot, minimum load, and behavior with a precharged output. Some LDOs need external protection against [reverse current](<../Entry%20Protection/ideal-diodes.md#4-body-diode-and-off-state>).
 
 **References:** [TI, LDO capacitor selection](https://www.ti.com/document-viewer/lit/html/SSZT654/GUID-310EE2AA-44D3-4067-97D9-F97CEDDFBBF8), [TI, TPS715 application and thermal guidance](https://www.ti.com/lit/gpn/tps715).
+
+
+## Light-load efficiency and the pass-element model
+
+A linear regulator's pass device can resemble a controlled resistance at one operating point. Feedback changes its conduction to maintain the output.
+
+That local model does not make the regulator a fixed resistor. Dropout, current limit, loop response, and thermal behavior need separate checks.
+
+<LearningEquation tex={"\\eta=\\frac{V_{out}I_{out}}{V_{in}(I_{out}+I_q)}"} />
+
+This approximation assumes the ground current is Iq and excludes other loads. At very light load, quiescent current can dominate.
+
+A low-quiescent-current LDO can outperform a switching converter when input and output voltages are close. Compare actual efficiency curves at the intended load.

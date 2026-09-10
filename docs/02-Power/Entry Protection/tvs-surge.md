@@ -21,7 +21,7 @@ Do not select a TVS from its breakdown voltage alone. Check clamping voltage aga
 
 Place the TVS near the entry point. Keep the path from the connector through the TVS to the return short.
 
-Parasitic inductance adds voltage during a fast current change:
+[Parasitic inductance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>) adds voltage during a fast current change:
 
 <LearningEquation tex={"V_L=L\\frac{di}{dt}"} />
 
@@ -45,11 +45,11 @@ This arithmetic does not include tolerance, ringing, or a different pulse curren
 
 ## 4. Coordination and Verification
 
-1. Define the expected transient waveform and source impedance.
+1. Define the expected transient waveform and [source impedance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>).
 2. Check standoff voltage against the highest normal voltage.
 3. Check pulse power, pulse duration, repetition, and temperature derating.
 4. Check leakage and capacitance for the protected signal.
-5. Coordinate a series fuse or current limiter with sustained faults.
+5. Coordinate a [series fuse](<./fuses.md#ratings-that-need-separate-checks>) or [current limiter](<./fuses.md#overcurrent-protection>) with sustained faults.
 6. Measure the protected pin during the specified transient test.
 
 Use a unidirectional or bidirectional device that suits the signal polarity. The required fault path also depends on reverse-polarity conditions.

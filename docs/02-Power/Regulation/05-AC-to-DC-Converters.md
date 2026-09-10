@@ -1,8 +1,8 @@
 # AC-to-DC Converters
 
 :::danger Design Trap: Peak Currents
-Large bulk capacitors reduce ripple, but they cause **high diode peak/charging currents** because the diode only conducts for a tiny fraction of time (when AC voltage > Cap voltage).
-For cleaner, more stable DC, a **linear regulator/LDO** (or a switching regulator) after the rectifier is usually better than "just a big cap."
+Large [bulk capacitors](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bulk-capacitance>) reduce ripple, but they cause **high diode peak/charging currents** because the diode only conducts for a tiny fraction of time (when AC voltage > Cap voltage).
+For cleaner, more stable DC, a **linear regulator/[LDO](<./04-LDOs.md#1-linear-regulation>)** (or a switching regulator) after the rectifier is usually better than "just a big cap."
 :::
 
 
@@ -46,14 +46,14 @@ Assume each conducting diode drops 0.7 V.
 3. Estimated ripple is **1.0 V peak to peak**.
 4. The estimated valley is **10.33 V**.
 
-Check regulator headroom at the valley. Include low input voltage, transformer regulation, capacitor tolerance, and diode current dependence.
+Check regulator headroom at the valley. Include low input voltage, [transformer](<../../01-Discrete-Components/02-Magnetics/01-Transformers.md#1-magnetic-coupling>) regulation, capacitor tolerance, and diode current dependence.
 
 ## 4. Ratings and Measurements
 
 * Check rectifier reverse voltage and surge current.
 * Check capacitor voltage, ripple-current rating, and temperature.
 * Check transformer winding current with the actual pulsed load.
-* Check inrush current and stored energy after disconnection.
+* Check [inrush current](<../Power%20Control/Load-Switches.md#2-inrush-current>) and stored energy after disconnection.
 
 A mains supply also requires an appropriate insulation system, spacing, protective components, and test method. Those requirements depend on the product and installation.
 

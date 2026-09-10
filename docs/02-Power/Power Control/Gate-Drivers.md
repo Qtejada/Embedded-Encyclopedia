@@ -7,7 +7,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 ## 1. Gate Charge and Switching
 
-A **gate driver** charges and discharges a power transistor gate. A metal-oxide-semiconductor field-effect transistor (**MOSFET**) needs transient gate current during switching.
+A **gate driver** charges and discharges a power transistor gate. A metal-oxide-semiconductor field-effect transistor (**[MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**) needs transient gate current during switching.
 
 The average gate-charge current is approximately:
 
@@ -43,7 +43,7 @@ A high-side N-channel MOSFET needs gate voltage above its moving source voltage.
 
 Check bootstrap capacitance, leakage, maximum on-time, and recharge time. A bootstrap circuit does not automatically support continuous high-side conduction.
 
-**Dead time** prevents both transistors in a half bridge from conducting together. Excessive dead time can increase body-diode loss.
+**Dead time** prevents both transistors in a [half bridge](<./Motor-Drives.md#drive-paths-and-braking>) from conducting together. Excessive dead time can increase [body-diode](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#body-diode>) loss.
 
 ## 5. Layout and Tests
 

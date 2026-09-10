@@ -32,7 +32,7 @@ Power above the default conditions needs the applicable detection or negotiation
 
 ## 4. Board Layout
 
-For USB 2.0, route **D+** and **D−** as a differential pair over a continuous reference. Use the controller's approved impedance and termination guidance.
+For USB 2.0, route **D+** and **D−** as a [differential pair](<../05-PCB-Layout/01-Overview.md#52-length-matching-skew-control>) over a continuous reference. Use the controller's approved impedance and termination guidance.
 
 Place low-capacitance protection near the connector. Avoid long test-point branches and unnecessary layer transitions.
 

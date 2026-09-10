@@ -19,7 +19,7 @@ This distinction is important:
 
 * A **crystal resonator** has two terminals and needs an external oscillator circuit.
 * An **oscillator module** contains a resonator, an amplifier, and an output buffer.
-* A microcontroller can contain the amplifier but still need an external crystal and load components.
+* A [microcontroller](<../../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>) can contain the amplifier but still need an external crystal and load components.
 
 ## 1. Why a Crystal Selects One Frequency
 
@@ -171,7 +171,7 @@ Select a crystal from guaranteed limits, not only from typical values.
 | **Operating temperature** | Temperature range for guaranteed operation | Must include all powered-use conditions |
 | **Package and mounting** | Mechanical and land-pattern requirements | Affects layout, assembly, and parasitics |
 
-Some datasheets also specify **activity dips**, unwanted modes, shock, vibration, and reflow limits.
+Some datasheets also specify **activity dips**, unwanted modes, shock, vibration, and [reflow](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#assembly>) limits.
 Check these limits for a product that operates in a severe environment.
 
 ### Quality Factor
@@ -190,7 +190,7 @@ It can also increase startup time because resonator energy can increase slowly.
 ## 4. The Pierce Oscillator
 
 The **Pierce oscillator** is common in microcontrollers and digital clock circuits.
-It uses an inverting amplifier and a crystal feedback path.
+It uses an [inverting amplifier](<../Amplifiers/01-op-amps.md#inverting-amplifier>) and a crystal feedback path.
 
 A typical circuit contains:
 
@@ -280,7 +280,7 @@ Do not use load adjustment to correct a large frequency error.
 A fixed capacitor tolerance also creates frequency error.
 Use stable capacitor types when the accuracy requirement is strict.
 Include PCB and pin capacitance in the tolerance analysis.
-Use **C0G/NP0 capacitors** when the load network needs high temperature stability.
+Use **[C0G](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#7-dielectric-types>)/NP0 capacitors** when the load network needs high temperature stability.
 High-K ceramic capacitance can change with voltage and temperature.
 
 ## 6. Startup Margin and Negative Resistance
@@ -403,7 +403,7 @@ For guaranteed independent limits, add the absolute worst-case values:
 
 > **|Error<sub>total</sub>| &le; &Sigma;|Error<sub>limit</sub>|**
 
-Use a root-sum-square calculation only for independent statistical quantities with justified distributions:
+Use a [root-sum-square](<../../00-Foundations/03-Precision-Design.md#separate-error-limits-from-random-noise>) calculation only for independent statistical quantities with justified distributions:
 
 > **Error<sub>RSS</sub> = &radic;(&Sigma;Error<sub>i</sub><sup>2</sup>)**
 
@@ -441,7 +441,7 @@ Important jitter terms are:
 * **RMS jitter:** Root-mean-square timing variation in a stated measurement bandwidth.
 * **Peak-to-peak jitter:** Observed timing range during a stated record length.
 
-**Phase noise** describes noise power around the carrier in the frequency domain.
+**[Phase noise](<./PLL.md#6-noise-jitter-and-spurs>)** describes noise power around the carrier in the frequency domain.
 It is commonly stated as single-sideband noise in dBc/Hz at an offset from the carrier.
 
 For small phase noise, the RMS phase variation for a specified integration band is approximately:
@@ -520,7 +520,7 @@ Use this sequence for a new clock design.
 ## 14. PCB Layout
 
 The oscillator loop has small signals and high impedance.
-Parasitic capacitance and coupled noise can change its operation.
+[Parasitic capacitance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>) and coupled noise can change its operation.
 
 Use these layout practices:
 
@@ -531,7 +531,7 @@ Use these layout practices:
 * Do not route unrelated signals through or under the oscillator area.
 * Connect load capacitors to a quiet local ground return.
 * Avoid vias in the crystal loop when possible.
-* Do not add test pads to crystal pins unless their capacitance is included.
+* Do not add [test pads](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#design-for-access>) to crystal pins unless their capacitance is included.
 * Keep the oscillator area away from board-flex and mounting stress.
 
 Ground pours, guards, and layer keepouts have device-specific effects.
@@ -541,13 +541,13 @@ Use the active-device and crystal layout recommendations.
 
 ## 15. Measurement Without Circuit Disturbance
 
-A normal passive oscilloscope probe can add several picofarads.
+A normal passive [oscilloscope](<../../00-Foundations/05-Measurement-and-Debug.md#oscilloscope-bandwidth-and-sampling>) probe can add several picofarads.
 This capacitance can pull the frequency, reduce startup margin, or stop oscillation.
 
 Use one of these methods:
 
 * Measure a buffered clock-output pin.
-* Use an active probe with very low input capacitance.
+* Use an [active probe](<../../00-Foundations/05-Measurement-and-Debug.md#probe-selection>) with very low input capacitance.
 * Use the test method in the oscillator vendor documentation.
 * Use a frequency counter on a buffered signal.
 
@@ -567,7 +567,7 @@ Use enough counter gate time to resolve the required ppm.
 Reference the counter to a source that is more accurate than the device under test.
 Allow the board and reference to reach the specified temperature.
 
-For a module, also measure output duty cycle, rise time, overshoot, and logic levels.
+For a module, also measure output duty cycle, rise time, overshoot, and [logic levels](<../../04-Digital-Interfaces/DigitalGeneral.md#logic-levels>).
 These properties affect the clock receiver even when the average frequency is correct.
 
 ## 16. Common Failure Modes

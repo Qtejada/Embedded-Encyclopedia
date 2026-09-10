@@ -10,11 +10,11 @@ import DigitalFilterExplorer from '@site/src/components/DigitalFilterExplorer';
 A **digital filter** calculates a new sample sequence from an input sample sequence.
 The calculation changes magnitude, phase, noise bandwidth, or sample rate.
 
-Digital filters operate after an analog-to-digital converter (**ADC**) or inside a digital system.
-They can also prepare samples for a digital-to-analog converter (**DAC**).
+Digital filters operate after an [analog-to-digital converter](<../Data-convertes/DACs.md#3-sampling-and-resolution>) (**ADC**) or inside a digital system.
+They can also prepare samples for a [digital-to-analog converter](<../Data-convertes/DACs.md#1-dac-fundamentals>) (**DAC**).
 
 A digital filter does not replace all analog filtering.
-An analog anti-alias filter must act before the ADC.
+An analog [anti-alias filter](<./Active-filters.md#18-anti-alias-filters-for-adcs>) must act before the ADC.
 An analog reconstruction filter must remove unwanted DAC output images and switching content.
 
 This page explains sampled signals, finite impulse response filters, infinite impulse response filters, frequency response, multirate processing, numerical limits, and converter applications.
@@ -77,7 +77,7 @@ Its unit is radians per sample.
 Important values are:
 
 * **Direct current (DC):** <i>&Omega; = 0</i>.
-* **Nyquist frequency:** <i>&Omega; = &pi;</i>, or <i>f = f<sub>sample</sub>/2</i>.
+* **[Nyquist frequency](<../Data-convertes/DACs.md#nyquist-criterion>):** <i>&Omega; = &pi;</i>, or <i>f = f<sub>sample</sub>/2</i>.
 * **One complete digital-frequency period:** <i>2&pi;</i> radians per sample.
 
 Digital frequency repeats every <i>2&pi;</i>.
@@ -672,7 +672,7 @@ Its information bandwidth is 10 MHz.
 
 Do not use the 200 Msps plan for this exact band.
 
-The ADC track-and-hold must still acquire the original carrier.
+The ADC [track-and-hold](<../Data-convertes/Sample-holding.md#1-basic-circuit>) must still acquire the original carrier.
 The source example uses an ADC08200 with a 200 Msps sample rate and approximately 500 MHz analog input bandwidth.
 
 Analog input bandwidth does not guarantee the specified resolution, distortion, or **signal-to-noise ratio (SNR)** at every input frequency.
@@ -823,7 +823,7 @@ A practical decimation ratio must leave a transition band above 100 kHz and belo
 
 #### Delta-Sigma ADC
 
-A delta-sigma ADC contains a high-rate modulator and a digital filter.
+A [delta-sigma ADC](<../Data-convertes/DACs.md#delta-sigma-adc>) contains a high-rate modulator and a digital filter.
 
 A basic first-order 1-bit modulator loop operates as follows:
 
@@ -905,7 +905,7 @@ A 16-bit code span is approximately 96 dB from full scale to one LSB.
 The ideal full-scale-sine quantization SNR is approximately 98.1 dB.
 
 In many 12-bit through 14-bit converter systems, quantization noise can be a major part of the total noise.
-In many converters with 16 bits or more, thermal noise from the converter and analog front end can exceed the ideal quantization noise.
+In many converters with 16 bits or more, [thermal noise](<../../00-Foundations/00-Foundations.md#thermal-noise>) from the converter and analog front end can exceed the ideal quantization noise.
 Thermal-noise power increases with absolute temperature and measurement bandwidth.
 At these higher resolutions, a temperature change can have a larger effect on total noise than the ideal LSB calculation suggests.
 These statements are common design tendencies and not universal limits.
@@ -915,7 +915,7 @@ Use the converter noise specifications at the applicable temperature and bandwid
 
 * **Signal-to-noise ratio (SNR):** Compares signal power with noise power.
 * **Signal-to-noise-and-distortion ratio (SINAD):** Includes noise and harmonic distortion.
-* **Effective number of bits (ENOB):** Converts measured SINAD into an equivalent ideal bit count.
+* **[Effective number of bits](<../Data-convertes/DACs.md#effective-number-of-bits>) (ENOB):** Converts measured SINAD into an equivalent ideal bit count.
 
 For the applicable full-scale sine-wave convention:
 
@@ -944,7 +944,7 @@ It also cannot correct:
 * Analog clipping or saturation.
 * Aliasing at the initial ADC.
 * Aperture-jitter error.
-* Converter differential nonlinearity (**DNL**) or integral nonlinearity (**INL**).
+* Converter [differential nonlinearity](<../Data-convertes/DACs.md#differential-non-linearity>) (**DNL**) or [integral nonlinearity](<../Data-convertes/DACs.md#integral-non-linearity>) (**INL**).
 * Uncalibrated offset or gain error.
 * Reference drift.
 
@@ -979,7 +979,7 @@ It usually decreases scaling risk but does not remove all numerical error.
 
 ### 28. Clock Jitter and Aperture Error
 
-**Aperture jitter** is uncertainty in the effective sample instant.
+**[Aperture jitter](<../Data-convertes/Sample-holding.md#aperture-jitter>)** is uncertainty in the effective sample instant.
 A changing input converts timing error into voltage error:
 
 > **&Delta;V<sub>jitter</sub> &asymp; |dV<sub>in</sub>/dt| &times; &Delta;t**
@@ -1118,7 +1118,7 @@ Include their combined group delay in link timing.
 
 ### 33. Phase-Locked-Loop Timing Filters
 
-A phase-locked loop (**PLL**) can use an analog or digital loop filter.
+A [phase-locked loop](<../Timing/PLL.md#1-core-pll-architecture>) (**PLL**) can use an analog or digital loop filter.
 This filter operates inside a feedback loop.
 
 Its bandwidth creates a timing trade:
@@ -1127,9 +1127,9 @@ Its bandwidth creates a timing trade:
 * **Narrow loop bandwidth:** Slower lock and more rejection of fast input jitter.
 
 A narrow loop does not remove all output jitter.
-The voltage-controlled oscillator and other PLL stages also add noise.
+The [voltage-controlled oscillator](<../Timing/PLL.md#voltage-controlled-oscillator>) and other PLL stages also add noise.
 
-Filter delay changes PLL phase margin.
+Filter delay changes PLL [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>).
 Analyze the complete loop and not only the standalone filter response.
 
 ### 34. Digital Power Control
@@ -1160,7 +1160,7 @@ A digital low-pass filter can decrease measurement noise before a threshold deci
 It does not guarantee one clean transition for a slow input.
 
 Noise near a threshold can still make repeated output events.
-Use hysteresis, a state machine, or a qualified debounce interval when the application requires one event.
+Use [hysteresis](<../Amplifiers/comparators.md#6-schmitt-trigger-and-hysteresis>), a state machine, or a qualified debounce interval when the application requires one event.
 
 Do not drive a clock decision from an unqualified slow signal.
 
@@ -1241,3 +1241,18 @@ Before release, confirm:
 * [Active Filters](./Active-filters.md)
 * [ADCs and DACs](../Data-convertes/DACs.md)
 * [Sample and Hold](../Data-convertes/Sample-holding.md)
+
+
+## Continuous spectra and edge shape
+
+The **Fourier series** represents a periodic waveform with discrete harmonics. The **Fourier transform** represents a more general waveform through its frequency content.
+
+A periodic signal's transform contains spectral lines in the ideal infinite-duration model. A finite observation window broadens measured spectral features.
+
+An ideal symmetric square wave contains odd harmonics whose amplitudes decrease in proportion to harmonic number. Different duty cycles change the harmonic amplitudes and nulls.
+
+An ideal instantaneous edge requires unlimited bandwidth. A real edge reduces high-frequency content but does not usually establish an exact highest nonzero frequency.
+
+A rule such as bandwidth approximately equal to 0.35 divided by rise time assumes a particular response shape. It is not a universal spectral cutoff.
+
+Slower edges can reduce unwanted high-frequency energy. They also reduce timing margin in some receivers. Filtering a selected frequency can change both waveform shape and phase.

@@ -19,10 +19,10 @@ A simple **Zener regulator** has important limitations.
 
 ### Development of the Series-Pass Regulator
 
-1. **Emitter follower:** Add an NPN emitter follower to increase output current.
+1. **[Emitter follower](<../../01-Discrete-Components/03-Semicondctors/02-BJTs.md#5-amplifier-configurations>):** Add an NPN emitter follower to increase output current.
    This adds an approximately 0.6 V base-emitter drop.
    The drop changes with current and temperature.
-2. **Op-amp control:** Use an operational amplifier (**op-amp**) to set the voltage with feedback gain.
+2. **[Op-amp](<../../03-Signal-Modulation/Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) control:** Use an operational amplifier (**op-amp**) to set the voltage with feedback gain.
    The op-amp output-current capability still limits load current.
 3. **Series-pass regulator:** Put the pass transistor **inside the feedback loop**.
    The transistor supplies high current.
@@ -45,7 +45,7 @@ The available archive figure below shows the same series-pass concept.
 
 ### Frequency Compensation
 
-Power supplies frequently use large bypass capacitors from a supply node to ground.
+Power supplies frequently use large [bypass capacitors](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>) from a supply node to ground.
 These capacitors keep supply impedance low across a wide frequency range.
 
 The regulator then drives a large capacitive load.
@@ -61,7 +61,7 @@ Assume that an accidental short circuit connects the output to ground.
 The feedback loop then increases pass-transistor drive in an attempt to restore voltage.
 This action can destroy the pass transistor.
 
-* A sense resistor, <i>R<sub>cl</sub></i>, measures output current.
+* A [sense resistor](<../Measurment/Current-sense.md#1-convert-current-to-voltage>), <i>R<sub>cl</sub></i>, measures output current.
 * Transistor Q2 monitors the voltage across the resistor.
 * Q2 turns on when the resistor voltage is approximately 0.6 V.
 * Q2 then removes base drive from the pass transistor.
@@ -101,7 +101,7 @@ It converts this electrical power to heat.
 > **P<sub>D</sub> = (V<sub>in</sub> - V<sub>out</sub>) &times; I<sub>load</sub>**
 
 * **Dropout voltage:** This is the minimum input-to-output voltage difference that maintains regulation.
-* **Low-dropout regulator (LDO):** This regulator operates with a comparatively small input-to-output voltage difference.
+* **[Low-dropout regulator](<../Regulation/04-LDOs.md#1-linear-regulation>) (LDO):** This regulator operates with a comparatively small input-to-output voltage difference.
 
 ---
 
@@ -152,7 +152,7 @@ A fuse can also open on only one rail.
 The active rail can then pull the inactive regulator to the wrong polarity.
 The original example is a &plusmn;15 V op-amp supply.
 
-Connect reverse-biased Schottky diodes across the outputs.
+Connect reverse-biased [Schottky diodes](<../../01-Discrete-Components/03-Semicondctors/01-Diodes.md#schottky-diodes>) across the outputs.
 The diodes limit reverse voltage to approximately 0.3 V.
 :::
 
@@ -212,7 +212,7 @@ Do not connect one type as if it were the other.
 
 1. **Thermal shutdown:** A typical device shuts down when die temperature exceeds approximately 150&deg;C.
 2. **Current limiting:** The internal circuit limits current during an output short circuit.
-3. **Safe-operating-area (SOA) protection:** The circuit monitors input-to-output voltage and load current.
+3. **Safe-operating-area ([SOA](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#safe-operating-area>)) protection:** The circuit monitors input-to-output voltage and load current.
    It decreases maximum current when transistor stress becomes excessive.
 
 #### Distributed Power
@@ -249,11 +249,11 @@ They depend on the regulator, capacitor, layout, and load step.
 
 ### Capacitor Parasitics
 
-* **Equivalent series resistance (ESR):** ESR causes an immediate voltage change.
+* **[Equivalent series resistance](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#equivalent-series-resistance>) (ESR):** ESR causes an immediate voltage change.
 
   > **V<sub>drop</sub> = I<sub>load</sub> &times; ESR**
 
-* **Equivalent series inductance (ESL):** ESL opposes a rapid current change.
+* **[Equivalent series inductance](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#equivalent-series-inductance>) (ESL):** ESL opposes a rapid current change.
 * Ceramic capacitors have low high-frequency impedance.
 * Larger electrolytic capacitors supply stored energy.
 * Electrolytic ESR can also provide useful damping.
@@ -305,7 +305,7 @@ It has two main disadvantages.
 
 > **I<sub>load</sub> = 5 V / R + 3 mA**
 
-The actual quiescent current changes with device type and operating conditions.
+The actual [quiescent current](<../Regulation/04-LDOs.md#light-load-efficiency-and-the-pass-element-model>) changes with device type and operating conditions.
 Use the datasheet value.
 
 ### Method B: Adjustable LM317 Regulator
@@ -426,7 +426,7 @@ This stage includes safety, filtering, transformation, rectification, and energy
 :::danger Mains-Voltage Safety
 Mains circuits can cause fatal electric shock, fire, and arc hazards.
 Use applicable safety standards, rated components, protective equipment, and qualified procedures.
-An isolation transformer does not make primary-side nodes safe to touch.
+An isolation [transformer](<../../01-Discrete-Components/02-Magnetics/01-Transformers.md#1-magnetic-coupling>) does not make primary-side nodes safe to touch.
 :::
 
 ### Power Entry and Safety
@@ -437,7 +437,7 @@ An isolation transformer does not make primary-side nodes safe to touch.
 * **Power-entry module:** This module can combine the fuse holder, switch, and low-pass filter.
 * Its construction must prevent contact with live conductors during fuse replacement.
 * **Fuse:** A mains-powered supply requires correctly rated overcurrent protection.
-* A time-delay, or slow-blow, fuse can tolerate capacitor inrush current.
+* A time-delay, or slow-blow, fuse can tolerate capacitor [inrush current](<../Power%20Control/Load-Switches.md#2-inrush-current>).
 * **Galvanic isolation:** An isolation transformer separates the secondary circuit from mains conductors.
 * Protective earth and isolated circuit ground are different nodes unless the design intentionally connects them.
 
@@ -454,7 +454,7 @@ It also limits noise that the equipment sends to the power line.
 * **Y-class capacitor, such as Y1 or Y2:** Connect it from line to protective earth or across an isolation barrier.
   Its failure can create a shock path.
   As a result, it has stringent safety requirements.
-* **Transient suppressor:** A metal-oxide varistor (**MOV**) or bidirectional Zener or TVS diode can shunt a high surge current.
+* **Transient suppressor:** A metal-oxide varistor (**MOV**) or bidirectional Zener or [TVS diode](<./tvs-surge.md#1-transient-protection>) can shunt a high surge current.
   Some correctly selected devices can conduct hundreds of amperes during a short surge.
   Select it from the expected surge waveform and energy.
 
@@ -466,7 +466,7 @@ It also limits noise that the equipment sends to the power line.
 * An excessively large capacitor decreases rectifier conduction angle.
   This increases transformer heating and rectifier stress.
 * **Bleeder resistor:** Provides a minimum load and discharges the capacitor after switch-off.
-* **Snubber:** A series RC network across the transformer secondary can limit ringing and voltage spikes.
+* **[Snubber](<../../01-Discrete-Components/03-Semicondctors/01-Diodes.md#c-rc-snubbers-and-rcd-clamps>):** A series RC network across the transformer secondary can limit ringing and voltage spikes.
 
 ### Transformer Voltage Selection
 
@@ -481,7 +481,7 @@ The first estimate is:
 
 > **V<sub>peak</sub> &asymp; 1.41 &times; V<sub>rms</sub> - 1.4 V**
 
-Transformer winding resistance and leakage cause additional voltage sag.
+Transformer [winding resistance](<../../01-Discrete-Components/01-Passives/03-Inductors.md#winding-losses-and-a-practical-model>) and leakage cause additional voltage sag.
 Confirm the design with safe bench measurements and specified tolerances.
 
 ### Transformer Current Rating
@@ -514,19 +514,19 @@ An inductor stores energy in its magnetic field and transfers energy to the outp
 
 * **High efficiency:** The switch is usually either fully enhanced or off.
   Conduction and switching losses remain, but they are much lower than linear loss in many applications.
-* **Voltage conversion:** A buck converter decreases voltage.
-  A boost converter increases voltage.
+* **Voltage conversion:** A [buck converter](<../Regulation/01-Buck%20Converter.md#1-step-down-conversion>) decreases voltage.
+  A [boost converter](<../Regulation/02-Boost%20Converter.md#1-step-up-conversion>) increases voltage.
   A buck-boost converter can invert or increase and decrease voltage.
 * **Size:** High-frequency magnetic components can make the supply compact.
 
 ### Disadvantages
 
 * **Noise:** Switching produces output ripple.
-* Pulsed current can also conduct or radiate electromagnetic interference (**EMI**).
+* Pulsed current can also conduct or radiate [electromagnetic interference](<../../05-PCB-Layout/High-Speed.md#eye-diagrams-and-interference>) (**EMI**).
 
 ### Charge-Pump Converters
 
-A **charge pump** uses switched capacitors instead of an inductor.
+A **[charge pump](<../Regulation/06-Charge-Pumps.md#two-phase-voltage-doubler>)** uses switched capacitors instead of an inductor.
 
 * **Advantages:** It can be small and can produce less magnetic-field radiation than an inductor converter.
 * It is useful for low-current outputs, such as a negative op-amp rail.
@@ -597,7 +597,7 @@ A transformer can provide galvanic isolation and multiple outputs.
   The original approximate upper range is 200 W.
   Input and output currents are strongly pulsed.
 * **Forward converter:** Used at higher power.
-* **Half-bridge and full-bridge converters:** Used for high-power applications.
+* **[Half-bridge](<../Power%20Control/Motor-Drives.md#drive-paths-and-braking>) and full-bridge converters:** Used for high-power applications.
 
 ---
 
@@ -617,7 +617,7 @@ The rectified primary rail is **not isolated** from the mains.
 Contact with primary-side conductors can be fatal.
 
 Use an isolated converter topology, such as a flyback, when the output must be safety isolated.
-An optocoupler can transfer the feedback signal across the isolation barrier.
+An [optocoupler](<../../04-Digital-Interfaces/DigitalGeneral.md#iv-couplers>) can transfer the feedback signal across the isolation barrier.
 
 ### Dual-Voltage and Universal Inputs
 
@@ -636,7 +636,7 @@ Use a universal-input design when practical.
 
 ### Inrush Current
 
-At initial connection, an empty bulk capacitor has very low effective impedance.
+At initial connection, an empty [bulk capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bulk-capacitance>) has very low effective impedance.
 It can draw a large inrush current.
 
 * **Negative-temperature-coefficient (NTC) thermistor:** It has higher resistance when cold.
@@ -663,7 +663,7 @@ This produces harmonic current and poor power factor.
 
 The rectified DC rail is approximately 160 V to 300 V in the original examples.
 
-* **MOSFET voltage rating:** Inductive overshoot and reset behavior can require a 600 V or 800 V MOSFET on a 300 V rail.
+* **[MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) voltage rating:** Inductive overshoot and reset behavior can require a 600 V or 800 V MOSFET on a 300 V rail.
 * **Leakage-inductance spikes:** These spikes can exceed the ideal maximum voltage.
 * Use a correctly designed clamp or snubber.
 
@@ -691,7 +691,7 @@ That larger value represents comparable loss during both charging and dischargin
 
 An isolated output cannot use a direct conductive feedback wire.
 
-* **Optocoupler method:** A secondary-side light-emitting diode (**LED**) sends light to a primary-side phototransistor.
+* **Optocoupler method:** A secondary-side light-emitting diode (**LED**) sends light to a primary-side [phototransistor](<../../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>).
 * **Primary-side regulation:** The controller regulates an auxiliary transformer winding.
   It assumes that the main output follows this winding.
 * Primary-side regulation is less expensive but usually less accurate.
@@ -726,10 +726,10 @@ The primary and secondary grounds are galvanically isolated.
 
 * **Input stage:** AC enters through a fuse and EMI filter L1 and X1.
 * Bridge rectifier D1 charges a 47 &mu;F high-voltage capacitor.
-* **Switch U1:** TOP201 combines a pulse-width-modulation (**PWM**) controller with a high-voltage MOSFET.
+* **Switch U1:** TOP201 combines a pulse-width-modulation (**[PWM](<../../03-Signal-Modulation/Filters/Digital-filters.md#pulse-width-modulation-pwm>)**) controller with a high-voltage MOSFET.
 * It switches at 100 kHz.
 * **Transformer T1:** In a flyback, this magnetic component operates as a coupled inductor.
-* **Leakage energy:** Primary leakage inductance produces a voltage spike when the switch turns off.
+* **Leakage energy:** Primary [leakage inductance](<../../01-Discrete-Components/02-Magnetics/01-Transformers.md#3-real-transformer-limits>) produces a voltage spike when the switch turns off.
 * **Snubber:** TVS D2 and diode D3 clamp the spike and protect the MOSFET.
 * **Secondary side:** Schottky diode D5 rectifies the output.
 * Inductor L2 smooths the 100 kHz ripple.
@@ -742,8 +742,8 @@ The primary and secondary grounds are galvanically isolated.
 * **DCM:** Transformer current reaches 0 A before the next cycle.
   The resulting dead interval can contain ringing.
 * **Hard switching:** The MOSFET dissipates energy associated with <i>C<sub>OSS</sub></i> at approximately 320 V.
-* **Measurement safety:** Do not connect a standard earth-referenced oscilloscope ground clip to a live primary node.
-* Use a correctly rated differential probe, isolated-input instrument, or approved isolation measurement system.
+* **Measurement safety:** Do not connect a standard earth-referenced [oscilloscope](<../../00-Foundations/05-Measurement-and-Debug.md#oscilloscope-bandwidth-and-sampling>) ground clip to a live primary node.
+* Use a correctly rated [differential probe](<../../00-Foundations/05-Measurement-and-Debug.md#probe-selection>), isolated-input instrument, or approved isolation measurement system.
 * Do not defeat an oscilloscope protective-earth connection.
 
 :::tip Selecting a Regulator Type
@@ -774,7 +774,7 @@ Applications include:
 A power regulator such as the 7805 is not a precision reference.
 The original notes give a 1% to 3% change with temperature and operating conditions.
 
-A high-precision instrument, such as a six-digit multimeter, needs a dedicated **voltage reference**.
+A high-precision instrument, such as a six-digit [multimeter](<../../00-Foundations/05-Measurement-and-Debug.md#multimeter-measurements>), needs a dedicated **voltage reference**.
 
 * **Reference, or "brain":** A low-power device supplies a very stable voltage.
   The original example is 2 ppm/&deg;C.
@@ -789,7 +789,7 @@ A high-precision instrument, such as a six-digit multimeter, needs a dedicated *
 2. **Bandgap reference:** It combines transistor voltage terms to cancel much of their first-order temperature change.
    The approximately 0.6 V base-emitter voltage is one part of this method.
    Residual temperature error remains.
-3. **JFET pinch-off reference:** It uses a junction field-effect transistor pinch-off characteristic.
+3. **[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>) pinch-off reference:** It uses a junction field-effect transistor pinch-off characteristic.
 4. **Two-terminal shunt reference:** It operates like a precise Zener.
    Applied current makes it clamp to a specified voltage.
 5. **Three-terminal series reference:** It operates like a small linear regulator and controls its own bias.
@@ -809,7 +809,7 @@ Lead-acid and nickel-cadmium batteries can use some controlled maintenance-charg
 Lithium-ion and lithium-polymer cells must not use uncontrolled trickle charging.
 Overcharge can cause metallic-lithium plating, internal short circuits, and thermal runaway or fire.
 
-The original notes describe the **constant-current/constant-voltage (CC/CV)** algorithm.
+The original notes describe the **constant-current/constant-voltage ([CC/CV](<../Regulation/Battery-Charging.md#2-charging-states>))** algorithm.
 A complete charger can also include precharge, temperature checks, and fault checks.
 
 #### Phase 1: Constant Current
@@ -935,7 +935,7 @@ This **ground bounce** can reset the controller or cause timing jitter.
 
 ## 16. Digital Power Control
 
-Traditional supplies use analog op-amps and comparators.
+Traditional supplies use analog op-amps and [comparators](<../../03-Signal-Modulation/Amplifiers/comparators.md#1-comparator-decision>).
 Many server and automotive systems also use digital power functions.
 
 ### Digital Management and Digital Control
@@ -948,8 +948,8 @@ The fast regulation loop remains analog.
 Digital circuits perform communication, reporting, and configuration.
 The original notes call these functions "housekeeping."
 
-* **Communication:** The regulator uses an inter-integrated circuit (**I2C**) or PMBus interface.
-* **Reporting:** It sends input voltage, output voltage, output current, and die temperature to a microcontroller.
+* **Communication:** The regulator uses an inter-integrated circuit (**[I2C](<../../04-Digital-Interfaces/Serial-Buses/03-I2C.md#1-shared-clock-and-data>)**) or PMBus interface.
+* **Reporting:** It sends input voltage, output voltage, output current, and die temperature to a [microcontroller](<../../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>).
 * **Configuration:** Software can change settings without resistor replacement.
 * Example command: "Set output to 1.2 V for sleep mode."
 * Example command: "Set output to 3.3 V for active mode."
@@ -959,7 +959,7 @@ The original notes call these functions "housekeeping."
 
 A fully digital loop removes the analog error amplifier.
 
-> **Analog-to-digital converter (ADC) &rarr; proportional-integral-derivative (PID) processor &rarr; digital PWM generator**
+> **[Analog-to-digital converter](<../../03-Signal-Modulation/Data-convertes/DACs.md#3-sampling-and-resolution>) (ADC) &rarr; proportional-integral-derivative (PID) processor &rarr; digital PWM generator**
 
 * The ADC samples output voltage millions of times each second.
 * A digital signal processor (**DSP**) calculates the necessary pulse width.

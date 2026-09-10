@@ -21,7 +21,7 @@ Use an in-amp for:
 * Load cells and pressure sensors.
 * Electrocardiogram (**ECG**) electrodes.
 * pH probes and other high-impedance sensors.
-* Current-shunt measurements.
+* [Current-shunt](<../../02-Power/Measurment/Current-sense.md#1-convert-current-to-voltage>) measurements.
 * Data-acquisition (**DAQ**) inputs.
 * Small signals on high common-mode voltages.
 
@@ -29,7 +29,7 @@ Use an in-amp for:
 
 ## 1. Why Use an Instrumentation Amplifier?
 
-A four-resistor difference amplifier can reject common-mode voltage.
+A four-resistor [difference amplifier](<./02-differential-amps.md#3-four-resistor-op-amp-difference-amplifier>) can reject [common-mode voltage](<./02-differential-amps.md#common-mode-voltage>).
 Its input resistors can load the signal source.
 Its CMRR also depends directly on resistor-ratio matching.
 
@@ -38,20 +38,20 @@ An instrumentation amplifier adds input buffers and a precision difference stage
 The main advantages are:
 
 * **Very high input impedance:** The input buffers take very little current from the source.
-* **High common-mode rejection ratio (CMRR):** Matched internal resistors reject common-mode voltage.
+* **High [common-mode rejection ratio](<./02-differential-amps.md#2-common-mode-rejection-ratio>) (CMRR):** Matched internal resistors reject common-mode voltage.
 * **Simple gain control:** One resistor can set gain across a wide range.
 * **Low source loading:** Weak sensors keep their original signal voltage.
 * **Accurate differential gain:** Factory-trimmed components give better ratio accuracy.
 * **Reference control:** A reference pin sets the output DC level.
 
-Use a basic difference amplifier when source impedance is low and moderate CMRR is sufficient.
+Use a basic difference amplifier when [source impedance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>) is low and moderate CMRR is sufficient.
 Use an in-amp when source loading, gain accuracy, or CMRR is more important.
 
 ---
 
 ## 2. Classic Three-Op-Amp Architecture
 
-A classic instrumentation amplifier contains three op-amps.
+A classic instrumentation amplifier contains three [op-amps](<./01-op-amps.md#1-op-amp-fundamentals>).
 Two op-amps make the input stage.
 The third op-amp makes the output difference stage.
 
@@ -212,7 +212,7 @@ Do not add values that use different reference points.
 
 ### Input Offset Voltage
 
-**Input offset voltage**, <i>V<sub>OS</sub></i>, acts like an unwanted differential input.
+**[Input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>)**, <i>V<sub>OS</sub></i>, acts like an unwanted differential input.
 
 > **V<sub>out,error</sub> = G &times; V<sub>OS</sub>**
 
@@ -231,7 +231,7 @@ Include:
 
 ### Input Bias Current
 
-Input bias current flows through source resistance.
+[Input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) flows through source resistance.
 It produces an input voltage error.
 
 > **V<sub>error</sub> = I<sub>B</sub>R<sub>source</sub>**
@@ -272,10 +272,10 @@ Total input noise includes:
 
 * Input-voltage noise.
 * Input-current noise multiplied by source impedance.
-* Source-resistance thermal noise.
+* Source-resistance [thermal noise](<../../00-Foundations/00-Foundations.md#thermal-noise>).
 * Gain-resistor thermal noise.
 * Reference-pin noise.
-* Low-frequency 1/f noise.
+* Low-frequency [1/f noise](<../../00-Foundations/00-Foundations.md#1f-noise>).
 * Broadband noise integrated across measurement bandwidth.
 
 <InstrumentationAmpErrorExplorer />
@@ -293,10 +293,10 @@ Examples include:
 
 * ECG electrodes.
 * pH probes.
-* Photodiodes.
+* [Photodiodes](<../../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>).
 * Other weak transducers.
 
-Start with a **JFET-input** or **CMOS-input** amplifier.
+Start with a **[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>)-input** or **CMOS-input** amplifier.
 These input types usually have lower bias current and current noise.
 
 The existing ECG example uses skin source impedance near 500 k&Omega;.
@@ -378,7 +378,7 @@ Unequal protection resistance can decrease CMRR.
 
 ### Set the Output Reference
 
-A single-supply ADC cannot usually accept a negative voltage.
+A single-supply [ADC](<../Data-convertes/DACs.md#3-sampling-and-resolution>) cannot usually accept a negative voltage.
 Set the in-amp reference pin to the ADC midpoint.
 
 For a 0 V to 5 V ADC:
@@ -438,7 +438,7 @@ Check:
 * Temperature coefficient.
 * Voltage coefficient.
 * Noise.
-* Parasitic capacitance.
+* [Parasitic capacitance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>).
 * Connection resistance.
 
 Put <i>R<sub>G</sub></i> near the amplifier pins.
@@ -451,7 +451,7 @@ It is useful when one ADC measures signals with different amplitudes.
 One existing DAQ example uses:
 
 * A high-impedance PGA input near 10 G&Omega;.
-* An external DAC to cancel 5.5 mV offset.
+* An external [DAC](<../Data-convertes/DACs.md#1-dac-fundamentals>) to cancel 5.5 mV offset.
 * Stored gain settings for each input channel.
 * More than 2 &mu;s of settling before conversion.
 
@@ -502,7 +502,7 @@ Check:
 * Input protection.
 * Gain accuracy.
 * Shunt self-heating.
-* Kelvin connections.
+* [Kelvin connections](<../../02-Power/Measurment/Current-sense.md#3-kelvin-connections>).
 * Required bidirectional output reference.
 
 ### Autonulling Laboratory Amplifier
@@ -565,7 +565,7 @@ This decreases leakage through the PCB surface.
 ### Select the Device
 
 1. Set the differential input range.
-2. Set the common-mode input range.
+2. Set the [common-mode input range](<./01-op-amps.md#common-mode-input-range>).
 3. Calculate the necessary gain.
 4. Set the output reference and output range.
 5. Select CMRR at the applicable frequency.

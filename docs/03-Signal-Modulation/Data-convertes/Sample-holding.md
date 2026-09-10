@@ -16,7 +16,7 @@ A **track-and-hold circuit** follows the input during its track interval and kee
 Datasheets frequently use the two names for the same basic circuit.
 The term **track-and-hold** makes the continuous tracking action clear.
 
-Many analog-to-digital converter (**ADC**) cores require a stable sampled value during conversion.
+Many [analog-to-digital converter](<./DACs.md#3-sampling-and-resolution>) (**ADC**) cores require a stable sampled value during conversion.
 An internal or external sample-and-hold function supplies this value.
 The external input must meet the acquisition-interval requirements in the ADC datasheet.
 
@@ -66,7 +66,7 @@ The timing plot separates acquisition, settled tracking, the command-to-sample t
 ### Track Phase
 
 The control signal closes the analog switch.
-The source then charges or discharges the hold capacitor through the complete source resistance.
+The source then charges or discharges the hold capacitor through the complete [source resistance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>).
 
 The complete resistance can include:
 
@@ -94,7 +94,7 @@ The open switch isolates the hold capacitor from the input.
 The output buffer reads the stored voltage.
 
 Leakage current slowly changes the stored charge.
-Dielectric absorption can make the capacitor move toward an earlier voltage.
+[Dielectric absorption](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#a-dielectric-absorption>) can make the capacitor move toward an earlier voltage.
 Off-state switch capacitance can couple part of a changing input or clock signal into the held node.
 
 ### Return to Track
@@ -118,7 +118,7 @@ Acquisition can include:
 * Recovery from charge transfer or kickback.
 
 Do not use only small-signal bandwidth to estimate acquisition time.
-A large step can put the driver into slew-rate limiting.
+A large step can put the driver into [slew-rate](<../Amplifiers/01-op-amps.md#slew-rate>) limiting.
 The circuit enters linear settling only after the large-signal transition is complete.
 
 Datasheets can specify acquisition at the hold capacitor or at the buffered output.
@@ -158,7 +158,7 @@ The theoretical sine-wave SNR limit from jitter alone is:
 
 Use the ADC or sample-and-hold datasheet aperture-jitter specification for the final SNR calculation.
 Include clock-source jitter and clock-distribution jitter in the complete timing budget.
-Combine statistically independent RMS jitter sources by their root-sum-square value.
+Combine statistically independent RMS jitter sources by their [root-sum-square](<../../00-Foundations/03-Precision-Design.md#separate-error-limits-from-random-noise>) value.
 
 ### Hold Time
 
@@ -334,15 +334,15 @@ The larger capacitor also increases acquisition time and drive-current demand.
 ### Output-Buffer Error
 
 The output buffer isolates the capacitor from the external load.
-Its input bias current contributes to droop.
-Its input offset voltage, offset drift, noise, and settling behavior add to the held-value error.
+Its [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) contributes to droop.
+Its [input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>), offset drift, noise, and settling behavior add to the held-value error.
 
 Select a buffer with:
 
 * Low input bias current.
 * Low input offset and drift.
 * Sufficient bandwidth and settling speed.
-* Input common-mode range that includes the complete held-voltage range.
+* [Input common-mode range](<../Amplifiers/01-op-amps.md#common-mode-input-range>) that includes the complete held-voltage range.
 * Output swing and current that support the load.
 * Stable operation with the actual source and load capacitance.
 
@@ -375,17 +375,17 @@ Control-to-signal capacitance couples part of the clock edge into the hold node.
 This effect is **clock feedthrough**.
 
 Clock feedthrough can make a narrow output spike or a step in the held value.
-Internal switching in auto-zero and chopper-stabilized amplifiers can cause a related feedthrough error.
+Internal switching in [auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) and chopper-stabilized amplifiers can cause a related feedthrough error.
 A low-pass filter can decrease feedthrough when the required signal bandwidth permits the filter.
 
-An auto-zero or chopper-stabilized amplifier uses internal switching to correct input-offset voltage, offset drift, and 1/f noise.
+An auto-zero or chopper-stabilized amplifier uses internal switching to correct input-offset voltage, offset drift, and [1/f noise](<../../00-Foundations/00-Foundations.md#1f-noise>).
 The precision notes identify approximately 6 V as a typical maximum supply for some of these amplifiers.
 These devices are applicable to slow, accurate transducer measurements and normal-bandwidth circuits.
 Include their clock feedthrough in the signal-chain error budget.
 
 ### Off-State Signal Feedthrough
 
-An open MOSFET is not a perfect air gap.
+An open [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) is not a perfect air gap.
 Drain-source capacitance, <i>C<sub>ds</sub></i>, lets a high-frequency input cross the open switch.
 The held output can then contain part of the changing input.
 
@@ -419,7 +419,7 @@ As its source voltage increases, <i>V<sub>GS</sub></i> decreases.
 The device then passes a high voltage poorly and can turn off.
 
 A P-channel MOSFET has the complementary behavior.
-A **CMOS transmission gate** connects an N-channel and a P-channel device in parallel.
+A **CMOS [transmission gate](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#cmos-transmission-gate>)** connects an N-channel and a P-channel device in parallel.
 One device handles the low part of the range, and the other device handles the high part.
 The pair permits rail-to-rail signal switching within its specified supply and signal limits.
 
@@ -456,7 +456,7 @@ A decrease in <i>C<sub>H</sub></i>:
 * Increases droop.
 * Increases the charge-injection voltage step.
 * Increases <i>kT/C</i> sampling noise.
-* Makes the circuit more sensitive to parasitic capacitance and buffer input current.
+* Makes the circuit more sensitive to [parasitic capacitance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>) and buffer input current.
 
 Select the capacitance from the complete acquisition and hold-error budgets.
 
@@ -472,7 +472,7 @@ The existing capacitor notes give these guidelines:
 * **Polystyrene (PS):** Very stable and historically used for high precision.
   It is difficult to obtain and can melt during soldering.
 * **Teflon:** A low-leakage material used in the precision autonulling example.
-* **C0G/NP0 ceramic:** Low dielectric absorption and no high-K piezoelectric behavior.
+* **[C0G](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#7-dielectric-types>)/NP0 ceramic:** Low dielectric absorption and no high-K piezoelectric behavior.
   It is useful when the required capacitance is available.
 * **Polyester (PET or Mylar):** Low cost but has higher dielectric absorption.
   Do not use it when memory error controls the accuracy.
@@ -497,7 +497,7 @@ Use C0G/NP0 or a suitable film capacitor in a vibration-sensitive precision circ
 ### PCB Leakage
 
 The capacitor datasheet is not the only leakage limit.
-Flux residue, humidity, contamination, solder mask, protection devices, and the input buffer can make parallel leakage paths.
+Flux residue, humidity, contamination, [solder mask](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#board-construction>), protection devices, and the input buffer can make parallel leakage paths.
 
 Keep the hold node short and clean.
 Use guarding when the impedance and error limit require it.
@@ -506,10 +506,10 @@ Verify leakage across the complete temperature and humidity range.
 ## 8. Sample-and-Hold Function in a SAR ADC
 
 A **successive-approximation-register ADC** frequently has an internal sample-and-hold capacitor, <i>C<sub>SH</sub></i>.
-The capacitor can also be part of the internal capacitive digital-to-analog converter.
+The capacitor can also be part of the internal capacitive [digital-to-analog converter](<./DACs.md#1-dac-fundamentals>).
 The ADC input is a switching load and does not always look like a high, constant input impedance.
 
-Some SAR ADCs use:
+Some [SAR ADCs](<./DACs.md#successive-approximation-adc>) use:
 
 * A **sample-and-hold switch**, <i>SW<sub>SH</sub></i>, to select track or hold operation.
 * A **reset switch**, <i>SW<sub>RST</sub></i>, in architectures that reset the sampling capacitor between phases.
@@ -537,7 +537,7 @@ If the front end does not settle:
 * Conversion errors occur.
 * Repeated errors can accumulate in the signal chain.
 * Accuracy decreases.
-* Harmonic distortion appears in a fast Fourier transform (**FFT**).
+* Harmonic distortion appears in a [fast Fourier transform](<../Filters/Digital-filters.md#17-discrete-fourier-transform-and-fast-fourier-transform>) (**FFT**).
 
 ### Charge-Sharing Estimate
 
@@ -563,7 +563,7 @@ The external capacitor is a local charge reservoir and isolation capacitor.
 It is not the ADC's internal hold capacitor.
 
 The original design target keeps the kickback glitch below 100 mV.
-This limit can keep the op-amp in its small-signal response region.
+This limit can keep the [op-amp](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) in its small-signal response region.
 Small-signal settling can be faster than recovery from slew-rate limiting.
 The 100 mV value is an example design target, not a universal limit.
 
@@ -610,7 +610,7 @@ The existing driver notes give these boundary examples:
   The op-amp then supplies more transient current.
   Settling and ringing can become worse.
 * **1 &micro;F external capacitor:** It improves transient charge storage.
-  Its RC time constant can be too long.
+  Its [RC time constant](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#4-rc-time-constants>) can be too long.
 
 A large capacitor can require a smaller isolation resistor to preserve bandwidth.
 A small resistor gives less damping.
@@ -633,11 +633,11 @@ Do not connect it directly to an arbitrary op-amp output.
 
 A differential **2R + C** network can:
 
-1. Limit the noise bandwidth and support the anti-alias filter.
+1. Limit the noise bandwidth and support the [anti-alias filter](<../Filters/Active-filters.md#18-anti-alias-filters-for-adcs>).
 2. Supply a local charge reservoir when the internal sample switch closes.
 3. Isolate the driver outputs from the capacitor and switched ADC input.
 
-An 80 Msps ADC has a Nyquist frequency of 40 MHz.
+An 80 Msps ADC has a [Nyquist frequency](<./DACs.md#nyquist-criterion>) of 40 MHz.
 Its input circuit can still have 700 MHz of analog bandwidth.
 Without an external filter, wideband noise can fold into the baseband and reduce SNR.
 
@@ -658,7 +658,7 @@ The switch disconnects Channel 1 before it connects Channel 2.
 This sequence prevents a temporary short circuit between two sensors.
 For example, Channel 1 can be at +10 V while Channel 2 is at -10 V.
 A make-before-break switch would connect the two sources for a short interval.
-The connection could cause a large inrush current and crosstalk.
+The connection could cause a large inrush current and [crosstalk](<../../05-PCB-Layout/01-Overview.md#53-crosstalk-and-separation>).
 
 Break-before-make operation adds dead time.
 The existing notes give 80 ns as one example.
@@ -689,7 +689,7 @@ The DAQ example uses:
 * An **LTC1609** 16-bit SAR ADC with a maximum sample rate of 200 ksps.
   The design uses an external 1 ppm/&deg;C precision reference because the internal-reference drift is too high for the requirement.
 
-At startup, the microcontroller measures the signal-chain offset and programs the nulling DAC.
+At startup, the [microcontroller](<../../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>) measures the signal-chain offset and programs the nulling DAC.
 During operation:
 
 1. The microcontroller reads the required gain setting from a lookup table.
@@ -742,7 +742,7 @@ Check aperture skew, channel matching, crosstalk, and interface timing.
 
 ## 12. High-Frequency Sampling
 
-A flash ADC has a short aperture interval.
+A [flash ADC](<./DACs.md#flash-adc>) has a short aperture interval.
 The input changes little during its fast conversion interval.
 For this reason, some flash applications do not need a separate external sample-and-hold circuit.
 
@@ -766,7 +766,7 @@ The precision-design notes include an autonulling DC laboratory amplifier.
 The circuit stores an input value and subtracts it from later samples.
 It then amplifies subsequent input changes with selectable gains of 1, 10, or 100.
 
-U1 is an instrumentation amplifier with configurable gain.
+U1 is an [instrumentation amplifier](<../Amplifiers/03-instrumentation-amps.md#2-classic-three-op-amp-architecture>) with configurable gain.
 U2 is a non-inverting stage with a fixed gain of 10.
 The complete system can have a maximum gain of 1000 and an output range of &plusmn;10 V.
 Devices U3, U4, and U5 make the nulling circuit.
@@ -841,7 +841,7 @@ Use this sequence for a new sample-and-hold design.
 4. **Select the switch.**
    Check signal range, supply range, on-resistance, on-resistance flatness, leakage, charge injection, feedthrough, capacitance, and break-before-make behavior.
 5. **Select the hold capacitor.**
-   Check capacitance, leakage, dielectric absorption, voltage coefficient, temperature coefficient, microphonics, and package contamination.
+   Check capacitance, leakage, dielectric absorption, voltage coefficient, temperature coefficient, [microphonics](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#b-piezoelectric-effects-and-microphonics>), and package contamination.
 6. **Select the buffers.**
    Check bias current, offset, drift, bandwidth, slew rate, settling, noise, output current, common-mode range, output swing, and capacitive-load stability.
 7. **Calculate acquisition.**

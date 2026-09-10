@@ -8,9 +8,9 @@ A **voltage supervisor** monitors a supply and controls a reset output. It keeps
 
 * **Assertion:** The reset signal enters its active state.
 * **Release:** The reset signal returns to its inactive state.
-* **Hysteresis:** Different falling and rising thresholds prevent repeated transitions near one voltage.
+* **[Hysteresis](<../../03-Signal-Modulation/Amplifiers/comparators.md#6-schmitt-trigger-and-hysteresis>):** Different falling and rising thresholds prevent repeated transitions near one voltage.
 
-An active-low reset output is low during reset. An open-drain output requires a pull-up to a permitted supply.
+An active-low reset output is low during reset. An [open-drain](<../../04-Digital-Interfaces/DigitalGeneral.md#output-architectures>) output requires a pull-up to a permitted supply.
 
 ## 2. Threshold and Delay
 

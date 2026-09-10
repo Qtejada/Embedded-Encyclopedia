@@ -56,3 +56,18 @@ A CCM boost also has a **right-half-plane zero** in its control response. This e
 Measure input current at the lowest input voltage. Test the full load range and verify the controller's supported inductor and capacitor values.
 
 **Reference:** [TI, boost power-stage calculations](https://www.ti.com/lit/an/slva372d/slva372d.pdf).
+
+
+## Switching path and efficiency comparison
+
+import ConverterPaths from '@site/src/components/learning/ConverterPaths';
+
+<ConverterPaths mode="boost" />
+
+With the switch on, the inductor connects between input and ground. Its current increases. The output capacitor supplies the load while the diode blocks.
+
+With the switch off, inductor current continues through the diode into the output. The switch node rises above the input to maintain that current path.
+
+A boost converter is not inherently less efficient than every [buck converter](<./01-Buck%20Converter.md#1-step-down-conversion>). Compare input range, conversion ratio, current, device loss, and control mode.
+
+At high boost ratios, input current greatly exceeds output current. This raises conduction loss and component stress. A diode drop also matters at low output voltage.

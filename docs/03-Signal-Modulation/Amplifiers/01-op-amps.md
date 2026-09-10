@@ -152,7 +152,7 @@ A feedback divider connects the output to the inverting input.
 3. The divider applies a fraction of the output to point A.
 4. A larger feedback ratio needs less output voltage for the same point-A voltage.
 5. A smaller feedback ratio needs more output voltage.
-6. The resistor divider attenuates the output before it reaches the inverting input.
+6. The [resistor divider](<../../01-Discrete-Components/01-Passives/01-Resistors.md#3-voltage-divider-and-loading>) attenuates the output before it reaches the inverting input.
 
 For the usual resistor arrangement:
 
@@ -362,7 +362,7 @@ Trace the path from the op-amp output.
 Determine whether it returns to the inverting input.
 
 * **Yes:** The circuit can be a linear amplifier or regulator.
-* **No, or it returns to the non-inverting input:** Check for a comparator, Schmitt trigger, or oscillator.
+* **No, or it returns to the non-inverting input:** Check for a [comparator](<./comparators.md#1-comparator-decision>), [Schmitt trigger](<./comparators.md#6-schmitt-trigger-and-hysteresis>), or oscillator.
 
 Do not use the linear golden rules before you confirm stable negative feedback.
 
@@ -587,7 +587,7 @@ A capacitor across <i>R<sub>f</sub></i> can have three principal functions.
 
 #### Stability Compensation
 
-A photodiode or other sensor has capacitance.
+A [photodiode](<../../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>) or other sensor has capacitance.
 The capacitance adds phase delay to the feedback loop.
 Too much phase delay can cause oscillation.
 
@@ -680,7 +680,7 @@ The archived figure contains two AC-amplifier examples.
 ### Sallen-Key Low-Pass Filter
 
 A first-order passive RC filter has a gradual transition between its passband and stopband.
-A **Sallen-Key filter** can make a second-order response.
+A **[Sallen-Key](<../Filters/Active-filters.md#10-sallen-key-second-order-low-pass-filter>) filter** can make a second-order response.
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
@@ -749,7 +749,7 @@ For the usual photodiode-current direction:
 ### Why the Op-Amp Is Necessary
 
 1. **Photodiode capacitance:** A photodiode has junction capacitance.
-   A direct resistor connection makes an RC time constant and decreases bandwidth.
+   A direct resistor connection makes an [RC time constant](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#4-rc-time-constants>) and decreases bandwidth.
 2. **Voltage across the diode:** A changing diode voltage charges and discharges the capacitance.
 3. **Virtual ground:** The op-amp keeps the summing node almost constant.
    As a result, signal voltage does not move the diode capacitance as much.
@@ -771,7 +771,7 @@ Calculate this capacitor from photodiode capacitance, input capacitance, feedbac
 ### Single-Ended Emitter-Follower Booster
 
 Figure 4.25 uses an external NPN bipolar junction transistor (**BJT**) to increase output-current capability.
-The transistor operates as an emitter follower.
+The transistor operates as an [emitter follower](<../../01-Discrete-Components/03-Semicondctors/02-BJTs.md#5-amplifier-configurations>).
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
@@ -893,7 +893,7 @@ Dynamic limits prevent perfect correction at all frequencies.
 
 ### Basic Current Source
 
-The basic circuit uses feedback to control the voltage across a sense resistor.
+The basic circuit uses feedback to control the voltage across a [sense resistor](<../../02-Power/Measurment/Current-sense.md#1-convert-current-to-voltage>).
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
@@ -956,7 +956,7 @@ The next circuit uses a PNP transistor for high-side current control.
    This changes base current and its error.
 3. **Darlington correction:** A Darlington pair has much higher current gain.
    As a result, base-current changes cause a smaller error.
-4. **MOSFET correction:** A MOSFET has almost no DC gate current.
+4. **[MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) correction:** A MOSFET has almost no DC gate current.
    This removes the BJT base-current error.
 5. **MOSFET caution:** Gate capacitance adds delay to the feedback loop.
    This delay can cause instability or oscillation.
@@ -1003,7 +1003,7 @@ Use the datasheet limits.
 
 ### Differential Amplifiers
 
-A **differential amplifier** produces an output from the difference between two input signals.
+A **[differential amplifier](<./02-differential-amps.md#3-four-resistor-op-amp-difference-amplifier>)** produces an output from the difference between two input signals.
 It rejects voltage that is common to both inputs.
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
@@ -1018,7 +1018,7 @@ It rejects voltage that is common to both inputs.
   </figcaption>
 </figure>
 
-* Closely matched resistor ratios are necessary for high **common-mode rejection ratio (CMRR)**.
+* Closely matched resistor ratios are necessary for high **[common-mode rejection ratio](<./02-differential-amps.md#2-common-mode-rejection-ratio>) (CMRR)**.
 * One circuit in the figure has an adjustable reference input.
 * The reference input sets the output level for special applications.
 * The differential stage frequently has unity gain.
@@ -1027,7 +1027,7 @@ It rejects voltage that is common to both inputs.
 
 ### Instrumentation Amplifiers
 
-An **instrumentation amplifier** is a specialized differential amplifier.
+An **[instrumentation amplifier](<./03-instrumentation-amps.md#2-classic-three-op-amp-architecture>)** is a specialized differential amplifier.
 One external resistor frequently sets its voltage gain.
 
 Important characteristics include:
@@ -1035,7 +1035,7 @@ Important characteristics include:
 * Very high input impedance.
 * Very stable gain.
 * Very high CMRR.
-* Accurate amplification of small differential signals with large common-mode voltage.
+* Accurate amplification of small differential signals with large [common-mode voltage](<./02-differential-amps.md#common-mode-voltage>).
 
 The original notes request an instrumentation-amplifier circuit image here.
 The two supplied archives do not contain this figure.
@@ -1073,7 +1073,7 @@ The two supplied archives do not contain this figure.
 
 ### Schmitt Trigger
 
-A **Schmitt trigger** uses positive feedback to make two switching thresholds.
+A **Schmitt trigger** uses [positive feedback](<./comparators.md#positive-feedback-resistor-network>) to make two switching thresholds.
 The difference between the thresholds is **hysteresis**.
 
 Hysteresis is useful for a slow or noisy input.
@@ -1127,7 +1127,7 @@ Recovery from saturation can delay this transition.
 
 Internal input devices are not perfectly matched.
 As a result, a small differential input voltage can be necessary to make the output 0 V.
-This voltage is **input offset voltage**, <i>V<sub>OS</sub></i>.
+This voltage is **[input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>)**, <i>V<sub>OS</sub></i>.
 
 If the two inputs are connected together, open-loop operation can still drive the output to a rail.
 
@@ -1148,7 +1148,7 @@ This current produces voltage across source, bias, and feedback resistances.
 > **V<sub>error</sub> = I<sub>B</sub>R**
 
 A large resistance can convert a very small bias current to a large voltage error.
-As a result, input bias current limits the practical resistance values.
+As a result, [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) limits the practical resistance values.
 
 ### Input Offset Current
 
@@ -1161,7 +1161,7 @@ The op-amp sees this error as a differential signal.
 ### BJT and FET Inputs
 
 * **BJT inputs:** Input current can be in the &mu;A or nA range.
-* **JFET or CMOS inputs:** Input current can be in the pA range.
+* **[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>) or CMOS inputs:** Input current can be in the pA range.
 * High-value source resistances frequently need a JFET or CMOS input.
 * Always include maximum bias current and temperature effects in the error budget.
 
@@ -1196,7 +1196,7 @@ The original example uses an LF411.
 
 * **Precision FET op-amp:** The original example gives the OPA336.
   It lists 10 pA bias current and 125 &mu;V input offset.
-* **Chopper or auto-zero op-amp:** The original example gives the LTC1050.
+* **Chopper or [auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) op-amp:** The original example gives the LTC1050.
   It periodically measures and corrects its offset.
   The original value is less than 5 &mu;V.
 
@@ -1233,7 +1233,7 @@ Other methods include:
 * Use the manufacturer-specified offset-trim network.
 * Select an op-amp with a smaller maximum <i>V<sub>OS</sub></i>.
 * Match the resistance seen by the two inputs when this decreases bias-current error.
-* Select a low-bias-current input type for high source resistance.
+* Select a low-bias-current input type for high [source resistance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>).
 
 Offset trimming does not remove input-bias-current error.
 
@@ -1289,19 +1289,19 @@ If the center reference becomes circuit ground, the two rails appear positive an
   </figcaption>
 </figure>
 
-The splitter must source and sink the expected return current.
+The splitter must source and sink the expected [return current](<../../05-PCB-Layout/02-Return-Paths.md#1-a-signal-needs-a-return>).
 Its current rating and stability limit the connected load.
 
 ---
 
 ## 13. Driving SAR ADC Inputs
 
-A **successive-approximation-register analog-to-digital converter (SAR ADC)** has a switching input.
+A **successive-approximation-register [analog-to-digital converter](<../Data-convertes/DACs.md#3-sampling-and-resolution>) ([SAR ADC](<../Data-convertes/DACs.md#successive-approximation-adc>))** has a switching input.
 It does not always look like a high, constant input impedance.
 
 ### Transient Current, or Kickback
 
-A SAR ADC frequently contains an internal sample-and-hold capacitor, <i>C<sub>SH</sub></i>.
+A SAR ADC frequently contains an internal [sample-and-hold](<../Data-convertes/Sample-holding.md#1-basic-circuit>) capacitor, <i>C<sub>SH</sub></i>.
 An internal switch connects this capacitor to the input during acquisition.
 
 If the capacitor voltage differs from the input voltage, charge flows suddenly.
@@ -1315,7 +1315,7 @@ Insufficient settling causes conversion error.
 ### Input-Model Components
 
 * **Sampling capacitor, C<sub>SH</sub>:** Acquires the ADC input voltage.
-  It can be part of the internal capacitive digital-to-analog converter.
+  It can be part of the internal capacitive [digital-to-analog converter](<../Data-convertes/DACs.md#1-dac-fundamentals>).
 * **Sample-and-hold switch, SW<sub>SH</sub>:** Selects track or hold operation.
 * **Reset switch, SW<sub>RST</sub>:** Some ADC architectures reset the capacitor between phases.
 * **Reset voltage, V<sub>RST</sub>:** Sets the starting capacitor voltage in those architectures.
@@ -1339,7 +1339,7 @@ If the analog front end does not settle:
 * Conversion errors occur.
 * Repeated errors can accumulate in a signal chain.
 * Accuracy decreases.
-* Harmonic distortion appears in a fast Fourier transform (**FFT**).
+* Harmonic distortion appears in a [fast Fourier transform](<../Filters/Digital-filters.md#17-discrete-fourier-transform-and-fast-fourier-transform>) (**FFT**).
 
 ### Direct Output-Capacitor Problem
 
@@ -1422,7 +1422,7 @@ It rounds an analog voltage to the nearest available code.
 For a suitable signal, this error contributes to the converter noise floor.
 
 * **Low resolution, such as 12 to 14 bits:** Quantization noise can dominate.
-* **High resolution, such as 16 bits or more:** Thermal noise can dominate.
+* **High resolution, such as 16 bits or more:** [Thermal noise](<../../00-Foundations/00-Foundations.md#thermal-noise>) can dominate.
 * Temperature can then have a larger effect on performance.
 
 ### Clock Jitter
@@ -1441,7 +1441,7 @@ Their signal-to-noise ratio (**SNR**) can be limited by the external clock inste
 * **SNR:** Compares signal power with noise power.
   Check whether a datasheet value includes distortion.
 * **SINAD:** Includes noise and distortion.
-* **Effective number of bits (ENOB):** A value calculated from SINAD for a sine-wave test.
+* **[Effective number of bits](<../Data-convertes/DACs.md#effective-number-of-bits>) (ENOB):** A value calculated from SINAD for a sine-wave test.
 
 The original notes group quantization, thermal noise, and distortion under SNR.
 Many datasheets use SINAD for that combined measurement.
@@ -1460,10 +1460,10 @@ Sampling repeats the input spectrum around multiples of the sampling frequency.
 Out-of-band signals and noise can fold into the baseband.
 
 Noise at 50 MHz can affect a 100 kHz measurement if the sampling system aliases it.
-After aliasing occurs, a digital filter cannot identify the original out-of-band noise.
+After [aliasing](<../Filters/Digital-filters.md#18-aliasing-at-the-initial-adc>) occurs, a digital filter cannot identify the original out-of-band noise.
 
-The **Nyquist criterion** requires a sampling rate greater than twice the highest retained signal frequency.
-Practical systems also need an analog anti-alias filter.
+The **[Nyquist criterion](<../Data-convertes/DACs.md#nyquist-criterion>)** requires a sampling rate greater than twice the highest retained signal frequency.
+Practical systems also need an analog [anti-alias filter](<../Filters/Active-filters.md#18-anti-alias-filters-for-adcs>).
 
 ### Oversampling, Filtering, and Decimation
 
@@ -1472,7 +1472,7 @@ Practical systems also need an analog anti-alias filter.
 Operate the ADC faster than the final output-data rate.
 The original example uses 15 MHz sampling for a 100 kHz signal.
 
-Oversampling can:
+[Oversampling](<../Filters/Digital-filters.md#23-oversampling>) can:
 
 * Spread uncorrelated quantization noise across a wider frequency range.
 * Decrease in-band noise density after filtering.
@@ -1522,7 +1522,7 @@ A strong low-pass filter at the reference pin can decrease broadband noise.
 The reference circuit must also:
 
 * Settle after ADC charge transients.
-* Remain stable with its bypass capacitor.
+* Remain stable with its [bypass capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>).
 * Supply the necessary dynamic current.
 * Keep DC error, temperature drift, and long-term drift within the error budget.
 

@@ -9,7 +9,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 Signal current flows in a complete loop. The forward conductor and return structure together determine the circuit's behavior.
 
-At low frequency, resistance strongly influences the current distribution. At high frequency, inductance and field coupling become important.
+At low frequency, resistance strongly influences the current distribution. At high frequency, inductance and [field coupling](<../01-Discrete-Components/01-Passives/03-Inductors.md#2-physics-and-operation>) become important.
 
 On a trace above a nearby continuous plane, high-frequency return current concentrates near the trace. It is not confined to an infinitely thin line.
 
@@ -29,9 +29,9 @@ The drawing shows an intact plane and a plane with a slot. It illustrates the cu
 
 When a signal changes layers, its return current also needs a path between the reference structures.
 
-* Between ground-reference planes, a nearby ground stitching via can shorten the return transition.
+* Between ground-reference planes, a nearby [ground stitching via](<./01-Overview.md#62-via-technology-guide>) can shorten the return transition.
 * Between different reference nets, a ground via alone does not connect those nets.
-* A suitable decoupling path can connect a power reference to ground at high frequency.
+* A suitable [decoupling path](<../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>) can connect a power reference to ground at high frequency.
 
 Prefer a layer assignment that avoids unnecessary reference changes. Never connect separate power rails together to create a return path.
 

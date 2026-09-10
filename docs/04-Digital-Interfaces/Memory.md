@@ -13,7 +13,7 @@ Memory choice depends on retention, access time, capacity, and write behavior.
 | Dynamic random-access memory (DRAM) | No | Refresh, controller support, and signal timing |
 | Electrically erasable programmable read-only memory (EEPROM) | Yes | Write time, endurance, and page boundaries |
 | NOR flash | Yes | Erase blocks, programming rules, and read interface |
-| NAND flash | Yes | Error correction, bad-block management, and page operations |
+| NAND flash | Yes | [Error correction](<./Computer-Architecture.md#memory-faults>), bad-block management, and page operations |
 
 [Micron, memory introduction](https://www.micron.com/content/dam/micron/educatorhub/intro-to-memory/micron-intro-to-memory-presentation.pdf) compares memory technologies.
 
@@ -48,6 +48,6 @@ For critical records, store a sequence number and a data check. Use a commit sch
 
 ## 5. Board and Firmware Checks
 
-Check supply sequencing, pin voltage, write protection, address width, and interface timing. Test startup after power removal during each write phase.
+Check [supply sequencing](<../02-Power/Measurment/Power-good-Seq.md#1-rail-dependencies>), pin voltage, write protection, address width, and interface timing. Test startup after power removal during each write phase.
 
 For DRAM, use the controller's exact topology and timing constraints. Matching only the total trace lengths is insufficient.

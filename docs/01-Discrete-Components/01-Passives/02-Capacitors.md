@@ -37,7 +37,7 @@ Charge accumulates on the capacitor plates. This charge produces an **electric f
 1. Current charges the capacitor until its voltage equals the source voltage.
 2. **Once fully charged**, the capacitor voltage equals the source voltage. The voltage across the series charging resistance is zero. Electrons stop moving, and current is zero.
 
-An ideal capacitor stores energy without power loss. A real capacitor loses power through **equivalent series resistance (ESR)** and dielectric loss.
+An ideal capacitor stores energy without power loss. A real capacitor loses power through **equivalent series resistance (ESR)** and [dielectric loss](<../../00-Foundations/04-Fields-and-Materials.md#dielectrics-and-conductor-losses>).
 
 ### Interactive: DC Block and AC Pass
 
@@ -61,7 +61,7 @@ These rules apply to an ideal capacitor:
 * **DC, where f = 0:** Impedance is infinite. The capacitor acts as an **open circuit**.
 * **High frequency:** Impedance approaches zero. The capacitor acts like a **short circuit**, or wire.
 
-:::warning Parasitic Inductance
+:::warning [Parasitic Inductance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>)
 
 A real capacitor has **equivalent series inductance (ESL)** from its leads and internal construction.
 
@@ -93,7 +93,7 @@ Unlike a resistor, a capacitor takes time to charge. Resistor voltage and curren
 
 This 90-degree phase shift is why capacitors stabilize feedback loops through compensation.
 
-Compensation capacitors also determine the **phase margin** of a power supply.
+Compensation capacitors also determine the **[phase margin](<../../03-Signal-Modulation/Amplifiers/01-op-amps.md#phase-margin>)** of a power supply.
 
 ## 4. RC Time Constants
 
@@ -117,7 +117,7 @@ A capacitor does not charge instantly through a resistor. The capacitor voltage 
 Place a coupling capacitor in series between two circuit stages.
 
 * **Goal:** Pass the AC signal, such as audio or radio frequency (RF), and **block** the DC bias voltage.
-* **Example:** A coupling capacitor lets a 3.3 V microcontroller communicate with a 5 V amplifier. It prevents disturbance of their DC bias points.
+* **Example:** A coupling capacitor lets a 3.3 V [microcontroller](<../../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>) communicate with a 5 V amplifier. It prevents disturbance of their DC bias points.
 
 ### Bypass / Decoupling
 
@@ -172,7 +172,7 @@ The output is proportional to the **accumulation** of the input.
 </div>
 
 * **Function:** Smooths fast signals and passes DC.
-* **Use case:** A low-pass filter averages a pulse-width-modulated (PWM) signal to produce a DC voltage. This circuit acts as a simple digital-to-analog converter (DAC).
+* **Use case:** A low-pass filter averages a pulse-width-modulated ([PWM](<../../03-Signal-Modulation/Filters/Digital-filters.md#pulse-width-modulation-pwm>)) signal to produce a DC voltage. This circuit acts as a simple [digital-to-analog converter](<../../03-Signal-Modulation/Data-convertes/DACs.md#1-dac-fundamentals>) (DAC).
 * **Math:** *V<sub>out</sub> ∝ ∫ V<sub>in</sub> dt*
 
 ## 7. Dielectric Types
@@ -206,7 +206,7 @@ These parasitic properties change power-supply design and high-speed circuit des
 
 * **Heat generation:** Ripple current through ESR produces heat. The relation is *P = I² · ESR*. Excessive ripple current can overheat a high-ESR electrolytic capacitor and make it rupture or pop.
 * **Voltage ripple:** ESR frequently determines power-supply output ripple. The relation is *V<sub>ripple</sub> = I<sub>load</sub> × ESR*. Lower ESR gives cleaner power.
-* **Regulator stability:** Some older low-dropout (LDO) regulators require a small ESR value for stable operation. Replacing their tantalum capacitor with a near-zero-ESR ceramic can cause oscillation.
+* **Regulator stability:** Some older low-dropout ([LDO](<../../02-Power/Regulation/04-LDOs.md#1-linear-regulation>)) regulators require a small ESR value for stable operation. Replacing their tantalum capacitor with a near-zero-ESR ceramic can cause oscillation.
 
 ### Equivalent Series Inductance
 
@@ -249,7 +249,7 @@ For example, fully charge a capacitor. Short it to 0 V for one second, and then 
 The capacitor voltage then **creeps back up**.
 
 * **The Physics:** Some charge remains trapped deep inside the dielectric and releases slowly.
-* **The Consequence:** This effect prevents precision **sample-and-hold circuits** and long-period **integrators** from operating correctly. The capacitor retains its previous voltage history.
+* **The Consequence:** This effect prevents precision **[sample-and-hold](<../../03-Signal-Modulation/Data-convertes/Sample-holding.md#1-basic-circuit>) circuits** and long-period **integrators** from operating correctly. The capacitor retains its previous voltage history.
 * **The Fix:** Do not use electrolytic or high-K X7R ceramic capacitors for precision timing. Use **polypropylene (PP)** or **polystyrene (PS)** film capacitors.
 
 ### B. Piezoelectric Effects and Microphonics
@@ -319,3 +319,20 @@ Do not multiply separate factors if the manufacturer's combined curve already in
 Check the resulting capacitance against the regulator's stability range. Check ripple current and voltage limits separately.
 
 **Reference:** [TI, capacitance under operating conditions](https://www.ti.com/document-viewer/lit/html/SSZT654/GUID-310EE2AA-44D3-4067-97D9-F97CEDDFBBF8).
+
+
+## Mechanical failure and an equivalent circuit
+
+import PassiveModels from '@site/src/components/learning/PassiveModels';
+
+<PassiveModels kind="capacitor" />
+
+The leakage resistance represents current through the dielectric. Series resistance represents loss. Connection and electrode geometry produce series inductance.
+
+Board bending can crack a multilayer ceramic capacitor. A crack can cause leakage or a short. Electrical tests immediately after assembly might miss later failure.
+
+Electrolytic capacitors can lose electrolyte and increase series resistance. Excessive voltage or reversed polarity can damage polarized parts.
+
+Keep sensitive ceramic parts away from severe board strain. Use the manufacturer's mounting guidance and suitable termination options.
+
+See [Murata ceramic capacitor cracking](https://article.murata.com/en-us/article/strain-crack-mechanism-and-preventive-measures-for-mlcc).

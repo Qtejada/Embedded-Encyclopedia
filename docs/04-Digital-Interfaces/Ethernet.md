@@ -11,13 +11,13 @@ An Ethernet interface has several functions. The **media access controller (MAC)
 
 For conventional twisted-pair Ethernet, magnetics connect the PHY to the cable interface. Select the magnetics from the PHY and interface requirements.
 
-Single-pair Ethernet and other physical layers can use different circuits. The following layout notes concern conventional transformer-coupled ports.
+Single-pair Ethernet and other physical layers can use different circuits. The following layout notes concern conventional [transformer](<../01-Discrete-Components/02-Magnetics/01-Transformers.md#1-magnetic-coupling>)-coupled ports.
 
 ## 2. Two Sides of the PHY
 
 The processor-to-PHY interface can use a parallel or serial connection. Examples include the **reduced media-independent interface (RMII)** and other device-supported interfaces.
 
-The cable side has separate differential pairs and termination requirements. A rule for the processor side does not automatically apply to the cable side.
+The cable side has separate [differential pairs](<../05-PCB-Layout/01-Overview.md#52-length-matching-skew-control>) and termination requirements. A rule for the processor side does not automatically apply to the cable side.
 
 The management interface configures and reads the PHY. Verify its address, reset state, and configuration straps.
 

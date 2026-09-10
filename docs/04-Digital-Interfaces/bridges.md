@@ -7,7 +7,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 ## 1. Translate Transactions
 
-A **protocol bridge** transfers data between different interfaces. For example, an I²C-to-UART bridge accepts register transactions and sends serial frames.
+A **protocol bridge** transfers data between different interfaces. For example, an [I²C](<./Serial-Buses/03-I2C.md#1-shared-clock-and-data>)-to-[UART](<./Serial-Buses/01-UART.md#1-asynchronous-serial-data>) bridge accepts register transactions and sends serial frames.
 
 A bridge differs from a **level translator**, which changes electrical voltage levels while preserving the signal protocol.
 
@@ -36,7 +36,7 @@ import InterfacePathDiagram from '@site/src/components/InterfacePathDiagram';
 3. An empty 64-byte FIFO fills in approximately **5.56 ms**.
 4. If only 16 bytes remain free, the service interval is approximately **1.39 ms**.
 
-Allow margin for interrupt latency and bus contention. Check the host bus transaction time before selecting an interrupt threshold.
+Allow margin for [interrupt](<./Embedded-Systems.md#interrupts-and-data-transfer>) latency and bus contention. Check the host bus transaction time before selecting an interrupt threshold.
 
 ## 4. Transaction Semantics
 

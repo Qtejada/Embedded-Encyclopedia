@@ -7,7 +7,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 ## 1. Select the Output Polarity
 
-A **buck-boost converter** can produce an output magnitude above or below its input. The circuit topology determines the output polarity.
+A **buck-[boost converter](<./02-Boost%20Converter.md#1-step-up-conversion>)** can produce an output magnitude above or below its input. The circuit topology determines the output polarity.
 
 * A basic **inverting buck-boost** produces a negative output from a positive input.
 * A **four-switch buck-boost** can regulate a positive output as the input passes above and below that output.

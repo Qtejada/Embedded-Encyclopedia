@@ -4,7 +4,7 @@ Notes coming soon...
 
 ## 1. Rail Dependencies
 
-**Power good (PG)** indicates that a monitored rail meets a defined condition. Its threshold and delay depend on the regulator or supervisor.
+**Power good (PG)** indicates that a monitored rail meets a defined condition. Its threshold and delay depend on the regulator or [supervisor](<./Supervisors.md#1-reset-control>).
 
 **Power sequencing** controls the order in which rails start and stop. A device can require core power before its input/output supply.
 
@@ -12,7 +12,7 @@ Read the device power requirements before defining the order. A valid startup or
 
 ## 2. Sequence by Condition
 
-An enable chain can use one rail's PG output to enable the next regulator. Check the PG pull-up supply and enable threshold.
+An enable chain can use one rail's PG output to enable the next regulator. Check the PG [pull-up supply](<../../04-Digital-Interfaces/Serial-Buses/03-I2C.md#3-pull-up-limits>) and enable threshold.
 
 A fixed delay starts the next rail after a time interval. It does not prove that the first rail reached its target.
 
@@ -40,7 +40,7 @@ These times are illustrative. Use maximum rise times and delay tolerances for a 
 Check what happens when an earlier rail fails after all rails start. A chain must produce a defined response to that fault.
 
 * Prevent powered outputs from forcing current into an unpowered device.
-* Check output discharge and residual capacitor charge.
+* Check [output discharge](<../Power%20Control/Load-Switches.md#4-dissipation-and-discharge>) and residual capacitor charge.
 * Keep reset active until all required rails and clocks are valid.
 * Check startup with external interfaces already powered.
 

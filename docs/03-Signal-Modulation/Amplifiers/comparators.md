@@ -24,8 +24,8 @@ Common applications include:
 * Zero-crossing detection.
 * Conversion of a slow or noisy signal into a clean digital signal.
 * Window detection.
-* Pulse-width modulation (**PWM**).
-* Analog-to-digital conversion.
+* [Pulse-width modulation](<../Filters/Digital-filters.md#pulse-width-modulation-pwm>) (**PWM**).
+* [Analog-to-digital conversion](<../Data-convertes/DACs.md#3-sampling-and-resolution>).
 * Power-supply and protection control.
 * Relaxation oscillators.
 * Load control.
@@ -52,18 +52,18 @@ A very small input difference can cause a full output-state change.
 ### Step-by-Step Operation
 
 1. The two input pins receive the signal voltage and the reference voltage.
-2. A matched-transistor **differential pair** senses the voltage difference.
+2. A matched-transistor **[differential pair](<./02-differential-amps.md#5-transistor-differential-pair>)** senses the voltage difference.
 3. The internal gain stages amplify the difference.
 4. The output stage changes state when the difference changes polarity.
 5. The output sends the decision to logic or to a load driver.
 
-A matched transistor differential pair is also the input stage in many op-amps.
+A matched transistor differential pair is also the input stage in many [op-amps](<./01-op-amps.md#1-op-amp-fundamentals>).
 The later stages and output stage make a dedicated comparator suitable for switching.
 
 ### Equal Input Voltages
 
 The ideal decision is undefined when both inputs have exactly the same voltage.
-An actual comparator has input offset voltage and noise.
+An actual comparator has [input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>) and noise.
 These errors decide the exact switching point.
 
 Do not expect repeatable switching at one exact voltage without an error allowance.
@@ -84,9 +84,9 @@ For a basic level detector:
 An external reference sets the threshold independently of the supply rails.
 The reference can come from:
 
-* A resistor divider.
+* A [resistor divider](<../../01-Discrete-Components/01-Passives/01-Resistors.md#3-voltage-divider-and-loading>).
 * A precision voltage reference.
-* A digital-to-analog converter (**DAC**).
+* A [digital-to-analog converter](<../Data-convertes/DACs.md#1-dac-fundamentals>) (**DAC**).
 * A filtered PWM signal.
 * Another sensor or signal.
 
@@ -96,18 +96,18 @@ For a divider with <i>R<sub>TOP</sub></i> connected to <i>V<sub>S</sub></i> and 
 
 > **V<sub>ref</sub> = V<sub>S</sub> R<sub>BOTTOM</sub> / (R<sub>TOP</sub> + R<sub>BOTTOM</sub>)**
 
-The input bias current and other loads can change the divider voltage.
+The [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) and other loads can change the divider voltage.
 Use a sufficiently low divider impedance.
-Add a bypass capacitor when the reference must have low noise.
+Add a [bypass capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>) when the reference must have low noise.
 
 ### Threshold-Error Budget
 
 Include these errors in the threshold calculation:
 
 * **Reference tolerance:** The reference voltage is not exact.
-* **Resistor tolerance:** A divider ratio has an error.
+* **[Resistor tolerance](<../../01-Discrete-Components/01-Passives/01-Resistors.md#2-tolerance-and-temperature>):** A divider ratio has an error.
 * **Input offset voltage:** The comparator changes state at a small nonzero differential voltage.
-* **Input bias current:** Bias current produces voltage across source resistance.
+* **Input bias current:** Bias current produces voltage across [source resistance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>).
 * **Input noise:** Noise changes the instantaneous switching point.
 * **Ground difference:** The signal source and reference can use different local ground voltages.
 * **Temperature drift:** Offset, reference voltage, and resistor values change with temperature.
@@ -119,14 +119,14 @@ The worst-case threshold error is more useful than a typical error for a protect
 A **zero-crossing detector** uses 0 V as the reference.
 The output changes state when the input changes polarity.
 
-Check the input common-mode range before you use this circuit.
+Check the [input common-mode range](<./01-op-amps.md#common-mode-input-range>) before you use this circuit.
 A single-supply comparator does not always accept an input near or below ground.
 
 ---
 
 ## 3. Comparator and Op-Amp Differences
 
-The simplest comparator model is a differential amplifier without negative feedback.
+The simplest comparator model is a [differential amplifier](<./02-differential-amps.md#3-four-resistor-op-amp-difference-amplifier>) without [negative feedback](<./01-op-amps.md#negative-feedback>).
 An op-amp and a comparator can use similar input stages, but they are not interchangeable in all circuits.
 
 | Characteristic | Linear op-amp | Dedicated comparator |
@@ -135,8 +135,8 @@ An op-amp and a comparator can use similar input stages, but they are not interc
 | **Normal output** | Continuous analog voltage | Two output states |
 | **Primary purpose** | Accurate linear amplification | Fast voltage decision |
 | **Saturation recovery** | Can be slow | Usually faster |
-| **Output options** | Usually push-pull analog output | Push-pull, open-collector, or open-drain |
-| **Timing data** | Slew rate and settling time | Propagation delay and overdrive data |
+| **Output options** | Usually [push-pull](<../../04-Digital-Interfaces/DigitalGeneral.md#output-architectures>) analog output | Push-pull, open-collector, or open-drain |
+| **Timing data** | [Slew rate](<./01-op-amps.md#slew-rate>) and settling time | Propagation delay and overdrive data |
 
 ### Do Not Apply the Linear Golden Rules
 
@@ -166,7 +166,7 @@ Before you use an op-amp as a comparator, check:
 
 A dedicated comparator usually switches faster.
 It also usually recovers from saturation faster.
-Use a dedicated comparator when timing or reliable logic levels are important.
+Use a dedicated comparator when timing or reliable [logic levels](<../../04-Digital-Interfaces/DigitalGeneral.md#logic-levels>) are important.
 
 ---
 
@@ -193,7 +193,7 @@ An **open-collector output** or **open-drain output** has two conditions:
 * The output transistor turns on and pulls the node LOW.
 * The output transistor turns off and leaves the node at high impedance.
 
-An external **pull-up resistor** makes the HIGH level.
+An external **[pull-up resistor](<../../04-Digital-Interfaces/Serial-Buses/03-I2C.md#3-pull-up-limits>)** makes the HIGH level.
 The pull-up voltage can be different from the comparator supply when the datasheet permits this connection.
 
 The pull-up resistor must limit the LOW-state current:
@@ -219,12 +219,12 @@ Check the required logic polarity before you use this feature.
 Comparators and Schmitt triggers can turn loads on and off.
 Do not connect a load directly if its current exceeds the comparator output rating.
 
-Use a transistor, MOSFET, or driver IC for:
+Use a transistor, [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>), or driver IC for:
 
 * Relays.
 * Motors.
 * Lamps.
-* Solenoids.
+* [Solenoids](<../../02-Power/Power%20Control/Motor-Drives.md#electrical-and-mechanical-behavior>).
 * High-current LEDs.
 * Other capacitive or inductive loads.
 
@@ -502,7 +502,7 @@ Applications include:
 
 * Overvoltage protection.
 * Undervoltage lockout.
-* Cycle-by-cycle current limiting.
+* Cycle-by-cycle [current limiting](<../../02-Power/Entry%20Protection/fuses.md#overcurrent-protection>).
 * Battery-charge termination.
 * Thermal shutdown.
 * Power-good signals.
@@ -517,7 +517,7 @@ The output changes when the capacitor reaches one threshold.
 The capacitor then charges toward the other output state.
 The sequence repeats.
 
-The two thresholds and the RC time constant set the frequency.
+The two thresholds and the [RC time constant](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#4-rc-time-constants>) set the frequency.
 
 ---
 
@@ -527,7 +527,7 @@ Comparators are decision elements in many data-conversion circuits.
 
 ### Flash ADC
 
-A **flash ADC** compares the analog input with many fixed reference voltages at the same time.
+A **[flash ADC](<../Data-convertes/DACs.md#flash-adc>)** compares the analog input with many fixed reference voltages at the same time.
 A resistor ladder supplies the reference voltages.
 A comparator bank produces a **thermometer code**.
 A priority encoder converts the thermometer code into a binary result.
@@ -556,7 +556,7 @@ The threshold-crossing time sets the pulse width.
 
 Dual-slope conversion uses the same integrator components for the up and down slopes.
 This operation cancels errors from the integrator resistor and capacitor.
-An auto-zero phase can measure and compensate amplifier and comparator offset.
+An [auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) phase can measure and compensate amplifier and comparator offset.
 Multislope conversion uses additional integration cycles to increase speed or resolution.
 
 ### 555 Timer

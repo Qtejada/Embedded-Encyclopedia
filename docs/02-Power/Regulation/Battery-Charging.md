@@ -51,6 +51,65 @@ Without a separate system path, load current can interfere with termination dete
 
 Record the exact cell specification. Include charge voltage tolerance, current, permitted temperature range, timer settings, and restart conditions.
 
-For a series pack, also check each cell voltage and the balancing system. Pack voltage alone cannot identify an overcharged individual cell.
+For a series pack, also check each cell voltage and the [balancing system](<../Entry%20Protection/fuses.md#cell-balancing>). Pack voltage alone cannot identify an overcharged individual cell.
 
 Test input removal, load changes, temperature faults, and an absent battery with the selected charger circuit.
+
+
+## Chemistry and stored energy
+
+| Chemistry | Typical use | Main trade-off |
+| --- | --- | --- |
+| Primary alkaline | Replaceable general-purpose cells | Do not recharge ordinary primary cells |
+| Primary lithium | Long storage and selected low-power loads | Chemistry-specific pulse and temperature limits |
+| Nickel-metal hydride | Rechargeable consumer cells | Lower cell voltage and a different charge method |
+| Lead-acid | Backup and starting applications | High mass and chemistry-specific maintenance |
+| Lithium-ion | Portable rechargeable equipment | Requires matched charge and protection limits |
+| Lithium iron phosphate | Selected rechargeable power systems | Different voltage curve and charger limits from many other lithium-ion cells |
+
+**Lithium polymer (LiPo)** commonly describes a lithium-ion pouch cell with a polymer-related electrolyte structure. The label alone does not define its full chemistry.
+
+A typical cell contains a cathode, anode, electrolyte, separator, and current collectors. Many use a graphite anode and a lithium-containing cathode material.
+
+Many consumer lithium-ion cells have a nominal voltage near 3.6 or 3.7 V and a 4.2 V charge limit. Other cells require different limits.
+
+Use the exact cell specification for charge voltage, cutoff voltage, current, and temperature. A nominal voltage is not a safe charging setpoint.
+
+Capacity measures charge, commonly in ampere-hours. Energy measures the integral of voltage times current over time, commonly in watt-hours.
+
+For an assumed 2 Ah cell at 3.7 V nominal, approximate energy is 7.4 Wh. Actual usable energy depends on load, temperature, and cutoff.
+
+## State of charge and aging
+
+**State of charge (SoC)** estimates remaining charge relative to a defined full capacity. **State of health (SoH)** describes degradation against a reference condition.
+
+Voltage alone gives an uncertain SoC estimate under load. Internal impedance, temperature, hysteresis, and chemistry change the voltage relation.
+
+Coulomb counting integrates current but accumulates offset error. A fuel gauge combines measurements with a cell model and correction opportunities.
+
+See [TI fuel-gauge modeling](https://www.ti.com/lit/wp/slpy002/slpy002.pdf) for impedance and capacity estimation.
+
+Aging can reduce capacity and increase resistance. Cold conditions can increase voltage sag. High temperature can accelerate degradation.
+
+Battery impedance depends on frequency and state. A short current pulse and a steady discharge do not necessarily produce the same resistance estimate.
+
+Accurate SoC helps prevent unexpected shutdown and improves runtime prediction. A simple low-battery indicator might tolerate more error than a critical runtime estimate.
+
+## Physical and electrical limits
+
+Monitor cell voltage, current, and temperature. A battery management system can coordinate protection, measurement, balancing, and communication.
+
+Charge acceptance usually decreases during the constant-voltage phase. The permitted maximum charge current comes from the cell specification, not from the charger rating alone.
+
+Overcharge can cause internal reactions, gas, and excessive heat. Deep overdischarge can damage a cell and make later charging unsafe.
+
+A short circuit can release large current and heat. A puncture can damage the separator and create an internal short that external switching cannot remove.
+
+Use mechanical protection, a matched charger, and suitable fault protection. Do not charge a damaged or swollen cell.
+
+For storage, follow the manufacturer's specified charge state and temperature. Storage settings differ from normal full-charge settings.
+
+Protect terminals during handling and use an appropriate battery collection process. Do not puncture or crush a cell to reduce its size.
+
+
+See the [Panasonic lithium-ion handbook](https://eu.industrial.panasonic.com/sites/default/pidseu/files/downloads/files/panasonic_li-ion_handbook.pdf) for cell behavior and handling principles. Use the selected cell specification for numerical limits.

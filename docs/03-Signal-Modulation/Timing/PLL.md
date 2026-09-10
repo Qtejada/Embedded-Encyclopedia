@@ -81,7 +81,7 @@ The **loop filter** has two jobs.
 It makes the required control law and removes much of the PFD switching content.
 
 A passive charge-pump filter can contain an integrating capacitor, a resistor that makes a stabilizing zero, and one or more extra capacitors that attenuate high-frequency pulses.
-An active filter can add voltage gain or level translation.
+An active filter can add voltage gain or [level translation](<../../04-Digital-Interfaces/DigitalGeneral.md#4-logic-interfacing-guide>).
 It can also increase noise and add amplifier limits.
 
 The loop filter is part of the feedback controller.
@@ -245,7 +245,7 @@ The loop gives two useful signals:
 
 ### VCXO, DCO, and NCO
 
-A **voltage-controlled crystal oscillator (VCXO)** uses a quartz resonator and a voltage-controlled pulling network.
+A **voltage-controlled [crystal oscillator](<./Crystal-oscillators.md#4-the-pierce-oscillator>) (VCXO)** uses a quartz resonator and a voltage-controlled pulling network.
 It usually has a smaller tuning range than a wide-range LC or ring VCO.
 It can give low phase noise and good short-term stability.
 This behavior is useful for jitter cleaning.
@@ -318,7 +318,7 @@ Solve for output frequency:
 
 > **f<sub>out</sub> = Nf<sub>in</sub>**
 
-A digital flip-flop can divide frequency.
+A digital [flip-flop](<../../04-Digital-Interfaces/DigitalGeneral.md#storage-at-a-clock-edge>) can divide frequency.
 A passive resistor or capacitor cannot insert new cycles to multiply frequency.
 The VCO generates the higher-frequency signal.
 The feedback loop synchronizes this signal with the input.
@@ -425,7 +425,7 @@ For this specific ideal model:
 > **ζ = (R/2)√[K<sub>φ</sub>K<sub>v</sub>C/N]**
 
 Here, <i>ω<sub>n</sub></i> is natural frequency in radians per second.
-The dimensionless value <i>ζ</i> is the damping ratio.
+The dimensionless value <i>ζ</i> is the [damping ratio](<../Filters/Active-filters.md#q-factor-and-damping>).
 
 These formulas do not apply unchanged to every PLL.
 An extra filter capacitor, an active filter, a digital delay, a sampled PFD, or an oscillator pole changes the model.
@@ -454,7 +454,7 @@ These values are not identical for all loop shapes.
 **Natural frequency** and **damping ratio** describe a standard second-order denominator.
 They do not have a universal ratio to loop bandwidth.
 
-**Phase margin** is measured from the open-loop response at its unity-gain crossover.
+**[Phase margin](<../Amplifiers/01-op-amps.md#phase-margin>)** is measured from the open-loop response at its unity-gain crossover.
 Extra high-frequency poles reduce phase margin.
 Time delay also reduces phase margin.
 Low phase margin can cause peaking, ringing, or instability.
@@ -534,7 +534,7 @@ Common causes include:
 * Reference coupling through the substrate or supply.
 * Fractional-divider patterns.
 * VCO supply ripple.
-* Digital crosstalk.
+* Digital [crosstalk](<../../05-PCB-Layout/01-Overview.md#53-crosstalk-and-separation>).
 * Loop-filter component nonlinearity.
 
 An integer-N PLL often has tones at the PFD frequency and its harmonics.
@@ -558,7 +558,7 @@ Use damping and decoupling that agree with the regulator and VCO requirements.
 
 Keep the tuning node away from switching signals.
 Use low-leakage filter components when leakage causes a significant tuning error.
-Check capacitor dielectric noise, microphonics, voltage coefficient, and temperature coefficient for sensitive loops.
+Check capacitor dielectric noise, [microphonics](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#b-piezoelectric-effects-and-microphonics>), voltage coefficient, and temperature coefficient for sensitive loops.
 
 ## 7. Modulation, Clock Recovery, and Other Applications
 
@@ -590,7 +590,7 @@ Three jitter terms are important:
 * **Jitter generation:** The jitter made by the CDR under the defined input conditions.
 
 Jitter transfer is a closed-loop tracking property.
-Jitter tolerance also depends on eye opening, detector behavior, equalization, data pattern, and cycle-slip limits.
+Jitter tolerance also depends on eye opening, detector behavior, [equalization](<../../05-PCB-Layout/03-trace-impedance.md#preemphasis-and-equalization>), data pattern, and cycle-slip limits.
 Jitter generation includes oscillator, detector, supply, and circuit noise.
 
 A narrower CDR bandwidth can reduce high-frequency jitter transfer.
@@ -630,7 +630,7 @@ Select the architecture for the input waveform and dynamic range.
 
 ## 8. Information That a PLL Does Not Preserve
 
-A PLL does not behave like a linear op-amp chain.
+A PLL does not behave like a linear [op-amp](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) chain.
 It controls timing and phase.
 It does not automatically copy every input property.
 
@@ -781,7 +781,7 @@ Use the required data patterns and equalizer settings.
 The tuning node can have high impedance.
 A probe can add capacitance, leakage, or coupled noise.
 Use a high-impedance, low-capacitance method.
-Do not leave a large test pad on the final tuning node without including its parasitics.
+Do not leave a large [test pad](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#design-for-access>) on the final tuning node without including its parasitics.
 
 Use a clean instrument reference.
 A frequency counter or analyzer with a poor time base can make the PLL appear worse than it is.
@@ -822,7 +822,7 @@ Do not widen the loop until the noise, spur, and stability effects are checked.
 ### Output Jitter Is Too High
 
 Separate the spectrum into offset regions.
-Close-in noise can come from the reference, PFD, divider, or flicker noise.
+Close-in noise can come from the reference, PFD, divider, or [flicker noise](<../../00-Foundations/00-Foundations.md#1f-noise>).
 Midband peaking can show poor damping or a bandwidth crossover problem.
 Far-out noise can come from the VCO or output buffer.
 
@@ -903,3 +903,12 @@ These manufacturer references explain PLL architecture, loop behavior, noise, lo
 * [Analog Devices HFTA-09.0: T3/E3/STS-1 Fiber Optic Extension (CDR Jitter Terminology)](https://www.analog.com/en/resources/technical-articles/hfta090-t3e3sts1-fiber-optic-extension.html)
 * [Texas Instruments: CDC7005 as a Clock Synthesizer and Jitter Cleaner](https://www.ti.com/lit/an/scaa063a/scaa063a.pdf)
 * [Texas Instruments: PLL Fundamentals, Part 1](https://www.ti.com/lit/ml/snap001/snap001.pdf)
+
+
+## Clock pulse width at the receiver
+
+A clock receiver can require minimum high and low pulse widths in addition to frequency limits. Excessive duty-cycle distortion reduces one of those intervals.
+
+Jitter and ringing can further reduce the usable interval. Check pulse widths, setup and hold margin, and receiver thresholds at the actual receiving pin.
+
+A phase-locked loop that meets its average frequency requirement can still fail these timing requirements. Include the complete clock path in verification.

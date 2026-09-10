@@ -16,7 +16,7 @@ import LogicLevelExplorer from '@site/src/components/LogicLevelExplorer'
 
 This property gives digital transmission good resistance to noise. The receiver can recover the data if the two logic states remain different and each signal stays inside its permitted input range. Digital transmission is not immune to noise. Sufficient noise can move a signal across a logic threshold and cause a bit error.
 
-Noise, attenuation, jitter, crosstalk, and intersymbol interference can all cause errors. Regeneration restores logic levels only while voltage and timing margins remain valid. PCM also introduces sampling and quantization effects.
+Noise, attenuation, jitter, [crosstalk](<../05-PCB-Layout/01-Overview.md#53-crosstalk-and-separation>), and intersymbol interference can all cause errors. Regeneration restores logic levels only while voltage and timing margins remain valid. PCM also introduces sampling and quantization effects.
 
 ### Noise immunity
 
@@ -96,7 +96,7 @@ In ordinary 8421 BCD, the codes from **1010** through **1111** do not represent 
 ### Negative numbers
 
 * **Sign-and-magnitude:** The most significant bit (**MSB**) is the sign bit. The remaining bits contain the magnitude. This representation makes addition and subtraction awkward.
-* **Two’s complement:** This is the most frequently used signed-integer representation. Use a fixed bit width. To form the negative value, write the absolute value in binary, **invert all bits**, and then **add 1**. This representation makes binary addition and subtraction easier.
+* **[Two’s complement](<./Firmware.md#types-and-representation>):** This is the most frequently used signed-integer representation. Use a fixed bit width. To form the negative value, write the absolute value in binary, **invert all bits**, and then **add 1**. This representation makes binary addition and subtraction easier.
 
 For an <i>n</i>-bit two’s-complement number, the range is:
 
@@ -114,7 +114,7 @@ Gray code reduces ambiguity when several binary bits would otherwise change toge
 
 ### Propagation delay
 
-**Propagation delay** is the time from a change at a gate input to the related change at its output. Modern logic commonly uses MOSFETs instead of BJTs because CMOS gates can have much lower static current consumption.
+**Propagation delay** is the time from a change at a gate input to the related change at its output. Modern logic commonly uses [MOSFETs](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) instead of BJTs because CMOS gates can have much lower static current consumption.
 
 Datasheets commonly specify two delays:
 
@@ -138,7 +138,7 @@ For DC fan-out, the total receiver input current must stay inside the driver rat
 
 > **LOW state:** Sum of |I<sub>IL</sub>| must not exceed I<sub>OL</sub>
 
-Modern CMOS systems are frequently limited first by total input, trace, connector, and probe capacitance. This capacitance affects rise time, fall time, delay, and transient current even when DC leakage is small.
+Modern CMOS systems are frequently limited first by total input, trace, connector, and [probe capacitance](<../00-Foundations/05-Measurement-and-Debug.md#probe-selection>). This capacitance affects rise time, fall time, delay, and transient current even when DC leakage is small.
 
 Do not leave an ordinary CMOS input floating. Connect an unused input to a valid logic rail directly or through a resistor as the datasheet permits. A specified internal bias or bus-hold circuit is an exception. Use a pull resistor or keeper when a bus can otherwise leave a receiver input undriven. An unused push-pull output can usually remain open. Do not connect it directly to a supply rail.
 
@@ -159,7 +159,7 @@ A tri-state push-pull bus permits only one enabled writer at a time. Other devic
 
 2. **Open-collector or open-drain output**
 
-   * **Operation:** The output transistor pulls the signal LOW or turns off and lets the signal float. An external pull-up resistor produces the HIGH level.
+   * **Operation:** The output transistor pulls the signal LOW or turns off and lets the signal float. An external [pull-up resistor](<./Serial-Buses/03-I2C.md#3-pull-up-limits>) produces the HIGH level.
    * **Limitations:** The pull-up resistor and bus capacitance make the rising edge slower. The output consumes current while it is LOW. A weak pull-up and the connected load can reduce noise margin. Calculate the actual margin from the resulting V<sub>OH</sub>, V<sub>OL</sub>, V<sub>IH</sub>, and V<sub>IL</sub> limits.
 
 3. **Tri-state logic**
@@ -167,7 +167,7 @@ A tri-state push-pull bus permits only one enabled writer at a time. Other devic
    * **Operation:** The output has three states: HIGH, LOW, and **open (High-Z)**.
    * **Control:** An **enable** pin selects whether the output drives the bus. When enabled, it operates like a push-pull output. When disabled, it releases the bus so that another device can drive it.
 
-4. **Transmission gate**
+4. **[Transmission gate](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#cmos-transmission-gate>)**
 
    * **Operation:** A transmission gate connects two nodes through a low resistance or disconnects them with an open circuit.
    * **Direction:** It is bidirectional. Either terminal can operate as the input or the output.
@@ -284,9 +284,9 @@ Some **universal or configurable translator gates** can perform a logic function
 
 :::tip Signal Warnings
 
-* **Slow inputs:** A signal with a very low slew rate can remain near an input threshold for a long time. Noise can then cause many false state changes, oscillation, or excess supply current before the input completes its transition. A **Schmitt trigger** adds hysteresis and makes a clean output transition. It does not make the physical input edge faster. Check the permitted input transition time.
+* **Slow inputs:** A signal with a very low slew rate can remain near an input threshold for a long time. Noise can then cause many false state changes, oscillation, or excess supply current before the input completes its transition. A **[Schmitt trigger](<../03-Signal-Modulation/Amplifiers/comparators.md#6-schmitt-trigger-and-hysteresis>)** adds hysteresis and makes a clean output transition. It does not make the physical input edge faster. Check the permitted input transition time.
 * **Switch debounce:** A mechanical switch can make and break contact many times during one operation. Debounce the input when one mechanical operation must produce one logic event. A downstream circuit can provide the debounce function.
-* **Clock inputs:** Do not normally drive a clock input directly from an ordinary op-amp interface. Slew rate, saturation recovery, output levels, and jitter can be unsuitable and can cause false clock events. Use a comparator with hysteresis or a **Schmitt-trigger inverter** unless a selected amplifier is proven to meet every clock requirement.
+* **Clock inputs:** Do not normally drive a clock input directly from an ordinary [op-amp](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) interface. Slew rate, saturation recovery, output levels, and jitter can be unsuitable and can cause false clock events. Use a [comparator](<../03-Signal-Modulation/Amplifiers/comparators.md#1-comparator-decision>) with hysteresis or a **Schmitt-trigger inverter** unless a selected amplifier is proven to meet every clock requirement.
 
 :::
 
@@ -300,7 +300,7 @@ Digital signals can have problems when they travel through long conductors or ca
 
 * **Capacitive loading** of fast signals
 * **Common-mode interference**
-* **Transmission-line reflections** caused by an impedance mismatch
+* **[Transmission-line](<../05-PCB-Layout/03-trace-impedance.md#1-characteristic-impedance>) [reflections](<../05-PCB-Layout/03-trace-impedance.md#3-reflections>)** caused by an impedance mismatch
 
 The electrical length of an interconnection depends on signal rise time, not only on clock frequency. A low-frequency signal with a fast edge can require transmission-line treatment.
 
@@ -314,8 +314,8 @@ The approximate transient voltage is proportional to inductance and current-chan
 
 Use these methods to reduce the transients:
 
-* **Grounding:** Use a continuous, low-inductance return plane where the design permits it. Keep each signal return path intact. A low-inductance return path reduces the transient voltage.
-* **Bypass capacitors:** Put the device-specified high-frequency ceramic capacitor close to each IC supply and ground pin pair with a small current loop. Use larger capacitors near groups of ICs for lower-frequency energy storage.
+* **Grounding:** Use a continuous, low-inductance return plane where the design permits it. Keep each signal [return path](<../05-PCB-Layout/02-Return-Paths.md#1-a-signal-needs-a-return>) intact. A low-inductance return path reduces the transient voltage.
+* **[Bypass capacitors](<../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>):** Put the device-specified high-frequency ceramic capacitor close to each IC supply and ground pin pair with a small current loop. Use larger capacitors near groups of ICs for lower-frequency energy storage.
 * **Short connections:** Reduce the distance between the supply and ground pins, their bypass capacitor, and the related current-return path. Shorter connections have less inductance.
 * **Edge and output control:** When timing permits, use a slower edge, add validated source damping, or select a driver and package with lower simultaneous-switching noise.
 
@@ -341,10 +341,10 @@ For a point-to-point link, a termination can match the source or load to the lin
 
 The principal termination arrangements are as follows:
 
-1. **Series termination at the source:** Put a resistor in series with the driver. Use R<sub>series</sub> ≈ Z<sub>0</sub> - R<sub>driver</sub>. For a **50 Ω** line, the resistor is less than 50 Ω when the driver already has output resistance. The first wave travels to the high-impedance load, the load reflection completes the voltage step, and the source termination absorbs the returning reflection. This method is useful for a point-to-point connection with the receiver at the end of the line and has low DC power consumption.
+1. **[Series termination](<../05-PCB-Layout/03-trace-impedance.md#distributed-loss-and-termination>) at the source:** Put a resistor in series with the driver. Use R<sub>series</sub> ≈ Z<sub>0</sub> - R<sub>driver</sub>. For a **50 Ω** line, the resistor is less than 50 Ω when the driver already has output resistance. The first wave travels to the high-impedance load, the load reflection completes the voltage step, and the source termination absorbs the returning reflection. This method is useful for a point-to-point connection with the receiver at the end of the line and has low DC power consumption.
 2. **Parallel termination at the load:** Put a resistor equal to the line impedance at the receiver. Connect it to ground or to the applicable termination voltage. This arrangement absorbs the incident wave at the load, but it can consume continuous DC power.
-3. **Thevenin termination:** Put one resistor from the receiver node to V<sub>CC</sub> and another resistor from the node to ground. Their parallel value matches the line impedance, and their ratio sets a DC bias. This arrangement also consumes DC power.
-4. **Double termination:** Use designed impedances at both the source and the load. A correctly designed double termination can give high signal quality. If equal source and load resistances form a voltage divider, the received amplitude is one-half of the unloaded source amplitude. Double-ended termination is common in some video and RF systems. High-speed serial physical layers, including PCIe, use controlled source and receiver impedances by design. Follow the applicable interface standard instead of adding two arbitrary resistors.
+3. **[Thevenin](<../00-Foundations/00-Foundations.md#circuit-theorems-analysis-tools>) termination:** Put one resistor from the receiver node to V<sub>CC</sub> and another resistor from the node to ground. Their parallel value matches the line impedance, and their ratio sets a DC bias. This arrangement also consumes DC power.
+4. **Double termination:** Use designed impedances at both the source and the load. A correctly designed double termination can give high signal quality. If equal source and load resistances form a [voltage divider](<../01-Discrete-Components/01-Passives/01-Resistors.md#3-voltage-divider-and-loading>), the received amplitude is one-half of the unloaded source amplitude. Double-ended termination is common in some video and RF systems. High-speed serial physical layers, including PCIe, use controlled source and receiver impedances by design. Follow the applicable interface standard instead of adding two arbitrary resistors.
 
 :::
 
@@ -477,3 +477,63 @@ Do not synchronize each bit of an arbitrary data word independently. Use a suita
 Define the state encoding, next-state equations, output equations, reset state, and clock constraints before implementation.
 
 After synthesis, check timing and clock-domain crossings. A correct logic simulation does not establish physical timing margin.
+
+
+## CMOS gate construction and Boolean reduction
+
+import LogicConstruction from '@site/src/components/learning/LogicConstruction';
+
+<LogicConstruction />
+
+A CMOS inverter uses a P-channel pullup and an N-channel pulldown. Their gates share the input and their drains share the output.
+
+A buffer uses two inverters in sequence. During a transition, both devices in one inverter can conduct briefly. A slow input can increase this short-circuit loss.
+
+Swapping the upper and lower transistor types does not produce an equivalent inverter. Source-follower behavior and threshold loss can prevent valid rail-to-rail output.
+
+A CMOS NAND gate uses series N-channel devices and parallel P-channel devices. A NOR gate uses parallel N-channel devices and series P-channel devices.
+
+NAND and NOR are **universal gates**. Each can construct inversion, AND, and OR through suitable combinations.
+
+For a capacitive load with series resistance, an output step causes an initial current that decays as the capacitor charges. The discharge step reverses the current.
+
+Reducing drive resistance or load capacitance speeds the edge. Faster edges can increase ringing and interference. Check both timing margin and signal integrity.
+
+A **truth table** lists the output for every input combination. A **Karnaugh map** arranges combinations so adjacent cells differ in one input bit.
+
+Group adjacent ones in powers of two to form a sum-of-products expression. Include wraparound adjacency. Use unspecified conditions only when the design truly permits them.
+
+For F(A,B,C) = 1 at binary inputs 001, 011, 101, and 111, one four-cell group gives F = C. A and B vary within the group.
+
+## Latches, multiplexers, and reusable logic
+
+A **latch** follows its input while enabled and holds the value while disabled. An edge-triggered **flip-flop** samples around a clock edge.
+
+Cross-coupled inverters can retain a bit. Access transistors let a static memory cell read and write that state. Read stability and write strength constrain sizing.
+
+A **multiplexer (mux)** selects one input. A two-input mux implements output = A when select is zero and output = B when select is one.
+
+**Register-transfer level (RTL)** describes registered state and the combinational logic between registers. A module groups logic behind defined ports.
+
+Parameters and verified interfaces support module reuse. Reuse reduces repeated design work but still requires checking timing, reset, and clock-domain assumptions.
+
+A modulo-N counter can produce one enable pulse every N input clocks. Prefer a clock enable for internal logic when the [FPGA](<./Embedded-Systems.md#select-a-processor>) architecture supports it.
+
+For an even clock division ratio, toggling an output every N/2 cycles gives a nominal 50% duty cycle. Route generated clocks through supported clock resources.
+
+A fixed-priority **arbiter** grants the highest-priority pending request. It is simple but can starve lower priorities.
+
+A round-robin arbiter rotates priority after a grant. It improves fairness but needs state. Define whether a grant lasts one cycle or the complete transaction.
+
+## Single-MOSFET open-drain translation
+
+Connect an N-channel MOSFET source to the lower-voltage bus and drain to the higher-voltage bus. Connect its gate to the lower supply.
+
+Each bus side needs its own pullup. When both sides are high, the transistor is off. A low on either side can establish conduction and transfer the low.
+
+The [body diode](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#body-diode>) starts conduction when the higher-voltage side pulls low. The resulting source change raises gate-to-source voltage and turns on the channel.
+
+This circuit suits compatible open-drain buses. It is not a general push-pull translator. Check threshold, capacitance, low-level current, speed, and power-off behavior.
+
+
+See [Nexperia I²C level translation](https://assets.nexperia.com/documents/application-note/AN10441.pdf) for the single-MOSFET topology and its operating states.
