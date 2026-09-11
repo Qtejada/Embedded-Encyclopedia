@@ -1,0 +1,13 @@
+* Half-wave rectifier
+VIN RAW 0 SINE(0 12 50)
+RSER RAW AC 10
+D1 AC OUT D_SILICON
+RLOAD OUT 0 1k
+CFILTER OUT 0 {Cfilter}
+.tran 0 200m 0 20u
+.step param Cfilter list 1p 47u 220u
+.model D_SILICON D(Is=2n N=1.7 Rs=0.2 Cjo=10p Tt=2u BV=100 Ibv=10u)
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.save V(raw) V(ac) V(out) I(D1) I(RLOAD) I(CFILTER)
+.end

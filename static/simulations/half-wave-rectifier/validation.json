@@ -1,0 +1,52 @@
+{
+  "slug": "half-wave-rectifier",
+  "simulator": "LTspice 24.1.9",
+  "date": "2026-09-11",
+  "temperatureC": 27,
+  "ascSha256": "c34cba3b1d7a5b6f6e7606f69063f32fa9415e27005338b8c25321cf3e064515",
+  "rawSha256": "c602c0ff02a41f0601bd91aa536e8aff6354e1533002aa28e47b7c3ff8e64624",
+  "checks": [
+    {
+      "parameter": 1e-12,
+      "savedPoints": 10972,
+      "maxRefinedDifference": {
+        "V(raw)": 5.023747474020013e-05,
+        "V(out)": 0.0002047821949777151,
+        "I(D1)": 2.0477235497453217e-07,
+        "I(RLOAD)": 2.0478219497774763e-07
+      },
+      "meanOutputV": 3.4617638125106063,
+      "rippleV": 11.202530400214956,
+      "maxKclResidualA": 4.3963429107786136e-13
+    },
+    {
+      "parameter": 4.7e-05,
+      "savedPoints": 11266,
+      "maxRefinedDifference": {
+        "V(raw)": 4.83748834518849e-05,
+        "V(out)": 0.00017667185228908977,
+        "I(D1)": 1.2385894066352376e-05,
+        "I(RLOAD)": 1.7667185228924936e-07
+      },
+      "meanOutputV": 9.341794747509901,
+      "rippleV": 3.311233668717545,
+      "maxKclResidualA": 3.725067701937368e-07
+    },
+    {
+      "parameter": 0.00022,
+      "savedPoints": 11406,
+      "maxRefinedDifference": {
+        "V(raw)": 5.443647802927387e-05,
+        "V(out)": 5.674281908048251e-05,
+        "I(D1)": 1.1814145804565218e-05,
+        "I(RLOAD)": 5.674281908048277e-08
+      },
+      "meanOutputV": 10.074733311368943,
+      "rippleV": 0.7838335317289555,
+      "maxKclResidualA": 4.091323454261109e-07
+    }
+  ],
+  "refinement": "Half the maximum time step or DC step, with tighter tolerances.",
+  "browserData": "Linear interpolation of saved LTspice samples. CSV retains original samples.",
+  "scope": "Electrical simulation at 27 C."
+}

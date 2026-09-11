@@ -1,0 +1,18 @@
+* Differential pair with mirror load
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 0 AC 1
+Q1 REF IN TAIL 0 Q_NPN
+Q2 OUT 0 TAIL 0 Q_NPN
+IT TAIL VN 1m
+Q3 REF REF VP 0 Q_PNP
+Q4 OUT REF VP 0 Q_PNP
+RL OUT 0 {Load}
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Load list 1k 4.7k 10k
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.model Q_PNP PNP(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(IN) V(OUT) V(REF) V(TAIL) V(VN) V(VP) I(VP) I(VN) I(VIN) Ic(Q1) Ib(Q1) Ic(Q2) Ib(Q2) I(IT) Ic(Q3) Ib(Q3) Ic(Q4) Ib(Q4) I(RL)
+.end

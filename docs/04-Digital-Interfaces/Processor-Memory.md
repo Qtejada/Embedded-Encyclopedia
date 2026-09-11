@@ -17,7 +17,7 @@ A **cache line** holds a block of neighboring bytes. It also needs identificatio
 
 Sequential array access often uses several bytes from each fetched line. A large stride can use only one element before moving to another line.
 
-The [five-stage teaching processor](<./RISC-V-Pipeline.md#teaching-model-assumptions>) assumes one-cycle memory. Cache misses can add stalls that its simple timing model excludes.
+The [five-stage processor](<./RISC-V-Pipeline.md#teaching-model-assumptions>) assumes one-cycle memory. Cache misses can add stalls that its simple timing model excludes.
 
 ## 2. Placement and associativity
 

@@ -1,0 +1,15 @@
+* Diode limiter and DC clamp
+VIN IN 0 SINE(0 3 1k)
+RS IN LIMIT 1k
+DP LIMIT 0 D_SILICON
+DN 0 LIMIT D_SILICON
+CC IN CLAMP 100n
+DC 0 CLAMP D_SILICON
+RL CLAMP 0 {Load}
+.tran 0 0.01 0.008 1e-06
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Load list 10k 100k 1Meg
+.model D_SILICON D(Is=2n N=1.7 Rs=0.2 Cjo=10p Tt=20n)
+.save V(CLAMP) V(IN) V(LIMIT) I(VIN) I(RS) I(DP) I(DN) I(CC) I(DC) I(RL)
+.end

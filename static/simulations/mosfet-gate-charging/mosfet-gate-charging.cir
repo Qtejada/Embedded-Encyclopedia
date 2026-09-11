@@ -1,0 +1,15 @@
+* MOSFET gate charging and switching energy
+VDD VDD 0 12
+VIN DRIVE 0 PULSE(0 8 2u 20n 20n 8u 16u)
+RG DRIVE GATE {Rg}
+M1 OUT GATE 0 0 M_POWER
+RL VDD OUT 12
+CGS GATE 0 2n
+CGD GATE OUT 500p
+.tran 0 3.6e-05 0 5e-09
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rg list 10 100 470
+.model M_POWER NMOS(Level=1 Vto=2 Kp=2 Lambda=0 Rd=0.02 Rs=0.02 Cbd=100p Cbs=100p)
+.save V(DRIVE) V(GATE) V(OUT) V(VDD) I(VDD) I(VIN) I(RG) Id(M1) I(RL) I(CGS) I(CGD)
+.end

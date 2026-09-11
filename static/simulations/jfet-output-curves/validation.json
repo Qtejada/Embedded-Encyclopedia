@@ -1,0 +1,92 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "11e73cf66579c02fb7bcf1b1f3bbaa9b0b645a209cbe939449743e7e11796d1a",
+  "rawSha256": "0659ce84d1880ba5e3e44b1058e821bd6350b441c3080b28edcfa59a5ca08ca4",
+  "cases": [
+    {
+      "case": "0",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(J1)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(J1)",
+          "metric": "at",
+          "lo": [
+            0.005,
+            0.003,
+            0.0013
+          ],
+          "hi": [
+            0.007,
+            0.004,
+            0.0018
+          ],
+          "at": 10,
+          "value": 0.006300000010001
+        }
+      ]
+    },
+    {
+      "case": "-0.5",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(J1)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(J1)",
+          "metric": "at",
+          "lo": [
+            0.005,
+            0.003,
+            0.0013
+          ],
+          "hi": [
+            0.007,
+            0.004,
+            0.0018
+          ],
+          "at": 10,
+          "value": 0.003543750010501
+        }
+      ]
+    },
+    {
+      "case": "-1",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(J1)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(J1)",
+          "metric": "at",
+          "lo": [
+            0.005,
+            0.003,
+            0.0013
+          ],
+          "hi": [
+            0.007,
+            0.004,
+            0.0018
+          ],
+          "at": 10,
+          "value": 0.001575000011001
+        }
+      ]
+    }
+  ]
+}

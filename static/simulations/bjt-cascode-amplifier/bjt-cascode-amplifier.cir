@@ -1,0 +1,15 @@
+* BJT cascode amplifier
+VCC VCC 0 12
+VIN BASE 0 1.6 AC 1
+VB BIAS 0 3
+Q1 X BASE EM 0 Q_NPN
+Q2 OUT BIAS X 0 Q_NPN
+RE EM 0 1k
+RC VCC OUT {Rc}
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rc list 1k 2.2k 4.7k
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(BASE) V(BIAS) V(EM) V(OUT) V(VCC) V(X) I(VCC) I(VIN) I(VB) Ic(Q1) Ib(Q1) Ic(Q2) Ib(Q2) I(RE) I(RC)
+.end

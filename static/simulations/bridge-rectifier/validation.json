@@ -1,0 +1,52 @@
+{
+  "slug": "bridge-rectifier",
+  "simulator": "LTspice 24.1.9",
+  "date": "2026-09-11",
+  "temperatureC": 27,
+  "ascSha256": "e011e770dc83d3093b18ceef3fae2f2371fb788e056d5f799b7528f1b82f596f",
+  "rawSha256": "5b9cb5464adfa8c0a4af74df7a94419f70c71ee4d9cb5c44f1c9d12e1373f3a1",
+  "checks": [
+    {
+      "parameter": 1e-12,
+      "savedPoints": 11628,
+      "maxRefinedDifference": {
+        "source": 4.5196269283565016e-05,
+        "V(out)": 0.00017699014298883098,
+        "I(D1)": 1.76985347452455e-07,
+        "I(D2)": 1.7666787223321852e-07
+      },
+      "meanOutputV": 6.31414855453505,
+      "rippleV": 10.529465447565416,
+      "maxKclResidualA": 5.587738044595947e-13
+    },
+    {
+      "parameter": 4.7e-05,
+      "savedPoints": 11867,
+      "maxRefinedDifference": {
+        "source": 5.769222556217812e-05,
+        "V(out)": 0.00013633232840604137,
+        "I(D1)": 1.8597332831785107e-05,
+        "I(D2)": 1.7670517769978814e-05
+      },
+      "meanOutputV": 9.584614247937909,
+      "rippleV": 1.5074284892231056,
+      "maxKclResidualA": 4.2052551123966664e-07
+    },
+    {
+      "parameter": 0.00022,
+      "savedPoints": 11960,
+      "maxRefinedDifference": {
+        "source": 5.5100949596820215e-05,
+        "V(out)": 6.003293046138308e-05,
+        "I(D1)": 2.429691248202791e-05,
+        "I(D2)": 1.3425432202284447e-05
+      },
+      "meanOutputV": 9.816531471415106,
+      "rippleV": 0.33827421818775605,
+      "maxKclResidualA": 4.948640216842493e-07
+    }
+  ],
+  "refinement": "Half the maximum time step or DC step, with tighter tolerances.",
+  "browserData": "Linear interpolation of saved LTspice samples. CSV retains original samples.",
+  "scope": "Electrical simulation at 27 C."
+}

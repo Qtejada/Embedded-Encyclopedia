@@ -1,0 +1,14 @@
+* Comparator with positive feedback
+VP VP 0 5
+VN VN 0 -5
+VIN IN 0 PULSE(-1 1 0 1m 1m 1u 2.002m)
+RF OUT PLUS 100k
+RG PLUS 0 {Rg}
+XU1 PLUS IN VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+.lib UniversalOpAmp2.lib
+.tran 0 0.006004 0 1e-07
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rg list 1k 4.7k 10k
+.save V(IN) V(OUT) V(PLUS) V(VN) V(VP) I(VP) I(VN) I(VIN) I(RF) I(RG)
+.end

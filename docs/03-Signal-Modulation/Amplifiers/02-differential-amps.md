@@ -469,3 +469,60 @@ Use an **instrumentation amplifier** for high source impedance, small signals, o
 
 Use a **differential-output amplifier** when the next stage needs a balanced signal.
 :::
+
+
+import CircuitLibrarySimulation from '@site/src/components/learning/CircuitLibrarySimulation';
+
+## More LTspice circuits {#ltspice-circuits}
+
+These examples show component behavior and reusable circuit blocks. Each example includes three parameter settings.
+
+[Browse all LTspice circuits](/ltspice-circuits).
+
+### Differential pair with resistor tail {#ltspice-differential-pair}
+
+Two transistors share an emitter resistor and steer current between their collectors.
+
+A positive differential input increases one collector current and reduces the other.
+
+The common emitter resistor also responds to common-mode voltage. Its current is not an ideal constant.
+
+Near zero differential input, the response is approximately linear. A larger input steers most of the current to one side.
+
+<CircuitLibrarySimulation circuit="differential-pair" />
+
+### Differential pair with current-source tail {#ltspice-differential-pair-current-tail}
+
+A constant tail current fixes the total current available to a differential pair.
+
+The differential input changes the division of current between the two transistors.
+
+At zero differential input, matched devices carry nearly equal currents. At large differential input, one transistor carries almost all the tail current.
+
+A practical tail source has finite output resistance and requires voltage headroom. The ideal source here isolates the current-steering relation.
+
+<CircuitLibrarySimulation circuit="differential-pair-current-tail" />
+
+### Differential pair with mirror load {#ltspice-differential-mirror-load}
+
+A PNP mirror combines the two branch-current changes into one output.
+
+The left branch establishes the PNP mirror current. The right branch subtracts its NPN collector current from the mirrored current.
+
+The resulting output current changes a load voltage. This converts the differential signal to a single-ended signal.
+
+The resistor at the output sets a defined DC operating point and limits gain. An unloaded active-load stage can have much higher gain.
+
+<CircuitLibrarySimulation circuit="differential-mirror-load" />
+
+### Four-resistor difference amplifier {#ltspice-opamp-difference}
+
+Matched resistor ratios reject a shared input voltage and amplify the difference.
+
+The positive input receives one signal through a divider. The negative input receives the other signal through its input resistor.
+
+Equal resistor ratios make the output equal to the input difference. The common-mode voltage cancels within the amplifier limits.
+
+Resistor mismatch converts common-mode voltage into output error. The examples use equal resistor values to isolate the ideal ratio relation.
+
+<CircuitLibrarySimulation circuit="opamp-difference" />

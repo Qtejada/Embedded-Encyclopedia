@@ -1,0 +1,12 @@
+* Zener shunt regulator
+VIN IN 0 12
+RS IN OUT 330
+DZ 0 OUT D_ZENER
+RL OUT 0 {Load}
+.dc VIN 0 15 0.05
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Load list 1k 2.2k 10k
+.model D_ZENER D(Is=2n N=1.7 Rs=2 BV=5.1 Ibv=1m)
+.save V(IN) V(OUT) I(VIN) I(RS) I(DZ) I(RL)
+.end

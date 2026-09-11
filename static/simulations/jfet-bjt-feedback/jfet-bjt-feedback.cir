@@ -1,0 +1,20 @@
+* JFET and BJT feedback amplifier
+VDD VDD 0 7.5
+VIN IN 0 0 AC 1
+J1 DRAIN IN SOURCE J_NCHANNEL
+RD VDD DRAIN 2.1k
+RS SOURCE 0 3.3k
+Q1 BASE DRAIN VDD 0 Q_PNP
+RB BASE 0 10k
+Q2 VDD BASE OUT 0 Q_NPN
+RL OUT 0 22k
+RF OUT SOURCE {Rf}
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rf list 1k 3.3k 10k
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.model Q_PNP PNP(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.model J_NCHANNEL NJF(Vto=-2 Beta=1.5m Lambda=0.005 Is=1f Cgs=5p Cgd=3p)
+.save V(BASE) V(DRAIN) V(IN) V(OUT) V(SOURCE) V(VDD) I(VDD) I(VIN) Id(J1) I(RD) I(RS) Ic(Q1) Ib(Q1) I(RB) Ic(Q2) Ib(Q2) I(RL) I(RF)
+.end

@@ -1,0 +1,16 @@
+* Transistor Schmitt trigger
+VCC VCC 0 5
+VIN IN 0 PULSE(0 1.5 0 1m 1m 1u 2.002m)
+RB IN BASE 1k
+Q1 X BASE EM 0 Q_NPN
+Q2 OUT X EM 0 Q_NPN
+RC1 VCC X 1k
+RC2 VCC OUT 1k
+RE EM 0 {Re}
+.tran 0 0.006004 0 1e-07
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Re list 20 47 100
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(BASE) V(EM) V(IN) V(OUT) V(VCC) V(X) I(VCC) I(VIN) I(RB) Ic(Q1) Ib(Q1) Ic(Q2) Ib(Q2) I(RC1) I(RC2) I(RE)
+.end

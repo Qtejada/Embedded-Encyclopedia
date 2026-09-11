@@ -33,7 +33,7 @@ export default function CurrentMirrorSimulation() {
       <Choice label="Voltage range" value={view} set={updateView} options={[["full","Full sweep: 0 to 5 V"],["knee","Low-voltage detail: 0 to 0.8 V"]]} />
     </Controls>
     <Range label="Output voltage" value={voltage} set={v=>setSample(Math.round(v*100))} min={0} max={xmax} step={.01} unit="V" digits={2} />
-    <Figure title="BJT current mirror schematic" height={330} dense description="A 5 V source drives the reference resistor into the joined base and collector of Q1. Both NPN emitters connect to ground. Q2 shares the base node. A test source imposes the Q2 collector voltage." caption="Original teaching circuit. VTEST sets the output voltage for this measurement. A practical load supplies current into OUT.">
+    <Figure title="BJT current mirror schematic" height={330} dense description="A 5 V source drives the reference resistor into the joined base and collector of Q1. Both NPN emitters connect to ground. Q2 shares the base node. A test source imposes the Q2 collector voltage." caption="VTEST sets the output voltage for this measurement. A practical load supplies current into OUT.">
       <g stroke={wire} strokeWidth="2" fill="none">
         <path d="M90 95V40H180V70 M180 120V175 M180 145H290V215 M245 215H330 M400 175V40H510V95 M90 145V285 M180 275V285 M400 275V285 M510 145V285" />
         <path d="M180 70l-8 5 16 8-16 8 16 8-16 8 8 5v8" />
@@ -50,7 +50,7 @@ export default function CurrentMirrorSimulation() {
         <text x="400" y="28" textAnchor="middle">OUT</text>
         <text x="145" y="218" textAnchor="end">Q1</text><text x="435" y="218">Q2</text>
         <text x="292" y="242" textAnchor="middle">BASE: {base.toFixed(3)} V</text>
-        <text x="292" y="316" textAnchor="middle">Matched NPN teaching models</text>
+        <text x="292" y="316" textAnchor="middle">Matched NPN transistors</text>
       </g>
       <g stroke={output} fill={output}><path d="M423 81v53" strokeWidth="2" /><path d="M423 140l-5-10h10z" /></g>
       <text x="434" y="173" style={{fontSize:14}}>Iout</text>

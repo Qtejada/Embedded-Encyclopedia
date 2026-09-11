@@ -31,7 +31,7 @@
       "maxKclResidual_A": 3.0655653796701765e-14
     }
   ],
-  "ascSha256": "0ba8acbb187e76ed10a9f9eb124a657048014bab76ab6bf0763443dd659a9a08",
-  "rawSha256": "9521118e41d30361e9ad7b81460a05cf36769590a7623ff2ac058db0e3a0c8bd",
-  "scope": "DC teaching model only. No mismatch, self-heating, or transient characterization."
+  "ascSha256": "db05c3f3f0e0210e8318e84a092ed1529bc78453746336af72856ccba31df079",
+  "rawSha256": "2209e5298289dc6429053d0502352ddd2a71ec8bb05a17bbca5c24fecfda4bc6",
+  "scope": "DC sweep at 27 C."
 }

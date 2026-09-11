@@ -1,0 +1,20 @@
+* Common-emitter amplifier
+VCC VCC 0 12
+VIN IN 0 SINE(0 10m 1k)
+RTOP VCC BASE 100k
+RBOT BASE 0 22k
+CIN IN BASE 10u
+RC VCC COL 3.3k
+Q1 COL BASE EM 0 Q_NPN
+RE1 EM LOW 100
+RE2 LOW 0 900
+CE LOW 0 {Cbypass}
+COUT COL OUT 10u
+RL OUT 0 47k
+.tran 0 60m 40m 2u
+.step param Cbypass list 1p 1u 100u
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.save V(in) V(base) V(em) V(low) V(col) V(out) Ic(Q1) Ib(Q1) Ie(Q1) I(RC) I(RE1)
+.end

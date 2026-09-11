@@ -581,8 +581,234 @@ Both transistors use the same model: IS = 10 fA, BF = 100, and VAF = 100 V. The 
 
 IS sets the transport saturation-current scale. BF sets the ideal maximum forward current gain. VAF is the forward Early voltage.
 
-These are illustrative model parameters, not specifications for a particular transistor. The example does not characterize mismatch, self-heating, or frequency response.
+This DC sweep shows how collector voltage affects the mirrored current.
 
 The simulation passed connectivity, current-balance, and first-order calculation checks. A second run used half the voltage increment and tighter solver tolerances.
 
 The download includes the numerical results and validation record. See the [LTspice reference](https://analogdevicesinc.github.io/ltspice-reference/ai_ref/LTSPICE-QUICKSTART.html) for schematic and simulation file types.
+
+
+## LTspice example: common-emitter amplifier
+
+import SpiceBatchSimulation from '@site/src/components/learning/SpiceBatchSimulation';
+
+This circuit extends the [loaded small-signal gain example](#worked-example-loaded-small-signal-gain). A resistor divider sets the base bias from a 12 V supply.
+
+The input is a 10 mV peak sine wave at 1 kHz. Coupling capacitors separate the signal source and load from the transistor's DC bias.
+
+<SpiceBatchSimulation circuit="common-emitter-amplifier" />
+
+### Separate bias from signal gain
+
+The emitter has a 100-ohm resistor in series with a 900-ohm resistor. Both resistors carry the DC emitter current.
+
+The bypass capacitor connects across only the 900-ohm resistor. It changes the alternating-current path while the total DC emitter resistance stays at 1 kilohm.
+
+With a 1 pF bypass, the capacitor has negligible effect at 1 kHz. The gain magnitude is approximately 3.00 V/V.
+
+With a 100-microfarad bypass, the capacitor bypasses most of the 900-ohm resistance at 1 kHz. The gain magnitude increases to approximately 25.53 V/V.
+
+The 100-ohm resistor remains in the signal path. This remaining [emitter degeneration](#add-emitter-degeneration) limits gain and reduces sensitivity to transistor parameters.
+
+### Understand the intermediate case
+
+The 1-microfarad capacitor does not provide a complete bypass at 1 kHz. Its impedance changes both gain and phase.
+
+The simulated gain magnitude is approximately 14.35 V/V. The output phase is approximately −133.56 degrees relative to the input.
+
+For the large capacitor, output phase is approximately −179.12 degrees. The result is close to the familiar inverted output of a common-emitter stage.
+
+### Check the operating point
+
+The mean collector voltage remains approximately 7.57 V for all three capacitor values. The transistor remains in its forward-active region throughout these runs.
+
+A larger input can cause clipping, but these runs use a small signal. They isolate the effect of emitter bypass on gain and phase.
+
+The embedded model includes finite current gain, output resistance, and junction capacitance.
+
+The results table uses the final ten signal periods. The downloaded CSV preserves the original simulation samples and restores the simulator's time offset.
+
+
+import CircuitLibrarySimulation from '@site/src/components/learning/CircuitLibrarySimulation';
+
+## More LTspice circuits {#ltspice-circuits}
+
+These examples show component behavior and reusable circuit blocks. Each example includes three parameter settings.
+
+[Browse all LTspice circuits](/ltspice-circuits).
+
+### BJT switch and base drive {#ltspice-bjt-switch}
+
+A base resistor controls a transistor that switches a resistor load.
+
+A high input drives base current and lowers the collector voltage. The load connects between the supply and collector.
+
+Insufficient base current prevents a low collector voltage. The forced current gain is collector current divided by base current.
+
+Compare all base resistors at the same load. A small resistor increases base current and drives the transistor farther into saturation.
+
+<CircuitLibrarySimulation circuit="bjt-switch" />
+
+### BJT emitter follower {#ltspice-emitter-follower}
+
+The emitter follows the base voltage with a base to emitter voltage difference.
+
+The collector connects to the supply. The emitter supplies current to the load.
+
+The voltage gain is slightly below one. The transistor provides current gain, which reduces loading at the input.
+
+The base to emitter voltage changes with current. It is not a fixed voltage drop for every load.
+
+<CircuitLibrarySimulation circuit="emitter-follower" />
+
+### Common-base amplifier {#ltspice-common-base-amplifier}
+
+A signal enters the emitter while the base stays at a fixed voltage.
+
+An increase in emitter voltage reduces base to emitter voltage and collector current. The collector voltage then increases.
+
+The voltage gain is positive. The emitter presents a low input resistance, which can suit a low-impedance source.
+
+The input source includes the emitter bias. The output capacitor removes the collector DC voltage from the load.
+
+<CircuitLibrarySimulation circuit="common-base-amplifier" />
+
+### Emitter degeneration and current gain {#ltspice-emitter-degeneration}
+
+Two amplifier paths compare complete emitter bypass with partial emitter bypass.
+
+Both paths use the same DC emitter resistance and bias network. The partially bypassed path retains 100 ohms in the signal path.
+
+The stepped forward current gain changes the transistor parameters in both paths.
+
+Emitter degeneration reduces signal gain. It also reduces dependence on the transistor and the bias network.
+
+<CircuitLibrarySimulation circuit="emitter-degeneration" />
+
+### PNP current mirror {#ltspice-pnp-current-mirror}
+
+A PNP mirror supplies current from the positive rail into a load.
+
+The reference resistor draws current from a diode-connected PNP transistor. Both transistor bases share this voltage.
+
+The output transistor supplies current while its collector stays sufficiently below its emitter.
+
+Collector current uses the SPICE sign convention. The plot reverses that sign to show supplied load current as positive.
+
+<CircuitLibrarySimulation circuit="pnp-current-mirror" />
+
+### Current mirror with emitter resistors {#ltspice-degenerated-current-mirror}
+
+Equal emitter resistors add local feedback to the two mirror transistors.
+
+A transistor with more current develops a larger emitter voltage. This reduces its base to emitter voltage and opposes the increase.
+
+The resistors reduce sensitivity to transistor differences. They also consume voltage headroom.
+
+The reference uses a current source so the resistor comparison does not change the commanded reference current.
+
+<CircuitLibrarySimulation circuit="degenerated-current-mirror" />
+
+### Wilson current mirror {#ltspice-wilson-current-mirror}
+
+A third transistor feeds current back into the mirror base node.
+
+The reference current enters the collector of Q2 and the base of Q3. Q3 supplies the diode-connected Q1 and the mirror base currents.
+
+This feedback reduces base-current error and increases output resistance.
+
+The additional transistor requires more output voltage than a basic two-transistor mirror. Examine the low-voltage portion of the sweep.
+
+<CircuitLibrarySimulation circuit="wilson-current-mirror" />
+
+### Cascode current mirror {#ltspice-cascode-current-mirror}
+
+A second transistor above each mirror branch holds the lower collector voltage nearly constant.
+
+The reference branch establishes two base voltage levels. The upper output transistor uses the higher level.
+
+Changes at the output then have less effect on the lower transistor collector voltage. This reduces the Early-effect current change.
+
+The stacked transistors need additional voltage headroom. High output resistance does not remove this requirement.
+
+<CircuitLibrarySimulation circuit="cascode-current-mirror" />
+
+### BJT cascode amplifier {#ltspice-bjt-cascode-amplifier}
+
+A common-base transistor sits above a common-emitter transistor.
+
+The upper base stays at 3 V. Its emitter holds the lower collector near a fixed voltage.
+
+This reduces the voltage swing across the lower transistor collector junction and limits Miller feedback.
+
+The collector resistor converts current to output voltage. Both transistors still require suitable DC voltage headroom.
+
+<CircuitLibrarySimulation circuit="bjt-cascode-amplifier" />
+
+### Complementary output stage and class AB bias {#ltspice-complementary-output-stage}
+
+An NPN and a PNP transistor supply opposite halves of the load current.
+
+Without base bias, neither transistor conducts near zero input. This produces crossover distortion.
+
+A voltage between the bases reduces the dead zone. More bias also increases quiescent current.
+
+Emitter resistors limit current imbalance. A physical bias network must track temperature to control idle current.
+
+<CircuitLibrarySimulation circuit="complementary-output-stage" />
+
+### Transistor Schmitt trigger {#ltspice-transistor-schmitt-trigger}
+
+Two transistors share an emitter resistor that creates positive feedback.
+
+When Q1 takes more current, its collector voltage falls and Q2 takes less current.
+
+The shared emitter voltage then changes in the direction that reinforces the transition.
+
+The emitter resistor changes the separation between switching thresholds. Base current and transistor gain also affect the thresholds.
+
+The low collector voltage includes the shared emitter voltage. A larger emitter resistor raises this low output level.
+
+<CircuitLibrarySimulation circuit="transistor-schmitt-trigger" />
+
+### Short pulse from an input step {#ltspice-short-pulse-generator}
+
+A coupling capacitor briefly drives Q2 out of conduction and creates a positive collector pulse.
+
+A rising input turns Q1 on and lowers its collector voltage. The capacitor transfers this falling edge to the base of Q2.
+
+The base resistor then restores Q2 conduction as the capacitor charges. Resistance and capacitance set the approximate pulse duration.
+
+This version needs an input step that lasts longer than the desired output pulse.
+
+The coupling pulse drives the second base below ground. Check reverse base to emitter voltage when changing the supply.
+
+<CircuitLibrarySimulation circuit="short-pulse-generator" />
+
+### Transistor pulse extension {#ltspice-pulse-extension}
+
+A coupling capacitor briefly drives Q2 out of conduction and creates a positive collector pulse.
+
+A rising input turns Q1 on and lowers its collector voltage. The capacitor transfers this falling edge to the base of Q2.
+
+The base resistor then restores Q2 conduction as the capacitor charges. Resistance and capacitance set the approximate pulse duration.
+
+Q3 holds the first collector low after a short input pulse ends. It releases that node when Q2 returns to conduction.
+
+The coupling pulse drives the second base below ground. Check reverse base to emitter voltage when changing the supply.
+
+<CircuitLibrarySimulation circuit="pulse-extension" />
+
+### Discrete amplifier with negative feedback {#ltspice-discrete-feedback-amplifier}
+
+A differential pair, voltage-gain transistor, and emitter follower form a feedback amplifier.
+
+Q1 and Q2 compare the input with a divided output voltage. Their shared current source fixes the available tail current.
+
+Q3 adds voltage gain. Q4 supplies output current while its emitter follows the preceding stage.
+
+The output divider requests a gain of ten. The compensation capacitor controls high-frequency loop behavior.
+
+Identify each block separately before following the complete feedback path. The AC sweep examines the linear response around the bias point.
+
+<CircuitLibrarySimulation circuit="discrete-feedback-amplifier" />

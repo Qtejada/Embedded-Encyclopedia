@@ -1,0 +1,13 @@
+* JFET self bias
+VDD VDD 0 12
+RD VDD DRAIN 1k
+J1 DRAIN GATE SOURCE J_NCHANNEL
+RS SOURCE 0 {Rsource}
+RG GATE 0 1Meg
+.dc VDD 0 12 0.05
+.step param Rsource list 470 1k 2.2k
+.model J_NCHANNEL NJF(Vto=-2 Beta=1.5m Lambda=0 Is=1f)
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.save V(gate) V(source) V(drain) Id(J1) Ig(J1) I(RD) I(RS)
+.end

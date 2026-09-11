@@ -8,9 +8,8 @@ BJT CURRENT MIRROR - LTspice learning example
 5. The three stepped resistor values are 2.2k, 4.3k, and 8.2k ohms.
    Use View > Step Legend to identify the stepped runs.
 
-Q1 and Q2 are matched NPN teaching models declared inside the schematic.
-They are not vendor models for a production transistor. No additional
-model download is required. The schematic uses standard LTspice symbols.
+Q1 and Q2 are matched NPN transistors. Their parameters are declared inside
+the schematic. No additional model download is required. The schematic uses standard LTspice symbols.
 The .cir file is an optional equivalent text netlist with no library includes.
 
 VCC is 5 V. VTEST sweeps the output node from 0 to 5 V in 10 mV steps.
@@ -31,5 +30,5 @@ The CSV contains the actual sampled DC results used by the website.
 Validation details are in validation.json. Device mismatch, leakage,
 self-heating, and frequency behavior are not characterized by this example.
 
-Original educational circuit for Hardware Encyclopedia.
+Hardware Encyclopedia circuit example.
 Prepared and verified with LTspice 24.1.9 on Windows.

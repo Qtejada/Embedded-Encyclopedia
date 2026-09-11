@@ -635,7 +635,7 @@ export default function LogicLevelExplorer() {
             id={`${generatedId}-presets-heading`}
             className="panel-header"
           >
-            Teaching presets
+            Logic presets
           </span>
           <div
             style={{

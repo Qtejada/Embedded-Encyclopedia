@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "2c14be822ec4ed21f04e5210b12f5c1fd414eb719c8004b3db6beb5d74b4248e",
+  "rawSha256": "15b3743ab204054662b0ead04831fef2e51cfbd583c0d92e7a7fa6b5188b0101",
+  "cases": [
+    {
+      "case": "20",
+      "savedPoints": 60731,
+      "refinement": {
+        "V(in)": {
+          "max": 2.3249631386779157e-15,
+          "normalizedRms": 3.9266121315566444e-16
+        },
+        "V(out)": {
+          "max": 5.272424973057355e-06,
+          "normalizedRms": 3.362628106101733e-08
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": 4.8,
+          "hi": 5.1,
+          "at": null,
+          "value": 5.000089637764075
+        },
+        {
+          "trace": "V(out)",
+          "metric": "min",
+          "lo": 0.01,
+          "hi": 0.9,
+          "at": null,
+          "value": 0.20801327002314846
+        }
+      ]
+    },
+    {
+      "case": "47",
+      "savedPoints": 60769,
+      "refinement": {
+        "V(in)": {
+          "max": 2.4424906541753444e-15,
+          "normalizedRms": 3.7670157168990266e-16
+        },
+        "V(out)": {
+          "max": 3.163198995126404e-06,
+          "normalizedRms": 2.1585655431734504e-08
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": 4.8,
+          "hi": 5.1,
+          "at": null,
+          "value": 5.000047287404819
+        },
+        {
+          "trace": "V(out)",
+          "metric": "min",
+          "lo": 0.01,
+          "hi": 0.9,
+          "at": null,
+          "value": 0.4276201769092205
+        }
+      ]
+    },
+    {
+      "case": "100",
+      "savedPoints": 60801,
+      "refinement": {
+        "V(in)": {
+          "max": 2.220446049250313e-15,
+          "normalizedRms": 3.7740892882232365e-16
+        },
+        "V(out)": {
+          "max": 9.500254142480458e-06,
+          "normalizedRms": 6.33756619966912e-08
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": 4.8,
+          "hi": 5.1,
+          "at": null,
+          "value": 5.000026276768617
+        },
+        {
+          "trace": "V(out)",
+          "metric": "min",
+          "lo": 0.01,
+          "hi": 0.9,
+          "at": null,
+          "value": 0.8013941800405252
+        }
+      ]
+    }
+  ]
+}

@@ -712,7 +712,7 @@ The component and operational-amplifier limitations in the next sections still a
 A real voltage-feedback operational amplifier usually has a low-pass open-loop response.
 Its **open-loop gain** is high at DC and decreases as frequency increases.
 
-Example teaching values:
+Example component values:
 
 * Open-loop gain can be 100,000 up to 10 Hz.
 * Available gain can decrease to 100 at 10 kHz.
@@ -724,7 +724,7 @@ Increasing the closed-loop gain usually decreases the available closed-loop band
 
 <GainBandwidthGraph />
 
-The graph uses a first-order teaching model.
+The graph uses a first-order model.
 Use the selected amplifier datasheet for the real open-loop magnitude and phase.
 
 #### Gain-Bandwidth Estimate
@@ -1413,3 +1413,48 @@ Before release, confirm:
 
 Use the datasheets and the exact circuit equations.
 Do not replace verification with one corner-frequency calculation.
+
+
+import CircuitLibrarySimulation from '@site/src/components/learning/CircuitLibrarySimulation';
+
+## More LTspice circuits {#ltspice-circuits}
+
+These examples show component behavior and reusable circuit blocks. Each example includes three parameter settings.
+
+[Browse all LTspice circuits](/ltspice-circuits).
+
+### RC low-pass and high-pass filters {#ltspice-rc-filter-pair}
+
+The same resistor and capacitor values produce opposite first-order filter responses.
+
+The low-pass path takes its output across the capacitor. The high-pass path takes its output across the resistor.
+
+The corner frequency is one divided by two pi times resistance and capacitance.
+
+At the corner, each magnitude is approximately 0.707 of its passband value. Each response changes by 20 dB per decade in its stopband.
+
+<CircuitLibrarySimulation circuit="rc-filter-pair" />
+
+### Active low-pass and high-pass filters {#ltspice-active-filter-pair}
+
+Op-amps buffer first-order filters and add voltage gain.
+
+Each input filter feeds a noninverting amplifier with a gain of two.
+
+The amplifier input draws little filter current. This reduces the change in corner frequency caused by the following load.
+
+The active stage also has finite bandwidth. Its high-frequency limit appears beyond the filter corner.
+
+<CircuitLibrarySimulation circuit="active-filter-pair" />
+
+### Buffered band-pass filter {#ltspice-active-bandpass}
+
+A high-pass stage rejects low frequencies, and a following low-pass stage rejects high frequencies.
+
+The buffer separates the two resistor-capacitor networks. Their responses then multiply without substantial mutual loading.
+
+The lower corner is approximately 159 Hz. The upper corner changes with the selected low-pass capacitor.
+
+A wide gap between the corners gives a nearly flat middle band. Closely spaced corners reduce the peak gain.
+
+<CircuitLibrarySimulation circuit="active-bandpass" />

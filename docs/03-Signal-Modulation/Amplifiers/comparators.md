@@ -700,3 +700,24 @@ Its positive feedback makes an upper threshold and a lower threshold.
 The hysteresis band prevents repeated output transitions near one voltage.
 
 Always check the input range, threshold error, propagation delay, output type, pull-up network, and load current.
+
+
+import CircuitLibrarySimulation from '@site/src/components/learning/CircuitLibrarySimulation';
+
+## More LTspice circuits {#ltspice-circuits}
+
+These examples show component behavior and reusable circuit blocks. Each example includes three parameter settings.
+
+[Browse all LTspice circuits](/ltspice-circuits).
+
+### Comparator with positive feedback {#ltspice-comparator-hysteresis}
+
+Positive feedback creates separate switching thresholds for rising and falling input.
+
+The input connects to the inverting terminal. The output feeds the positive terminal through a resistor divider.
+
+A positive output raises the threshold. A negative output lowers it. The input must cross the opposite threshold to change state again.
+
+This circuit uses an op-amp as a slow comparator. Saturation recovery limits operation at high switching rates.
+
+<CircuitLibrarySimulation circuit="comparator-hysteresis" />

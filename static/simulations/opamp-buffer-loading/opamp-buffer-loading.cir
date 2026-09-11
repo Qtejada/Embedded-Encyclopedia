@@ -1,0 +1,16 @@
+* Buffer and source loading
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 0 AC 1
+RS1 IN DIRECT 10k
+RL1 DIRECT 0 {Load}
+RS2 IN BUFFERIN 10k
+XU1 BUFFERIN OUT VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+RL2 OUT 0 {Load}
+.lib UniversalOpAmp2.lib
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Load list 100 1k 10k
+.save V(BUFFERIN) V(DIRECT) V(IN) V(OUT) V(VN) V(VP) I(VP) I(VN) I(VIN) I(RS1) I(RL1) I(RS2) I(RL2)
+.end

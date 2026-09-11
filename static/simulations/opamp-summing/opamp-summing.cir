@@ -1,0 +1,16 @@
+* Summing amplifier
+VP VP 0 12
+VN VN 0 -12
+V1 IN 0 SINE(0 0.2 1k)
+V2 OFFSET 0 {Offset}
+R1 IN SUM 10k
+R2 OFFSET SUM 10k
+RF OUT SUM 10k
+XU1 0 SUM VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+.lib UniversalOpAmp2.lib
+.tran 0 0.004 0.002 1e-06
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Offset list -0.5 0 0.5
+.save V(IN) V(OFFSET) V(OUT) V(SUM) V(VN) V(VP) I(VP) I(VN) I(V1) I(V2) I(R1) I(R2) I(RF)
+.end

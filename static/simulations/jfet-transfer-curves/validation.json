@@ -1,0 +1,68 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "d76163108fa96ad86cad2281a2f777c1c21593a924e5ead1a19476873a33b53e",
+  "rawSha256": "f3cbe4b163947d6d371100799d2f809a3b911a12f396994accfe35d362c69836",
+  "cases": [
+    {
+      "case": "3",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(J1)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(J1)",
+          "metric": "at",
+          "lo": 0.005,
+          "hi": 0.007,
+          "at": 0,
+          "value": 0.006090000003001
+        }
+      ]
+    },
+    {
+      "case": "6",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(J1)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(J1)",
+          "metric": "at",
+          "lo": 0.005,
+          "hi": 0.007,
+          "at": 0,
+          "value": 0.006180000006001001
+        }
+      ]
+    },
+    {
+      "case": "10",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(J1)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(J1)",
+          "metric": "at",
+          "lo": 0.005,
+          "hi": 0.007,
+          "at": 0,
+          "value": 0.006300000010001
+        }
+      ]
+    }
+  ]
+}

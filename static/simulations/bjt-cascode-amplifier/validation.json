@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "c146e6d1a8b33386e876610a0dc935384386abd7057dc0fa943580f6658a026f",
+  "rawSha256": "f07bfe11c5f0696824f577754eec37312342aa621d915c8176f83a465f1c3ad4",
+  "cases": [
+    {
+      "case": "1k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.00015104479638905488,
+          "normalizedRms": 4.342320682818186e-05
+        },
+        "ph(V(out))": {
+          "max": 2.6767150899331682e-05,
+          "normalizedRms": 1.3351557484180846e-08
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            0.8,
+            1.8,
+            3.8
+          ],
+          "hi": [
+            1.2,
+            2.7,
+            5.5
+          ],
+          "at": 100,
+          "value": 0.9607113549449745
+        }
+      ]
+    },
+    {
+      "case": "2.2k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.0003552585324344548,
+          "normalizedRms": 5.5977789168450985e-06
+        },
+        "ph(V(out))": {
+          "max": 0.0005287531114959165,
+          "normalizedRms": 2.4663700078659457e-07
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            0.8,
+            1.8,
+            3.8
+          ],
+          "hi": [
+            1.2,
+            2.7,
+            5.5
+          ],
+          "at": 100,
+          "value": 2.1132892210493233
+        }
+      ]
+    },
+    {
+      "case": "4.7k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.0007124499988577782,
+          "normalizedRms": 6.7977484061994566e-06
+        },
+        "ph(V(out))": {
+          "max": 0.004898863846960921,
+          "normalizedRms": 2.5489244664742155e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            0.8,
+            1.8,
+            3.8
+          ],
+          "hi": [
+            1.2,
+            2.7,
+            5.5
+          ],
+          "at": 100,
+          "value": 4.513466319653649
+        }
+      ]
+    }
+  ]
+}

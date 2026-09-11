@@ -1,0 +1,4 @@
+# Simulation downloads and their validation hashes must retain exact bytes.
+static/simulations/** -text whitespace=cr-at-eol
+static/simulations/**/results.csv -diff
+static/simulations/**/viewer.json -diff

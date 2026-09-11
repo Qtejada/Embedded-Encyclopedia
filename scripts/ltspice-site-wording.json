@@ -1,0 +1,107 @@
+[
+  {
+    "path": "docs/03-Signal-Modulation/Signals-and-Systems.md",
+    "changes": [
+      {
+        "before": "The junior notes supply the lesson topics and the two-mode initial-condition example. The other numerical examples are original teaching examples.",
+        "after": "The junior notes supply the lesson topics and the two-mode initial-condition example. The other numerical examples are original examples."
+      }
+    ]
+  },
+  {
+    "path": "docs/03-Signal-Modulation/State-Space.md",
+    "changes": [
+      {
+        "before": "The junior notes provide state modeling, linearization, controllability, and hidden-mode topics. The circuit and nonlinear-load values are original teaching examples.",
+        "after": "The junior notes provide state modeling, linearization, controllability, and hidden-mode topics. The circuit and nonlinear-load values are original examples."
+      }
+    ]
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Computer-Architecture.md",
+    "changes": [
+      {
+        "before": "A teaching pipeline has five stages:",
+        "after": "A pipeline has five stages:"
+      }
+    ]
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Processor-Memory.md",
+    "changes": [
+      {
+        "before": "The [five-stage teaching processor](<./RISC-V-Pipeline.md#teaching-model-assumptions>) assumes one-cycle memory. Cache misses can add stalls that its simple timing model excludes.",
+        "after": "The [five-stage processor](<./RISC-V-Pipeline.md#teaching-model-assumptions>) assumes one-cycle memory. Cache misses can add stalls that its simple timing model excludes."
+      }
+    ]
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/RISC-V-Pipeline.md",
+    "changes": [
+      {
+        "before": "This lesson uses a small **RV32I** teaching processor. RV32I has 32-bit integer registers. Its base instructions have a fixed length of 32 bits.",
+        "after": "This lesson uses a small **RV32I** processor. RV32I has 32-bit integer registers. Its base instructions have a fixed length of 32 bits."
+      },
+      {
+        "before": "### Teaching model assumptions",
+        "after": "### Processor assumptions {#teaching-model-assumptions}"
+      },
+      {
+        "before": "The ALU performs arithmetic or calculates an effective address. In this teaching model, EX also compares branch operands and calculates the branch target.",
+        "after": "The ALU performs arithmetic or calculates an effective address. In this model, EX also compares branch operands and calculates the branch target."
+      },
+      {
+        "before": "**RegWrite**, **MemRead**, and **MemWrite** are common teaching signal names. They are implementation labels, not RISC-V instructions.",
+        "after": "**RegWrite**, **MemRead**, and **MemWrite** are common control signal names. They are implementation labels, not RISC-V instructions."
+      },
+      {
+        "before": "The course notes motivate this walkthrough. The examples and interactive model are new teaching material with explicit assumptions.",
+        "after": "The course notes motivate this walkthrough. The examples and interactive model are new material with explicit assumptions."
+      }
+    ]
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Data-convertes/Sample-holding.md",
+    "changes": [
+      {
+        "before": "The explorer is a first-order teaching model.",
+        "after": "The explorer is a first-order model."
+      }
+    ]
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+    "changes": [
+      {
+        "before": "Example teaching values:",
+        "after": "Example component values:"
+      },
+      {
+        "before": "The graph uses a first-order teaching model.",
+        "after": "The graph uses a first-order model."
+      }
+    ]
+  },
+  {
+    "path": "src/components/LogicLevelExplorer.js",
+    "changes": [
+      {
+        "before": "            Teaching presets",
+        "after": "            Logic presets"
+      }
+    ]
+  },
+  {
+    "path": "src/components/PllExplorer.js",
+    "changes": [
+      {
+        "before": "        A first-order teaching model shows reference and phase-frequency",
+        "after": "        A first-order model shows reference and phase-frequency"
+      },
+      {
+        "before": "              This first-order teaching model uses Href = 1 / sqrt(1 +",
+        "after": "              This first-order model uses Href = 1 / sqrt(1 +"
+      }
+    ]
+  }
+]

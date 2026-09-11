@@ -1,0 +1,15 @@
+* Output clipping
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 SINE(0 {Amplitude} 1k)
+RI IN SUM 10k
+RF OUT SUM 20k
+XU1 0 SUM VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+RL OUT 0 10k
+.lib UniversalOpAmp2.lib
+.tran 0 0.004 0.002 2e-07
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Amplitude list 1 5 10
+.save V(IN) V(OUT) V(SUM) V(VN) V(VP) I(VP) I(VN) I(VIN) I(RI) I(RF) I(RL)
+.end

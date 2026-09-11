@@ -1,0 +1,1671 @@
+[
+  {
+    "parameter": "Cfilter",
+    "values": [
+      1e-12,
+      4.7e-05,
+      0.00022
+    ],
+    "labels": [
+      "No reservoir (1 pF)",
+      "47 uF",
+      "220 uF"
+    ],
+    "kind": "half",
+    "analysis": "Transient",
+    "axis": "Time (ms)",
+    "axisScale": 1000,
+    "stop": 0.2,
+    "sampleStep": 0.0001,
+    "traceGroups": [
+      {
+        "label": "Voltage",
+        "unit": "V",
+        "traces": [
+          [
+            "V(raw)",
+            "Source voltage",
+            1
+          ],
+          [
+            "V(out)",
+            "Output voltage",
+            1
+          ]
+        ]
+      },
+      {
+        "label": "Current",
+        "unit": "mA",
+        "traces": [
+          [
+            "I(D1)",
+            "Diode current",
+            1000
+          ],
+          [
+            "I(RLOAD)",
+            "Load current",
+            1000
+          ]
+        ]
+      }
+    ],
+    "slug": "half-wave-rectifier",
+    "title": "Half-wave rectifier",
+    "components": [
+      {
+        "kind": "voltage",
+        "name": "VIN",
+        "value": "SINE(0 12 50)",
+        "nodes": [
+          "RAW",
+          "0"
+        ],
+        "x": 128,
+        "y": 144,
+        "rotation": "R0",
+        "display": "12 V peak, 50 Hz"
+      },
+      {
+        "kind": "res",
+        "name": "RSER",
+        "value": "10",
+        "nodes": [
+          "RAW",
+          "AC"
+        ],
+        "x": 240,
+        "y": 112,
+        "rotation": "R0",
+        "display": "10"
+      },
+      {
+        "kind": "diode",
+        "name": "D1",
+        "value": "D_SILICON",
+        "nodes": [
+          "AC",
+          "OUT"
+        ],
+        "x": 240,
+        "y": 272,
+        "rotation": "R0",
+        "display": "D_SILICON"
+      },
+      {
+        "kind": "res",
+        "name": "RLOAD",
+        "value": "1k",
+        "nodes": [
+          "OUT",
+          "0"
+        ],
+        "x": 496,
+        "y": 352,
+        "rotation": "R0",
+        "display": "1k"
+      },
+      {
+        "kind": "cap",
+        "name": "CFILTER",
+        "value": "{Cfilter}",
+        "nodes": [
+          "OUT",
+          "0"
+        ],
+        "x": 688,
+        "y": 368,
+        "rotation": "R0",
+        "display": "{Cfilter}"
+      }
+    ],
+    "wires": [
+      [
+        128,
+        160,
+        128,
+        96
+      ],
+      [
+        128,
+        96,
+        256,
+        96
+      ],
+      [
+        256,
+        96,
+        256,
+        128
+      ],
+      [
+        256,
+        208,
+        256,
+        272
+      ],
+      [
+        256,
+        336,
+        256,
+        352
+      ],
+      [
+        256,
+        352,
+        512,
+        352
+      ],
+      [
+        512,
+        352,
+        704,
+        352
+      ],
+      [
+        704,
+        352,
+        704,
+        368
+      ],
+      [
+        512,
+        352,
+        512,
+        368
+      ],
+      [
+        128,
+        240,
+        128,
+        496
+      ],
+      [
+        512,
+        448,
+        512,
+        496
+      ],
+      [
+        704,
+        432,
+        704,
+        496
+      ]
+    ],
+    "flags": [
+      [
+        128,
+        96,
+        "RAW"
+      ],
+      [
+        256,
+        240,
+        "AC"
+      ],
+      [
+        512,
+        352,
+        "OUT"
+      ],
+      [
+        128,
+        496,
+        "0"
+      ],
+      [
+        512,
+        496,
+        "0"
+      ],
+      [
+        704,
+        496,
+        "0"
+      ]
+    ],
+    "notes": [
+      [
+        432,
+        128,
+        "RSER represents source resistance."
+      ],
+      [
+        432,
+        176,
+        "Cfilter = 1p, 47u, or 220u."
+      ],
+      [
+        432,
+        224,
+        "1 pF represents no reservoir capacitor."
+      ]
+    ],
+    "expected": [
+      "VIN RAW 0 SINE(0 12 50)",
+      "RSER RAW AC 10",
+      "D1 AC OUT D_SILICON",
+      "RLOAD OUT 0 1k",
+      "CFILTER OUT 0 {Cfilter}"
+    ]
+  },
+  {
+    "parameter": "Cfilter",
+    "values": [
+      1e-12,
+      4.7e-05,
+      0.00022
+    ],
+    "labels": [
+      "No reservoir (1 pF)",
+      "47 uF",
+      "220 uF"
+    ],
+    "kind": "bridge",
+    "analysis": "Transient",
+    "axis": "Time (ms)",
+    "axisScale": 1000,
+    "stop": 0.2,
+    "sampleStep": 0.0001,
+    "traceGroups": [
+      {
+        "label": "Voltage",
+        "unit": "V",
+        "traces": [
+          [
+            "source",
+            "Source voltage",
+            1
+          ],
+          [
+            "V(out)",
+            "Output voltage",
+            1
+          ]
+        ]
+      },
+      {
+        "label": "Diode current",
+        "unit": "mA",
+        "traces": [
+          [
+            "I(D1)",
+            "D1 and D4 path",
+            1000
+          ],
+          [
+            "I(D2)",
+            "D2 and D3 path",
+            1000
+          ]
+        ]
+      }
+    ],
+    "slug": "bridge-rectifier",
+    "title": "Full-wave bridge rectifier",
+    "components": [
+      {
+        "kind": "voltage",
+        "name": "VIN",
+        "value": "SINE(0 12 50)",
+        "nodes": [
+          "RAW",
+          "B"
+        ],
+        "x": 128,
+        "y": 160,
+        "rotation": "R0",
+        "display": "12 V peak, 50 Hz"
+      },
+      {
+        "kind": "res",
+        "name": "RSER",
+        "value": "10",
+        "nodes": [
+          "RAW",
+          "A"
+        ],
+        "x": 240,
+        "y": 112,
+        "rotation": "R0",
+        "display": "10"
+      },
+      {
+        "kind": "diode",
+        "name": "D1",
+        "value": "D_SILICON",
+        "nodes": [
+          "A",
+          "OUT"
+        ],
+        "x": 384,
+        "y": 176,
+        "rotation": "R0",
+        "display": "D_SILICON"
+      },
+      {
+        "kind": "diode",
+        "name": "D2",
+        "value": "D_SILICON",
+        "nodes": [
+          "B",
+          "OUT"
+        ],
+        "x": 608,
+        "y": 176,
+        "rotation": "R0",
+        "display": "D_SILICON"
+      },
+      {
+        "kind": "diode",
+        "name": "D3",
+        "value": "D_SILICON",
+        "nodes": [
+          "0",
+          "A"
+        ],
+        "x": 384,
+        "y": 384,
+        "rotation": "R0",
+        "display": "D_SILICON"
+      },
+      {
+        "kind": "diode",
+        "name": "D4",
+        "value": "D_SILICON",
+        "nodes": [
+          "0",
+          "B"
+        ],
+        "x": 608,
+        "y": 384,
+        "rotation": "R0",
+        "display": "D_SILICON"
+      },
+      {
+        "kind": "res",
+        "name": "RLOAD",
+        "value": "1k",
+        "nodes": [
+          "OUT",
+          "0"
+        ],
+        "x": 832,
+        "y": 288,
+        "rotation": "R0",
+        "display": "1k"
+      },
+      {
+        "kind": "cap",
+        "name": "CFILTER",
+        "value": "{Cfilter}",
+        "nodes": [
+          "OUT",
+          "0"
+        ],
+        "x": 1024,
+        "y": 304,
+        "rotation": "R0",
+        "display": "{Cfilter}"
+      }
+    ],
+    "wires": [
+      [
+        128,
+        176,
+        128,
+        96
+      ],
+      [
+        128,
+        96,
+        256,
+        96
+      ],
+      [
+        256,
+        96,
+        256,
+        128
+      ],
+      [
+        128,
+        256,
+        128,
+        288
+      ],
+      [
+        256,
+        208,
+        256,
+        240
+      ],
+      [
+        400,
+        176,
+        400,
+        128
+      ],
+      [
+        624,
+        176,
+        624,
+        128
+      ],
+      [
+        400,
+        240,
+        400,
+        272
+      ],
+      [
+        400,
+        272,
+        624,
+        272
+      ],
+      [
+        624,
+        272,
+        848,
+        272
+      ],
+      [
+        848,
+        272,
+        1040,
+        272
+      ],
+      [
+        1040,
+        272,
+        1040,
+        304
+      ],
+      [
+        624,
+        240,
+        624,
+        272
+      ],
+      [
+        848,
+        272,
+        848,
+        304
+      ],
+      [
+        400,
+        384,
+        400,
+        352
+      ],
+      [
+        400,
+        352,
+        624,
+        352
+      ],
+      [
+        624,
+        352,
+        624,
+        384
+      ],
+      [
+        400,
+        448,
+        400,
+        480
+      ],
+      [
+        624,
+        448,
+        624,
+        480
+      ],
+      [
+        848,
+        384,
+        848,
+        496
+      ],
+      [
+        1040,
+        368,
+        1040,
+        496
+      ]
+    ],
+    "flags": [
+      [
+        128,
+        288,
+        "B"
+      ],
+      [
+        256,
+        240,
+        "A"
+      ],
+      [
+        400,
+        128,
+        "A"
+      ],
+      [
+        624,
+        128,
+        "B"
+      ],
+      [
+        848,
+        272,
+        "OUT"
+      ],
+      [
+        400,
+        352,
+        "0"
+      ],
+      [
+        400,
+        480,
+        "A"
+      ],
+      [
+        624,
+        480,
+        "B"
+      ],
+      [
+        848,
+        496,
+        "0"
+      ],
+      [
+        1040,
+        496,
+        "0"
+      ],
+      [
+        128,
+        96,
+        "RAW"
+      ]
+    ],
+    "notes": [
+      [
+        48,
+        552,
+        "Equal node labels connect. A and B are floating AC terminals."
+      ],
+      [
+        48,
+        584,
+        "D1/D4 conduct on positive half cycles. D2/D3 conduct on negative half cycles."
+      ]
+    ],
+    "expected": [
+      "VIN RAW B SINE(0 12 50)",
+      "RSER RAW A 10",
+      "D1 A OUT D_SILICON",
+      "D2 B OUT D_SILICON",
+      "D3 0 A D_SILICON",
+      "D4 0 B D_SILICON",
+      "RLOAD OUT 0 1k",
+      "CFILTER OUT 0 {Cfilter}"
+    ]
+  },
+  {
+    "parameter": "Rsource",
+    "values": [
+      470,
+      1000,
+      2200
+    ],
+    "labels": [
+      "470 ohms",
+      "1 kilohm",
+      "2.2 kilohms"
+    ],
+    "kind": "jfet",
+    "analysis": "DC sweep",
+    "axis": "Supply voltage (V)",
+    "axisScale": 1,
+    "stop": 12,
+    "sampleStep": 0.05,
+    "traceGroups": [
+      {
+        "label": "Current",
+        "unit": "mA",
+        "traces": [
+          [
+            "Id(J1)",
+            "Drain current",
+            1000
+          ]
+        ]
+      },
+      {
+        "label": "Voltage",
+        "unit": "V",
+        "traces": [
+          [
+            "V(drain)",
+            "Drain voltage",
+            1
+          ],
+          [
+            "V(source)",
+            "Source voltage",
+            1
+          ],
+          [
+            "vgs",
+            "Gate to source voltage",
+            1
+          ]
+        ]
+      }
+    ],
+    "slug": "jfet-self-bias",
+    "title": "JFET self bias",
+    "components": [
+      {
+        "kind": "voltage",
+        "name": "VDD",
+        "value": "12",
+        "nodes": [
+          "VDD",
+          "0"
+        ],
+        "x": 128,
+        "y": 144,
+        "rotation": "R0",
+        "display": "12"
+      },
+      {
+        "kind": "res",
+        "name": "RD",
+        "value": "1k",
+        "nodes": [
+          "VDD",
+          "DRAIN"
+        ],
+        "x": 384,
+        "y": 112,
+        "rotation": "R0",
+        "display": "1k"
+      },
+      {
+        "kind": "njf",
+        "name": "J1",
+        "value": "J_NCHANNEL",
+        "nodes": [
+          "DRAIN",
+          "GATE",
+          "SOURCE"
+        ],
+        "x": 352,
+        "y": 256,
+        "rotation": "R0",
+        "display": "J_NCHANNEL"
+      },
+      {
+        "kind": "res",
+        "name": "RS",
+        "value": "{Rsource}",
+        "nodes": [
+          "SOURCE",
+          "0"
+        ],
+        "x": 384,
+        "y": 384,
+        "rotation": "R0",
+        "display": "{Rsource}"
+      },
+      {
+        "kind": "res",
+        "name": "RG",
+        "value": "1Meg",
+        "nodes": [
+          "GATE",
+          "0"
+        ],
+        "x": 176,
+        "y": 352,
+        "rotation": "R0",
+        "display": "1Meg"
+      }
+    ],
+    "wires": [
+      [
+        128,
+        160,
+        128,
+        96
+      ],
+      [
+        128,
+        96,
+        400,
+        96
+      ],
+      [
+        400,
+        96,
+        400,
+        128
+      ],
+      [
+        400,
+        208,
+        400,
+        256
+      ],
+      [
+        352,
+        320,
+        192,
+        320
+      ],
+      [
+        192,
+        320,
+        192,
+        368
+      ],
+      [
+        400,
+        352,
+        400,
+        400
+      ],
+      [
+        128,
+        240,
+        128,
+        528
+      ],
+      [
+        192,
+        448,
+        192,
+        528
+      ],
+      [
+        400,
+        480,
+        400,
+        528
+      ]
+    ],
+    "flags": [
+      [
+        400,
+        96,
+        "VDD"
+      ],
+      [
+        400,
+        240,
+        "DRAIN"
+      ],
+      [
+        192,
+        320,
+        "GATE"
+      ],
+      [
+        400,
+        368,
+        "SOURCE"
+      ],
+      [
+        128,
+        528,
+        "0"
+      ],
+      [
+        192,
+        528,
+        "0"
+      ],
+      [
+        400,
+        528,
+        "0"
+      ]
+    ],
+    "notes": [
+      [
+        624,
+        144,
+        "Drain resistance: 1 kilohm."
+      ],
+      [
+        624,
+        192,
+        "Source resistance: 470, 1000, or 2200 ohms."
+      ],
+      [
+        624,
+        240,
+        "Gate current is very small in normal operation."
+      ],
+      [
+        624,
+        288,
+        "VGS = V(GATE) - V(SOURCE)."
+      ],
+      [
+        624,
+        336,
+        "Use the 12 V point to compare the bias."
+      ]
+    ],
+    "expected": [
+      "VDD VDD 0 12",
+      "RD VDD DRAIN 1k",
+      "J1 DRAIN GATE SOURCE J_NCHANNEL",
+      "RS SOURCE 0 {Rsource}",
+      "RG GATE 0 1Meg"
+    ]
+  },
+  {
+    "parameter": "Rload",
+    "values": [
+      100,
+      330,
+      1000
+    ],
+    "labels": [
+      "100 ohms",
+      "330 ohms",
+      "1 kilohm"
+    ],
+    "kind": "mosfet",
+    "analysis": "Transient",
+    "axis": "Time (ms)",
+    "axisScale": 1000,
+    "stop": 0.006,
+    "sampleStep": 2e-06,
+    "traceGroups": [
+      {
+        "label": "Voltage",
+        "unit": "V",
+        "traces": [
+          [
+            "V(ctrl)",
+            "Gate control",
+            1
+          ],
+          [
+            "V(nload)",
+            "N-channel drain",
+            1
+          ],
+          [
+            "V(pload)",
+            "P-channel drain",
+            1
+          ]
+        ]
+      },
+      {
+        "label": "Load current",
+        "unit": "mA",
+        "traces": [
+          [
+            "I(RN)",
+            "N-channel load",
+            1000
+          ],
+          [
+            "I(RP)",
+            "P-channel load",
+            1000
+          ]
+        ]
+      }
+    ],
+    "slug": "mosfet-switches",
+    "title": "N-channel and P-channel switches",
+    "components": [
+      {
+        "kind": "voltage",
+        "name": "VDD",
+        "value": "5",
+        "nodes": [
+          "VDD",
+          "0"
+        ],
+        "x": 80,
+        "y": 144,
+        "rotation": "R0",
+        "display": "5"
+      },
+      {
+        "kind": "res",
+        "name": "RN",
+        "value": "{Rload}",
+        "nodes": [
+          "VDD",
+          "NLOAD"
+        ],
+        "x": 304,
+        "y": 128,
+        "rotation": "R0",
+        "display": "{Rload}"
+      },
+      {
+        "kind": "nmos",
+        "name": "MN",
+        "value": "M_NCHANNEL",
+        "nodes": [
+          "NLOAD",
+          "CTRL",
+          "0"
+        ],
+        "x": 272,
+        "y": 288,
+        "rotation": "R0",
+        "display": "M_NCHANNEL"
+      },
+      {
+        "kind": "pmos",
+        "name": "MP",
+        "value": "M_PCHANNEL",
+        "nodes": [
+          "PLOAD",
+          "CTRL",
+          "VDD"
+        ],
+        "x": 736,
+        "y": 240,
+        "rotation": "R180",
+        "display": "M_PCHANNEL"
+      },
+      {
+        "kind": "res",
+        "name": "RP",
+        "value": "{Rload}",
+        "nodes": [
+          "PLOAD",
+          "0"
+        ],
+        "x": 672,
+        "y": 304,
+        "rotation": "R0",
+        "display": "{Rload}"
+      },
+      {
+        "kind": "voltage",
+        "name": "VG",
+        "value": "PULSE(0 5 1m 10u 10u 1m 2m)",
+        "nodes": [
+          "CTRL",
+          "0"
+        ],
+        "x": 976,
+        "y": 288,
+        "rotation": "R0",
+        "display": "0 to 5 V pulse"
+      }
+    ],
+    "wires": [
+      [
+        80,
+        160,
+        80,
+        96
+      ],
+      [
+        80,
+        96,
+        320,
+        96
+      ],
+      [
+        320,
+        96,
+        688,
+        96
+      ],
+      [
+        688,
+        96,
+        688,
+        144
+      ],
+      [
+        320,
+        96,
+        320,
+        144
+      ],
+      [
+        320,
+        224,
+        320,
+        288
+      ],
+      [
+        688,
+        240,
+        688,
+        320
+      ],
+      [
+        272,
+        368,
+        224,
+        368
+      ],
+      [
+        736,
+        160,
+        816,
+        160
+      ],
+      [
+        976,
+        304,
+        976,
+        256
+      ],
+      [
+        80,
+        240,
+        80,
+        496
+      ],
+      [
+        320,
+        384,
+        320,
+        496
+      ],
+      [
+        688,
+        400,
+        688,
+        496
+      ],
+      [
+        976,
+        384,
+        976,
+        496
+      ]
+    ],
+    "flags": [
+      [
+        320,
+        96,
+        "VDD"
+      ],
+      [
+        320,
+        256,
+        "NLOAD"
+      ],
+      [
+        688,
+        272,
+        "PLOAD"
+      ],
+      [
+        224,
+        368,
+        "CTRL"
+      ],
+      [
+        816,
+        160,
+        "CTRL"
+      ],
+      [
+        976,
+        256,
+        "CTRL"
+      ],
+      [
+        80,
+        496,
+        "0"
+      ],
+      [
+        320,
+        496,
+        "0"
+      ],
+      [
+        688,
+        496,
+        "0"
+      ],
+      [
+        976,
+        496,
+        "0"
+      ]
+    ],
+    "notes": [
+      [
+        208,
+        544,
+        "N-channel: gate high turns the load on."
+      ],
+      [
+        624,
+        544,
+        "P-channel: gate low turns the load on."
+      ]
+    ],
+    "expected": [
+      "VDD VDD 0 5",
+      "RN VDD NLOAD {Rload}",
+      "MN NLOAD CTRL 0 0 M_NCHANNEL",
+      "MP PLOAD CTRL VDD VDD M_PCHANNEL",
+      "RP PLOAD 0 {Rload}",
+      "VG CTRL 0 PULSE(0 5 1m 10u 10u 1m 2m)"
+    ]
+  },
+  {
+    "parameter": "Cbypass",
+    "values": [
+      1e-12,
+      1e-06,
+      0.0001
+    ],
+    "labels": [
+      "No bypass (1 pF)",
+      "1 uF",
+      "100 uF"
+    ],
+    "kind": "ce",
+    "analysis": "Transient",
+    "axis": "Time (ms)",
+    "axisScale": 1000,
+    "start": 0.04,
+    "stop": 0.06,
+    "sampleStep": 1e-05,
+    "traceGroups": [
+      {
+        "label": "Signal",
+        "unit": "V",
+        "traces": [
+          [
+            "V(in)",
+            "Input voltage",
+            1
+          ],
+          [
+            "V(out)",
+            "Output voltage",
+            1
+          ]
+        ]
+      },
+      {
+        "label": "Bias",
+        "unit": "V",
+        "traces": [
+          [
+            "V(base)",
+            "Base voltage",
+            1
+          ],
+          [
+            "V(em)",
+            "Emitter voltage",
+            1
+          ],
+          [
+            "V(col)",
+            "Collector voltage",
+            1
+          ]
+        ]
+      }
+    ],
+    "slug": "common-emitter-amplifier",
+    "title": "Common-emitter amplifier",
+    "components": [
+      {
+        "kind": "voltage",
+        "name": "VCC",
+        "value": "12",
+        "nodes": [
+          "VCC",
+          "0"
+        ],
+        "x": 80,
+        "y": 144,
+        "rotation": "R0",
+        "display": "12"
+      },
+      {
+        "kind": "voltage",
+        "name": "VIN",
+        "value": "SINE(0 10m 1k)",
+        "nodes": [
+          "IN",
+          "0"
+        ],
+        "x": 80,
+        "y": 352,
+        "rotation": "R0",
+        "display": "10 mV peak, 1 kHz"
+      },
+      {
+        "kind": "res",
+        "name": "RTOP",
+        "value": "100k",
+        "nodes": [
+          "VCC",
+          "BASE"
+        ],
+        "x": 288,
+        "y": 112,
+        "rotation": "R0",
+        "display": "100k"
+      },
+      {
+        "kind": "res",
+        "name": "RBOT",
+        "value": "22k",
+        "nodes": [
+          "BASE",
+          "0"
+        ],
+        "x": 288,
+        "y": 368,
+        "rotation": "R0",
+        "display": "22k"
+      },
+      {
+        "kind": "cap",
+        "name": "CIN",
+        "value": "10u",
+        "nodes": [
+          "IN",
+          "BASE"
+        ],
+        "x": 160,
+        "y": 288,
+        "rotation": "R0",
+        "display": "10u"
+      },
+      {
+        "kind": "res",
+        "name": "RC",
+        "value": "3.3k",
+        "nodes": [
+          "VCC",
+          "COL"
+        ],
+        "x": 512,
+        "y": 112,
+        "rotation": "R0",
+        "display": "3.3k"
+      },
+      {
+        "kind": "npn",
+        "name": "Q1",
+        "value": "Q_NPN",
+        "nodes": [
+          "COL",
+          "BASE",
+          "EM"
+        ],
+        "x": 464,
+        "y": 256,
+        "rotation": "R0",
+        "display": "Q_NPN"
+      },
+      {
+        "kind": "res",
+        "name": "RE1",
+        "value": "100",
+        "nodes": [
+          "EM",
+          "LOW"
+        ],
+        "x": 512,
+        "y": 352,
+        "rotation": "R0",
+        "display": "100"
+      },
+      {
+        "kind": "res",
+        "name": "RE2",
+        "value": "900",
+        "nodes": [
+          "LOW",
+          "0"
+        ],
+        "x": 512,
+        "y": 480,
+        "rotation": "R0",
+        "display": "900"
+      },
+      {
+        "kind": "cap",
+        "name": "CE",
+        "value": "{Cbypass}",
+        "nodes": [
+          "LOW",
+          "0"
+        ],
+        "x": 704,
+        "y": 496,
+        "rotation": "R0",
+        "display": "{Cbypass}"
+      },
+      {
+        "kind": "cap",
+        "name": "COUT",
+        "value": "10u",
+        "nodes": [
+          "COL",
+          "OUT"
+        ],
+        "x": 896,
+        "y": 240,
+        "rotation": "R0",
+        "display": "10u"
+      },
+      {
+        "kind": "res",
+        "name": "RL",
+        "value": "47k",
+        "nodes": [
+          "OUT",
+          "0"
+        ],
+        "x": 896,
+        "y": 384,
+        "rotation": "R0",
+        "display": "47k"
+      }
+    ],
+    "wires": [
+      [
+        80,
+        160,
+        80,
+        96
+      ],
+      [
+        80,
+        96,
+        304,
+        96
+      ],
+      [
+        304,
+        96,
+        528,
+        96
+      ],
+      [
+        528,
+        96,
+        528,
+        128
+      ],
+      [
+        304,
+        96,
+        304,
+        128
+      ],
+      [
+        80,
+        240,
+        80,
+        256
+      ],
+      [
+        304,
+        208,
+        304,
+        304
+      ],
+      [
+        304,
+        304,
+        464,
+        304
+      ],
+      [
+        304,
+        304,
+        304,
+        384
+      ],
+      [
+        176,
+        288,
+        176,
+        256
+      ],
+      [
+        176,
+        352,
+        240,
+        352
+      ],
+      [
+        240,
+        352,
+        240,
+        304
+      ],
+      [
+        240,
+        304,
+        304,
+        304
+      ],
+      [
+        80,
+        368,
+        80,
+        320
+      ],
+      [
+        80,
+        448,
+        80,
+        464
+      ],
+      [
+        528,
+        208,
+        528,
+        240
+      ],
+      [
+        528,
+        240,
+        528,
+        256
+      ],
+      [
+        528,
+        352,
+        528,
+        368
+      ],
+      [
+        528,
+        448,
+        528,
+        464
+      ],
+      [
+        528,
+        464,
+        720,
+        464
+      ],
+      [
+        720,
+        464,
+        720,
+        496
+      ],
+      [
+        528,
+        464,
+        528,
+        496
+      ],
+      [
+        912,
+        240,
+        912,
+        208
+      ],
+      [
+        912,
+        304,
+        912,
+        400
+      ],
+      [
+        304,
+        464,
+        304,
+        592
+      ],
+      [
+        528,
+        576,
+        528,
+        592
+      ],
+      [
+        720,
+        560,
+        720,
+        592
+      ],
+      [
+        912,
+        480,
+        912,
+        592
+      ]
+    ],
+    "flags": [
+      [
+        528,
+        96,
+        "VCC"
+      ],
+      [
+        80,
+        256,
+        "0"
+      ],
+      [
+        304,
+        304,
+        "BASE"
+      ],
+      [
+        176,
+        256,
+        "IN"
+      ],
+      [
+        80,
+        320,
+        "IN"
+      ],
+      [
+        80,
+        464,
+        "0"
+      ],
+      [
+        528,
+        240,
+        "COL"
+      ],
+      [
+        528,
+        352,
+        "EM"
+      ],
+      [
+        528,
+        464,
+        "LOW"
+      ],
+      [
+        912,
+        208,
+        "COL"
+      ],
+      [
+        912,
+        352,
+        "OUT"
+      ],
+      [
+        304,
+        592,
+        "0"
+      ],
+      [
+        528,
+        592,
+        "0"
+      ],
+      [
+        720,
+        592,
+        "0"
+      ],
+      [
+        912,
+        592,
+        "0"
+      ]
+    ],
+    "notes": [
+      [
+        672,
+        96,
+        "Cbypass = 1p, 1u, or 100u."
+      ],
+      [
+        672,
+        144,
+        "The 100-ohm emitter resistor stays unbypassed."
+      ]
+    ],
+    "expected": [
+      "VCC VCC 0 12",
+      "VIN IN 0 SINE(0 10m 1k)",
+      "RTOP VCC BASE 100k",
+      "RBOT BASE 0 22k",
+      "CIN IN BASE 10u",
+      "RC VCC COL 3.3k",
+      "Q1 COL BASE EM 0 Q_NPN",
+      "RE1 EM LOW 100",
+      "RE2 LOW 0 900",
+      "CE LOW 0 {Cbypass}",
+      "COUT COL OUT 10u",
+      "RL OUT 0 47k"
+    ]
+  }
+]

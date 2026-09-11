@@ -1,0 +1,92 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "dcecce57d3d1c8cfa7faaaa2ea84b1062e6c503dc89170c89a146bb396719995",
+  "rawSha256": "e903ac2c8704d36af68e11eabd16b9d7d92dabc8cddae7a087954d630c9363b2",
+  "cases": [
+    {
+      "case": "250u",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(M2)": {
+          "max": 1.0491596740686004e-13,
+          "normalizedRms": 4.2937300663883903e-11
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(M2)",
+          "metric": "at",
+          "lo": [
+            0.00023,
+            0.00092,
+            0.00184
+          ],
+          "hi": [
+            0.00028,
+            0.00112,
+            0.00224
+          ],
+          "at": 5,
+          "value": 0.0002569565038612609
+        }
+      ]
+    },
+    {
+      "case": "1m",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(M2)": {
+          "max": 1.3211653993039363e-13,
+          "normalizedRms": 1.1504409082248503e-11
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(M2)",
+          "metric": "at",
+          "lo": [
+            0.00023,
+            0.00092,
+            0.00184
+          ],
+          "hi": [
+            0.00028,
+            0.00112,
+            0.00224
+          ],
+          "at": 5,
+          "value": 0.001026247992754747
+        }
+      ]
+    },
+    {
+      "case": "2m",
+      "savedPoints": 201,
+      "refinement": {
+        "Id(M2)": {
+          "max": 2.348130370699586e-13,
+          "normalizedRms": 8.548351225595796e-12
+        }
+      },
+      "checks": [
+        {
+          "trace": "Id(M2)",
+          "metric": "at",
+          "lo": [
+            0.00023,
+            0.00092,
+            0.00184
+          ],
+          "hi": [
+            0.00028,
+            0.00112,
+            0.00224
+          ],
+          "at": 5,
+          "value": 0.002049893126221392
+        }
+      ]
+    }
+  ]
+}

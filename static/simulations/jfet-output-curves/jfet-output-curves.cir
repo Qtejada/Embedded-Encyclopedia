@@ -1,0 +1,11 @@
+* JFET output characteristics
+VD DRAIN 0 10
+VG GATE 0 {Gate}
+J1 DRAIN GATE 0 J_NCHANNEL
+.dc VD 0 10 0.05
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Gate list 0 -0.5 -1
+.model J_NCHANNEL NJF(Vto=-2 Beta=1.5m Lambda=0.005 Is=1f Cgs=5p Cgd=3p)
+.save V(DRAIN) V(GATE) I(VD) I(VG) Id(J1)
+.end

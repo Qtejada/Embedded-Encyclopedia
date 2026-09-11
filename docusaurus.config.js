@@ -84,6 +84,7 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
+          {to: '/ltspice-circuits', label: 'LTspice', position: 'left'},
         ],
       },
       footer: {

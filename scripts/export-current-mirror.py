@@ -38,8 +38,8 @@ def read_raw(file):
 
 
 net = (WORK/'bjt-current-mirror.net').read_text()
-for line in ['VCC VCC 0 5', 'RREF VCC BASE {Rref}', 'Q1 BASE BASE 0 0 MirrorNPN',
-             'Q2 OUT BASE 0 0 MirrorNPN', 'VTEST OUT 0 1']:
+for line in ['VCC VCC 0 5', 'RREF VCC BASE {Rref}', 'Q1 BASE BASE 0 0 Q_NPN',
+             'Q2 OUT BASE 0 0 Q_NPN', 'VTEST OUT 0 1']:
     assert line in net.splitlines(), f'Incorrect generated connectivity: {line}'
 for stem in ['bjt-current-mirror', 'refined']:
     log = (WORK/f'{stem}.log').read_text()
@@ -92,7 +92,7 @@ validation={'simulator':result['simulator'],'date':'2026-09-11','temperatureC':2
             'maxRefinedDifference_A':largest_delta,'checks':report,
             'ascSha256':hashlib.sha256((DEST/'bjt-current-mirror.asc').read_bytes()).hexdigest(),
             'rawSha256':hashlib.sha256((WORK/'bjt-current-mirror.raw').read_bytes()).hexdigest(),
-            'scope':'DC teaching model only. No mismatch, self-heating, or transient characterization.'}
+            'scope':'DC sweep at 27 C.'}
 (DEST/'validation.json').write_text(json.dumps(validation,indent=2)+'\n')
 with zipfile.ZipFile(DEST/'bjt-current-mirror.zip','w',zipfile.ZIP_DEFLATED) as z:
     for name in ['bjt-current-mirror.asc','bjt-current-mirror.plt','bjt-current-mirror.cir','README.txt','results.csv','validation.json']:

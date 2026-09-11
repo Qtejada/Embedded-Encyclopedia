@@ -1,0 +1,15 @@
+* Transimpedance amplifier
+VP VP 0 12
+VN VN 0 -12
+IIN 0 SUM AC 1
+CI SUM 0 100p
+RF OUT SUM 100k
+CF OUT SUM {Cf}
+XU1 0 SUM VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+.lib UniversalOpAmp2.lib
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Cf list 10p 100p 1n
+.save V(OUT) V(SUM) V(VN) V(VP) I(VP) I(VN) I(IIN) I(CI) I(RF) I(CF)
+.end

@@ -1,0 +1,15 @@
+* N-channel and P-channel switches
+VDD VDD 0 5
+RN VDD NLOAD {Rload}
+MN NLOAD CTRL 0 0 M_NCHANNEL
+MP PLOAD CTRL VDD VDD M_PCHANNEL
+RP PLOAD 0 {Rload}
+VG CTRL 0 PULSE(0 5 1m 10u 10u 1m 2m)
+.tran 0 6m 0 500n
+.step param Rload list 100 330 1k
+.model M_NCHANNEL NMOS(Level=1 Vto=2 Kp=0.2 Lambda=0 Rd=0.1 Rs=0.1 Cgso=1n Cgdo=200p Cbd=1n Cbs=1n)
+.model M_PCHANNEL PMOS(Level=1 Vto=-2 Kp=0.2 Lambda=0 Rd=0.1 Rs=0.1 Cgso=1n Cgdo=200p Cbd=1n Cbs=1n)
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.save V(ctrl) V(nload) V(pload) I(RN) I(RP) Id(MN) Id(MP)
+.end

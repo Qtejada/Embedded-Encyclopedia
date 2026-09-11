@@ -57,7 +57,7 @@ Use the controls to see how acquisition time, aperture delay, aperture jitter, a
 
 <SampleHoldCycleExplorer />
 
-The explorer is a first-order teaching model.
+The explorer is a first-order model.
 Its switch is shown open, which is the hold state.
 The timing plot separates acquisition, settled tracking, the command-to-sample transition, and hold operation.
 

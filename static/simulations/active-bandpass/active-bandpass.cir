@@ -1,0 +1,16 @@
+* Buffered band-pass filter
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 AC 1
+CH IN HP 100n
+RH HP 0 10k
+XU1 HP BUF VP VN BUF level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+RL BUF OUT 10k
+CL OUT 0 {C}
+.lib UniversalOpAmp2.lib
+.ac dec 60 1 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param C list 1n 10n 100n
+.save V(BUF) V(HP) V(IN) V(OUT) V(VN) V(VP) I(VP) I(VN) I(VIN) I(CH) I(RH) I(RL) I(CL)
+.end

@@ -1,0 +1,16 @@
+* Full-wave bridge rectifier
+VIN RAW B SINE(0 12 50)
+RSER RAW A 10
+D1 A OUT D_SILICON
+D2 B OUT D_SILICON
+D3 0 A D_SILICON
+D4 0 B D_SILICON
+RLOAD OUT 0 1k
+CFILTER OUT 0 {Cfilter}
+.tran 0 200m 0 20u
+.step param Cfilter list 1p 47u 220u
+.model D_SILICON D(Is=2n N=1.7 Rs=0.2 Cjo=10p Tt=2u BV=100 Ibv=10u)
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.save V(raw) V(a) V(b) V(out) I(D1) I(D2) I(D3) I(D4) I(RLOAD) I(CFILTER)
+.end

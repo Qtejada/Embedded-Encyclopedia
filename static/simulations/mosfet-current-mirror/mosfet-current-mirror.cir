@@ -1,0 +1,13 @@
+* MOSFET current mirror
+VDD VDD 0 12
+IREF VDD REF {Iset}
+M1 REF REF 0 0 M_NCHANNEL
+M2 OUT REF 0 0 M_NCHANNEL
+VTEST OUT 0 5
+.dc VTEST 0 10 0.05
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Iset list 250u 1m 2m
+.model M_NCHANNEL NMOS(Level=1 Vto=2 Kp=0.02 Lambda=0.01 Rd=0.1 Rs=0.1 Cbd=100p Cbs=100p)
+.save V(OUT) V(REF) V(VDD) I(VDD) I(IREF) Id(M1) Id(M2) I(VTEST)
+.end

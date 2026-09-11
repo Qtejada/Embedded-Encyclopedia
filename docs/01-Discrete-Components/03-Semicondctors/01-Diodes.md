@@ -192,3 +192,119 @@ The converged values satisfy the resistor and diode equations together. Extra de
 This fixed-point iteration does not converge for every circuit. Bracketing methods provide a more reliable alternative when the residual is continuous and changes sign.
 
 Temperature, series resistance, and the chosen diode parameters can change the result. Compare the final model with the device data before using it for a design.
+
+
+## LTspice example: half-wave rectifier
+
+import SpiceBatchSimulation from '@site/src/components/learning/SpiceBatchSimulation';
+
+This example extends [rectification](#a-rectification) with an editable circuit and verified waveforms. The source supplies 12 V peak at 50 Hz.
+
+The source resistance is 10 ohms. The load resistance is 1 kilohm. The circuit uses a silicon diode.
+
+<SpiceBatchSimulation circuit="half-wave-rectifier" />
+
+### Reservoir charge and ripple
+
+Select the smallest capacitor to examine the rectified waveform. Its 1 pF value approximates a circuit without a reservoir capacitor.
+
+Select 47 or 220 microfarads to examine charge storage. The capacitor supplies the load when the source voltage cannot forward bias the diode.
+
+The output then falls until the next charging interval. A larger capacitor reduces this voltage change, which is called **ripple**.
+
+For a short charging interval, the approximate ripple is:
+
+**Ripple voltage = load current / (source frequency × capacitance).**
+
+This estimate assumes nearly constant load current. The resistor load and finite charging interval make the simulation result different from this estimate.
+
+Select the current plot to examine charging pulses. The diode supplies both the load current and the capacitor current during each charging interval.
+
+The peak diode current can exceed the average load current by a large factor. Source resistance limits this current in the example.
+
+### Model scope
+
+The model includes forward voltage, series resistance, junction capacitance, and charge storage.
+
+Use the startup view to examine capacitor charging. Mean output and ripple use the final source cycle in the results table.
+
+## LTspice example: full-wave bridge rectifier
+
+The bridge uses the same source, series resistance, load, and capacitor choices as the half-wave example. This makes the waveforms easy to compare.
+
+<SpiceBatchSimulation circuit="bridge-rectifier" />
+
+### Follow both current paths
+
+The source floats between RAW and B. The series resistor connects RAW to A. The bridge output return is node 0.
+
+When A is positive relative to B, current flows through D1, the load, and D4. D2 and D3 block the other path.
+
+When B is positive relative to A, current flows through D2, the load, and D3. The load current keeps the same direction.
+
+Each conducting path contains two diode drops. Do not connect B to the output return in this circuit.
+
+### Compare recharge frequency
+
+The reservoir capacitor receives charge on both input half cycles. A 50 Hz source produces a 100 Hz recharge frequency.
+
+The approximate ripple relation becomes:
+
+**Ripple voltage = load current / (2 × source frequency × capacitance).**
+
+At 47 microfarads, this example gives approximately 1.51 V peak-to-peak ripple. The half-wave example gives approximately 3.31 V with the same capacitor.
+
+The output averages differ because diode drops, load current, and charging intervals also differ. The bridge does not simply double the output voltage.
+
+Select the diode current plot to identify the alternating current paths. Compare [capacitor charge storage](#reservoir-charge-and-ripple) before examining a complete power supply.
+
+### Simulation reference
+
+Both circuits use documented [LTspice device models](https://analogdevicesinc.github.io/ltspice-reference/ai_ref/CIRCUIT-ELEMENTS-REFERENCE.html).
+
+The downloadable validation records include current balance checks and a second simulation with smaller time steps. These checks verify numerical consistency, not physical component ratings.
+
+
+import CircuitLibrarySimulation from '@site/src/components/learning/CircuitLibrarySimulation';
+
+## More LTspice circuits {#ltspice-circuits}
+
+These examples show component behavior and reusable circuit blocks. Each example includes three parameter settings.
+
+[Browse all LTspice circuits](/ltspice-circuits).
+
+### Zener shunt regulator {#ltspice-zener-regulator}
+
+A series resistor supplies a Zener diode and a parallel load.
+
+The source must supply both load current and Zener current. At low input voltage, the diode leaves breakdown and the output falls.
+
+A heavier load takes more current from the series resistor. This reduces the current available to maintain Zener breakdown.
+
+The series resistor also dissipates power. Compare its voltage drop with the current before selecting its power rating.
+
+<CircuitLibrarySimulation circuit="zener-regulator" />
+
+### Diode limiter and DC clamp {#ltspice-diode-limiter-clamp}
+
+One path limits voltage. A separate capacitor and diode path shifts the waveform level.
+
+The two limiter diodes conduct on opposite polarities. The series resistor limits their current.
+
+The clamp capacitor stores charge. Its diode holds the negative excursion near one forward diode drop below ground.
+
+The clamp load discharges the capacitor between cycles. A shorter time constant causes more waveform tilt.
+
+<CircuitLibrarySimulation circuit="diode-limiter-clamp" />
+
+### Precision half-wave rectifier {#ltspice-precision-rectifier}
+
+An op-amp and two diodes rectify small signals without losing a full diode drop at the output.
+
+Negative input voltage produces a positive output. The feedback resistor sets the magnitude of the inverting gain.
+
+The second diode maintains a feedback path while the output diode blocks. This avoids driving the op-amp deeply into saturation.
+
+Finite bandwidth and diode charge still affect the transition near zero input. Compare the smallest input with the larger inputs.
+
+<CircuitLibrarySimulation circuit="precision-rectifier" />

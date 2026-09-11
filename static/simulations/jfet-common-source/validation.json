@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "34ea373951a4780fb8dbf0a02aec9600d587a626e05dcf3e5a91d22c64400d4d",
+  "rawSha256": "7c0c4cf6e4f8b397e627b1660155219232cce0541e86cfce08f55422eef08835",
+  "cases": [
+    {
+      "case": "1k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.0008927250524566333,
+          "normalizedRms": 2.1202590545378794e-05
+        },
+        "ph(V(out))": {
+          "max": 0.003971779452456303,
+          "normalizedRms": 5.257304474151438e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            2,
+            4,
+            6
+          ],
+          "hi": [
+            4,
+            8,
+            11
+          ],
+          "at": 1000,
+          "value": 2.6666142766858525
+        }
+      ]
+    },
+    {
+      "case": "2.2k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.00088924531029555,
+          "normalizedRms": 1.1791586802860324e-05
+        },
+        "ph(V(out))": {
+          "max": 0.003960556271465521,
+          "normalizedRms": 5.238482915011371e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            2,
+            4,
+            6
+          ],
+          "hi": [
+            4,
+            8,
+            11
+          ],
+          "at": 1000,
+          "value": 5.804126858853796
+        }
+      ]
+    },
+    {
+      "case": "3.3k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.0008859504496747661,
+          "normalizedRms": 9.605730270140729e-06
+        },
+        "ph(V(out))": {
+          "max": 0.003951784683408732,
+          "normalizedRms": 5.222254454264675e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            2,
+            4,
+            6
+          ],
+          "hi": [
+            4,
+            8,
+            11
+          ],
+          "at": 1000,
+          "value": 8.620968257113079
+        }
+      ]
+    }
+  ]
+}

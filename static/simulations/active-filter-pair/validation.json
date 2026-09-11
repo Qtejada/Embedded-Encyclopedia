@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "379a3c473b328ab1bc3b4bbcdf49ab2071914e3d0a82adad74a7720bb8eb3785",
+  "rawSha256": "af4b4993f5d96d41c0abdc2cdaa658e43ee70736fdf62cf28b94280c0b9e416e",
+  "cases": [
+    {
+      "case": "1n",
+      "savedPoints": 421,
+      "refinement": {
+        "db(V(low))": {
+          "max": 0.00683049494993071,
+          "normalizedRms": 2.232124281197562e-05
+        },
+        "db(V(high))": {
+          "max": 0.0015779800123589816,
+          "normalizedRms": 3.7652911293185484e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(low))",
+          "metric": "at",
+          "lo": [
+            1.97,
+            1.67,
+            0.3
+          ],
+          "hi": [
+            2.03,
+            1.72,
+            0.33
+          ],
+          "at": 1000,
+          "value": 1.9960498647994533
+        }
+      ]
+    },
+    {
+      "case": "10n",
+      "savedPoints": 421,
+      "refinement": {
+        "db(V(low))": {
+          "max": 0.006832791660073667,
+          "normalizedRms": 1.8911006296000226e-05
+        },
+        "db(V(high))": {
+          "max": 0.0015990787024695585,
+          "normalizedRms": 5.0407383383131386e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(low))",
+          "metric": "at",
+          "lo": [
+            1.97,
+            1.67,
+            0.3
+          ],
+          "hi": [
+            2.03,
+            1.72,
+            0.33
+          ],
+          "at": 1000,
+          "value": 1.6934589281895571
+        }
+      ]
+    },
+    {
+      "case": "100n",
+      "savedPoints": 421,
+      "refinement": {
+        "db(V(low))": {
+          "max": 0.006833017788437701,
+          "normalizedRms": 1.6677535311116997e-05
+        },
+        "db(V(high))": {
+          "max": 0.0015830400964484959,
+          "normalizedRms": 7.689354912306628e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(low))",
+          "metric": "at",
+          "lo": [
+            1.97,
+            1.67,
+            0.3
+          ],
+          "hi": [
+            2.03,
+            1.72,
+            0.33
+          ],
+          "at": 1000,
+          "value": 0.3143543084194719
+        }
+      ]
+    }
+  ]
+}

@@ -519,7 +519,7 @@ function NoiseShapingPlot({idPrefix, loopBandwidthHz}) {
         >
       <title id={titleId}>Conceptual PLL noise-shaping plot</title>
       <desc id={descriptionId}>
-        A first-order teaching model shows reference and phase-frequency
+        A first-order model shows reference and phase-frequency
         detector noise with a low-pass response and oscillator noise with a
         high-pass response. Both responses have a magnitude of approximately
         zero point seven zero seven at the selected loop bandwidth.
@@ -939,7 +939,7 @@ export default function PllExplorer() {
               id={`${generatedId}-bandwidth-help`}
               style={{...secondaryTextStyle, margin: '0.7rem 0'}}
             >
-              This first-order teaching model uses Href = 1 / sqrt(1 +
+              This first-order model uses Href = 1 / sqrt(1 +
               (f / BW)^2) and Hvco = (f / BW) / sqrt(1 + (f / BW)^2).
             </p>
             <NoiseShapingPlot

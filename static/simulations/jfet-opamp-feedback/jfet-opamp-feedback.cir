@@ -1,0 +1,19 @@
+* JFET input stage with op-amp feedback
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 0 AC 1
+VREF REF 0 10
+RD VP DRAIN 2k
+J1 DRAIN IN SOURCE J_NCHANNEL
+RS SOURCE 0 1k
+RF OUT SOURCE {Rf}
+XU1 REF DRAIN VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+CF OUT DRAIN 47p
+.lib UniversalOpAmp2.lib
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rf list 3.3k 10k 22k
+.model J_NCHANNEL NJF(Vto=-2 Beta=1.5m Lambda=0.005 Is=1f Cgs=5p Cgd=3p)
+.save V(DRAIN) V(IN) V(OUT) V(REF) V(SOURCE) V(VN) V(VP) I(VP) I(VN) I(VIN) I(VREF) I(RD) Id(J1) I(RS) I(RF) I(CF)
+.end

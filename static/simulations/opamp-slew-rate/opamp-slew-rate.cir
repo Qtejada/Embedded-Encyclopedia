@@ -1,0 +1,13 @@
+* Slew-rate limiting
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 SINE(0 5 100k)
+XU1 IN OUT VP VN OUT level2 Avol=1Meg GBW=10Meg Slew={Rate} Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+RL OUT 0 10k
+.lib UniversalOpAmp2.lib
+.tran 0 0.0001 8e-05 2e-08
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rate list 100k 500k 10Meg
+.save V(IN) V(OUT) V(VN) V(VP) I(VP) I(VN) I(VIN) I(RL)
+.end

@@ -1,0 +1,16 @@
+* Differential pair with current-source tail
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 0
+Q1 C1 IN TAIL 0 Q_NPN
+Q2 C2 0 TAIL 0 Q_NPN
+IT TAIL VN {Tail}
+RC1 VP C1 4.7k
+RC2 VP C2 4.7k
+.dc VIN -0.2 0.2 0.002
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Tail list 500u 1m 2m
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(C1) V(C2) V(IN) V(TAIL) V(VN) V(VP) I(VP) I(VN) I(VIN) Ic(Q1) Ib(Q1) Ic(Q2) Ib(Q2) I(IT) I(RC1) I(RC2)
+.end

@@ -1,0 +1,128 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "7f19eee5404eb853e72ab6eb4b8a73ec226dffe7adddf2deed58a2ebd92a5321",
+  "rawSha256": "513e2236db1f32c0a2b61fb3a3a417a4b6caa72c8e7dc228b44d318ac2ce1c97",
+  "cases": [
+    {
+      "case": "-0.5",
+      "savedPoints": 2004,
+      "refinement": {
+        "V(in)": {
+          "max": 7.402195691119662e-07,
+          "normalizedRms": 2.6164205518917658e-06
+        },
+        "V(out)": {
+          "max": 7.402173639592391e-07,
+          "normalizedRms": 7.475481162690571e-07
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "avg",
+          "lo": [
+            0.49,
+            -0.01,
+            -0.51
+          ],
+          "hi": [
+            0.51,
+            0.01,
+            -0.49
+          ],
+          "at": null,
+          "value": 0.4999985555042024
+        },
+        {
+          "trace": "V(out)",
+          "metric": "pp",
+          "lo": 0.39,
+          "hi": 0.41,
+          "at": null,
+          "value": 0.3999967862018938
+        }
+      ]
+    },
+    {
+      "case": "0",
+      "savedPoints": 2004,
+      "refinement": {
+        "V(in)": {
+          "max": 7.402195691119662e-07,
+          "normalizedRms": 2.6164205518917658e-06
+        },
+        "V(out)": {
+          "max": 7.402173639037279e-07,
+          "normalizedRms": 2.61642088171195e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "avg",
+          "lo": [
+            0.49,
+            -0.01,
+            -0.51
+          ],
+          "hi": [
+            0.51,
+            0.01,
+            -0.49
+          ],
+          "at": null,
+          "value": 6.011802186648001e-08
+        },
+        {
+          "trace": "V(out)",
+          "metric": "pp",
+          "lo": 0.39,
+          "hi": 0.41,
+          "at": null,
+          "value": 0.39999678621080803
+        }
+      ]
+    },
+    {
+      "case": "0.5",
+      "savedPoints": 2004,
+      "refinement": {
+        "V(in)": {
+          "max": 7.402195691119662e-07,
+          "normalizedRms": 2.6164205518917658e-06
+        },
+        "V(out)": {
+          "max": 7.402173639037279e-07,
+          "normalizedRms": 7.475481162754028e-07
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "avg",
+          "lo": [
+            0.49,
+            -0.01,
+            -0.51
+          ],
+          "hi": [
+            0.51,
+            0.01,
+            -0.49
+          ],
+          "at": null,
+          "value": -0.499998435267317
+        },
+        {
+          "trace": "V(out)",
+          "metric": "pp",
+          "lo": 0.39,
+          "hi": 0.41,
+          "at": null,
+          "value": 0.39999678620189366
+        }
+      ]
+    }
+  ]
+}

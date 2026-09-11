@@ -1,3 +1,4 @@
+import {restoreSiteWording} from './approved-site-wording.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -7,9 +8,11 @@ const hash=b=>createHash('sha256').update(b).digest('hex');
 const originals=JSON.parse(fs.readFileSync(path.join(root,'scripts/ltspice-originals.json')));
 for(const original of originals){
   const bytes=fs.readFileSync(path.join(root,original.path));
-  const text=bytes.toString('utf8').replace(/\r\n/g,'\n');
+  const text=restoreSiteWording(original.path,bytes.toString('utf8').replace(/\r\n/g,'\n'));
   assert.equal(hash(text.slice(0,original.normalizedLength)),original.normalizedSha256,original.path);
-  if(!original.path.endsWith('/02-BJTs.md')) assert.equal(text.length,original.normalizedLength,`Unexpected article edit: ${original.path}`);
+  // These three articles receive append-only LTspice batches. Their newer
+  // baseline and allowed additions are checked by verify-ltspice-batch-one.py.
+  if(!/\/(01-Diodes\.md|02-BJTs\.md|03-MOSFETs\.mdx|01-op-amps\.md|02-differential-amps\.md|comparators\.md|Active-filters\.md)$/.test(original.path)) assert.equal(text.length,original.normalizedLength,`Unexpected article edit: ${original.path}`);
 }
 const dir=path.join(root,'static/simulations/bjt-current-mirror');
 const validation=JSON.parse(fs.readFileSync(path.join(dir,'validation.json')));

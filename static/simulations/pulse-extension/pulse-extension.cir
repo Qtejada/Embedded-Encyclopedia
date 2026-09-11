@@ -1,0 +1,19 @@
+* Transistor pulse extension
+VCC VCC 0 3.3
+VIN IN 0 PULSE(0 3.3 0.5m 1u 1u 100u 2m)
+RB1 IN B1 10k
+Q1 X B1 0 0 Q_NPN
+RC1 VCC X 1k
+CT X B2 {C}
+RB2 VCC B2 10k
+Q2 OUT B2 0 0 Q_NPN
+RC2 VCC OUT 1k
+Q3 X B3 0 0 Q_NPN
+RB3 OUT B3 20k
+.tran 0 0.005 0 2e-07
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param C list 22n 47n 100n
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(B1) V(B2) V(B3) V(IN) V(OUT) V(VCC) V(X) I(VCC) I(VIN) I(RB1) Ic(Q1) Ib(Q1) I(RC1) I(CT) I(RB2) Ic(Q2) Ib(Q2) I(RC2) Ic(Q3) Ib(Q3) I(RB3)
+.end

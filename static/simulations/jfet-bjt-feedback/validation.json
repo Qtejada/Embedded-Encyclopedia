@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "c760d62a00391c9a2280c333169e65ad7a15c855cd520089b39dd77aa3fa9544",
+  "rawSha256": "8fd33a4a0229528c9a8f2cded729053c558ab4a95aab8f76689636e9769285ab",
+  "cases": [
+    {
+      "case": "1k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.00018389592384693287,
+          "normalizedRms": 5.560032852197774e-06
+        },
+        "ph(V(out))": {
+          "max": 0.0021522065221688536,
+          "normalizedRms": 6.6647855862449096e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            1.2,
+            1.8,
+            3.5
+          ],
+          "hi": [
+            1.45,
+            2.2,
+            4.5
+          ],
+          "at": 100,
+          "value": 1.2858934462923741
+        }
+      ]
+    },
+    {
+      "case": "3.3k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.0013930672588111648,
+          "normalizedRms": 2.3000792566178418e-05
+        },
+        "ph(V(out))": {
+          "max": 0.0018271097088984334,
+          "normalizedRms": 2.238377017465105e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            1.2,
+            1.8,
+            3.5
+          ],
+          "hi": [
+            1.45,
+            2.2,
+            4.5
+          ],
+          "at": 100,
+          "value": 1.9478348433916886
+        }
+      ]
+    },
+    {
+      "case": "10k",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.0005945156581539379,
+          "normalizedRms": 9.539553302934297e-06
+        },
+        "ph(V(out))": {
+          "max": 0.017236007762562622,
+          "normalizedRms": 2.6468732032936853e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": [
+            1.2,
+            1.8,
+            3.5
+          ],
+          "hi": [
+            1.45,
+            2.2,
+            4.5
+          ],
+          "at": 100,
+          "value": 3.826406002141782
+        }
+      ]
+    }
+  ]
+}

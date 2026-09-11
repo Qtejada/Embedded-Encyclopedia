@@ -1,0 +1,21 @@
+* JFET differential pair inside a feedback loop
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 0 AC 1
+J1 D1 IN TAIL J_NCHANNEL
+J2 D2 FB TAIL J_NCHANNEL
+IT TAIL VN 2m
+RD1 VP D1 2k
+RD2 VP D2 2k
+XU1 D2 D1 VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+RF OUT FB {Rf}
+RG FB 0 1k
+CF OUT D1 100p
+.lib UniversalOpAmp2.lib
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rf list 1k 9k 49k
+.model J_NCHANNEL NJF(Vto=-2 Beta=1.5m Lambda=0.005 Is=1f Cgs=5p Cgd=3p)
+.save V(D1) V(D2) V(FB) V(IN) V(OUT) V(TAIL) V(VN) V(VP) I(VP) I(VN) I(VIN) Id(J1) Id(J2) I(IT) I(RD1) I(RD2) I(RF) I(RG) I(CF)
+.end

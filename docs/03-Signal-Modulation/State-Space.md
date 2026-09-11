@@ -172,7 +172,7 @@ Sampling and computation add timing constraints to a controller. Include actual 
 
 ## References
 
-The junior notes provide state modeling, linearization, controllability, and hidden-mode topics. The circuit and nonlinear-load values are original teaching examples.
+The junior notes provide state modeling, linearization, controllability, and hidden-mode topics. The circuit and nonlinear-load values are original examples.
 
 * [MIT: controllability and observability](https://ocw.mit.edu/courses/16-30-feedback-control-systems-fall-2010/c2c336c787d150d55873a98dfbd75e0f_MIT16_30F10_rec07.pdf).
 * [Caltech: linear systems and local linearization](https://murray.cds.caltech.edu/CDS_101/110_-_Linear_Systems).

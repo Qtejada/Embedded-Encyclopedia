@@ -1,0 +1,21 @@
+* Active low-pass and high-pass filters
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 AC 1
+RLP IN LP 10k
+CLP LP 0 {C}
+RG1 FB1 0 10k
+RF1 LOW FB1 10k
+XU1 LP FB1 VP VN LOW level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+CHP IN HP {C}
+RHP HP 0 10k
+RG2 FB2 0 10k
+RF2 HIGH FB2 10k
+XU2 HP FB2 VP VN HIGH level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+.lib UniversalOpAmp2.lib
+.ac dec 60 1 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param C list 1n 10n 100n
+.save V(FB1) V(FB2) V(HIGH) V(HP) V(IN) V(LOW) V(LP) V(VN) V(VP) I(VP) I(VN) I(VIN) I(RLP) I(CLP) I(RG1) I(RF1) I(CHP) I(RHP) I(RG2) I(RF2)
+.end

@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "d276be4abc3b38a2b180e9f9fdbc7b24c768775726cd7cf0ca218913b86faf30",
+  "rawSha256": "7d629272c9ebb770bb350cf5248fc0b7c5daa2b18da99834816c4d2f9be05523",
+  "cases": [
+    {
+      "case": "0.1 V/us",
+      "savedPoints": 1004,
+      "refinement": {
+        "V(in)": {
+          "max": 7.56040905907085e-05,
+          "normalizedRms": 7.833020934566964e-06
+        },
+        "V(out)": {
+          "max": 0.0031983654785540383,
+          "normalizedRms": 0.004347578167183839
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "pp",
+          "lo": [
+            0.35,
+            2.1,
+            9.7
+          ],
+          "hi": [
+            0.7,
+            2.9,
+            10.1
+          ],
+          "at": null,
+          "value": 0.5005388124662826
+        }
+      ]
+    },
+    {
+      "case": "0.5 V/us",
+      "savedPoints": 1004,
+      "refinement": {
+        "V(in)": {
+          "max": 9.784726211048422e-05,
+          "normalizedRms": 8.95196586628663e-06
+        },
+        "V(out)": {
+          "max": 0.01096899941071805,
+          "normalizedRms": 0.00446149803065415
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "pp",
+          "lo": [
+            0.35,
+            2.1,
+            9.7
+          ],
+          "hi": [
+            0.7,
+            2.9,
+            10.1
+          ],
+          "at": null,
+          "value": 2.4826791632624046
+        }
+      ]
+    },
+    {
+      "case": "10 V/us",
+      "savedPoints": 1004,
+      "refinement": {
+        "V(in)": {
+          "max": 7.402172860615508e-05,
+          "normalizedRms": 7.800665598949613e-06
+        },
+        "V(out)": {
+          "max": 7.402613162987848e-05,
+          "normalizedRms": 7.80137959876995e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "pp",
+          "lo": [
+            0.35,
+            2.1,
+            9.7
+          ],
+          "hi": [
+            0.7,
+            2.9,
+            10.1
+          ],
+          "at": null,
+          "value": 9.99941696717626
+        }
+      ]
+    }
+  ]
+}

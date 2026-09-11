@@ -1,0 +1,80 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "ad9219c3c5d012612b255c185dd5e7a717bd6cd223f3421b904567a64f7cd736",
+  "rawSha256": "097838eb0d709cff894ac91fb92a95ada8cdd03dfa31427dc14c5d6b2e43c56d",
+  "cases": [
+    {
+      "case": "100p",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.002423690508678078,
+          "normalizedRms": 1.3010055586197116e-05
+        },
+        "ph(V(out))": {
+          "max": 0.033675873503000275,
+          "normalizedRms": 4.1393077868029605e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": 9.5,
+          "hi": 10.5,
+          "at": 100,
+          "value": 9.997538908960355
+        }
+      ]
+    },
+    {
+      "case": "470p",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.001803167291125618,
+          "normalizedRms": 2.2713486818026033e-05
+        },
+        "ph(V(out))": {
+          "max": 0.025215341570600458,
+          "normalizedRms": 3.189574351418929e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": 9.5,
+          "hi": 10.5,
+          "at": 100,
+          "value": 9.997538780402229
+        }
+      ]
+    },
+    {
+      "case": "2.2n",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(out))": {
+          "max": 0.0020265389088436336,
+          "normalizedRms": 2.603304221974792e-05
+        },
+        "ph(V(out))": {
+          "max": 0.013577137506473491,
+          "normalizedRms": 2.6161422680008042e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(out))",
+          "metric": "at",
+          "lo": 9.5,
+          "hi": 10.5,
+          "at": 100,
+          "value": 9.997535774083723
+        }
+      ]
+    }
+  ]
+}

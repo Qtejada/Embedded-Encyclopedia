@@ -1,0 +1,489 @@
+{
+  "zener-regulator": {
+    "title": "Zener shunt regulator",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+    "intro": "A series resistor supplies a Zener diode and a parallel load.",
+    "explanation": [
+      "The source must supply both load current and Zener current. At low input voltage, the diode leaves breakdown and the output falls.",
+      "A heavier load takes more current from the series resistor. This reduces the current available to maintain Zener breakdown.",
+      "The series resistor also dissipates power. Compare its voltage drop with the current before selecting its power rating."
+    ]
+  },
+  "diode-limiter-clamp": {
+    "title": "Diode limiter and DC clamp",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+    "intro": "One path limits voltage. A separate capacitor and diode path shifts the waveform level.",
+    "explanation": [
+      "The two limiter diodes conduct on opposite polarities. The series resistor limits their current.",
+      "The clamp capacitor stores charge. Its diode holds the negative excursion near one forward diode drop below ground.",
+      "The clamp load discharges the capacitor between cycles. A shorter time constant causes more waveform tilt."
+    ]
+  },
+  "bjt-switch": {
+    "title": "BJT switch and base drive",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A base resistor controls a transistor that switches a resistor load.",
+    "explanation": [
+      "A high input drives base current and lowers the collector voltage. The load connects between the supply and collector.",
+      "Insufficient base current prevents a low collector voltage. The forced current gain is collector current divided by base current.",
+      "Compare all base resistors at the same load. A small resistor increases base current and drives the transistor farther into saturation."
+    ]
+  },
+  "emitter-follower": {
+    "title": "BJT emitter follower",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "The emitter follows the base voltage with a base to emitter voltage difference.",
+    "explanation": [
+      "The collector connects to the supply. The emitter supplies current to the load.",
+      "The voltage gain is slightly below one. The transistor provides current gain, which reduces loading at the input.",
+      "The base to emitter voltage changes with current. It is not a fixed voltage drop for every load."
+    ]
+  },
+  "common-base-amplifier": {
+    "title": "Common-base amplifier",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A signal enters the emitter while the base stays at a fixed voltage.",
+    "explanation": [
+      "An increase in emitter voltage reduces base to emitter voltage and collector current. The collector voltage then increases.",
+      "The voltage gain is positive. The emitter presents a low input resistance, which can suit a low-impedance source.",
+      "The input source includes the emitter bias. The output capacitor removes the collector DC voltage from the load."
+    ]
+  },
+  "emitter-degeneration": {
+    "title": "Emitter degeneration and current gain",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "Two amplifier paths compare complete emitter bypass with partial emitter bypass.",
+    "explanation": [
+      "Both paths use the same DC emitter resistance and bias network. The partially bypassed path retains 100 ohms in the signal path.",
+      "The stepped forward current gain changes the transistor parameters in both paths.",
+      "Emitter degeneration reduces signal gain. It also reduces dependence on the transistor and the bias network."
+    ]
+  },
+  "mosfet-common-source": {
+    "title": "MOSFET common-source amplifier",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "A drain resistor converts channel-current changes into an inverted output voltage.",
+    "explanation": [
+      "The gate source voltage sets channel current. The source resistor provides feedback through the source voltage.",
+      "This frequency sweep linearizes the circuit at its DC operating point. The AC source value of one makes the output equal to voltage gain.",
+      "The drain needs enough voltage to keep the transistor in saturation. This region supports voltage amplification."
+    ]
+  },
+  "mosfet-source-follower": {
+    "title": "MOSFET source follower",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "The source voltage follows the gate while the drain connects to the supply.",
+    "explanation": [
+      "The source resistor establishes the operating current. The gate to source voltage supplies the required overdrive above threshold.",
+      "The small-signal voltage gain is below one. Source feedback limits changes in gate to source voltage.",
+      "This circuit requires voltage headroom. The source cannot reach the gate voltage while the transistor supplies load current."
+    ]
+  },
+  "mosfet-gate-charging": {
+    "title": "MOSFET gate charging and switching energy",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "A gate resistor controls how quickly gate capacitance receives charge.",
+    "explanation": [
+      "The capacitor between gate and drain couples drain voltage changes into the gate. This produces the Miller portion of the transition.",
+      "The drain resistor sets a resistive load. During a transition, the transistor can carry current while substantial drain voltage remains.",
+      "The power plot multiplies drain voltage by drain current. Its time integral gives the energy dissipated during the selected interval.",
+      "The explicit gate capacitors make the charge paths visible. Device data are required to predict the losses of a selected transistor."
+    ]
+  },
+  "jfet-output-curves": {
+    "title": "JFET output characteristics",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "Separate gate and drain sources expose the JFET device characteristic.",
+    "explanation": [
+      "A more negative gate to source voltage reduces drain current. The gate junction remains reverse biased during these sweeps.",
+      "The output curves show the transition from the resistive region to saturation. The transfer curve shows current versus gate voltage.",
+      "The channel-length modulation parameter gives the saturation region a finite slope."
+    ]
+  },
+  "jfet-transfer-curves": {
+    "title": "JFET transfer characteristics",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "Separate gate and drain sources expose the JFET device characteristic.",
+    "explanation": [
+      "A more negative gate to source voltage reduces drain current. The gate junction remains reverse biased during these sweeps.",
+      "The output curves show the transition from the resistive region to saturation. The transfer curve shows current versus gate voltage.",
+      "The channel-length modulation parameter gives the saturation region a finite slope."
+    ]
+  },
+  "jfet-common-source": {
+    "title": "JFET common-source amplifier",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "The source resistor sets DC bias, and its bypass capacitor increases signal gain.",
+    "explanation": [
+      "The gate resistor fixes the gate DC voltage near ground. The drain current raises the source voltage above ground.",
+      "The source capacitor reduces source feedback at higher frequencies. It does not remove the DC source resistance.",
+      "A larger drain resistor increases voltage gain while reducing drain voltage headroom."
+    ]
+  },
+  "jfet-source-follower": {
+    "title": "JFET source follower",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "A JFET supplies a source signal with high gate input resistance.",
+    "explanation": [
+      "The gate sits at a 2 V DC bias. The source rises above this bias because the JFET needs a negative gate to source voltage.",
+      "The source resistor supplies the current path to ground. Source feedback makes the signal gain positive and below one.",
+      "The output can supply current through the JFET, but the resistor sets the available current in the other direction."
+    ]
+  },
+  "jfet-current-source": {
+    "title": "Two-terminal JFET current sink",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "A JFET and source resistor form a current sink between the drain and ground.",
+    "explanation": [
+      "The gate connects to ground. Source resistance creates the negative gate to source voltage that sets current.",
+      "The current becomes nearly constant after the drain voltage provides sufficient headroom.",
+      "The finite slope above this point represents output conductance. The resistor changes both current and required voltage."
+    ]
+  },
+  "pnp-current-mirror": {
+    "title": "PNP current mirror",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A PNP mirror supplies current from the positive rail into a load.",
+    "explanation": [
+      "The reference resistor draws current from a diode-connected PNP transistor. Both transistor bases share this voltage.",
+      "The output transistor supplies current while its collector stays sufficiently below its emitter.",
+      "Collector current uses the SPICE sign convention. The plot reverses that sign to show supplied load current as positive."
+    ]
+  },
+  "degenerated-current-mirror": {
+    "title": "Current mirror with emitter resistors",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "Equal emitter resistors add local feedback to the two mirror transistors.",
+    "explanation": [
+      "A transistor with more current develops a larger emitter voltage. This reduces its base to emitter voltage and opposes the increase.",
+      "The resistors reduce sensitivity to transistor differences. They also consume voltage headroom.",
+      "The reference uses a current source so the resistor comparison does not change the commanded reference current."
+    ]
+  },
+  "wilson-current-mirror": {
+    "title": "Wilson current mirror",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A third transistor feeds current back into the mirror base node.",
+    "explanation": [
+      "The reference current enters the collector of Q2 and the base of Q3. Q3 supplies the diode-connected Q1 and the mirror base currents.",
+      "This feedback reduces base-current error and increases output resistance.",
+      "The additional transistor requires more output voltage than a basic two-transistor mirror. Examine the low-voltage portion of the sweep."
+    ]
+  },
+  "cascode-current-mirror": {
+    "title": "Cascode current mirror",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A second transistor above each mirror branch holds the lower collector voltage nearly constant.",
+    "explanation": [
+      "The reference branch establishes two base voltage levels. The upper output transistor uses the higher level.",
+      "Changes at the output then have less effect on the lower transistor collector voltage. This reduces the Early-effect current change.",
+      "The stacked transistors need additional voltage headroom. High output resistance does not remove this requirement."
+    ]
+  },
+  "mosfet-current-mirror": {
+    "title": "MOSFET current mirror",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "Two MOSFETs share gate and source voltages to copy a reference current.",
+    "explanation": [
+      "The reference transistor connects its drain to its gate. The reference current sets the common gate voltage.",
+      "The output transistor needs enough drain voltage to remain in saturation. Below that voltage, the current falls.",
+      "Channel-length modulation gives the output curve a slope. Equal gate voltage alone does not guarantee identical current at different drain voltages."
+    ]
+  },
+  "opamp-current-source": {
+    "title": "Op-amp controlled current sink",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "An op-amp drives a MOSFET until the sense-resistor voltage equals the command voltage.",
+    "explanation": [
+      "The sense resistor converts current to voltage. Negative feedback forces this voltage toward the command voltage.",
+      "For a 100-ohm sense resistor, a 0.5 V command sets approximately 5 mA.",
+      "The drain supply must provide the sense voltage and transistor headroom. The circuit cannot maintain current below this compliance voltage."
+    ]
+  },
+  "differential-pair": {
+    "title": "Differential pair with resistor tail",
+    "article": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+    "intro": "Two transistors share an emitter resistor and steer current between their collectors.",
+    "explanation": [
+      "A positive differential input increases one collector current and reduces the other.",
+      "The common emitter resistor also responds to common-mode voltage. Its current is not an ideal constant.",
+      "Near zero differential input, the response is approximately linear. A larger input steers most of the current to one side."
+    ]
+  },
+  "differential-pair-current-tail": {
+    "title": "Differential pair with current-source tail",
+    "article": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+    "intro": "A constant tail current fixes the total current available to a differential pair.",
+    "explanation": [
+      "The differential input changes the division of current between the two transistors.",
+      "At zero differential input, matched devices carry nearly equal currents. At large differential input, one transistor carries almost all the tail current.",
+      "A practical tail source has finite output resistance and requires voltage headroom. The ideal source here isolates the current-steering relation."
+    ]
+  },
+  "differential-mirror-load": {
+    "title": "Differential pair with mirror load",
+    "article": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+    "intro": "A PNP mirror combines the two branch-current changes into one output.",
+    "explanation": [
+      "The left branch establishes the PNP mirror current. The right branch subtracts its NPN collector current from the mirrored current.",
+      "The resulting output current changes a load voltage. This converts the differential signal to a single-ended signal.",
+      "The resistor at the output sets a defined DC operating point and limits gain. An unloaded active-load stage can have much higher gain."
+    ]
+  },
+  "bjt-cascode-amplifier": {
+    "title": "BJT cascode amplifier",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A common-base transistor sits above a common-emitter transistor.",
+    "explanation": [
+      "The upper base stays at 3 V. Its emitter holds the lower collector near a fixed voltage.",
+      "This reduces the voltage swing across the lower transistor collector junction and limits Miller feedback.",
+      "The collector resistor converts current to output voltage. Both transistors still require suitable DC voltage headroom."
+    ]
+  },
+  "complementary-output-stage": {
+    "title": "Complementary output stage and class AB bias",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "An NPN and a PNP transistor supply opposite halves of the load current.",
+    "explanation": [
+      "Without base bias, neither transistor conducts near zero input. This produces crossover distortion.",
+      "A voltage between the bases reduces the dead zone. More bias also increases quiescent current.",
+      "Emitter resistors limit current imbalance. A physical bias network must track temperature to control idle current."
+    ]
+  },
+  "precision-rectifier": {
+    "title": "Precision half-wave rectifier",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+    "intro": "An op-amp and two diodes rectify small signals without losing a full diode drop at the output.",
+    "explanation": [
+      "Negative input voltage produces a positive output. The feedback resistor sets the magnitude of the inverting gain.",
+      "The second diode maintains a feedback path while the output diode blocks. This avoids driving the op-amp deeply into saturation.",
+      "Finite bandwidth and diode charge still affect the transition near zero input. Compare the smallest input with the larger inputs."
+    ]
+  },
+  "opamp-gain-configurations": {
+    "title": "Inverting and noninverting amplifiers",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "Two feedback networks demonstrate the sign and magnitude of closed-loop voltage gain.",
+    "explanation": [
+      "The inverting stage has gain equal to the negative feedback-resistor ratio. Its input resistor carries signal current.",
+      "The noninverting stage has gain equal to one plus the resistor ratio. Its input connects directly to the high-resistance op-amp input.",
+      "Both stages lose closed-loop gain at high frequency. Their noise gains determine the approximate bandwidth."
+    ]
+  },
+  "opamp-buffer-loading": {
+    "title": "Buffer and source loading",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "A voltage follower separates a high-resistance source from its load.",
+    "explanation": [
+      "The direct path forms a voltage divider between the source resistance and load.",
+      "The buffered path draws little current from the source. The op-amp supplies the load current instead.",
+      "The buffer still has output-current and bandwidth limits. This frequency sweep examines its small-signal response."
+    ]
+  },
+  "opamp-summing": {
+    "title": "Summing amplifier",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "Two input resistors feed a common summing node.",
+    "explanation": [
+      "Negative feedback holds the summing node near ground. Each input therefore produces a current through its resistor.",
+      "The feedback resistor converts the sum of those currents to output voltage.",
+      "Equal input and feedback resistors give the negative sum of the two input voltages. Here one input supplies a DC offset."
+    ]
+  },
+  "opamp-difference": {
+    "title": "Four-resistor difference amplifier",
+    "article": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+    "intro": "Matched resistor ratios reject a shared input voltage and amplify the difference.",
+    "explanation": [
+      "The positive input receives one signal through a divider. The negative input receives the other signal through its input resistor.",
+      "Equal resistor ratios make the output equal to the input difference. The common-mode voltage cancels within the amplifier limits.",
+      "Resistor mismatch converts common-mode voltage into output error. The examples use equal resistor values to isolate the ideal ratio relation."
+    ]
+  },
+  "opamp-integrator": {
+    "title": "Practical integrator",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "A feedback capacitor converts input current into a changing output voltage.",
+    "explanation": [
+      "The input resistor sets capacitor current. Output slope is approximately the negative input voltage divided by resistance and capacitance.",
+      "A large resistor across the capacitor provides a DC feedback path. It prevents unlimited DC gain.",
+      "Above the resistor-capacitor corner, gain falls by approximately 20 dB per decade. The phase approaches positive 90 degrees."
+    ]
+  },
+  "opamp-differentiator": {
+    "title": "Band-limited differentiator",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "An input capacitor converts changes in input voltage into current.",
+    "explanation": [
+      "The feedback resistor converts capacitor current to output voltage. In the differentiating band, output is proportional to input slope.",
+      "The series input resistor limits high-frequency gain. The feedback capacitor provides a second high-frequency limit.",
+      "An unlimited differentiator strongly amplifies high-frequency noise. The extra components make the response practical."
+    ]
+  },
+  "transimpedance-amplifier": {
+    "title": "Transimpedance amplifier",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "An op-amp converts input current to output voltage through a feedback resistor.",
+    "explanation": [
+      "Negative feedback holds the input node near ground. Most input current flows through the feedback resistor.",
+      "The low-frequency transimpedance is approximately the negative feedback resistance. Here its magnitude is 100 kilohms.",
+      "Input capacitance affects loop stability. The feedback capacitor reduces high-frequency gain and improves phase margin."
+    ]
+  },
+  "opamp-gain-bandwidth": {
+    "title": "Closed-loop gain and bandwidth",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "Higher closed-loop gain reduces the bandwidth of a dominant-pole op-amp.",
+    "explanation": [
+      "The op-amp gain-bandwidth product is set to 1 MHz. The resistor choices produce nominal gains of 2, 10, and 100.",
+      "The approximate bandwidth is gain-bandwidth product divided by noise gain.",
+      "This relation applies to the dominant-pole response. Additional poles and loading can change the result."
+    ]
+  },
+  "opamp-slew-rate": {
+    "title": "Slew-rate limiting",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "A limited output slope prevents a fast, large signal from following the input.",
+    "explanation": [
+      "The input is a 5 V peak sine wave at 100 kHz. Its maximum slope is approximately 3.14 V per microsecond.",
+      "The three slew-rate settings lie below and above this requirement.",
+      "A low slew rate produces an almost triangular output with reduced amplitude. This is a large-signal limit, not only a bandwidth limit."
+    ]
+  },
+  "opamp-clipping": {
+    "title": "Output clipping",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "An amplifier cannot produce output voltage beyond its available supply range.",
+    "explanation": [
+      "The feedback network requests a gain of negative two. The input amplitude increases between runs.",
+      "Once the requested output exceeds the available swing, the waveform clips near the output limits.",
+      "Feedback no longer holds the input difference near zero during clipping. Recovery also depends on the amplifier dynamics."
+    ]
+  },
+  "capacitive-load-compensation": {
+    "title": "Capacitive load and isolation resistor",
+    "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "intro": "A series output resistor separates a capacitive load from the amplifier feedback node.",
+    "explanation": [
+      "The load capacitance adds phase lag through the amplifier output impedance. This can cause overshoot and ringing.",
+      "The feedback connects before the isolation resistor. The resistor reduces the capacitive loading seen inside the loop.",
+      "A larger isolation resistor can reduce ringing, but it also slows the load voltage and creates a load-dependent voltage drop."
+    ]
+  },
+  "rc-filter-pair": {
+    "title": "RC low-pass and high-pass filters",
+    "article": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+    "intro": "The same resistor and capacitor values produce opposite first-order filter responses.",
+    "explanation": [
+      "The low-pass path takes its output across the capacitor. The high-pass path takes its output across the resistor.",
+      "The corner frequency is one divided by two pi times resistance and capacitance.",
+      "At the corner, each magnitude is approximately 0.707 of its passband value. Each response changes by 20 dB per decade in its stopband."
+    ]
+  },
+  "active-filter-pair": {
+    "title": "Active low-pass and high-pass filters",
+    "article": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+    "intro": "Op-amps buffer first-order filters and add voltage gain.",
+    "explanation": [
+      "Each input filter feeds a noninverting amplifier with a gain of two.",
+      "The amplifier input draws little filter current. This reduces the change in corner frequency caused by the following load.",
+      "The active stage also has finite bandwidth. Its high-frequency limit appears beyond the filter corner."
+    ]
+  },
+  "active-bandpass": {
+    "title": "Buffered band-pass filter",
+    "article": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+    "intro": "A high-pass stage rejects low frequencies, and a following low-pass stage rejects high frequencies.",
+    "explanation": [
+      "The buffer separates the two resistor-capacitor networks. Their responses then multiply without substantial mutual loading.",
+      "The lower corner is approximately 159 Hz. The upper corner changes with the selected low-pass capacitor.",
+      "A wide gap between the corners gives a nearly flat middle band. Closely spaced corners reduce the peak gain."
+    ]
+  },
+  "comparator-hysteresis": {
+    "title": "Comparator with positive feedback",
+    "article": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+    "intro": "Positive feedback creates separate switching thresholds for rising and falling input.",
+    "explanation": [
+      "The input connects to the inverting terminal. The output feeds the positive terminal through a resistor divider.",
+      "A positive output raises the threshold. A negative output lowers it. The input must cross the opposite threshold to change state again.",
+      "This circuit uses an op-amp as a slow comparator. Saturation recovery limits operation at high switching rates."
+    ]
+  },
+  "transistor-schmitt-trigger": {
+    "title": "Transistor Schmitt trigger",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "Two transistors share an emitter resistor that creates positive feedback.",
+    "explanation": [
+      "When Q1 takes more current, its collector voltage falls and Q2 takes less current.",
+      "The shared emitter voltage then changes in the direction that reinforces the transition.",
+      "The emitter resistor changes the separation between switching thresholds. Base current and transistor gain also affect the thresholds.",
+      "The low collector voltage includes the shared emitter voltage. A larger emitter resistor raises this low output level."
+    ]
+  },
+  "short-pulse-generator": {
+    "title": "Short pulse from an input step",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A coupling capacitor briefly drives Q2 out of conduction and creates a positive collector pulse.",
+    "explanation": [
+      "A rising input turns Q1 on and lowers its collector voltage. The capacitor transfers this falling edge to the base of Q2.",
+      "The base resistor then restores Q2 conduction as the capacitor charges. Resistance and capacitance set the approximate pulse duration.",
+      "This version needs an input step that lasts longer than the desired output pulse.",
+      "The coupling pulse drives the second base below ground. Check reverse base to emitter voltage when changing the supply."
+    ]
+  },
+  "pulse-extension": {
+    "title": "Transistor pulse extension",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A coupling capacitor briefly drives Q2 out of conduction and creates a positive collector pulse.",
+    "explanation": [
+      "A rising input turns Q1 on and lowers its collector voltage. The capacitor transfers this falling edge to the base of Q2.",
+      "The base resistor then restores Q2 conduction as the capacitor charges. Resistance and capacitance set the approximate pulse duration.",
+      "Q3 holds the first collector low after a short input pulse ends. It releases that node when Q2 returns to conduction.",
+      "The coupling pulse drives the second base below ground. Check reverse base to emitter voltage when changing the supply."
+    ]
+  },
+  "discrete-feedback-amplifier": {
+    "title": "Discrete amplifier with negative feedback",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "intro": "A differential pair, voltage-gain transistor, and emitter follower form a feedback amplifier.",
+    "explanation": [
+      "Q1 and Q2 compare the input with a divided output voltage. Their shared current source fixes the available tail current.",
+      "Q3 adds voltage gain. Q4 supplies output current while its emitter follows the preceding stage.",
+      "The output divider requests a gain of ten. The compensation capacitor controls high-frequency loop behavior.",
+      "Identify each block separately before following the complete feedback path. The AC sweep examines the linear response around the bias point."
+    ]
+  },
+  "jfet-bjt-feedback": {
+    "title": "JFET and BJT feedback amplifier",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "A JFET input, PNP gain transistor, and NPN follower share a feedback path.",
+    "explanation": [
+      "A rising gate voltage increases JFET current and lowers its drain voltage. The PNP transistor then raises the follower base voltage.",
+      "The follower output returns through a resistor to the JFET source. This opposes the initial gate to source voltage change.",
+      "The feedback resistor and source resistor largely set the gain. Changing this resistor also changes the DC operating point."
+    ]
+  },
+  "jfet-opamp-feedback": {
+    "title": "JFET input stage with op-amp feedback",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "An op-amp holds the JFET drain voltage near a reference while returning feedback to its source.",
+    "explanation": [
+      "A fixed drain voltage and drain resistor establish nearly constant drain current.",
+      "The source must then follow input changes to keep the gate to source voltage nearly constant.",
+      "The output supplies the required source correction through the feedback resistor. The resulting gain is approximately one plus the resistor ratio.",
+      "A small capacitor adds a direct high-frequency feedback path around the op-amp."
+    ]
+  },
+  "jfet-pair-feedback": {
+    "title": "JFET differential pair inside a feedback loop",
+    "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "intro": "A JFET differential pair drives an op-amp, and the output returns to the second gate.",
+    "explanation": [
+      "The first gate receives the input. A divided output voltage drives the second gate.",
+      "The op-amp senses the difference between the two drain voltages. Its output moves until the gate voltages nearly agree.",
+      "The resistor divider sets the closed-loop gain. The JFET pair provides high input resistance at the signal input.",
+      "The compensation capacitor connects the output to the drain at the op-amp negative input. This supplies a direct negative-feedback path at high frequency."
+    ]
+  }
+}

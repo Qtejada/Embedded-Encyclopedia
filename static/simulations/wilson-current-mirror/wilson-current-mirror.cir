@@ -1,0 +1,14 @@
+* Wilson current mirror
+VCC VCC 0 12
+IREF VCC X {Iset}
+Q1 BASE BASE 0 0 Q_NPN
+Q2 X BASE 0 0 Q_NPN
+Q3 OUT X BASE 0 Q_NPN
+VTEST OUT 0 5
+.dc VTEST 0 10 0.05
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Iset list 250u 1m 2m
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(BASE) V(OUT) V(VCC) V(X) I(VCC) I(IREF) Ic(Q1) Ib(Q1) Ic(Q2) Ib(Q2) Ic(Q3) Ib(Q3) I(VTEST)
+.end

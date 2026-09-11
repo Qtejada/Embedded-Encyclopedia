@@ -1,3 +1,4 @@
+import {restoreSiteWording} from './approved-site-wording.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -20,7 +21,7 @@ let byteExactArticles = 0;
 for (const page of pages.values()) {
   const current = fs.readFileSync(path.join(root, page.source));
   const original = juniorSource.get(page.source);
-  const prefix = current.toString('utf8').replace(/\r\n/g, '\n').slice(0, original.normalized);
+  const prefix = restoreSiteWording(page.source,current.toString('utf8').replace(/\r\n/g, '\n')).slice(0, original.normalized);
   assert.equal(hash(prefix), original.normalizedSha256, `Original article prefix changed: ${page.source}`);
   const bytes = hash(current.subarray(0, original.bytes)) === original.sha256 ? current.subarray(0, original.bytes) : Buffer.from(prefix);
   const restored = restoreBeforeInlineLinks(page.source, bytes);
@@ -30,8 +31,8 @@ for (const page of pages.values()) {
   assert.equal(hash(bytes.toString('utf8').replace(/\r\n/g, '\n')), page.afterNormalizedSha256, `Unexpected source change: ${page.source}`);
   const buildPath = decodeURI(page.url.replace('/Embedded-Encyclopedia/', '')).replace(/\/$/, '') + '.html';
   const dom = cheerio.load(fs.readFileSync(path.join(root, 'build', buildPath), 'utf8'));
-  assert.equal(hash(dom('article').text().slice(0, juniorRendered.get(page.source).length)), page.articleTextSha256, `Rendered original article text changed: ${page.source}`);
-  const headings = dom('article h2[id], article h3[id], article h4[id]').map((_, el) => ({id: dom(el).attr('id'), text: dom(el).text().replace(/\u200b/g, '')})).get();
+  assert.equal(hash(restoreSiteWording(page.source,dom('article').text(),true).slice(0, juniorRendered.get(page.source).length)), page.articleTextSha256, `Rendered original article text changed: ${page.source}`);
+  const headings = dom('article h2[id], article h3[id], article h4[id]').map((_, el) => ({id: dom(el).attr('id'), text: restoreSiteWording(page.source,dom(el).text().replace(/\u200b/g, ''),true)})).get();
   assert.deepEqual(headings.slice(0, page.headings.length), page.headings, `Original subsection headings changed: ${page.source}`);
   assert.equal(dom('article a a').length, 0, `Nested links: ${page.source}`);
   for (const element of dom('article img').toArray()) {

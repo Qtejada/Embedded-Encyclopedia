@@ -1,0 +1,15 @@
+* Capacitive load and isolation resistor
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 PULSE(0 1 2u 20n 20n 10u 20u)
+XU1 IN RAW VP VN RAW level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+RISO RAW OUT {Riso}
+CL OUT 0 10n
+RL OUT 0 100k
+.lib UniversalOpAmp2.lib
+.tran 0 4e-05 0 5e-09
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Riso list 0.1 22 100
+.save V(IN) V(OUT) V(RAW) V(VN) V(VP) I(VP) I(VN) I(VIN) I(RISO) I(CL) I(RL)
+.end

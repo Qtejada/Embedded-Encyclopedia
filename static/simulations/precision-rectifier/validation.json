@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "0462808664990dafcecdbdaa45c7633d12e2b3ab8d3c6cb9aba1f7cebca2db89",
+  "rawSha256": "e7287a3d7e6a49640dfb451bef641ed921213e9f06a8d626ae11975d67c89278",
+  "cases": [
+    {
+      "case": "20 mV peak",
+      "savedPoints": 10004,
+      "refinement": {
+        "V(in)": {
+          "max": 3.8915815604723125e-09,
+          "normalizedRms": 1.3755380015611408e-07
+        },
+        "V(out)": {
+          "max": 3.4463355863935743e-07,
+          "normalizedRms": 1.4061872652616212e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": [
+            0.018,
+            0.19,
+            1.98
+          ],
+          "hi": [
+            0.022,
+            0.21,
+            2.02
+          ],
+          "at": null,
+          "value": 0.019979153709577386
+        }
+      ]
+    },
+    {
+      "case": "200 mV peak",
+      "savedPoints": 10004,
+      "refinement": {
+        "V(in)": {
+          "max": 3.5741566567493166e-08,
+          "normalizedRms": 1.135299363736969e-07
+        },
+        "V(out)": {
+          "max": 1.2714692784176855e-05,
+          "normalizedRms": 2.9621660722210688e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": [
+            0.018,
+            0.19,
+            1.98
+          ],
+          "hi": [
+            0.022,
+            0.21,
+            2.02
+          ],
+          "at": null,
+          "value": 0.19997854460476688
+        }
+      ]
+    },
+    {
+      "case": "2 V peak",
+      "savedPoints": 10054,
+      "refinement": {
+        "V(in)": {
+          "max": 3.162215949092939e-07,
+          "normalizedRms": 6.855237344679303e-08
+        },
+        "V(out)": {
+          "max": 6.305414866095843e-05,
+          "normalizedRms": 1.0585074187731794e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": [
+            0.018,
+            0.19,
+            1.98
+          ],
+          "hi": [
+            0.022,
+            0.21,
+            2.02
+          ],
+          "at": null,
+          "value": 1.9999740268303507
+        }
+      ]
+    }
+  ]
+}

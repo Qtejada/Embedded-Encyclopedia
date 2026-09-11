@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "c5aa8e1eae69c545802f5590cadf3b40de5bcf94bf5bfe02a39c13a13ef4cfe8",
+  "rawSha256": "40ab419856279ac21329b5dfa4bbad14a7ec8c0ef19cdd87aaaf6c91c5f57a8d",
+  "cases": [
+    {
+      "case": "5.6k",
+      "savedPoints": 201,
+      "refinement": {
+        "Ic(Q1)": {
+          "max": 2.688821387764051e-17,
+          "normalizedRms": 3.7728480467687485e-15
+        },
+        "Ic(Q2)": {
+          "max": 3.2959746043559335e-17,
+          "normalizedRms": 4.094460333634998e-15
+        }
+      },
+      "checks": [
+        {
+          "trace": "Ic(Q1)",
+          "metric": "at",
+          "lo": [
+            0.0018,
+            0.001,
+            0.0004
+          ],
+          "hi": [
+            0.0022,
+            0.0013,
+            0.0006
+          ],
+          "at": 0.15,
+          "value": 0.002029500653926857
+        }
+      ]
+    },
+    {
+      "case": "10k",
+      "savedPoints": 201,
+      "refinement": {
+        "Ic(Q1)": {
+          "max": 1.7997756063259374e-17,
+          "normalizedRms": 4.030991968367452e-15
+        },
+        "Ic(Q2)": {
+          "max": 1.6046192152785466e-17,
+          "normalizedRms": 3.577093002841735e-15
+        }
+      },
+      "checks": [
+        {
+          "trace": "Ic(Q1)",
+          "metric": "at",
+          "lo": [
+            0.0018,
+            0.001,
+            0.0004
+          ],
+          "hi": [
+            0.0022,
+            0.0013,
+            0.0006
+          ],
+          "at": 0.15,
+          "value": 0.001138539877156147
+        }
+      ]
+    },
+    {
+      "case": "22k",
+      "savedPoints": 201,
+      "refinement": {
+        "Ic(Q1)": {
+          "max": 7.48099499014998e-18,
+          "normalizedRms": 3.9798393817995334e-15
+        },
+        "Ic(Q2)": {
+          "max": 7.047314121155779e-18,
+          "normalizedRms": 4.184087935320871e-15
+        }
+      },
+      "checks": [
+        {
+          "trace": "Ic(Q1)",
+          "metric": "at",
+          "lo": [
+            0.0018,
+            0.001,
+            0.0004
+          ],
+          "hi": [
+            0.0022,
+            0.0013,
+            0.0006
+          ],
+          "at": 0.15,
+          "value": 0.0005185947773912263
+        }
+      ]
+    }
+  ]
+}

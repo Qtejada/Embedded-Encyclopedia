@@ -82,7 +82,10 @@
     "title": "Diodes",
     "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/Diodes",
     "equations": 0,
-    "tools": []
+    "tools": [
+      "Explore: Half-wave rectifier",
+      "Explore: Full-wave bridge rectifier"
+    ]
   },
   {
     "source": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
@@ -90,7 +93,8 @@
     "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/BJTs",
     "equations": 0,
     "tools": [
-      "Explore a BJT current mirror"
+      "Explore a BJT current mirror",
+      "Explore: Common-emitter amplifier"
     ]
   },
   {
@@ -98,7 +102,10 @@
     "title": "FETs (MOSFETs and JFETs)",
     "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/MOSFETs",
     "equations": 0,
-    "tools": []
+    "tools": [
+      "Explore: JFET self bias",
+      "Explore: N-channel and P-channel switches"
+    ]
   },
   {
     "source": "docs/02-Power/Entry Protection/fuses.md",

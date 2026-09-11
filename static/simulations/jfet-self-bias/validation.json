@@ -1,0 +1,52 @@
+{
+  "slug": "jfet-self-bias",
+  "simulator": "LTspice 24.1.9",
+  "date": "2026-09-11",
+  "temperatureC": 27,
+  "ascSha256": "ec9e11006d5dd2dc2b4d2ed588b528d1ef7cdcd8361d711fff17672c0cb5d285",
+  "rawSha256": "471aa5809b6f32b3287c6fa5b6a5a797222be6cd610c1789f626e02601f47137",
+  "checks": [
+    {
+      "parameter": 470,
+      "savedPoints": 241,
+      "maxRefinedDifference": {
+        "Id(J1)": 3.790895194977217e-09,
+        "V(drain)": 2.2922979230344254e-06,
+        "V(source)": 1.0773800245278409e-06,
+        "vgs": 1.0773812394448967e-06
+      },
+      "currentAt12V_A": 0.001875946520822214,
+      "gateSourceAt12V_V": -0.8816838518864857,
+      "shockleyEstimate_A": 0.001875946510697172
+    },
+    {
+      "parameter": 1000,
+      "savedPoints": 241,
+      "maxRefinedDifference": {
+        "Id(J1)": 3.4519619760298853e-09,
+        "V(drain)": 1.3248466457227437e-06,
+        "V(source)": 1.3248466450566099e-06,
+        "vgs": 1.3248466450566099e-06
+      },
+      "currentAt12V_A": 0.001131491593097931,
+      "gateSourceAt12V_V": -1.131479579119971,
+      "shockleyEstimate_A": 0.0011314915822284342
+    },
+    {
+      "parameter": 2200,
+      "savedPoints": 241,
+      "maxRefinedDifference": {
+        "Id(J1)": 4.2219577585508525e-09,
+        "V(drain)": 8.757877321130536e-07,
+        "V(source)": 1.92673300891677e-06,
+        "vgs": 1.926731957979655e-06
+      },
+      "currentAt12V_A": 0.0006174633117206492,
+      "gateSourceAt12V_V": -1.3584065148205209,
+      "shockleyEstimate_A": 0.0006174633003371258
+    }
+  ],
+  "refinement": "Half the maximum time step or DC step, with tighter tolerances.",
+  "browserData": "Linear interpolation of saved LTspice samples. CSV retains original samples.",
+  "scope": "Electrical simulation at 27 C."
+}

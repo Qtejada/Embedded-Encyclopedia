@@ -1,0 +1,17 @@
+* Four-resistor difference amplifier
+VP VP 0 12
+VN VN 0 -12
+V1 A 0 SINE({Common} 0.1 1k)
+V2 B 0 {Common}
+R1 B SUM 10k
+RF OUT SUM 10k
+R2 A PLUS 10k
+R3 PLUS 0 10k
+XU1 PLUS SUM VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+.lib UniversalOpAmp2.lib
+.tran 0 0.004 0.002 1e-06
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Common list 0 2 5
+.save V(A) V(B) V(OUT) V(PLUS) V(SUM) V(VN) V(VP) I(VP) I(VN) I(V1) I(V2) I(R1) I(RF) I(R2) I(R3)
+.end

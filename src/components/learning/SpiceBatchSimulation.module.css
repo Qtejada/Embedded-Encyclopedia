@@ -1,0 +1,10 @@
+.schematic { border-bottom: 1px solid var(--hw-border); margin-bottom: 1rem; }
+.schematic svg { min-width: 600px; }
+.enlarged svg { min-width: 1050px; }
+.library svg { min-width: 1400px; }
+.library.enlarged svg { min-width: 1740px; }
+.schematic .componentLabel text { font-size: 19px; }
+.schematic .componentLabel text:first-child { font-weight: 650; }
+.schematic .nodeLabel { font-size: 18px; fill: var(--ifm-color-primary); font-weight: 600; }
+.legend { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; font-size: .85rem; }
+.legend li { display: flex; align-items: center; gap: .4rem; }

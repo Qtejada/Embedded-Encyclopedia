@@ -1,0 +1,11 @@
+* Two-terminal JFET current sink
+VTEST DRAIN 0 12
+J1 DRAIN 0 SOURCE J_NCHANNEL
+RS SOURCE 0 {Rs}
+.dc VTEST 0 12 0.05
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rs list 330 1k 2.2k
+.model J_NCHANNEL NJF(Vto=-2 Beta=1.5m Lambda=0.005 Is=1f Cgs=5p Cgd=3p)
+.save V(DRAIN) V(SOURCE) I(VTEST) Id(J1) I(RS)
+.end

@@ -242,7 +242,7 @@ For a voltage across a resistor R, the average electrical power is 2/R watts in 
 
 ## References
 
-The junior notes supply the lesson topics and the two-mode initial-condition example. The other numerical examples are original teaching examples.
+The junior notes supply the lesson topics and the two-mode initial-condition example. The other numerical examples are original examples.
 
 * [MIT OpenCourseWare: continuous signals and systems](https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/pages/signals-systems/) provides lectures on convolution, transforms, initial conditions, and convergence.
 * [MIT OpenCourseWare: Fourier transform properties](https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-9-fourier-transform-properties/) covers symmetry and Parseval's relation.

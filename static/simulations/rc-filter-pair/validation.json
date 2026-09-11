@@ -1,0 +1,128 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "9b4ea04259567623f1b814ce2ad94d98c10d0196400b09a7c3264e57fb15a0f0",
+  "rawSha256": "28a8ebfee87d84ae6c6e065643a2ddeab6e68376f69aae1e9a15659c64c0f051",
+  "cases": [
+    {
+      "case": "10n",
+      "savedPoints": 421,
+      "refinement": {
+        "db(V(low))": {
+          "max": 0.003197512557498783,
+          "normalizedRms": 1.9046508584163302e-05
+        },
+        "db(V(high))": {
+          "max": 0.0015721525496319444,
+          "normalizedRms": 3.1883605125964236e-06
+        },
+        "ph(V(low))": {
+          "max": 0.013562380479470448,
+          "normalizedRms": 2.7798375177791284e-05
+        },
+        "ph(V(high))": {
+          "max": 0.005258463997961371,
+          "normalizedRms": 1.3886567509092302e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(low))",
+          "metric": "at",
+          "lo": [
+            0.99,
+            0.84,
+            0.15
+          ],
+          "hi": [
+            1.01,
+            0.86,
+            0.17
+          ],
+          "at": 1000,
+          "value": 0.9980319045036449
+        }
+      ]
+    },
+    {
+      "case": "100n",
+      "savedPoints": 421,
+      "refinement": {
+        "db(V(low))": {
+          "max": 0.0031975440280263,
+          "normalizedRms": 1.68173104873975e-05
+        },
+        "db(V(high))": {
+          "max": 0.0015985598098007259,
+          "normalizedRms": 4.184156661557914e-06
+        },
+        "ph(V(low))": {
+          "max": 0.013699160517717246,
+          "normalizedRms": 2.7773127953464498e-05
+        },
+        "ph(V(high))": {
+          "max": 0.005253425186566574,
+          "normalizedRms": 1.3891612726542714e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(low))",
+          "metric": "at",
+          "lo": [
+            0.99,
+            0.84,
+            0.15
+          ],
+          "hi": [
+            1.01,
+            0.86,
+            0.17
+          ],
+          "at": 1000,
+          "value": 0.8467330159648303
+        }
+      ]
+    },
+    {
+      "case": "1u",
+      "savedPoints": 421,
+      "refinement": {
+        "db(V(low))": {
+          "max": 0.0031975443427256778,
+          "normalizedRms": 1.5200765687611858e-05
+        },
+        "db(V(high))": {
+          "max": 0.0015829973177869938,
+          "normalizedRms": 6.0844503187333776e-06
+        },
+        "ph(V(low))": {
+          "max": 0.01356590322686202,
+          "normalizedRms": 2.7770596366136433e-05
+        },
+        "ph(V(high))": {
+          "max": 0.0052704369363425485,
+          "normalizedRms": 1.3941006932476698e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(low))",
+          "metric": "at",
+          "lo": [
+            0.99,
+            0.84,
+            0.15
+          ],
+          "hi": [
+            1.01,
+            0.86,
+            0.17
+          ],
+          "at": 1000,
+          "value": 0.15717672547758996
+        }
+      ]
+    }
+  ]
+}

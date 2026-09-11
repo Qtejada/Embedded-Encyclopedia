@@ -1,0 +1,17 @@
+* Inverting and noninverting amplifiers
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 0 AC 1
+RI IN SUM 10k
+RF INV SUM {Rf}
+XU1 0 SUM VP VN INV level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+RG FB 0 10k
+RF2 NONINV FB {Rf}
+XU2 IN FB VP VN NONINV level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+.lib UniversalOpAmp2.lib
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rf list 10k 20k 100k
+.save V(FB) V(IN) V(INV) V(NONINV) V(SUM) V(VN) V(VP) I(VP) I(VN) I(VIN) I(RI) I(RF) I(RG) I(RF2)
+.end

@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "3a6f0ed791756fe0e380a73c336086bb655679470f33136a1880aaf117d63924",
+  "rawSha256": "6dadd596bac36044640d9784259975782c2f537e9e484921026d602a8d28e5eb",
+  "cases": [
+    {
+      "case": "50",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(outa))": {
+          "max": 0.0012713010167146876,
+          "normalizedRms": 6.604032431528116e-06
+        },
+        "db(V(outb))": {
+          "max": 0.0012198112987888976,
+          "normalizedRms": 8.709333572670334e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(outb))",
+          "metric": "at",
+          "lo": 15,
+          "hi": 35,
+          "at": 1000,
+          "value": 25.343763651557207
+        },
+        {
+          "trace": "abs(V(outa))",
+          "metric": "at",
+          "lo": 75,
+          "hi": 225,
+          "at": 1000,
+          "value": 126.96141704123772
+        }
+      ]
+    },
+    {
+      "case": "150",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(outa))": {
+          "max": 0.0012699010154051393,
+          "normalizedRms": 6.37010746626175e-06
+        },
+        "db(V(outb))": {
+          "max": 0.001207051357894784,
+          "normalizedRms": 8.360049676822815e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(outb))",
+          "metric": "at",
+          "lo": 15,
+          "hi": 35,
+          "at": 1000,
+          "value": 26.45224547820328
+        },
+        {
+          "trace": "abs(V(outa))",
+          "metric": "at",
+          "lo": 75,
+          "hi": 225,
+          "at": 1000,
+          "value": 151.05534195305745
+        }
+      ]
+    },
+    {
+      "case": "300",
+      "savedPoints": 361,
+      "refinement": {
+        "db(V(outa))": {
+          "max": 0.0012684476073303586,
+          "normalizedRms": 6.306797171666447e-06
+        },
+        "db(V(outb))": {
+          "max": 0.0012033136794649124,
+          "normalizedRms": 8.260869684180434e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "abs(V(outb))",
+          "metric": "at",
+          "lo": 15,
+          "hi": 35,
+          "at": 1000,
+          "value": 26.74890335551665
+        },
+        {
+          "trace": "abs(V(outa))",
+          "metric": "at",
+          "lo": 75,
+          "hi": 225,
+          "at": 1000,
+          "value": 158.67812870498665
+        }
+      ]
+    }
+  ]
+}

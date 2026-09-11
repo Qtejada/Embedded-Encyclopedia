@@ -1,0 +1,12 @@
+* BJT emitter follower
+VCC VCC 0 8
+VIN IN 0 3
+Q1 VCC IN OUT 0 Q_NPN
+RL OUT 0 {Load}
+.dc VIN 0 5 0.025
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Load list 1k 10k 100k
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(IN) V(OUT) V(VCC) I(VCC) I(VIN) Ic(Q1) Ib(Q1) I(RL)
+.end

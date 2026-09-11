@@ -1,0 +1,12 @@
+* MOSFET source follower
+VDD VDD 0 12
+VIN GATE 0 5 AC 1
+M1 VDD GATE OUT OUT M_NCHANNEL
+RS OUT 0 {Rs}
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rs list 470 1k 2.2k
+.model M_NCHANNEL NMOS(Level=1 Vto=2 Kp=0.02 Lambda=0.01 Rd=0.1 Rs=0.1 Cbd=100p Cbs=100p)
+.save V(GATE) V(OUT) V(VDD) I(VDD) I(VIN) Id(M1) I(RS)
+.end

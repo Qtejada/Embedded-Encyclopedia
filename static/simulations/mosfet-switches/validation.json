@@ -1,0 +1,55 @@
+{
+  "slug": "mosfet-switches",
+  "simulator": "LTspice 24.1.9",
+  "date": "2026-09-11",
+  "temperatureC": 27,
+  "ascSha256": "7aad695d7248b4b6abcbce913366c0a0d67aa8425d581d17f1ed4ee6647ad5d6",
+  "rawSha256": "3e32b590970cb8e4b3966b171a22b1dcfe9da5976876b3c321979715759f0efd",
+  "checks": [
+    {
+      "parameter": 100,
+      "savedPoints": 12571,
+      "maxRefinedDifference": {
+        "V(ctrl)": 3.708144902248023e-13,
+        "V(nload)": 0.0015699811344846992,
+        "V(pload)": 0.001589590951749414,
+        "I(RN)": 1.5699811344845654e-05,
+        "I(RP)": 1.5895909517494145e-05
+      },
+      "nOnCurrentA": 0.04907114509900308,
+      "pOnCurrentA": 0.0490711451001699,
+      "idealLoadCurrentA": 0.05
+    },
+    {
+      "parameter": 330,
+      "savedPoints": 12623,
+      "maxRefinedDifference": {
+        "V(ctrl)": 3.934630399271555e-13,
+        "V(nload)": 0.0008396416427984832,
+        "V(pload)": 0.0008397366461735389,
+        "I(RN)": 2.544368614540958e-06,
+        "I(RP)": 2.5446565035563192e-06
+      },
+      "nOnCurrentA": 0.015065933857535187,
+      "pOnCurrentA": 0.015065933857526567,
+      "idealLoadCurrentA": 0.015151515151515152
+    },
+    {
+      "parameter": 1000,
+      "savedPoints": 12738,
+      "maxRefinedDifference": {
+        "V(ctrl)": 4.3298697960381105e-13,
+        "V(nload)": 0.001869464025391565,
+        "V(pload)": 0.0018694800158187697,
+        "I(RN)": 1.8694640253917247e-06,
+        "I(RP)": 1.8694800158177219e-06
+      },
+      "nOnCurrentA": 0.004990671127827376,
+      "pOnCurrentA": 0.004990671127829871,
+      "idealLoadCurrentA": 0.005
+    }
+  ],
+  "refinement": "Half the maximum time step or DC step, with tighter tolerances.",
+  "browserData": "Linear interpolation of saved LTspice samples. CSV retains original samples.",
+  "scope": "Electrical simulation at 27 C."
+}

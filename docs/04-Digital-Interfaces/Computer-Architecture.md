@@ -25,7 +25,7 @@ A **central processing unit (CPU)** executes instructions. An **arithmetic logic
 
 The **program counter** identifies an instruction address. Normal execution advances it. A branch, call, return, or exception can select another address.
 
-A teaching pipeline has five stages:
+A pipeline has five stages:
 
 1. Fetch the instruction.
 2. Decode the instruction and read registers.

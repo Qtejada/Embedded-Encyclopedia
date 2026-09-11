@@ -1,3 +1,4 @@
+import {restoreSiteWording} from './approved-site-wording.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -13,7 +14,7 @@ let exact = 0;
 for (const record of baseline.files) {
   const bytes = fs.readFileSync(path.join(root, record.path));
   if (hash(bytes.subarray(0, record.bytes)) === record.sha256) exact++;
-  const text = bytes.toString('utf8').replace(/\r\n/g, '\n');
+  const text = restoreSiteWording(record.path,bytes.toString('utf8').replace(/\r\n/g, '\n'));
   assert.equal(hash(text.slice(0, record.normalized)), record.normalizedSha256, `Original writing changed: ${record.path}`);
   if (record.path.endsWith('/Phils-lab.md')) assert.equal(text.length, record.normalized);
   cuts.set(record.path, record.normalized);
@@ -27,7 +28,7 @@ let changed = 0, paragraphs = 0;
 const issues = [];
 for (const file of files(path.join(root, 'docs')).filter(p => /\.mdx?$/.test(p))) {
   const rel = path.relative(root, file).replaceAll('\\', '/');
-  let added = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n').slice(cuts.get(rel) || 0);
+  let added = restoreSiteWording(rel,fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n')).slice(cuts.get(rel) || 0);
   if (!added.trim()) continue;
   changed++;
   assert.ok(!/\bthus\b/i.test(added), `Forbidden word: ${rel}`);

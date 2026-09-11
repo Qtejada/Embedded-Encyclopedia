@@ -1,0 +1,16 @@
+* Band-limited differentiator
+VP VP 0 12
+VN VN 0 -12
+VIN IN 0 0 AC 1
+CI IN X {Cin}
+RI X SUM 1k
+RF OUT SUM 100k
+CF OUT SUM 10p
+XU1 0 SUM VP VN OUT level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+.lib UniversalOpAmp2.lib
+.ac dec 60 1 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Cin list 1n 10n 100n
+.save V(IN) V(OUT) V(SUM) V(VN) V(VP) V(X) I(VP) I(VN) I(VIN) I(CI) I(RI) I(RF) I(CF)
+.end

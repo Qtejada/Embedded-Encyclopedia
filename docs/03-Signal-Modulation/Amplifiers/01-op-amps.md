@@ -1549,3 +1549,144 @@ Use the threshold controls to observe the different rising and falling transitio
 Use a comparator intended for the required input and output conditions. An op-amp used open-loop can have slow recovery or an unsuitable output interface.
 
 See the [comparator page](./comparators.md) for output types, propagation delay, and threshold design.
+
+
+import CircuitLibrarySimulation from '@site/src/components/learning/CircuitLibrarySimulation';
+
+## More LTspice circuits {#ltspice-circuits}
+
+These examples show component behavior and reusable circuit blocks. Each example includes three parameter settings.
+
+[Browse all LTspice circuits](/ltspice-circuits).
+
+### Op-amp controlled current sink {#ltspice-opamp-current-source}
+
+An op-amp drives a MOSFET until the sense-resistor voltage equals the command voltage.
+
+The sense resistor converts current to voltage. Negative feedback forces this voltage toward the command voltage.
+
+For a 100-ohm sense resistor, a 0.5 V command sets approximately 5 mA.
+
+The drain supply must provide the sense voltage and transistor headroom. The circuit cannot maintain current below this compliance voltage.
+
+<CircuitLibrarySimulation circuit="opamp-current-source" />
+
+### Inverting and noninverting amplifiers {#ltspice-opamp-gain-configurations}
+
+Two feedback networks demonstrate the sign and magnitude of closed-loop voltage gain.
+
+The inverting stage has gain equal to the negative feedback-resistor ratio. Its input resistor carries signal current.
+
+The noninverting stage has gain equal to one plus the resistor ratio. Its input connects directly to the high-resistance op-amp input.
+
+Both stages lose closed-loop gain at high frequency. Their noise gains determine the approximate bandwidth.
+
+<CircuitLibrarySimulation circuit="opamp-gain-configurations" />
+
+### Buffer and source loading {#ltspice-opamp-buffer-loading}
+
+A voltage follower separates a high-resistance source from its load.
+
+The direct path forms a voltage divider between the source resistance and load.
+
+The buffered path draws little current from the source. The op-amp supplies the load current instead.
+
+The buffer still has output-current and bandwidth limits. This frequency sweep examines its small-signal response.
+
+<CircuitLibrarySimulation circuit="opamp-buffer-loading" />
+
+### Summing amplifier {#ltspice-opamp-summing}
+
+Two input resistors feed a common summing node.
+
+Negative feedback holds the summing node near ground. Each input therefore produces a current through its resistor.
+
+The feedback resistor converts the sum of those currents to output voltage.
+
+Equal input and feedback resistors give the negative sum of the two input voltages. Here one input supplies a DC offset.
+
+<CircuitLibrarySimulation circuit="opamp-summing" />
+
+### Practical integrator {#ltspice-opamp-integrator}
+
+A feedback capacitor converts input current into a changing output voltage.
+
+The input resistor sets capacitor current. Output slope is approximately the negative input voltage divided by resistance and capacitance.
+
+A large resistor across the capacitor provides a DC feedback path. It prevents unlimited DC gain.
+
+Above the resistor-capacitor corner, gain falls by approximately 20 dB per decade. The phase approaches positive 90 degrees.
+
+<CircuitLibrarySimulation circuit="opamp-integrator" />
+
+### Band-limited differentiator {#ltspice-opamp-differentiator}
+
+An input capacitor converts changes in input voltage into current.
+
+The feedback resistor converts capacitor current to output voltage. In the differentiating band, output is proportional to input slope.
+
+The series input resistor limits high-frequency gain. The feedback capacitor provides a second high-frequency limit.
+
+An unlimited differentiator strongly amplifies high-frequency noise. The extra components make the response practical.
+
+<CircuitLibrarySimulation circuit="opamp-differentiator" />
+
+### Transimpedance amplifier {#ltspice-transimpedance-amplifier}
+
+An op-amp converts input current to output voltage through a feedback resistor.
+
+Negative feedback holds the input node near ground. Most input current flows through the feedback resistor.
+
+The low-frequency transimpedance is approximately the negative feedback resistance. Here its magnitude is 100 kilohms.
+
+Input capacitance affects loop stability. The feedback capacitor reduces high-frequency gain and improves phase margin.
+
+<CircuitLibrarySimulation circuit="transimpedance-amplifier" />
+
+### Closed-loop gain and bandwidth {#ltspice-opamp-gain-bandwidth}
+
+Higher closed-loop gain reduces the bandwidth of a dominant-pole op-amp.
+
+The op-amp gain-bandwidth product is set to 1 MHz. The resistor choices produce nominal gains of 2, 10, and 100.
+
+The approximate bandwidth is gain-bandwidth product divided by noise gain.
+
+This relation applies to the dominant-pole response. Additional poles and loading can change the result.
+
+<CircuitLibrarySimulation circuit="opamp-gain-bandwidth" />
+
+### Slew-rate limiting {#ltspice-opamp-slew-rate}
+
+A limited output slope prevents a fast, large signal from following the input.
+
+The input is a 5 V peak sine wave at 100 kHz. Its maximum slope is approximately 3.14 V per microsecond.
+
+The three slew-rate settings lie below and above this requirement.
+
+A low slew rate produces an almost triangular output with reduced amplitude. This is a large-signal limit, not only a bandwidth limit.
+
+<CircuitLibrarySimulation circuit="opamp-slew-rate" />
+
+### Output clipping {#ltspice-opamp-clipping}
+
+An amplifier cannot produce output voltage beyond its available supply range.
+
+The feedback network requests a gain of negative two. The input amplitude increases between runs.
+
+Once the requested output exceeds the available swing, the waveform clips near the output limits.
+
+Feedback no longer holds the input difference near zero during clipping. Recovery also depends on the amplifier dynamics.
+
+<CircuitLibrarySimulation circuit="opamp-clipping" />
+
+### Capacitive load and isolation resistor {#ltspice-capacitive-load-compensation}
+
+A series output resistor separates a capacitive load from the amplifier feedback node.
+
+The load capacitance adds phase lag through the amplifier output impedance. This can cause overshoot and ringing.
+
+The feedback connects before the isolation resistor. The resistor reduces the capacitive loading seen inside the loop.
+
+A larger isolation resistor can reduce ringing, but it also slows the load voltage and creates a load-dependent voltage drop.
+
+<CircuitLibrarySimulation circuit="capacitive-load-compensation" />

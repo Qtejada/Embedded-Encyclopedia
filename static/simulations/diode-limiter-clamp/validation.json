@@ -1,0 +1,140 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "4ef4af916544cb5da4966689ee3796b6ab1a8b19d5ef6330fd3d135377350c4b",
+  "rawSha256": "9dc094cd40cc18d162a87a5b3816c12db56be47fedcfb10cdf6ac7432eccd4bb",
+  "cases": [
+    {
+      "case": "10k",
+      "savedPoints": 2026,
+      "refinement": {
+        "V(in)": {
+          "max": 1.278066001786371e-05,
+          "normalizedRms": 2.055289981920248e-06
+        },
+        "V(limit)": {
+          "max": 0.00013725804254371976,
+          "normalizedRms": 3.052011025814826e-05
+        },
+        "V(clamp)": {
+          "max": 0.000169217706005087,
+          "normalizedRms": 2.173522245841621e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(limit)",
+          "metric": "max",
+          "lo": 0.4,
+          "hi": 0.9,
+          "at": null,
+          "value": 0.6156790248458848
+        },
+        {
+          "trace": "V(limit)",
+          "metric": "min",
+          "lo": -0.9,
+          "hi": -0.4,
+          "at": null,
+          "value": -0.6156791763203799
+        },
+        {
+          "trace": "V(clamp)",
+          "metric": "max",
+          "lo": 3.5,
+          "hi": 6.5,
+          "at": null,
+          "value": 4.500071699536158
+        }
+      ]
+    },
+    {
+      "case": "100k",
+      "savedPoints": 2007,
+      "refinement": {
+        "V(in)": {
+          "max": 1.3015793201898163e-05,
+          "normalizedRms": 2.8188096019144636e-06
+        },
+        "V(limit)": {
+          "max": 0.0001366881415451049,
+          "normalizedRms": 3.768915774266256e-05
+        },
+        "V(clamp)": {
+          "max": 5.106558820866525e-05,
+          "normalizedRms": 1.8548460004404167e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(limit)",
+          "metric": "max",
+          "lo": 0.4,
+          "hi": 0.9,
+          "at": null,
+          "value": 0.6156789671364028
+        },
+        {
+          "trace": "V(limit)",
+          "metric": "min",
+          "lo": -0.9,
+          "hi": -0.4,
+          "at": null,
+          "value": -0.6156789671346845
+        },
+        {
+          "trace": "V(clamp)",
+          "metric": "max",
+          "lo": 3.5,
+          "hi": 6.5,
+          "at": null,
+          "value": 5.404692291363156
+        }
+      ]
+    },
+    {
+      "case": "1Meg",
+      "savedPoints": 2007,
+      "refinement": {
+        "V(in)": {
+          "max": 1.2992875631390177e-05,
+          "normalizedRms": 2.741921685529019e-06
+        },
+        "V(limit)": {
+          "max": 0.00013954102551311243,
+          "normalizedRms": 3.823403117367074e-05
+        },
+        "V(clamp)": {
+          "max": 1.3842883228420977e-05,
+          "normalizedRms": 1.4827707756473523e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(limit)",
+          "metric": "max",
+          "lo": 0.4,
+          "hi": 0.9,
+          "at": null,
+          "value": 0.6156789619886435
+        },
+        {
+          "trace": "V(limit)",
+          "metric": "min",
+          "lo": -0.9,
+          "hi": -0.4,
+          "at": null,
+          "value": -0.6156789619896961
+        },
+        {
+          "trace": "V(clamp)",
+          "metric": "max",
+          "lo": 3.5,
+          "hi": 6.5,
+          "at": null,
+          "value": 5.55108450616764
+        }
+      ]
+    }
+  ]
+}

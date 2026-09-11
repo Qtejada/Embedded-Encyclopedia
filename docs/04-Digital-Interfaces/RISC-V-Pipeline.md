@@ -15,7 +15,7 @@ An **instruction set architecture (ISA)** specifies the operations that software
 
 RISC-V does not require a five-stage pipeline. A processor can use one stage, five stages, or another organization while it implements the same instructions.
 
-This lesson uses a small **RV32I** teaching processor. RV32I has 32-bit integer registers. Its base instructions have a fixed length of 32 bits.
+This lesson uses a small **RV32I** processor. RV32I has 32-bit integer registers. Its base instructions have a fixed length of 32 bits.
 
 The register file contains **x0 through x31**. Register **x0** always reads as zero. A write to x0 does not change its value.
 
@@ -25,7 +25,7 @@ Compressed instructions change the instruction-length rules. This lesson exclude
 
 An **arithmetic logic unit (ALU)** performs arithmetic and logic operations. The stage abbreviations below are defined in the five-stage walkthrough.
 
-### Teaching model assumptions
+### Processor assumptions {#teaching-model-assumptions}
 
 * Instructions enter and complete in program order.
 * The processor can fetch one instruction per cycle.
@@ -100,7 +100,7 @@ Source register identifiers must travel with the instruction. The forwarding uni
 
 Select each ALU operand from the saved register value, a forwarded value, an immediate, or the instruction PC as required.
 
-The ALU performs arithmetic or calculates an effective address. In this teaching model, EX also compares branch operands and calculates the branch target.
+The ALU performs arithmetic or calculates an effective address. In this model, EX also compares branch operands and calculates the branch target.
 
 For a load, the EX result is an **address**. It is not the value that the load will write to rd.
 
@@ -329,7 +329,7 @@ The timing table shows stage occupancy during a cycle. The register and memory t
 
 The branch row assumes a separate target adder and comparison path. A design that shares an ALU can use different control wiring.
 
-**RegWrite**, **MemRead**, and **MemWrite** are common teaching signal names. They are implementation labels, not RISC-V instructions.
+**RegWrite**, **MemRead**, and **MemWrite** are common control signal names. They are implementation labels, not RISC-V instructions.
 
 ## 12. Common implementation errors
 
@@ -363,7 +363,7 @@ For the broader processor context, see [processor execution](<./Computer-Archite
 
 ## Technical references
 
-The course notes motivate this walkthrough. The examples and interactive model are new teaching material with explicit assumptions.
+The course notes motivate this walkthrough. The examples and interactive model are new material with explicit assumptions.
 
 * [RISC-V RV32I specification](https://docs.riscv.org/reference/isa/v20240411/unpriv/rv32.html): architectural behavior.
 * [Brown University pipeline notes](https://cs.brown.edu/courses/csci1952y/2024/notes/pipelined_cpu.html): an example with a different branch-resolution stage.

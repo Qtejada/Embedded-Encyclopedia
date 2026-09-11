@@ -1,0 +1,352 @@
+[
+  {
+    "path": "docs/00-Foundations/00-Foundations.md",
+    "length": 14400,
+    "sha256": "39d8bb8ac096931d73159fde8ad1bf62eeaab8ae3ad194618ea19d838677ea0f"
+  },
+  {
+    "path": "docs/00-Foundations/03-Precision-Design.md",
+    "length": 34524,
+    "sha256": "a74d951854c47acb008eae629f925844a2571bbb644ed1d9c72583f8ac0ee878"
+  },
+  {
+    "path": "docs/00-Foundations/04-Fields-and-Materials.md",
+    "length": 5602,
+    "sha256": "d09fcfaf10f5b7023896f070f85d9c01d89154a161e21c8cf88d424870a316cc"
+  },
+  {
+    "path": "docs/00-Foundations/05-Measurement-and-Debug.md",
+    "length": 6971,
+    "sha256": "7347069c60f4a909edebb86b7fe9cd36c77be0da4cca937797260ac68d6d9b07"
+  },
+  {
+    "path": "docs/00-Foundations/06-System-Design.md",
+    "length": 3368,
+    "sha256": "713f695c0b6387005ff7243bb3b5151516b079baf0cb24d8d5b9da1374526f90"
+  },
+  {
+    "path": "docs/01-Discrete-Components/01-Passives/01-Resistors.md",
+    "length": 4465,
+    "sha256": "468cfade1738402464961d3cfc746ac00260019b4128c33570e6a5a926d89e1c"
+  },
+  {
+    "path": "docs/01-Discrete-Components/01-Passives/02-Capacitors.md",
+    "length": 16389,
+    "sha256": "3144ee2b3f54a290f1c6ba2d908fbce8ce095e6c84e96de7a15fe4120f3ccffd"
+  },
+  {
+    "path": "docs/01-Discrete-Components/01-Passives/03-Inductors.md",
+    "length": 9860,
+    "sha256": "86b96c1cd4c06b084d828e5dd1814bea70dd1a255d9357d7d37c010a89802d77"
+  },
+  {
+    "path": "docs/01-Discrete-Components/02-Magnetics/01-Transformers.md",
+    "length": 2967,
+    "sha256": "9d235c383e2090609ce274e15d8aeb6f819e17d789f4881d905d34abff8f2fba"
+  },
+  {
+    "path": "docs/01-Discrete-Components/02-Magnetics/02-Common-Mode-Chokes.md",
+    "length": 2959,
+    "sha256": "709f0c238d7f2f8ffa6e3f3fdd8534b7da419fa1ef3f8190525a74028b78d2f2"
+  },
+  {
+    "path": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+    "length": 9231,
+    "sha256": "939de075d24593d2825b21df7c50dde79c75194b390b2470b8a58d56afe0c7db"
+  },
+  {
+    "path": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "length": 27970,
+    "sha256": "cc7253ac2ea0edbb765da4083fb8ab0aa02ceb5fd0c8765d5229af54e40a21f2"
+  },
+  {
+    "path": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "length": 30251,
+    "sha256": "8fbddbd153fc6bda0a6399a326883906dde3ed7fc119ca55998bf655a76390fc"
+  },
+  {
+    "path": "docs/02-Power/Entry Protection/fuses.md",
+    "length": 46728,
+    "sha256": "8ec75af7ae82d5c69c9fb712cebe9543f3d9786c90ff83b947a5d78e2025a0d0"
+  },
+  {
+    "path": "docs/02-Power/Entry Protection/ideal-diodes.md",
+    "length": 2590,
+    "sha256": "97a711b808ceb5f56a53a45c98e1230f180125be33f9a560bc9f975c8e757bed"
+  },
+  {
+    "path": "docs/02-Power/Entry Protection/tvs-surge.md",
+    "length": 2700,
+    "sha256": "223bbcc0c58188f35fb81c673b3b9787c1b68b744d5675b50f33faae3be6ed77"
+  },
+  {
+    "path": "docs/02-Power/Measurment/Current-sense.md",
+    "length": 4855,
+    "sha256": "a77b4a8e7723ee9b530733e770502faaef44496eca41e69b78cd1e8c437f2eeb"
+  },
+  {
+    "path": "docs/02-Power/Measurment/Power-good-Seq.md",
+    "length": 2416,
+    "sha256": "fce5a4c4ad079739cf3c396426c123d5e3d02d1d2aebc6322037cff6c03cdb73"
+  },
+  {
+    "path": "docs/02-Power/Measurment/Supervisors.md",
+    "length": 2411,
+    "sha256": "b03e17a43d71743b81e9613c35184b41014414256366b21d89002e6eaf8ba7be"
+  },
+  {
+    "path": "docs/02-Power/Power Control/Gate-Drivers.md",
+    "length": 2655,
+    "sha256": "7cc3689e31061d5c4ee2b939f222c2722a4b5a5f60c82b2ab04c407673710dad"
+  },
+  {
+    "path": "docs/02-Power/Power Control/Load-Switches.md",
+    "length": 2427,
+    "sha256": "44925ee31a6477c2d6a368131cdaf2bd7b8fb17a5c7cf14416d99ab6d79275cf"
+  },
+  {
+    "path": "docs/02-Power/Power Control/Motor-Drives.md",
+    "length": 11226,
+    "sha256": "ca83d6a163bdacbe5291d9c331c5b214b162d0e98e038c173616ae37f932ab6a"
+  },
+  {
+    "path": "docs/02-Power/Regulation/01-Buck Converter.md",
+    "length": 10732,
+    "sha256": "3f3364667bbefec5b342ffefede5edd14bb5435e7d34078033d47c49f4c71e12"
+  },
+  {
+    "path": "docs/02-Power/Regulation/02-Boost Converter.md",
+    "length": 3356,
+    "sha256": "7964a066bdd53d915532c8f06ce3a0b9c304f0e08b5f02386f8cb7dacb308653"
+  },
+  {
+    "path": "docs/02-Power/Regulation/03-Buck-Boost Converter.md",
+    "length": 2565,
+    "sha256": "b0b26a9c4e85b4b19220d252600de3d1f5fc3a506c0acd09d61a4b11271150c1"
+  },
+  {
+    "path": "docs/02-Power/Regulation/04-LDOs.md",
+    "length": 3455,
+    "sha256": "ede2760f2c45334a3967641e6624443fb294965d4050c87575a44c3c726c4347"
+  },
+  {
+    "path": "docs/02-Power/Regulation/05-AC-to-DC-Converters.md",
+    "length": 3049,
+    "sha256": "292e39e04c4f02fb81e1f90ef8df360fdd72f831e99dfd164321d34522720d3e"
+  },
+  {
+    "path": "docs/02-Power/Regulation/06-Charge-Pumps.md",
+    "length": 2461,
+    "sha256": "59b85f23dc96e31c5b8f3c7b70108d694febc714429fa74ca51f59f2eb19b115"
+  },
+  {
+    "path": "docs/02-Power/Regulation/Battery-Charging.md",
+    "length": 6714,
+    "sha256": "880ce95e125e402038a8e1fe1d9a01741923445288b6e35e080dbd335b7f464a"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "length": 61401,
+    "sha256": "71b6f4684f369054e16031f228294e7e09ebcd31f29f65b276745a207bda33f1"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+    "length": 16688,
+    "sha256": "f3453b77a5addbd92b41fb177836aad54e2f41c35fa3f53e2351e7a837dd2582"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Amplifiers/03-instrumentation-amps.md",
+    "length": 19383,
+    "sha256": "e27a1919f851c8a19684df2a4961737bffb3f008cbd40a1db9be7a264948470d"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+    "length": 25917,
+    "sha256": "0de9544e71be8ba90eef980aa5bdaf538864de6319532d28551157a1810bf636"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Data-convertes/DACs.md",
+    "length": 66623,
+    "sha256": "e8c2062f5d61900dce2e1913d64e2f123cac37b2a0147805449440ed736f256e"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Data-convertes/Sample-holding.md",
+    "length": 41359,
+    "sha256": "aec196405c8423a9c04500e8cc748258cc805d763b5ba7546a1127e135c54b1e"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+    "length": 59949,
+    "sha256": "10df58bf491d381e5969a576d91f5bd8e4ed3ccf11c766c3c82947bbc82c30fc"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Filters/Digital-filters.md",
+    "length": 46322,
+    "sha256": "d848b5d67c3404dab4e154d2203258fa5461cf1f142ecd96eb4dc1485c95c68a"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Sensors.md",
+    "length": 6281,
+    "sha256": "8f4593b5fca2ccd0a24023c7806075fb9f2fe68fb1c5ebd6d6a447236d777020"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Signals-and-Systems.md",
+    "length": 12882,
+    "sha256": "00c0833fbd2d108e4d9c37cc816268404975dcdfe455b98aab173ff7ed7980be"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/State-Space.md",
+    "length": 9280,
+    "sha256": "9d1933e546fe4eb057087aeafb8f257ea32da255f9f788fcfa7f1e820bb5fba3"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Timing/Crystal-oscillators.md",
+    "length": 28963,
+    "sha256": "92dae4a3a5c760e843dc419e165850febba05640329ae258e6fc900f5882327d"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Timing/PLL.md",
+    "length": 42510,
+    "sha256": "2df450648604a0fe450cb94b47c0edebafceb570abdc24e034a494e7e7eaf8ff"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Timing/RTCs.md",
+    "length": 2776,
+    "sha256": "ec683036082af69853373cfd526ae4db5a753eebe12f2023f8ecfeedc26a01b4"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/bridges.md",
+    "length": 2512,
+    "sha256": "d13a9ed6748746c0580283e058f11840dfd042f6d6e3957113a9c35997d17b0c"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/CMOS-Design.md",
+    "length": 7106,
+    "sha256": "50d3a691b39593c2678df2287c88dc97ed1c359b8204caf1cee0bebb0ac609ad"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Computer-Architecture.md",
+    "length": 8504,
+    "sha256": "6f7ad3a89ead43aa25d89b8ec630b5efb612e94298b9b7098c7bc44bd188bfdd"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/DigitalGeneral.md",
+    "length": 41085,
+    "sha256": "c8b690c070dfa934cf382f1f3792079bc992f51e3ce916056a1c26f2507f417c"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Embedded-Systems.md",
+    "length": 8491,
+    "sha256": "71581d15d8ec7fe42811b359db15cbdb526218967c91d80fd486b25bc3d55539"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Ethernet.md",
+    "length": 2828,
+    "sha256": "7c8169797c3d33877aa963f32782ef60513b5a0003f1590e84a0defe6910b21d"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Firmware.md",
+    "length": 8300,
+    "sha256": "61d37bb660321d0ce2924e7f89dcb6b8a3cbdd01edbc8fae2991c969e01cfbd6"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/io-expanders.md",
+    "length": 2380,
+    "sha256": "5aedff6f96ae353b0a99c86e0a6c38bd6312f69bcf1a8e6c1a55534f21d59ef8"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Memory.md",
+    "length": 3280,
+    "sha256": "dfcb1dda5516b25fa70d81522461e2333b73c1a9e03e0fee60f1ffc5705ac70c"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Operating-Systems.md",
+    "length": 10307,
+    "sha256": "e32dcc24eda185401c8c9914069c54c29c8945b5d00e513153e8d5fa2fc29b1e"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Processor-Memory.md",
+    "length": 7174,
+    "sha256": "671ca0e9a288b0523a9ac6a390f729816ea46fb4fbd4d6705d46890a17ab569d"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/RISC-V-Assembly.md",
+    "length": 5595,
+    "sha256": "fa9fbdce7e15e4f53a6350073e510032ceecc2f6fb6a3adebbfff83ccc87bde2"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/RISC-V-Pipeline.md",
+    "length": 17974,
+    "sha256": "7a9821b2f67a440db7dfad597b0e38175c9f582bff54106a14f1e20495898558"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Sequential-Design.md",
+    "length": 6312,
+    "sha256": "bd36c5ddfc2abf279a545b36d7ef23b1ee7c27308fdc2753c22fffe412eaf1ba"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Serial-Buses/01-UART.md",
+    "length": 3302,
+    "sha256": "c8f7865eb941cfb43b302e72e1e0095a3db2def4842b7a9285cd63112fc91b14"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Serial-Buses/02-SPI.md",
+    "length": 3179,
+    "sha256": "40a8717b2111e5fe31c1f9e97a59ab3eef76309c2d60df2caa1b2b542bc104b5"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Serial-Buses/03-I2C.md",
+    "length": 4059,
+    "sha256": "5ad21283446a0649dee126ff0823a0262004a9ff7278759e59c0374086aa853e"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Serial-Buses/CAN.md",
+    "length": 2707,
+    "sha256": "a823669f1805b18e8253653210fb50fa75a0e58220aea28a401b77dc4b8e0d97"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/Serial-Buses/rs232-rs485.md",
+    "length": 2907,
+    "sha256": "5a946af20c54600408bcf60f43c555229b50586c089f9abdb3e8e1aa22ec6620"
+  },
+  {
+    "path": "docs/04-Digital-Interfaces/USB.md",
+    "length": 2666,
+    "sha256": "73c08d20c45268ab99c77e946f43b3ee649ccb591ab82dc5a329e538d87a7318"
+  },
+  {
+    "path": "docs/05-PCB-Layout/01-Overview.md",
+    "length": 40468,
+    "sha256": "2cb08fedc5daa3ffe0f2f6161a54c4aa130a00e9c4f23987dfaea3a9da10a3fb"
+  },
+  {
+    "path": "docs/05-PCB-Layout/02-Return-Paths.md",
+    "length": 2900,
+    "sha256": "f5f08c3f242b62ac02ee420207f0c51d2ed48f86ab7af762e08d62b0c172414d"
+  },
+  {
+    "path": "docs/05-PCB-Layout/03-trace-impedance.md",
+    "length": 5963,
+    "sha256": "0d9a7c666384b43580491e39a4dedefa937eecbfd693ba447f83ef9d38c2761c"
+  },
+  {
+    "path": "docs/05-PCB-Layout/04-Manufacturing-and-Test.md",
+    "length": 8214,
+    "sha256": "723fc001d2b1bf1d21248504347b5c1e3ab85cf2dc961ea8c49ddb1ca364e4a3"
+  },
+  {
+    "path": "docs/05-PCB-Layout/05-Packaging.md",
+    "length": 4446,
+    "sha256": "041156b2588948e9c267c5d3e80c9e613fa80bb07098ef5445abc3a753efa43e"
+  },
+  {
+    "path": "docs/05-PCB-Layout/High-Speed.md",
+    "length": 5930,
+    "sha256": "f3da90b450b58e062161ee37d7f4c900084949090ee17158a459a46c0a30df0d"
+  },
+  {
+    "path": "docs/05-PCB-Layout/Phils-lab.md",
+    "length": 35,
+    "sha256": "db63dc0b9867cdd68eac9f5b3ab7970cdd7eed3af4c50a5f6d2d32d26aa016ff"
+  }
+]

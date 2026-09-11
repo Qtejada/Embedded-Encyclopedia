@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "94036a07a90e5d7d9b9e4ae8c74f654b52071d2ccde9f0010c8bc4982c7b5933",
+  "rawSha256": "421784f0157567fc988695dd94a8b253228d27dc020899d6d912f92f90a64158",
+  "cases": [
+    {
+      "case": "1",
+      "savedPoints": 10004,
+      "refinement": {
+        "V(in)": {
+          "max": 1.4804406001101e-07,
+          "normalizedRms": 1.046568029295275e-07
+        },
+        "V(out)": {
+          "max": 2.9608723783880464e-07,
+          "normalizedRms": 1.0465681612250736e-07
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": [
+            1.95,
+            9.8,
+            11.2
+          ],
+          "hi": [
+            2.05,
+            10.2,
+            11.7
+          ],
+          "at": null,
+          "value": 1.9999934023197512
+        }
+      ]
+    },
+    {
+      "case": "5",
+      "savedPoints": 10004,
+      "refinement": {
+        "V(in)": {
+          "max": 7.402203010542507e-07,
+          "normalizedRms": 1.0465680292819472e-07
+        },
+        "V(out)": {
+          "max": 1.4804361132547683e-06,
+          "normalizedRms": 1.0465681680653469e-07
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": [
+            1.95,
+            9.8,
+            11.2
+          ],
+          "hi": [
+            2.05,
+            10.2,
+            11.7
+          ],
+          "at": null,
+          "value": 9.999966898392234
+        }
+      ]
+    },
+    {
+      "case": "10",
+      "savedPoints": 10106,
+      "refinement": {
+        "V(in)": {
+          "max": 1.4950053355278214e-06,
+          "normalizedRms": 7.903845030169008e-08
+        },
+        "V(out)": {
+          "max": 0.0006397250798162446,
+          "normalizedRms": 2.0441565193407023e-06
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "max",
+          "lo": [
+            1.95,
+            9.8,
+            11.2
+          ],
+          "hi": [
+            2.05,
+            10.2,
+            11.7
+          ],
+          "at": null,
+          "value": 11.457631972306718
+        }
+      ]
+    }
+  ]
+}

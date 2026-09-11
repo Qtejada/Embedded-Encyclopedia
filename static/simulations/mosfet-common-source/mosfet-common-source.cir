@@ -1,0 +1,13 @@
+* MOSFET common-source amplifier
+VDD VDD 0 12
+VIN GATE 0 3 AC 1
+M1 OUT GATE SOURCE SOURCE M_NCHANNEL
+RD VDD OUT {Rd}
+RS SOURCE 0 470
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rd list 1k 2.2k 3.3k
+.model M_NCHANNEL NMOS(Level=1 Vto=2 Kp=0.02 Lambda=0.01 Rd=0.1 Rs=0.1 Cbd=100p Cbs=100p)
+.save V(GATE) V(OUT) V(SOURCE) V(VDD) I(VDD) I(VIN) Id(M1) I(RD) I(RS)
+.end

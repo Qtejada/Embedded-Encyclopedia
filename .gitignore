@@ -21,3 +21,6 @@ yarn-error.log*
 
 # Local LTspice pilot runs
 /tmp/ltspice-mirror/
+/tmp/ltspice-batch-one/
+/tmp/ltspice-library/
+__pycache__/

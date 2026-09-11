@@ -1,0 +1,12 @@
+* JFET source follower
+VDD VDD 0 12
+VIN GATE 0 2 AC 1
+J1 VDD GATE OUT J_NCHANNEL
+RS OUT 0 {Rs}
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rs list 470 1k 2.2k
+.model J_NCHANNEL NJF(Vto=-2 Beta=1.5m Lambda=0.005 Is=1f Cgs=5p Cgd=3p)
+.save V(GATE) V(OUT) V(VDD) I(VDD) I(VIN) Id(J1) I(RS)
+.end

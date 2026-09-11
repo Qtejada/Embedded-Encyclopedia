@@ -1,0 +1,116 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "c007271f8ed6e6c807417539dd8759d73ff36dec258a0ab6703156292c878ff6",
+  "rawSha256": "4352a9d8c95e2092a974131ed8916c57e38ecf0e6b0e73288b32b2342cc2eb40",
+  "cases": [
+    {
+      "case": "10",
+      "savedPoints": 7923,
+      "refinement": {
+        "V(gate)": {
+          "max": 0.008965160603334077,
+          "normalizedRms": 2.860810829789235e-05
+        },
+        "V(out)": {
+          "max": 0.01081287858495017,
+          "normalizedRms": 2.6331072169413657e-05
+        },
+        "V(out)*Id(M1)": {
+          "max": 0.006111297089807843,
+          "normalizedRms": 7.131567460896171e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "at",
+          "lo": 0,
+          "hi": 0.2,
+          "at": 9e-06,
+          "value": 0.12292358846744099
+        },
+        {
+          "trace": "V(gate)",
+          "metric": "at",
+          "lo": 7.5,
+          "hi": 8.1,
+          "at": 9e-06,
+          "value": 8.000000000085524
+        }
+      ]
+    },
+    {
+      "case": "100",
+      "savedPoints": 7429,
+      "refinement": {
+        "V(gate)": {
+          "max": 0.0029660151630279685,
+          "normalizedRms": 1.1885362296886967e-05
+        },
+        "V(out)": {
+          "max": 0.0049701768793948276,
+          "normalizedRms": 1.3959146689234315e-05
+        },
+        "V(out)*Id(M1)": {
+          "max": 0.0035834253229758417,
+          "normalizedRms": 7.206783996750752e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "at",
+          "lo": 0,
+          "hi": 0.2,
+          "at": 9e-06,
+          "value": 0.12292358949607492
+        },
+        {
+          "trace": "V(gate)",
+          "metric": "at",
+          "lo": 7.5,
+          "hi": 8.1,
+          "at": 9e-06,
+          "value": 8.00000000028144
+        }
+      ]
+    },
+    {
+      "case": "470",
+      "savedPoints": 7318,
+      "refinement": {
+        "V(gate)": {
+          "max": 0.0009965809971079764,
+          "normalizedRms": 3.7504877527309686e-06
+        },
+        "V(out)": {
+          "max": 0.0009433366118456465,
+          "normalizedRms": 3.535827718992267e-06
+        },
+        "V(out)*Id(M1)": {
+          "max": 0.0007695531403639766,
+          "normalizedRms": 1.2630174434782365e-05
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "at",
+          "lo": 0,
+          "hi": 0.2,
+          "at": 9e-06,
+          "value": 0.12339256493516546
+        },
+        {
+          "trace": "V(gate)",
+          "metric": "at",
+          "lo": 7.5,
+          "hi": 8.1,
+          "at": 9e-06,
+          "value": 7.966783625041911
+        }
+      ]
+    }
+  ]
+}

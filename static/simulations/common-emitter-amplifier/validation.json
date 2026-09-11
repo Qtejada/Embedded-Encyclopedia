@@ -1,0 +1,55 @@
+{
+  "slug": "common-emitter-amplifier",
+  "simulator": "LTspice 24.1.9",
+  "date": "2026-09-11",
+  "temperatureC": 27,
+  "ascSha256": "a9cec79fbbb274eb180f9a69a824a60839aec678817b26d9498bc2c165fbcdbc",
+  "rawSha256": "f469a6eccab111106b97bcbc1fe116731b8fe1b235bf3de45becc3c842c0c8e1",
+  "checks": [
+    {
+      "parameter": 1e-12,
+      "savedPoints": 10004,
+      "maxRefinedDifference": {
+        "V(in)": 1.4804345721194934e-07,
+        "V(out)": 4.4477211114460347e-07,
+        "V(base)": 1.481065252662006e-07,
+        "V(em)": 1.4516042057266532e-07,
+        "V(col)": 4.446688111059416e-07
+      },
+      "gainMagnitude": 3.002613431137753,
+      "phaseDegrees": -179.9282622039564,
+      "meanCollectorV": 7.573448003051193
+    },
+    {
+      "parameter": 1e-06,
+      "savedPoints": 10004,
+      "maxRefinedDifference": {
+        "V(in)": 1.4804345721194934e-07,
+        "V(out)": 1.307478574658072e-06,
+        "V(base)": 1.4802046965911586e-07,
+        "V(em)": 1.4495086841925797e-07,
+        "V(col)": 1.3073457205692307e-06
+      },
+      "gainMagnitude": 14.354881929012178,
+      "phaseDegrees": -133.56053648187162,
+      "meanCollectorV": 7.5734295870440365
+    },
+    {
+      "parameter": 0.0001,
+      "savedPoints": 10004,
+      "maxRefinedDifference": {
+        "V(in)": 1.4804345721194934e-07,
+        "V(out)": 3.815958347253012e-06,
+        "V(base)": 1.4809206483334947e-07,
+        "V(em)": 1.245520024895086e-07,
+        "V(col)": 3.816027722258752e-06
+      },
+      "gainMagnitude": 25.53465286012293,
+      "phaseDegrees": -179.12379956925065,
+      "meanCollectorV": 7.573406046814787
+    }
+  ],
+  "refinement": "Half the maximum time step or DC step, with tighter tolerances.",
+  "browserData": "Linear interpolation of saved LTspice samples. CSV retains original samples.",
+  "scope": "Electrical simulation at 27 C."
+}

@@ -17,7 +17,7 @@ The owner authorized creation and publication of one trial circuit. This update 
 
 A 5 V supply feeds RREF and a diode-connected NPN transistor Q1. Q2 shares the base voltage and has its emitter grounded. VTEST imposes Q2 collector voltage during the sweep.
 
-Both devices use the embedded teaching model MirrorNPN, with IS=1e-14, BF=100, and VAF=100. These are illustrative parameters, not a production-device model. The schematic uses standard LTspice symbols. The equivalent CIR has no library includes.
+Both devices use the embedded component model Q_NPN, with IS=1e-14, BF=100, and VAF=100. These are illustrative parameters, not a production-device model. The schematic uses standard LTspice symbols. The equivalent CIR has no library includes.
 
 VTEST sweeps from 0 to 5 V in 10 mV increments. RREF steps through 2.2, 4.3, and 8.2 kilohms. Temperature is 27 degrees Celsius. The 1503 points come from LTspice 24.1.9 on Windows.
 

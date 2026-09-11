@@ -1,0 +1,16 @@
+* Op-amp controlled current sink
+VP VP 0 12
+VN VN 0 -12
+VSET SET 0 {Command}
+VTEST OUT 0 5
+XU1 SET SOURCE VP VN GATE level2 Avol=1Meg GBW=10Meg Slew=10Meg Ilimit=100m Rail=0.5 Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=1G
+M1 OUT GATE SOURCE SOURCE M_NCHANNEL
+RS SOURCE 0 100
+.lib UniversalOpAmp2.lib
+.dc VTEST 0 10 0.05
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Command list 0.1 0.5 1
+.model M_NCHANNEL NMOS(Level=1 Vto=2 Kp=0.02 Lambda=0.01 Rd=0.1 Rs=0.1 Cbd=100p Cbs=100p)
+.save V(GATE) V(OUT) V(SET) V(SOURCE) V(VN) V(VP) I(VP) I(VN) I(VSET) I(VTEST) Id(M1) I(RS)
+.end

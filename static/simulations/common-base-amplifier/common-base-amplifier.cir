@@ -1,0 +1,15 @@
+* Common-base amplifier
+VCC VCC 0 12
+VB BASE 0 1.3
+VIN EM 0 0.65 AC 1
+Q1 COL BASE EM 0 Q_NPN
+RC VCC COL {Rc}
+CO COL OUT 10u
+RL OUT 0 100k
+.ac dec 60 10 10000000.0
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rc list 1k 2.2k 3.3k
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(BASE) V(COL) V(EM) V(OUT) V(VCC) I(VCC) I(VB) I(VIN) Ic(Q1) Ib(Q1) I(RC) I(CO) I(RL)
+.end

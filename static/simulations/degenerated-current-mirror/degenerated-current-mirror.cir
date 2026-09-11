@@ -1,0 +1,15 @@
+* Current mirror with emitter resistors
+VCC VCC 0 12
+IREF VCC REF 1m
+Q1 REF REF E1 0 Q_NPN
+Q2 OUT REF E2 0 Q_NPN
+RE1 E1 0 {Re}
+RE2 E2 0 {Re}
+VTEST OUT 0 5
+.dc VTEST 0 10 0.05
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Re list 1 100 470
+.model Q_NPN NPN(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(E1) V(E2) V(OUT) V(REF) V(VCC) I(VCC) I(IREF) Ic(Q1) Ib(Q1) Ic(Q2) Ib(Q2) I(RE1) I(RE2) I(VTEST)
+.end

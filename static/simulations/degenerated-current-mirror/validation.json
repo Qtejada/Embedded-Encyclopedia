@@ -1,0 +1,68 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "c9005b43cc9686e21d904a764c655efedd8afd1cb83638e0c2c30f1a16ce1901",
+  "rawSha256": "8d56872bf5b7c17c7c376ebfd7218aaf06c7ecf096f1282b5025853613333fc1",
+  "cases": [
+    {
+      "case": "1",
+      "savedPoints": 201,
+      "refinement": {
+        "Ic(Q2)": {
+          "max": 2.688821387764051e-17,
+          "normalizedRms": 6.450368394552688e-15
+        }
+      },
+      "checks": [
+        {
+          "trace": "Ic(Q2)",
+          "metric": "at",
+          "lo": 0.0009,
+          "hi": 0.0011,
+          "at": 5,
+          "value": 0.001028083831602066
+        }
+      ]
+    },
+    {
+      "case": "100",
+      "savedPoints": 201,
+      "refinement": {
+        "Ic(Q2)": {
+          "max": 2.3201926491189795e-17,
+          "normalizedRms": 7.922072389079209e-15
+        }
+      },
+      "checks": [
+        {
+          "trace": "Ic(Q2)",
+          "metric": "at",
+          "lo": 0.0009,
+          "hi": 0.0011,
+          "at": 5,
+          "value": 0.0009957499158090384
+        }
+      ]
+    },
+    {
+      "case": "470",
+      "savedPoints": 201,
+      "refinement": {
+        "Ic(Q2)": {
+          "max": 3.404394821604484e-17,
+          "normalizedRms": 1.0362961703614182e-14
+        }
+      },
+      "checks": [
+        {
+          "trace": "Ic(Q2)",
+          "metric": "at",
+          "lo": 0.0009,
+          "hi": 0.0011,
+          "at": 5,
+          "value": 0.0009892733699251362
+        }
+      ]
+    }
+  ]
+}

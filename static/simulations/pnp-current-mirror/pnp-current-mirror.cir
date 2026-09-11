@@ -1,0 +1,13 @@
+* PNP current mirror
+VCC VCC 0 5
+RR REF 0 {Rref}
+Q1 REF REF VCC 0 Q_PNP
+Q2 OUT REF VCC 0 Q_PNP
+VTEST OUT 0 1
+.dc VTEST 0 5 0.025
+.temp 27
+.options reltol=1e-5 plotwinsize=0
+.step param Rref list 1k 2.2k 4.7k
+.model Q_PNP PNP(Is=1e-14 Bf=150 Vaf=100 Cje=10p Cjc=4p Tf=300p)
+.save V(OUT) V(REF) V(VCC) I(VCC) I(RR) Ic(Q1) Ib(Q1) Ic(Q2) Ib(Q2) I(VTEST)
+.end

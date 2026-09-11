@@ -1,0 +1,104 @@
+{
+  "simulator": "LTspice 24.1.9",
+  "temperatureC": 27,
+  "ascSha256": "11d68db6d51140fe33f8db2fe1fb59524047a23f94901fb8ef96e2ab2c78a6ed",
+  "rawSha256": "d2b6f61de83d9b5cae2323585e0718564020d6cce8ac272ca9fd0fbebc013122",
+  "cases": [
+    {
+      "case": "1k",
+      "savedPoints": 301,
+      "refinement": {
+        "V(in)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        },
+        "V(out)": {
+          "max": 2.472496286820558e-06,
+          "normalizedRms": 3.900051084101177e-08
+        },
+        "I(RS)": {
+          "max": 7.492412992977926e-09,
+          "normalizedRms": 2.0885649675947416e-08
+        },
+        "-I(DZ)": {
+          "max": 9.964909287053098e-09,
+          "normalizedRms": 3.374064169908853e-08
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "at",
+          "lo": 4.9,
+          "hi": 5.5,
+          "at": 12,
+          "value": 5.201523983718186
+        }
+      ]
+    },
+    {
+      "case": "2.2k",
+      "savedPoints": 301,
+      "refinement": {
+        "V(in)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        },
+        "V(out)": {
+          "max": 2.2876306982055894e-06,
+          "normalizedRms": 4.354367499607501e-08
+        },
+        "I(RS)": {
+          "max": 6.932214237104911e-09,
+          "normalizedRms": 2.33767327562664e-08
+        },
+        "-I(DZ)": {
+          "max": 7.97204630087478e-09,
+          "normalizedRms": 2.9237714006827117e-08
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "at",
+          "lo": 4.9,
+          "hi": 5.5,
+          "at": 12,
+          "value": 5.211453716215149
+        }
+      ]
+    },
+    {
+      "case": "10k",
+      "savedPoints": 301,
+      "refinement": {
+        "V(in)": {
+          "max": 0.0,
+          "normalizedRms": 0.0
+        },
+        "V(out)": {
+          "max": 2.47216825588481e-06,
+          "normalizedRms": 4.8370672623038444e-08
+        },
+        "I(RS)": {
+          "max": 7.491418958045434e-09,
+          "normalizedRms": 2.6009110396813565e-08
+        },
+        "-I(DZ)": {
+          "max": 7.738635814840203e-09,
+          "normalizedRms": 2.7352764899495638e-08
+        }
+      },
+      "checks": [
+        {
+          "trace": "V(out)",
+          "metric": "at",
+          "lo": 4.9,
+          "hi": 5.5,
+          "at": 12,
+          "value": 5.21758656203133
+        }
+      ]
+    }
+  ]
+}
