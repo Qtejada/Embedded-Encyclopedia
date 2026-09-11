@@ -1,0 +1,9 @@
+.intro { max-width: 65ch; }
+.badge { font-size: .8rem; color: var(--hw-text-secondary); }
+.observation { padding: .8rem 1rem; border-left: 3px solid var(--ifm-color-primary); background: var(--ifm-background-color); }
+.details { margin: 1rem 0; }
+.details summary { cursor: pointer; font-weight: 600; }
+.downloads { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; margin: 1.2rem 0; }
+.primary { display: inline-block; padding: .7rem 1rem; border: 1px solid var(--ifm-color-primary); border-radius: 4px; font-weight: 600; }
+.primary:hover { background: var(--ifm-background-color); }
+.downloads a:focus-visible { outline: 2px solid var(--ifm-color-primary); outline-offset: 3px; }

@@ -551,3 +551,38 @@ These estimates exclude finite output resistance and high-frequency capacitance.
 Check output swing separately. A mathematically large gain does not prevent cutoff or saturation when the input amplitude increases.
 
 The distinction between bias and signal changes also appears in [state-space linearization](<../../03-Signal-Modulation/State-Space.md#7-equilibrium-and-local-linearization>).
+
+
+## LTspice example: a basic BJT current mirror
+
+import CurrentMirrorSimulation from '@site/src/components/learning/CurrentMirrorSimulation';
+
+This example expands the [current-mirror explanation](#6-current-sources-and-mirrors) with an NPN current sink. Its two emitters connect to ground.
+
+The reference resistor feeds Q1's joined collector and base. Q2 shares the base voltage, so matched transistors produce similar collector currents.
+
+<CurrentMirrorSimulation />
+
+### What the curves show
+
+The reference current supplies Q1's collector current and both base currents. Q2 therefore does not copy the complete reference current exactly.
+
+With a 4.3 kΩ reference resistor, the simulated output current is approximately 0.9941 mA at 1 V. It rises to 1.0337 mA at 5 V.
+
+This rise illustrates the **Early effect**. The transistor's collector current depends on collector voltage as well as base-emitter voltage.
+
+At low output voltage, Q2 leaves forward-active operation. Its base-collector junction conducts, and the collector current can reverse near zero output voltage.
+
+The plot retains this negative current. The test voltage source can absorb current that arrives through the base-collector junction.
+
+### Model and verification
+
+Both transistors use the same model: IS = 10 fA, BF = 100, and VAF = 100 V. The temperature is 27 °C.
+
+IS sets the transport saturation-current scale. BF sets the ideal maximum forward current gain. VAF is the forward Early voltage.
+
+These are illustrative model parameters, not specifications for a particular transistor. The example does not characterize mismatch, self-heating, or frequency response.
+
+The simulation passed connectivity, current-balance, and first-order calculation checks. A second run used half the voltage increment and tighter solver tolerances.
+
+The download includes the numerical results and validation record. See the [LTspice reference](https://analogdevicesinc.github.io/ltspice-reference/ai_ref/LTSPICE-QUICKSTART.html) for schematic and simulation file types.

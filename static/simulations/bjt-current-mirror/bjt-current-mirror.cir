@@ -1,0 +1,15 @@
+* BJT current mirror - portable teaching netlist
+VCC VCC 0 5
+RREF VCC BASE {Rref}
+Q1 BASE BASE 0 0 MirrorNPN
+Q2 OUT BASE 0 0 MirrorNPN
+VTEST OUT 0 1
+.dc VTEST 0 5 0.01
+.step param Rref list 2.2k 4.3k 8.2k
+.model MirrorNPN NPN(IS=1e-14 BF=100 VAF=100)
+.temp 27
+.options reltol=1e-6 plotwinsize=0
+.save V(base) Ic(Q1) Ic(Q2) Ib(Q1) Ib(Q2) I(RREF)
+.meas DC Iout_at_1V FIND Ic(Q2) AT=1
+.meas DC Iout_at_5V FIND Ic(Q2) AT=5
+.end

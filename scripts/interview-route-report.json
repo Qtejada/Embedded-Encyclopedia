@@ -89,7 +89,9 @@
     "title": "BJTs and Amplifiers",
     "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/BJTs",
     "equations": 0,
-    "tools": []
+    "tools": [
+      "Explore a BJT current mirror"
+    ]
   },
   {
     "source": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
