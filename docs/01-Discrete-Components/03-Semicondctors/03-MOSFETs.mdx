@@ -47,6 +47,28 @@ For an unloaded common-source stage:
 
 * <i>A<sub>v</sub> &asymp; -g<sub>m</sub> &times; R<sub>D</sub></i>
 
+<div data-ltspice-placement="mosfet-common-source">
+
+<details id="circuit-mosfet-common-source">
+<summary>LTspice: MOSFET common-source amplifier</summary>
+
+<CircuitLibrarySimulation circuit="mosfet-common-source" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="jfet-common-source">
+
+<details id="circuit-jfet-common-source">
+<summary>LTspice: JFET common-source amplifier</summary>
+
+<CircuitLibrarySimulation circuit="jfet-common-source" />
+
+</details>
+
+</div>
+
 **Enhancement and Depletion Devices**
 
 **Enhancement Mode (Normally Off):**
@@ -137,6 +159,39 @@ Junction field-effect transistors (**JFETs**) are **normally on**. Their zero-bi
 * JFETs are useful for **low-noise** linear circuits, audio front ends, and amplifiers.
 * JFETs have no thin gate-oxide layer. As a result, they are generally less susceptible to electrostatic-discharge damage than MOSFETs.
 
+<div data-ltspice-placement="jfet-self-bias">
+
+<details id="circuit-jfet-self-bias">
+<summary>LTspice: JFET self bias</summary>
+
+<SpiceBatchSimulation circuit="jfet-self-bias" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="jfet-output-curves">
+
+<details id="circuit-jfet-output-curves">
+<summary>LTspice: JFET output characteristics</summary>
+
+<CircuitLibrarySimulation circuit="jfet-output-curves" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="jfet-transfer-curves">
+
+<details id="circuit-jfet-transfer-curves">
+<summary>LTspice: JFET transfer characteristics</summary>
+
+<CircuitLibrarySimulation circuit="jfet-transfer-curves" />
+
+</details>
+
+</div>
+
 ## 4. Basic Applications
 
 ### High-Impedance Buffers and Source Followers
@@ -153,6 +208,28 @@ Because <i>g<sub>m</sub></i> changes with signal current, output impedance also 
 
 Use a constant-current-source load or a negative supply to stabilize the operating point.
 
+<div data-ltspice-placement="mosfet-source-follower">
+
+<details id="circuit-mosfet-source-follower">
+<summary>LTspice: MOSFET source follower</summary>
+
+<CircuitLibrarySimulation circuit="mosfet-source-follower" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="jfet-source-follower">
+
+<details id="circuit-jfet-source-follower">
+<summary>LTspice: JFET source follower</summary>
+
+<CircuitLibrarySimulation circuit="jfet-source-follower" />
+
+</details>
+
+</div>
+
 ### Analog Switches
 
 FETs in the **ohmic region** operate as low-resistance switches. Applications include multiplexers and [sample-and-hold](<../../03-Signal-Modulation/Data-convertes/Sample-holding.md#1-basic-circuit>) circuits.
@@ -168,6 +245,17 @@ You can use this effect for voltage-controlled volume. Device range and distorti
 MOSFETs dominate many power-switching applications because <i>R<sub>DS(on)</sub></i> can be low.
 
 Their resistive on-state and positive temperature coefficient make parallel operation comparatively easy.
+
+<div data-ltspice-placement="mosfet-switches">
+
+<details id="circuit-mosfet-switches">
+<summary>LTspice: N-channel and P-channel switches</summary>
+
+<SpiceBatchSimulation circuit="mosfet-switches" />
+
+</details>
+
+</div>
 
 ## 5. Analog Signal Switching
 
@@ -272,6 +360,17 @@ A JFET is a normally-on depletion device. As a result, you can use source resist
 
 A JFET sink is usually not consistent enough for a tight tolerance. Use a BJT sink when the application needs better predictability.
 
+<div data-ltspice-placement="jfet-current-source">
+
+<details id="circuit-jfet-current-source">
+<summary>LTspice: Two-terminal JFET current sink</summary>
+
+<CircuitLibrarySimulation circuit="jfet-current-source" />
+
+</details>
+
+</div>
+
 ### BJT Current Sink and Mirror
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
@@ -331,6 +430,17 @@ This circuit combines a **JFET** high-input-impedance stage with **BJT** gain an
 * Without Q3, a load such as 3.3 k&Omega; is in parallel with the Q2 collector load. This condition greatly decreases gain.
 * With Q3, the load is isolated. Q2 sees high impedance, and gain increases greatly.
 
+<div data-ltspice-placement="jfet-bjt-feedback">
+
+<details id="circuit-jfet-bjt-feedback">
+<summary>LTspice: JFET and BJT feedback amplifier</summary>
+
+<CircuitLibrarySimulation circuit="jfet-bjt-feedback" />
+
+</details>
+
+</div>
+
 ### Hybrid JFET and Op-Amp Amplifier
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
@@ -373,6 +483,17 @@ This circuit combines a **JFET** high-input-impedance stage with **BJT** gain an
 8. As a result, <i>V<sub>GS</sub></i> remains almost constant.
 
 The feedback-resistor ratio, <i>R<sub>f</sub> / R<sub>g</sub></i>, sets the closed-loop gain. Transistor parameters no longer set it directly.
+
+<div data-ltspice-placement="jfet-opamp-feedback">
+
+<details id="circuit-jfet-opamp-feedback">
+<summary>LTspice: JFET input stage with op-amp feedback</summary>
+
+<CircuitLibrarySimulation circuit="jfet-opamp-feedback" />
+
+</details>
+
+</div>
 
 ### JFET Differential Amplifiers
 
@@ -427,6 +548,17 @@ The feedback-resistor ratio, <i>R<sub>f</sub> / R<sub>g</sub></i>, sets the clos
 6. The circuit amplifies the current difference.
 7. Negative feedback limits this difference to a manageable gain.
 8. Feedback also stabilizes the circuit against <i>g<sub>m</sub></i> variation.
+
+<div data-ltspice-placement="jfet-pair-feedback">
+
+<details id="circuit-jfet-pair-feedback">
+<summary>LTspice: JFET differential pair inside a feedback loop</summary>
+
+<CircuitLibrarySimulation circuit="jfet-pair-feedback" />
+
+</details>
+
+</div>
 
 ## 8. Gate-Drive Dynamics
 
@@ -483,6 +615,17 @@ During gate charging, gate voltage first increases, then becomes almost constant
 During the plateau, the MOSFET is partially on and operates as a resistor. It dissipates heat.
 
 Supply sufficient gate current to move through the plateau quickly.
+
+<div data-ltspice-placement="mosfet-gate-charging">
+
+<details id="circuit-mosfet-gate-charging">
+<summary>LTspice: MOSFET gate charging and switching energy</summary>
+
+<CircuitLibrarySimulation circuit="mosfet-gate-charging" />
+
+</details>
+
+</div>
 
 ## 9. Power MOSFET Design
 
@@ -618,6 +761,17 @@ This is an unconventional low-cost method. The original notes call it a "MacGyve
 * **Correction:** Use a matched pair on one die. The CD4007 is one example.
 * BJTs are more tolerant of discrete-device variation in this application.
 
+<div data-ltspice-placement="mosfet-current-mirror">
+
+<details id="circuit-mosfet-current-mirror">
+<summary>LTspice: MOSFET current mirror</summary>
+
+<CircuitLibrarySimulation circuit="mosfet-current-mirror" />
+
+</details>
+
+</div>
+
 ### Linear-Power Hot Spots
 
 This problem occurs when a MOSFET operates as a variable resistor in a linear regulator or Class A amplifier.
@@ -664,7 +818,7 @@ This circuit extends [JFET operation](#3-jfet-and-depletion-mode-operation) with
 
 Drain current creates a voltage across the source resistor. The source becomes positive relative to the gate, so the gate to source voltage becomes negative.
 
-<SpiceBatchSimulation circuit="jfet-self-bias" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-self-bias>).
 
 ### Find the bias point
 
@@ -698,7 +852,7 @@ Compare this circuit with the [JFET current sink](#jfet-current-sink-example) an
 
 This example extends [power switching](#power-switching). Both loads use the same resistance, and both gates receive the same 0 to 5 V pulse.
 
-<SpiceBatchSimulation circuit="mosfet-switches" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-switches>).
 
 ### Read voltage relative to the source
 
@@ -747,7 +901,7 @@ This frequency sweep linearizes the circuit at its DC operating point. The AC so
 
 The drain needs enough voltage to keep the transistor in saturation. This region supports voltage amplification.
 
-<CircuitLibrarySimulation circuit="mosfet-common-source" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-common-source>).
 
 ### MOSFET source follower {#ltspice-mosfet-source-follower}
 
@@ -759,7 +913,7 @@ The small-signal voltage gain is below one. Source feedback limits changes in ga
 
 This circuit requires voltage headroom. The source cannot reach the gate voltage while the transistor supplies load current.
 
-<CircuitLibrarySimulation circuit="mosfet-source-follower" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-source-follower>).
 
 ### MOSFET gate charging and switching energy {#ltspice-mosfet-gate-charging}
 
@@ -773,7 +927,7 @@ The power plot multiplies drain voltage by drain current. Its time integral give
 
 The explicit gate capacitors make the charge paths visible. Device data are required to predict the losses of a selected transistor.
 
-<CircuitLibrarySimulation circuit="mosfet-gate-charging" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-gate-charging>).
 
 ### JFET output characteristics {#ltspice-jfet-output-curves}
 
@@ -785,7 +939,7 @@ The output curves show the transition from the resistive region to saturation. T
 
 The channel-length modulation parameter gives the saturation region a finite slope.
 
-<CircuitLibrarySimulation circuit="jfet-output-curves" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-output-curves>).
 
 ### JFET transfer characteristics {#ltspice-jfet-transfer-curves}
 
@@ -797,7 +951,7 @@ The output curves show the transition from the resistive region to saturation. T
 
 The channel-length modulation parameter gives the saturation region a finite slope.
 
-<CircuitLibrarySimulation circuit="jfet-transfer-curves" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-transfer-curves>).
 
 ### JFET common-source amplifier {#ltspice-jfet-common-source}
 
@@ -809,7 +963,7 @@ The source capacitor reduces source feedback at higher frequencies. It does not 
 
 A larger drain resistor increases voltage gain while reducing drain voltage headroom.
 
-<CircuitLibrarySimulation circuit="jfet-common-source" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-common-source>).
 
 ### JFET source follower {#ltspice-jfet-source-follower}
 
@@ -821,7 +975,7 @@ The source resistor supplies the current path to ground. Source feedback makes t
 
 The output can supply current through the JFET, but the resistor sets the available current in the other direction.
 
-<CircuitLibrarySimulation circuit="jfet-source-follower" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-source-follower>).
 
 ### Two-terminal JFET current sink {#ltspice-jfet-current-source}
 
@@ -833,7 +987,7 @@ The current becomes nearly constant after the drain voltage provides sufficient 
 
 The finite slope above this point represents output conductance. The resistor changes both current and required voltage.
 
-<CircuitLibrarySimulation circuit="jfet-current-source" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-current-source>).
 
 ### MOSFET current mirror {#ltspice-mosfet-current-mirror}
 
@@ -845,7 +999,7 @@ The output transistor needs enough drain voltage to remain in saturation. Below 
 
 Channel-length modulation gives the output curve a slope. Equal gate voltage alone does not guarantee identical current at different drain voltages.
 
-<CircuitLibrarySimulation circuit="mosfet-current-mirror" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-current-mirror>).
 
 ### JFET and BJT feedback amplifier {#ltspice-jfet-bjt-feedback}
 
@@ -857,7 +1011,7 @@ The follower output returns through a resistor to the JFET source. This opposes 
 
 The feedback resistor and source resistor largely set the gain. Changing this resistor also changes the DC operating point.
 
-<CircuitLibrarySimulation circuit="jfet-bjt-feedback" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-bjt-feedback>).
 
 ### JFET input stage with op-amp feedback {#ltspice-jfet-opamp-feedback}
 
@@ -871,7 +1025,7 @@ The output supplies the required source correction through the feedback resistor
 
 A small capacitor adds a direct high-frequency feedback path around the op-amp.
 
-<CircuitLibrarySimulation circuit="jfet-opamp-feedback" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-opamp-feedback>).
 
 ### JFET differential pair inside a feedback loop {#ltspice-jfet-pair-feedback}
 
@@ -885,4 +1039,4 @@ The resistor divider sets the closed-loop gain. The JFET pair provides high inpu
 
 The compensation capacitor connects the output to the drain at the op-amp negative input. This supplies a direct negative-feedback path at high frequency.
 
-<CircuitLibrarySimulation circuit="jfet-pair-feedback" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-pair-feedback>).

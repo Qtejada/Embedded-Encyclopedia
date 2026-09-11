@@ -1,7 +1,12 @@
 import fs from 'node:fs';
 const changes=JSON.parse(fs.readFileSync(new URL('./ltspice-site-wording.json',import.meta.url),'utf8'));
+const placements=JSON.parse(fs.readFileSync(new URL('./ltspice-placement.json',import.meta.url),'utf8'));
 const plain=s=>s.replace(/\[([^\]]+)\]\([^)]*\)/g,'$1').replace(/[*`]/g,'').replace(/^#+ /,'').replace(/ \{#[^}]+\}/g,'');
 export function restoreSiteWording(file,text,rendered=false){
+  if(!rendered) for(const record of placements.filter(p=>p.path===file)){
+    for(const block of [...record.inserts].reverse()) text=text.replace(block,'\n');
+    for(const change of record.replacements) text=text.replace(change.after,change.before);
+  }
   if(rendered){
     if(file.endsWith('/PLL.md')) text=text.replaceAll('first-order model','first-order teaching model');
     text=text.replaceAll('Logic presets','Teaching presets');

@@ -312,6 +312,17 @@ A real load resistance changes the effective resistance at the output.
 An active buffer can isolate the RC section from the source or load.
 The buffer must have sufficient input impedance, output current, bandwidth, and stability.
 
+<div data-ltspice-placement="rc-filter-pair">
+
+<details id="circuit-rc-filter-pair">
+<summary>LTspice: RC low-pass and high-pass filters</summary>
+
+<CircuitLibrarySimulation circuit="rc-filter-pair" />
+
+</details>
+
+</div>
+
 ### 5. Differentiators and Integrators
 
 #### RC High-Pass as a Differentiator
@@ -432,6 +443,28 @@ Component value gives a preliminary indication of function:
 
 Calculate the pole, zero, noise gain, and required bandwidth.
 Do not identify a component function only from its value.
+
+<div data-ltspice-placement="active-filter-pair">
+
+<details id="circuit-active-filter-pair">
+<summary>LTspice: Active low-pass and high-pass filters</summary>
+
+<CircuitLibrarySimulation circuit="active-filter-pair" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="active-bandpass">
+
+<details id="circuit-active-bandpass">
+<summary>LTspice: Buffered band-pass filter</summary>
+
+<CircuitLibrarySimulation circuit="active-bandpass" />
+
+</details>
+
+</div>
 
 ### 7. AC-Amplifier Low-Frequency Responses
 
@@ -597,6 +630,17 @@ Check:
 * Output noise and stability.
 
 Use the complete transfer function near either corner.
+
+<div data-ltspice-placement="opamp-differentiator">
+
+<details id="circuit-opamp-differentiator">
+<summary>LTspice: Band-limited differentiator</summary>
+
+<CircuitLibrarySimulation circuit="opamp-differentiator" />
+
+</details>
+
+</div>
 
 ### 10. Sallen-Key Second-Order Low-Pass Filter
 
@@ -1433,7 +1477,7 @@ The corner frequency is one divided by two pi times resistance and capacitance.
 
 At the corner, each magnitude is approximately 0.707 of its passband value. Each response changes by 20 dB per decade in its stopband.
 
-<CircuitLibrarySimulation circuit="rc-filter-pair" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-rc-filter-pair>).
 
 ### Active low-pass and high-pass filters {#ltspice-active-filter-pair}
 
@@ -1445,7 +1489,7 @@ The amplifier input draws little filter current. This reduces the change in corn
 
 The active stage also has finite bandwidth. Its high-frequency limit appears beyond the filter corner.
 
-<CircuitLibrarySimulation circuit="active-filter-pair" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-active-filter-pair>).
 
 ### Buffered band-pass filter {#ltspice-active-bandpass}
 
@@ -1457,4 +1501,4 @@ The lower corner is approximately 159 Hz. The upper corner changes with the sele
 
 A wide gap between the corners gives a nearly flat middle band. Closely spaced corners reduce the peak gain.
 
-<CircuitLibrarySimulation circuit="active-bandpass" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-active-bandpass>).

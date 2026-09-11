@@ -83,8 +83,8 @@
     "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/Diodes",
     "equations": 0,
     "tools": [
-      "Explore: Half-wave rectifier",
-      "Explore: Full-wave bridge rectifier"
+      "Explore: Full-wave bridge rectifier",
+      "Explore: Half-wave rectifier"
     ]
   },
   {
@@ -93,8 +93,8 @@
     "url": "/Embedded-Encyclopedia/docs/Discrete-Components/Semicondctors/BJTs",
     "equations": 0,
     "tools": [
-      "Explore a BJT current mirror",
-      "Explore: Common-emitter amplifier"
+      "Explore: Common-emitter amplifier",
+      "Explore a BJT current mirror"
     ]
   },
   {

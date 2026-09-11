@@ -361,6 +361,28 @@ Include resistor tolerance, input offset, bias current, and actual output levels
 
 ---
 
+<div data-ltspice-placement="comparator-hysteresis">
+
+<details id="circuit-comparator-hysteresis">
+<summary>LTspice: Comparator with positive feedback</summary>
+
+<CircuitLibrarySimulation circuit="comparator-hysteresis" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="transistor-schmitt-trigger">
+
+<details id="circuit-transistor-schmitt-trigger">
+<summary>LTspice: Transistor Schmitt trigger</summary>
+
+<CircuitLibrarySimulation circuit="transistor-schmitt-trigger" />
+
+</details>
+
+</div>
+
 ## 7. Dynamic Performance
 
 A comparator does not switch instantaneously.
@@ -491,6 +513,28 @@ Use this circuit for:
 
 Debounce a mechanical switch when one physical operation can make multiple electrical transitions.
 Hysteresis and switch debouncing solve different problems.
+
+<div data-ltspice-placement="short-pulse-generator">
+
+<details id="circuit-short-pulse-generator">
+<summary>LTspice: Short pulse from an input step</summary>
+
+<CircuitLibrarySimulation circuit="short-pulse-generator" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="pulse-extension">
+
+<details id="circuit-pulse-extension">
+<summary>LTspice: Transistor pulse extension</summary>
+
+<CircuitLibrarySimulation circuit="pulse-extension" />
+
+</details>
+
+</div>
 
 ### Load and Power Control
 
@@ -720,4 +764,4 @@ A positive output raises the threshold. A negative output lowers it. The input m
 
 This circuit uses an op-amp as a slow comparator. Saturation recovery limits operation at high switching rates.
 
-<CircuitLibrarySimulation circuit="comparator-hysteresis" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/comparators#circuit-comparator-hysteresis>).

@@ -1,0 +1,335 @@
+[
+  {
+    "path": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+    "beforeSha256": "1cf430d6806dacfa8d79698b165ad4283d4b541342edfdc224a2e5969907b896",
+    "inserts": [
+      "\n<div data-ltspice-placement=\"bridge-rectifier\">\n\n<details id=\"circuit-bridge-rectifier\">\n<summary>LTspice: Full-wave bridge rectifier</summary>\n\n<SpiceBatchSimulation circuit=\"bridge-rectifier\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"half-wave-rectifier\">\n\n<details id=\"circuit-half-wave-rectifier\">\n<summary>LTspice: Half-wave rectifier</summary>\n\n<SpiceBatchSimulation circuit=\"half-wave-rectifier\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"zener-regulator\">\n\n<details id=\"circuit-zener-regulator\">\n<summary>LTspice: Zener shunt regulator</summary>\n\n<CircuitLibrarySimulation circuit=\"zener-regulator\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"diode-limiter-clamp\">\n\n<details id=\"circuit-diode-limiter-clamp\">\n<summary>LTspice: Diode limiter and DC clamp</summary>\n\n<CircuitLibrarySimulation circuit=\"diode-limiter-clamp\" />\n\n</details>\n\n</div>\n\n"
+    ],
+    "replacements": [
+      {
+        "before": "<SpiceBatchSimulation circuit=\"bridge-rectifier\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/Diodes#circuit-bridge-rectifier>)."
+      },
+      {
+        "before": "<SpiceBatchSimulation circuit=\"half-wave-rectifier\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/Diodes#circuit-half-wave-rectifier>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"zener-regulator\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/Diodes#circuit-zener-regulator>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"diode-limiter-clamp\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/Diodes#circuit-diode-limiter-clamp>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"precision-rectifier\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-precision-rectifier>)."
+      }
+    ],
+    "afterSha256": "0c502b9926dc181b2b11ecb5d0fd3f616a2d9528b49c76b987839340af4e228c"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+    "beforeSha256": "6222cc10bb9fa3d7d24265ce98e8703498e3ffdd2204076a9e98b9de3958c673",
+    "inserts": [
+      "\n<div data-ltspice-placement=\"differential-pair\">\n\n<details id=\"circuit-differential-pair\">\n<summary>LTspice: Differential pair with resistor tail</summary>\n\n<CircuitLibrarySimulation circuit=\"differential-pair\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"differential-pair-current-tail\">\n\n<details id=\"circuit-differential-pair-current-tail\">\n<summary>LTspice: Differential pair with current-source tail</summary>\n\n<CircuitLibrarySimulation circuit=\"differential-pair-current-tail\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"differential-mirror-load\">\n\n<details id=\"circuit-differential-mirror-load\">\n<summary>LTspice: Differential pair with mirror load</summary>\n\n<CircuitLibrarySimulation circuit=\"differential-mirror-load\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"opamp-difference\">\n\n<details id=\"circuit-opamp-difference\">\n<summary>LTspice: Four-resistor difference amplifier</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-difference\" />\n\n</details>\n\n</div>\n\n"
+    ],
+    "replacements": [
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"differential-pair\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-pair>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"differential-pair-current-tail\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-pair-current-tail>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"differential-mirror-load\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-mirror-load>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-difference\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-opamp-difference>)."
+      }
+    ],
+    "afterSha256": "a103b2beedce8e2530e817ba314d369ae71ac4236ac8e71c8a1ff4650839b745"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+    "beforeSha256": "aa3788452540f67e380aaa5cb79d8029e946eafd52edb740c138bb51fca06096",
+    "inserts": [
+      "\n<div data-ltspice-placement=\"opamp-current-source\">\n\n<details id=\"circuit-opamp-current-source\">\n<summary>LTspice: Op-amp controlled current sink</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-current-source\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"precision-rectifier\">\n\n<details id=\"circuit-precision-rectifier\">\n<summary>LTspice: Precision half-wave rectifier</summary>\n\n<CircuitLibrarySimulation circuit=\"precision-rectifier\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"opamp-gain-configurations\">\n\n<details id=\"circuit-opamp-gain-configurations\">\n<summary>LTspice: Inverting and noninverting amplifiers</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-gain-configurations\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"opamp-buffer-loading\">\n\n<details id=\"circuit-opamp-buffer-loading\">\n<summary>LTspice: Buffer and source loading</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-buffer-loading\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"opamp-summing\">\n\n<details id=\"circuit-opamp-summing\">\n<summary>LTspice: Summing amplifier</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-summing\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"opamp-integrator\">\n\n<details id=\"circuit-opamp-integrator\">\n<summary>LTspice: Practical integrator</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-integrator\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"transimpedance-amplifier\">\n\n<details id=\"circuit-transimpedance-amplifier\">\n<summary>LTspice: Transimpedance amplifier</summary>\n\n<CircuitLibrarySimulation circuit=\"transimpedance-amplifier\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"opamp-gain-bandwidth\">\n\n<details id=\"circuit-opamp-gain-bandwidth\">\n<summary>LTspice: Closed-loop gain and bandwidth</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-gain-bandwidth\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"opamp-slew-rate\">\n\n<details id=\"circuit-opamp-slew-rate\">\n<summary>LTspice: Slew-rate limiting</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-slew-rate\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"opamp-clipping\">\n\n<details id=\"circuit-opamp-clipping\">\n<summary>LTspice: Output clipping</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-clipping\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"capacitive-load-compensation\">\n\n<details id=\"circuit-capacitive-load-compensation\">\n<summary>LTspice: Capacitive load and isolation resistor</summary>\n\n<CircuitLibrarySimulation circuit=\"capacitive-load-compensation\" />\n\n</details>\n\n</div>\n\n"
+    ],
+    "replacements": [
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-current-source\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-current-source>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-gain-configurations\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-gain-configurations>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-buffer-loading\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-buffer-loading>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-summing\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-summing>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-integrator\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-integrator>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-differentiator\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-opamp-differentiator>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"transimpedance-amplifier\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-transimpedance-amplifier>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-gain-bandwidth\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-gain-bandwidth>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-slew-rate\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-slew-rate>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"opamp-clipping\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-clipping>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"capacitive-load-compensation\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-capacitive-load-compensation>)."
+      }
+    ],
+    "afterSha256": "ef362e20a6a757ca6a2456286e9d2f5c29010abc4e87708450a697759444c10b"
+  },
+  {
+    "path": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+    "beforeSha256": "23af9919379b4388d30073b9313b82d87887800aec732d26318ba8f76c76e2b8",
+    "inserts": [
+      "\n<div data-ltspice-placement=\"common-emitter-amplifier\">\n\n<details id=\"circuit-common-emitter-amplifier\">\n<summary>LTspice: Common-emitter amplifier</summary>\n\n<SpiceBatchSimulation circuit=\"common-emitter-amplifier\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"bjt-current-mirror\">\n\n<details id=\"circuit-bjt-current-mirror\">\n<summary>LTspice: NPN current mirror</summary>\n\n<CurrentMirrorSimulation />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"bjt-switch\">\n\n<details id=\"circuit-bjt-switch\">\n<summary>LTspice: BJT switch and base drive</summary>\n\n<CircuitLibrarySimulation circuit=\"bjt-switch\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"emitter-follower\">\n\n<details id=\"circuit-emitter-follower\">\n<summary>LTspice: BJT emitter follower</summary>\n\n<CircuitLibrarySimulation circuit=\"emitter-follower\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"common-base-amplifier\">\n\n<details id=\"circuit-common-base-amplifier\">\n<summary>LTspice: Common-base amplifier</summary>\n\n<CircuitLibrarySimulation circuit=\"common-base-amplifier\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"emitter-degeneration\">\n\n<details id=\"circuit-emitter-degeneration\">\n<summary>LTspice: Emitter degeneration and current gain</summary>\n\n<CircuitLibrarySimulation circuit=\"emitter-degeneration\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"pnp-current-mirror\">\n\n<details id=\"circuit-pnp-current-mirror\">\n<summary>LTspice: PNP current mirror</summary>\n\n<CircuitLibrarySimulation circuit=\"pnp-current-mirror\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"degenerated-current-mirror\">\n\n<details id=\"circuit-degenerated-current-mirror\">\n<summary>LTspice: Current mirror with emitter resistors</summary>\n\n<CircuitLibrarySimulation circuit=\"degenerated-current-mirror\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"wilson-current-mirror\">\n\n<details id=\"circuit-wilson-current-mirror\">\n<summary>LTspice: Wilson current mirror</summary>\n\n<CircuitLibrarySimulation circuit=\"wilson-current-mirror\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"cascode-current-mirror\">\n\n<details id=\"circuit-cascode-current-mirror\">\n<summary>LTspice: Cascode current mirror</summary>\n\n<CircuitLibrarySimulation circuit=\"cascode-current-mirror\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"bjt-cascode-amplifier\">\n\n<details id=\"circuit-bjt-cascode-amplifier\">\n<summary>LTspice: BJT cascode amplifier</summary>\n\n<CircuitLibrarySimulation circuit=\"bjt-cascode-amplifier\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"complementary-output-stage\">\n\n<details id=\"circuit-complementary-output-stage\">\n<summary>LTspice: Complementary output stage and class AB bias</summary>\n\n<CircuitLibrarySimulation circuit=\"complementary-output-stage\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"discrete-feedback-amplifier\">\n\n<details id=\"circuit-discrete-feedback-amplifier\">\n<summary>LTspice: Discrete amplifier with negative feedback</summary>\n\n<CircuitLibrarySimulation circuit=\"discrete-feedback-amplifier\" />\n\n</details>\n\n</div>\n\n"
+    ],
+    "replacements": [
+      {
+        "before": "<SpiceBatchSimulation circuit=\"common-emitter-amplifier\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-common-emitter-amplifier>)."
+      },
+      {
+        "before": "<CurrentMirrorSimulation />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-current-mirror>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"bjt-switch\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-switch>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"emitter-follower\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-emitter-follower>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"common-base-amplifier\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-common-base-amplifier>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"emitter-degeneration\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-emitter-degeneration>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"pnp-current-mirror\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-pnp-current-mirror>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"degenerated-current-mirror\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-degenerated-current-mirror>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"wilson-current-mirror\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-wilson-current-mirror>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"cascode-current-mirror\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-cascode-current-mirror>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"bjt-cascode-amplifier\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-cascode-amplifier>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"complementary-output-stage\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-complementary-output-stage>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"transistor-schmitt-trigger\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/comparators#circuit-transistor-schmitt-trigger>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"short-pulse-generator\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/comparators#circuit-short-pulse-generator>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"pulse-extension\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/comparators#circuit-pulse-extension>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"discrete-feedback-amplifier\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-discrete-feedback-amplifier>)."
+      }
+    ],
+    "afterSha256": "675bdcb1e241427154f7d27974e820a8eb9795899b742d10acce6637fed1b456"
+  },
+  {
+    "path": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+    "beforeSha256": "70da5706940be2a9e9734e18fab674dc83d19f3edb212c2d01a441dc51db318c",
+    "inserts": [
+      "\n<div data-ltspice-placement=\"mosfet-switches\">\n\n<details id=\"circuit-mosfet-switches\">\n<summary>LTspice: N-channel and P-channel switches</summary>\n\n<SpiceBatchSimulation circuit=\"mosfet-switches\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-self-bias\">\n\n<details id=\"circuit-jfet-self-bias\">\n<summary>LTspice: JFET self bias</summary>\n\n<SpiceBatchSimulation circuit=\"jfet-self-bias\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"mosfet-common-source\">\n\n<details id=\"circuit-mosfet-common-source\">\n<summary>LTspice: MOSFET common-source amplifier</summary>\n\n<CircuitLibrarySimulation circuit=\"mosfet-common-source\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"mosfet-source-follower\">\n\n<details id=\"circuit-mosfet-source-follower\">\n<summary>LTspice: MOSFET source follower</summary>\n\n<CircuitLibrarySimulation circuit=\"mosfet-source-follower\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"mosfet-gate-charging\">\n\n<details id=\"circuit-mosfet-gate-charging\">\n<summary>LTspice: MOSFET gate charging and switching energy</summary>\n\n<CircuitLibrarySimulation circuit=\"mosfet-gate-charging\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-output-curves\">\n\n<details id=\"circuit-jfet-output-curves\">\n<summary>LTspice: JFET output characteristics</summary>\n\n<CircuitLibrarySimulation circuit=\"jfet-output-curves\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-transfer-curves\">\n\n<details id=\"circuit-jfet-transfer-curves\">\n<summary>LTspice: JFET transfer characteristics</summary>\n\n<CircuitLibrarySimulation circuit=\"jfet-transfer-curves\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-common-source\">\n\n<details id=\"circuit-jfet-common-source\">\n<summary>LTspice: JFET common-source amplifier</summary>\n\n<CircuitLibrarySimulation circuit=\"jfet-common-source\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-source-follower\">\n\n<details id=\"circuit-jfet-source-follower\">\n<summary>LTspice: JFET source follower</summary>\n\n<CircuitLibrarySimulation circuit=\"jfet-source-follower\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-current-source\">\n\n<details id=\"circuit-jfet-current-source\">\n<summary>LTspice: Two-terminal JFET current sink</summary>\n\n<CircuitLibrarySimulation circuit=\"jfet-current-source\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"mosfet-current-mirror\">\n\n<details id=\"circuit-mosfet-current-mirror\">\n<summary>LTspice: MOSFET current mirror</summary>\n\n<CircuitLibrarySimulation circuit=\"mosfet-current-mirror\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-bjt-feedback\">\n\n<details id=\"circuit-jfet-bjt-feedback\">\n<summary>LTspice: JFET and BJT feedback amplifier</summary>\n\n<CircuitLibrarySimulation circuit=\"jfet-bjt-feedback\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-opamp-feedback\">\n\n<details id=\"circuit-jfet-opamp-feedback\">\n<summary>LTspice: JFET input stage with op-amp feedback</summary>\n\n<CircuitLibrarySimulation circuit=\"jfet-opamp-feedback\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"jfet-pair-feedback\">\n\n<details id=\"circuit-jfet-pair-feedback\">\n<summary>LTspice: JFET differential pair inside a feedback loop</summary>\n\n<CircuitLibrarySimulation circuit=\"jfet-pair-feedback\" />\n\n</details>\n\n</div>\n\n"
+    ],
+    "replacements": [
+      {
+        "before": "<SpiceBatchSimulation circuit=\"mosfet-switches\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-switches>)."
+      },
+      {
+        "before": "<SpiceBatchSimulation circuit=\"jfet-self-bias\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-self-bias>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"mosfet-common-source\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-common-source>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"mosfet-source-follower\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-source-follower>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"mosfet-gate-charging\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-gate-charging>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"jfet-output-curves\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-output-curves>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"jfet-transfer-curves\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-transfer-curves>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"jfet-common-source\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-common-source>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"jfet-source-follower\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-source-follower>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"jfet-current-source\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-current-source>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"mosfet-current-mirror\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-current-mirror>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"jfet-bjt-feedback\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-bjt-feedback>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"jfet-opamp-feedback\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-opamp-feedback>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"jfet-pair-feedback\" />",
+        "after": "[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-pair-feedback>)."
+      }
+    ],
+    "afterSha256": "1741301755c819f0d0aa314d421ab6294afb315950b1c875360c367a52318129"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+    "beforeSha256": "8c29e689ee24506f41b9086ac09f2d0126c798860073a7486abae3513b90057f",
+    "inserts": [
+      "\n<div data-ltspice-placement=\"comparator-hysteresis\">\n\n<details id=\"circuit-comparator-hysteresis\">\n<summary>LTspice: Comparator with positive feedback</summary>\n\n<CircuitLibrarySimulation circuit=\"comparator-hysteresis\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"transistor-schmitt-trigger\">\n\n<details id=\"circuit-transistor-schmitt-trigger\">\n<summary>LTspice: Transistor Schmitt trigger</summary>\n\n<CircuitLibrarySimulation circuit=\"transistor-schmitt-trigger\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"short-pulse-generator\">\n\n<details id=\"circuit-short-pulse-generator\">\n<summary>LTspice: Short pulse from an input step</summary>\n\n<CircuitLibrarySimulation circuit=\"short-pulse-generator\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"pulse-extension\">\n\n<details id=\"circuit-pulse-extension\">\n<summary>LTspice: Transistor pulse extension</summary>\n\n<CircuitLibrarySimulation circuit=\"pulse-extension\" />\n\n</details>\n\n</div>\n\n"
+    ],
+    "replacements": [
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"comparator-hysteresis\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/comparators#circuit-comparator-hysteresis>)."
+      }
+    ],
+    "afterSha256": "691417ac34e731dad19918435161822814450d2c36bb31ea6ad3bf03e414ed98"
+  },
+  {
+    "path": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+    "beforeSha256": "7052cdb5efc0dc3da6fc52e7db37c9684ad62ff40265b662c366fa7227d2aed4",
+    "inserts": [
+      "\n<div data-ltspice-placement=\"opamp-differentiator\">\n\n<details id=\"circuit-opamp-differentiator\">\n<summary>LTspice: Band-limited differentiator</summary>\n\n<CircuitLibrarySimulation circuit=\"opamp-differentiator\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"rc-filter-pair\">\n\n<details id=\"circuit-rc-filter-pair\">\n<summary>LTspice: RC low-pass and high-pass filters</summary>\n\n<CircuitLibrarySimulation circuit=\"rc-filter-pair\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"active-filter-pair\">\n\n<details id=\"circuit-active-filter-pair\">\n<summary>LTspice: Active low-pass and high-pass filters</summary>\n\n<CircuitLibrarySimulation circuit=\"active-filter-pair\" />\n\n</details>\n\n</div>\n\n",
+      "\n<div data-ltspice-placement=\"active-bandpass\">\n\n<details id=\"circuit-active-bandpass\">\n<summary>LTspice: Buffered band-pass filter</summary>\n\n<CircuitLibrarySimulation circuit=\"active-bandpass\" />\n\n</details>\n\n</div>\n\n"
+    ],
+    "replacements": [
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"rc-filter-pair\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-rc-filter-pair>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"active-filter-pair\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-active-filter-pair>)."
+      },
+      {
+        "before": "<CircuitLibrarySimulation circuit=\"active-bandpass\" />",
+        "after": "[Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-active-bandpass>)."
+      }
+    ],
+    "afterSha256": "4d07c6ef02230ac167226cc56b44c6ac2f153bd1c3d792d4c8e1fa2c69a2b9ce"
+  }
+]

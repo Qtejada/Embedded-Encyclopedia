@@ -101,6 +101,17 @@ For an NPN transistor, ground the base or make <i>V<sub>E</sub> &gt; V<sub>B</su
 
 </div>
 
+<div data-ltspice-placement="bjt-switch">
+
+<details id="circuit-bjt-switch">
+<summary>LTspice: BJT switch and base drive</summary>
+
+<CircuitLibrarySimulation circuit="bjt-switch" />
+
+</details>
+
+</div>
+
 ## 2. Ebers-Moll (Exponential Behavior)
 
 <div className="definition-list">
@@ -251,6 +262,17 @@ Basic DC and AC analysis shows the cause:
 * Base or emitter current increases &rarr; <i>I<sub>C</sub></i> increases.
 * The voltage drop across <i>R<sub>C</sub></i> increases &rarr; <i>V<sub>out</sub></i> decreases.
 
+<div data-ltspice-placement="common-emitter-amplifier">
+
+<details id="circuit-common-emitter-amplifier">
+<summary>LTspice: Common-emitter amplifier</summary>
+
+<SpiceBatchSimulation circuit="common-emitter-amplifier" />
+
+</details>
+
+</div>
+
 **Emitter Follower (Common Collector)**
 
 The emitter follower has **high input impedance** and **low output impedance**.
@@ -281,6 +303,17 @@ As a result, it can drive a relatively low-impedance load from a high-impedance 
 * **Bootstrapping** feeds part of the output back to the bias network. It can greatly increase **AC input impedance** without loading the signal.
 * The AC voltage at one resistor terminal moves with the output. Very little AC voltage then occurs across the resistor.
 * As a result, the effective AC resistance becomes very large.
+
+<div data-ltspice-placement="emitter-follower">
+
+<details id="circuit-emitter-follower">
+<summary>LTspice: BJT emitter follower</summary>
+
+<CircuitLibrarySimulation circuit="emitter-follower" />
+
+</details>
+
+</div>
 
 **Unity Phase Splitter (Transconductance-Amplifier Idea)**
 
@@ -317,6 +350,17 @@ To describe circuit transconductance, ask: "How does the current change with res
 For a BJT in the active region:
 
 * <i>g<sub>m</sub> &asymp; I<sub>C</sub> / V<sub>T</sub></i>
+
+</div>
+
+<div data-ltspice-placement="common-base-amplifier">
+
+<details id="circuit-common-base-amplifier">
+<summary>LTspice: Common-base amplifier</summary>
+
+<CircuitLibrarySimulation circuit="common-base-amplifier" />
+
+</details>
 
 </div>
 
@@ -380,6 +424,61 @@ The current can also change if the load tries to draw too much current.
 
 </div>
 
+<div data-ltspice-placement="bjt-current-mirror">
+
+<details id="circuit-bjt-current-mirror">
+<summary>LTspice: NPN current mirror</summary>
+
+<CurrentMirrorSimulation />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="pnp-current-mirror">
+
+<details id="circuit-pnp-current-mirror">
+<summary>LTspice: PNP current mirror</summary>
+
+<CircuitLibrarySimulation circuit="pnp-current-mirror" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="degenerated-current-mirror">
+
+<details id="circuit-degenerated-current-mirror">
+<summary>LTspice: Current mirror with emitter resistors</summary>
+
+<CircuitLibrarySimulation circuit="degenerated-current-mirror" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="wilson-current-mirror">
+
+<details id="circuit-wilson-current-mirror">
+<summary>LTspice: Wilson current mirror</summary>
+
+<CircuitLibrarySimulation circuit="wilson-current-mirror" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="cascode-current-mirror">
+
+<details id="circuit-cascode-current-mirror">
+<summary>LTspice: Cascode current mirror</summary>
+
+<CircuitLibrarySimulation circuit="cascode-current-mirror" />
+
+</details>
+
+</div>
+
 ## 7. Advanced Configurations and Power
 
 <div className="definition-list">
@@ -435,11 +534,33 @@ This stage gives an output swing near the full positive-to-negative supply range
 * **Trade-off:** The transistors dissipate more power at idle because they are always partially on.
 * In this condition, the transistors operate like a type of voltage divider between the rails.
 
+<div data-ltspice-placement="complementary-output-stage">
+
+<details id="circuit-complementary-output-stage">
+<summary>LTspice: Complementary output stage and class AB bias</summary>
+
+<CircuitLibrarySimulation circuit="complementary-output-stage" />
+
+</details>
+
+</div>
+
 **Class D Amplifiers:**
 
 * These **switching amplifiers** drive the output with high-frequency pulses.
 * Efficiency is very high because the transistors are usually fully on or fully off.
 * High-frequency switching causes more electromagnetic-interference (**[EMI](<../../05-PCB-Layout/High-Speed.md#eye-diagrams-and-interference>)**) emissions and requires filtering.
+
+</div>
+
+<div data-ltspice-placement="bjt-cascode-amplifier">
+
+<details id="circuit-bjt-cascode-amplifier">
+<summary>LTspice: BJT cascode amplifier</summary>
+
+<CircuitLibrarySimulation circuit="bjt-cascode-amplifier" />
+
+</details>
 
 </div>
 
@@ -496,6 +617,28 @@ Stable resistors produce more stable gain than temperature-sensitive transistors
 * Return part of the **output current** to the input so that it opposes the input.
 * The input voltage changes very little and remains almost constant.
 * The input can then accept more current. As a result, **input impedance decreases**.
+
+</div>
+
+<div data-ltspice-placement="emitter-degeneration">
+
+<details id="circuit-emitter-degeneration">
+<summary>LTspice: Emitter degeneration and current gain</summary>
+
+<CircuitLibrarySimulation circuit="emitter-degeneration" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="discrete-feedback-amplifier">
+
+<details id="circuit-discrete-feedback-amplifier">
+<summary>LTspice: Discrete amplifier with negative feedback</summary>
+
+<CircuitLibrarySimulation circuit="discrete-feedback-amplifier" />
+
+</details>
 
 </div>
 
@@ -561,7 +704,7 @@ This example expands the [current-mirror explanation](#6-current-sources-and-mir
 
 The reference resistor feeds Q1's joined collector and base. Q2 shares the base voltage, so matched transistors produce similar collector currents.
 
-<CurrentMirrorSimulation />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-current-mirror>).
 
 ### What the curves show
 
@@ -596,7 +739,7 @@ This circuit extends the [loaded small-signal gain example](#worked-example-load
 
 The input is a 10 mV peak sine wave at 1 kHz. Coupling capacitors separate the signal source and load from the transistor's DC bias.
 
-<SpiceBatchSimulation circuit="common-emitter-amplifier" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-common-emitter-amplifier>).
 
 ### Separate bias from signal gain
 
@@ -647,7 +790,7 @@ Insufficient base current prevents a low collector voltage. The forced current g
 
 Compare all base resistors at the same load. A small resistor increases base current and drives the transistor farther into saturation.
 
-<CircuitLibrarySimulation circuit="bjt-switch" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-switch>).
 
 ### BJT emitter follower {#ltspice-emitter-follower}
 
@@ -659,7 +802,7 @@ The voltage gain is slightly below one. The transistor provides current gain, wh
 
 The base to emitter voltage changes with current. It is not a fixed voltage drop for every load.
 
-<CircuitLibrarySimulation circuit="emitter-follower" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-emitter-follower>).
 
 ### Common-base amplifier {#ltspice-common-base-amplifier}
 
@@ -671,7 +814,7 @@ The voltage gain is positive. The emitter presents a low input resistance, which
 
 The input source includes the emitter bias. The output capacitor removes the collector DC voltage from the load.
 
-<CircuitLibrarySimulation circuit="common-base-amplifier" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-common-base-amplifier>).
 
 ### Emitter degeneration and current gain {#ltspice-emitter-degeneration}
 
@@ -683,7 +826,7 @@ The stepped forward current gain changes the transistor parameters in both paths
 
 Emitter degeneration reduces signal gain. It also reduces dependence on the transistor and the bias network.
 
-<CircuitLibrarySimulation circuit="emitter-degeneration" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-emitter-degeneration>).
 
 ### PNP current mirror {#ltspice-pnp-current-mirror}
 
@@ -695,7 +838,7 @@ The output transistor supplies current while its collector stays sufficiently be
 
 Collector current uses the SPICE sign convention. The plot reverses that sign to show supplied load current as positive.
 
-<CircuitLibrarySimulation circuit="pnp-current-mirror" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-pnp-current-mirror>).
 
 ### Current mirror with emitter resistors {#ltspice-degenerated-current-mirror}
 
@@ -707,7 +850,7 @@ The resistors reduce sensitivity to transistor differences. They also consume vo
 
 The reference uses a current source so the resistor comparison does not change the commanded reference current.
 
-<CircuitLibrarySimulation circuit="degenerated-current-mirror" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-degenerated-current-mirror>).
 
 ### Wilson current mirror {#ltspice-wilson-current-mirror}
 
@@ -719,7 +862,7 @@ This feedback reduces base-current error and increases output resistance.
 
 The additional transistor requires more output voltage than a basic two-transistor mirror. Examine the low-voltage portion of the sweep.
 
-<CircuitLibrarySimulation circuit="wilson-current-mirror" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-wilson-current-mirror>).
 
 ### Cascode current mirror {#ltspice-cascode-current-mirror}
 
@@ -731,7 +874,7 @@ Changes at the output then have less effect on the lower transistor collector vo
 
 The stacked transistors need additional voltage headroom. High output resistance does not remove this requirement.
 
-<CircuitLibrarySimulation circuit="cascode-current-mirror" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-cascode-current-mirror>).
 
 ### BJT cascode amplifier {#ltspice-bjt-cascode-amplifier}
 
@@ -743,7 +886,7 @@ This reduces the voltage swing across the lower transistor collector junction an
 
 The collector resistor converts current to output voltage. Both transistors still require suitable DC voltage headroom.
 
-<CircuitLibrarySimulation circuit="bjt-cascode-amplifier" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-cascode-amplifier>).
 
 ### Complementary output stage and class AB bias {#ltspice-complementary-output-stage}
 
@@ -755,7 +898,7 @@ A voltage between the bases reduces the dead zone. More bias also increases quie
 
 Emitter resistors limit current imbalance. A physical bias network must track temperature to control idle current.
 
-<CircuitLibrarySimulation circuit="complementary-output-stage" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-complementary-output-stage>).
 
 ### Transistor Schmitt trigger {#ltspice-transistor-schmitt-trigger}
 
@@ -769,7 +912,7 @@ The emitter resistor changes the separation between switching thresholds. Base c
 
 The low collector voltage includes the shared emitter voltage. A larger emitter resistor raises this low output level.
 
-<CircuitLibrarySimulation circuit="transistor-schmitt-trigger" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/comparators#circuit-transistor-schmitt-trigger>).
 
 ### Short pulse from an input step {#ltspice-short-pulse-generator}
 
@@ -783,7 +926,7 @@ This version needs an input step that lasts longer than the desired output pulse
 
 The coupling pulse drives the second base below ground. Check reverse base to emitter voltage when changing the supply.
 
-<CircuitLibrarySimulation circuit="short-pulse-generator" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/comparators#circuit-short-pulse-generator>).
 
 ### Transistor pulse extension {#ltspice-pulse-extension}
 
@@ -797,7 +940,7 @@ Q3 holds the first collector low after a short input pulse ends. It releases tha
 
 The coupling pulse drives the second base below ground. Check reverse base to emitter voltage when changing the supply.
 
-<CircuitLibrarySimulation circuit="pulse-extension" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/comparators#circuit-pulse-extension>).
 
 ### Discrete amplifier with negative feedback {#ltspice-discrete-feedback-amplifier}
 
@@ -811,4 +954,4 @@ The output divider requests a gain of ten. The compensation capacitor controls h
 
 Identify each block separately before following the complete feedback path. The AC sweep examines the linear response around the bias point.
 
-<CircuitLibrarySimulation circuit="discrete-feedback-amplifier" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-discrete-feedback-amplifier>).

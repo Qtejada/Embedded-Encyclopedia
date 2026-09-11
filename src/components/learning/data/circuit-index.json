@@ -2,379 +2,649 @@
   {
     "slug": "common-emitter-amplifier",
     "title": "Common-emitter amplifier",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-example-common-emitter-amplifier",
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-common-emitter-amplifier",
     "intro": "Compare emitter bypass and gain.",
-    "group": "BJTs"
+    "group": "BJTs",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-example-common-emitter-amplifier",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "**Emitter Follower (Common Collector)**"
+    }
   },
   {
     "slug": "mosfet-switches",
     "title": "N-channel and P-channel switches",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-example-n-channel-and-p-channel-switches",
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-switches",
     "intro": "Compare low-side and high-side control.",
-    "group": "MOSFETs"
+    "group": "MOSFETs",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-example-n-channel-and-p-channel-switches",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "## 5. Analog Signal Switching"
+    }
   },
   {
     "slug": "jfet-self-bias",
     "title": "JFET self bias",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-example-jfet-self-bias",
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-self-bias",
     "intro": "Compare source resistance and bias.",
-    "group": "MOSFETs"
+    "group": "MOSFETs",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-example-jfet-self-bias",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "## 4. Basic Applications"
+    }
   },
   {
     "slug": "bridge-rectifier",
     "title": "Full-wave bridge rectifier",
-    "url": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-example-full-wave-bridge-rectifier",
+    "url": "/docs/Discrete-Components/Semicondctors/Diodes#circuit-bridge-rectifier",
     "intro": "Follow both current paths and compare ripple.",
-    "group": "Diodes"
+    "group": "Diodes",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-example-full-wave-bridge-rectifier",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+      "before": "### B. Clamping (Simple Protection)"
+    }
   },
   {
     "slug": "half-wave-rectifier",
     "title": "Half-wave rectifier",
-    "url": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-example-half-wave-rectifier",
+    "url": "/docs/Discrete-Components/Semicondctors/Diodes#circuit-half-wave-rectifier",
     "intro": "Compare reservoir capacitor values.",
-    "group": "Diodes"
+    "group": "Diodes",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-example-half-wave-rectifier",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+      "before": "### B. Clamping (Simple Protection)"
+    }
   },
   {
     "slug": "bjt-current-mirror",
     "title": "NPN current mirror",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-example-a-basic-bjt-current-mirror",
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-current-mirror",
     "intro": "Compare reference and output currents.",
-    "group": "BJTs"
+    "group": "BJTs",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-example-a-basic-bjt-current-mirror",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 7. Advanced Configurations and Power"
+    }
   },
   {
     "slug": "zener-regulator",
     "title": "Zener shunt regulator",
     "intro": "A series resistor supplies a Zener diode and a parallel load.",
     "group": "Diodes",
-    "url": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-zener-regulator"
+    "url": "/docs/Discrete-Components/Semicondctors/Diodes#circuit-zener-regulator",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-zener-regulator",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+      "before": "## 2. Common Circuit Uses"
+    }
   },
   {
     "slug": "diode-limiter-clamp",
     "title": "Diode limiter and DC clamp",
     "intro": "One path limits voltage. A separate capacitor and diode path shifts the waveform level.",
     "group": "Diodes",
-    "url": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-diode-limiter-clamp"
+    "url": "/docs/Discrete-Components/Semicondctors/Diodes#circuit-diode-limiter-clamp",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-diode-limiter-clamp",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+      "before": "### C. RC Snubbers and RCD Clamps"
+    }
   },
   {
     "slug": "bjt-switch",
     "title": "BJT switch and base drive",
     "intro": "A base resistor controls a transistor that switches a resistor load.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-bjt-switch"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-switch",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-bjt-switch",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 2. Ebers-Moll (Exponential Behavior)"
+    }
   },
   {
     "slug": "emitter-follower",
     "title": "BJT emitter follower",
     "intro": "The emitter follows the base voltage with a base to emitter voltage difference.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-emitter-follower"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-emitter-follower",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-emitter-follower",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "**Unity Phase Splitter (Transconductance-Amplifier Idea)**"
+    }
   },
   {
     "slug": "common-base-amplifier",
     "title": "Common-base amplifier",
     "intro": "A signal enters the emitter while the base stays at a fixed voltage.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-common-base-amplifier"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-common-base-amplifier",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-common-base-amplifier",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 6. Current Sources and Mirrors"
+    }
   },
   {
     "slug": "emitter-degeneration",
     "title": "Emitter degeneration and current gain",
     "intro": "Two amplifier paths compare complete emitter bypass with partial emitter bypass.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-emitter-degeneration"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-emitter-degeneration",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-emitter-degeneration",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 9. BJTs Compared with FETs"
+    }
   },
   {
     "slug": "mosfet-common-source",
     "title": "MOSFET common-source amplifier",
     "intro": "A drain resistor converts channel-current changes into an inverted output voltage.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-mosfet-common-source"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-common-source",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-mosfet-common-source",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "**Enhancement and Depletion Devices**"
+    }
   },
   {
     "slug": "mosfet-source-follower",
     "title": "MOSFET source follower",
     "intro": "The source voltage follows the gate while the drain connects to the supply.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-mosfet-source-follower"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-source-follower",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-mosfet-source-follower",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "### Analog Switches"
+    }
   },
   {
     "slug": "mosfet-gate-charging",
     "title": "MOSFET gate charging and switching energy",
     "intro": "A gate resistor controls how quickly gate capacitance receives charge.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-mosfet-gate-charging"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-gate-charging",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-mosfet-gate-charging",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "## 9. Power MOSFET Design"
+    }
   },
   {
     "slug": "jfet-output-curves",
     "title": "JFET output characteristics",
     "intro": "Separate gate and drain sources expose the JFET device characteristic.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-output-curves"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-output-curves",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-output-curves",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "## 4. Basic Applications"
+    }
   },
   {
     "slug": "jfet-transfer-curves",
     "title": "JFET transfer characteristics",
     "intro": "Separate gate and drain sources expose the JFET device characteristic.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-transfer-curves"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-transfer-curves",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-transfer-curves",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "## 4. Basic Applications"
+    }
   },
   {
     "slug": "jfet-common-source",
     "title": "JFET common-source amplifier",
     "intro": "The source resistor sets DC bias, and its bypass capacitor increases signal gain.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-common-source"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-common-source",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-common-source",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "**Enhancement and Depletion Devices**"
+    }
   },
   {
     "slug": "jfet-source-follower",
     "title": "JFET source follower",
     "intro": "A JFET supplies a source signal with high gate input resistance.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-source-follower"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-source-follower",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-source-follower",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "### Analog Switches"
+    }
   },
   {
     "slug": "jfet-current-source",
     "title": "Two-terminal JFET current sink",
     "intro": "A JFET and source resistor form a current sink between the drain and ground.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-current-source"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-current-source",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-current-source",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "### BJT Current Sink and Mirror"
+    }
   },
   {
     "slug": "pnp-current-mirror",
     "title": "PNP current mirror",
     "intro": "A PNP mirror supplies current from the positive rail into a load.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-pnp-current-mirror"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-pnp-current-mirror",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-pnp-current-mirror",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 7. Advanced Configurations and Power"
+    }
   },
   {
     "slug": "degenerated-current-mirror",
     "title": "Current mirror with emitter resistors",
     "intro": "Equal emitter resistors add local feedback to the two mirror transistors.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-degenerated-current-mirror"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-degenerated-current-mirror",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-degenerated-current-mirror",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 7. Advanced Configurations and Power"
+    }
   },
   {
     "slug": "wilson-current-mirror",
     "title": "Wilson current mirror",
     "intro": "A third transistor feeds current back into the mirror base node.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-wilson-current-mirror"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-wilson-current-mirror",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-wilson-current-mirror",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 7. Advanced Configurations and Power"
+    }
   },
   {
     "slug": "cascode-current-mirror",
     "title": "Cascode current mirror",
     "intro": "A second transistor above each mirror branch holds the lower collector voltage nearly constant.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-cascode-current-mirror"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-cascode-current-mirror",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-cascode-current-mirror",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 7. Advanced Configurations and Power"
+    }
   },
   {
     "slug": "mosfet-current-mirror",
     "title": "MOSFET current mirror",
     "intro": "Two MOSFETs share gate and source voltages to copy a reference current.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-mosfet-current-mirror"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-current-mirror",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-mosfet-current-mirror",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "### Linear-Power Hot Spots"
+    }
   },
   {
     "slug": "opamp-current-source",
     "title": "Op-amp controlled current sink",
     "intro": "An op-amp drives a MOSFET until the sense-resistor voltage equals the command voltage.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-current-source"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-current-source",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-current-source",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "### High-Side Current Source"
+    }
   },
   {
     "slug": "differential-pair",
     "title": "Differential pair with resistor tail",
     "intro": "Two transistors share an emitter resistor and steer current between their collectors.",
     "group": "differential-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/differential-amps#ltspice-differential-pair"
+    "url": "/docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-pair",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/differential-amps#ltspice-differential-pair",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+      "before": "## 6. JFET Differential Pair"
+    }
   },
   {
     "slug": "differential-pair-current-tail",
     "title": "Differential pair with current-source tail",
     "intro": "A constant tail current fixes the total current available to a differential pair.",
     "group": "differential-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/differential-amps#ltspice-differential-pair-current-tail"
+    "url": "/docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-pair-current-tail",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/differential-amps#ltspice-differential-pair-current-tail",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+      "before": "## 6. JFET Differential Pair"
+    }
   },
   {
     "slug": "differential-mirror-load",
     "title": "Differential pair with mirror load",
     "intro": "A PNP mirror combines the two branch-current changes into one output.",
     "group": "differential-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/differential-amps#ltspice-differential-mirror-load"
+    "url": "/docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-mirror-load",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/differential-amps#ltspice-differential-mirror-load",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+      "before": "## 6. JFET Differential Pair"
+    }
   },
   {
     "slug": "bjt-cascode-amplifier",
     "title": "BJT cascode amplifier",
     "intro": "A common-base transistor sits above a common-emitter transistor.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-bjt-cascode-amplifier"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-bjt-cascode-amplifier",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-bjt-cascode-amplifier",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 8. Negative Feedback and Stability"
+    }
   },
   {
     "slug": "complementary-output-stage",
     "title": "Complementary output stage and class AB bias",
     "intro": "An NPN and a PNP transistor supply opposite halves of the load current.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-complementary-output-stage"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-complementary-output-stage",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-complementary-output-stage",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "**Class D Amplifiers:**"
+    }
   },
   {
     "slug": "precision-rectifier",
     "title": "Precision half-wave rectifier",
     "intro": "An op-amp and two diodes rectify small signals without losing a full diode drop at the output.",
     "group": "Diodes",
-    "url": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-precision-rectifier"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-precision-rectifier",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/Diodes#ltspice-precision-rectifier",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "## 11. DC Accuracy and Input Limits"
+    }
   },
   {
     "slug": "opamp-gain-configurations",
     "title": "Inverting and noninverting amplifiers",
     "intro": "Two feedback networks demonstrate the sign and magnitude of closed-loop voltage gain.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-gain-configurations"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-gain-configurations",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-gain-configurations",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "### Adjustable Inverter or Follower"
+    }
   },
   {
     "slug": "opamp-buffer-loading",
     "title": "Buffer and source loading",
     "intro": "A voltage follower separates a high-resistance source from its load.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-buffer-loading"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-buffer-loading",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-buffer-loading",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "## 3. Negative-Feedback Theory"
+    }
   },
   {
     "slug": "opamp-summing",
     "title": "Summing amplifier",
     "intro": "Two input resistors feed a common summing node.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-summing"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-summing",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-summing",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "### Non-Inverting Amplifier"
+    }
   },
   {
     "slug": "opamp-difference",
     "title": "Four-resistor difference amplifier",
     "intro": "Matched resistor ratios reject a shared input voltage and amplify the difference.",
     "group": "differential-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/differential-amps#ltspice-opamp-difference"
+    "url": "/docs/Signal-Modulation/Amplifiers/differential-amps#circuit-opamp-difference",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/differential-amps#ltspice-opamp-difference",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+      "before": "## 4. Why Resistor Matching Controls CMRR"
+    }
   },
   {
     "slug": "opamp-integrator",
     "title": "Practical integrator",
     "intro": "A feedback capacitor converts input current into a changing output voltage.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-integrator"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-integrator",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-integrator",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "#### Component Clues"
+    }
   },
   {
     "slug": "opamp-differentiator",
     "title": "Band-limited differentiator",
     "intro": "An input capacitor converts changes in input voltage into current.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-differentiator"
+    "url": "/docs/Signal-Modulation/Filters/Active-filters#circuit-opamp-differentiator",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-differentiator",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+      "before": "### 10. Sallen-Key Second-Order Low-Pass Filter"
+    }
   },
   {
     "slug": "transimpedance-amplifier",
     "title": "Transimpedance amplifier",
     "intro": "An op-amp converts input current to output voltage through a feedback resistor.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-transimpedance-amplifier"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-transimpedance-amplifier",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-transimpedance-amplifier",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "## 8. Output-Current Boosters"
+    }
   },
   {
     "slug": "opamp-gain-bandwidth",
     "title": "Closed-loop gain and bandwidth",
     "intro": "Higher closed-loop gain reduces the bandwidth of a dominant-pole op-amp.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-gain-bandwidth"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-gain-bandwidth",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-gain-bandwidth",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "### Slew Rate"
+    }
   },
   {
     "slug": "opamp-slew-rate",
     "title": "Slew-rate limiting",
     "intro": "A limited output slope prevents a fast, large signal from following the input.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-slew-rate"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-slew-rate",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-slew-rate",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "### Capacitive Loading"
+    }
   },
   {
     "slug": "opamp-clipping",
     "title": "Output clipping",
     "intro": "An amplifier cannot produce output voltage beyond its available supply range.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-clipping"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-clipping",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-opamp-clipping",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "### The Golden Rules"
+    }
   },
   {
     "slug": "capacitive-load-compensation",
     "title": "Capacitive load and isolation resistor",
     "intro": "A series output resistor separates a capacitive load from the amplifier feedback node.",
     "group": "op-amps",
-    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-capacitive-load-compensation"
+    "url": "/docs/Signal-Modulation/Amplifiers/op-amps#circuit-capacitive-load-compensation",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/op-amps#ltspice-capacitive-load-compensation",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "before": "### Finite Loop-Gain Effects"
+    }
   },
   {
     "slug": "rc-filter-pair",
     "title": "RC low-pass and high-pass filters",
     "intro": "The same resistor and capacitor values produce opposite first-order filter responses.",
     "group": "filters",
-    "url": "/docs/Signal-Modulation/Filters/Active-filters#ltspice-rc-filter-pair"
+    "url": "/docs/Signal-Modulation/Filters/Active-filters#circuit-rc-filter-pair",
+    "notesUrl": "/docs/Signal-Modulation/Filters/Active-filters#ltspice-rc-filter-pair",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+      "before": "### 5. Differentiators and Integrators"
+    }
   },
   {
     "slug": "active-filter-pair",
     "title": "Active low-pass and high-pass filters",
     "intro": "Op-amps buffer first-order filters and add voltage gain.",
     "group": "filters",
-    "url": "/docs/Signal-Modulation/Filters/Active-filters#ltspice-active-filter-pair"
+    "url": "/docs/Signal-Modulation/Filters/Active-filters#circuit-active-filter-pair",
+    "notesUrl": "/docs/Signal-Modulation/Filters/Active-filters#ltspice-active-filter-pair",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+      "before": "### 7. AC-Amplifier Low-Frequency Responses"
+    }
   },
   {
     "slug": "active-bandpass",
     "title": "Buffered band-pass filter",
     "intro": "A high-pass stage rejects low frequencies, and a following low-pass stage rejects high frequencies.",
     "group": "filters",
-    "url": "/docs/Signal-Modulation/Filters/Active-filters#ltspice-active-bandpass"
+    "url": "/docs/Signal-Modulation/Filters/Active-filters#circuit-active-bandpass",
+    "notesUrl": "/docs/Signal-Modulation/Filters/Active-filters#ltspice-active-bandpass",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+      "before": "### 7. AC-Amplifier Low-Frequency Responses"
+    }
   },
   {
     "slug": "comparator-hysteresis",
     "title": "Comparator with positive feedback",
     "intro": "Positive feedback creates separate switching thresholds for rising and falling input.",
     "group": "comparators",
-    "url": "/docs/Signal-Modulation/Amplifiers/comparators#ltspice-comparator-hysteresis"
+    "url": "/docs/Signal-Modulation/Amplifiers/comparators#circuit-comparator-hysteresis",
+    "notesUrl": "/docs/Signal-Modulation/Amplifiers/comparators#ltspice-comparator-hysteresis",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+      "before": "## 7. Dynamic Performance"
+    }
   },
   {
     "slug": "transistor-schmitt-trigger",
     "title": "Transistor Schmitt trigger",
     "intro": "Two transistors share an emitter resistor that creates positive feedback.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-transistor-schmitt-trigger"
+    "url": "/docs/Signal-Modulation/Amplifiers/comparators#circuit-transistor-schmitt-trigger",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-transistor-schmitt-trigger",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+      "before": "## 7. Dynamic Performance"
+    }
   },
   {
     "slug": "short-pulse-generator",
     "title": "Short pulse from an input step",
     "intro": "A coupling capacitor briefly drives Q2 out of conduction and creates a positive collector pulse.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-short-pulse-generator"
+    "url": "/docs/Signal-Modulation/Amplifiers/comparators#circuit-short-pulse-generator",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-short-pulse-generator",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+      "before": "### Load and Power Control"
+    }
   },
   {
     "slug": "pulse-extension",
     "title": "Transistor pulse extension",
     "intro": "A coupling capacitor briefly drives Q2 out of conduction and creates a positive collector pulse.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-pulse-extension"
+    "url": "/docs/Signal-Modulation/Amplifiers/comparators#circuit-pulse-extension",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-pulse-extension",
+    "placement": {
+      "article": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+      "before": "### Load and Power Control"
+    }
   },
   {
     "slug": "discrete-feedback-amplifier",
     "title": "Discrete amplifier with negative feedback",
     "intro": "A differential pair, voltage-gain transistor, and emitter follower form a feedback amplifier.",
     "group": "BJTs",
-    "url": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-discrete-feedback-amplifier"
+    "url": "/docs/Discrete-Components/Semicondctors/BJTs#circuit-discrete-feedback-amplifier",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/BJTs#ltspice-discrete-feedback-amplifier",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "before": "## 9. BJTs Compared with FETs"
+    }
   },
   {
     "slug": "jfet-bjt-feedback",
     "title": "JFET and BJT feedback amplifier",
     "intro": "A JFET input, PNP gain transistor, and NPN follower share a feedback path.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-bjt-feedback"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-bjt-feedback",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-bjt-feedback",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "### Hybrid JFET and Op-Amp Amplifier"
+    }
   },
   {
     "slug": "jfet-opamp-feedback",
     "title": "JFET input stage with op-amp feedback",
     "intro": "An op-amp holds the JFET drain voltage near a reference while returning feedback to its source.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-opamp-feedback"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-opamp-feedback",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-opamp-feedback",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "### JFET Differential Amplifiers"
+    }
   },
   {
     "slug": "jfet-pair-feedback",
     "title": "JFET differential pair inside a feedback loop",
     "intro": "A JFET differential pair drives an op-amp, and the output returns to the second gate.",
     "group": "MOSFETs",
-    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-pair-feedback"
+    "url": "/docs/Discrete-Components/Semicondctors/MOSFETs#circuit-jfet-pair-feedback",
+    "notesUrl": "/docs/Discrete-Components/Semicondctors/MOSFETs#ltspice-jfet-pair-feedback",
+    "placement": {
+      "article": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "before": "## 8. Gate-Drive Dynamics"
+    }
   }
 ]

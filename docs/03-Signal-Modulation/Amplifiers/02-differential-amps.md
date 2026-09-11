@@ -193,6 +193,17 @@ Do not apply an out-of-range voltage directly to an op-amp input.
 
 ---
 
+<div data-ltspice-placement="opamp-difference">
+
+<details id="circuit-opamp-difference">
+<summary>LTspice: Four-resistor difference amplifier</summary>
+
+<CircuitLibrarySimulation circuit="opamp-difference" />
+
+</details>
+
+</div>
+
 ## 4. Why Resistor Matching Controls CMRR
 
 Common-mode cancellation depends on resistor **ratios**, not only individual resistor values.
@@ -258,6 +269,39 @@ A current-source tail improves common-mode rejection because it keeps total pair
 Device matching, tail-source output resistance, and collector-load matching limit CMRR.
 
 ---
+
+<div data-ltspice-placement="differential-pair">
+
+<details id="circuit-differential-pair">
+<summary>LTspice: Differential pair with resistor tail</summary>
+
+<CircuitLibrarySimulation circuit="differential-pair" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="differential-pair-current-tail">
+
+<details id="circuit-differential-pair-current-tail">
+<summary>LTspice: Differential pair with current-source tail</summary>
+
+<CircuitLibrarySimulation circuit="differential-pair-current-tail" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="differential-mirror-load">
+
+<details id="circuit-differential-mirror-load">
+<summary>LTspice: Differential pair with mirror load</summary>
+
+<CircuitLibrarySimulation circuit="differential-mirror-load" />
+
+</details>
+
+</div>
 
 ## 6. JFET Differential Pair
 
@@ -489,7 +533,7 @@ The common emitter resistor also responds to common-mode voltage. Its current is
 
 Near zero differential input, the response is approximately linear. A larger input steers most of the current to one side.
 
-<CircuitLibrarySimulation circuit="differential-pair" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-pair>).
 
 ### Differential pair with current-source tail {#ltspice-differential-pair-current-tail}
 
@@ -501,7 +545,7 @@ At zero differential input, matched devices carry nearly equal currents. At larg
 
 A practical tail source has finite output resistance and requires voltage headroom. The ideal source here isolates the current-steering relation.
 
-<CircuitLibrarySimulation circuit="differential-pair-current-tail" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-pair-current-tail>).
 
 ### Differential pair with mirror load {#ltspice-differential-mirror-load}
 
@@ -513,7 +557,7 @@ The resulting output current changes a load voltage. This converts the different
 
 The resistor at the output sets a defined DC operating point and limits gain. An unloaded active-load stage can have much higher gain.
 
-<CircuitLibrarySimulation circuit="differential-mirror-load" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-mirror-load>).
 
 ### Four-resistor difference amplifier {#ltspice-opamp-difference}
 
@@ -525,4 +569,4 @@ Equal resistor ratios make the output equal to the input difference. The common-
 
 Resistor mismatch converts common-mode voltage into output error. The examples use equal resistor values to isolate the ideal ratio relation.
 
-<CircuitLibrarySimulation circuit="opamp-difference" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-opamp-difference>).

@@ -38,6 +38,17 @@ During normal forward-biased operation, current flows from the **anode to the ca
 
 * **PIV (peak inverse voltage):** This is the **maximum reverse-voltage rating** before reverse **breakdown**. If the reverse voltage exceeds the PIV, the diode enters breakdown. Current then flows backward from cathode to anode. This current often destroys the diode unless it is a Zener diode.
 
+<div data-ltspice-placement="zener-regulator">
+
+<details id="circuit-zener-regulator">
+<summary>LTspice: Zener shunt regulator</summary>
+
+<CircuitLibrarySimulation circuit="zener-regulator" />
+
+</details>
+
+</div>
+
 ## 2. Common Circuit Uses
 
 ### A. Rectification
@@ -75,6 +86,28 @@ A standard bridge rectifier contains four diodes.
 For detailed information about conversion from AC to cleaner DC, see the **[Regulation Section](../../02-Power/Regulation/04-LDOs.md)**.
 :::
 
+<div data-ltspice-placement="bridge-rectifier">
+
+<details id="circuit-bridge-rectifier">
+<summary>LTspice: Full-wave bridge rectifier</summary>
+
+<SpiceBatchSimulation circuit="bridge-rectifier" />
+
+</details>
+
+</div>
+
+<div data-ltspice-placement="half-wave-rectifier">
+
+<details id="circuit-half-wave-rectifier">
+<summary>LTspice: Half-wave rectifier</summary>
+
+<SpiceBatchSimulation circuit="half-wave-rectifier" />
+
+</details>
+
+</div>
+
 ### B. Clamping (Simple Protection)
 
 Diodes can operate as **voltage clamps**.
@@ -97,6 +130,17 @@ The power rails and [decoupling capacitors](<../01-Passives/02-Capacitors.md#byp
 
 This arrangement is not ideal for high-speed signals because the diodes add capacitance.
 :::
+
+<div data-ltspice-placement="diode-limiter-clamp">
+
+<details id="circuit-diode-limiter-clamp">
+<summary>LTspice: Diode limiter and DC clamp</summary>
+
+<CircuitLibrarySimulation circuit="diode-limiter-clamp" />
+
+</details>
+
+</div>
 
 ### C. RC Snubbers and RCD Clamps
 
@@ -202,7 +246,7 @@ This example extends [rectification](#a-rectification) with an editable circuit 
 
 The source resistance is 10 ohms. The load resistance is 1 kilohm. The circuit uses a silicon diode.
 
-<SpiceBatchSimulation circuit="half-wave-rectifier" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/Diodes#circuit-half-wave-rectifier>).
 
 ### Reservoir charge and ripple
 
@@ -232,7 +276,7 @@ Use the startup view to examine capacitor charging. Mean output and ripple use t
 
 The bridge uses the same source, series resistance, load, and capacitor choices as the half-wave example. This makes the waveforms easy to compare.
 
-<SpiceBatchSimulation circuit="bridge-rectifier" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/Diodes#circuit-bridge-rectifier>).
 
 ### Follow both current paths
 
@@ -283,7 +327,7 @@ A heavier load takes more current from the series resistor. This reduces the cur
 
 The series resistor also dissipates power. Compare its voltage drop with the current before selecting its power rating.
 
-<CircuitLibrarySimulation circuit="zener-regulator" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/Diodes#circuit-zener-regulator>).
 
 ### Diode limiter and DC clamp {#ltspice-diode-limiter-clamp}
 
@@ -295,7 +339,7 @@ The clamp capacitor stores charge. Its diode holds the negative excursion near o
 
 The clamp load discharges the capacitor between cycles. A shorter time constant causes more waveform tilt.
 
-<CircuitLibrarySimulation circuit="diode-limiter-clamp" />
+[Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/Diodes#circuit-diode-limiter-clamp>).
 
 ### Precision half-wave rectifier {#ltspice-precision-rectifier}
 
@@ -307,4 +351,4 @@ The second diode maintains a feedback path while the output diode blocks. This a
 
 Finite bandwidth and diode charge still affect the transition near zero input. Compare the smallest input with the larger inputs.
 
-<CircuitLibrarySimulation circuit="precision-rectifier" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-precision-rectifier>).

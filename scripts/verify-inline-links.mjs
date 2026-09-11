@@ -31,6 +31,11 @@ for (const page of pages.values()) {
   assert.equal(hash(bytes.toString('utf8').replace(/\r\n/g, '\n')), page.afterNormalizedSha256, `Unexpected source change: ${page.source}`);
   const buildPath = decodeURI(page.url.replace('/Embedded-Encyclopedia/', '')).replace(/\/$/, '') + '.html';
   const dom = cheerio.load(fs.readFileSync(path.join(root, 'build', buildPath), 'utf8'));
+  dom('[data-ltspice-placement]').each((_,el)=>{
+    // MDX adds one separator after the inserted block. Preserve the original separator before it.
+    if(el.next?.type==='text' && el.next.data==='\n') dom(el.next).remove();
+    dom(el).remove();
+  });
   assert.equal(hash(restoreSiteWording(page.source,dom('article').text(),true).slice(0, juniorRendered.get(page.source).length)), page.articleTextSha256, `Rendered original article text changed: ${page.source}`);
   const headings = dom('article h2[id], article h3[id], article h4[id]').map((_, el) => ({id: dom(el).attr('id'), text: restoreSiteWording(page.source,dom(el).text().replace(/\u200b/g, ''),true)})).get();
   assert.deepEqual(headings.slice(0, page.headings.length), page.headings, `Original subsection headings changed: ${page.source}`);

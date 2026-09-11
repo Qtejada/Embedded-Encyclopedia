@@ -54,6 +54,17 @@ The circuit can do addition, integration, filtering, rectification, or other ope
 * **Ideal stability:** Temperature and supply voltage do not change the parameters.
 * **Real stability:** Many parameters change with temperature, supply voltage, and time.
 
+<div data-ltspice-placement="opamp-clipping">
+
+<details id="circuit-opamp-clipping">
+<summary>LTspice: Output clipping</summary>
+
+<CircuitLibrarySimulation circuit="opamp-clipping" />
+
+</details>
+
+</div>
+
 ### The Golden Rules
 
 Use these rules only when the op-amp has stable **negative feedback**.
@@ -128,6 +139,17 @@ Each input produces a current through its input resistor.
 Almost none of this current enters the op-amp.
 The currents add at the summing node and flow through the feedback resistor.
 
+<div data-ltspice-placement="opamp-summing">
+
+<details id="circuit-opamp-summing">
+<summary>LTspice: Summing amplifier</summary>
+
+<CircuitLibrarySimulation circuit="opamp-summing" />
+
+</details>
+
+</div>
+
 ### Non-Inverting Amplifier
 
 The **non-inverting amplifier** applies <i>V<sub>in</sub></i> to the non-inverting input.
@@ -159,6 +181,17 @@ For the usual resistor arrangement:
 > **Gain = 1 + R<sub>2</sub> / R<sub>1</sub>**
 
 The circuit keeps the output in phase with the input.
+
+<div data-ltspice-placement="opamp-gain-configurations">
+
+<details id="circuit-opamp-gain-configurations">
+<summary>LTspice: Inverting and noninverting amplifiers</summary>
+
+<CircuitLibrarySimulation circuit="opamp-gain-configurations" />
+
+</details>
+
+</div>
 
 ### Adjustable Inverter or Follower
 
@@ -204,6 +237,17 @@ The follower has no voltage gain, but it can have large **power gain**.
 3. **Result:** It isolates a sensitive source from a demanding load.
 
 ---
+
+<div data-ltspice-placement="opamp-buffer-loading">
+
+<details id="circuit-opamp-buffer-loading">
+<summary>LTspice: Buffer and source loading</summary>
+
+<CircuitLibrarySimulation circuit="opamp-buffer-loading" />
+
+</details>
+
+</div>
 
 ## 3. Negative-Feedback Theory
 
@@ -421,6 +465,17 @@ The design trades gain for bandwidth.
 
 <GainBandwidthGraph />
 
+<div data-ltspice-placement="opamp-gain-bandwidth">
+
+<details id="circuit-opamp-gain-bandwidth">
+<summary>LTspice: Closed-loop gain and bandwidth</summary>
+
+<CircuitLibrarySimulation circuit="opamp-gain-bandwidth" />
+
+</details>
+
+</div>
+
 ### Slew Rate
 
 **Slew rate** is the maximum output-voltage change for each unit of time.
@@ -429,6 +484,17 @@ Datasheets usually specify it in V/&mu;s.
 The value can depend on the internal compensation network.
 A high-frequency, high-amplitude signal can exceed the slew-rate limit.
 The output then becomes more triangular than sinusoidal.
+
+<div data-ltspice-placement="opamp-slew-rate">
+
+<details id="circuit-opamp-slew-rate">
+<summary>LTspice: Slew-rate limiting</summary>
+
+<CircuitLibrarySimulation circuit="opamp-slew-rate" />
+
+</details>
+
+</div>
 
 ### Capacitive Loading
 
@@ -450,6 +516,17 @@ If the total phase shift approaches 180&deg; while loop gain exceeds 1, oscillat
 5. **In-loop buffer:** A buffer can drive the capacitive load inside the main feedback loop.
    Its phase shift then becomes part of the loop.
 6. **Buffer bandwidth:** The buffer usually needs more bandwidth than the main op-amp.
+
+<div data-ltspice-placement="capacitive-load-compensation">
+
+<details id="circuit-capacitive-load-compensation">
+<summary>LTspice: Capacitive load and isolation resistor</summary>
+
+<CircuitLibrarySimulation circuit="capacitive-load-compensation" />
+
+</details>
+
+</div>
 
 ### Finite Loop-Gain Effects
 
@@ -633,6 +710,17 @@ It limits DC gain and decreases drift into saturation.
   </figcaption>
 </figure>
 
+<div data-ltspice-placement="opamp-integrator">
+
+<details id="circuit-opamp-integrator">
+<summary>LTspice: Practical integrator</summary>
+
+<CircuitLibrarySimulation circuit="opamp-integrator" />
+
+</details>
+
+</div>
+
 #### Component Clues
 
 * A very small capacitor in the pF range frequently controls stability.
@@ -765,6 +853,17 @@ A small capacitor in parallel with <i>R<sub>f</sub></i> can supply the necessary
 Calculate this capacitor from photodiode capacitance, input capacitance, feedback resistance, and op-amp gain bandwidth.
 
 ---
+
+<div data-ltspice-placement="transimpedance-amplifier">
+
+<details id="circuit-transimpedance-amplifier">
+<summary>LTspice: Transimpedance amplifier</summary>
+
+<CircuitLibrarySimulation circuit="transimpedance-amplifier" />
+
+</details>
+
+</div>
 
 ## 8. Output-Current Boosters
 
@@ -920,6 +1019,17 @@ The basic circuit uses feedback to control the voltage across a [sense resistor]
 
 The circuit resembles a non-inverting amplifier.
 The controlled output quantity is current instead of voltage.
+
+<div data-ltspice-placement="opamp-current-source">
+
+<details id="circuit-opamp-current-source">
+<summary>LTspice: Op-amp controlled current sink</summary>
+
+<CircuitLibrarySimulation circuit="opamp-current-source" />
+
+</details>
+
+</div>
 
 ### High-Side Current Source
 
@@ -1120,6 +1230,17 @@ The op-amp must move between diode states.
 Recovery from saturation can delay this transition.
 
 ---
+
+<div data-ltspice-placement="precision-rectifier">
+
+<details id="circuit-precision-rectifier">
+<summary>LTspice: Precision half-wave rectifier</summary>
+
+<CircuitLibrarySimulation circuit="precision-rectifier" />
+
+</details>
+
+</div>
 
 ## 11. DC Accuracy and Input Limits
 
@@ -1569,7 +1690,7 @@ For a 100-ohm sense resistor, a 0.5 V command sets approximately 5 mA.
 
 The drain supply must provide the sense voltage and transistor headroom. The circuit cannot maintain current below this compliance voltage.
 
-<CircuitLibrarySimulation circuit="opamp-current-source" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-current-source>).
 
 ### Inverting and noninverting amplifiers {#ltspice-opamp-gain-configurations}
 
@@ -1581,7 +1702,7 @@ The noninverting stage has gain equal to one plus the resistor ratio. Its input 
 
 Both stages lose closed-loop gain at high frequency. Their noise gains determine the approximate bandwidth.
 
-<CircuitLibrarySimulation circuit="opamp-gain-configurations" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-gain-configurations>).
 
 ### Buffer and source loading {#ltspice-opamp-buffer-loading}
 
@@ -1593,7 +1714,7 @@ The buffered path draws little current from the source. The op-amp supplies the 
 
 The buffer still has output-current and bandwidth limits. This frequency sweep examines its small-signal response.
 
-<CircuitLibrarySimulation circuit="opamp-buffer-loading" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-buffer-loading>).
 
 ### Summing amplifier {#ltspice-opamp-summing}
 
@@ -1605,7 +1726,7 @@ The feedback resistor converts the sum of those currents to output voltage.
 
 Equal input and feedback resistors give the negative sum of the two input voltages. Here one input supplies a DC offset.
 
-<CircuitLibrarySimulation circuit="opamp-summing" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-summing>).
 
 ### Practical integrator {#ltspice-opamp-integrator}
 
@@ -1617,7 +1738,7 @@ A large resistor across the capacitor provides a DC feedback path. It prevents u
 
 Above the resistor-capacitor corner, gain falls by approximately 20 dB per decade. The phase approaches positive 90 degrees.
 
-<CircuitLibrarySimulation circuit="opamp-integrator" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-integrator>).
 
 ### Band-limited differentiator {#ltspice-opamp-differentiator}
 
@@ -1629,7 +1750,7 @@ The series input resistor limits high-frequency gain. The feedback capacitor pro
 
 An unlimited differentiator strongly amplifies high-frequency noise. The extra components make the response practical.
 
-<CircuitLibrarySimulation circuit="opamp-differentiator" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-opamp-differentiator>).
 
 ### Transimpedance amplifier {#ltspice-transimpedance-amplifier}
 
@@ -1641,7 +1762,7 @@ The low-frequency transimpedance is approximately the negative feedback resistan
 
 Input capacitance affects loop stability. The feedback capacitor reduces high-frequency gain and improves phase margin.
 
-<CircuitLibrarySimulation circuit="transimpedance-amplifier" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-transimpedance-amplifier>).
 
 ### Closed-loop gain and bandwidth {#ltspice-opamp-gain-bandwidth}
 
@@ -1653,7 +1774,7 @@ The approximate bandwidth is gain-bandwidth product divided by noise gain.
 
 This relation applies to the dominant-pole response. Additional poles and loading can change the result.
 
-<CircuitLibrarySimulation circuit="opamp-gain-bandwidth" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-gain-bandwidth>).
 
 ### Slew-rate limiting {#ltspice-opamp-slew-rate}
 
@@ -1665,7 +1786,7 @@ The three slew-rate settings lie below and above this requirement.
 
 A low slew rate produces an almost triangular output with reduced amplitude. This is a large-signal limit, not only a bandwidth limit.
 
-<CircuitLibrarySimulation circuit="opamp-slew-rate" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-slew-rate>).
 
 ### Output clipping {#ltspice-opamp-clipping}
 
@@ -1677,7 +1798,7 @@ Once the requested output exceeds the available swing, the waveform clips near t
 
 Feedback no longer holds the input difference near zero during clipping. Recovery also depends on the amplifier dynamics.
 
-<CircuitLibrarySimulation circuit="opamp-clipping" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-clipping>).
 
 ### Capacitive load and isolation resistor {#ltspice-capacitive-load-compensation}
 
@@ -1689,4 +1810,4 @@ The feedback connects before the isolation resistor. The resistor reduces the ca
 
 A larger isolation resistor can reduce ringing, but it also slows the load voltage and creates a load-dependent voltage drop.
 
-<CircuitLibrarySimulation circuit="capacitive-load-compensation" />
+[Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-capacitive-load-compensation>).
