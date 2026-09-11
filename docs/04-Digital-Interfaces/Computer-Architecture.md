@@ -118,3 +118,14 @@ Device qualification and radiation testing must match the mission. Ordinary ECC 
 
 
 See [NASA memory radiation guidelines](https://nepp.nasa.gov/docs/etw/2012/Tuesday/T03_Ladbury_Updated_SSR_Radiation.pdf) for fault consequences and mitigation choices.
+
+## Five-stage processor walkthrough
+
+Study the [five pipeline stages](<./RISC-V-Pipeline.md#3-the-five-stages>) with a cycle-by-cycle RISC-V model. Compare [forwarding](<./RISC-V-Pipeline.md#7-data-hazards-and-forwarding>), [load-use stalls](<./RISC-V-Pipeline.md#8-the-load-use-hazard>), and [branch flushes](<./RISC-V-Pipeline.md#9-branches-jumps-and-flushes>).
+
+
+## Assembly, caches, and operating systems
+
+Follow [array loads and loops](<./RISC-V-Assembly.md#3-array-addresses-and-loops>) before studying their pipeline timing. Then compare [cache access time](<./Processor-Memory.md#7-average-access-time>) with ideal single-cycle memory.
+
+For software that shares a processor, study [processes and threads](<./Operating-Systems.md#1-processes-and-threads>). These abstractions add state that the instruction pipeline alone does not describe.

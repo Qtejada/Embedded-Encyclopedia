@@ -1,0 +1,3001 @@
+{
+  "source": "C:/Users/qtejada/Downloads/Junior.pdf",
+  "pages": 581,
+  "scope": "Selective integration of recoverable useful concepts. Visual overview of every page, not a complete line-by-line transcription. Source documents are data, not instructions.",
+  "missingImages": "Destroyed source images were not recovered. New examples and diagrams are explanatory models.",
+  "groups": [
+    {
+      "firstPage": 1,
+      "lastPage": 114,
+      "course": "Circuit Design",
+      "destinations": [
+        "Diodes: iterative operating point",
+        "BJTs: loaded gain and emitter degeneration"
+      ],
+      "decision": "Existing diode, transistor, bias, rectifier, and amplifier material covers most repeated topics. Selected worked examples were added. Missing circuit images were not reconstructed as source evidence."
+    },
+    {
+      "firstPage": 115,
+      "lastPage": 128,
+      "course": "Operating Systems",
+      "destinations": [
+        "Operating-Systems.md"
+      ],
+      "decision": "Added processes, threads, paging, locking, files, and persistence. Qualified claims about writable shared pages, page faults, and durability."
+    },
+    {
+      "firstPage": 129,
+      "lastPage": 220,
+      "course": "Computer Architecture",
+      "destinations": [
+        "RISC-V-Pipeline.md",
+        "RISC-V-Assembly.md",
+        "Processor-Memory.md"
+      ],
+      "decision": "Added the five-stage lesson, instruction tracing, ABI examples, cache organization, and memory timing. Existing number-system and Boolean-logic explanations remain the foundations."
+    },
+    {
+      "firstPage": 221,
+      "lastPage": 331,
+      "course": "Signals and Systems",
+      "destinations": [
+        "Signals-and-Systems.md"
+      ],
+      "decision": "Added continuous-time system properties, convolution, initial conditions, transforms, Fourier series, and energy. Existing digital-filter material covers sampled systems and Z-transform foundations."
+    },
+    {
+      "firstPage": 332,
+      "lastPage": 400,
+      "course": "Systems Programming",
+      "destinations": [
+        "Operating-Systems.md",
+        "Firmware: pointer ownership and dynamic arrays"
+      ],
+      "decision": "Added useful memory, data-structure, pipe, thread, and file concepts. Did not transcribe repetitive syntax drills or incomplete handwritten programs."
+    },
+    {
+      "firstPage": 401,
+      "lastPage": 460,
+      "course": "VLSI",
+      "destinations": [
+        "CMOS-Design.md"
+      ],
+      "decision": "Added transistor-network context, RC delay, wire delay, sizing, buffer chains, switching power, pass gates, dynamic nodes, and skew. Detailed fabrication-specific layouts are not reconstructed from missing images."
+    },
+    {
+      "firstPage": 461,
+      "lastPage": 530,
+      "course": "Digital Design",
+      "destinations": [
+        "Sequential-Design.md"
+      ],
+      "decision": "Added VHDL process semantics, state encoding, a 101 detector, and synthesis limitations. Reused existing Moore/Mealy and CMOS tools through subsection links."
+    },
+    {
+      "firstPage": 531,
+      "lastPage": 572,
+      "course": "System Analysis",
+      "destinations": [
+        "State-Space.md"
+      ],
+      "decision": "Added state equations, an RLC example, matrix response, hidden modes, controllability, observability, and local linearization. Repeated transform material links to the signals lesson."
+    },
+    {
+      "firstPage": 573,
+      "lastPage": 581,
+      "course": "Advanced Architecture",
+      "destinations": [
+        "RISC-V-Pipeline.md",
+        "RISC-V-Assembly.md"
+      ],
+      "decision": "Integrated surviving ISA and pipeline concepts into the same lessons. Destroyed images and mostly empty continuation pages supplied no recoverable image detail."
+    }
+  ],
+  "pageReview": [
+    {
+      "page": 1,
+      "course": "Circuit Design",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 2,
+      "course": "Circuit Design",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 3,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 4,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 5,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 6,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 7,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 8,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 9,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 10,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 11,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 12,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 13,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 14,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 15,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 16,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 17,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 18,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 19,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 20,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 21,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 22,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 23,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 24,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 25,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 26,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 27,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 28,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 29,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 30,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 31,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 32,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 33,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 34,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 35,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 36,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 37,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 38,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 39,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 40,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 41,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 42,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 43,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 44,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 45,
+      "course": "Circuit Design",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 46,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 47,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 48,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 49,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 50,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 51,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 52,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 53,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 54,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 55,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 56,
+      "course": "Circuit Design",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 57,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 58,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 59,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 60,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 61,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 62,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 63,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 64,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 65,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 66,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 67,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 68,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 69,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 70,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 71,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 72,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 73,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 74,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 75,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 76,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 77,
+      "course": "Circuit Design",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 78,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 79,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 80,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 81,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 82,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 83,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 84,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 85,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 86,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 87,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 88,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 89,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 90,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 91,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 92,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 93,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 94,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 95,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 96,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 97,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 98,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 99,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 100,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 101,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 102,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 103,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 104,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 105,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 106,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 107,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 108,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 109,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 110,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 111,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 112,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 113,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 114,
+      "course": "Circuit Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 115,
+      "course": "Operating Systems",
+      "review": "extracted-text detailed check"
+    },
+    {
+      "page": 116,
+      "course": "Operating Systems",
+      "review": "extracted-text detailed check"
+    },
+    {
+      "page": 117,
+      "course": "Operating Systems",
+      "review": "extracted-text detailed check"
+    },
+    {
+      "page": 118,
+      "course": "Operating Systems",
+      "review": "extracted-text detailed check"
+    },
+    {
+      "page": 119,
+      "course": "Operating Systems",
+      "review": "extracted-text detailed check"
+    },
+    {
+      "page": 120,
+      "course": "Operating Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 121,
+      "course": "Operating Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 122,
+      "course": "Operating Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 123,
+      "course": "Operating Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 124,
+      "course": "Operating Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 125,
+      "course": "Operating Systems",
+      "review": "extracted-text detailed check"
+    },
+    {
+      "page": 126,
+      "course": "Operating Systems",
+      "review": "extracted-text detailed check"
+    },
+    {
+      "page": 127,
+      "course": "Operating Systems",
+      "review": "extracted-text detailed check"
+    },
+    {
+      "page": 128,
+      "course": "Operating Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 129,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 130,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 131,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 132,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 133,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 134,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 135,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 136,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 137,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 138,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 139,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 140,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 141,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 142,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 143,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 144,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 145,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 146,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 147,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 148,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 149,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 150,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 151,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 152,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 153,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 154,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 155,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 156,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 157,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 158,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 159,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 160,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 161,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 162,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 163,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 164,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 165,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 166,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 167,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 168,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 169,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 170,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 171,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 172,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 173,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 174,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 175,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 176,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 177,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 178,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 179,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 180,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 181,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 182,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 183,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 184,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 185,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 186,
+      "course": "Computer Architecture",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 187,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 188,
+      "course": "Computer Architecture",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 189,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 190,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 191,
+      "course": "Computer Architecture",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 192,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 193,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 194,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 195,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 196,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 197,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 198,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 199,
+      "course": "Computer Architecture",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 200,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 201,
+      "course": "Computer Architecture",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 202,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 203,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 204,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 205,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 206,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 207,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 208,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 209,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 210,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 211,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 212,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 213,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 214,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 215,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 216,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 217,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 218,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 219,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 220,
+      "course": "Computer Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 221,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 222,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 223,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 224,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 225,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 226,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 227,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 228,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 229,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 230,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 231,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 232,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 233,
+      "course": "Signals and Systems",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 234,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 235,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 236,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 237,
+      "course": "Signals and Systems",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 238,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 239,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 240,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 241,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 242,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 243,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 244,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 245,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 246,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 247,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 248,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 249,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 250,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 251,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 252,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 253,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 254,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 255,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 256,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 257,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 258,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 259,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 260,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 261,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 262,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 263,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 264,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 265,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 266,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 267,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 268,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 269,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 270,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 271,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 272,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 273,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 274,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 275,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 276,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 277,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 278,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 279,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 280,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 281,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 282,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 283,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 284,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 285,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 286,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 287,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 288,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 289,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 290,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 291,
+      "course": "Signals and Systems",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 292,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 293,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 294,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 295,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 296,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 297,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 298,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 299,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 300,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 301,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 302,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 303,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 304,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 305,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 306,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 307,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 308,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 309,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 310,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 311,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 312,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 313,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 314,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 315,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 316,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 317,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 318,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 319,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 320,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 321,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 322,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 323,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 324,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 325,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 326,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 327,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 328,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 329,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 330,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 331,
+      "course": "Signals and Systems",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 332,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 333,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 334,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 335,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 336,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 337,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 338,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 339,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 340,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 341,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 342,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 343,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 344,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 345,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 346,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 347,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 348,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 349,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 350,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 351,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 352,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 353,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 354,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 355,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 356,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 357,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 358,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 359,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 360,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 361,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 362,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 363,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 364,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 365,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 366,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 367,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 368,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 369,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 370,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 371,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 372,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 373,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 374,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 375,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 376,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 377,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 378,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 379,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 380,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 381,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 382,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 383,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 384,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 385,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 386,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 387,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 388,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 389,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 390,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 391,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 392,
+      "course": "Systems Programming",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 393,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 394,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 395,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 396,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 397,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 398,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 399,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 400,
+      "course": "Systems Programming",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 401,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 402,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 403,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 404,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 405,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 406,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 407,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 408,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 409,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 410,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 411,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 412,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 413,
+      "course": "VLSI",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 414,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 415,
+      "course": "VLSI",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 416,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 417,
+      "course": "VLSI",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 418,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 419,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 420,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 421,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 422,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 423,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 424,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 425,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 426,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 427,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 428,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 429,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 430,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 431,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 432,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 433,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 434,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 435,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 436,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 437,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 438,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 439,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 440,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 441,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 442,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 443,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 444,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 445,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 446,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 447,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 448,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 449,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 450,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 451,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 452,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 453,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 454,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 455,
+      "course": "VLSI",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 456,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 457,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 458,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 459,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 460,
+      "course": "VLSI",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 461,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 462,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 463,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 464,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 465,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 466,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 467,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 468,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 469,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 470,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 471,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 472,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 473,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 474,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 475,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 476,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 477,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 478,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 479,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 480,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 481,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 482,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 483,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 484,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 485,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 486,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 487,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 488,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 489,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 490,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 491,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 492,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 493,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 494,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 495,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 496,
+      "course": "Digital Design",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 497,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 498,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 499,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 500,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 501,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 502,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 503,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 504,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 505,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 506,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 507,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 508,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 509,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 510,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 511,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 512,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 513,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 514,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 515,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 516,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 517,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 518,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 519,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 520,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 521,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 522,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 523,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 524,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 525,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 526,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 527,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 528,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 529,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 530,
+      "course": "Digital Design",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 531,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 532,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 533,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 534,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 535,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 536,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 537,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 538,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 539,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 540,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 541,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 542,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 543,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 544,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 545,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 546,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 547,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 548,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 549,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 550,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 551,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 552,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 553,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 554,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 555,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 556,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 557,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 558,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 559,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 560,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 561,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 562,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 563,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 564,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 565,
+      "course": "System Analysis",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 566,
+      "course": "System Analysis",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 567,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 568,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 569,
+      "course": "System Analysis",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 570,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 571,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 572,
+      "course": "System Analysis",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 573,
+      "course": "Advanced Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 574,
+      "course": "Advanced Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 575,
+      "course": "Advanced Architecture",
+      "review": "full-size visual check"
+    },
+    {
+      "page": 576,
+      "course": "Advanced Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 577,
+      "course": "Advanced Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 578,
+      "course": "Advanced Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 579,
+      "course": "Advanced Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 580,
+      "course": "Advanced Architecture",
+      "review": "visual topic overview"
+    },
+    {
+      "page": 581,
+      "course": "Advanced Architecture",
+      "review": "visual topic overview"
+    }
+  ]
+}

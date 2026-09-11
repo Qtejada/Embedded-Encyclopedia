@@ -308,6 +308,22 @@
     "tools": []
   },
   {
+    "source": "docs/03-Signal-Modulation/Signals-and-Systems.md",
+    "title": "Continuous Signals and Systems",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Signals-and-Systems",
+    "equations": 14,
+    "tools": [
+      "Slide two pulses through a convolution"
+    ]
+  },
+  {
+    "source": "docs/03-Signal-Modulation/State-Space.md",
+    "title": "State-Space Models",
+    "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/State-Space",
+    "equations": 12,
+    "tools": []
+  },
+  {
     "source": "docs/03-Signal-Modulation/Timing/Crystal-oscillators.md",
     "title": "Crystal Oscillators",
     "url": "/Embedded-Encyclopedia/docs/Signal-Modulation/Timing/Crystal-oscillators",
@@ -338,6 +354,13 @@
     "tools": [
       "Protocol bridge path"
     ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/CMOS-Design.md",
+    "title": "CMOS Timing and Power",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/CMOS-Design",
+    "equations": 5,
+    "tools": []
   },
   {
     "source": "docs/04-Digital-Interfaces/Computer-Architecture.md",
@@ -392,6 +415,44 @@
     "source": "docs/04-Digital-Interfaces/Memory.md",
     "title": "Memory",
     "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Memory",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Operating-Systems.md",
+    "title": "Operating Systems and Shared Resources",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Operating-Systems",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Processor-Memory.md",
+    "title": "Processor Caches and Memory Access",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Processor-Memory",
+    "equations": 3,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/RISC-V-Assembly.md",
+    "title": "RISC-V Assembly and Function Calls",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/RISC-V-Assembly",
+    "equations": 0,
+    "tools": []
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/RISC-V-Pipeline.md",
+    "title": "Five-Stage RISC-V Processor",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/RISC-V-Pipeline",
+    "equations": 2,
+    "tools": [
+      "Trace an instruction through the datapath",
+      "Five-stage pipeline explorer"
+    ]
+  },
+  {
+    "source": "docs/04-Digital-Interfaces/Sequential-Design.md",
+    "title": "Sequential Logic and VHDL",
+    "url": "/Embedded-Encyclopedia/docs/Digital-Interfaces/Sequential-Design",
     "equations": 0,
     "tools": []
   },

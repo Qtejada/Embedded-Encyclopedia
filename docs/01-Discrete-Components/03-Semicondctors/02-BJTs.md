@@ -518,3 +518,36 @@ import TransistorCurves from '@site/src/components/learning/TransistorCurves';
 These illustrative curves show collector current versus collector-to-emitter voltage at three base currents. The active-region slopes represent finite output resistance.
 
 The low-voltage knee marks the approach to saturation. This drawing does not model breakdown or specify a real transistor's current rating.
+
+
+## Worked example: loaded small-signal gain
+
+A small-signal model describes changes around a valid bias point. First establish the direct-current operating point and verify forward-active operation.
+
+Assume collector current Ic = 1 mA, thermal voltage Vt = 25.9 mV, and current gain beta = 100. Ignore the Early effect for this example.
+
+The transconductance is gm = Ic / Vt = 38.6 mS. The base-emitter resistance is rπ = beta / gm = 2.59 kΩ.
+
+Assume a 2 kΩ collector resistor and a 2 kΩ load. Their parallel resistance is 1 kΩ.
+
+With the emitter at signal ground, the gain from base voltage to collector voltage is approximately −gm × 1 kΩ = −38.6.
+
+A source resistance changes the voltage that reaches the base. Assume 1 kΩ source resistance and a bias network with negligible additional loading.
+
+The input divider gives 2.59 / (1 + 2.59) = 0.721. The gain from source voltage to output is approximately −27.9.
+
+### Add emitter degeneration
+
+Now assume a 100 Ω emitter resistor remains unbypassed at the signal frequency. Keep the same collector current for comparison by adjusting the bias network.
+
+The resistance seen at the base becomes approximately rπ + (beta + 1) × Re = 12.69 kΩ. The collector load remains 1 kΩ.
+
+The base-to-output gain becomes approximately −beta × 1 kΩ / 12.69 kΩ = −7.88. Including the source resistance gives approximately −7.30.
+
+Degeneration reduces gain and increases input resistance. It also reduces sensitivity to transistor parameters within the model's valid range.
+
+These estimates exclude finite output resistance and high-frequency capacitance. Coupling and bypass capacitors must have suitable impedance at the operating frequency.
+
+Check output swing separately. A mathematically large gain does not prevent cutoff or saturation when the input amplitude increases.
+
+The distinction between bias and signal changes also appears in [state-space linearization](<../../03-Signal-Modulation/State-Space.md#7-equilibrium-and-local-linearization>).

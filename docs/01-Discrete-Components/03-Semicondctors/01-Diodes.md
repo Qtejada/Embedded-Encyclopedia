@@ -168,3 +168,27 @@ For USB, HDMI, or [Ethernet](<../../04-Digital-Interfaces/Ethernet.md#1-mac-phy-
 
 Place the array **at the connector**. Use a short ground path and one via directly at the pad. This layout minimizes stub length.
 :::
+
+
+## Worked example: solve the diode operating point
+
+A constant forward drop is useful for an initial estimate. An exponential model can refine the operating point when its parameters are known.
+
+Assume a 1 V source, a 1 kΩ series resistor, and a forward-biased diode to ground. Use n = 1, thermal voltage 25.9 mV, and saturation current 1 fA.
+
+The resistor gives I = (1 V − Vd) / 1 kΩ. The diode model gives I = Is × [exp(Vd / 25.9 mV) − 1].
+
+Both equations must give the same current. One way to find the intersection is to alternate resistor-current and diode-voltage estimates.
+
+| Step | Assumed diode voltage | Resistor current | Updated diode voltage |
+| --- | --- | --- | --- |
+| 1 | 0 V | 1 mA | 0.71564 V |
+| 2 | 0.71564 V | 284.36 µA | 0.68307 V |
+| 3 | 0.68307 V | 316.93 µA | 0.68588 V |
+| Converged | Approximately 0.68567 V | Approximately 314.33 µA | Approximately 0.68567 V |
+
+The converged values satisfy the resistor and diode equations together. Extra decimal places describe the assumed model, not guaranteed device accuracy.
+
+This fixed-point iteration does not converge for every circuit. Bracketing methods provide a more reliable alternative when the residual is continuous and changes sign.
+
+Temperature, series resistance, and the chosen diode parameters can change the result. Compare the final model with the device data before using it for a design.

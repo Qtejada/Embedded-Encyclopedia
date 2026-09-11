@@ -51,3 +51,10 @@ For critical records, store a sequence number and a data check. Use a commit sch
 Check [supply sequencing](<../02-Power/Measurment/Power-good-Seq.md#1-rail-dependencies>), pin voltage, write protection, address width, and interface timing. Test startup after power removal during each write phase.
 
 For DRAM, use the controller's exact topology and timing constraints. Matching only the total trace lengths is insufficient.
+
+
+## Processor access and address translation
+
+Storage technology and processor access policy describe different parts of a memory system. Compare [cache placement](<./Processor-Memory.md#2-placement-and-associativity>) with [virtual address translation](<./Operating-Systems.md#5-virtual-pages-and-physical-frames>).
+
+A cache miss does not necessarily cause a page fault. A page fault does not necessarily require a disk read.

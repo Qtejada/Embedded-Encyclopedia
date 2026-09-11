@@ -99,3 +99,41 @@ The expression language depends on the library. Escape literal punctuation and t
 5. Check adjacent boundary and error cases.
 
 Test hardware-independent calculations on a host computer. Use a target board for peripheral timing, interrupts, and electrical behavior.
+
+
+## Pointer ownership and dynamic arrays
+
+Pointer arithmetic uses the pointed-to type's size. Adding one to an integer pointer advances by one integer, not necessarily one byte.
+
+An array can convert to a pointer in many expressions. That pointer does not retain the array length.
+
+Store the element count separately. Check bounds before dereferencing, including after a resize.
+
+For a positive requested size, a failed `realloc` leaves the original allocation intact. Use a temporary pointer so failure does not lose that allocation.
+
+A successful resize can move the object. Replace the owning pointer and discard old pointers into the allocation.
+
+Avoid zero-size resize requests. Check multiplication overflow before calculating the byte count for an array.
+
+`calloc` initializes allocated bytes to zero. This does not guarantee every possible type has its semantic zero represented by all-zero bytes.
+
+Call `free` exactly once for an owned allocation when its lifetime ends. Do not use an object after freeing it.
+
+See the [allocation contract](https://pubs.opengroup.org/onlinepubs/009696899/functions/realloc.html) for resize behavior. Real-time allocation also needs a bounded execution-time policy.
+
+### Arrays and linked structures
+
+| Structure | Useful property | Important cost |
+| --- | --- | --- |
+| Contiguous array | Direct indexed access and good spatial locality | Growth can move the allocation |
+| Singly linked list | Local insertion after a known node | Finding that node can require linear traversal |
+| Doubly linked list | Traversal in both directions | More pointers and more updates per operation |
+| Fixed ring buffer | Bounded storage for a producer and consumer | Full and empty states need explicit rules |
+
+Constant-time insertion assumes the required node is already known. It does not include a search or an unbounded allocator call.
+
+Pointer-heavy structures can increase [cache misses](<./Processor-Memory.md#1-locality-and-cache-lines>). Shared structures also require a [synchronization protocol](<./Operating-Systems.md#3-shared-updates-and-critical-sections>).
+
+`getchar` returns an int so it can represent every unsigned character value and the distinct EOF result. Compare with EOF before converting to a character.
+
+Study [RISC-V array access](<./RISC-V-Assembly.md#3-array-addresses-and-loops>) to connect pointer operations with machine instructions.

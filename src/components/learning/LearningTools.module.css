@@ -1,7 +1,8 @@
 .tool { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--hw-border); border-radius: 8px; background: var(--hw-bg-elevated, var(--ifm-background-surface-color)); }
 .tool h3 { margin: 0 0 1rem; font-size: 1.1rem; }
 .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 1rem; margin-bottom: 1rem; }
-.control { display: grid; gap: .35rem; font-size: .9rem; }
+.control { display: grid; gap: .35rem; font-size: .9rem; min-width: 0; }
+.control select { min-width: 0; width: 100%; }
 .control input[type=range] { width: 100%; accent-color: var(--ifm-color-primary); }
 .tool select, .tool button, .tool input[type=number] { font: inherit; color: var(--ifm-font-color-base); background: var(--ifm-background-color); border: 1px solid var(--hw-border); border-radius: 4px; padding: .45rem .65rem; max-width: 100%; }
 .tool button { cursor: pointer; min-height: 42px; }

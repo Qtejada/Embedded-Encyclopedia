@@ -8,6 +8,9 @@ import {inlineLinkManifest, restoreBeforeInlineLinks} from './inline-link-utils.
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+// Preserve this historical audit while allowing verified append-only additions.
+const juniorSource = new Map(JSON.parse(fs.readFileSync(path.join(root, 'scripts/junior-originals.json'))).files.map(p => [p.path, p]));
+const juniorRendered = new Map(JSON.parse(fs.readFileSync(path.join(root, 'scripts/junior-rendered-originals.json'))).map(p => [p.source, p]));
 const pages = new Map(inlineLinkManifest.pages.map(page => [page.source, page]));
 const rendered = new Map();
 const origin = 'https://example.invalid';
@@ -15,7 +18,11 @@ let count = 0;
 let reservedImages = 0;
 let byteExactArticles = 0;
 for (const page of pages.values()) {
-  const bytes = fs.readFileSync(path.join(root, page.source));
+  const current = fs.readFileSync(path.join(root, page.source));
+  const original = juniorSource.get(page.source);
+  const prefix = current.toString('utf8').replace(/\r\n/g, '\n').slice(0, original.normalized);
+  assert.equal(hash(prefix), original.normalizedSha256, `Original article prefix changed: ${page.source}`);
+  const bytes = hash(current.subarray(0, original.bytes)) === original.sha256 ? current.subarray(0, original.bytes) : Buffer.from(prefix);
   const restored = restoreBeforeInlineLinks(page.source, bytes);
   if (hash(restored) === page.beforeSha256) byteExactArticles++;
   // Git can convert CRLF and LF between Windows and the Linux Pages build.
@@ -23,9 +30,9 @@ for (const page of pages.values()) {
   assert.equal(hash(bytes.toString('utf8').replace(/\r\n/g, '\n')), page.afterNormalizedSha256, `Unexpected source change: ${page.source}`);
   const buildPath = decodeURI(page.url.replace('/Embedded-Encyclopedia/', '')).replace(/\/$/, '') + '.html';
   const dom = cheerio.load(fs.readFileSync(path.join(root, 'build', buildPath), 'utf8'));
-  assert.equal(hash(dom('article').text()), page.articleTextSha256, `Rendered article text changed: ${page.source}`);
+  assert.equal(hash(dom('article').text().slice(0, juniorRendered.get(page.source).length)), page.articleTextSha256, `Rendered original article text changed: ${page.source}`);
   const headings = dom('article h2[id], article h3[id], article h4[id]').map((_, el) => ({id: dom(el).attr('id'), text: dom(el).text().replace(/\u200b/g, '')})).get();
-  assert.deepEqual(headings, page.headings, `Subsection headings changed: ${page.source}`);
+  assert.deepEqual(headings.slice(0, page.headings.length), page.headings, `Original subsection headings changed: ${page.source}`);
   assert.equal(dom('article a a').length, 0, `Nested links: ${page.source}`);
   for (const element of dom('article img').toArray()) {
     const image = dom(element);
@@ -58,5 +65,5 @@ for (const page of pages.values()) {
     count++;
   }
 }
-console.log(`PASS: ${count} inline links reach exact subsections across ${[...pages.values()].filter(page => page.links.length).length} pages. All ${pages.size} articles reconstruct exactly apart from Git line endings (${byteExactArticles} byte-exact). Rendered article text and headings are unchanged. No duplicate destinations or nested links.`);
+console.log(`PASS: ${count} historical inline links reach exact subsections across ${[...pages.values()].filter(page => page.links.length).length} pages. All ${pages.size} original article prefixes reconstruct exactly apart from Git line endings (${byteExactArticles} byte-exact). Original rendered text and headings are unchanged. No duplicate destinations or nested links.`);
 console.log(`PASS: ${reservedImages} local PNG placements reserve their dimensions before loading.`);

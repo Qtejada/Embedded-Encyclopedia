@@ -537,3 +537,10 @@ This circuit suits compatible open-drain buses. It is not a general push-pull tr
 
 
 See [Nexperia I²C level translation](https://assets.nexperia.com/documents/application-note/AN10441.pdf) for the single-MOSFET topology and its operating states.
+
+
+## Gate timing and controller design
+
+Connect gate behavior to [CMOS load capacitance](<./CMOS-Design.md#2-capacitance-and-delay>) and [register timing](<./CMOS-Design.md#7-register-timing-and-clock-skew>).
+
+The [101 sequence detector](<./Sequential-Design.md#worked-example-detect-101>) shows how a state table becomes clocked VHDL.
