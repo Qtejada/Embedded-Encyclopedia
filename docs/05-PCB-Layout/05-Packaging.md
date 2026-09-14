@@ -7,7 +7,7 @@ sidebar_position: 7
 
 ## Wafer, die, and package
 
-A **wafer** is a semiconductor substrate that carries many repeated circuits during manufacture. A **die** is one separated circuit region.
+A **wafer** is a slice of semiconductor material on which many copies of a circuit are manufactured. Each individual circuit region becomes a **die** when separated from the wafer.
 
 A **package** protects a die and connects it to the board. It also carries heat and mechanical stress between the die and its environment.
 
@@ -22,7 +22,7 @@ Package selection affects assembly, electrical parasitics, heat flow, and repair
 
 ## Fabrication steps
 
-Fabrication repeatedly forms, patterns, and modifies thin layers. A simplified sequence includes deposition, lithography, etching, [doping](<../00-Foundations/04-Fields-and-Materials.md#energy-bands-and-doping>), and planarization.
+Chip fabrication repeatedly adds, patterns, and modifies thin layers. A simplified sequence includes depositing material, defining patterns with light (lithography), removing selected material (etching), [doping](<../00-Foundations/04-Fields-and-Materials.md#energy-bands-and-doping>), and flattening the surface (planarization).
 
 **Photolithography** transfers a pattern into a light-sensitive resist. **Etching** removes selected material after pattern formation.
 
@@ -34,7 +34,7 @@ See [ASML fabrication steps](https://www.asml.com/en/company/stories/2021/semico
 
 A process node name describes a technology generation. A name such as 3 nm does not mean every transistor dimension equals 3 nm.
 
-Optical resolution depends on wavelength, numerical aperture, and process factors. Multiple patterning and computational corrections can produce features below a simple wavelength comparison.
+Optical resolution depends on the wavelength, how much light the optics can collect (numerical aperture), and the manufacturing process. Multiple patterning steps and computational corrections can make features smaller than a simple comparison with the wavelength suggests.
 
 See [ASML computational lithography](https://www.asml.com/en/products/computational-lithography) for pattern correction methods.
 
@@ -42,7 +42,7 @@ See [ASML computational lithography](https://www.asml.com/en/products/computatio
 
 **Yield** is the fraction of manufactured units that meet the defined requirements. Defects, process variation, and test limits affect it.
 
-A larger die offers more area for defects and produces fewer dies per wafer. Exposure-field limits, power delivery, and heat removal also constrain size.
+A larger die is more likely to contain a defect, and fewer dies fit on each wafer. Its size is also limited by the fabrication equipment's exposure area, the power connections, and how effectively heat can escape.
 
 **Chiplets** divide a system among smaller dies. They can combine different processes and improve reuse. Die-to-die links add packaging, power, latency, and test requirements.
 
@@ -64,6 +64,6 @@ Several wires or wider conductors can share a high-current connection. Current s
 
 See [TI flip-chip packaging](https://www.ti.com/document-viewer/lit/html/SSZT078/GUID-58E62D19-D5C5-443C-8A27-321FE9515B58).
 
-Package resistance produces a voltage drop under load. Package inductance produces voltage change when current changes. Local die ground can differ from board ground.
+Package resistance causes voltage drop when current flows. Package inductance causes voltage changes when that current changes quickly. As a result, the ground voltage at the die can differ from the ground voltage on the board.
 
 Use the package power network, board planes, and decoupling as one system. A board-level ground label does not remove interconnect impedance.

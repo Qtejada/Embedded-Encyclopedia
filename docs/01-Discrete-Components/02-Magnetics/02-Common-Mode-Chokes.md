@@ -1,6 +1,5 @@
 # Common-Mode Chokes
 
-Notes coming soon...
 
 
 import LearningEquation from '@site/src/components/LearningEquation';
@@ -13,7 +12,7 @@ A **common-mode choke** has coupled windings on one core. Each line passes throu
 * **Differential-mode current** travels toward the load in one line and returns in the other line.
 * **Common-mode current** travels in the same direction in both lines. It returns through another path, such as chassis capacitance.
 
-With the intended winding polarity, differential flux largely cancels. Common-mode flux adds and produces a higher impedance.
+When the windings are connected with the correct polarity, the magnetic fields from the normal outgoing and returning currents mostly cancel. Currents flowing in the same direction in both wires make their fields add, so the choke opposes those common-mode currents more strongly.
 
 For two line voltages measured against the same reference:
 
@@ -35,7 +34,7 @@ import PassiveDesignExplorer from '@site/src/components/PassiveDesignExplorer';
 4. Check winding current, resistance, voltage, and temperature limits.
 5. Check the component pinout and winding polarity before routing.
 
-Real chokes have [leakage inductance](<./01-Transformers.md#3-real-transformer-limits>) and capacitance. They can attenuate or distort the wanted signal. Current imbalance can also reduce the available magnetic margin.
+Real chokes also have [leakage inductance](<./01-Transformers.md#3-real-transformer-limits>) and capacitance, which can weaken or distort the wanted signal. Unequal line currents can leave more net flux in the core, reducing the margin before saturation.
 
 [Coilcraft, common-mode filter selection](https://www.coilcraft.com/en-us/resources/application-notes/selecting-common-mode-filter-chokes-for-high-speed/) explains the separate common-mode and differential-mode checks.
 

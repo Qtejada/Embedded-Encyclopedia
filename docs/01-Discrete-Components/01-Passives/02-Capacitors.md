@@ -26,7 +26,7 @@ A capacitor opposes a change in **voltage**. An inductor opposes a change in **c
 
 Ideally, a capacitor acts like a frequency-dependent resistor.
 
-The precise AC term for this frequency-dependent opposition is **impedance**.
+This opposition to AC current is called **impedance**. For a capacitor, it changes with frequency.
 
 :::
 
@@ -65,7 +65,7 @@ These rules apply to an ideal capacitor:
 
 A real capacitor has **equivalent series inductance (ESL)** from its leads and internal construction.
 
-At sufficiently high frequencies, ESL controls the impedance. The capacitor then behaves like an **inductor** instead of a short circuit.
+At high enough frequencies, the capacitor's equivalent series inductance (ESL) has the largest effect. The component then behaves like an **inductor** rather than a short circuit.
 
 :::
 
@@ -97,7 +97,7 @@ Compensation capacitors also determine the **[phase margin](<../../03-Signal-Mod
 
 ## 4. RC Time Constants
 
-A capacitor does not charge instantly through a resistor. The capacitor voltage follows an exponential curve.
+Charging through a resistor takes time. The capacitor voltage changes quickly at first, then slows as it approaches its final value. This is an exponential curve.
 
 * **Time constant:** *τ (tau) = R · C*
 * **Charge equation:** *v<sub>C</sub>(t) = V<sub>S</sub> · (1 - e<sup>-t/τ</sup>)*
@@ -106,7 +106,7 @@ A capacitor does not charge instantly through a resistor. The capacitor voltage 
 
 * **1τ:** The capacitor is 63% charged.
 * **3τ:** The capacitor is 95% charged.
-* **5τ:** The capacitor is approximately 99% charged. Engineers usually treat this condition as fully charged.
+* **5τ:** The capacitor is about 99% charged. Engineers usually treat this condition as fully charged.
 
 <CapacitorChargeCurve />
 
@@ -177,7 +177,7 @@ The output is proportional to the **accumulation** of the input.
 
 ## 7. Dielectric Types
 
-The dielectric material controls capacitance, stability, loss, physical size, and voltage performance.
+The dielectric is the insulating material between the plates. It affects capacitance, stability, loss, size, and how much voltage the capacitor can withstand.
 
 <div className="capacitor-table">
 
@@ -205,7 +205,7 @@ These parasitic properties change power-supply design and high-speed circuit des
 **Equivalent series resistance (ESR)** includes resistance in the plates and leads. It also represents dielectric losses.
 
 * **Heat generation:** Ripple current through ESR produces heat. The relation is *P = I² · ESR*. Excessive ripple current can overheat a high-ESR electrolytic capacitor and make it rupture or pop.
-* **Voltage ripple:** ESR frequently determines power-supply output ripple. The relation is *V<sub>ripple</sub> = I<sub>load</sub> × ESR*. Lower ESR gives cleaner power.
+* **Voltage ripple:** ESR often determines power-supply output ripple. The relation is *V<sub>ripple</sub> = I<sub>load</sub> × ESR*. Lower ESR gives cleaner power.
 * **Regulator stability:** Some older low-dropout ([LDO](<../../02-Power/Regulation/04-LDOs.md#1-linear-regulation>)) regulators require a small ESR value for stable operation. Replacing their tantalum capacitor with a near-zero-ESR ceramic can cause oscillation.
 
 ### Equivalent Series Inductance
@@ -219,13 +219,13 @@ These parasitic properties change power-supply design and high-speed circuit des
 
 Because of ESL, a capacitor remains capacitive only below its **self-resonant frequency (SRF)**.
 
-1. **Down Slope (Capacitive):** Impedance decreases as frequency increases. This is normal capacitor behavior.
+1. **Down Slope (Capacitive):** Impedance falls as frequency rises. This is normal capacitor behavior.
 2. **The Bottom (Resistive):** Impedance reaches its minimum at self-resonance. In the simple series model, this minimum equals **ESR**.
 3. **Up Slope (Inductive):** Above SRF, ESL controls the impedance, and impedance is **rising**. The capacitor is effectively an **inductor** and filters high-frequency noise less effectively.
 
 :::tip Design Tip: Parallel Capacitors
 
-Engineers frequently connect a **10 µF bulk capacitor** and a **0.1 µF ceramic capacitor** in parallel.
+Engineers often connect a **10 µF bulk capacitor** and a **0.1 µF ceramic capacitor** in parallel.
 
 * The large capacitor handles low-frequency current changes.
 * The small capacitor handles high-frequency current changes because it has lower ESL and a higher SRF.
@@ -236,9 +236,9 @@ The combination covers a wider frequency range than one capacitor.
 
 ## 9. Other Nonideal Properties
 
-Real capacitors are not only capacitance, or **C**. They also have leakage, dielectric memory, and physical sensitivity.
+Capacitance, or **C**, is only part of the picture. Real capacitors also leak charge, can retain some memory of an earlier voltage, and can respond to physical movement or stress.
 
-If you ignore these properties, the precision circuit will not operate correctly.
+In a precision circuit, these effects can create large enough errors to stop the circuit from meeting its requirements.
 
 ### A. Dielectric Absorption
 
@@ -250,16 +250,16 @@ The capacitor voltage then **creeps back up**.
 
 * **The Physics:** Some charge remains trapped deep inside the dielectric and releases slowly.
 * **The Consequence:** This effect prevents precision **[sample-and-hold](<../../03-Signal-Modulation/Data-convertes/Sample-holding.md#1-basic-circuit>) circuits** and long-period **integrators** from operating correctly. The capacitor retains its previous voltage history.
-* **The Fix:** Do not use electrolytic or high-K X7R ceramic capacitors for precision timing. Use **polypropylene (PP)** or **polystyrene (PS)** film capacitors.
+For precision timing, use **polypropylene (PP)** or **polystyrene (PS)** film capacitors rather than electrolytic or high-K X7R ceramic parts, whose stored-voltage errors can be too large.
 
 ### B. Piezoelectric Effects and Microphonics
 
-Multilayer ceramic capacitors (MLCCs) with high-K dielectrics are piezoelectric. Examples include **X7R**, **Z5U**, and **Y5V**.
+High-K dielectrics allow a large capacitance in a small part, but multilayer ceramic capacitors (MLCCs) that use them are piezoelectric: mechanical strain and electrical voltage can affect one another. Examples include **X7R**, **Z5U**, and **Y5V**.
 
 1. **Microphone effect:** If you tap the PCB, the capacitor generates a voltage spike. This effect causes problems in high-gain audio preamplifiers and vibration-sensitive sensor circuits.
 2. **Speaker effect:** An audio-frequency voltage makes the capacitor vibrate. This effect causes audible whining, or a singing capacitor, in power supplies.
 
-* **The Fix:** Use **C0G / NP0 Class 1 ceramic** or film capacitors in sensitive signal paths. These dielectrics are not piezoelectric.
+Use **C0G / NP0 Class 1 ceramic** or suitable film capacitors in sensitive signal paths to avoid this piezoelectric behavior.
 
 ### C. Leakage and Insulation Resistance
 
@@ -270,7 +270,7 @@ Every capacitor has an effective parallel leakage resistance, *R<sub>leak</sub>*
 
 ### D. Detailed Film-Capacitor Selection
 
-The term **film capacitor** is too broad because it includes different dielectric materials. *The Art of Electronics* distinguishes these materials carefully.
+The label **film capacitor** is not enough to choose a part, because different film materials behave differently. *The Art of Electronics* distinguishes between these dielectrics for that reason.
 
 <div className="capacitor-table">
 
@@ -278,7 +278,7 @@ The term **film capacitor** is too broad because it includes different dielectri
 | :--- | :--- | :--- | :--- |
 | **Polyester** | **PET / Mylar** | Low cost, generic performance, and high dielectric absorption. | General coupling and decoupling when precision is not necessary. |
 | **Polypropylene** | **PP** | Low loss and low dielectric absorption. | Precision timing, high-power pulses, and high-quality audio. |
-| **Polystyrene** | **PS** | The former **king of precision** is extremely stable but difficult to obtain. It melts easily during soldering. | Traditional precision circuits. C0G and PP now frequently replace it. |
+| **Polystyrene** | **PS** | The former **king of precision** is extremely stable but difficult to obtain. It melts easily during soldering. | Traditional precision circuits. C0G and PP now often replace it. |
 | **Polycarbonate** | **PC** | Good temperature stability. | Mostly obsolete and difficult to obtain. |
 
 </div>
@@ -291,8 +291,8 @@ Why do they not use one 10.1 µF capacitor?
 
 **Reason:** The two capacitors have different **ESL** values.
 
-* The **10 µF** capacitor has high ESL. Above approximately 1 MHz, it becomes inductive and acts like an open circuit to high-frequency noise.
-* The **0.1 µF** capacitor has low ESL. It stays capacitive to approximately 100 MHz and filters noise that the large capacitor does not remove.
+* The **10 µF** capacitor has high ESL. Above about 1 MHz, it becomes inductive and acts like an open circuit to high-frequency noise.
+* The **0.1 µF** capacitor has low ESL. It stays capacitive to about 100 MHz and filters noise that the large capacitor does not remove.
 
 :::tip Design Rule
 
@@ -310,11 +310,11 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 <LearningEquation tex={"C_{effective}=10\\ \\mu F\\times0.8\\times0.6=4.8\\ \\mu F"} />
 
-A circuit that requires at least 6 µF does not meet that requirement with this example part.
+A circuit that needs at least 6 µF does not meet that requirement with this example part.
 
 The 60% factor is illustrative. Obtain the actual bias and temperature curves for the exact part number.
 
-Do not multiply separate factors if the manufacturer's combined curve already includes the same effect. Include aging when it applies to the dielectric.
+Check what each manufacturer's curve already includes before multiplying correction factors, or you may count the same effect twice. Include aging if it affects the dielectric.
 
 Check the resulting capacitance against the regulator's stability range. Check ripple current and voltage limits separately.
 

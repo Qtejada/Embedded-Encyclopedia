@@ -12,7 +12,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 A **digital-to-analog converter (DAC)** changes a digital code into a proportional analog voltage or current.
 An **analog-to-digital converter (ADC)** samples an analog input and reports it as a digital code.
-This page explains the shared conversion limits, the principal DAC and ADC architectures, and the circuits that connect converters to real systems.
+This page covers what limits conversion accuracy and speed, how the main DAC and ADC types work, and how to connect them to the rest of a circuit.
 
 :::note Source-note references
 The original notes refer to Figure 13.9, Table 13.4, Section 13.9 (&sect;13.9), and Figure 13.29. The supplied image archives do not contain those exact items. This page keeps these references as source-note pointers and does not replace them with unrelated images.
@@ -24,7 +24,7 @@ A **digital-to-analog converter (DAC)** converts a binary or [binary-coded decim
 The analog output is proportional to the digital input value.
 
 DACs differ in resolution, accuracy, speed, reference type, output structure, and digital interface.
-Select the architecture and the device from the requirements of the application.
+Choose the DAC type and part to suit what your circuit needs.
 
 ---
 
@@ -36,8 +36,7 @@ Select the architecture and the device from the requirements of the application.
 An <i>n</i>-bit DAC has 2<sup>n</sup> possible input codes.
 The resolution determines the smallest ideal output step.
 
-Let <i>V<sub>span</sub></i> be the nominal reference or code span.
-For a unipolar converter, this span extends from 0 V to the nominal positive endpoint.
+Here, <i>V<sub>span</sub></i> is the voltage range used to calculate the ideal step size. For a unipolar converter, it runs from 0 V to the nominal positive endpoint.
 The digital code has 2<sup><i>n</i></sup> possible values from 0 through 2<sup><i>n</i></sup> - 1.
 
 The ideal value of one least significant bit (**LSB**) is:
@@ -62,19 +61,19 @@ Monotonicity does not require each step to have the ideal size.
 
 #### Linearity
 
-**Linearity** specifies how closely the DAC transfer function follows a straight line.
+**Linearity** describes how closely the output follows a straight line when plotted against the input code.
 Datasheets usually specify integral non-linearity (**INL**) in LSB or as a fraction of full scale.
 
 For a 12-bit DAC with a 5 V span, an INL limit of &plusmn;0.5 LSB is:
 
 > **INL = &plusmn;0.5 &times; 1.2207 mV = &plusmn;0.610 mV**
 
-**Differential non-linearity (DNL)** specifies the error in each code-to-code step.
+**Differential non-linearity (DNL)** describes how far each output step differs from the ideal step size.
 The later precision section gives more information about INL and DNL.
 
 #### DC Stability
 
-**DC stability** specifies how the output changes with time and temperature.
+**DC stability** describes how much the output changes with time and temperature when the input code stays the same.
 Include reference drift, gain drift, offset drift, and output-amplifier drift in a precision error budget.
 
 ---
@@ -95,7 +94,7 @@ Its output is proportional to both the reference signal and the digital code.
 
 A DAC can have a **voltage output** or a **current output**.
 A voltage-output DAC usually includes an output amplifier.
-A current-output DAC usually requires an external resistor or a current-to-voltage amplifier.
+A current-output DAC usually needs an external resistor or a current-to-voltage amplifier.
 
 #### Output Impedance and Loading
 
@@ -137,12 +136,12 @@ The output range can be:
 * **Unipolar**, such as 0 V to a positive full-scale voltage.
 * **Bipolar**, such as a range from a negative voltage to a positive voltage.
 
-For a voltage-output DAC, check the permitted <i>V<sub>out</sub></i> range.
+For a voltage-output DAC, check the allowed <i>V<sub>out</sub></i> range.
 For a current-output DAC, check the output-current range and the **compliance-voltage** limit.
 
 #### Speed
 
-**Settling time** is the time that the output requires to enter and remain in a specified error band after a code change.
+**Settling time** is the time that the output needs to enter and remain in a specified error band after a code change.
 
 **Update rate** is the maximum rate at which the DAC can accept or apply new codes.
 The update rate and the settling time are different specifications.
@@ -152,7 +151,7 @@ The update rate and the settling time are different specifications.
 The digital interface can be:
 
 * **Serial**, such as I<sup>2</sup>C or [SPI](<../../04-Digital-Interfaces/Serial-Buses/02-SPI.md#1-clocked-serial-communication>).
-* **Parallel**, which can be faster but requires more pins.
+* **Parallel**, which can be faster but needs more pins.
 
 Check whether the input is latched.
 Also check compatibility with CMOS, [TTL](<../../04-Digital-Interfaces/DigitalGeneral.md#logic-levels>), or ECL logic when these logic families apply.
@@ -195,8 +194,8 @@ The resistor string makes a sequence of voltage taps.
 ### 4. R-2R Ladder DACs
 
 An **R-2R ladder DAC** uses a repeating network of resistors with values <i>R</i> and 2<i>R</i>.
-The architecture requires approximately 2<i>n</i> resistors for an <i>n</i>-bit DAC.
-A resistor-string DAC requires 2<sup>n</sup> resistors.
+The architecture needs about 2<i>n</i> resistors for an <i>n</i>-bit DAC.
+A resistor-string DAC needs 2<sup>n</sup> resistors.
 
 The R-2R architecture greatly reduces the component count.
 Its accuracy depends on a precise 2:1 resistor ratio.
@@ -228,7 +227,7 @@ Current-steering architectures are common in very-high-speed DACs.
 
 A standard voltage-output DAC can use a fixed internal reference, such as 2.5 V.
 An **MDAC** uses an external reference input.
-The external reference can change while the DAC operates.
+The reference can be a changing signal, not just a fixed voltage.
 
 For an ideal unipolar <i>n</i>-bit MDAC, the magnitude of the output is proportional to:
 
@@ -254,7 +253,7 @@ Standard unipolar DAC connections do not provide four-quadrant operation by them
 
 The **reference bandwidth** specifies how fast the signal at the reference input can change.
 For example, a 10 MHz reference bandwidth permits the DAC to scale a 10 MHz sine wave when the other operating limits are satisfied.
-Insufficient reference bandwidth causes amplitude error or distortion.
+If the reference bandwidth is too low for the signal, the output amplitude will be wrong or the waveform will be distorted.
 
 ---
 
@@ -268,7 +267,7 @@ It can reduce errors from a supply that changes.
 Consider a sensor, such as a thermistor circuit, that operates from a 5 V supply.
 
 1. The 5 V supply increases to 5.1 V.
-2. This change is an increase of approximately 2%.
+2. This change is an increase of about 2%.
 3. The sensor output also increases by 2%.
 4. A measuring converter with a separate, stable 5.0 V reference sees the higher sensor voltage.
 5. The converter can incorrectly indicate that the measured condition changed.
@@ -299,7 +298,7 @@ The same ratio principle also applies to DAC systems that share a reference with
 
 ### 8. Interfacing a Current-Output DAC
 
-A current-output DAC usually requires a circuit that converts current into a usable voltage.
+A current-output DAC usually needs a circuit that converts current into a usable voltage.
 
 #### Passive Resistor to Ground
 
@@ -308,8 +307,7 @@ Ohm's law gives the output voltage:
 
 > **V = I &times; R**
 
-The resistor value sets the current-to-voltage scale.
-The DAC output must remain inside its compliance-voltage range.
+The resistor sets how much output voltage you get for each unit of current. Keep the DAC output within its compliance-voltage range, where it can maintain the intended current.
 
 ##### Why Load Capacitance Matters
 
@@ -330,33 +328,25 @@ The resistor and capacitance form a first-order low-pass response:
 
 * **Time constant:** &tau; = R &times; C.
 * **Cutoff frequency:** f<sub>c</sub> = 1 / (2&pi;RC).
-* **Step settling:** After one time constant, the voltage has completed approximately 63% of its change. About 6.9 time constants are necessary to settle within 0.1% of the step size.
+* **Step settling:** After one time constant, the voltage has completed about 63% of its change. About 6.9 time constants are needed to settle within 0.1% of the step size.
 
 **Example:** Assume a DAC current step from 0 to 1 mA, a 1 k&Omega; resistor, and an initially discharged capacitance.
 The final voltage is 1 V, if this voltage is inside the DAC compliance range.
 
 | Total capacitance | Time constant | Cutoff frequency | Time to settle within 0.1% |
 | --- | --- | --- | --- |
-| 100 pF | 0.1 &micro;s | Approximately 1.59 MHz | Approximately 0.69 &micro;s |
-| 10 nF | 10 &micro;s | Approximately 15.9 kHz | Approximately 69 &micro;s |
+| 100 pF | 0.1 &micro;s | About 1.59 MHz | About 0.69 &micro;s |
+| 10 nF | 10 &micro;s | About 15.9 kHz | About 69 &micro;s |
 
-These values describe only the ideal resistor-capacitor response.
-The DAC's own settling time and other circuit effects can add error.
-If another code update occurs before the voltage settles, the previous transition still affects the output.
-For a sine wave, the same response reduces amplitude and adds phase lag as frequency increases.
+These values cover only the ideal resistor-capacitor response. The DAC's own settling time and other circuit effects can add error. If a new code arrives too soon, the output is still catching up with the previous one. For a sine wave, the same response reduces amplitude and delays phase more as frequency rises.
 
-A larger resistor gives more voltage for the same current, but it also increases the time constant for a fixed capacitance.
-A smaller resistor improves this response speed, but gives less output voltage.
-Therefore, "low capacitance" depends on the resistor value, signal bandwidth, and permitted settling error. It is not one fixed capacitance limit.
+A larger resistor gives more voltage for the same current, but takes longer to settle with the same capacitance. A smaller resistor responds faster but gives less output voltage. Whether capacitance is low enough therefore depends on the resistor, signal bandwidth, and allowed settling error, not on one fixed capacitance limit.
 
 #### Transimpedance Amplifier
 
-Use an op-amp **[transimpedance amplifier](<../Amplifiers/01-op-amps.md#7-transimpedance-amplifier>) (TIA)** for a large load capacitance or a large output-voltage swing.
-The op-amp operates in a transresistance configuration and converts the DAC current into voltage.
+An op-amp **[transimpedance amplifier](<../Amplifiers/01-op-amps.md#7-transimpedance-amplifier>) (TIA)** can handle more capacitance at the DAC node or produce a larger output-voltage swing. It converts current to voltage, a function also called transresistance.
 
-With stable negative feedback, the TIA keeps the DAC node close to a fixed reference voltage.
-The capacitance at that node then needs much less change in charge during a code transition.
-The feedback resistor sets the current-to-voltage scale while the op-amp output provides the voltage swing.
+Stable negative feedback holds the DAC node near a fixed reference voltage, so its capacitance needs much less change in charge when the code changes. The op-amp gives the changing output voltage instead, with the feedback resistor setting the current-to-voltage scale.
 
 **Capacitance still matters in a TIA.** Capacitance at the DAC node changes the feedback response and can cause ringing or oscillation.
 A voltage-feedback op-amp may need a small capacitor across its feedback resistor for [stability correction](<../Amplifiers/01-op-amps.md#stability-correction>).
@@ -388,19 +378,15 @@ Many current-output DACs include a **feedback resistor** that is closely matched
 Use this resistor as the feedback element for the external op-amp when the datasheet specifies this connection.
 This is the feedback-resistor connection identified as Figure 13.9 in the source notes.
 
-An unmatched external discrete resistor can produce a gain error as large as &plusmn;25%.
-Trimming can remove the initial gain error.
-It does not remove the temperature-coefficient mismatch.
-The residual gain drift can be approximately 100 times worse than the drift obtained with the matched internal resistor.
+An unmatched external resistor can give a gain error as large as &plusmn;25% in the source example. Trimming can correct the initial gain, but cannot make the resistor track the DAC with temperature. The remaining gain drift can be about 100 times worse than with the matched internal resistor.
 
 ---
 
 ### 9. Delta-Sigma DACs
 
-A **delta-sigma DAC** uses [oversampling](<../Filters/Digital-filters.md#23-oversampling>) and noise shaping.
-The modulator can use a 1-bit output or a multibit output.
+A **delta-sigma DAC** combines [oversampling](<../Filters/Digital-filters.md#23-oversampling>) with noise shaping, which pushes much of the quantization noise away from the wanted frequencies. Its modulator may use a 1-bit or multibit output.
 
-For a 1-bit variant, the conversion occurs in these steps:
+For a 1-bit variant, the conversion happens in these steps:
 
 1. The converter operates at a high clock rate.
 2. Each output pulse has the same width.
@@ -414,14 +400,11 @@ Delta-sigma DACs are widely used in professional audio.
 Multibit variants use more than two internal output levels.
 The **ADI AD1955** is a multibit delta-sigma DAC.
 It supports 24-bit PCM audio with sample rates as high as 192 kHz.
-Its specified stereo dynamic range is 120 dB for the applicable test conditions.
+Its specified stereo dynamic range is 120 dB for the relevant test conditions.
 
 #### The "1-Bit DAC" Name
 
-Some delta-sigma DACs are called **1-bit DACs** because their output stage has only HIGH and LOW states.
-This name does not describe the effective output resolution.
-The delta-sigma process can produce a highly linear output with a large effective resolution and a dynamic range of approximately 120 dB.
-The name does not apply to a multibit delta-sigma output stage.
+Some delta-sigma DACs are called **1-bit DACs** because their output stage switches between only HIGH and LOW. The final resolution comes from the sequence over time, not just one state. This can give high linearity, high effective resolution, and dynamic range around 120 dB. A multibit output stage uses more than two levels and is not a 1-bit DAC.
 
 ---
 
@@ -435,7 +418,7 @@ It also connects naturally to digital counters and power switches such as MOSFET
 
 #### Resolution and Bandwidth Trade-Off
 
-A high-resolution PWM output requires a large number of timing steps, <i>N</i>.
+A high-resolution PWM output needs a large number of timing steps, <i>N</i>.
 The timer has a maximum clock frequency, <i>f<sub>clk</sub></i>.
 The PWM cycle frequency is:
 
@@ -444,7 +427,7 @@ The PWM cycle frequency is:
 An increase in <i>N</i> increases resolution.
 It also decreases the PWM cycle frequency and the available signal bandwidth.
 
-If the PWM DAC operates in a feedback loop, the lower cycle frequency reduces the possible loop bandwidth and loop gain.
+If PWM is part of a feedback loop, a lower cycle frequency also limits how quickly and strongly that loop can correct changes, reducing the available loop bandwidth and gain.
 
 ---
 
@@ -455,8 +438,8 @@ If the PWM DAC operates in a feedback loop, the lower cycle frequency reduces th
 In a high-precision system, the DAC IC is not always the largest source of error.
 The external **voltage reference** is often the largest source of noise and drift.
 
-A high-quality reference can have approximately 2 &micro;V of low-frequency noise.
-The op-amps that buffer it can contribute only approximately 0.1 &micro;V.
+A high-quality reference can have about 2 &micro;V of low-frequency noise.
+The op-amps that buffer it can contribute only about 0.1 &micro;V.
 
 Use an RC filter to reduce reference noise.
 For very low noise, multiple references can operate in parallel to average their uncorrelated noise.
@@ -469,25 +452,24 @@ An integrated DAC, such as the **LTC2656**, includes the voltage reference and o
 Advantages include:
 
 * One supply can operate the complete device.
-* The design requires few or no external parts.
+* The design needs few or no external parts.
 * The circuit and PCB layout are simpler.
 
 Limitations include:
 
-* The noise can be approximately four times higher than the noise of a custom discrete design.
+* The noise can be about four times higher than the noise of a custom discrete design.
 * The drift can be worse than the drift of a design that uses selected external parts.
 
 A discrete precision design can use an MDAC, an external ultra-low-noise reference, and precision op-amps.
 This design can give lower noise and better stability.
-It requires more PCB area and more design work.
+It needs more PCB area and more design work.
 
 #### Bootstrapping and Guarding
 
 A large filter capacitor can have leakage current.
 This leakage can cause an error in a precision reference circuit.
 
-Bootstrap the lower terminal of the capacitor to make the DC voltage across the capacitor approximately 0 V.
-Zero DC voltage produces approximately zero DC leakage current through the capacitor.
+Bootstrap the capacitor's lower terminal so it follows the upper terminal's DC voltage. With about 0 V across the capacitor at DC, its DC leakage current becomes very small.
 
 #### Kelvin Connections
 
@@ -497,10 +479,7 @@ This connection prevents PCB trace resistance from adding to the measured resist
 
 #### Double Buffering
 
-A multi-channel DAC can use **double buffering**.
-Load the new data into all channels one channel at a time.
-Apply all channel changes at the same time with a common update command.
-This operation prevents timing skew between the outputs.
+With **double buffering**, you load new values into the DAC channels one at a time without changing their outputs yet. One common update command then applies them together, avoiding the timing difference that separate channel writes would create.
 
 #### Inductive Loads and Loop Stability
 
@@ -513,9 +492,7 @@ Verify stability across the complete load and operating range.
 
 #### Bandwidth Limiting
 
-A **quasi-static** application changes slowly.
-Intentionally limit its bandwidth when fast response is not necessary.
-For example, a 1 kHz roll-off can reduce high-frequency reference noise and DAC glitches.
+A **quasi-static** application is one where values change slowly. If fast response is unnecessary, deliberately limit bandwidth. A 1 kHz roll-off, for example, can reduce high-frequency reference noise and DAC glitches.
 
 ---
 
@@ -534,7 +511,7 @@ For an ideal DAC:
 
 With high DNL, some steps are too small and other steps are too large.
 The DAC is non-monotonic if an input-code increase causes the output to decrease.
-This condition occurs when DNL is less than -1 LSB.
+This happens when DNL is less than -1 LSB.
 
 ##### Effect in a Control Loop
 
@@ -554,9 +531,7 @@ This repeated behavior is a **limit cycle**.
 **INL** measures the deviation of the complete transfer function from a straight line.
 INL is important when the DAC must produce an accurate absolute voltage.
 
-All individual steps can have nearly equal size while the complete transfer curve is bowed.
-The accumulated error can be large near midscale.
-This bowed transfer curve is sometimes called the **banana effect**.
+Each individual step can be close to the correct size while their small errors accumulate into a bowed transfer curve. The largest overall error may occur near midscale. This curved shape is sometimes called the **banana effect**.
 
 INL is important in **set-and-forget applications**, such as calibration references.
 These applications require accurate absolute output voltage.
@@ -576,7 +551,7 @@ Do not assume that an audio DAC is suitable for a precision DC or control applic
 
 * A missing DNL specification can indicate that the DNL is large.
 * Audio operation can tolerate DNL that is unacceptable in a precision DC system.
-* A control loop or precision voltage-setting circuit requires guaranteed monotonic behavior.
+* A control loop or precision voltage-setting circuit needs guaranteed monotonic behavior.
 * High DNL can cause control-loop instability.
 * A missing DNL specification is a reason to reject the device for these applications.
 * Audio DAC gain drift can also be too large for accurate DC output.
@@ -600,12 +575,12 @@ Some devices also have good DC specifications.
 The **TI DAC1220** is an example.
 
 Check broadband noise and clock noise.
-The DAC1220 has a noise density of approximately 1000 nV/&radic;Hz.
-A resistor-ladder DAC can have a noise density of approximately 10 nV/&radic;Hz.
+The DAC1220 has a noise density of about 1000 nV/&radic;Hz.
+A resistor-ladder DAC can have a noise density of about 10 nV/&radic;Hz.
 
 #### Medium Speed and High Accuracy
 
-Use an **R-2R ladder** or a **linear-resistor ladder** when the design requires medium speed and high accuracy.
+Use an **R-2R ladder** or a **linear-resistor ladder** when the design needs medium speed and high accuracy.
 
 Examples include:
 
@@ -638,9 +613,9 @@ Use this checklist to make sure that the selected component meets all design con
 3. **Accuracy:** Check INL, DNL, monotonicity, gain error, offset error, and the need for external trimming.
 4. **Input structure:** Select a parallel or serial format.
    Check whether the input is latched.
-   Check CMOS, TTL, or ECL logic compatibility when applicable.
+   Check CMOS, TTL, or ECL logic compatibility when relevant.
 5. **Reference:** Select an internal or external reference.
-   Determine whether the design requires MDAC operation.
+   Determine whether the design needs MDAC operation.
 6. **Output structure:** Select a current or voltage output.
    Check the output range and the compliance-voltage limit.
 7. **Power:** Check the required supply voltages and the total power dissipation.
@@ -667,14 +642,14 @@ Applications include:
 
 ### 1. ADC Selection
 
-An **analog-to-digital converter (ADC)** converts an analog signal into a digital code. In most designs, you will use a commercial ADC. You will not build the ADC from discrete components. However, knowledge of the internal architecture helps you prevent architecture-specific problems.
+An **analog-to-digital converter (ADC)** turns an analog signal into a digital code. You will usually buy an ADC rather than build one from discrete components, but understanding what happens inside helps you choose and drive it correctly.
 
 Start the selection process with the ADC as a **black box**. Use this checklist:
 
 - **Performance:** Examine speed, accuracy, and resolution.
 - **Resolution:** Specify the required number of bits.
 - **Accuracy:** Examine monotonicity, missing codes, linearity, and DC stability.
-- **Reference:** Decide if the design requires an internal reference or an external reference.
+- **Reference:** Decide if the design needs an internal reference or an external reference.
 - **Input scaling:** Select a unipolar input range or a bipolar input range.
 - **Speed:** Examine conversion time, throughput, and latency. Throughput is the completed-sample rate. Latency is the delay from an input sample to its digital result.
 - **Digital output interface:** Select a parallel interface, a serial interface such as [I2C](<../../04-Digital-Interfaces/Serial-Buses/03-I2C.md#1-shared-clock-and-data>) or SPI, or a high-speed interface such as LVDS.
@@ -700,7 +675,7 @@ For resolutions greater than 16 bits, **delta-sigma ADCs** are the common choice
 
 The **AKM AK5384** is an example. It is a 24-bit audio ADC with a 96 ksps sample rate.
 
-Audio ADCs can have excellent dynamic range. However, they can have poor DC specifications or no guaranteed DC specifications. Do not select an audio ADC for a DC measurement only from its bit depth or dynamic-range specification.
+An audio ADC can distinguish very small AC signals from noise while having poor or unspecified DC accuracy. Bit depth and dynamic range alone do not make it a good choice for measuring a steady voltage.
 
 For resolutions of 16 bits or less, **successive-approximation register (SAR) ADCs** are highly usable.
 
@@ -712,7 +687,7 @@ The **ADI AD7690** is an 18-bit SAR ADC with a 400 ksps sample rate. This sample
 
 #### High Speed: Hundreds of Megasamples per Second
 
-Use a **pipelined flash-derived ADC** or another multistage subranging architecture, such as a half-flash design. This architecture gives high throughput. A typical pipeline can add latency of approximately 10 sample intervals.
+A **pipelined flash-derived ADC**, or another multistage design such as half-flash, breaks conversion into smaller steps. This can produce completed results at a high rate, although each sample takes time to pass through the stages. A typical pipeline can delay a result by about 10 sample intervals.
 
 Examples:
 
@@ -743,7 +718,7 @@ The conversion process divides a waveform in two dimensions:
 
 #### Bit Depth
 
-The **bit depth** specifies the number of available output codes. It determines the voltage resolution of each sample.
+**Bit depth** tells you how many bits describe each sample, and therefore how many output codes are available. More codes divide the voltage range into smaller steps.
 
 An <em>n</em>-bit ADC has:
 
@@ -764,11 +739,11 @@ The approximate relation is:
 
 > **Dynamic range:** <em>DR</em> &approx; 6<em>n</em> dB
 
-A 16-bit **CD audio** system has an ideal dynamic range of approximately:
+A 16-bit **CD audio** system has an ideal dynamic range of about:
 
 > 16 &times; 6 = 96 dB
 
-This range extends from the largest possible signal at **0 dBFS** to the smallest signal that is above the ideal quantization-noise floor.
+Here, dynamic range compares the largest signal, at **0 dBFS** (full scale), with the smallest signal above the ideal quantization-noise floor. It describes how wide a range of signal levels can be represented above that noise.
 
 #### Quantization Error
 
@@ -798,7 +773,7 @@ The interactive explorer below applies the same resolution and quantization rela
 
 #### Effective Number of Bits
 
-The marked resolution does not specify the number of useful bits. Noise and nonlinearity can corrupt the least-significant bits.
+The number of bits printed on the part does not tell you how many are useful in a measurement. Noise and nonlinearity can obscure changes in the lowest bits.
 
 **Effective number of bits (ENOB)** gives a more useful measure of real converter performance. For example, a device that is sold as a 16-bit ADC can have an ENOB of only 14 bits. In this case, random noise dominates the two least-significant bits.
 
@@ -806,27 +781,27 @@ The marked resolution does not specify the number of useful bits. Noise and nonl
 
 #### Nyquist criterion
 
-A band-limited waveform can be reconstructed correctly only when the sample rate is greater than twice the highest frequency component in the input:
+Sample faster than twice the highest frequency you want to measure. For a 0–20 kHz signal, that means more than 40 kS/s (40,000 samples per second).
 
-> <em>f</em><sub>s</sub> &gt; 2<em>f</em><sub>max</sub>
+> **f<sub>s</sub> &gt; 2f<sub>max</sub>**
 
-Here, <em>f</em><sub>s</sub> is the sample rate and <em>f</em><sub>max</sub> is the highest input frequency.
+Here, **f<sub>s</sub>** is the sample rate and **f<sub>max</sub>** is the highest signal frequency. This assumes unwanted higher frequencies have been filtered out.
+
+The *Nyquist rate* is twice the highest signal frequency. The *Nyquist frequency* is half the actual sample rate. At 48 kS/s, the Nyquist frequency is 24 kHz.
 
 #### Aliasing
 
-If the input contains frequencies above the permitted limit, the sampled points can represent a false lower-frequency signal. This false signal is an **alias**. The false frequency did not exist at the analog input.
+A frequency that is too high for the sample rate can show up as a different, lower frequency in your readings. This is **aliasing**. For example, a 30 kHz input sampled at 48 kS/s appears at 18 kHz.
 
-Install an **[anti-aliasing](<../Filters/Digital-filters.md#18-aliasing-at-the-initial-adc>) low-pass filter** before a baseband ADC. The filter must attenuate frequencies that can fold into the required signal band.
+Put an **anti-aliasing low-pass filter before the ADC** to reduce unwanted high-frequency signals before they get sampled. Once 30 kHz has appeared as 18 kHz in the data, a digital filter cannot tell it apart from a real 18 kHz signal.
 
 #### Guard band
 
-Do not put the filter corner exactly at <em>f</em><sub>s</sub>/2 and assume that the filter will stop all higher frequencies. A real filter has a gradual transition from its passband to its stopband. This limitation applies to a simple RC filter and to a higher-order filter, such as a six-pole Butterworth filter.
+A real filter does not suddenly stop everything above its cutoff. It rolls off gradually. At a typical **−3 dB corner**, the signal amplitude is already down to about 71%, and frequencies above the corner still get through.
 
-The nominal corner is commonly the **-3 dB point**. Frequencies immediately above this point still pass through the filter. These frequencies can alias into the sampled data.
+The aim is to keep your 0–20 kHz signal with as little loss as the design allows, while reducing unwanted higher frequencies enough to prevent significant aliasing. **[Oversampling](<../Filters/Digital-filters.md#23-oversampling>)** means sampling above twice your highest wanted frequency. This leaves extra frequency space, called a **guard band**, for the filter to roll off.
 
-Use **oversampling** to make a guard band. For example, run the sample clock 25% faster than the theoretical minimum. The additional frequency range separates the required signal band from the Nyquist limit.
-
-Put the filter's -3 dB point at the edge of the required signal band. The guard band then gives the filter sufficient frequency range to reach the necessary stopband attenuation before a frequency can alias into the required band.
+A higher-order filter rolls off more steeply, so you may need less oversampling, at the cost of a more complex filter. There is no fixed percentage that works for every design: an extra 25% is not automatically enough. Choose the sample rate and filter together. If you need nearly unchanged amplitude through 20 kHz, putting a −3 dB corner at 20 kHz already loses too much signal there.
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
@@ -852,11 +827,11 @@ An ideal <em>n</em>-bit flash ADC uses 2<sup><em>n</em></sup>-1 comparators. For
 
 The active comparator outputs form a **thermometer code**, such as `0000111`. This code identifies the highest threshold that the input crossed. A priority encoder converts the thermometer code to a standard binary output. The source notes refer to this operation in Table 13.4.
 
-A flash ADC has a short **aperture interval**. The input changes very little during the conversion interval. For this reason, some flash ADC applications do not require the external [sample-and-hold](<./Sample-holding.md#1-basic-circuit>) circuit that a slower ADC can require.
+A flash ADC makes its decision over a short **aperture interval**, so the input may change very little during that time. Some applications therefore do not need the external [sample-and-hold](<./Sample-holding.md#1-basic-circuit>) circuit that a slower converter may need.
 
-The comparator count increases exponentially with resolution. The practical resolution limit for a pure flash ADC is usually approximately 8 bits.
+The comparator count increases exponentially with resolution. The practical resolution limit for a pure flash ADC is usually about 8 bits.
 
-High-speed converters can use **pipelined**, **subranging**, or **folding** techniques to reduce the comparator count. These techniques divide the conversion into smaller operations. Some of them convert and amplify the residue from an earlier operation.
+**Pipelined**, **subranging**, and **folding** converters reduce the number of comparators by breaking the conversion into smaller operations. Some stages estimate part of the input and pass on the remaining error, called the residue, for further amplification and conversion.
 
 #### Half-flash ADC
 
@@ -870,13 +845,13 @@ For an 8-bit conversion, the sequence is:
 4. A residue amplifier increases the remaining voltage to the range of the next stage.
 5. A second small flash ADC makes a **fine conversion** and determines the four least-significant bits.
 
-Two 4-bit flash stages use approximately 30 comparators. A pure 8-bit flash ADC uses 255 comparators. The half-flash method reduces the comparator count substantially.
+Two 4-bit flash stages use about 30 comparators. A pure 8-bit flash ADC uses 255 comparators. The half-flash method reduces the comparator count substantially.
 
 The **TLC0820** is an example of this type of converter.
 
 #### Pipelined flash ADC
 
-A **pipelined ADC** extends the half-flash method into many stages. For example, the **AD9244** can use a pipeline with approximately 10 stages.
+A **pipelined ADC** extends the half-flash method into many stages. For example, the **AD9244** can use a pipeline with about 10 stages.
 
 The central circuit is a switched-capacitor **multiplying DAC (MDAC)**. The MDAC performs three analog operations:
 
@@ -884,11 +859,11 @@ The central circuit is a switched-capacitor **multiplying DAC (MDAC)**. The MDAC
 2. It subtracts that estimate from the sampled input.
 3. It amplifies the residue to fill the input range of the next stage.
 
-A capacitor stores the residue. After a stage transfers its residue to the next stage, it starts work on the next sample. Different samples move through different stages at the same time. This pipeline gives high throughput.
+A capacitor stores the residue, the part of the sample left to convert. Once a stage passes it to the next stage, it can start on a new sample. Several samples are therefore being converted at once, which gives the pipeline high throughput.
 
 Example sample rates range from 65 Msps to 250 Msps. The conversion also has high **latency**. Data can require 8 to 14 clock cycles to move through the pipeline.
 
-Latency is the delay from a given analog sample to its digital result. Throughput is the rate at which completed results leave the converter. A pipeline can have high latency and high throughput at the same time.
+**Latency** is how long one sample takes to produce its result. **Throughput** is how many results come out per second. A pipeline can take many cycles per sample while still producing a new completed result every cycle.
 
 #### Folding ADC
 
@@ -915,14 +890,14 @@ The conversion uses a binary-search sequence:
 4. The logic keeps or clears the tested bit.
 5. The logic repeats the process for the next bit.
 
-An <em>n</em>-bit SAR ADC needs approximately <em>n</em> comparison steps for one conversion.
+An <em>n</em>-bit SAR ADC needs about <em>n</em> comparison steps for one conversion.
 
 The internal DAC can use one of these structures:
 
 - A conventional <em>n</em>-stage **R-2R resistor ladder**
 - A **charge-redistribution capacitor array**
 
-A binary-weighted capacitor DAC contains approximately <em>n</em> switched capacitor elements. Its total capacitance is equivalent to approximately 2<sup><em>n</em></sup> unit capacitors.
+A binary-weighted capacitor DAC contains about <em>n</em> switched capacitor elements. Its total capacitance is equivalent to about 2<sup><em>n</em></sup> unit capacitors.
 
 Some SAR ADCs use internal track, hold, and reset switches.
 The simplified model below shows input acquisition, charge transfer, and an optional reset phase.
@@ -937,7 +912,7 @@ A **voltage-to-frequency (V/F) converter** generates a pulse train. The pulse fr
 
 An **asynchronous V/F converter** contains a free-running internal oscillator.
 
-A **synchronous V/F converter** requires an external clock. It passes a controlled fraction of the clock pulses. The average output frequency represents the analog input.
+A **synchronous V/F converter** needs an external clock. It passes a controlled fraction of the clock pulses. The average output frequency represents the analog input.
 
 #### Single-slope integrating ADC
 
@@ -982,22 +957,22 @@ This two-slope operation does not automatically remove comparator offset.
 
 A **quad-slope ADC** adds an **[auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) cycle**. The converter holds the input at zero, measures the offset, and subtracts the offset from later conversions.
 
-A **multislope ADC** uses a complex sequence of fast dual-slope operations. It integrates continuously and corrects the result with the residues from partial cycles. This method is closely related to the **delta-sigma** architecture.
+A **multislope ADC** uses a sequence of fast integration steps, continuing to integrate and correcting the result for what remains from partial cycles. This is closely related to the feedback and averaging used in **delta-sigma** conversion.
 
 #### Delta-sigma ADC
 
-A **delta-sigma ADC** is common in high-resolution applications. Its mathematical analysis is complex. The source notes identify Section 13.9 as the location for the detailed analysis.
+A **delta-sigma ADC** is a common choice for high resolution. The detailed mathematics goes beyond the basic operating explanation here; the source notes refer to Section 13.9 for that analysis.
 
 The converter has two primary parts:
 
 1. The **modulator** converts the analog input into a high-speed serial bitstream. An integrator processes the difference between the input and a 1-bit feedback signal.
 2. The **digital filter** low-pass filters the bitstream. It then decimates the data and produces the final <em>n</em>-bit output.
 
-Higher-order modulators use multiple or weighted integrators. Some delta-sigma converters use multi-bit wordstreams instead of a 1-bit stream.
+Higher-order modulators use more integrators or weight their contributions differently. Some output a sequence of multibit values rather than a stream of single bits.
 
 ### 6. Driving High-Speed ADCs
 
-Do not connect a modern high-speed ADC directly to an arbitrary op-amp output. Flash, folding, pipelined, and RF ADCs can have high bandwidth and a dynamic input impedance. These inputs require a specified drive network.
+A high-speed ADC input may change its loading during each conversion instead of acting like one fixed high resistance. Flash, folding, pipelined, and RF ADCs can also accept very high-frequency signals. Use the required input-drive network rather than connecting an arbitrary op-amp directly.
 
 #### The 2R + C interface
 
@@ -1012,15 +987,15 @@ It is not the complete differential 2R + C network.
 
 ##### 1. Limit noise bandwidth
 
-The filter limits the input bandwidth to the required signal band and supplies the necessary attenuation before frequencies can alias into that band.
+The filter keeps the wanted frequencies and reduces higher-frequency signals enough that they do not create significant aliases in the measurement band.
 
-For example, an 80 Msps ADC has a Nyquist frequency of 40 MHz. The ADC input circuit can still have 700 MHz of analog bandwidth. Without an external filter, noise from this wide analog bandwidth can fold into the baseband and reduce the **signal-to-noise ratio (SNR)**.
+An 80 Msps ADC has a Nyquist frequency of 40 MHz, but its analog input might respond to frequencies as high as 700 MHz. Without an external filter, noise from that wider range can appear at lower frequencies after sampling and reduce the **signal-to-noise ratio (SNR)**.
 
-Do not interpret the 40 MHz example as a requirement to put a real filter corner exactly at <em>f</em><sub>s</sub>/2. Include a guard band and meet the required stopband attenuation.
+This does not mean placing the filter corner exactly at 40 MHz, or <em>f</em><sub>s</sub>/2. A real filter needs room to roll off. Leave a guard band and check that unwanted frequencies are reduced by the required amount.
 
 ##### 2. Supply local charge
 
-The capacitor is a local **charge reservoir**. The internal sample-and-hold switch draws a short current pulse when it closes. The capacitor supplies much of this charge locally. The driver does not have to supply the complete current pulse through its full output path.
+The capacitor acts as a local **charge reservoir**. When the ADC's sampling switch closes, it supplies much of the brief charging pulse nearby, reducing how much current the driver must deliver through its output path at that instant.
 
 ##### 3. Isolate the driver
 
@@ -1028,24 +1003,27 @@ The two resistors isolate the op-amp outputs from the filter capacitor and the s
 
 #### Op-amp stability with capacitive loads
 
-A high-bandwidth op-amp, including a device with approximately 1000 MHz bandwidth, can become unstable with a capacitive load. The capacitor interacts with the op-amp's open-loop output impedance, <em>R</em><sub>o</sub>. This interaction adds a pole to the loop response. The pole reduces [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>) and can cause oscillation.
+Even an op-amp with about 1000 MHz bandwidth can become unstable when driving capacitance. The capacitor and open-loop output impedance, <em>R</em><sub>o</sub>, add a pole, which delays the feedback response and reduces [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>). Enough added lag can cause oscillation.
 
 Install an external **isolation resistor**, <em>R</em><sub>ext</sub> or <em>R</em><sub>s</sub>, between the amplifier output and the capacitor.
 
-Take the feedback signal **before the isolation resistor**, directly from the op-amp output pin. In this arrangement, the capacitor's additional phase shift stays outside the feedback loop. The resistor can isolate the capacitive load.
+Take feedback **before the isolation resistor**, directly from the op-amp output pin. The loop then regulates that pin rather than the slower capacitor voltage after the resistor. The resistor reduces the capacitive loading inside the loop.
 
-Do not take ordinary feedback **after the isolation resistor** at the capacitor node only to correct the resistor's voltage drop. This connection puts the capacitor inside the feedback loop. The op-amp can oscillate unless the design uses a suitable compensation method, such as **dual feedback**.
+Moving feedback **after the isolation resistor** may seem like a way to correct its voltage drop, but it also puts the capacitor's response inside the loop. That can cause oscillation unless the circuit is compensated for it, for example with **dual feedback** using separate paths for different frequencies.
 
 #### Differential drive
 
-Some devices with differential inputs permit single-ended drive. In this arrangement, one input is fixed and the other input receives the signal.
+With **single-ended drive**, one ADC input stays at a fixed voltage while the other carries the changing signal. Use this connection only if the ADC supports it.
 
-Single-ended drive usually has two costs in a high-performance ADC:
+With balanced **differential drive**, a driver sends two signals to the ADC: one rises while the other falls. The ADC measures **IN+ minus IN−**.
 
-- Even-order harmonic distortion does not cancel.
-- The available full-scale differential input range is reduced by one-half.
+This lets both pins contribute to the signal swing. If IN+ rises by 0.5 V while IN− falls by 0.5 V, the ADC sees a 1 V change, without either pin needing the whole voltage swing. The allowed range still depends on the ADC.
 
-Use a **differential driver** for a high-performance ADC unless the datasheet gives acceptable performance for the required single-ended connection.
+Subtracting the inputs also helps reject interference that reaches both pins. If the same unwanted voltage gets added to both inputs, subtraction cancels it ideally. Real circuits reject only part of it, and noise that differs between the inputs remains.
+
+A balanced circuit can also cancel some distortion at **2×, 4×, and 6× the signal frequency**. These extra frequency components are called **even-order harmonics**. The cancellation depends on how well the two paths match.
+
+Both pins must stay inside the ADC's allowed voltage limits. Their average voltage, called the **common-mode voltage**, must also stay in range. A differential driver helps set this average to the value the ADC needs.
 
 #### Clock jitter
 
@@ -1065,7 +1043,7 @@ For ordinary baseband sampling, use:
 
 > <em>f</em><sub>s</sub> &gt; 2<em>f</em><sub>max</sub>
 
-For a correctly band-limited bandpass signal, the theoretical minimum sample rate can be greater than twice the **information bandwidth** instead of twice the carrier frequency. However, not every sample rate above 2<em>B</em> is valid. The selected sample rate must put the complete band into one Nyquist zone without overlap from another spectral image.
+If a bandpass filter removes signals outside the frequency band you want, the sample rate can be much lower than twice the carrier frequency. It still needs to exceed twice the **information bandwidth**, which is the width of that band. Not every rate above 2<em>B</em> works: the whole band must fit within one Nyquist zone, a frequency interval of width half the sample rate, so that the copies created by sampling do not overlap.
 
 Consider a radio signal from 495 MHz to 505 MHz. Its carrier is 500 MHz and its information bandwidth, <em>B</em>, is 10 MHz.
 
@@ -1073,11 +1051,7 @@ Consider a radio signal from 495 MHz to 505 MHz. Its carrier is 500 MHz and its 
 - The theoretical bandpass-sampling limit is greater than 20 Msps because the occupied bandwidth is 10 MHz.
 - The actual sample rate must also satisfy the Nyquist-zone placement conditions.
 
-For example, a 120 Msps sample rate maps the complete 495 MHz to 505 MHz band to a 15 MHz to 25 MHz digital band.
-A 200 Msps sample rate maps the 500 MHz carrier to 100 MHz.
-For this sample rate, the exact 495 MHz to 505 MHz band crosses a Nyquist-zone boundary.
-Its two halves would overlap after sampling.
-Do not use that rate for this exact band without a different frequency plan.
+At 120 Msps, the full 495 MHz to 505 MHz band appears between 15 MHz and 25 MHz after sampling. At 200 Msps, the 500 MHz carrier appears at 100 MHz, but the original band straddles a Nyquist-zone boundary. Its two halves fold onto one another. That sample rate does not work for this exact band without changing the frequency plan.
 
 Undersampling can reduce converter speed, cost, and power. It does not remove the need for a high-bandwidth analog front end.
 
@@ -1087,17 +1061,17 @@ An undersampling design must meet two conditions.
 
 ##### 1. Limit the input band
 
-Pass the input through a selective **bandpass filter**. Only the required frequency band can reach the ADC with significant amplitude. Out-of-band signals and noise can alias into the same digital band and corrupt the result.
+Use a selective **bandpass filter** so only the wanted band reaches the ADC at significant amplitude. Signals and noise outside it can otherwise alias onto the same digital frequencies and corrupt the result.
 
 ##### 2. Use sufficient analog input bandwidth
 
 The ADC sample rate can be lower than the carrier frequency. However, the internal **track-and-hold** circuit must acquire the high-frequency carrier accurately.
 
-For example, the **ADC08200** samples at 200 Msps and has approximately 500 MHz of analog input bandwidth. This bandwidth lets the track-and-hold circuit respond to inputs near 500 MHz. The frequency plan must still use a sample rate and input band that do not produce spectral overlap.
+For example, the **ADC08200** samples at 200 Msps and has about 500 MHz of analog input bandwidth. This bandwidth lets the track-and-hold circuit respond to inputs near 500 MHz. The frequency plan must still use a sample rate and input band that do not produce spectral overlap.
 
 #### Intentional aliasing
 
-Ordinary aliasing folds unwanted high-frequency energy into the baseband. An undersampling system uses a selected alias as the valid signal.
+In ordinary sampling, unwanted aliases contaminate the measurement. In undersampling, the circuit deliberately uses one alias to represent the wanted high-frequency signal.
 
 The sampling operation acts as a **mixer**. It translates an RF band to a lower digital frequency. For example, a 500 MHz tone aliases to 100 MHz with a 200 Msps sample rate. A valid bandpass design selects the sample rate so that the complete modulated band falls inside the selected Nyquist zone without overlap.
 
@@ -1108,7 +1082,7 @@ This method can remove a separate analog down-conversion stage.
 The circuit in Figure 13.29 includes these features:
 
 - **Termination:** Two 100 &Omega; resistors form a 50 &Omega; load when they are in parallel. This load matches standard RF impedance.
-- **[AC coupling](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#ac-coupling-blocking>) and bias:** The ADC uses a single supply. It cannot accept an input that moves below its permitted input range. A coupling capacitor removes the source's DC component. The circuit then biases the ADC input near +0.6 V, which is the required common-mode level in this example. The +0.6 V value is not the midpoint of a 0 V to +3 V supply.
+- **[AC coupling](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#ac-coupling-blocking>) and bias:** The ADC uses a single supply. It cannot accept an input that moves below its allowed input range. A coupling capacitor removes the source's DC component. The circuit then biases the ADC input near +0.6 V, which is the required common-mode level in this example. The +0.6 V value is not the midpoint of a 0 V to +3 V supply.
 - **Supply filtering:** A 100 &mu;H choke isolates the sensitive analog supply pin from noise on the digital supply pin.
 
 ### 8. Multiplexed Data-Acquisition Systems
@@ -1133,11 +1107,11 @@ Use a robust **high-voltage multiplexer** or external **MOSFET clamps** when the
 
 ##### On-resistance, capacitance, and charge injection
 
-Do not select a switch only because it has the lowest on-resistance, <em>R</em><sub>on</sub>. For example, a 0.5 &Omega; switch can require large internal transistors. Large transistors have high capacitance.
+The switch with the lowest on-resistance, <em>R</em><sub>on</sub>, is not always the best choice. Reaching 0.5 &Omega;, for example, may require large internal transistors that also bring more capacitance.
 
 When the switch changes state, this capacitance transfers a charge pulse to the signal. This effect is **[charge injection](<./Sample-holding.md#charge-injection-and-pedestal-error>)**.
 
-For a high-impedance sensor, select a switch with **low leakage** and **low capacitance**. An on-resistance of 80 &Omega; can be acceptable when the next amplifier has a very high input impedance.
+For a high-impedance sensor, **low leakage** and **low capacitance** can matter more. If the next amplifier draws very little input current, an 80 &Omega; on-resistance may cause an acceptably small voltage error.
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
@@ -1165,7 +1139,7 @@ If an amplifier has a 5.5 mV input-referred offset:
 
 > 5.5 mV / 305 &mu;V &approx; 18
 
-The amplifier offset is approximately 18 times larger than one LSB. The system cannot use the ADC's 16-bit resolution without offset correction.
+The amplifier offset is about 18 times larger than one LSB. The system cannot use the ADC's 16-bit resolution without offset correction.
 
 Use a **nulling circuit** to calibrate the offset. A low-cost DAC can inject the correction voltage.
 
@@ -1173,7 +1147,7 @@ Use a **nulling circuit** to calibrate the offset. A low-cost DAC can inject the
 
 Calibration at room temperature does not remove temperature-dependent error. Components drift when their temperature changes.
 
-Consider an amplifier with a gain drift of 40 ppm/&deg;C. One LSB of a 16-bit full-scale measurement is approximately 15 ppm. At or near full scale, a 1 &deg;C change can cause more than one LSB of gain error.
+Consider an amplifier with a gain drift of 40 ppm/&deg;C. One LSB of a 16-bit full-scale measurement is about 15 ppm. At or near full scale, a 1 &deg;C change can cause more than one LSB of gain error.
 
 In a system with 16 bits or more, **temperature drift** can limit accuracy before the nominal ADC resolution does.
 
@@ -1187,7 +1161,7 @@ Use this conservative timing relation:
 
 Acquisition, conversion, and readout can overlap only when the ADC timing permits this operation.
 
-If the controller switches channels too quickly, the amplifier does not settle to the required accuracy. The next conversion can contain a **ghost** of the previous channel.
+Switching channels too quickly leaves the amplifier partway between the old and new values. The next conversion then contains a **ghost** of the previous channel.
 
 #### Case study: 16-channel multiplexed DAQ
 
@@ -1238,7 +1212,7 @@ During operation:
 
 A multiplexed system measures Channel 1 and then Channel 2. The samples occur at different times.
 
-A **simultaneous-sampling DAQ** acquires all channels at a common sampling instant. The channels sample within the specified aperture skew, which can be much less than one nanosecond.
+A **simultaneous-sampling DAQ** captures all channels at a shared sampling instant. There is still a specified timing mismatch, called aperture skew, but it can be much less than one nanosecond.
 
 Use simultaneous sampling when the phase relation between channels is important. Applications include:
 
@@ -1272,7 +1246,7 @@ Industrial sensors often produce a &plusmn;10 V signal. A high-speed ADC can use
 
 Use a **level-translating driver**, such as the **AD8275**. This device attenuates the input with a gain of 0.2 and shifts its center voltage.
 
-Read offset specifications carefully. A driver specification can be **referred to output (RTO)**.
+Check where an offset specification is measured. **Referred to output (RTO)** means the error is expressed at the output, rather than as the equivalent error at the input.
 
 If the output-referred offset is 0.5 mV and the gain is 0.2, the equivalent input-referred error is:
 
@@ -1280,7 +1254,7 @@ If the output-referred offset is 0.5 mV and the gain is 0.2, the equivalent inpu
 
 ##### Digital isolation and the echo clock
 
-A digital isolator, such as the **ADuM1402**, can have approximately 27 ns of propagation delay. At a data rate of 50 Mbps, the returned data can arrive too late for the processor to capture it with the original transmit clock.
+A digital isolator, such as the **ADuM1402**, can have about 27 ns of propagation delay. At a data rate of 50 Mbps, the returned data can arrive too late for the processor to capture it with the original transmit clock.
 
 Use an **echo clock** to correct this timing problem:
 
@@ -1298,7 +1272,7 @@ Advantages:
 
 - The connection is compact.
 - Isolation is low cost.
-- The interface needs approximately four isolated wires.
+- The interface needs about four isolated wires.
 
 The **parallel interface** is suitable for a device such as the MAX11046.
 
@@ -1343,7 +1317,7 @@ See [Phase-Locked Loops](../Timing/PLL.md) for the dedicated topic page.
 
 ### Capture Process
 
-A phase detector can correct a frequency error because frequency difference produces a changing phase difference.
+A frequency difference makes the phase difference keep changing. A detector that senses that changing phase can therefore help the loop correct a frequency error.
 
 #### Step 1: Produce a Moving Phase Difference
 
@@ -1356,8 +1330,7 @@ The input completes cycles faster than the VCO.
 The input continuously moves ahead of the VCO.
 The phase difference moves from 0 degrees through 360 degrees and repeats.
 
-The phase-detector output contains a periodic **beat note**.
-For this example, the beat-note frequency is 10 Hz.
+The phase-detector output repeats as the two signals move into and out of alignment. This repeating component is the **beat note**, which is 10 Hz in this example.
 
 #### Step 2: Push the VCO Toward the Input Frequency
 
@@ -1443,9 +1416,7 @@ The feedback loop synchronizes this signal with the input.
 An input clock can have **jitter**.
 Jitter causes its edges to move in time.
 
-A narrow loop bandwidth averages fast timing errors from the phase detector.
-The VCO follows the average input frequency and rejects faster input jitter.
-The VCO output can then have cleaner timing than the input.
+A narrow loop bandwidth stops the VCO from chasing fast timing changes at the input. It follows the average frequency and rejects faster input jitter, which can produce a cleaner output clock.
 
 This operation is sometimes called a **flywheel effect**.
 The narrow bandwidth also increases lock time.
@@ -1461,7 +1432,7 @@ For radio, this voltage can contain the recovered audio waveform.
 
 ### Loop-Filter Trade-Off
 
-External resistors and capacitors frequently set the loop bandwidth.
+External resistors and capacitors often set the loop bandwidth.
 
 * **Wide loop bandwidth:** The PLL locks quickly and can follow frequency hopping.
   It also transfers more input jitter to the output.
@@ -1472,10 +1443,9 @@ Select the bandwidth from the required lock time, modulation bandwidth, and jitt
 
 ### VCO Supply Filtering
 
-Noise on the VCO supply can modulate its frequency.
-This modulation produces sidebands and jitter.
+Noise on the VCO supply can change its frequency. That creates unwanted frequency components beside the main output, called sidebands, and shifts edge timing as jitter.
 
-Use strong supply filtering when the VCO sensitivity requires it.
+Use strong supply filtering when the VCO sensitivity needs it.
 An LC filter can isolate the VCO supply from regulator and digital noise.
 Follow the VCO datasheet stability and decoupling requirements.
 
@@ -1496,8 +1466,7 @@ As a result, a PLL clock output does not preserve amplitude-modulated radio info
 
 #### Instantaneous Response
 
-An op-amp can respond in nanoseconds when its bandwidth permits this response.
-A PLL has loop-filter inertia.
+An op-amp with enough bandwidth can respond in nanoseconds. A PLL changes frequency through its loop filter, which makes the response take time rather than happen immediately.
 
 If an input changes from 100 Hz to 200 Hz, the VCO can sweep to the new frequency over milliseconds.
 Fast frequency changes outside the loop bandwidth are attenuated.
@@ -1518,6 +1487,6 @@ It created a faster signal that the downstream circuit cannot process.
 | Feature | Op-amp chain | PLL chain |
 | --- | --- | --- |
 | **Amplitude** | Can preserve proportional amplitude | VCO output amplitude is usually fixed |
-| **Response** | Can respond in nanoseconds | Requires lock and tracking time |
+| **Response** | Can respond in nanoseconds | Needs lock and tracking time |
 | **Noise behavior** | Adds analog wideband noise | Can clean timing jitter |
 | **Next-stage bandwidth** | Must support the signal bandwidth | Must support the multiplied output frequency |

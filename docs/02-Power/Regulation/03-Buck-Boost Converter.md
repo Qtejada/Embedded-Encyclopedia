@@ -1,6 +1,5 @@
 # Buck-Boost 
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -38,8 +37,8 @@ import SwitchingConverterExplorer from '@site/src/components/SwitchingConverterE
 
 1. Duty cycle is **50%**.
 2. Average inductor current is **0.4 A**.
-3. Current ripple is approximately **0.227 A peak to peak**.
-4. Peak inductor current is approximately **0.514 A**.
+3. Current ripple is about **0.227 A peak to peak**.
+4. Peak inductor current is about **0.514 A**.
 5. Ideal switch blocking stress is **10 V**, before overshoot.
 
 ## 4. Four-Switch Operation
@@ -52,7 +51,7 @@ Check behavior near equal input and output voltages. Efficiency, ripple, and ope
 
 The inverting topology has pulsed input and output currents. Keep both high-current switching loops compact.
 
-Check the controller's ground reference before connecting enable or feedback signals. A controller used in an inverting arrangement can reference the negative output.
+Check which voltage the controller treats as ground before connecting enable or feedback signals. In an inverting circuit, its ground may sit at the negative output rather than the system's 0 V reference.
 
 Verify startup, current limit, compensation, and voltage stress with the selected controller.
 

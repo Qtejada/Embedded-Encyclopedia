@@ -1,6 +1,5 @@
 # Bridges
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -21,7 +20,7 @@ For free buffer capacity **Nfree** and incoming payload rate **r**:
 
 <LearningEquation tex={"t_{available}=\\frac{N_{free}}{r}"} />
 
-This estimate assumes continuous input and no host reads during the interval.
+This estimate assumes continuous input and no host reads during that time.
 
 import InterfacePathDiagram from '@site/src/components/InterfacePathDiagram';
 
@@ -33,8 +32,8 @@ import InterfacePathDiagram from '@site/src/components/InterfacePathDiagram';
 
 1. Each payload byte uses **10 line bits**.
 2. The payload rate is **11520 bytes/s**.
-3. An empty 64-byte FIFO fills in approximately **5.56 ms**.
-4. If only 16 bytes remain free, the service interval is approximately **1.39 ms**.
+3. An empty 64-byte FIFO fills in about **5.56 ms**.
+4. If only 16 bytes remain free, the service interval is about **1.39 ms**.
 
 Allow margin for [interrupt](<./Embedded-Systems.md#interrupts-and-data-transfer>) latency and bus contention. Check the host bus transaction time before selecting an interrupt threshold.
 

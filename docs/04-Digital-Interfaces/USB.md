@@ -1,6 +1,5 @@
 # USB
 
-Notes coming soon...
 
 ## 1. Connector, Data, and Power
 
@@ -10,25 +9,25 @@ Keep three choices separate:
 
 * **Connector:** The physical connection, such as a Type-C receptacle.
 * **Data interface:** The supported signaling generation and transfer functions.
-* **Power interface:** The source, sink, and permitted power behavior.
+* **Power interface:** The source, sink, and allowed power behavior.
 
 A Type-C connector does not guarantee high-speed data or USB Power Delivery support.
 
 ## 2. Device Operation
 
-A host detects an attached device and reads its descriptors. The host then configures supported functions.
+When a device is attached, the host reads its descriptors, which tell the host what the device is and what it supports. The host then configures the functions it will use.
 
 **Endpoints** are logical data sources or destinations in the device. The device class and firmware define the data behavior.
 
-An electrical connection can work while enumeration fails because of firmware, descriptors, clock accuracy, or power behavior.
+This identification and setup process is called enumeration. The wires can be connected correctly and enumeration can still fail because of firmware, incorrect descriptors, clock accuracy, or power behavior.
 
 ## 3. Type-C Configuration
 
-The **configuration channel (CC)** identifies attachment and orientation. A source and sink present different CC terminations.
+The **configuration channel (CC)** lets USB-C devices detect a connection and which way the plug is inserted. A power source and a power sink use different electrical connections on CC so their roles can be identified.
 
 For a sink receptacle, check both CC pins. Do not connect them together. Use the required terminations or a suitable controller.
 
-Power above the default conditions needs the applicable detection or negotiation. Do not infer permitted current from connector appearance.
+Before drawing more than the default power, the device must detect what the source offers or negotiate the required power. The connector's shape does not tell you how much current is available.
 
 ## 4. Board Layout
 
@@ -36,7 +35,7 @@ For USB 2.0, route **D+** and **D−** as a [differential pair](<../05-PCB-Layou
 
 Place low-capacitance protection near the connector. Avoid long test-point branches and unnecessary layer transitions.
 
-USB 2.0 data lines and SuperSpeed lanes have different coupling requirements. Do not copy series coupling capacitors between them without checking the interface documents.
+USB 2.0 data lines and SuperSpeed lanes do not use the same coupling circuits. Check the interface documents before copying series capacitors from one type of link to the other.
 
 ## 5. Worked Example: Power Budget
 
@@ -46,7 +45,7 @@ USB 2.0 data lines and SuperSpeed lanes have different coupling requirements. Do
 2. Average input current is **0.4 A**.
 3. The arithmetic leaves **0.1 A** for other input loads and margin.
 
-Startup, cable drop, and suspend behavior need separate checks. This example does not establish USB current entitlement.
+Startup, cable drop, and suspend behavior need separate checks. This example does not prove USB current entitlement.
 
 ## 6. Verification
 

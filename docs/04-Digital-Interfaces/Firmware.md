@@ -11,11 +11,11 @@ import RegisterExplorer from '@site/src/components/learning/RegisterExplorer';
 
 ## Types and representation
 
-An integer stores a whole number within a defined range. A floating-point value represents a scaled number with finite precision.
+An integer stores a whole number within a fixed range. A floating-point value stores a number using a scale factor, allowing a much wider range but only a limited number of significant digits.
 
 A Boolean represents true or false. A character stores a character code. In C, a string usually contains characters followed by a zero byte.
 
-Use fixed-width integer types when an interface requires a specific width. Check signedness, overflow behavior, alignment, and byte order.
+Use fixed-width integer types when an interface needs a specific width. Check signedness, overflow behavior, alignment, and byte order.
 
 The **most significant bit (MSB)** has the greatest positional weight. The **least significant bit (LSB)** has the smallest weight.
 
@@ -27,7 +27,7 @@ For the 16-bit value 0x1234, little-endian memory stores 0x34 before 0x12. Endia
 
 ## Register fields
 
-A **hardware register** exposes a peripheral value or control function. A field occupies selected bits within that register.
+A **hardware register** lets software read a peripheral value or control what the peripheral does. A field is a group of bits within the register assigned to one particular setting or value.
 
 To extract a field, shift its lowest bit to position zero. Then apply a mask of the required width.
 
@@ -35,15 +35,15 @@ To extract a field, shift its lowest bit to position zero. Then apply a mask of 
 
 For an assumed 8-bit register value of 0xB6, bits 5 through 3 contain binary 110. The field value is decimal 6.
 
-Read the register access rules before writing. A write-one-to-clear flag clears when software writes one. A read can also have a side effect.
+Check what reads and writes actually do before changing a register. For a write-one-to-clear flag, writing one clears the flag. Reading some registers also changes their state.
 
-Read-modify-write can corrupt flags or conflict with an [ISR](<./Embedded-Systems.md#interrupts-and-data-transfer>). Use dedicated set and clear registers, atomic instructions, or a protected sequence where the device requires them.
+Read-modify-write can corrupt flags or conflict with an [ISR](<./Embedded-Systems.md#interrupts-and-data-transfer>). Use dedicated set and clear registers, atomic instructions, or a protected sequence where the device needs them.
 
 ## Volatile and shared data
 
-In C, **volatile** tells the compiler that an access has observable effects under the implementation's rules. Memory-mapped peripheral declarations commonly use it.
+In C, **volatile** tells the compiler that accesses have observable effects and must follow the implementation's access rules. This is commonly used for memory-mapped peripherals, where reading or writing an address interacts with hardware.
 
-Volatile does not make a compound operation atomic. It does not provide thread synchronization or order ordinary memory accesses across a hardware boundary.
+Volatile does not make a multi-step operation atomic, meaning indivisible to other threads or interrupts. It also does not synchronize threads or provide the ordering needed for ordinary memory accesses across a hardware boundary.
 
 Use the compiler's atomic facilities and the processor's required barriers for those tasks. Follow the device header and memory model.
 
@@ -55,7 +55,7 @@ The **stack** usually stores function frames and automatic variables. Nested cal
 
 A **stack overflow** exceeds the allocated stack region. It can corrupt adjacent data or cause a protection fault.
 
-The **heap** supports dynamic allocation. Allocation failures, fragmentation, and unclear ownership can cause faults. Static allocation can simplify bounded embedded systems.
+The **heap** gives memory that software can allocate and release while running. Allocation can fail, free space can become split into unusable pieces (fragmentation), and bugs can arise if it is unclear who owns an allocation. Reserving memory statically can simplify an embedded system with known limits.
 
 Measure maximum stack use under the worst interrupt nesting and call paths. Keep buffers within their bounds. Define who owns each shared buffer.
 
@@ -71,9 +71,9 @@ Execution time also depends on generated instructions, memory access, and interr
 
 ## Text operations
 
-An **application programming interface (API)** defines how software uses a service. Specify argument types, ownership, units, valid states, return values, and errors.
+An **application programming interface (API)** defines how software uses a service. Document the argument types and units, who owns any passed data, when calls are valid, and what results and errors mean.
 
-For a nonblocking sensor API, separate measurement start from result retrieval. State whether a returned value is new, stale, unavailable, or invalid.
+A nonblocking sensor API lets other work continue while a measurement is in progress. Use separate calls to start the measurement and retrieve its result, and make clear whether the returned reading is new, old, unavailable, or invalid.
 
 The following algorithms assume a sequence of single-byte characters. Unicode text needs rules for code points and displayed characters.
 
@@ -88,7 +88,7 @@ Preserve encoding and line endings during file processing. Check writes before r
 
 A **regular expression** describes a text pattern. For example, a digit class with a repetition rule matches a run of digits.
 
-The expression language depends on the library. Escape literal punctuation and test empty input, invalid input, and maximum length. Some engines have expensive backtracking cases.
+Regular-expression syntax depends on the library. Escape punctuation that should be matched literally, and test empty, invalid, and maximum-length inputs. Some engines repeatedly retry possible matches, called backtracking, which can take a very long time for certain patterns and inputs.
 
 ## Debug and test
 
@@ -130,7 +130,7 @@ See the [allocation contract](https://pubs.opengroup.org/onlinepubs/009696899/fu
 | Doubly linked list | Traversal in both directions | More pointers and more updates per operation |
 | Fixed ring buffer | Bounded storage for a producer and consumer | Full and empty states need explicit rules |
 
-Constant-time insertion assumes the required node is already known. It does not include a search or an unbounded allocator call.
+Constant-time insertion assumes you already know the node involved. It does not include time spent searching for that node or calling an allocator whose execution time has no fixed bound.
 
 Pointer-heavy structures can increase [cache misses](<./Processor-Memory.md#1-locality-and-cache-lines>). Shared structures also require a [synchronization protocol](<./Operating-Systems.md#3-shared-updates-and-critical-sections>).
 

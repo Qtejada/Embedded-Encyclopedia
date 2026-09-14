@@ -20,7 +20,7 @@ A simple **Zener regulator** has important limitations.
 ### Development of the Series-Pass Regulator
 
 1. **[Emitter follower](<../../01-Discrete-Components/03-Semicondctors/02-BJTs.md#5-amplifier-configurations>):** Add an NPN emitter follower to increase output current.
-   This adds an approximately 0.6 V base-emitter drop.
+   This adds an about 0.6 V base-emitter drop.
    The drop changes with current and temperature.
 2. **[Op-amp](<../../03-Signal-Modulation/Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) control:** Use an operational amplifier (**op-amp**) to set the voltage with feedback gain.
    The op-amp output-current capability still limits load current.
@@ -45,34 +45,30 @@ The available archive figure below shows the same series-pass concept.
 
 ### Frequency Compensation
 
-Power supplies frequently use large [bypass capacitors](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>) from a supply node to ground.
+Power supplies often use large [bypass capacitors](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>) from a supply node to ground.
 These capacitors keep supply impedance low across a wide frequency range.
 
-The regulator then drives a large capacitive load.
-The added phase shift can make the feedback loop unstable.
+Those capacitors become part of the regulator's load. Their added phase shift can make the feedback respond at the wrong time and cause oscillation.
 
 * **Correction:** Add a **Miller feedback capacitor** to the op-amp.
-* The capacitor provides frequency compensation and maintains loop stability.
+* The capacitor gives frequency compensation and maintains loop stability.
 * Always use the compensation method specified for the selected regulator design.
 
 ### Overcurrent Protection
 
-Assume that an accidental short circuit connects the output to ground.
-The feedback loop then increases pass-transistor drive in an attempt to restore voltage.
-This action can destroy the pass transistor.
+If the output is accidentally shorted to ground, the feedback loop tries to restore the voltage by driving the pass transistor harder. Without current protection, the transistor can be destroyed.
 
 * A [sense resistor](<../Measurment/Current-sense.md#1-convert-current-to-voltage>), <i>R<sub>cl</sub></i>, measures output current.
 * Transistor Q2 monitors the voltage across the resistor.
-* Q2 turns on when the resistor voltage is approximately 0.6 V.
+* Q2 turns on when the resistor voltage is about 0.6 V.
 * Q2 then removes base drive from the pass transistor.
-* This action limits current to approximately <i>0.6 V / R<sub>cl</sub></i>.
+* This action limits current to about <i>0.6 V / R<sub>cl</sub></i>.
 
 ---
 
 ## 2. The Series-Pass Transistor
 
-A **pass transistor** is the active regulating device.
-It is in series between the unregulated input and the load.
+The **pass transistor** sits in series between the unregulated supply and the load. It is the device that adjusts the voltage drop to regulate the output.
 
 ### Active-Region Operation
 
@@ -95,8 +91,7 @@ The error amplifier controls the transistor base.
 
 ### Power Dissipation and Dropout
 
-The pass transistor carries load current while it holds a voltage difference.
-It converts this electrical power to heat.
+The pass transistor carries the load current while dropping the excess voltage. That combination of voltage and current becomes heat in the transistor.
 
 > **P<sub>D</sub> = (V<sub>in</sub> - V<sub>out</sub>) &times; I<sub>load</sub>**
 
@@ -120,15 +115,11 @@ The filter time constant is:
 
 > **&tau; = (R1a || R1b) &times; C1**
 
-Make this time constant much longer than the ripple period.
-For example, the period is approximately 8.3 ms at 120 Hz.
-The Zener then receives a cleaner direct-current (**DC**) bias.
+Choose a time constant much longer than one ripple cycle. At 120 Hz, a cycle lasts about 8.3 ms. The filter then smooths the Zener's direct-current (**DC**) bias instead of letting it follow the ripple.
 
 ### Crowbar Overvoltage Protection
 
-A pass-transistor short can connect the full unregulated input to the load.
-A **crowbar circuit** protects the load from this failure.
-The original notes compare it to an emergency brake.
+If the pass transistor fails short, the full unregulated input can reach the load. A **crowbar circuit** responds to this overvoltage by creating a deliberate short that activates upstream protection. The original notes compare it to an emergency brake.
 
 * **Device:** Use a silicon-controlled rectifier (**SCR**).
 * **Normal state:** The SCR is open.
@@ -137,9 +128,7 @@ The original notes compare it to an emergency brake.
 * **Result:** Output voltage decreases quickly toward zero.
 * **Consequence:** Fault current increases greatly.
 
-The design must include an upstream fuse or another suitable interrupting device.
-The crowbar intentionally causes that device to open.
-Verify the fuse interrupt rating and the available fault current.
+The design needs an upstream fuse or another suitable device that interrupts the fault current. The crowbar deliberately makes that protection open, so check both the available fault current and the fuse's ability to interrupt it.
 
 ### Reverse-Voltage Protection
 
@@ -153,7 +142,7 @@ The active rail can then pull the inactive regulator to the wrong polarity.
 The original example is a &plusmn;15 V op-amp supply.
 
 Connect reverse-biased [Schottky diodes](<../../01-Discrete-Components/03-Semicondctors/01-Diodes.md#schottky-diodes>) across the outputs.
-The diodes limit reverse voltage to approximately 0.3 V.
+The diodes limit reverse voltage to about 0.3 V.
 :::
 
 ---
@@ -172,9 +161,7 @@ Modern regulators have two main arrangements.
 
 #### Floating Architecture
 
-An LM317-type regulator has an adjustment (**ADJ**) pin instead of a ground pin.
-The device maintains an internal reference voltage between OUT and ADJ.
-This voltage is usually approximately 1.25 V.
+An LM317-type regulator has an adjustment (**ADJ**) pin rather than a ground pin. It keeps about 1.25 V between OUT and ADJ, using its internal reference.
 
 The reference voltage appears across resistor R1.
 Almost the same current then flows through R2.
@@ -194,11 +181,11 @@ The more complete relationship includes adjustment-pin current:
 * Use suitable divider values, such as 120 &Omega; to 240 &Omega; for R1.
   A typical minimum-load range is 5 mA to 10 mA.
   Use the selected device datasheet for the exact value.
-* **Adjustment current:** Approximately 50 &mu;A to 100 &mu;A can flow from ADJ.
+* **Adjustment current:** About 50 &mu;A to 100 &mu;A can flow from ADJ.
   This current produces the <i>I<sub>adj</sub> &times; R2</i> error term.
 * **Capacitors:** An output capacitor improves transient response.
   Some LM317 variants do not require one for stability.
-  Follow the applicable datasheet.
+  Follow the relevant datasheet.
 
 ### Fixed Three-Terminal Regulators, Such as the 7805
 
@@ -210,7 +197,7 @@ Do not connect one type as if it were the other.
 
 #### Integrated Protection
 
-1. **Thermal shutdown:** A typical device shuts down when die temperature exceeds approximately 150&deg;C.
+1. **Thermal shutdown:** A typical device shuts down when die temperature exceeds about 150&deg;C.
 2. **Current limiting:** The internal circuit limits current during an output short circuit.
 3. **Safe-operating-area ([SOA](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#safe-operating-area>)) protection:** The circuit monitors input-to-output voltage and load current.
    It decreases maximum current when transistor stress becomes excessive.
@@ -220,9 +207,7 @@ Do not connect one type as if it were the other.
 Instead of one central regulated supply, a system can distribute unregulated DC.
 Each circuit board then uses a local fixed regulator.
 
-This arrangement decreases noise pickup on long conductors.
-It can also decrease some ground-loop problems.
-It does not remove the need for correct grounding and distribution design.
+Local regulation can reduce noise picked up along long power wires and can help with some ground-loop problems. You still need to design the grounding and power distribution correctly.
 
 ---
 
@@ -230,9 +215,7 @@ It does not remove the need for correct grounding and distribution design.
 
 ### Feedback-Loop Speed
 
-A regulator is a feedback system.
-Large output capacitors and stability requirements limit its loop bandwidth.
-A typical range in the original notes is 10 kHz to 100 kHz.
+A regulator uses feedback, and its output capacitors and stability requirements limit how fast that feedback can respond. The original notes give a typical loop-bandwidth range of 10 kHz to 100 kHz.
 
 A central-processing-unit (**CPU**) load can change in nanoseconds.
 The regulator loop cannot respond immediately.
@@ -277,8 +260,7 @@ The compact layout improved the result by a factor of 10.
 
 ## 6. Linear Regulators as Constant-Current Sources
 
-A voltage regulator can operate as a **constant-current source**.
-This method can provide a robust current source with one integrated circuit and a small number of resistors.
+A voltage regulator can also make a **constant-current source** with just an integrated circuit and a few resistors. Instead of regulating the load voltage directly, it holds a fixed voltage across a resistor that sets the current.
 
 ### Floating-Regulator Principle
 
@@ -290,7 +272,7 @@ Connect resistor R between these pins.
 
 > **I = V<sub>reg</sub> / R**
 
-The current through R also flows through the load, apart from specified bias-current errors.
+Nearly all the current through R also flows through the load. The difference comes from the regulator's bias currents, which the datasheet specifies.
 
 ### Method A: Fixed 7805 Regulator
 
@@ -300,7 +282,7 @@ It has two main disadvantages.
 1. **High voltage loss:** The sense resistor must drop 5 V.
    This voltage loss wastes power.
 2. **Quiescent-current error:** The regulator needs operating current.
-   The original example uses approximately 3 mA.
+   The original example uses about 3 mA.
    This ground-pin current joins the load current after the sense resistor.
 
 > **I<sub>load</sub> = 5 V / R + 3 mA**
@@ -312,10 +294,10 @@ Use the datasheet value.
 
 The original notes call this the standard general-purpose method.
 
-1. **Lower voltage loss:** The sense resistor drops approximately 1.25 V instead of 5 V.
+1. **Lower voltage loss:** The sense resistor drops about 1.25 V instead of 5 V.
 2. **Better precision:** Most regulator operating current flows through the sense resistor.
    As a result, it is part of the regulated path.
-3. **Remaining error:** Adjustment-pin current is approximately 50 &mu;A.
+3. **Remaining error:** Adjustment-pin current is about 50 &mu;A.
 
 > **I<sub>load</sub> = 1.25 V / R + 50 &mu;A**
 
@@ -343,7 +325,7 @@ These devices provide a modern low-voltage method.
 | Feature | 7805 Fixed Regulator | LM317 Adjustable Regulator | LT3092 Specialized Source |
 | :--- | :--- | :--- | :--- |
 | **Voltage loss** | High, 5 V | Medium, 1.25 V | Very low; less than 1 V is possible |
-| **Accuracy** | Poorer; original example adds approximately 3 mA | High; original example adds approximately 50 &mu;A | High; uses a 10 &mu;A reference and a resistor ratio |
+| **Accuracy** | Poorer; original example adds about 3 mA | High; original example adds about 50 &mu;A | High; uses a 10 &mu;A reference and a resistor ratio |
 | **Complexity** | Low | Low | Low; no stability capacitors are required |
 | **Main use** | Quick, low-precision source | General-purpose source | Low-voltage or precision source |
 
@@ -355,8 +337,7 @@ These devices provide a modern low-voltage method.
 
 ### Thermal-Electrical Analogy
 
-The original notes call this analogy **thermal Ohm's law**.
-It applies to steady-state thermal calculations.
+The notes call this analogy **thermal Ohm's law**: heat flow behaves like current, temperature difference like voltage, and thermal resistance like electrical resistance. Use it for steady-state temperatures.
 
 * **Heat flow, or power P:** This is analogous to electrical current.
 * **Temperature difference:** This is analogous to voltage difference.
@@ -382,11 +363,9 @@ Heat moves through three thermal resistances in series.
 
 #### Example
 
-Assume that a regulator dissipates 5 W.
-The ambient temperature is 50&deg;C.
-The maximum necessary junction temperature is 100&deg;C.
+Assume a regulator dissipates 5 W in a 50&deg;C ambient. The design must keep its junction temperature at or below 100&deg;C.
 
-1. **Permitted temperature rise:** 100&deg;C - 50&deg;C = **50&deg;C**.
+1. **Allowed temperature rise:** 100&deg;C - 50&deg;C = **50&deg;C**.
 2. **Maximum total resistance:** 50&deg;C / 5 W = **10&deg;C/W**.
 3. **Required heatsink:** Subtract <i>R<sub>&theta;JC</sub></i> and <i>R<sub>&theta;CS</sub></i> from 10&deg;C/W.
    The remaining value is the maximum <i>R<sub>&theta;SA</sub></i>.
@@ -394,7 +373,7 @@ The maximum necessary junction temperature is 100&deg;C.
 ### Mounting and Cooling
 
 * **Mica and grease:** This older method is messy but performs well.
-  The original typical value is approximately 0.5&deg;C/W.
+  The original typical value is about 0.5&deg;C/W.
 * **Silicone pads:** These clean, grease-free pads are easier to use.
   The original range is 1&deg;C/W to 4&deg;C/W.
 * **Heatsink orientation:** Put fins vertically for natural convection.
@@ -425,27 +404,25 @@ This stage includes safety, filtering, transformation, rectification, and energy
 
 :::danger Mains-Voltage Safety
 Mains circuits can cause fatal electric shock, fire, and arc hazards.
-Use applicable safety standards, rated components, protective equipment, and qualified procedures.
+Use relevant safety standards, rated components, protective equipment, and qualified procedures.
 An isolation [transformer](<../../01-Discrete-Components/02-Magnetics/01-Transformers.md#1-magnetic-coupling>) does not make primary-side nodes safe to touch.
 :::
 
 ### Power Entry and Safety
 
-* **Protective earth:** Connect an accessible conductive enclosure to protective earth when the equipment class requires it.
+* **Protective earth:** Connect an accessible conductive enclosure to protective earth when the equipment class needs it.
 * Use a three-wire, three-prong connection for equipment that needs protective earth.
 * A correctly designed double-insulated product can use a two-wire connection.
 * **Power-entry module:** This module can combine the fuse holder, switch, and low-pass filter.
 * Its construction must prevent contact with live conductors during fuse replacement.
-* **Fuse:** A mains-powered supply requires correctly rated overcurrent protection.
+* **Fuse:** A mains-powered supply needs correctly rated overcurrent protection.
 * A time-delay, or slow-blow, fuse can tolerate capacitor [inrush current](<../Power%20Control/Load-Switches.md#2-inrush-current>).
 * **Galvanic isolation:** An isolation transformer separates the secondary circuit from mains conductors.
 * Protective earth and isolated circuit ground are different nodes unless the design intentionally connects them.
 
 ### Electromagnetic-Interference Filtering
 
-A low-pass filter, frequently a pi filter, has two functions.
-It limits radio-frequency interference entering the equipment.
-It also limits noise that the equipment sends to the power line.
+A low-pass filter, often a pi filter, reduces radio-frequency interference in both directions: noise entering from the power line and noise the equipment sends back onto it.
 
 * **Safety-rated capacitors:** Use capacitors approved for direct connection to the mains.
 * **X-class capacitor, such as X1 or X2:** Connect it from line to neutral.
@@ -465,7 +442,7 @@ It also limits noise that the equipment sends to the power line.
 * A larger capacitor decreases ripple.
 * An excessively large capacitor decreases rectifier conduction angle.
   This increases transformer heating and rectifier stress.
-* **Bleeder resistor:** Provides a minimum load and discharges the capacitor after switch-off.
+* **Bleeder resistor:** Gives a minimum load and discharges the capacitor after switch-off.
 * **[Snubber](<../../01-Discrete-Components/03-Semicondctors/01-Diodes.md#c-rc-snubbers-and-rcd-clamps>):** A series RC network across the transformer secondary can limit ringing and voltage spikes.
 
 ### Transformer Voltage Selection
@@ -559,9 +536,7 @@ The original notes identify four noise paths.
 
 ### Voltage-Mode and Current-Mode Control
 
-The controller compares <i>V<sub>out</sub></i> with <i>V<sub>ref</sub></i>.
-The difference produces an error signal.
-The controller architecture determines how this signal changes switching.
+The controller compares <i>V<sub>out</sub></i> with <i>V<sub>ref</sub></i>. Their difference is the error signal. How the controller uses that error to adjust switching depends on its architecture.
 
 #### Voltage-Mode Control
 
@@ -583,7 +558,7 @@ The original notes call this the threshold method.
 * **Input feedforward effect:** Higher <i>V<sub>in</sub></i> makes current rise faster.
   The threshold is then reached sooner.
   This action limits movement at <i>V<sub>out</sub></i>.
-* The inner current loop makes the inductor act approximately as a controlled current source.
+* The inner current loop makes the inductor act about as a controlled current source.
 * The outer voltage loop then has a mainly first-order capacitor response.
 * This response is easier to compensate than the LC double pole.
 * **Slope compensation:** Peak current-mode control usually needs it above 50% duty cycle.
@@ -623,37 +598,35 @@ An [optocoupler](<../../04-Digital-Interfaces/DigitalGeneral.md#iv-couplers>) ca
 
 The original notes describe this arrangement as a 110/220 V input selector.
 
-* **Universal input:** Many low-power supplies use a switch rated for approximately 85 V to 265 V AC.
+* **Universal input:** Many low-power supplies use a switch rated for about 85 V to 265 V AC.
 * **Voltage-doubler input:** A higher-power design can use a selector to reconfigure the bridge.
-* **Selector open at 230 V:** The circuit operates as a full-wave bridge.
-  Its output is approximately 320 V DC.
-* **Selector closed at 115 V:** The circuit operates as a voltage doubler.
+* **Selector open at 230 V:** The circuit acts as a full-wave bridge.
+  Its output is about 320 V DC.
+* **Selector closed at 115 V:** The circuit acts as a voltage doubler.
   Alternate cycles charge the two capacitors.
-  Its output is also approximately 320 V DC.
+  Its output is also about 320 V DC.
 
 Incorrect selector position can destroy the supply.
 Use a universal-input design when practical.
 
 ### Inrush Current
 
-At initial connection, an empty [bulk capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bulk-capacitance>) has very low effective impedance.
-It can draw a large inrush current.
+At startup, the empty [bulk capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bulk-capacitance>) needs a large amount of charge. With little impedance in the charging path, this can produce a large inrush current.
 
 * **Negative-temperature-coefficient (NTC) thermistor:** It has higher resistance when cold.
   Its resistance decreases as it heats.
 * **Soft-start resistor and relay:** The resistor initially limits current.
-  A relay bypasses it after approximately one second.
+  A relay bypasses it after about one second.
 
 ### Power-Factor Correction
 
-A bridge rectifier with a bulk capacitor draws current near the AC-voltage peaks.
-This produces harmonic current and poor power factor.
+A bridge rectifier with a bulk capacitor draws most of its current near the peaks of the AC voltage. These narrow current pulses contain harmonics and produce poor power factor.
 
 * **Active power-factor correction (PFC):** Put a boost converter between the rectifier and bulk capacitor.
 * The controller makes input current follow the input-voltage sine-wave shape.
 * The supply then behaves more like a resistive load.
 * The original notes use more than 100 W as a rule for mandatory PFC.
-* Actual requirements depend on equipment class, market, and the applicable harmonic-current standard.
+* Actual requirements depend on equipment class, market, and the relevant harmonic-current standard.
 
 ---
 
@@ -661,7 +634,7 @@ This produces harmonic current and poor power factor.
 
 ### High Voltage and Component Stress
 
-The rectified DC rail is approximately 160 V to 300 V in the original examples.
+The rectified DC rail is about 160 V to 300 V in the original examples.
 
 * **[MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) voltage rating:** Inductive overshoot and reset behavior can require a 600 V or 800 V MOSFET on a 300 V rail.
 * **Leakage-inductance spikes:** These spikes can exceed the ideal maximum voltage.
@@ -681,7 +654,7 @@ One discharge of this energy in each cycle gives:
 
 > **P = 0.5 &times; C &times; V<sup>2</sup> &times; f**
 
-For 100 pF, 300 V, and 150 kHz, this term is approximately 0.675 W.
+For 100 pF, 300 V, and 150 kHz, this term is about 0.675 W.
 The original notes give 1.35 W.
 That larger value represents comparable loss during both charging and discharging.
 
@@ -708,7 +681,7 @@ Underwriters Laboratories (**UL**), International Electrotechnical Commission (*
 * Removing unused optocoupler pins can also increase the path.
 
 There is no universal 2 mm rule.
-Required distances depend on voltage, insulation type, pollution degree, material group, altitude, and the applicable standard.
+Required distances depend on voltage, insulation type, pollution degree, material group, altitude, and the relevant standard.
 
 ---
 
@@ -719,8 +692,7 @@ The supplied archives do not contain a matching figure.
 
 ### Architecture
 
-The example converts 100 V to 240 V AC to an isolated 5 V DC output.
-The primary and secondary grounds are galvanically isolated.
+This example converts 100 V to 240 V AC into an isolated 5 V DC output. Its primary and secondary grounds have no direct conductive connection; this is galvanic isolation.
 
 ### Circuit Walkthrough
 
@@ -741,7 +713,7 @@ The primary and secondary grounds are galvanically isolated.
 
 * **DCM:** Transformer current reaches 0 A before the next cycle.
   The resulting dead interval can contain ringing.
-* **Hard switching:** The MOSFET dissipates energy associated with <i>C<sub>OSS</sub></i> at approximately 320 V.
+* **Hard switching:** The MOSFET dissipates energy associated with <i>C<sub>OSS</sub></i> at about 320 V.
 * **Measurement safety:** Do not connect a standard earth-referenced [oscilloscope](<../../00-Foundations/05-Measurement-and-Debug.md#oscilloscope-bandwidth-and-sampling>) ground clip to a live primary node.
 * Use a correctly rated [differential probe](<../../00-Foundations/05-Measurement-and-Debug.md#probe-selection>), isolated-input instrument, or approved isolation measurement system.
 * Do not defeat an oscilloscope protective-earth connection.
@@ -787,7 +759,7 @@ A high-precision instrument, such as a six-digit [multimeter](<../../00-Foundati
    A Zener near 6 V can have a small first-order temperature coefficient.
    A buried-Zener reference is a separate precision IC structure.
 2. **Bandgap reference:** It combines transistor voltage terms to cancel much of their first-order temperature change.
-   The approximately 0.6 V base-emitter voltage is one part of this method.
+   The about 0.6 V base-emitter voltage is one part of this method.
    Residual temperature error remains.
 3. **[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>) pinch-off reference:** It uses a junction field-effect transistor pinch-off characteristic.
 4. **Two-terminal shunt reference:** It operates like a precise Zener.
@@ -800,7 +772,7 @@ A high-precision instrument, such as a six-digit [multimeter](<../../00-Foundati
 
 A **battery-management system (BMS)** controls stored electrical energy.
 It protects battery safety and service life.
-A power supply provides energy.
+A power supply gives energy.
 A BMS manages the storage of that energy.
 
 ### Lithium-Ion Constant-Current and Constant-Voltage Charging
@@ -883,9 +855,7 @@ Poor layout can make the supply operate like an unwanted radio transmitter and f
 
 ### Identify the Hot Loop
 
-The **hot loop** carries discontinuous current.
-Its current changes rapidly from zero to a high value.
-This high <i>di/dt</i> produces strong magnetic fields.
+The **hot loop** is the path where current switches rapidly between zero and a high value. These fast changes, described by high <i>di/dt</i>, produce changing magnetic fields that can cause interference.
 
 Any current loop can operate as an antenna.
 The original notes use this qualitative relationship:
@@ -917,7 +887,7 @@ The diode makes output current discontinuous.
 2. **Conductors:** Use wide copper polygons or pours.
    Do not use thin traces in the hot loop.
 3. **Ground plane:** Put a solid ground plane on the layer below the loop when the design permits it.
-   This plane decreases loop inductance and provides shielding.
+   This plane decreases loop inductance and gives shielding.
 4. **Vias:** Avoid vias in the hot loop.
    Vias add inductance.
    If vias are necessary, use multiple vias in parallel.
@@ -944,9 +914,7 @@ These terms describe different functions.
 
 #### Digital Management
 
-The fast regulation loop remains analog.
-Digital circuits perform communication, reporting, and configuration.
-The original notes call these functions "housekeeping."
+In this arrangement, the fast regulation loop stays analog. Digital circuits handle communication, status reporting, and configuration, which the original notes call housekeeping.
 
 * **Communication:** The regulator uses an inter-integrated circuit (**[I2C](<../../04-Digital-Interfaces/Serial-Buses/03-I2C.md#1-shared-clock-and-data>)**) or PMBus interface.
 * **Reporting:** It sends input voltage, output voltage, output current, and die temperature to a [microcontroller](<../../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>).
@@ -997,11 +965,11 @@ A **fuse** opens a circuit after sufficient heating melts its element. Select it
 ### Ratings That Need Separate Checks
 
 * **Current rating:** A specified continuous-current capability under stated conditions.
-* **Voltage rating:** A limit for interrupting the circuit under the specified conditions.
+* **Voltage rating:** A limit for interrupting the circuit under the conditions listed in the specification.
 * **Interrupting rating:** The maximum fault current the fuse can interrupt at its rated conditions.
 * **Time-current curve:** The expected opening-time range for a stated overcurrent.
 
-A fuse does not open immediately when current exceeds its nominal rating. An AC voltage rating does not automatically establish the same DC rating.
+A fuse does not open the instant current exceeds its nominal rating. Also, a fuse rated for an AC voltage is not automatically suitable for the same DC voltage.
 
 ### Pulse Energy Measure
 
@@ -1013,7 +981,7 @@ The current-squared time integral is:
 
 Its pulse integral is **0.128 A²s**. Compare this value with the manufacturer's repetitive-pulse method and derating factors.
 
-Do not use melting I²t alone to predict every fault. Total clearing behavior includes the interval after melting while current interruption occurs.
+Melting I²t tells you about heating the fuse element, but does not describe the whole interruption. Current can continue briefly after the element melts, so check the total clearing behavior too.
 
 ### Coordination
 

@@ -1,6 +1,5 @@
 # RTCs
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -35,7 +34,7 @@ Temperature changes and aging make real error vary. A calibration performed at o
 
 ## 4. Read a Valid Timestamp
 
-Time registers can change while the processor reads them. Use the device's snapshot or coherent-read method.
+The clock can tick while the processor is reading its registers. Use the device's snapshot or coherent-read method so all fields come from the same instant rather than mixing, for example, old seconds with a new minute.
 
 Some devices store digits in **[binary-coded decimal](<../../04-Digital-Interfaces/DigitalGeneral.md#binary-coded-decimal>) (BCD)**. For example, [hexadecimal](<../../04-Digital-Interfaces/DigitalGeneral.md#hexadecimal>) 0x25 represents decimal 25 in BCD, not decimal 37.
 
@@ -43,7 +42,7 @@ Check oscillator-stop and power-loss flags before trusting a timestamp. Set a kn
 
 ## 5. Backup and Alarm Checks
 
-1. Use the permitted backup-voltage range.
+1. Use the allowed backup-voltage range.
 2. Check whether the device includes a charging path.
 3. Do not charge a [primary cell](<../../02-Power/Regulation/Battery-Charging.md#chemistry-and-stored-energy>) through an enabled charging circuit.
 4. Include leakage and backup current in the retention estimate.

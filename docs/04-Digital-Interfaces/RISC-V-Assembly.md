@@ -20,7 +20,7 @@ The [pipeline lesson](<./RISC-V-Pipeline.md#2-read-a-risc-v-instruction>) define
 | a0–a7 | x10–x17 | Arguments, with a0 and a1 also used for results |
 | s0–s11 | x8–x9 and x18–x27 | Values preserved by the called function |
 
-These uses come from the **application binary interface (ABI)**. The instruction hardware does not automatically preserve a saved register.
+These register uses are conventions defined by the **application binary interface (ABI)**. Software must follow them; the processor does not automatically save a register just because the ABI calls it saved.
 
 Integer addition keeps the low 32 result bits. It does not trap on signed overflow in RV32I.
 
@@ -77,7 +77,7 @@ Moving an independent instruction between them can hide that delay on some imple
 
 A **leaf function** makes no further calls. A **nonleaf function** calls another function.
 
-The standard integer ABI requires 16-byte stack alignment. The stack grows toward lower addresses, and a function restores sp before returning.
+The standard integer ABI needs 16-byte stack alignment. The stack grows toward lower addresses, and a function restores sp before returning.
 
 ### Worked example: preserve a value across a call
 
@@ -99,7 +99,7 @@ wrapper:
 
 The wrapper saves its caller's s0 before using it. The helper must preserve s0 under the same ABI.
 
-Temporary registers and argument registers can change across a call. Save a live value before calling if the ABI does not preserve its register.
+A called function can change temporary and argument registers. If you need a value after the call, save it beforehand unless the ABI needs the called function to preserve that register.
 
 This direct `jal` example assumes helper is within instruction range. Assemblers and linkers support other call sequences for more distant targets.
 

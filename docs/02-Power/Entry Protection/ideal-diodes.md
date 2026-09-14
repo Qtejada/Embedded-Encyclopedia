@@ -1,6 +1,5 @@
 # Ideal Diodes
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -9,7 +8,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 An **ideal-diode circuit** uses a controller and a metal-oxide-semiconductor field-effect transistor (**[MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**) to reduce forward loss.
 
-The controller senses the voltage across the power path. It controls the gate to conduct forward current and limit reverse current.
+The controller watches the voltage across the power path and adjusts the MOSFET gate. It turns the transistor on for forward current and reduces drive when current would flow backward.
 
 The circuit is not ideal in every condition. Gate delay, leakage, resistance, and supply limits remain.
 
@@ -39,7 +38,7 @@ These values exclude controller consumption and switching events. They show why 
 
 A single MOSFET has a [body diode](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#body-diode>). Its orientation controls the passive current path before the gate receives drive.
 
-An ideal-diode function does not necessarily disconnect forward current when disabled. Two opposed MOSFETs can provide blocking in both directions when the controller supports that arrangement.
+An ideal-diode controller may still allow forward current when disabled because of the body diode. Two MOSFETs facing opposite directions can block both directions if the controller is designed to drive them that way.
 
 [TI, reverse-current protection](https://www.ti.com/lit/an/slva730/slva730.pdf) compares these circuit arrangements.
 
@@ -50,6 +49,6 @@ An ideal-diode function does not necessarily disconnect forward current when dis
 3. Check reverse input voltage and output-to-input current.
 4. Check forward surge current and the MOSFET [safe operating area](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#safe-operating-area>).
 5. Check controller supply limits and gate-voltage limits.
-6. Add separate inrush control when the load capacitance requires it.
+6. Add separate inrush control when the load capacitance needs it.
 
 **Device example:** The [TI LM74700-Q1 data sheet](https://www.ti.com/lit/ds/symlink/lm74700-q1.pdf) describes one controller implementation. Its limits do not apply to every ideal-diode circuit.

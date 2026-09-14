@@ -11,7 +11,7 @@ import PcbStackupExplorer from '@site/src/components/PcbStackupExplorer'
 
 *Source: Phil's Lab Notes and Best Practices*
 
-This guide describes a practical workflow for **printed circuit board (PCB)** design. Use the component, interface, and fabrication documents as the final authority for each design.
+This guide follows a practical workflow for **printed circuit board (PCB)** design. For each board, check the rules against the actual component datasheets, interface requirements, and fabrication documents.
 
 ---
 
@@ -46,13 +46,13 @@ This guide describes a practical workflow for **printed circuit board (PCB)** de
 
 * **Plane Definition:** A plane is a copper region that connects to one net.
 * **Signal-Layer Planning:** When a design needs four signal layers, use the top layer, the bottom layer, and two internal signal layers.
-* **Four-Layer Board:** For a physical four-layer board, put signal routing on the top and bottom layers. Use the two inner layers for the reference and power functions that the design requires.
+* **Four-Layer Board:** For a physical four-layer board, put signal routing on the top and bottom layers. Use the two inner layers for the reference and power functions that the design needs.
 * **Fabrication Approval:** Agree on the stackup with the PCB fabricator before you route controlled-impedance signals. Specify the material, copper thickness, dielectric thickness, layer symmetry, and manufacturing tolerances.
 * **[Electromagnetic Interference](<./High-Speed.md#eye-diagrams-and-interference>):** A ground layer can extend near the board edge when the electromagnetic interference (EMI), creepage, clearance, and fabrication requirements permit it. Pull a power plane back from the board edge when this action reduces edge radiation and does not violate another requirement.
 
 ### 2.2 Recommended Stackups
 
-The following lists are starting examples. They are not universal stackups. The PCB fabricator must approve the final construction, and the impedance calculation must use the approved construction.
+These stackups are starting examples, not layouts that work for every board. Agree on the final materials and layer dimensions with the fabricator, then use those actual dimensions in the impedance calculations.
 
 **12-Layer Stackup:**
 
@@ -113,7 +113,7 @@ As an alternative 12-layer variant, add one signal layer between Layers 3 and 4 
     * **Reference Planes:** A continuous ground plane is usually the preferred reference. A close reference plane pulls the field lines toward that plane and away from adjacent tracks.
 
 :::info Deep Dive: HDI Stackups
-Use an **HDI stackup guide** from the selected fabricator when the design requires blind vias, buried vias, or microvias.
+Use an **HDI stackup guide** from the selected fabricator when the design needs blind vias, buried vias, or microvias.
 
 **High-density interconnect (HDI)** construction uses features such as laser-drilled **microvias** and blind or buried vias.
 
@@ -132,29 +132,29 @@ Start placement with the largest components, but apply the mechanical and electr
 
 * **Mechanical First:** Place mounting holes, connectors, and other mechanically constrained items first.
     * **Warning:** Include the size and bend radius of the connected cables. A cable can require much more space than its connector.
-* **Mounting Holes:** Connect a mounting hole to board ground or chassis only when the mechanical, safety, shielding, and EMI plan requires that connection. Do not make this connection by default.
-* **Outlines and Land Patterns:** Use the component-manufacturer recommendation, a land-pattern guideline, or an applicable standard from IPC, the electronics-industry standards organization. Keep copper pads within the approved land pattern. When the assembly process requires more clearance, make the documented assembly outline and courtyard slightly larger than the component body. Do not enlarge the copper pads for this purpose. Use assembler-approved tolerances. Make the assembly outline, courtyard, polarity marks, and connector body outline clear.
+* **Mounting Holes:** Connect a mounting hole to board ground or chassis only when the mechanical, safety, shielding, and EMI plan needs that connection. Do not make this connection by default.
+* **Outlines and Land Patterns:** Use the component-manufacturer recommendation, a land-pattern guideline, or an relevant standard from IPC, the electronics-industry standards organization. Keep copper pads within the approved land pattern. When the assembly process needs more clearance, make the documented assembly outline and courtyard slightly larger than the component body. Do not enlarge the copper pads for this purpose. Use assembler-approved tolerances. Make the assembly outline, courtyard, polarity marks, and connector body outline clear.
 
 ### 3.2 Thermal and Design-for-Manufacturing (DFM) Rules
 
-* **Heat Management:** A central processing unit (CPU) usually dissipates more heat than a typical [microcontroller](<../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>) unit (MCU). Identify the thermal path through the package, copper, vias, heat sink, enclosure, and airflow. On a vertical board that uses bottom-to-top natural convection, an upper location can help cool a hot component because heated air rises. Use this placement only when the installed orientation and airflow support it. Use enclosure-orientation and airflow analysis for other installations. Plan a heat sink when the thermal analysis requires one.
+* **Heat Management:** A central processing unit (CPU) usually dissipates more heat than a typical [microcontroller](<../04-Digital-Interfaces/Embedded-Systems.md#select-a-processor>) unit (MCU). Identify the thermal path through the package, copper, vias, heat sink, enclosure, and airflow. On a vertical board that uses bottom-to-top natural convection, an upper location can help cool a hot component because heated air rises. Use this placement only when the installed orientation and airflow support it. Use enclosure-orientation and airflow analysis for other installations. Plan a heat sink when the thermal analysis needs one.
 * **Height:** Record all component heights. Put tall components where the enclosure, airflow, assembly process, and cable access permit them. For a vertical assembly with bottom-to-top natural convection, the upper enclosure region can be suitable when all other constraints permit this position.
 * **CPU Space:** Keep sufficient placement and routing space around the CPU and memories. Use previous designs for the first area estimate. Verify the required area with package-escape studies and routing-density estimates.
 
 ### 3.3 Critical Component Rules
 
 * **Power Supplies:** Read the device-specific PCB layout guidelines, especially for power supplies. Identify the high-current switching loops and keep them small. When you route on other layers below a supply, make sure that the routes do not disturb the supply or interrupt its [return path](<./02-Return-Paths.md#1-a-signal-needs-a-return>). Use a clean, fabricator-approved stackup.
-* **[Decoupling Capacitors](<../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>):** Put decoupling capacitors close to the applicable power pins. Use short, wide connections and a low-inductance current loop between the power pin, capacitor, and reference plane.
+* **[Decoupling Capacitors](<../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>):** Put decoupling capacitors close to the relevant power pins. Use short, wide connections and a low-inductance current loop between the power pin, capacitor, and reference plane.
 * **Passives:**
-    * **0 Ω resistors, beads, and ferrites:** Put these parts close to the applicable power pins, decoupling capacitors, or planes, as the circuit requires.
+    * **0 Ω resistors, beads, and ferrites:** Put these parts close to the relevant power pins, decoupling capacitors, or planes, as the circuit needs.
     * **Precision resistors and capacitors:** Use short tracks where track resistance, leakage, noise pickup, or [parasitic capacitance](<../00-Foundations/00-Foundations.md#5-parasitic-effects>) can cause an error.
     * **Series-termination resistors and alternating-current (AC) coupling capacitors:** Put a series-[termination resistor](<./03-trace-impedance.md#distributed-loss-and-termination>) close to its output driver. Put an [AC-coupling](<../01-Discrete-Components/01-Passives/02-Capacitors.md#ac-coupling-blocking>) capacitor at the location specified by the interface standard or device guide.
-* **Crystals and Oscillators:** Put crystals and oscillators close to their device pins. Keep the crystal tracks as short as the device guide requires.
+* **Crystals and Oscillators:** Put crystals and oscillators close to their device pins. Keep the crystal tracks as short as the device guide needs.
     * **Routing Rule:** Do not route below a crystal when the device guide specifies a keepout. Avoid routes below or between crystal-component pads when this routing increases coupling or parasitic capacitance.
 * **Connectors:** Use a through-hole connector when the mechanical load and assembly process make it the more robust choice. Use a surface-mount connector when its mechanical retention, signal-integrity performance, density, and manufacturing process satisfy the design.
 
 :::danger ESD Placement Rule
-* **Location:** Put the applicable electrostatic-discharge (ESD) protection device close to the connector or board-entry point. Route the transient path to the protection device before the protected signal branches to other circuits.
+* **Location:** Put the relevant electrostatic-discharge (ESD) protection device close to the connector or board-entry point. Route the transient path to the protection device before the protected signal branches to other circuits.
 * **Reason:** A long unprotected route increases parasitic inductance and exposes more components before the surge reaches the protection device. A protected component can fail before a remotely placed protection device clamps the event.
 * **Implementation:** Follow the transient-voltage-suppressor (TVS) manufacturer guidance for the path to ground or chassis. Keep that discharge path short and low inductance.
 :::
@@ -163,7 +163,7 @@ Start placement with the largest components, but apply the mechanical and electr
 
 ## Chapter 4: The Routing Workflow
 
-This workflow divides routing into a connection phase and an improvement phase. This sequence is useful for planning, but finalize the fabrication stackup and the interface-specific impedance, spacing, and skew rules before you route any critical signal. Do not wait until the last step to define the trace geometry for a **50 Ω impedance target**.
+This workflow separates making connections from improving the routes. Before routing critical signals, however, settle the manufacturing stackup and each interface's impedance, spacing, and timing-mismatch rules. A **50 Ω impedance target** needs the right trace geometry from the start, not a correction at the end.
 
 ### 4.1 Phase 1: Connect All Pins
 
@@ -184,23 +184,23 @@ This workflow divides routing into a connection phase and an improvement phase. 
 
 ### 4.2 Phase 2: Improve the Layout
 
-1. Set the final, fabricator-approved stackup. For critical controlled-impedance routing, complete this step before the applicable routes in Phase 1.
+1. Set the final, fabricator-approved stackup. For critical controlled-impedance routing, complete this step before the relevant routes in Phase 1.
 2. Set the final differential-pair rules. Redraw all differential pairs that do not meet those rules.
 3. Do the preliminary memory length matching.
 4. Do the preliminary differential-pair length matching.
 5. Do the preliminary length matching for all other signals that have a specified length or skew requirement.
 6. Reduce routing congestion and increase track spacing where the design rules or crosstalk limits require it. Keep the required controlled geometry.
-7. Clear all applicable electrical **Design Rule Check ([DRC](<./04-Manufacturing-and-Test.md#design-for-access>))** violations.
+7. Clear all relevant electrical **Design Rule Check ([DRC](<./04-Manufacturing-and-Test.md#design-for-access>))** violations.
 8. Create power planes and polygons. Check the high-current tracks.
-9. Check each net for connectivity, clearance, return-path continuity, and compliance with the applicable design rules.
+9. Check each net for connectivity, clearance, return-path continuity, and compliance with the relevant design rules.
 10. Add the required same-net ground stitching vias. See Section 5.4.
 11. Do the final length matching for non-memory signals that have a specified length or skew requirement.
 12. Do the final memory length matching.
 13. Lock the important tracks.
-14. Clear the remaining applicable DRC violations.
+14. Clear the remaining relevant DRC violations.
 15. Add the company name, copyright, year, board name, and version.
 16. Add the manufacturing information.
-17. Verify each controlled-impedance trace geometry against the required impedance. For a **50 Ω** target, adjust the width and spacing with the approved stackup model. The **50 Ω** value is an example. Use it only when the interface requires it.
+17. Verify each controlled-impedance trace geometry against the required impedance. For a **50 Ω** target, adjust the width and spacing with the approved stackup model. The **50 Ω** value is an example. Use it only when the interface needs it.
 
 ---
 
@@ -208,13 +208,13 @@ This workflow divides routing into a connection phase and an improvement phase. 
 
 ### 5.1 Impedance Control
 
-* **Rule:** Maintain the single-ended or differential impedance that each interface requires. Common examples include **50 Ω or 55 Ω single-ended** and **85 Ω, 90 Ω, or 100 Ω differential**. No one value applies to all high-speed signals.
+* **Rule:** Maintain the single-ended or differential impedance that each interface needs. Common examples include **50 Ω or 55 Ω single-ended** and **85 Ω, 90 Ω, or 100 Ω differential**. No one value applies to all high-speed signals.
 * **Method:** Get the impedance requirement from the interface specification and device guide. Use the final fabricator-approved stackup. Enter the trace geometry in the Altium or KiCad design rules, or use the fabricator field solver. Confirm the manufactured impedance tolerance with the fabricator.
 * **Minimums:** A **0.2 mm** trace is a common fabrication example, and some high-speed signals use **50 Ω or 55 Ω**. These values are board-dependent examples, not universal limits. Use the fabricator capability and impedance calculation for the actual minimum.
 
 ### 5.2 Length Matching (Skew Control)
 
-* **Differential-Pair Separation:** Keep a differential pair sufficiently far from unrelated data signals. Keep the spacing within the pair at the value used for its impedance calculation.
+* **Differential-Pair Separation:** Keep a differential pair far enough from unrelated data signals. Keep the spacing within the pair at the value used for its impedance calculation.
 * **Within a Pair:** Keep the pair geometry symmetrical in each routed segment. Match the positive and negative paths by electrical delay to meet the interface skew limit. Equal length on each layer is a useful objective when both paths use the same layer and via structure. Use the total electrical delay for final verification because layer velocity and via structure can make equal geometric lengths electrically unequal.
 * **Technique:** A **bump** is a length-tuning segment that adds distance to the shorter route.
     * One broad length-tuning segment on the shorter track is usually preferable to many small segments when the geometry and impedance remain acceptable.
@@ -228,19 +228,19 @@ This workflow divides routing into a connection phase and an improvement phase. 
 :::info Uncoupled Lengths
 This section defines **uncoupled lengths** and explains their effect on differential signals.
 
-When you route a **differential pair**, such as Universal Serial Bus (USB) D+ and D−, the two conductors usually remain close and electromagnetically coupled. Near a pin or via, the conductors can separate to enter the pads.
+Keep the two traces of a **differential pair**, such as Universal Serial Bus (USB) D+ and D−, close together so their fields remain coupled. They may need to separate briefly near pins or vias to reach their pads.
 
 * **Uncoupled length:** The distance for which the positive and negative conductors do not maintain the intended coupled geometry.
-* **Risk:** This segment creates an impedance discontinuity that can cause [reflections](<./03-trace-impedance.md#3-reflections>) and convert some differential energy to common-mode energy. For example, a **90 Ω differential pair** can transition to two segments designed for **50 Ω single-ended impedance**. Do not assume that this conversion occurs automatically. The actual impedances depend on the stackup and geometry.
+* **Risk:** Separating the pair changes its impedance and can cause [reflections](<./03-trace-impedance.md#3-reflections>). Imbalance can also turn some of the differential signal into a shared, common-mode signal. A **90 Ω differential pair**, for example, may transition to two segments designed for **50 Ω single-ended impedance**, but the numbers do not follow automatically. Check the actual stackup and geometry.
 * **Goal:** Minimize the uncoupled length. Keep the pair together until the final connection, within the pad, escape, and fabrication constraints. Maintain the coupled geometry until the last millimeter where practical.
 :::
 
 ### 5.3 Crosstalk and Separation
 
 * **Parallel Tracks:** Identify tracks that run parallel. Where the stackup and return paths permit it, route one signal layer mainly horizontally and the adjacent signal layer mainly vertically. This arrangement reduces long broadside-parallel sections. Do not use orthogonal routing as a substitute for adequate spacing and reference planes.
-* **Isolation:** Keep unrelated differential pairs sufficiently far apart. Give clocks more separation when their fast edges can couple into other signals. Isolate sensitive asynchronous signals, such as interrupt and reset signals, as the noise-margin analysis requires.
-* **Inter-Integrated Circuit Bus:** The Inter-Integrated Circuit ([I2C](<../04-Digital-Interfaces/Serial-Buses/03-I2C.md#1-shared-clock-and-data>)) clock (`SCL`) and data (`SDA`) lines are separate single-ended, [open-drain](<../04-Digital-Interfaces/DigitalGeneral.md#output-architectures>) signals. They are not a differential pair. Give them sufficient separation from each other and from signals that can cause interference.
-* **Integrated-Circuit Pads:** Use the package-manufacturer land pattern or an IPC land-pattern guideline or applicable standard. Do not reduce the pad-to-pad clearance below that approved pattern. Match the footprint to the package lead and pin geometry.
+* **Isolation:** Keep unrelated differential pairs far enough apart. Give clocks more separation when their fast edges can couple into other signals. Isolate sensitive asynchronous signals, such as interrupt and reset signals, as the noise-margin analysis needs.
+* **Inter-Integrated Circuit Bus:** The Inter-Integrated Circuit ([I2C](<../04-Digital-Interfaces/Serial-Buses/03-I2C.md#1-shared-clock-and-data>)) clock (`SCL`) and data (`SDA`) are separate single-ended, [open-drain](<../04-Digital-Interfaces/DigitalGeneral.md#output-architectures>) signals, not a differential pair. Leave enough space between them and nearby signals to limit interference.
+* **Integrated-Circuit Pads:** Use the package-manufacturer land pattern or an IPC land-pattern guideline or relevant standard. Do not reduce the pad-to-pad clearance below that approved pattern. Match the footprint to the package lead and pin geometry.
 
 ### 5.4 Return Paths
 
@@ -253,9 +253,9 @@ When you route a **differential pair**, such as Universal Serial Bus (USB) D+ an
 ### 5.5 Routing Logistics
 
 * **Groups:** Route related signals in groups. For example, route all **Peripheral Component Interconnect Express (PCIe)** signals as a group. Keep the group on the same layer where the interface constraints permit it.
-* **Topology:** Route each signal group with the topology that its interface requires. Keep related Secure Digital (SD) card tracks on the same layers when that arrangement provides consistent references and delay.
+* **Topology:** Route each signal group with the topology that its interface needs. Keep related Secure Digital (SD) card tracks on the same layers when that arrangement gives consistent references and delay.
 * **Layer Switching:** When tracks must change layers, you can route the signals on each layer first and then put the transition via at an appropriate connection point. Verify the via location and return path before you finalize the route.
-* **Crossing:** When many routes cross, one possible escape method is to route straight lines on two specified routing layers or board surfaces and connect each applicable route through one aligned via at the connection point. Use this method only when the via field, antipads, coupling, return paths, and fabrication rules permit it.
+* **Crossing:** For crowded routes, one option is to use straight runs on two selected layers or board surfaces, joining each connection with an aligned via. Check that the via pattern, clearances around vias (antipads), coupling, return paths, and fabrication rules allow this approach.
 * **Edge Rule:** Keep routes away from the PCB edge and holes by the distance required for signal integrity, mechanical processing, creepage, clearance, and fabrication.
 * **Angles:** Avoid 90-degree corners on controlled-impedance routes as a consistent layout convention. A single 90-degree corner is not automatically a design failure. Use 45-degree corners or arcs when they help maintain geometry and manufacturing quality.
 
@@ -267,8 +267,8 @@ When you route a **differential pair**, such as Universal Serial Bus (USB) D+ an
 
 * **Sequence:** A center-out escape is one BGA fanout strategy. Start at the center and move toward the package edge when this sequence makes the congestion easier to control.
 * **Columns:** In the middle of the BGA, align vias in columns where the pad pitch and fabrication rules permit it. Columns can leave channels for components or routes on the other side.
-* **Edges:** At the package edge, make an escape that lets all applicable pins leave the package without unnecessary vias.
-* **Density:** Use **one via per pin** as a fanout strategy when space permits. This is not a universal rule. If space requires a shared via, share it only between connections on the same net and only after you verify current, inductance, return path, assembly, and fabrication limits. Never share one via between different nets.
+* **Edges:** At the package edge, make an escape that lets all relevant pins leave the package without unnecessary vias.
+* **Density:** Use **one via per pin** as a fanout strategy when space permits. This is not a universal rule. If space needs a shared via, share it only between connections on the same net and only after you verify current, inductance, return path, assembly, and fabrication limits. Never share one via between different nets.
 
 ### 6.2 Via Technology Guide
 
@@ -283,9 +283,9 @@ The four principal via types differ in span, fabrication method, cost, and routi
     * **Disadvantage:** It is more expensive than a conventional plated through-hole via.
 3. **Buried via:** A via that connects inner layers only, such as Layer 3 to Layer 4. It is not visible from the board exterior.
     * **Advantage:** It is useful for high routing density.
-    * **Disadvantage:** It is more expensive and requires additional fabrication operations.
+    * **Disadvantage:** It is more expensive and needs additional fabrication operations.
 4. **Microvia:** A small laser-drilled via that usually connects adjacent layers, such as Layer 1 to Layer 2.
-    * **Aspect Ratio:** Use **0.8:1** depth-to-diameter only as a planning example. Obtain the approved process-specific limit from the fabricator. When one deep microvia is not permitted, use approved staggered or stacked transitions from Layer 1 to Layer 2 and then from Layer 2 to Layer 3. Get written fabrication approval for the geometry and structure. Stacked microvias can have reliability limits.
+    * **Aspect Ratio:** Use **0.8:1** depth-to-diameter only as a planning example. Obtain the approved process-specific limit from the fabricator. When one deep microvia is not allowed, use approved staggered or stacked transitions from Layer 1 to Layer 2 and then from Layer 2 to Layer 3. Get written fabrication approval for the geometry and structure. Stacked microvias can have reliability limits.
 :::
 
 :::warning The Via Stub Problem
@@ -312,7 +312,7 @@ If a plated through-hole via connects Layer 1 to Layer 10 and the signal uses th
 
 * **Start:** Starting a microprocessor layout from the center can be an effective first fanout strategy. Verify that the memory, power, and package-escape constraints support this sequence.
 * **Hierarchy:** Start with breakout-board layouts. Continue with microcontroller-board layouts. Move to microprocessor-board layouts after you can complete the first two types.
-* **Guides:** For memory layout, follow the processor or controller guide, the memory-device data sheet, and the applicable interface specification.
+* **Guides:** For memory layout, follow the processor or controller guide, the memory-device data sheet, and the relevant interface specification.
 * **Topologies:** Compare **fly-by** and **T-branch** topologies. Use only the topology that the controller and memory-device guidance supports.
 
 ### 7.2 Bit and Byte Swapping
@@ -320,10 +320,10 @@ If a plated through-hole via connects Layer 1 to Layer 10 and the signal uses th
 :::tip Bit and Byte Swapping
 Bit and byte swapping can reduce memory-routing congestion when the controller and memory documents permit it.
 
-DDR memory routing can become congested. Some controller and memory combinations permit selected pin swaps that make the routing easier. The permission is device-specific. Do not assume that the Joint Electron Device Engineering Council (JEDEC) standard permits every swap for every controller.
+DDR routing can get crowded. Some controllers and memories allow particular pins to be swapped to make routing easier, but the allowed swaps depend on the devices. A Joint Electron Device Engineering Council (JEDEC) standard does not give blanket permission to swap any pins on any controller.
 
-* **Bit Swapping:** When the controller and memory documents permit it, you can swap Data Bit 0 (`D0`) with Data Bit 1 (`D1`) in the same byte lane. The controller must use a permitted mapping so that data written on a physical bit returns on the corresponding physical bit.
-* **Byte Swapping:** When the documents permit it, you can swap complete byte lanes. For example, Byte Lane 0 can contain `D0–D7`, its data-strobe signals (`DQS0`), and the applicable data-mask signal. Byte Lane 1 can contain `D8–D15`, `DQS1`, and its applicable mask signal. Keep all required lane members together.
+* **Bit Swapping:** When the controller and memory documents permit it, you can swap Data Bit 0 (`D0`) with Data Bit 1 (`D1`) in the same byte lane. The controller must use a allowed mapping so that data written on a physical bit returns on the corresponding physical bit.
+* **Byte Swapping:** When the documents permit it, you can swap complete byte lanes. For example, Byte Lane 0 can contain `D0–D7`, its data-strobe signals (`DQS0`), and the relevant data-mask signal. Byte Lane 1 can contain `D8–D15`, `DQS1`, and its relevant mask signal. Keep all required lane members together.
 * **Constraint:** In general, do not swap address or command lines. In general, do not swap bits between different byte lanes. For example, do not swap `D0` with `D9`. The controller, package, board, and memory documents are the final authority.
 :::
 
@@ -331,7 +331,7 @@ DDR memory routing can become congested. Some controller and memory combinations
 
 * **Functional Partition:** Keep sensitive analog circuits away from noisy digital switching circuits when this separation reduces coupling. Physical separation is one tool, not a requirement to split ground by default.
 * **Placement:** Group related analog components in a compact, quiet area. A board side or corner can be a useful starting location. Select the position from the signal path, return current, connector, reference, thermal, and shielding requirements.
-* **Stackup:** If an analog circuit uses multiple layers, keep its signal and return paths close. Use continuous, low-impedance ground references between applicable signal layers. Prefer nearby layer use, such as Layers 1 and 3, instead of widely separated layers such as Layers 1 and 12.
+* **Stackup:** If an analog circuit uses multiple layers, keep its signal and return paths close. Use continuous, low-impedance ground references between relevant signal layers. Prefer nearby layer use, such as Layers 1 and 3, instead of widely separated layers such as Layers 1 and 12.
 
 ---
 
@@ -339,7 +339,7 @@ DDR memory routing can become congested. Some controller and memory combinations
 
 Use this nine-item checklist for further study.
 
-* [ ] **Length Matching:** Find the required tolerance for each protocol. For example, DDR4 can require tighter matching than older single-data-rate synchronous dynamic random-access memory (SDR SDRAM) implementations. Use the applicable controller and device documents.
+* [ ] **Length Matching:** Find the required tolerance for each protocol. For example, DDR4 can require tighter matching than older single-data-rate synchronous dynamic random-access memory (SDR SDRAM) implementations. Use the relevant controller and device documents.
 * [ ] **Bit and Byte Swapping:** Confirm which specific bits and byte lanes the memory-controller and memory-device data sheets permit you to swap.
 * [ ] **PCIe Routing:** Study **differential-pair skew** and **AC-coupling-capacitor placement** for PCIe.
 * [ ] **HDI Stackup:** Read a fabricator guide, such as a Sierra Circuits or PCBWay guide, about the cost and process effects of blind and buried vias.
@@ -390,13 +390,13 @@ For a full square array with **n** ball positions along each side, AMD's simple 
 
 <LearningEquation tex={"N_{channels}=4(n-1)"} />
 
-The guide uses approximately 60% signal balls for an early estimate of its covered packages. Replace that assumption with the actual used signals when available.
+For an early estimate, the guide assumes about 60% of the balls are signal connections in the packages it covers. Use the actual number of signals your design needs once you know it.
 
 **Original planning example:** An 18-by-18 array has **68 channels**. Assume that 194 signals need escape routing.
 
-With one route per channel, simple division gives **2.85 layer-equivalents**. Rounding upward gives an initial allowance of **3 signal layers**.
+If each channel carries one route, dividing the signal count by the routing capacity gives **2.85 layer-equivalents**. Round up to **3 signal layers** as an initial estimate.
 
-This calculation does not prove routability. Fixed pins, blocked channels, reference planes, and power distribution can require additional layers.
+This count does not guarantee that you can route the board. Fixed pin positions, blocked channels, reference-plane needs, and power routing may force you to add layers.
 
 Source: [AMD, layer-count estimation](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Layer-Count-Estimation-and-Optimization).
 
@@ -408,7 +408,7 @@ For pad pitch **p**, pad diameter **d**, trace width **w**, clearance **s**, and
 
 <LearningEquation tex={"g=p-d\\qquad m w+(m+1)s\\le g"} />
 
-The inequality checks whether the traces and clearances fit in the available gap **g**.
+The inequality checks whether all the traces, plus the required spaces between them and the pads, fit inside the available gap **g**.
 
 import BgaEscapeExplorer from '@site/src/components/BgaEscapeExplorer';
 
@@ -416,7 +416,7 @@ import BgaEscapeExplorer from '@site/src/components/BgaEscapeExplorer';
 
 **Example:** With 0.8 mm pitch and 0.4 mm pads, the gap is **0.4 mm**.
 
-Two 0.08 mm traces with three 0.08 mm clearances need **0.4 mm**. This nominal fit leaves no extra allowance for a tighter process limit.
+Two 0.08 mm traces and three 0.08 mm clearances need **0.4 mm**. They fit exactly at those nominal dimensions, leaving no spare room if the process needs more clearance.
 
 AMD's dimensional tables contain package and process assumptions. Check units against the original drawing before transferring a table value.
 
@@ -430,25 +430,25 @@ Blind vias stop at an internal layer. Buried vias connect internal layers. These
 
 A **via-in-pad** structure places the via within the landing pad. Agree on filling, plating, and final surface requirements with the fabricator and assembler.
 
-The via span and the pad location are separate properties. A via-in-pad structure is not automatically a microvia.
+A via's layer span and its position in a pad are different things. Putting a via in a pad does not automatically make it a microvia.
 
 Source: [AMD, fabrication technologies](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Fabrication-Technologies).
 
 ### Board Thickness and Aspect Ratio
 
-Define the diameter convention before comparing aspect ratios. A drilled diameter differs from a finished plated-hole diameter.
+Before comparing aspect ratios, check which diameter is being used. The drilled hole is larger than the finished opening after plating.
 
 <LearningEquation tex={"Aspect\\ ratio=\\frac{drilled\\ depth}{drill\\ diameter}"} />
 
 **Original example:** A 1.6 mm through-hole depth and 0.2 mm drill diameter give **8:1**.
 
-This arithmetic does not establish process approval. Obtain the permitted ratio for the actual via structure.
+This arithmetic does not prove process approval. Obtain the allowed ratio for the actual via structure.
 
 Source: [AMD, board thickness and aspect ratio](https://docs.amd.com/r/en-US/ug1099-bga-device-design-rules/Maximum-Board-Thickness-and-Aspect-Ratio).
 
 ### Power Delivery Through the Via Field
 
-A plane can have narrow copper channels between via clearances. These restrictions can limit current delivery to central power balls.
+Clearances around vias can leave narrow strips of copper in a power plane. Those strips can restrict how much current reaches power balls near the center of the package.
 
 AMD gives a preliminary estimate of **0.05 A per mil of channel width for 0.5 oz copper**. This is a guide-specific planning estimate.
 
@@ -460,11 +460,11 @@ Source: [AMD, FPGA power delivery](https://docs.amd.com/r/en-US/ug1099-bga-devic
 
 ### Answers to the Study Checklist
 
-1. **Length matching:** Convert the interface time budget to length with the approved layer delay. Include package delay where the controller guide requires it.
+1. **Length matching:** Convert the interface time budget to length with the approved layer delay. Include package delay where the controller guide needs it.
 2. **Bit and byte swapping:** Create a permitted-swap table from the exact controller and memory documents. Keep each required strobe and mask with its lane.
 3. **PCIe routing:** Record lane skew, loss, termination, and coupling requirements for the selected generation and device. Component placement must preserve pair symmetry.
 4. **HDI stackup:** Compare approved via spans, lamination cycles, reliability requirements, and fabrication quotations before selecting high-density interconnect construction.
-5. **Impedance profiles:** Enter the approved stackup into the design tool. Calculate width and pair spacing, then assign those dimensions to the applicable routing rules.
+5. **Impedance profiles:** Enter the approved stackup into the design tool. Calculate width and pair spacing, then assign those dimensions to the relevant routing rules.
 6. **Microvias:** Check depth, diameter, stacking, filling, and qualification with the fabricator. A through-hole aspect-ratio limit does not apply automatically to a microvia.
 7. **Reference plane and crosstalk:** Keep a nearby continuous reference. Evaluate adjacent-route spacing and coupled length together.
 8. **Uncoupled lengths:** Account for each separation near pads, vias, and components. Check the total against the interface's specific requirement.

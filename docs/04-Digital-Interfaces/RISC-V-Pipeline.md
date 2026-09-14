@@ -11,9 +11,9 @@ import ProcessorDatapath from '@site/src/components/learning/ProcessorDatapath';
 
 ## 1. Instruction set and processor implementation
 
-An **instruction set architecture (ISA)** specifies the operations that software can request. A **microarchitecture** specifies the hardware that performs those operations.
+An **instruction set architecture (ISA)** defines the operations a program can ask the processor to perform. The **microarchitecture** is the hardware design that carries out those operations.
 
-RISC-V does not require a five-stage pipeline. A processor can use one stage, five stages, or another organization while it implements the same instructions.
+RISC-V does not require a five-stage pipeline. Different processors can run the same instructions using one stage, five stages, or another internal design.
 
 This lesson uses a small **RV32I** processor. RV32I has 32-bit integer registers. Its base instructions have a fixed length of 32 bits.
 
@@ -38,7 +38,7 @@ An **arithmetic logic unit (ALU)** performs arithmetic and logic operations. The
 * The processor predicts the next sequential instruction.
 * A store receives its data in EX and writes memory in MEM.
 
-These assumptions determine the timing examples. A real processor can have different memory latency, branch timing, and bypass paths.
+The timing examples depend on these assumptions. A different processor may take longer to access memory, decide branches at another stage, or forward results through different paths.
 
 ## 2. Read a RISC-V instruction
 
@@ -72,7 +72,7 @@ The decoder checks the opcode and function fields. It then selects the required 
 | U | Upper immediate | rd and upper immediate bits |
 | J | Jump with link | rd and signed jump offset |
 
-An immediate generator assembles the instruction bits and extends the sign where required. Different formats place immediate bits in different positions.
+An immediate generator collects the constant's bits from their positions in the instruction and extends the sign when needed. Those bit positions differ between instruction formats.
 
 For a branch, add the decoded signed offset to the address of the **branch instruction**. Do not use the address of a younger instruction.
 
@@ -94,7 +94,7 @@ Decode the instruction. Read the required source registers. Construct the immedi
 
 At the clock edge, **ID/EX** stores the operand values, register identifiers, immediate, instruction PC, and control signals.
 
-Source register identifiers must travel with the instruction. The forwarding unit compares those identifiers with older destination identifiers.
+Keep the source register numbers with the instruction as it moves through the pipeline. The forwarding unit needs them to check whether an earlier instruction has produced a newer value for one of those registers.
 
 ### EX: execute or calculate an address
 
@@ -133,7 +133,7 @@ Write the selected value only when the instruction is valid and register writing
 
 Never decode the instruction currently in ID to control an older instruction in MEM. Each instruction carries its own controls through the boundary registers.
 
-A **valid bit** identifies a real instruction. A bubble has no architectural side effects. In particular, it must not write a register or memory.
+A **valid bit** marks an entry that contains a real instruction. An empty entry, called a bubble, must have no effect on the program's visible state. In particular, it must not write a register or memory.
 
 ## 4. Follow one load through the processor
 
@@ -188,17 +188,17 @@ Unequal stage delays, register overhead, and hazards prevent an automatic fivefo
 
 ## 6. Structural hazards
 
-A **structural hazard** occurs when two operations need the same hardware resource at the same time.
+A **structural hazard** happens when two operations need the same hardware resource at the same time.
 
 For example, IF can need an instruction read while MEM needs a data read. A single memory port cannot necessarily satisfy both requests.
 
-This model avoids that conflict with separate access paths. Another design can stall fetch or use a memory system with sufficient ports.
+This model avoids the conflict by giving instruction fetch and data access separate paths. Another design could pause instruction fetch or use memory with enough ports to handle both requests.
 
 The register file needs two source reads and one destination write for many register operations. Its port design and same-cycle behavior are explicit hardware choices.
 
 ## 7. Data hazards and forwarding
 
-A **read-after-write dependency** occurs when a younger instruction needs a result from an older instruction.
+A **read-after-write dependency** means a later instruction needs to read the result that an earlier instruction will write.
 
 ```text
 add x5, x1, x2
@@ -209,7 +209,7 @@ The subtraction needs the new x5. Reading the old register value would produce a
 
 The addition produces its result at the end of EX. During the next cycle, that result is in EX/MEM while the subtraction occupies EX.
 
-A **forwarding path** connects the saved result to the younger ALU input. A multiplexer selects that value instead of the stale operand.
+A **forwarding path** sends the saved result directly to the later instruction's ALU input. A multiplexer selects this new value instead of the old value read from the register file.
 
 Forwarding moves information from an available result to a later use. It cannot supply a result before the producing operation has calculated it.
 
@@ -262,11 +262,11 @@ Insert one bubble before the dependent instruction enters EX.
 
 During the stall, hold the PC and IF/ID. Keep the dependent instruction in ID. Let the load continue, and invalidate the next ID/EX entry.
 
-On the next cycle, forward the load value from MEM/WB to EX. Longer memory latency requires additional waiting.
+On the next cycle, forward the load value from MEM/WB to EX. Longer memory latency needs additional waiting.
 
 ### Detect actual source use
 
-The detector must know which instruction fields identify real operands. An immediate field can contain bits that resemble a register identifier.
+The hazard detector must know which fields an instruction actually uses as source registers. Bits inside a constant can look like a register number even though they do not refer to a register.
 
 Check decoded source-use controls before comparing identifiers. Otherwise, the processor can insert unnecessary stalls.
 
@@ -274,7 +274,7 @@ In this model, a load followed by a store of that value also stalls once. A sepa
 
 ## 9. Branches, jumps, and flushes
 
-IF normally fetches the next sequential instruction before an older branch reaches EX. Those younger instructions are speculative until the branch decision is known.
+IF normally fetches the next instruction in sequence before an earlier branch reaches EX. The processor is working ahead on the assumption that execution will continue there. These later instructions are speculative until the branch decision is known.
 
 If the branch is taken in EX, the instructions in ID and IF belong to the wrong path. Cancel both and fetch from the target.
 
@@ -303,7 +303,7 @@ RISC-V does not define a branch delay slot. Software must not assume that the in
 
 ### Redirects and stalls in the same cycle
 
-A redirect from an older instruction takes priority over a dependency stall for a younger instruction that the redirect cancels.
+If an earlier instruction redirects execution, handle that before a dependency stall for a later instruction that will be canceled by the redirect.
 
 Otherwise, the hazard unit can hold the old fetch address and lose the branch target. Define control priority explicitly.
 

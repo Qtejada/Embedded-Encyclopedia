@@ -7,9 +7,9 @@ sidebar_position: 6
 
 ## Board construction
 
-A **printed circuit board (PCB)** supports components and connects them through patterned conductors. It provides repeatable geometry for power, signals, and mechanical assembly.
+A **printed circuit board (PCB)** supports components and connects them through patterned conductors. It gives repeatable geometry for power, signals, and mechanical assembly.
 
-A solderless breadboard supports quick changes but adds uncertain contacts and parasitics. Soldered prototype boards improve contact reliability but still lack controlled routing geometry.
+A solderless breadboard is easy to change, but its contacts, stray capacitance, and inductance can be unpredictable. A soldered prototype board makes the contacts more reliable, though its wiring still lacks the controlled geometry of a designed PCB.
 
 Point-to-point wires suit simple prototypes or special connections. An integrated circuit forms devices within semiconductor material. A PCB connects packaged devices at a larger scale.
 
@@ -25,7 +25,7 @@ The **legend**, often called silkscreen, identifies parts and connections. Keep 
 
 A rigid board holds a fixed shape. A flex circuit commonly uses a flexible polymer such as polyimide. Rigid-flex construction combines both.
 
-Flex can reduce connectors and fit moving assemblies. Bend radius, copper strain, stiffeners, and repeated motion constrain its design.
+A flexible PCB can replace connectors and fit parts that move. Its design must account for bend radius, strain in the copper, stiffeners, and how often it bends.
 
 ## Fabrication sequence
 
@@ -51,13 +51,13 @@ See the [Eurocircuits fabrication sequence](https://www.eurocircuits.com/technic
 
 A **plugged via** has material that closes an opening to a specified extent. A **filled via** has fill material through the intended hole volume.
 
-A filled and capped via can support a solderable pad when the fabrication process specifies that structure. Filling alone does not guarantee a flat solderable surface.
+A filled and capped via can form part of a solderable pad if the fabrication process is designed for it. Filling the hole alone does not guarantee a flat surface that can be soldered.
 
 Specify the required treatment rather than relying on the word plugged. See [IPC-4761 via protection structures](https://www.eurocircuits.com/content/uploads/2024/05/IPC-4761.pdf).
 
 Thermal cycling can crack a plated barrel or a via interface. Poor plating, voids, and registration errors can cause opens or intermittent connections.
 
-Use qualified aspect ratios and stack structures. Dense antipads can interrupt plane current paths. Inspect the complete plane instead of counting vias alone.
+Use via aspect ratios and layer structures that the fabricator has qualified. Closely spaced antipads, the clearances around vias, can cut into a plane's current paths. Inspect the remaining copper, not just the number of vias.
 
 ## Assembly
 
@@ -65,7 +65,7 @@ Surface-mount parts attach to pads. Through-hole leads pass through plated holes
 
 For surface mounting, a stencil deposits solder paste. A pick-and-place machine positions components. A reflow profile melts the solder and forms joints.
 
-Assembly optimization groups feeder access and placement operations while preserving accuracy. Panel arrangement and component orientation can reduce machine travel.
+An efficient assembly program groups component pickup and placement to reduce machine travel while maintaining accuracy. Panel layout and component orientation can help with this.
 
 For double-sided assembly, the process normally places and reflows one side before the other. Component mass and retention determine whether additional support is necessary.
 
@@ -93,7 +93,7 @@ See [Eurocircuits bare-board testing](https://www.eurocircuits.com/bare-board-te
 
 ## Design for access
 
-**Design for manufacture (DFM)** aligns a design with the supplier's process. **Design for test (DFT)** provides access and control for planned measurements.
+**Design for manufacture (DFM)** aligns a design with the supplier's process. **Design for test (DFT)** gives access and control for planned measurements.
 
 Prioritize power rails, ground references, reset, programming, clocks, and critical interfaces. Expose enable or isolation controls that help distinguish faults.
 

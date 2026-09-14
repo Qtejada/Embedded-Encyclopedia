@@ -1,6 +1,5 @@
 # Power Good Sequencing
 
-Notes coming soon...
 
 ## 1. Rail Dependencies
 
@@ -8,13 +7,13 @@ Notes coming soon...
 
 **Power sequencing** controls the order in which rails start and stop. A device can require core power before its input/output supply.
 
-Read the device power requirements before defining the order. A valid startup order does not establish a valid shutdown order.
+Check the device's power requirements before choosing the order in which rails turn on. The correct shutdown order may be different.
 
 ## 2. Sequence by Condition
 
 An enable chain can use one rail's PG output to enable the next regulator. Check the PG [pull-up supply](<../../04-Digital-Interfaces/Serial-Buses/03-I2C.md#3-pull-up-limits>) and enable threshold.
 
-A fixed delay starts the next rail after a time interval. It does not prove that the first rail reached its target.
+A fixed delay only says that time has passed. It does not confirm that the first rail reached the required voltage before the next rail starts.
 
 For a critical dependency, combine the required voltage condition with a delay.
 

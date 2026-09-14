@@ -12,20 +12,15 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 ## 1. Op-Amp Fundamentals
 
-An **operational amplifier (op-amp)** is a basic analog building block.
-It is a high-gain, DC-coupled voltage amplifier.
-It has a differential input and usually has a single-ended output.
+An **operational amplifier (op-amp)** takes the voltage difference between two inputs and amplifies it by a large amount. It can amplify steady DC voltages as well as changing signals; this is what **DC-coupled** means. Most op-amps produce one output voltage measured relative to the circuit reference, called a **single-ended output**.
 
 An ideal op-amp amplifies the difference between its two input voltages:
 
 > **V<sub>out</sub> = A<sub>OL</sub>(V<sub>+</sub> - V<sub>-</sub>)**
 
-The **open-loop gain**, <i>A<sub>OL</sub></i>, is frequently more than 100,000 at low frequencies.
-As a result, designers rarely use an op-amp without feedback.
+Without feedback, the **open-loop gain**, <i>A<sub>OL</sub></i>, is often greater than 100,000 at low frequencies. Even a tiny input difference can then drive the output to a limit. Feedback makes that large gain useful and controllable.
 
-**Feedback** controls this large gain.
-External resistors, capacitors, and diodes then set the circuit function.
-The circuit can do addition, integration, filtering, rectification, or other operations.
+**Feedback** makes this large gain useful and controllable. The external resistors, capacitors, and diodes determine what the circuit does: it can add signals, integrate them, filter them, rectify them, or perform other operations.
 
 ### Key Characteristics
 
@@ -43,7 +38,7 @@ The circuit can do addition, integration, filtering, rectification, or other ope
 * **Real input:** Small bias currents flow.
   Their values can be in the &mu;A, nA, or pA range.
 * **Ideal gain:** Open-loop voltage gain is infinite.
-* **Real gain:** Open-loop gain is finite and decreases as frequency increases.
+* **Real gain:** Open-loop gain is finite and falls as frequency rises.
 * **Ideal common-mode gain:** The value is 0.
   The op-amp amplifies only the difference between the inputs.
 * **Real common-mode gain:** A small common-mode error remains.
@@ -67,14 +62,12 @@ The circuit can do addition, integration, filtering, rectification, or other ope
 
 ### The Golden Rules
 
-Use these rules only when the op-amp has stable **negative feedback**.
-The output must also be inside its voltage and current limits.
+These rules apply only while **negative feedback** is stable and the output stays within its voltage and current limits. They stop being useful when the amplifier clips or loses control of the output.
 
 1. **Voltage rule:** The output moves to make <i>V<sub>+</sub></i> and <i>V<sub>-</sub></i> almost equal.
 2. **Current rule:** The ideal input currents are 0 A.
 
-The input voltages are not exactly equal in a real circuit.
-A small differential voltage is necessary to produce the output voltage.
+In a real circuit, the input voltages are only almost equal. The op-amp still needs a small difference between them to produce its output voltage.
 
 ---
 
@@ -85,7 +78,7 @@ A small differential voltage is necessary to produce the output voltage.
 The **inverting amplifier** applies the input through resistor <i>R<sub>1</sub></i>.
 Its output is 180&deg; out of phase with the input.
 
-* The input impedance is approximately <i>R<sub>1</sub></i>.
+* The input impedance is about <i>R<sub>1</sub></i>.
 * A small <i>R<sub>1</sub></i> can give the circuit a low input impedance.
 * The non-inverting input is at ground.
 * Negative feedback keeps point A near ground.
@@ -106,8 +99,8 @@ Its output is 180&deg; out of phase with the input.
 #### Step-by-Step Derivation
 
 1. The non-inverting input is at ground.
-2. Negative feedback keeps point A at approximately 0 V.
-3. As a result, the voltage across <i>R<sub>1</sub></i> is approximately <i>V<sub>in</sub></i>.
+2. Negative feedback keeps point A at about 0 V.
+3. As a result, the voltage across <i>R<sub>1</sub></i> is about <i>V<sub>in</sub></i>.
 4. The op-amp input takes almost no current.
 5. As a result, current through <i>R<sub>1</sub></i> must flow through <i>R<sub>2</sub></i>.
 6. The feedback-current direction gives the output a negative polarity.
@@ -135,9 +128,7 @@ The feedback resistor converts the sum of the input currents to one output volta
   </figcaption>
 </figure>
 
-Each input produces a current through its input resistor.
-Almost none of this current enters the op-amp.
-The currents add at the summing node and flow through the feedback resistor.
+Each input resistor turns its input voltage into a current. Almost none enters the op-amp, so the currents add at the summing node and flow through the feedback resistor.
 
 <div data-ltspice-placement="opamp-summing">
 
@@ -169,7 +160,7 @@ A feedback divider connects the output to the inverting input.
 
 #### Step-by-Step Operation
 
-1. Negative feedback makes point A approximately equal to <i>V<sub>in</sub></i>.
+1. Negative feedback makes point A about equal to <i>V<sub>in</sub></i>.
 2. If <i>V<sub>in</sub></i> increases, the output increases.
 3. The divider applies a fraction of the output to point A.
 4. A larger feedback ratio needs less output voltage for the same point-A voltage.
@@ -211,9 +202,7 @@ The next circuits use switches to select inverting or unity-gain operation.
 
 ### Voltage Follower
 
-A **voltage follower**, or **buffer**, is a special non-inverting amplifier.
-The feedback connection is a short circuit.
-The resistor to ground is open.
+A **voltage follower**, or **buffer**, connects the output directly to the inverting input. It is the limiting case of a non-inverting amplifier with the feedback resistor replaced by a wire and the resistor to ground removed.
 
 * **Gain:** 1.
 * **Relationship:** <i>V<sub>out</sub> = V<sub>in</sub></i>.
@@ -279,8 +268,7 @@ The returned signal changes the input error.
 **Negative feedback** opposes a change in the output.
 It is also called **degenerative feedback**.
 
-If the output changes, the returned signal changes the error in the opposite direction.
-This action moves the output back toward its target.
+If the output moves away from its target, the returned signal changes the input error in the direction that pushes it back. This is how the loop corrects an unwanted output change.
 
 ### Feedback-Correction Cycle
 
@@ -313,8 +301,8 @@ The divider gives this relationship:
 
 > **V<sub>-</sub> = 0.5V<sub>out</sub>**
 
-The op-amp drives the output to approximately 4 V.
-This makes the feedback voltage approximately 2 V.
+The op-amp drives the output to about 4 V.
+This makes the feedback voltage about 2 V.
 
 #### Step 2: Error Creation
 
@@ -332,19 +320,15 @@ The ideal linear equation requests -5,000 V.
 
 > **-0.05 V &times; 100,000 = -5,000 V**
 
-The op-amp cannot produce -5,000 V.
-Instead, its internal circuit drives the output downward as strongly as its limits permit.
+The op-amp cannot produce -5,000 V. That calculated value simply shows that the error strongly calls for a lower output. The internal circuit drives downward as fast and as far as its limits allow.
 
 #### Step 4: Correction
 
-As the output moves from 4.1 V toward 4.0 V, the feedback voltage moves toward 2.0 V.
-The input error becomes smaller.
-As a result, the internal drive also becomes smaller.
+As the output falls from 4.1 V toward 4.0 V, the feedback voltage returns toward 2.0 V. The input difference gets smaller, so the correcting drive becomes smaller too.
 
 #### Step 5: Equilibrium
 
-The input error does not become exactly 0 V in a real circuit.
-If it were 0 V, the open-loop equation would produce 0 V.
+In the simple real-amplifier model with finite gain, a small input difference remains. If that difference were exactly 0 V, the open-loop equation would give 0 V output.
 
 The final values in the original example are:
 
@@ -355,7 +339,7 @@ The final values in the original example are:
 
 > **V<sub>out</sub> = 0.00004 V &times; 100,000 = 4 V**
 
-The loop keeps a small error that is sufficient to hold the necessary output.
+The remaining error is just large enough, after amplification, to hold the required output voltage.
 
 ### Closed-Loop Gain Stability
 
@@ -370,12 +354,11 @@ Let:
 Assume that <i>A = 100,000</i> and <i>&beta; = 0.1</i>.
 The product <i>A&beta;</i> is much larger than 1.
 
-The equation then becomes approximately:
+The equation then becomes about:
 
 > **A<sub>CL</sub> &asymp; A / A&beta; = 1 / &beta;**
 
-As a result, accurate external components set most of the closed-loop gain.
-The gain changes less when the internal op-amp gain changes.
+This makes the closed-loop gain depend mainly on accurate external components. Changes in the op-amp's internal gain then have much less effect on the result.
 
 ### Other Feedback Improvements
 
@@ -387,10 +370,7 @@ Negative feedback can also:
 * Decrease sensitivity to component and temperature changes.
 * Change input and output impedances.
 
-For a voltage amplifier, feedback opposes output-voltage movement.
-A heavy load can pull the output down.
-The loop detects this movement and increases its drive.
-As a result, the closed-loop output impedance becomes lower.
+If a heavy load pulls a voltage amplifier's output down, feedback detects the drop and makes the amplifier drive harder. The output therefore changes less with load current, which is what lower closed-loop output impedance means.
 
 The feedback path returns a signal from output to input.
 Source and load impedances can still change the loop, depending on the feedback topology.
@@ -421,7 +401,7 @@ Its voltage is usually the target for the inverting input.
 #### Step 3: Find the Sense Resistor
 
 Examine the inverting input.
-For a current source, it frequently monitors a resistor connected to ground or a supply rail.
+For a current source, it often monitors a resistor connected to ground or a supply rail.
 
 The feedback loop controls the resistor voltage.
 This action controls the resistor current.
@@ -445,9 +425,7 @@ Examine the op-amp output connection.
 **Bandwidth** is the frequency range in which an amplifier keeps its specified gain.
 Gain decreases when internal devices cannot respond sufficiently quickly.
 
-Real voltage-feedback op-amps usually have a low-pass open-loop response.
-They have very high gain at DC.
-Their available gain decreases as frequency increases.
+A real voltage-feedback op-amp usually behaves like a low-pass amplifier in open loop: it has very high gain at DC, with progressively less gain available as frequency rises.
 
 ### Gain-Bandwidth Trade
 
@@ -481,9 +459,7 @@ The design trades gain for bandwidth.
 **Slew rate** is the maximum output-voltage change for each unit of time.
 Datasheets usually specify it in V/&mu;s.
 
-The value can depend on the internal compensation network.
-A high-frequency, high-amplitude signal can exceed the slew-rate limit.
-The output then becomes more triangular than sinusoidal.
+Slew rate can depend on the internal compensation circuit. If a signal is both large and fast, the required voltage change may exceed this limit. The output then develops straight ramps and looks more triangular than sinusoidal.
 
 <div data-ltspice-placement="opamp-slew-rate">
 
@@ -498,10 +474,9 @@ The output then becomes more triangular than sinusoidal.
 
 ### Capacitive Loading
 
-A capacitive load interacts with the op-amp output impedance.
-This interaction adds a pole and phase lag to the feedback loop.
+The load capacitance and op-amp output impedance form an additional time-dependent response, represented by a pole. This adds phase lag to the loop, so the correction arrives later relative to the signal.
 
-If the total phase shift approaches 180&deg; while loop gain exceeds 1, oscillation can occur.
+If that lag approaches 180&deg; while loop gain is still greater than 1, feedback can reinforce a disturbance instead of correcting it, allowing oscillation.
 
 #### Methods That Can Improve Stability
 
@@ -533,15 +508,12 @@ If the total phase shift approaches 180&deg; while loop gain exceeds 1, oscillat
 Closed-loop gain cannot stay accurate after available open-loop gain becomes insufficient.
 As a result, gain starts to decrease near the closed-loop bandwidth.
 
-For voltage feedback, loop gain decreases output impedance by approximately <i>1 + A&beta;</i>.
-Open-loop gain decreases as frequency increases.
-As a result, closed-loop output impedance usually increases with frequency.
+Voltage feedback lowers output impedance by about <i>1 + A&beta;</i>. As open-loop gain falls with frequency, the loop has less ability to correct voltage drop, so closed-loop output impedance usually rises.
 
-This rising impedance can look inductive.
-A capacitive load can then make a resonant circuit.
+This frequency-dependent output impedance can behave like an inductance. Adding a capacitive load can then create a resonance, causing peaking or ringing.
 
 Some current-feedback topologies use feedback to increase output impedance.
-Always analyze the applicable feedback type.
+Always analyze the relevant feedback type.
 
 ---
 
@@ -566,13 +538,12 @@ The total phase shift includes the op-amp and the feedback network.
 The unity-loop-gain point is the **crossover frequency**.
 
 A one-pole response can approach -90&deg; phase shift.
-This condition gives approximately 90&deg; of phase margin.
+This condition gives about 90&deg; of phase margin.
 Real amplifiers have more poles and smaller margins.
 
 ### Rate-of-Closure Method
 
-The **rate-of-closure method** compares open-loop and noise-gain slopes.
-The slope difference near their intersection gives information about stability.
+The **rate-of-closure method** compares the slopes of the open-loop gain and noise-gain curves near where they meet. Noise gain is the closed-loop gain seen by a small voltage error at the op-amp input; it can differ from the signal gain. The slope difference gives a useful clue about stability.
 
 An RC corner frequency is:
 
@@ -580,9 +551,7 @@ An RC corner frequency is:
 
 ### Poles
 
-A **pole** changes magnitude slope by -20 dB/decade.
-Its total phase contribution approaches -90&deg;.
-As a result, a pole can decrease phase margin.
+A first-order **pole** makes the gain slope fall by 20 dB each time frequency increases by a factor of ten, written -20 dB/decade. Its phase lag approaches -90&deg;, which can reduce phase margin.
 
 Examples that can add poles include:
 
@@ -595,19 +564,15 @@ The exact effect depends on the complete loop.
 
 ### Zeros
 
-A **zero** changes magnitude slope by +20 dB/decade.
-Its phase contribution can approach +90&deg;.
-A correctly placed zero can add phase lead and improve stability.
+A left-half-plane **zero** adds +20 dB/decade to the gain slope and can add up to +90&deg; of phase lead. Placed correctly, it can counter some lag and improve stability.
 
-A capacitor and resistor in the feedback network can create a zero.
-Signal-path and feedback-path descriptions can give different gain interpretations.
-Analyze loop gain to prevent confusion.
+A resistor and capacitor in the feedback network can create a zero. Be clear about whether you are looking at signal gain or feedback: the same components can appear differently in those expressions. Loop gain is the quantity to check for stability.
 
 ### Phase-Margin Targets
 
-* An intersection near a new pole can give approximately 45&deg; phase margin.
+* An intersection near a new pole can give about 45&deg; phase margin.
   This gives more bandwidth but more overshoot.
-* Moving the crossover below the added pole can give approximately 60&deg; phase margin.
+* Moving the crossover below the added pole can give about 60&deg; phase margin.
   This is a common robust target.
 
 These values are approximations.
@@ -621,8 +586,7 @@ Very low margin causes sustained oscillation.
 
 ### Dominant-Pole Compensation
 
-A **dominant pole** makes open-loop gain decrease before higher-frequency poles become important.
-The loop then reaches unity gain before total phase shift approaches 180&deg;.
+A **dominant pole** starts reducing open-loop gain well before the higher-frequency poles have a large effect. This helps loop gain fall to unity before the total phase lag gets close to 180&deg;.
 
 Without sufficient compensation:
 
@@ -664,17 +628,11 @@ A capacitor across <i>R<sub>f</sub></i> can have three principal functions.
 
 #### Stability Compensation
 
-A [photodiode](<../../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>) or other sensor has capacitance.
-The capacitance adds phase delay to the feedback loop.
-Too much phase delay can cause oscillation.
+A [photodiode](<../../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>) or other sensor brings capacitance to the input. That capacitance affects the feedback response and can add enough phase lag to cause oscillation.
 
-A small capacitor, such as 10 pF, across <i>R<sub>f</sub></i> changes the noise gain.
-Correct selection can restore phase margin.
-It also limits high-frequency bandwidth.
+A small capacitor across <i>R<sub>f</sub></i>, such as 10 pF in a suitable circuit, changes the noise-gain curve. A calculated value can restore phase margin, but also limits high-frequency bandwidth.
 
-The capacitor does not make feedback instantaneous.
-Its impedance decreases with frequency.
-This provides a controlled high-frequency feedback path.
+The capacitor does not make feedback instantaneous. Its impedance falls with frequency, providing a controlled path for high-frequency feedback.
 
 #### Noise Filter
 
@@ -690,13 +648,9 @@ It can prevent amplification of radio interference and high-frequency noise.
 
 #### Practical Integrator
 
-An ideal **integrator** has only a capacitor in the feedback path.
-At DC, the capacitor is open.
-As a result, the circuit has no DC negative feedback.
+An ideal **integrator** uses only a capacitor in the feedback path. At DC that capacitor is effectively open, leaving no DC negative feedback to hold the output in range.
 
-Input offset and bias current then move the output into saturation.
-A large resistor in parallel with the capacitor gives a DC feedback path.
-It limits DC gain and decreases drift into saturation.
+Small input offsets and bias currents can then keep charging the capacitor until the output saturates. A large parallel resistor gives a DC feedback path, limits DC gain, and reduces this drift toward saturation.
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
@@ -723,7 +677,7 @@ It limits DC gain and decreases drift into saturation.
 
 #### Component Clues
 
-* A very small capacitor in the pF range frequently controls stability.
+* A very small capacitor in the pF range often controls stability.
 * A capacitor in the nF range can make a low-pass filter.
 * A very large parallel resistor in the M&Omega; range can limit integrator DC gain.
 
@@ -787,7 +741,7 @@ A **[Sallen-Key](<../Filters/Active-filters.md#10-sallen-key-second-order-low-pa
 * The circuit is a second-order low-pass filter.
 * Capacitor C1 connects to the output and has a bootstrap effect.
 * At high frequencies, low-pass action makes the output small.
-  C1 then acts approximately as a capacitor to ground.
+  C1 then acts about as a capacitor to ground.
 * At low frequencies, the output follows the input.
   The voltage across C1 is then small.
 * As a result, C1 has less effect in the low-frequency passband.
@@ -798,8 +752,7 @@ A **[Sallen-Key](<../Filters/Active-filters.md#10-sallen-key-second-order-low-pa
 * **First-order passive RC:** The final slope is 20 dB/decade, or 6 dB/octave.
 * **Second-order Sallen-Key:** The final slope is 40 dB/decade, or 12 dB/octave.
 
-The Sallen-Key topology can give a sharper transition than a single passive RC section.
-Its Q and damping set passband flatness and cutoff peaking.
+A Sallen-Key filter can transition more sharply than one passive RC section. Its Q describes how strongly it tends to resonate, while damping describes how quickly that behavior dies away. These determine passband flatness and any peak near cutoff.
 
 ---
 
@@ -890,16 +843,14 @@ The transistor then supplies a larger emitter current to the load.
 #### Feedback-Loop Example
 
 1. The resistor network sets a gain near 10: <i>1 + 10 k&Omega;/1.1 k&Omega;</i>.
-2. A 2 V input requests approximately 20 V at the load.
-3. The NPN base-emitter junction needs approximately 0.7 V.
-4. The op-amp output moves to approximately 20.7 V.
-5. The emitter output becomes approximately 20 V.
-6. The divider returns approximately 2 V to the inverting input.
+2. A 2 V input requests about 20 V at the load.
+3. The NPN base-emitter junction needs about 0.7 V.
+4. The op-amp output moves to about 20.7 V.
+5. The emitter output becomes about 20 V.
+6. The divider returns about 2 V to the inverting input.
 7. The two op-amp inputs are then almost equal.
 
-The feedback point is after the transistor.
-As a result, feedback corrects the approximate 0.7 V base-emitter drop.
-It also corrects changes in this drop with current and temperature.
+Because feedback is taken after the transistor, it also corrects the transistor's roughly 0.7 V base-emitter drop and the way that drop changes with current and temperature.
 
 #### Source-and-Sink Limitation
 
@@ -931,13 +882,10 @@ The other transistor sinks current.
 #### Crossover Distortion
 
 A basic push-pull stage has a dead zone near 0 V.
-The NPN needs approximately +0.7 V base-emitter voltage.
-The PNP needs approximately -0.7 V.
+The NPN needs about +0.7 V base-emitter voltage.
+The PNP needs about -0.7 V.
 
-The op-amp output must move across approximately 1.4 V when conduction changes between transistors.
-Finite slew rate makes this movement take time.
-The load output can then briefly fail to follow the input.
-This error is **crossover distortion**.
+To hand over between transistors, the op-amp output must cross about 1.4 V. Its finite slew rate makes this take time, leaving a brief error where the load output does not follow the input. This is **crossover distortion**.
 
 #### Feedback Correction
 
@@ -946,7 +894,7 @@ Assume that the input moves from 0 V to +0.1 V.
 1. Both transistors are initially off near the zero crossing.
 2. The load output remains near 0 V.
 3. The op-amp detects a +0.1 V difference between input and feedback.
-4. Large open-loop gain drives the op-amp output toward approximately +0.8 V.
+4. Large open-loop gain drives the op-amp output toward about +0.8 V.
 5. The NPN turns on.
 6. Its emitter moves toward +0.1 V.
 7. The feedback voltage then becomes almost equal to the input.
@@ -970,7 +918,7 @@ Assume that feedback comes from the op-amp output pin.
 
 * The op-amp output follows the input.
 * The load output is after the transistor base-emitter drops.
-* The load voltage stalls while the input passes through the approximately &plusmn;0.7 V dead zone.
+* The load voltage stalls while the input passes through the about &plusmn;0.7 V dead zone.
 * The feedback loop cannot detect distortion after its feedback point.
 
 #### Correct Feedback Point
@@ -983,8 +931,7 @@ Now take feedback from the final load output.
 * The op-amp output waveform contains sharp correction movements.
 * The final load waveform is much more linear.
 
-The feedback loop moves distortion from the load output to the internal op-amp drive.
-Dynamic limits prevent perfect correction at all frequencies.
+Feedback makes the op-amp's internal drive waveform compensate for the transistor nonlinearity, leaving a cleaner waveform at the load. Bandwidth and slew-rate limits prevent perfect correction at every frequency.
 
 ---
 
@@ -1052,7 +999,7 @@ The next circuit uses a PNP transistor for high-side current control.
 1. <i>R<sub>1</sub></i> and <i>R<sub>2</sub></i> set the non-inverting reference voltage.
 2. Feedback makes the inverting input almost equal to this reference.
 3. The inverting input monitors the PNP emitter.
-4. The op-amp output is approximately 0.7 V below the PNP emitter.
+4. The op-amp output is about 0.7 V below the PNP emitter.
 5. The sense resistor is between <i>V<sub>CC</sub></i> and the controlled emitter voltage.
 6. As a result, the resistor current is:
 
@@ -1092,8 +1039,8 @@ A different circuit is necessary when a ground-referenced external voltage must 
 
 1. The command voltage goes to IC1.
 2. The IC1 inverting input monitors the BJT emitter.
-3. IC1 drives the base to approximately <i>V<sub>in</sub> + 0.7 V</i>.
-4. The emitter then becomes approximately equal to <i>V<sub>in</sub></i>.
+3. IC1 drives the base to about <i>V<sub>in</sub> + 0.7 V</i>.
+4. The emitter then becomes about equal to <i>V<sub>in</sub></i>.
 5. Current through <i>R<sub>1</sub></i> becomes <i>V<sub>in</sub>/R<sub>1</sub></i>.
 6. This current produces a collector voltage of:
 
@@ -1131,14 +1078,14 @@ It rejects voltage that is common to both inputs.
 * Closely matched resistor ratios are necessary for high **[common-mode rejection ratio](<./02-differential-amps.md#2-common-mode-rejection-ratio>) (CMRR)**.
 * One circuit in the figure has an adjustable reference input.
 * The reference input sets the output level for special applications.
-* The differential stage frequently has unity gain.
+* The differential stage often has unity gain.
 * Other stages can supply additional gain.
 * The basic output represents the difference between the two input signals.
 
 ### Instrumentation Amplifiers
 
 An **[instrumentation amplifier](<./03-instrumentation-amps.md#2-classic-three-op-amp-architecture>)** is a specialized differential amplifier.
-One external resistor frequently sets its voltage gain.
+One external resistor often sets its voltage gain.
 
 Important characteristics include:
 
@@ -1186,9 +1133,7 @@ The two supplied archives do not contain this figure.
 A **Schmitt trigger** uses [positive feedback](<./comparators.md#positive-feedback-resistor-network>) to make two switching thresholds.
 The difference between the thresholds is **hysteresis**.
 
-Hysteresis is useful for a slow or noisy input.
-It prevents many output transitions when the input moves near one threshold.
-The output depends on the input voltage and the recent output state.
+For a slow or noisy input, hysteresis stops small movements near one voltage from repeatedly switching the output. The threshold depends on the current output state, so the circuit's recent state matters as well as the input voltage.
 
 Comparators and Schmitt triggers can turn loads on or off.
 Use a driver when the load current exceeds the comparator rating.
@@ -1199,8 +1144,8 @@ The two supplied archives do not contain this figure.
 ### Precision Half-Wave Rectifier
 
 Small signals are difficult to rectify with only a diode.
-A silicon diode can need approximately 0.6 V before it conducts.
-Two junctions can add approximately 1.2 V.
+A silicon diode can need about 0.6 V before it conducts.
+Two junctions can add about 1.2 V.
 
 An op-amp places the diode in a feedback path.
 The loop then corrects much of the diode drop.
@@ -1246,9 +1191,7 @@ Recovery from saturation can delay this transition.
 
 ### Input Offset Voltage
 
-Internal input devices are not perfectly matched.
-As a result, a small differential input voltage can be necessary to make the output 0 V.
-This voltage is **[input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>)**, <i>V<sub>OS</sub></i>.
+The input devices never match perfectly. Even with no wanted signal, a small voltage difference may be needed to make the output 0 V. This is **[input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>)**, <i>V<sub>OS</sub></i>.
 
 If the two inputs are connected together, open-loop operation can still drive the output to a rail.
 
@@ -1268,8 +1211,7 @@ This current produces voltage across source, bias, and feedback resistances.
 
 > **V<sub>error</sub> = I<sub>B</sub>R**
 
-A large resistance can convert a very small bias current to a large voltage error.
-As a result, [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) limits the practical resistance values.
+Even a tiny bias current can make a large voltage error through a large resistance. This is why [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) can limit the resistor values you can use.
 
 ### Input Offset Current
 
@@ -1283,7 +1225,7 @@ The op-amp sees this error as a differential signal.
 
 * **BJT inputs:** Input current can be in the &mu;A or nA range.
 * **[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>) or CMOS inputs:** Input current can be in the pA range.
-* High-value source resistances frequently need a JFET or CMOS input.
+* High-value source resistances often need a JFET or CMOS input.
 * Always include maximum bias current and temperature effects in the error budget.
 
 ### Design Example: 10 mV Panel Meter
@@ -1336,12 +1278,10 @@ Read the datasheet conditions.
 
 ### Differential Input Range
 
-The **differential input range** is the permitted voltage difference between the input pins.
-It is different from the common-mode range.
-Its permitted value can depend on the supply voltages and the internal input protection.
+The **differential input range** limits the voltage difference between the two input pins. The common-mode range instead concerns where the inputs sit relative to the supply rails. The allowed difference can depend on the supply and the amplifier's input-protection circuit.
 
 Some bipolar op-amps have antiparallel protection diodes between the inputs.
-A difference greater than approximately 0.7 V can cause large input current.
+A difference greater than about 0.7 V can cause large input current.
 Limit this current to prevent damage.
 
 ### Offset and Bias Management
@@ -1374,12 +1314,12 @@ An AC signal centered on 0 V would need a negative output swing.
 A single-supply circuit cannot usually produce this swing.
 
 Use a DC reference, such as <i>V<sub>CC</sub>/2</i>, as a signal reference.
-This node is frequently called a **virtual ground**.
+This node is often called a **virtual ground**.
 
 1. Make a stable mid-supply reference.
 2. Bias the signal around that reference.
 3. Use the reference as the signal return.
-4. Bias each applicable stage when the signal passes through multiple stages.
+4. Bias each relevant stage when the signal passes through multiple stages.
 
 <figure style={{textAlign: 'center', margin: '20px 0'}}>
   <img
@@ -1422,14 +1362,12 @@ It does not always look like a high, constant input impedance.
 
 ### Transient Current, or Kickback
 
-A SAR ADC frequently contains an internal [sample-and-hold](<../Data-convertes/Sample-holding.md#1-basic-circuit>) capacitor, <i>C<sub>SH</sub></i>.
+A SAR ADC often contains an internal [sample-and-hold](<../Data-convertes/Sample-holding.md#1-basic-circuit>) capacitor, <i>C<sub>SH</sub></i>.
 An internal switch connects this capacitor to the input during acquisition.
 
-If the capacitor voltage differs from the input voltage, charge flows suddenly.
-This transient current causes a voltage glitch at the driver output.
+If the sampling capacitor starts at a different voltage from the input, charge moves suddenly when the switch closes. This brief current pulse produces a voltage glitch at the driver output.
 
-The driver must settle this glitch before acquisition ends.
-Insufficient settling causes conversion error.
+The driver must bring the input back within the allowed error before acquisition ends. If it has not settled in time, the ADC converts the wrong voltage.
 
 <SarAdcInputModel />
 
@@ -1467,12 +1405,11 @@ If the analog front end does not settle:
 A large output capacitor can supply charge to <i>C<sub>SH</sub></i>.
 However, a direct capacitive load can make the op-amp unstable.
 
-Open-loop gain decreases as frequency increases.
+Open-loop gain falls as frequency rises.
 Closed-loop output impedance then rises.
 This output impedance can have an inductive characteristic.
 
-The effective inductance and direct load capacitance make a resonant network.
-The result can be ringing or oscillation.
+Together, this effective inductance and the directly connected load capacitor can resonate. The output may ring or even oscillate.
 
 ### RC Isolation
 
@@ -1494,14 +1431,13 @@ Put a series isolation resistor, <i>R<sub>iso</sub></i>, between the op-amp and 
   Settling and ringing can become worse.
 * **Too large, such as 1 &mu;F:** Transient charge storage improves.
   However, the RC time constant can become too long.
-* A large capacitor can need a smaller <i>R<sub>iso</sub></i> for sufficient bandwidth.
+* A large capacitor can need a smaller <i>R<sub>iso</sub></i> for enough bandwidth.
 * A small resistor gives less damping.
 * Higher peak currents can increase power dissipation.
 
 #### Op-Amp Bandwidth
 
-A higher-bandwidth op-amp frequently has lower closed-loop output impedance at high frequencies.
-This can decrease the effective inductive behavior.
+An op-amp with more bandwidth often keeps its closed-loop output impedance low to a higher frequency. That can reduce the effective inductive behavior seen by the load.
 
 The design can then use a smaller isolation resistor.
 A smaller RC time constant can make settling faster.
@@ -1509,19 +1445,17 @@ Noise and power can increase.
 
 ### Ratio-Based First Estimate
 
-Use the ADC datasheet requirements first.
-The capacitor ratio can give an initial estimate of the charge-sharing glitch.
-The original notes warn that some datasheet recommendations can be conservative.
+Start with the ADC datasheet's requirements. The ratio between the external and internal capacitances gives an initial estimate of the voltage glitch when they share charge. The original notes point out that some datasheet recommendations include conservative margins.
 
 1. Find the internal sampling capacitance, <i>C<sub>SH</sub></i>.
-2. Set the permitted settling error, such as less than one-half least-significant bit (**LSB**).
+2. Set the allowed settling error, such as less than one-half least-significant bit (**LSB**).
 3. Select an initial external capacitance.
 4. Simulate or measure the complete acquisition response.
 
 The original ratio examples are:
 
-* **C<sub>ext</sub> = 20C<sub>SH</sub>:** Initial charge-sharing movement is approximately 5%.
-* **C<sub>ext</sub> = 100C<sub>SH</sub>:** Initial movement is approximately 1%.
+* **C<sub>ext</sub> = 20C<sub>SH</sub>:** Initial charge-sharing movement is about 5%.
+* **C<sub>ext</sub> = 100C<sub>SH</sub>:** Initial movement is about 1%.
 
 The original target keeps the kickback glitch below 100 mV.
 This can keep the op-amp in its small-signal response region.
@@ -1569,7 +1503,7 @@ Many datasheets use SINAD for that combined measurement.
 
 ### Bandwidth Dilemma
 
-A SAR driver needs sufficient bandwidth to settle input kickback.
+A SAR driver needs enough bandwidth to settle input kickback.
 More bandwidth also passes more noise.
 
 For example, a 100 MHz driver can pass noise far above a 100 kHz signal band.
@@ -1577,13 +1511,12 @@ The design must balance settling time and integrated noise.
 
 ### Aliasing
 
-Sampling repeats the input spectrum around multiples of the sampling frequency.
-Out-of-band signals and noise can fold into the baseband.
+Sampling creates copies of the input's frequency content around multiples of the sample rate. Unwanted signals or noise at higher frequencies can then appear inside the frequency range you are measuring.
 
 Noise at 50 MHz can affect a 100 kHz measurement if the sampling system aliases it.
-After [aliasing](<../Filters/Digital-filters.md#18-aliasing-at-the-initial-adc>) occurs, a digital filter cannot identify the original out-of-band noise.
+After [aliasing](<../Filters/Digital-filters.md#18-aliasing-at-the-initial-adc>) happens, a digital filter cannot identify the original out-of-band noise.
 
-The **[Nyquist criterion](<../Data-convertes/DACs.md#nyquist-criterion>)** requires a sampling rate greater than twice the highest retained signal frequency.
+The **[Nyquist criterion](<../Data-convertes/DACs.md#nyquist-criterion>)** needs a sampling rate greater than twice the highest retained signal frequency.
 Practical systems also need an analog [anti-alias filter](<../Filters/Active-filters.md#18-anti-alias-filters-for-adcs>).
 
 ### Oversampling, Filtering, and Decimation
@@ -1607,8 +1540,7 @@ The analog filter must still attenuate signals that can alias during sampling.
 Apply a digital low-pass filter to the oversampled data.
 Digital filters can have accurate and steep responses.
 
-The filter removes in-band digital noise above the final signal bandwidth.
-It cannot remove interference that already aliased into the same baseband frequency.
+The digital filter removes noise that lies above the final wanted bandwidth but is still represented in the sampled data. It cannot separate out interference that has already aliased onto a wanted frequency.
 
 #### Step C: Decimate
 
@@ -1620,10 +1552,9 @@ The result has a lower data rate and a smaller retained noise bandwidth.
 
 ### Oversampling Resolution Rule
 
-For suitable uncorrelated quantization noise, doubling the sample rate can improve SNR by approximately 3 dB.
-This is approximately one-half bit.
+If quantization noise is sufficiently uncorrelated between samples, doubling the sample rate and keeping the same final bandwidth can improve SNR by about 3 dB, equivalent to about one-half bit.
 
-Increasing the oversampling ratio by four can improve resolution by approximately one bit.
+Increasing the oversampling ratio by four can improve resolution by about one bit.
 
 The original equation is:
 
@@ -1686,7 +1617,7 @@ An op-amp drives a MOSFET until the sense-resistor voltage equals the command vo
 
 The sense resistor converts current to voltage. Negative feedback forces this voltage toward the command voltage.
 
-For a 100-ohm sense resistor, a 0.5 V command sets approximately 5 mA.
+For a 100-ohm sense resistor, a 0.5 V command sets about 5 mA.
 
 The drain supply must provide the sense voltage and transistor headroom. The circuit cannot maintain current below this compliance voltage.
 
@@ -1732,11 +1663,11 @@ Equal input and feedback resistors give the negative sum of the two input voltag
 
 A feedback capacitor converts input current into a changing output voltage.
 
-The input resistor sets capacitor current. Output slope is approximately the negative input voltage divided by resistance and capacitance.
+The input resistor sets capacitor current. Output slope is about the negative input voltage divided by resistance and capacitance.
 
-A large resistor across the capacitor provides a DC feedback path. It prevents unlimited DC gain.
+A large resistor across the capacitor gives a DC feedback path. It prevents unlimited DC gain.
 
-Above the resistor-capacitor corner, gain falls by approximately 20 dB per decade. The phase approaches positive 90 degrees.
+Above the resistor-capacitor corner, gain falls by about 20 dB per decade. The phase approaches positive 90 degrees.
 
 [Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/op-amps#circuit-opamp-integrator>).
 
@@ -1746,7 +1677,7 @@ An input capacitor converts changes in input voltage into current.
 
 The feedback resistor converts capacitor current to output voltage. In the differentiating band, output is proportional to input slope.
 
-The series input resistor limits high-frequency gain. The feedback capacitor provides a second high-frequency limit.
+The series input resistor limits high-frequency gain. The feedback capacitor gives a second high-frequency limit.
 
 An unlimited differentiator strongly amplifies high-frequency noise. The extra components make the response practical.
 
@@ -1758,7 +1689,7 @@ An op-amp converts input current to output voltage through a feedback resistor.
 
 Negative feedback holds the input node near ground. Most input current flows through the feedback resistor.
 
-The low-frequency transimpedance is approximately the negative feedback resistance. Here its magnitude is 100 kilohms.
+The low-frequency transimpedance is about the negative feedback resistance. Here its magnitude is 100 kilohms.
 
 Input capacitance affects loop stability. The feedback capacitor reduces high-frequency gain and improves phase margin.
 
@@ -1780,7 +1711,7 @@ This relation applies to the dominant-pole response. Additional poles and loadin
 
 A limited output slope prevents a fast, large signal from following the input.
 
-The input is a 5 V peak sine wave at 100 kHz. Its maximum slope is approximately 3.14 V per microsecond.
+The input is a 5 V peak sine wave at 100 kHz. Its maximum slope is about 3.14 V per microsecond.
 
 The three slew-rate settings lie below and above this requirement.
 

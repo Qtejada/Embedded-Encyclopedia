@@ -1,6 +1,5 @@
 # High Speed Digital
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -9,7 +8,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 A digital signal can need [transmission-line](<./03-trace-impedance.md#1-characteristic-impedance>) analysis even when its clock frequency is low. A fast edge contains high-frequency energy.
 
-Compare signal propagation time with rise and fall time. Do not classify a route from clock frequency alone.
+Compare the time the signal takes to travel along the route with the time its edge takes to rise or fall. Clock frequency alone does not tell you whether the route needs transmission-line analysis.
 
 For an approximate propagation velocity **v** and route length **l**:
 
@@ -39,7 +38,7 @@ The long clock period does not remove [reflections](<./03-trace-impedance.md#3-r
 2. Select the stackup and reference plane for each route.
 3. Place connectors, termination, and coupling components.
 4. Route critical signals with continuous [return paths](<./02-Return-Paths.md#1-a-signal-needs-a-return>).
-5. Include package and via delay where the timing method requires them.
+5. Include package and via delay where the timing method needs them.
 6. Tune length only after the route topology is correct.
 
 ## 5. Worked Example: Convert Skew to Length
@@ -65,9 +64,9 @@ import EyeExplorer from '@site/src/components/learning/EyeExplorer';
 
 <EyeExplorer />
 
-An **eye diagram** overlays many symbol intervals. Horizontal closure reduces timing margin. Vertical closure reduces voltage margin.
+An **eye diagram** draws many symbol intervals on top of one another. The open area shows where a receiver can distinguish the levels. A narrower eye leaves less timing margin; a shorter eye leaves less voltage margin.
 
-Jitter spreads transition times. Noise spreads voltage levels. Channel loss and reflections add pattern-dependent distortion.
+Jitter makes transitions occur at different times, while noise spreads out the voltage levels. Channel loss and reflections also distort the signal, often by different amounts for different bit patterns.
 
 A test **mask** defines a prohibited region under specified measurement conditions. A trace entering the mask fails that mask test.
 
@@ -75,9 +74,9 @@ A clear eye from a short capture does not prove a required bit error rate. Use t
 
 Improve the eye through suitable termination, lower loss, reduced coupling, controlled edges, or [equalization](<./03-trace-impedance.md#preemphasis-and-equalization>). Change one cause at a time and remeasure.
 
-A **monotonic transition** moves in one direction through the decision region. Ringing that repeatedly crosses a threshold can create false events.
+A **monotonic transition** crosses the receiver's decision region in one direction without turning back. Ringing that crosses a threshold repeatedly can look like extra edges and trigger false events.
 
-A slow edge can increase timing uncertainty and input-stage current. An unnecessarily fast edge increases high-frequency content and can excite discontinuities.
+An edge that is too slow increases uncertainty about when it crosses the threshold and can increase current inside the receiver. An unnecessarily fast edge adds high-frequency content and can produce ringing at impedance changes.
 
 **Electromagnetic interference (EMI)** is unwanted electromagnetic disturbance. Fast voltage changes couple through capacitance. Fast current changes couple through [mutual inductance](<../01-Discrete-Components/02-Magnetics/01-Transformers.md#1-magnetic-coupling>).
 
@@ -85,9 +84,9 @@ Reduce loop area, maintain nearby return paths, and separate sensitive routes fr
 
 **Desense** is reduced receiver sensitivity caused by interference. Keep clocks and converters away from sensitive radio paths and filter interference at its source.
 
-A conductive shield provides a controlled path for induced currents. Seams, apertures, and poor bonds can reduce its effectiveness.
+A conductive shield gives a controlled path for induced currents. Seams, apertures, and poor bonds can reduce its effectiveness.
 
-Connect the shield to the intended chassis or reference structure with a suitable high-frequency bond. Place it around the source or protected receiver as the design requires.
+Connect the shield to the intended chassis or reference structure with a suitable high-frequency bond. Place it around the source or protected receiver as the design needs.
 
 A **Faraday cage** is a conductive enclosure. It can reduce electric-field coupling but does not automatically block low-frequency magnetic fields.
 

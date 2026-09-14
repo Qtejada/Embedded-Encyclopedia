@@ -8,12 +8,11 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Instrumentation Amplifiers
 
-An **instrumentation amplifier**, or **in-amp**, amplifies a small differential voltage.
-It rejects a much larger voltage that is common to both inputs.
+An **instrumentation amplifier**, or **in-amp**, amplifies a small voltage difference between two inputs while rejecting a much larger voltage shared by both.
 
 An in-amp usually gives a single-ended output.
-Buffered inputs give it very high input impedance.
-One external resistor frequently sets its gain.
+Input buffers let it measure the source voltage while drawing very little current from the source.
+One external resistor often sets its gain.
 
 Use an in-amp for:
 
@@ -29,9 +28,7 @@ Use an in-amp for:
 
 ## 1. Why Use an Instrumentation Amplifier?
 
-A four-resistor [difference amplifier](<./02-differential-amps.md#3-four-resistor-op-amp-difference-amplifier>) can reject [common-mode voltage](<./02-differential-amps.md#common-mode-voltage>).
-Its input resistors can load the signal source.
-Its CMRR also depends directly on resistor-ratio matching.
+A four-resistor [difference amplifier](<./02-differential-amps.md#3-four-resistor-op-amp-difference-amplifier>) can reject [common-mode voltage](<./02-differential-amps.md#common-mode-voltage>), but its resistors draw current from the signal sources. Its common-mode rejection also depends directly on how well the resistor ratios match.
 
 An instrumentation amplifier adds input buffers and a precision difference stage.
 
@@ -82,8 +79,7 @@ The manufacturer specifies constant <i>K</i>.
 
 ### Output Difference Stage
 
-The third op-amp subtracts the two first-stage outputs.
-It also converts the differential signal to a single-ended output.
+The third op-amp subtracts the first two outputs, producing one single-ended output that represents their difference.
 
 The supplied archives do not contain a complete instrumentation-amplifier schematic.
 The figure below shows the difference-amplifier stage used at the output of the classic architecture.
@@ -114,8 +110,7 @@ The ideal relationship is:
 For a dual-supply circuit, <i>V<sub>ref</sub></i> can be 0 V.
 For a single-supply circuit, it can be mid-supply.
 
-Drive this pin from a low-impedance source.
-Reference impedance can decrease CMRR and add gain error.
+Drive the reference pin from a low-impedance source. Extra impedance can upset the internal resistor network, reducing CMRR and adding gain error.
 
 ---
 
@@ -132,7 +127,7 @@ Their high impedance prevents significant source loading.
 
 ### Step 2: Separate Differential and Common-Mode Content
 
-The common-mode voltage is approximately 2.5 V:
+The common-mode voltage is about 2.5 V:
 
 > **V<sub>cm</sub> = (V<sub>+</sub> + V<sub>-</sub>)/2**
 
@@ -162,7 +157,7 @@ If <i>V<sub>ref</sub> = 2.5 V</i>, the ideal output is 2.6 V.
 
 The inputs must stay inside the common-mode range.
 The output must stay inside the output-swing range.
-The amplifier must also have sufficient bandwidth and settling time.
+The amplifier must also have enough bandwidth and settling time.
 
 ---
 
@@ -181,15 +176,15 @@ High CMRR is necessary when a small signal is on a large common-mode voltage.
 The existing precision notes give this example:
 
 * The differential signal is in the millivolt range.
-* The common-mode voltage is approximately 2.5 V, or 2500 mV.
+* The common-mode voltage is about 2.5 V, or 2500 mV.
 * The maximum common-mode error is &plusmn;0.01 mV.
 * The required rejection ratio is 2500 mV / 0.01 mV.
 * This ratio is 250,000:1.
-* The required CMRR is approximately **108 dB**.
+* The required CMRR is about **108 dB**.
 
 ### CMRR Is Not Constant
 
-CMRR usually decreases as frequency increases.
+CMRR usually falls as frequency rises.
 Check the datasheet graph at each important interference frequency.
 
 For an ECG circuit, check:
@@ -197,18 +192,15 @@ For an ECG circuit, check:
 * DC CMRR.
 * 50 Hz or 60 Hz power-line rejection.
 * Respiration-signal frequency.
-* Pacing or gating frequencies when applicable.
+* Pacing or gating frequencies when relevant.
 
-Input-source imbalance also decreases system CMRR.
-The amplifier specification alone does not include all external imbalance.
+Unequal source impedances can turn shared interference into a difference at the inputs. The amplifier's own CMRR rating does not include every imbalance in the external circuit.
 
 ---
 
 ## 5. Error Budget
 
-Small input errors become important at high gain.
-Calculate each error at the input or at the output.
-Do not add values that use different reference points.
+At high gain, small input errors become large output errors. Refer all errors to the same point, either input or output, before adding them.
 
 ### Input Offset Voltage
 
@@ -284,8 +276,7 @@ Total input noise includes:
 
 ## 6. Select the Input Type from Source Impedance
 
-Do not select an amplifier from voltage-noise density alone.
-Source impedance determines whether voltage noise or current noise is more important.
+A low voltage-noise density is not enough to choose an amplifier. With a high-impedance source, current noise can create more voltage error than the amplifier's voltage noise does.
 
 ### High-Impedance Sources
 
@@ -331,8 +322,7 @@ Include both noise sources in the final calculation.
 
 ### Common-Mode Input Range
 
-Both inputs must stay inside the specified common-mode range.
-The permitted range can change with gain, supply voltage, and temperature.
+Keep both inputs inside the allowed common-mode range. That range can change with gain, supply voltage, and temperature, so check it at your operating conditions.
 
 Some in-amps permit common-mode voltage near a supply rail.
 Some devices do not.
@@ -340,7 +330,7 @@ Use the datasheet range graph or equation.
 
 ### Differential Input Range
 
-High gain decreases the permitted differential input before output saturation.
+High gain decreases the allowed differential input before output saturation.
 
 For example, a 5 V output range and gain of 100 allow less than 50 mV of ideal differential input.
 Offset and reference voltage use part of the available output range.
@@ -384,7 +374,7 @@ Set the in-amp reference pin to the ADC midpoint.
 For a 0 V to 5 V ADC:
 
 * Set <i>V<sub>ref</sub></i> near 2.5 V.
-* A zero differential input then gives approximately 2.5 V output.
+* A zero differential input then gives about 2.5 V output.
 * Positive differential input moves the output upward.
 * Negative differential input moves it downward.
 
@@ -398,7 +388,7 @@ A 16-bit ADC has this ideal code size:
 
 > **LSB = 20 V / 65,536 &asymp; 300 &mu;V**
 
-An amplifier with 5.5 mV input-referred offset has an error approximately 18 times larger than this LSB.
+An amplifier with 5.5 mV input-referred offset has an error about 18 times larger than this LSB.
 Calibration or a lower-offset amplifier is necessary.
 
 ### Temperature-Drift Check
@@ -406,7 +396,7 @@ Calibration or a lower-offset amplifier is necessary.
 The existing DAQ notes give this example:
 
 * Amplifier gain drift is 40 ppm/&deg;C.
-* A 16-bit code is approximately 15 ppm of full scale.
+* A 16-bit code is about 15 ppm of full scale.
 * A 1&deg;C change produces more than one LSB of gain error.
 
 High resolution does not correct analog temperature drift.
@@ -417,8 +407,7 @@ For a multiplexed DAQ, total sample time includes:
 
 > **T<sub>total</sub> = T<sub>mux</sub> + T<sub>amp settling</sub> + T<sub>ADC acquisition</sub>**
 
-If the system switches too quickly, the new channel does not settle.
-The result contains part of the previous channel signal.
+If you switch to the next channel before the circuit settles, the reading still contains some influence from the previous channel.
 
 ---
 
@@ -478,9 +467,9 @@ The input stage needs:
 
 ### Strain-Gauge Bridge
 
-A strain gauge frequently uses a Wheatstone bridge.
+A strain gauge often uses a Wheatstone bridge.
 The bridge produces a small differential voltage.
-Its common-mode voltage is frequently near half the excitation voltage.
+Its common-mode voltage is often near half the excitation voltage.
 
 The in-amp supplies:
 
@@ -534,7 +523,7 @@ High CMRR needs symmetrical external wiring.
 * Keep their lengths similar.
 * Keep them away from clocks and switching nodes.
 * Use a twisted pair for a remote sensor.
-* Use shielding when the environment requires it.
+* Use shielding when the environment needs it.
 
 ### Impedance Balance
 
@@ -543,7 +532,7 @@ High CMRR needs symmetrical external wiring.
 * Use equal protection components.
 * Keep leakage paths similar.
 
-A tolerance difference in an input filter can convert common-mode interference to a differential error.
+If the two input filters do not match, they treat shared interference differently. Some of that common-mode signal then becomes a differential error that the amplifier cannot reject as common mode.
 
 ### Ground and Reference
 
@@ -554,9 +543,7 @@ A tolerance difference in an input filter can convert common-mode interference t
 
 ### Guarding
 
-Use a guard conductor for very high-impedance inputs.
-Drive the guard near the input common-mode voltage.
-This decreases leakage through the PCB surface.
+For very high-impedance inputs, a nearby guard conductor can reduce leakage across the PCB surface. Drive it near the input common-mode voltage so there is little voltage to push leakage current toward the input.
 
 ---
 
@@ -568,7 +555,7 @@ This decreases leakage through the PCB surface.
 2. Set the [common-mode input range](<./01-op-amps.md#common-mode-input-range>).
 3. Calculate the necessary gain.
 4. Set the output reference and output range.
-5. Select CMRR at the applicable frequency.
+5. Select CMRR at the relevant frequency.
 6. Set maximum offset and drift.
 7. Compare source impedance with voltage and current noise.
 8. Check bias-current error.
@@ -612,6 +599,6 @@ The first stage has two equal feedback resistors **R** and one gain resistor **R
 
 The differential gain is **11**. A 10 mV input difference produces **110 mV** above Vref in the ideal model.
 
-Check each first-stage output against its swing limits. The final output can be in range while an earlier amplifier saturates.
+Check the output limits of both first-stage amplifiers, not just the final output. An internal stage can saturate even when the final output calculation appears to be in range.
 
 Supply pins and decoupling are omitted from the schematic for clarity.

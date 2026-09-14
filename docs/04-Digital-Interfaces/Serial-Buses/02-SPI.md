@@ -1,6 +1,5 @@
 # SPI
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -32,7 +31,7 @@ import SerialTimingExplorer from '@site/src/components/SerialTimingExplorer';
 
 ## 3. Timing Budget
 
-Check data **[setup time](<../DigitalGeneral.md#storage-at-a-clock-edge>)** before the sampling edge and **hold time** after it. Include target output delay, route delay, and controller input requirements.
+Data must be stable for the required **[setup time](<../DigitalGeneral.md#storage-at-a-clock-edge>)** before the sampling edge and **hold time** after it. Account for the target's output delay, travel time along the routes, and the controller's input requirements.
 
 **Worked example assumptions:** The clock is 10 MHz with equal high and low times. One half-period is 50 ns.
 
@@ -63,7 +62,7 @@ Check both directions. A correct write does not prove that return-data timing is
 
 In a supported daisy chain, controller data output connects to the first device input. Each device output connects to the next device input.
 
-The final device output returns to the controller. The devices share clock and a compatible select signal. Each device acts as a shift stage.
+The last device sends data back to the controller. All devices share the clock and a compatible select signal, shifting data through the chain one stage at a time.
 
 For three assumed 16-bit stages, a complete chain transfer shifts 48 bits. Standard single-data-rate operation needs 48 clock cycles.
 

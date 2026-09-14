@@ -11,13 +11,9 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Active Filters
 
-An **active filter** uses an active device, usually an [operational amplifier](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>), with resistors and capacitors.
-The circuit changes signal magnitude and phase as a function of frequency.
-It can also provide gain, buffering, a low output impedance, or a controlled filter response.
+An **active filter** combines an active device, usually an [operational amplifier](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>), with resistors and capacitors. It changes how much of each frequency passes and how much its phase shifts. The active device can also provide gain, buffering, low output impedance, or a more controlled filter response.
 
-A passive RC section can make a basic low-pass or high-pass response.
-An active circuit can isolate RC sections from a load and can make a higher-order response without an inductor.
-The operational amplifier also introduces bandwidth, [slew-rate](<../Amplifiers/01-op-amps.md#slew-rate>), noise, output-current, and stability limits.
+A passive RC section can make a simple low-pass or high-pass filter. Adding an active circuit lets you prevent the load from changing that response, or build a higher-order filter without an inductor. The op-amp brings its own bandwidth, [slew-rate](<../Amplifiers/01-op-amps.md#slew-rate>), noise, output-current, and stability limits.
 
 The page has five ordered parts: foundations, active-filter topologies, amplifier and component limits, converter applications, and design verification.
 The explanations include passive RC building blocks, active first-order circuits, practical integrators, Sallen-Key filters, amplifier limits, noise control, converter filters, and a complete design procedure.
@@ -28,14 +24,9 @@ The explanations include passive RC building blocks, active first-order circuits
 
 #### Why Sine Waves Are Useful
 
-A linear circuit gives a sine-wave output for a sine-wave input.
-The output has the same frequency as the input.
-The circuit changes only the amplitude and phase.
+In steady state, a linear time-invariant circuit driven by a sine wave produces another sine wave at the same frequency. Its amplitude and phase may change.
 
-For this reason, a set of sine-wave tests can describe a linear filter.
-Apply one frequency at a time.
-Measure the output-to-input amplitude ratio and the phase difference.
-Repeat the measurement across the frequency range.
+This lets you describe a linear filter by testing one sine-wave frequency at a time. Measure the output-to-input amplitude ratio and phase difference, then repeat across the frequency range.
 
 #### Frequency Response
 
@@ -45,8 +36,7 @@ It has two parts:
 * **Magnitude response:** The ratio of output amplitude to input amplitude.
 * **Phase response:** The time or angular displacement between output and input.
 
-A filter specification is incomplete if it gives only magnitude.
-Phase affects waveform shape, feedback stability, channel matching, and time-domain settling.
+Gain alone does not fully describe a filter. Phase also affects waveform shape, feedback stability, how well channels match, and how the output settles after a change.
 
 #### Transfer Function
 
@@ -67,8 +57,7 @@ The phase is the angle of <i>H(j&omega;)</i>.
 
 #### Decibels
 
-The **decibel (dB)** is a logarithmic unit.
-It makes large gain and attenuation ratios easier to compare.
+The **decibel (dB)** expresses ratios on a logarithmic scale. This makes large increases and reductions in signal level easier to compare.
 
 For a power ratio:
 
@@ -80,15 +69,13 @@ For an amplitude ratio, such as voltage when the impedances are equal:
 
 Useful values are:
 
-* **+3 dB:** Approximately twice the power.
-* **+6 dB:** Approximately twice the voltage amplitude.
-* **-3 dB:** One-half the power and approximately 0.707 times the voltage amplitude.
+* **+3 dB:** About twice the power.
+* **+6 dB:** About twice the voltage amplitude.
+* **-3 dB:** One-half the power and about 0.707 times the voltage amplitude.
 * **+20 dB:** Ten times the voltage amplitude.
 * **-20 dB:** One-tenth the voltage amplitude.
 
-The nominal cutoff of many low-pass and high-pass filters is the **-3 dB frequency**.
-This point is not an abrupt boundary.
-Frequencies immediately beyond it still pass through the circuit with increasing attenuation.
+Many low-pass and high-pass filters call the **-3 dB frequency** their cutoff. It is not a wall: signals just beyond it still pass, though they are reduced more as frequency moves farther into the stopband.
 
 #### Phase
 
@@ -107,9 +94,7 @@ For an output that lags the input, the signed output-to-input phase is negative.
 
 #### Poles
 
-A **pole** changes the asymptotic magnitude slope by -20 dB/decade.
-It also adds phase lag.
-The phase contribution of one well-separated pole approaches -90 degrees.
+A first-order **pole** eventually adds a -20 dB/decade slope: 20 dB more reduction for each tenfold increase in frequency. A well-separated left-half-plane pole also adds phase lag approaching -90 degrees.
 
 Poles can come from:
 
@@ -120,26 +105,17 @@ Poles can come from:
 * Sensor capacitance.
 * PCB and package parasitics.
 
-A filter pole shapes the wanted response.
-A pole inside a feedback loop can also decrease [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>) and cause oscillation.
-Always distinguish the signal transfer function from the loop-gain transfer function.
+A pole can produce the filter response you want, but a pole inside a feedback loop can also reduce [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>) and cause oscillation. Keep signal transfer and loop gain separate when doing the analysis.
 
 #### Zeros
 
-A **zero** changes the asymptotic magnitude slope by +20 dB/decade.
-It can add phase lead.
-The phase contribution of one well-separated left-half-plane zero approaches +90 degrees.
+A **zero** eventually adds +20 dB/decade to the gain slope. A well-separated left-half-plane zero adds phase lead approaching +90 degrees.
 
-A resistor and capacitor in a feedback network can make a zero.
-A correctly placed zero can improve phase margin.
-A zero can also make a notch or cancel part of another response.
-Do not cancel an uncertain pole with a precise theoretical zero without a tolerance analysis.
+A resistor and capacitor in a feedback network can create a zero. Depending on its position, it can improve phase margin, help form a notch, or counter part of another response. If you plan to cancel a pole, check component tolerances: a nominal mathematical cancellation may not hold in hardware.
 
 #### Filter Order
 
-The **filter order** is the highest power of <i>s</i> in the transfer-function denominator after common pole-zero factors are canceled.
-It is also the number of poles in that reduced denominator, counting multiplicity.
-In a usual lumped filter, the order is frequently equal to the number of independent energy-storage elements.
+**Filter order** is the highest power of <i>s</i> in the denominator after canceling common pole-zero factors. It equals the remaining pole count, including repeated poles. For a usual lumped circuit, it is often also the number of independent energy-storage elements.
 
 For all-pole low-pass and high-pass responses:
 
@@ -150,15 +126,13 @@ For all-pole low-pass and high-pass responses:
 * **Nth-order low-pass:** -20<i>N</i> dB/decade above the transition.
 * **Nth-order high-pass:** +20<i>N</i> dB/decade below the transition as frequency increases.
 
-A magnitude change of 20 dB/decade is approximately 6 dB/octave.
+A magnitude change of 20 dB/decade is about 6 dB/octave.
 
-A higher order gives a sharper transition between passband and stopband.
-It also increases component sensitivity, phase shift, settling complexity, and stability risk.
+Higher order gives a sharper transition between frequencies you pass and frequencies you reject. It also brings more phase shift, sensitivity to component values, complicated settling, and possible stability problems.
 
 #### Q Factor and Damping
 
-The **Q factor** controls damping in a second-order section.
-Component ratios and amplifier gain set Q in a Sallen-Key circuit.
+The **Q factor** describes the damping of a second-order section. A higher Q generally means a stronger tendency to resonate. In a Sallen-Key circuit, component ratios and amplifier gain set Q.
 
 * A low Q gives a heavily damped response.
 * A moderate Q can give a flat passband.
@@ -196,7 +170,7 @@ Its magnitude is:
 At DC, ideal capacitor impedance is infinite.
 The capacitor acts as an open circuit.
 As frequency increases, impedance decreases.
-At a sufficiently high frequency in the ideal model, the capacitor acts approximately as a short circuit.
+At a high enough frequency in the ideal model, the capacitor acts about as a short circuit.
 
 A real capacitor stops following this ideal trend above its [self-resonant frequency](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#impedance-v-curve-and-self-resonance>).
 
@@ -221,9 +195,9 @@ For an initially discharged capacitor connected to a DC source through a resisto
 
 Useful first-order milestones are:
 
-* **1&tau;:** Approximately 63% of the final value.
-* **3&tau;:** Approximately 95% of the final value.
-* **5&tau;:** Approximately 99% of the final value.
+* **1&tau;:** About 63% of the final value.
+* **3&tau;:** About 95% of the final value.
+* **5&tau;:** About 99% of the final value.
 
 These values also help estimate filter step response and settling.
 A high-accuracy system can require more than five time constants.
@@ -305,9 +279,7 @@ The circuit blocks DC and passes fast changes.
 
 #### Loading Error
 
-The simple transfer functions assume that the source impedance is small and the load impedance is large.
-A real source resistance adds to the filter resistance.
-A real load resistance changes the effective resistance at the output.
+These simple equations assume the source adds little resistance and the load draws little current. In reality, source resistance adds to the filter resistor, and load resistance changes the resistance seen at the output.
 
 An active buffer can isolate the RC section from the source or load.
 The buffer must have sufficient input impedance, output current, bandwidth, and stability.
@@ -327,7 +299,7 @@ The buffer must have sufficient input impedance, output current, bandwidth, and 
 
 #### RC High-Pass as a Differentiator
 
-At low frequency relative to its corner, the RC high-pass output is approximately proportional to input rate of change:
+At low frequency relative to its corner, the RC high-pass output is about proportional to input rate of change:
 
 > **V<sub>out</sub> &asymp; RC &times; dV<sub>in</sub>/dt**
 
@@ -353,7 +325,7 @@ It can approximate an integrator:
 The step-by-step relation is:
 
 1. The resistor converts input voltage difference into current.
-2. The capacitor receives approximately this current when the output is small relative to the input.
+2. The capacitor receives about this current when the output is small relative to the input.
 3. Capacitor voltage is the time integral of capacitor current divided by capacitance.
 4. The output becomes the accumulated input.
 
@@ -365,9 +337,7 @@ For a square wave in its integration range, the output approaches a triangle or 
 The differentiator and integrator equations apply only when the frequency and loading conditions support the approximation.
 Near the corner, use the complete transfer function.
 
-An ideal differentiator amplifies high-frequency noise without limit.
-An ideal integrator has infinite DC gain and saturates from very small DC errors.
-Practical circuits limit both behaviors.
+An ideal differentiator keeps increasing its gain with frequency, so it would amplify high-frequency noise without limit. An ideal integrator has no finite DC-gain limit, so tiny DC errors eventually saturate its output. Practical versions add components to limit these effects.
 
 ## Active-Filter Topologies
 
@@ -423,9 +393,7 @@ It reduces high-frequency closed-loop gain.
 
 ##### Stability Compensation
 
-A sensor, such as a [photodiode](<../../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>), can add input capacitance and phase delay.
-A small capacitor, such as 10 pF, can change noise gain and restore phase margin when correctly selected.
-It also limits high-frequency bandwidth.
+A sensor such as a [photodiode](<../../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>) adds input capacitance, which changes the feedback response and its phase. A carefully chosen small capacitor, such as 10 pF in a suitable circuit, can reshape noise gain and restore phase margin. It also reduces high-frequency bandwidth.
 
 The capacitor does not make feedback instantaneous.
 Its decreasing impedance makes a controlled high-frequency feedback path.
@@ -433,11 +401,11 @@ Its decreasing impedance makes a controlled high-frequency feedback path.
 ##### Practical Integration
 
 A feedback capacitor can make an integrator.
-A large parallel resistor, frequently in the M&Omega; range, gives a DC feedback path.
+A large parallel resistor, often in the M&Omega; range, gives a DC feedback path.
 
 Component value gives a preliminary indication of function:
 
-* A pF capacitor frequently controls stability.
+* A pF capacitor often controls stability.
 * An nF capacitor can make a low-pass filter.
 * A large parallel resistor can limit integrator DC gain.
 
@@ -478,8 +446,7 @@ A high-pass RC network drives a [non-inverting amplifier](<../Amplifiers/01-op-a
 The capacitor blocks DC.
 The circuit amplifies signals above the input corner frequency.
 
-The source resistance, bias-return resistance, and amplifier input impedance set the actual corner.
-Include all three in the calculation.
+Calculate the corner using the source resistance, the resistor that gives the input's DC bias path, and the amplifier's input impedance. All three can affect it.
 
 In the archived circuit, <i>C<sub>1</sub> = 0.1 &micro;F</i> and <i>R<sub>1</sub> = 100 k&Omega;</i>.
 These values give a nominal corner near 15.9 Hz.
@@ -496,11 +463,7 @@ The gain approaches:
 At higher frequency, the capacitor passes the signal through the gain-setting path.
 The circuit then approaches its usual AC gain.
 
-The archived circuit uses <i>R<sub>1</sub> = 2 k&Omega;</i>, <i>R<sub>2</sub> = 18 k&Omega;</i>, and <i>C<sub>1</sub> = 4.7 &micro;F</i>.
-Its gain starts at 1 at DC and approaches 10 at high frequency.
-The gain transition has a zero near 1.69 Hz and a pole near 16.9 Hz.
-This circuit is a shelving high-pass amplifier.
-It does not block DC at its signal input.
+The archived circuit uses <i>R<sub>1</sub> = 2 k&Omega;</i>, <i>R<sub>2</sub> = 18 k&Omega;</i>, and <i>C<sub>1</sub> = 4.7 &micro;F</i>. Gain rises from 1 at DC toward 10 at high frequency, with a zero near 1.69 Hz and a pole near 16.9 Hz. This is a shelving high-pass amplifier: it boosts the higher frequencies relative to DC, but does not block DC at the input.
 
 Its transfer function is:
 
@@ -520,9 +483,7 @@ Its transfer function is:
 
 #### Bias-Current Path for an AC-Coupled Input
 
-An [AC-coupled](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#ac-coupling-blocking>) op-amp input still needs a DC bias-current path.
-Without this path, [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) can move the input and output into saturation.
-Make sure that the bias-return resistance does not make an unwanted corner or excessive noise.
+Even with an [AC-coupling](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#ac-coupling-blocking>) capacitor, the op-amp input needs a DC path for [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>). Without one, the input can drift until the amplifier saturates. Choose the bias-return resistance so it does not add too much noise or an unwanted filter corner.
 
 ### 8. Practical Active Integrator
 
@@ -615,9 +576,7 @@ Its ideal transfer function is:
 The magnitude increases with frequency.
 This behavior also amplifies wideband noise, switching edges, and parasitic coupling.
 
-A practical differentiator limits its low-frequency and high-frequency gain.
-Use a resistor in series with the input capacitor and a capacitor across the feedback resistor.
-These parts make a finite band in which differentiation is approximately valid.
+A practical differentiator works over a limited frequency band. A resistor in series with the input capacitor and a capacitor across the feedback resistor keep its gain under control outside that band.
 
 Check:
 
@@ -669,9 +628,7 @@ A **Sallen-Key low-pass filter** makes a second-order response with an operation
 6. The voltage across C1 then increases, and C1 carries more current from the intermediate node.
 7. The two capacitor currents produce the second-order denominator and the 40 dB/decade final attenuation slope.
 
-The resistor-capacitor products set the natural frequency.
-Component ratios and, in non-unity-gain variants, amplifier gain set Q.
-Q controls passband flatness, cutoff peaking, overshoot, and ringing.
+The resistor-capacitor products set the natural frequency. Their ratios, and the amplifier gain in non-unity-gain versions, set Q. That Q determines how flat the passband is and how much peaking, overshoot, or ringing happens.
 
 #### Natural Frequency
 
@@ -712,9 +669,7 @@ The damping ratio is:
 
 > **&zeta; = 1 / (2Q)**
 
-At <i>&omega; = &omega;<sub>0</sub></i>, both standard responses have magnitude <i>KQ</i>.
-The natural frequency <i>f<sub>0</sub></i> is the -3 dB cutoff only when <i>Q = 1/&radic;2</i>.
-For other Q values, <i>f<sub>0</sub></i> and the -3 dB cutoff are different.
+At <i>&omega; = &omega;<sub>0</sub></i>, both standard responses have magnitude <i>KQ</i>. Only at <i>Q = 1/&radic;2</i> does the natural frequency <i>f<sub>0</sub></i> also equal the -3 dB cutoff. For other Q values, these are different frequencies.
 
 * **Q &lt; 0.5:** The response is overdamped.
 * **Q = 0.5:** The response is critically damped.
@@ -723,7 +678,7 @@ For other Q values, <i>f<sub>0</sub></i> and the -3 dB cutoff are different.
 
 The second-order low-pass slope approaches -40 dB/decade above the transition.
 The second-order high-pass slope approaches +40 dB/decade below the transition as frequency increases.
-The magnitude change is approximately 12 dB/octave.
+The magnitude change is about 12 dB/octave.
 
 #### Operational-Amplifier Requirements
 
@@ -754,7 +709,7 @@ The component and operational-amplifier limitations in the next sections still a
 #### Open-Loop Response
 
 A real voltage-feedback operational amplifier usually has a low-pass open-loop response.
-Its **open-loop gain** is high at DC and decreases as frequency increases.
+Its **open-loop gain** is high at DC and falls as frequency rises.
 
 Example component values:
 
@@ -777,11 +732,9 @@ For a single-pole voltage-feedback amplifier, the **gain-bandwidth product (GBW)
 
 > **Closed-loop bandwidth &asymp; GBW / noise gain**
 
-Use **noise gain**, not signal gain, when the two values differ.
-A filter capacitor can make noise gain change with frequency.
+Use **noise gain**, the gain seen by a small input-voltage error, when it differs from the signal gain. Capacitors in a filter can make this noise gain vary with frequency.
 
-High gain-bandwidth product is also useful at low signal frequency.
-Spare loop gain improves gain accuracy, linearity, and distortion.
+Extra gain-bandwidth product can help even with a slow signal. It leaves more loop gain available for correcting errors, improving gain accuracy and linearity and reducing distortion.
 
 #### Decompensated Amplifiers
 
@@ -791,12 +744,12 @@ Example minimum-gain requirement:
 
 > **A<sub>V</sub> &ge; 10**
 
-Do not use a decompensated amplifier as a unity-gain Sallen-Key buffer unless the datasheet permits it.
+A decompensated amplifier trades some internal stability compensation for speed and needs a minimum noise gain. Do not use it as a unity-gain Sallen-Key buffer unless its datasheet allows that connection.
 
 #### Phase-Accuracy Rules
 
 For good phase accuracy, select an amplifier bandwidth 50 to 100 times higher than the signal frequency.
-Video circuits frequently require this accuracy.
+Video circuits often require this accuracy.
 
 For amplitude accuracy without strict phase accuracy, a bandwidth 10 times higher than the signal frequency can be sufficient.
 These are selection rules, not guarantees.
@@ -840,7 +793,7 @@ Use the datasheet slew-rate specification for the design.
 
 Examples of slew-enhancement designs:
 
-* **LF411:** A junction-field-effect-transistor (**[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>)**) input design with an enhancement factor of approximately 12.
+* **LF411:** A junction-field-effect-transistor (**[JFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>)**) input design with an enhancement factor of about 12.
 * **TLE2142 and OP275:** Cross-coupled or Butler stages that increase current available to the compensation capacitor.
 * **LT1210:** A current-feedback amplifier with an enhancement factor greater than 55.
 
@@ -859,14 +812,13 @@ Oscillation can occur when:
 * Total loop phase shift approaches 180 degrees.
 * Loop gain remains greater than one.
 
-The critical crossover is where loop gain equals one.
-The total phase includes the operational amplifier and the external filter network.
+Check the frequency where loop gain falls to one. At that point, include the phase shift from both the op-amp and the external filter network.
 
 #### Phase Margin
 
 **Phase margin** is the remaining phase before the loop reaches 180 degrees at unity loop gain.
 
-A one-pole response can approach -90 degrees and can give approximately 90 degrees of phase margin.
+A one-pole response can approach -90 degrees and can give about 90 degrees of phase margin.
 Real amplifiers have more poles and smaller margins.
 
 Common approximate design targets are:
@@ -878,8 +830,7 @@ The complete pole and zero locations set the actual margin.
 
 #### Rate of Closure
 
-The **rate-of-closure method** compares open-loop gain and noise-gain slopes near their intersection.
-A larger slope difference usually indicates less phase margin.
+The **rate-of-closure method** looks at how quickly the open-loop and noise-gain curves approach each other near their crossing. A greater difference in their slopes usually suggests less phase margin.
 
 Use:
 
@@ -911,7 +862,7 @@ Use a calculated network or a datasheet-approved load.
 
 Do not add load capacitance to force the unity-gain crossover near the first corner.
 This method can destabilize many operational amplifiers.
-Use it only when the applicable datasheet explicitly permits the load.
+Use it only when the relevant datasheet explicitly permits the load.
 
 #### Lead and Lag Compensation
 
@@ -924,10 +875,7 @@ A Bode plot shows whether the network changes the intended signal response, the 
 A capacitive load reacts with operational-amplifier output impedance.
 The interaction adds a pole and phase lag.
 
-Open-loop output impedance can be hundreds of ohms.
-Closed-loop output impedance usually rises as loop gain decreases at high frequency.
-The rising output impedance can look inductive.
-With a load capacitor, it can make a resonant circuit.
+Open-loop output impedance can be hundreds of ohms. Feedback lowers it, but becomes less effective as loop gain falls at high frequency. The resulting impedance can look inductive and resonate with a load capacitor.
 
 #### Stability Methods
 
@@ -979,9 +927,7 @@ The bandwidth multiplies the density value by more than 300.
 The 3.16 &micro;V result is a substantial fraction of a 10 &micro;V EEG signal.
 Other noise sources can make the signal difficult to measure.
 
-An active low-pass filter reduces integrated noise by reducing noise bandwidth.
-Do not assume that its -3 dB bandwidth equals its exact equivalent noise bandwidth.
-The relation depends on filter shape and order.
+A low-pass filter reduces total noise by limiting the frequencies that get through. Its exact noise bandwidth is not necessarily its -3 dB bandwidth; the relationship depends on the shape and order of the response.
 
 #### General Noise Integration
 
@@ -1004,14 +950,11 @@ For a simple resistive source <i>R<sub>S</sub></i>, an input-referred approximat
 
 > **e<sub>total</sub><sup>2</sup>(f) = e<sub>n</sub><sup>2</sup>(f) + [i<sub>n</sub>(f)R<sub>S</sub>]<sup>2</sup> + 4kTR<sub>S</sub>**
 
-A reactive filter network has a frequency-dependent impedance.
-Calculate the noise from each resistor and amplifier-noise source separately.
-Apply the applicable noise transfer function to each source, integrate across frequency, and combine the independent RMS results by root sum square.
+Capacitors and inductors make the filter impedance change with frequency. Work out how each resistor's noise and each amplifier-noise source reaches the output, integrate that contribution over frequency, then combine independent RMS results by root sum square.
 
 #### 1/f Noise and Named Devices
 
-Noise density increases below the **1/f corner**.
-The 1 kHz white-noise value can give an incorrect result for a low-frequency filter.
+Noise density often rises below the **1/f corner**. A noise value quoted at 1 kHz may therefore underestimate the noise in a circuit measuring much slower signals.
 
 Example device data:
 
@@ -1021,8 +964,8 @@ Example device data:
 The LT1012 can have less low-frequency noise even though its white-noise density is higher.
 
 [Auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) and chopper amplifiers can suppress the conventional low-frequency 1/f rise.
-Some devices keep an approximately flat noise density toward DC.
-Use the applicable datasheet curve because the exact response depends on the device.
+Some devices keep an about flat noise density toward DC.
+Use the relevant datasheet curve because the exact response depends on the device.
 Their internal switching can add [clock feedthrough](<../Data-convertes/Sample-holding.md#clock-feedthrough>).
 A low-pass filter can decrease this feedthrough when the signal bandwidth permits it.
 
@@ -1067,7 +1010,7 @@ Replacing their tantalum capacitor with a near-zero-ESR ceramic can cause oscill
 It limits high-frequency capacitor performance.
 
 Below [self-resonance](<../../01-Discrete-Components/01-Passives/03-Inductors.md#winding-losses-and-a-practical-model>), the device is capacitive.
-At self-resonance, its impedance reaches a minimum that is approximately ESR in the simple series model.
+At self-resonance, its impedance reaches a minimum that is about ESR in the simple series model.
 Above self-resonance, the device behaves as an inductor and filters high-frequency noise less effectively.
 
 #### Package and Placement
@@ -1080,7 +1023,7 @@ Example parallel-capacitor set:
 * A 10 &micro;F [bulk capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bulk-capacitance>) for lower-frequency current changes.
 * A 0.1 &micro;F ceramic capacitor for higher-frequency current changes.
 
-In this example, the 0.1 &micro;F part can stay capacitive to approximately 100 MHz.
+In this example, the 0.1 &micro;F part can stay capacitive to about 100 MHz.
 A small 0402 part can filter better than a large 1206 part in a GHz design because layout inductance is lower.
 
 #### Voltage Coefficient and Input Capacitance
@@ -1097,9 +1040,7 @@ Use an inverting configuration with nearly constant common-mode voltage or match
 
 #### Tolerance and Temperature
 
-Resistor and capacitor tolerance move pole and zero frequencies.
-Temperature coefficient moves them as temperature changes.
-Second-order Q can be more sensitive than the natural frequency.
+Resistor and capacitor tolerances shift pole and zero frequencies, and temperature changes them further. Q can be even more sensitive than the natural frequency, so a filter may develop unexpected peaking without a large frequency shift.
 
 Run a worst-case or Monte Carlo analysis.
 Include operational-amplifier gain, phase, bias current, offset, input capacitance, and output impedance.
@@ -1134,11 +1075,10 @@ For a baseband signal:
 
 > **f<sub>s</sub> &gt; 2f<sub>max</sub>**
 
-If the analog input contains energy above the permitted limit, sampling can create a false lower-frequency signal.
-This false signal is an **alias**.
+Frequencies too high for the sample rate can appear as false lower-frequency signals in the recorded data. These false components are called **aliases**.
 
 Noise at 50 MHz can affect a 100 kHz measurement if the sampling system aliases it.
-After [aliasing](<./Digital-filters.md#18-aliasing-at-the-initial-adc>) occurs, a digital filter cannot identify the original out-of-band signal.
+After [aliasing](<./Digital-filters.md#18-aliasing-at-the-initial-adc>) happens, a digital filter cannot identify the original out-of-band signal.
 Install an analog **anti-alias filter** before the ADC.
 
 #### Guard Band
@@ -1150,12 +1090,7 @@ The nominal corner is usually the -3 dB point.
 Frequencies immediately above the corner still pass.
 Even a six-pole Butterworth filter has a finite transition band.
 
-Use **[oversampling](<./Digital-filters.md#23-oversampling>)** to make a guard band.
-Example: Run the sample clock 25% faster than the theoretical minimum.
-Putting a -3 dB corner at the edge of the required signal band gives 3.01 dB of loss at that edge.
-Use this location only when the passband specification permits the loss.
-Select the passband edge, stopband edge, order, and corner from the actual attenuation requirements.
-The guard band must let the filter reach the necessary stopband attenuation before aliasing can enter the required band.
+**[Oversampling](<./Digital-filters.md#23-oversampling>)** leaves more frequency space for the filter to roll off. Running the sample clock 25% faster than the theoretical minimum is one example, not a universal allowance. The guard band must be wide enough for the required rejection. Also, placing a -3 dB corner at the wanted band edge already loses 3.01 dB there. Use that location only if this loss is acceptable. Choose the passband edge, stopband edge, order, and corner together from the actual limits.
 
 The Sallen-Key circuit in this page is one active low-pass building block.
 It is not a complete guarantee that an ADC alias specification is met.
@@ -1172,7 +1107,7 @@ A 200 Msps rate maps the 500 MHz carrier to 100 MHz, but the complete 495 MHz to
 Do not use the 200 Msps plan for this exact band.
 
 The ADC track-and-hold bandwidth must also include the original carrier frequency.
-The **ADC08200** samples at 200 Msps and has approximately 500 MHz of analog input bandwidth.
+The **ADC08200** samples at 200 Msps and has about 500 MHz of analog input bandwidth.
 This bandwidth lets its track-and-hold circuit respond near 500 MHz, but the selected sample rate and input filter must still prevent spectral overlap.
 
 #### Oversampling, Digital Filtering, and Decimation
@@ -1199,15 +1134,14 @@ For suitable uncorrelated quantization noise and signal bandwidth <i>B<sub>signa
 
 > **Signal-to-noise-ratio (SNR) improvement = 10 log<sub>10</sub>[f<sub>sample</sub> / (2B<sub>signal</sub>)]**
 
-Doubling the sample rate can improve SNR by approximately 3 dB, or one-half bit.
-Increasing the oversampling ratio by four can improve resolution by approximately one bit.
+Doubling the sample rate can improve SNR by about 3 dB, or one-half bit.
+Increasing the oversampling ratio by four can improve resolution by about one bit.
 
 Clock jitter, distortion, correlated error, and analog noise can prevent the theoretical improvement.
 
 ### 19. High-Speed ADC Driver Filters
 
-A modern high-speed ADC has dynamic input impedance.
-Do not connect it directly to an arbitrary operational-amplifier output.
+A modern high-speed ADC changes its input loading as it samples. Choose a driver and input network that can handle those changes rather than connecting an arbitrary op-amp directly.
 
 #### Differential 2R + C Network
 
@@ -1230,7 +1164,7 @@ Include a guard band and required stopband attenuation.
 
 #### Driver Stability
 
-An operational amplifier with approximately 1000 MHz bandwidth can still be unstable with a capacitive load.
+An operational amplifier with about 1000 MHz bandwidth can still be unstable with a capacitive load.
 The load capacitor and open-loop output impedance add a pole and decrease phase margin.
 
 Install an isolation resistor.
@@ -1266,7 +1200,7 @@ Keep the required signal band inside the passband.
 
 The **ADI AD1955** is a multibit delta-sigma DAC.
 It supports 24-bit pulse-code-modulation (PCM) audio at sample rates as high as 192 kHz.
-Its specified stereo dynamic range is 120 dB for the applicable test conditions.
+Its specified stereo dynamic range is 120 dB for the relevant test conditions.
 The term **1-bit DAC** does not apply to its multibit output stage.
 
 #### Delta-Sigma Noise Warning
@@ -1274,8 +1208,8 @@ The term **1-bit DAC** does not apply to its multibit output stage.
 Delta-sigma devices can have excellent linearity in audio-band applications.
 Check broadband noise and clock noise.
 
-The **TI DAC1220** example has a noise density of approximately 1000 nV/&radic;Hz.
-An example resistor-ladder DAC has approximately 10 nV/&radic;Hz.
+The **TI DAC1220** example has a noise density of about 1000 nV/&radic;Hz.
+An example resistor-ladder DAC has about 10 nV/&radic;Hz.
 A reconstruction filter cannot correct unsuitable DC drift, [differential nonlinearity](<../Data-convertes/DACs.md#differential-non-linearity>) (**DNL**), or in-band noise.
 
 #### PWM as a DAC
@@ -1312,15 +1246,15 @@ If PWM is inside a feedback loop, a lower PWM cycle rate reduces possible loop b
 The voltage reference can be the largest noise and drift source in a precision converter.
 Example reference-noise budget:
 
-* Reference low-frequency noise: approximately 2 &micro;V.
-* Buffer-amplifier contribution: approximately 0.1 &micro;V.
+* Reference low-frequency noise: about 2 &micro;V.
+* Buffer-amplifier contribution: about 0.1 &micro;V.
 
 Use an RC filter to reduce reference broadband noise.
 For very low noise, multiple references can operate in parallel to average uncorrelated noise.
 Verify that the selected references permit parallel operation.
 
 The **LTC2656** includes a reference and output amplifiers.
-In the retained comparison, its noise is approximately four times higher than a selected discrete design.
+In the retained comparison, its noise is about four times higher than a selected discrete design.
 
 #### Reference-Filter Constraints
 
@@ -1331,12 +1265,9 @@ The reference filter must:
 * Supply required dynamic current.
 * Keep DC error, drift, and long-term drift within the budget.
 
-A large filter capacitor can have leakage current.
-In a precision reference circuit, bootstrap the lower capacitor terminal when the topology permits it.
-Approximately zero DC voltage across the capacitor gives approximately zero DC leakage current.
+Leakage from a large filter capacitor can shift a precision reference. Where the circuit allows it, bootstrap the lower terminal so it follows the upper terminal's DC voltage. With almost no DC voltage across the capacitor, very little DC leakage flows through it.
 
-For a quasi-static application, limit bandwidth deliberately.
-Example: Use a 1 kHz roll-off to reduce high-frequency reference noise and DAC glitches.
+For a slowly changing, or quasi-static, output, deliberately limit bandwidth. A 1 kHz roll-off is one example that reduces high-frequency reference noise and DAC glitches.
 
 An auto-zero or chopper amplifier can add clock feedthrough.
 A low-pass filter can reduce this feedthrough when the required signal band is slow.
@@ -1357,11 +1288,10 @@ Check these parameters:
 8. **Input capacitance:** Include it in pole, Q, and distortion calculations.
 9. **Output impedance:** Include its frequency dependence and load interaction.
 10. **Distortion:** Check the required amplitude, frequency, source impedance, and gain.
-11. **Power-supply rejection:** The power-supply rejection ratio (**PSRR**) usually decreases as frequency increases.
+11. **Power-supply rejection:** The power-supply rejection ratio (**PSRR**) usually falls as frequency rises.
 12. **Temperature and tolerance:** Verify the complete operating range.
 
-Do not select an amplifier only from GBW.
-A filter can fail from phase error, insufficient slew rate, unstable noise gain, common-mode limits, or excessive noise.
+Gain-bandwidth product is only one selection check. A filter can still fail because of phase error, slew-rate limiting, unstable feedback behavior, input common-mode limits, or too much noise.
 
 ### 23. Active-Filter Design Procedure
 
@@ -1383,7 +1313,7 @@ Use this sequence.
    Check loading, bias-current error, [thermal noise](<../../00-Foundations/00-Foundations.md#thermal-noise>), leakage, ESR, ESL, self-resonant frequency (**SRF**), voltage coefficient, and package.
 8. **Select the amplifier.**
    Check GBW, noise gain, slew rate, phase margin, input/output range, current, noise, and distortion.
-9. **Add converter constraints when applicable.**
+9. **Add converter constraints when relevant.**
    Check anti-alias transition band, reconstruction images, PWM carrier, ADC kickback, and reference settling.
 10. **Analyze tolerance and temperature.**
     Use worst-case and Monte Carlo analysis.
@@ -1417,17 +1347,17 @@ The corner is:
 
 For the low-pass circuit:
 
-* DC gain is approximately 1 when the load is high impedance.
-* Magnitude is approximately -3 dB at 1.59 kHz.
+* DC gain is about 1 when the load is high impedance.
+* Magnitude is about -3 dB at 1.59 kHz.
 * The final slope approaches -20 dB/decade.
-* Phase is approximately -45 degrees at the corner.
+* Phase is about -45 degrees at the corner.
 
 For the high-pass circuit:
 
 * DC output is zero.
-* Magnitude is approximately -3 dB at 1.59 kHz.
+* Magnitude is about -3 dB at 1.59 kHz.
 * The output approaches the input above the corner.
-* Phase is approximately +45 degrees at the corner.
+* Phase is about +45 degrees at the corner.
 
 Include source and load resistance before use in hardware.
 Select a unity-gain-stable amplifier.
@@ -1475,7 +1405,7 @@ The low-pass path takes its output across the capacitor. The high-pass path take
 
 The corner frequency is one divided by two pi times resistance and capacitance.
 
-At the corner, each magnitude is approximately 0.707 of its passband value. Each response changes by 20 dB per decade in its stopband.
+At the corner, each magnitude is about 0.707 of its passband value. Each response changes by 20 dB per decade in its stopband.
 
 [Open this circuit beside its topic](</docs/Signal-Modulation/Filters/Active-filters#circuit-rc-filter-pair>).
 
@@ -1497,7 +1427,7 @@ A high-pass stage rejects low frequencies, and a following low-pass stage reject
 
 The buffer separates the two resistor-capacitor networks. Their responses then multiply without substantial mutual loading.
 
-The lower corner is approximately 159 Hz. The upper corner changes with the selected low-pass capacitor.
+The lower corner is about 159 Hz. The upper corner changes with the selected low-pass capacitor.
 
 A wide gap between the corners gives a nearly flat middle band. Closely spaced corners reduce the peak gain.
 

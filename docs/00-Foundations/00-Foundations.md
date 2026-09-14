@@ -9,7 +9,7 @@ import VoltageDivider from '@site/src/components/VoltageDivider';
 
 # Electrical Foundations
 
-This page gives the basic quantities, analysis tools, and nonideal effects that apply to electrical circuits.
+This page introduces the main electrical quantities, the tools used to analyze circuits, and the ways real components differ from ideal ones.
 
 ## 1. Electrical Quantities and Conservation Laws
 
@@ -21,11 +21,11 @@ This page gives the basic quantities, analysis tools, and nonideal effects that 
     * **Voltage (V)** is the electric-potential difference between two points. It is analogous to the force or pressure that moves electric charge.
       * **Sign:** A positive *V<sub>ab</sub>* means that point *a* has a higher potential than point *b*.
 
-    * **Current (I)** is the rate of charge flow. The applicable formula is *I = dQ / dt*.
+    * **Current (I)** is the rate of charge flow. The formula is *I = dQ / dt*.
       * **Direction:** Conventional current flows from positive potential to negative potential.
       * Electron flow has the opposite direction. Circuit design normally uses conventional current.
 
-    * **Conductance (G)** is the inverse of resistance. The applicable formula is *G = 1 / R*.
+    * **Conductance (G)** is the inverse of resistance. The formula is *G = 1 / R*.
       * **Math:** The unit of conductance is the siemens (S).
   </div>
 
@@ -48,7 +48,7 @@ This page gives the basic quantities, analysis tools, and nonideal effects that 
 
 <div className="definition-list">
 
-The Thevenin and Norton theorems are **analysis tools**. They replace a complex linear black-box circuit with a two-component model.
+The Thevenin and Norton theorems are **analysis tools** that let you replace a complex linear circuit with just two components. You can then work out how it behaves at its terminals without solving every part inside it.
 
 | Theorem | Equivalent model | Calculation |
 | :--- | :--- | :--- |
@@ -86,7 +86,7 @@ For high efficiency, use a load resistance much higher than the source resistanc
 
 This condition improves efficiency and can increase battery life in a battery-powered circuit.
 
-For maximum load power, match the load to the source. RF antenna systems and audio amplifiers frequently use this condition.
+For maximum load power, match the load to the source. RF antenna systems and audio amplifiers often use this condition.
 
 * **DC circuit:** *R<sub>load</sub> = R<sub>source</sub>*.
 * **AC circuit:** <em>Z<sub>load</sub> = Z<sub>source</sub><sup>∗</sup></em>. The asterisk identifies the complex conjugate.
@@ -95,7 +95,7 @@ For maximum load power, match the load to the source. RF antenna systems and aud
 
 ## 3. AC Signals and Power
 
-**Why Sinusoids?** Electrical systems frequently use sine waves. The applicable formula is *V = A sin(2&pi;ft)*.
+**Why Sinusoids?** Electrical systems often use sine waves. The formula is *V = A sin(2&pi;ft)*.
 
 Electrical systems use sine waves for two reasons:
 
@@ -142,7 +142,7 @@ Electrical systems use sine waves for two reasons:
 
 **Phase** identifies a time difference between periodic signals.
 
-* A 90&deg; phase difference occurs when one signal has its maximum value while the other signal crosses zero.
+* A 90&deg; phase difference happens when one signal has its maximum value while the other signal crosses zero.
 
 </div>
 
@@ -158,7 +158,7 @@ The **frequency response** shows how circuit gain and phase change with frequenc
 
 **Transfer function (H(s))**
 
-The **transfer function** gives the ratio of output to input in the frequency domain.
+The **transfer function** describes how the output relates to the input in the frequency domain. It helps you work out how much the circuit amplifies or reduces each frequency, and how it shifts the phase.
 
 * **Formula:** *H(s) = Output(s) / Input(s)*.
 * **Poles:** Poles can identify an unstable response.
@@ -170,7 +170,7 @@ The **transfer function** gives the ratio of output to input in the frequency do
 
 <div className="definition-list">
 
-Each real component includes resistance, inductance, and capacitance. These unwanted properties are **parasitic effects**.
+Real components have some resistance, inductance, and capacitance, even when only one of these is intended. These unwanted properties are called **parasitic effects**.
 
 * **Everything is an inductor — parasitic inductance:** Each wire and PCB trace has inductance because it has length.
   * **Result:** High-frequency signals can have more impedance than the designer expects.
@@ -186,7 +186,7 @@ Each real component includes resistance, inductance, and capacitance. These unwa
 
 ## 6. Noise
 
-Electrical noise consists of random electrical changes. The changes usually have a Gaussian distribution.
+Electrical noise is random variation in voltage or current. Its values often follow a Gaussian distribution: small changes are common, while large changes are less likely.
 
 Noise sets a fundamental limit on system resolution.
 
@@ -197,13 +197,13 @@ Noise sets a fundamental limit on system resolution.
 **Thermal noise** is also called Johnson noise. Random motion of thermally excited electrons causes this noise in a conductor.
 
 * **Presence:** Thermal noise is present in all resistive elements. Current flow is not necessary.
-* **Characteristics:** Thermal noise has a flat power spectral density. It is a type of white noise.
+* **Characteristics:** Thermal noise has roughly equal power in equal-width frequency bands. This flat power spectral density is why it is called white noise.
 * **Dependency:** Thermal-noise power is proportional to absolute temperature, measured in kelvins, and to resistance.
-* **Magnitude:** At room temperature, a 1 k&Omega; resistor has approximately **4 nV/&radic;Hz** of voltage-noise density.
+* **Magnitude:** At room temperature, a 1 k&Omega; resistor has about **4 nV/&radic;Hz** of voltage-noise density.
 
 #### Shot Noise
 
-**Shot noise** occurs when DC current flows across a potential barrier. PN junctions in diodes and bipolar junction transistors contain these barriers.
+**Shot noise** happens when DC current flows across a potential barrier. PN junctions in diodes and bipolar junction transistors contain these barriers.
 
 * **Mechanism:** The discrete movement of charge carriers causes shot noise. The carriers are electrons and holes.
 * **Dependency:** The shot-noise amplitude is proportional to the square root of the DC current.
@@ -212,7 +212,7 @@ Noise sets a fundamental limit on system resolution.
 
 **1/f noise** is associated with DC current flow. Carrier traps and crystal defects in semiconductor devices contribute to this noise.
 
-This noise is also called flicker noise. It is frequently dominant in [MOSFETs](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) and other active devices at low frequencies.
+This noise is also called flicker noise. It is often dominant in [MOSFETs](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) and other active devices at low frequencies.
 
 * **Behavior:** The noise energy is inversely proportional to frequency. As a result, the noise amplitude increases when the frequency decreases.
 * **1/f corner:** The 1/f corner is the frequency where 1/f noise-amplitude density equals broadband noise-amplitude density.
@@ -222,7 +222,7 @@ This noise is also called flicker noise. It is frequently dominant in [MOSFETs](
 
 **Popcorn noise** is also called burst noise. Heavy-metal ion contamination or defects in the silicon lattice usually cause this low-frequency noise.
 
-Popcorn noise appears as step changes in voltage. These changes are random telegraph signals.
+Popcorn noise makes the voltage jump randomly between levels. This is also called a random telegraph signal.
 
 ### Noise Spectral Density
 
@@ -238,7 +238,7 @@ Noise-amplitude spectral density gives noise amplitude per square root of bandwi
 Calculate the total RMS noise voltage in three steps:
 
 1. **Noise-power density:** If the curve gives voltage-noise density, square the density value.
-2. **Integration:** Integrate the noise-power spectral-density curve across the applicable frequency range.
+2. **Integration:** Integrate the noise-power spectral-density curve across the relevant frequency range.
    * The integral is the mean-square noise voltage. It is the area below the power-density curve.
 3. **RMS conversion:** Take the square root of the integrated value to get the total RMS noise voltage.
 
@@ -299,7 +299,7 @@ The combined density is **5 nV/√Hz**. Integrated noise is **0.5 µV root mean 
 
 Multiplying bandwidth by four doubles this noise voltage. It does not multiply the voltage by four.
 
-For correlated sources, include correlation in the noise-power calculation. For a real filter, integrate the squared response instead of substituting its cutoff frequency blindly.
+If the noise sources are related, their correlation must be included when adding their noise power. For a real filter, calculate the noise using its squared frequency response; its cutoff frequency alone does not tell you how much noise gets through.
 
 **Reference:** [Analog Devices, combining noise sources](https://www.analog.com/en/resources/analog-dialogue/articles/what-should-i-know-about-opamp-noise.html).
 

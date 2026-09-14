@@ -1,6 +1,5 @@
 # Transformers
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -21,13 +20,13 @@ A load resistance appears at the primary as a **reflected resistance**:
 
 ## 2. Flux and Excitation
 
-Voltage changes the core flux. A winding cannot support a continuous direct-current voltage without an increasing magnetizing current.
+Voltage applied to a winding changes the magnetic flux in the core. A continuous DC voltage keeps pushing the flux in one direction, so the transformer cannot sustain it indefinitely without magnetizing current rising.
 
 <LearningEquation tex={"\\Delta B=\\frac{V\\Delta t}{N A_e}"} />
 
 **B** is flux density. **Ae** is the effective core area. This equation assumes a constant winding voltage during **Δt**.
 
-The drive circuit must provide sufficient flux reset. Check the applied **volt-seconds**, frequency, and temperature against the transformer specification.
+The drive circuit must provide enough time and voltage to reset the core flux. Check the applied **volt-seconds**, frequency, and temperature against the transformer specification.
 
 [Coilcraft, TX1 transformer design guidance](https://www.coilcraft.com/getmedia/522af81d-ddef-4e7f-b314-0ea02bf65b97/Doc1732_Push-Pull_TechBull_TX1.pdf) connects turns ratio and volt-second selection to a specific driver.
 

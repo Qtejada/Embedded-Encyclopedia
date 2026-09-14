@@ -19,9 +19,9 @@ import rectifierImage from '@site/static/img/rectifier.png';
 
 ### What They Are
 
-Diodes are **nonlinear** devices. They conduct after the voltage reaches a forward threshold.
+Diodes are **nonlinear**: current does not increase in direct proportion to voltage. In forward bias, it rises steeply as voltage increases, rather than switching on at one exact threshold.
 
-For a silicon diode, the typical threshold is approximately 0.7 V. The exact threshold depends on the material.
+About 0.7 V is a useful first estimate for a silicon diode's forward drop. The actual voltage depends on the material, current, and temperature.
 
 A diode blocks current in the opposite direction during normal operation.
 
@@ -112,7 +112,7 @@ For detailed information about conversion from AC to cleaner DC, see the **[Regu
 
 Diodes can operate as **voltage clamps**.
 
-When you take the output across a diode, the diode can limit a node. The limit is approximately one **forward-voltage drop above** the reference rail.
+When you take the output across a diode, the diode can limit a node. The limit is about one **forward-voltage drop above** the reference rail.
 
 <DiodeClamping />
 
@@ -187,7 +187,7 @@ The junction usually contains platinum or tungsten on N-type silicon.
 
 A Schottky diode does not have a P-N junction. As a result, it does not have minority-carrier injection.
 
-The diode turns off **immediately** and has zero reverse-recovery time. This behavior makes it ideal for high-speed switching regulators.
+A Schottky diode has no minority-carrier reverse-recovery delay, which makes it useful in high-speed switching regulators. Turn-off is still affected by charging and discharging its capacitance, so it is not literally instantaneous.
 
 * **Pros:**
   * **Lower forward drop:** The typical value is 0.2 V to 0.4 V. A silicon diode has a typical value of 0.7 V. The lower voltage causes less heat loss.
@@ -202,7 +202,7 @@ The diode turns off **immediately** and has zero reverse-recovery time. This beh
 
 They **turn on quickly** and **absorb short, high-energy events**. These events include ESD, lightning, and [inductive kickback](<../01-Passives/03-Inductors.md#interactive-the-inductive-kick>).
 
-* **Unidirectional:** This device operates like a Zener diode connected to ground. It blocks positive voltage until the clamp voltage occurs. It conducts freely for negative voltage. It is suitable for DC power lines.
+* **Unidirectional:** This device operates like a Zener diode connected to ground. It blocks positive voltage until the clamp voltage happens. It conducts freely for negative voltage. It is suitable for DC power lines.
 * **Bidirectional:** This device contains two back-to-back diodes. It clamps positive and negative spikes symmetrically. It is suitable for AC or data lines, such as [RS-485](<../../04-Digital-Interfaces/Serial-Buses/rs232-rs485.md#1-electrical-interfaces>).
 
 <TVSSymbol />
@@ -229,11 +229,11 @@ Both equations must give the same current. One way to find the intersection is t
 | 1 | 0 V | 1 mA | 0.71564 V |
 | 2 | 0.71564 V | 284.36 µA | 0.68307 V |
 | 3 | 0.68307 V | 316.93 µA | 0.68588 V |
-| Converged | Approximately 0.68567 V | Approximately 314.33 µA | Approximately 0.68567 V |
+| Converged | About 0.68567 V | About 314.33 µA | About 0.68567 V |
 
 The converged values satisfy the resistor and diode equations together. Extra decimal places describe the assumed model, not guaranteed device accuracy.
 
-This fixed-point iteration does not converge for every circuit. Bracketing methods provide a more reliable alternative when the residual is continuous and changes sign.
+Repeatedly substituting one estimate into the other equation does not work for every circuit. A bracketing method is more reliable when you can find two values with opposite signs of a continuous equation error, then narrow the interval containing the solution.
 
 Temperature, series resistance, and the chosen diode parameters can change the result. Compare the final model with the device data before using it for a design.
 
@@ -296,7 +296,7 @@ The approximate ripple relation becomes:
 
 **Ripple voltage = load current / (2 × source frequency × capacitance).**
 
-At 47 microfarads, this example gives approximately 1.51 V peak-to-peak ripple. The half-wave example gives approximately 3.31 V with the same capacitor.
+At 47 microfarads, this example gives about 1.51 V peak-to-peak ripple. The half-wave example gives about 3.31 V with the same capacitor.
 
 The output averages differ because diode drops, load current, and charging intervals also differ. The bridge does not simply double the output voltage.
 

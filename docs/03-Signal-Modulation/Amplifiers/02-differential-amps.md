@@ -8,8 +8,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Differential Amplifiers
 
-A **differential amplifier** responds to the voltage difference between two inputs.
-It rejects voltage that is common to both inputs.
+A **differential amplifier** amplifies the difference between two input voltages while rejecting voltage that appears equally on both.
 
 This function lets a circuit measure voltage between two points.
 The measurement does not need either point to be at ground.
@@ -54,7 +53,7 @@ You can reconstruct the two input voltages from these quantities:
 
 ### Real-Amplifier Output
 
-A real amplifier has **differential gain**, <i>A<sub>d</sub></i>, and a small **common-mode gain**, <i>A<sub>cm</sub></i>.
+A real amplifier has **differential gain**, <i>A<sub>d</sub></i>, for the wanted difference, and a small **common-mode gain**, <i>A<sub>cm</sub></i>, for the voltage shared by both inputs.
 
 > **V<sub>out</sub> = A<sub>d</sub>V<sub>d</sub> + A<sub>cm</sub>V<sub>cm</sub>**
 
@@ -83,7 +82,7 @@ Assume that equal 60 Hz interference appears on both signal wires.
 The interference can come from nearby power wiring.
 
 * The wanted sensor signal is different at the two inputs.
-* The 60 Hz interference is approximately equal at both inputs.
+* The 60 Hz interference is about equal at both inputs.
 * The differential amplifier amplifies the wanted difference.
 * A high CMRR decreases the common 60 Hz signal at the output.
 
@@ -98,17 +97,17 @@ Assume that a circuit must amplify a millivolt signal on a 2.5 V common-mode vol
 * **Common-mode voltage:** 2500 mV.
 * **Maximum common-mode error:** &plusmn;0.01 mV.
 * **Required rejection ratio:** 2500 mV / 0.01 mV = 250,000:1.
-* **Required CMRR:** Approximately **108 dB**.
+* **Required CMRR:** About **108 dB**.
 
 This example uses an error limit equal to 0.1% of a 10 mV full-scale input.
 
 ### CMRR Changes with Frequency
 
-CMRR usually decreases as frequency increases.
+CMRR usually falls as frequency rises.
 A datasheet can show an excellent DC value and a lower value at 60 Hz or 1 kHz.
 
 Check CMRR at the interference frequency.
-For an ECG, also check it at respiration, pacing, or other applicable signal frequencies.
+For an ECG, also check it at respiration, pacing, or other relevant signal frequencies.
 
 ---
 
@@ -163,26 +162,23 @@ This function is useful when:
 * The output must be centered on mid-supply.
 * A later stage needs a specified common-mode level.
 
-Drive the reference node from a sufficiently low impedance.
-Reference impedance can change the resistor ratio and decrease CMRR.
+Drive the reference node from a low-impedance source. Extra resistance there changes the effective resistor ratio, so common-mode voltage no longer cancels as well and CMRR falls.
 
 ### Gain and Input Impedance
 
-The four-resistor topology frequently uses a low but accurate gain.
+The four-resistor topology often uses a low but accurate gain.
 Other stages can supply more gain.
 
-Its input impedance is set mainly by its input resistors.
-The two source impedances can also become part of the resistor network.
+The input resistors determine most of this circuit's input impedance. Resistance in the signal sources also becomes part of the network and can change its ratios.
 
 Drive this topology from low-impedance sources when possible.
 Use an [instrumentation amplifier](<./03-instrumentation-amps.md#2-classic-three-op-amp-architecture>) when the source cannot supply this current.
 
 ### Inputs Beyond the Supply Rails
 
-The external input voltages can sometimes extend beyond the op-amp supply rails.
-The resistor network attenuates these voltages before they reach the input pins.
+The resistor network can reduce the external input voltages before they reach the op-amp pins. In some designs, that lets the external signals extend beyond the supply rails while the actual input pins stay within their limits.
 
-This operation is permitted only when:
+This operation is allowed only when:
 
 * Both op-amp pins stay inside the [common-mode input range](<./01-op-amps.md#common-mode-input-range>).
 * Input current stays inside its limit.
@@ -228,8 +224,7 @@ If one ratio is different:
 * Include input-protection resistance in the ratio calculation.
 * Keep PCB leakage and contamination small for high-value resistors.
 
-Four separate 1% resistors do not make a precision difference amplifier.
-A monolithic network can keep the ratios much closer over temperature.
+Four individual 1% resistors do not give accurately matched ratios. A monolithic resistor network can match the ratios much more closely and keep them matched as temperature changes.
 
 ---
 
@@ -242,7 +237,7 @@ Two matched transistors share a fixed tail current.
 
 Assume that a tail current source sets the total emitter or source current.
 
-1. Equal input voltages make the two devices share current approximately equally.
+1. Equal input voltages make the two devices share current about equally.
 2. If input 1 increases, transistor 1 conducts more current.
 3. The fixed tail current does not increase by the same amount.
 4. Transistor 2 must conduct less current.
@@ -250,8 +245,7 @@ Assume that a tail current source sets the total emitter or source current.
 6. The other collector or drain voltage moves up.
 7. The circuit produces a differential output from the input difference.
 
-A common increase at both inputs ideally does not change the current split.
-This is the physical basis of common-mode rejection.
+Ideally, raising both inputs together leaves the current split unchanged. The pair responds to the difference, which is how it rejects common-mode voltage.
 
 ### BJT Pair
 
@@ -332,13 +326,11 @@ They are useful when source current must be very small.
 
 ### Circuit B: Active Load
 
-The second circuit replaces drain resistors with BJT [current mirror](<../../01-Discrete-Components/03-Semicondctors/02-BJTs.md#6-current-sources-and-mirrors>) Q3 and Q4.
-The mirror operates as a high-resistance active load.
+In the second circuit, BJT [current mirror](<../../01-Discrete-Components/03-Semicondctors/02-BJTs.md#6-current-sources-and-mirrors>) Q3 and Q4 replace the drain resistors. As an active load, the mirror changes its current very little with voltage, giving a high effective load resistance.
 
 > **A<sub>v</sub> &asymp; g<sub>m</sub>R<sub>load</sub>**
 
-A larger load resistance gives more voltage gain.
-The current mirror also converts the differential current to a single-ended output.
+That high effective resistance increases voltage gain. The current mirror also combines the two branch-current changes into one output, converting the differential signal to a single-ended signal.
 
 ### JFET Pair with Feedback
 
@@ -355,7 +347,7 @@ The current mirror also converts the differential current to a single-ended outp
 </figure>
 
 1. A 10 mA current sink sets the total pair current.
-2. At <i>V<sub>in</sub> = 0 V</i>, Q1 and Q2 each conduct approximately 5 mA.
+2. At <i>V<sub>in</sub> = 0 V</i>, Q1 and Q2 each conduct about 5 mA.
 3. The initial differential output is 0 V.
 4. An increase at the Q1 input makes Q1 conduct more current.
 5. Q2 then conducts less current.
@@ -387,8 +379,7 @@ Use an instrumentation amplifier when a four-resistor difference amplifier has i
 A **differential-output amplifier** accepts a single-ended or differential input.
 It gives two output signals with opposite polarity.
 
-This topology frequently drives a differential ADC.
-The ADC then receives the wanted differential signal and a controlled output common-mode voltage.
+This arrangement often drives a differential ADC. It gives both the wanted difference between the inputs and a controlled average voltage, called output common-mode voltage.
 
 ---
 
@@ -396,11 +387,9 @@ The ADC then receives the wanted differential signal and a controlled output com
 
 ### Input Common-Mode Range
 
-The average input voltage must stay inside the amplifier common-mode input range.
-A valid differential voltage does not make an invalid common-mode voltage safe.
+The average input voltage must stay inside the amplifier's common-mode input range. Two inputs can have a perfectly acceptable difference and still be outside that range together.
 
-Some rail-to-rail amplifiers change internal input stages near a supply rail.
-Offset, noise, distortion, and CMRR can change during this transition.
+Some rail-to-rail amplifiers hand over between internal input stages near a supply rail. During that handover, offset, noise, distortion, and CMRR can change.
 
 ### Differential Input Range
 
@@ -422,8 +411,7 @@ Include:
 
 ### Input Bias Current
 
-Bias currents flow through [source resistance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>).
-Unequal voltage drops then make a differential error.
+Bias current flowing through each [source resistance](<../../00-Foundations/00-Foundations.md#the-ideal-source-and-the-real-source>) produces a voltage drop. If the drops differ, they look like an extra differential input signal.
 
 Match the resistance seen by both inputs when this method decreases error.
 Use a FET-input or CMOS-input amplifier for very high source impedance.
@@ -476,7 +464,7 @@ For a transistor pair, find <i>g<sub>m</sub></i> and the effective load resistan
 
 ### Step 4: Check Common-Mode Rejection
 
-Use the minimum CMRR at the applicable frequency.
+Use the minimum CMRR at the relevant frequency.
 Convert it to a common-mode gain when you need an output-error value.
 
 > **A<sub>cm</sub> = A<sub>d</sub> / 10<sup>(CMRR<sub>dB</sub>/20)</sup>**
@@ -531,7 +519,7 @@ A positive differential input increases one collector current and reduces the ot
 
 The common emitter resistor also responds to common-mode voltage. Its current is not an ideal constant.
 
-Near zero differential input, the response is approximately linear. A larger input steers most of the current to one side.
+Near zero differential input, the response is about linear. A larger input steers most of the current to one side.
 
 [Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-pair>).
 
@@ -543,7 +531,7 @@ The differential input changes the division of current between the two transisto
 
 At zero differential input, matched devices carry nearly equal currents. At large differential input, one transistor carries almost all the tail current.
 
-A practical tail source has finite output resistance and requires voltage headroom. The ideal source here isolates the current-steering relation.
+A real tail-current source needs voltage headroom and does not have infinite output resistance. This example uses an ideal source so you can focus on how the pair divides a fixed current.
 
 [Open this circuit beside its topic](</docs/Signal-Modulation/Amplifiers/differential-amps#circuit-differential-pair-current-tail>).
 

@@ -10,7 +10,7 @@ import ConvolutionExplorer from '@site/src/components/learning/ConvolutionExplor
 
 ## 1. Purpose and system properties
 
-A **signal** represents a quantity that changes with an independent variable. A continuous-time signal has a value at each time in its domain.
+A **signal** describes how a quantity changes with a variable such as time. A continuous-time signal has a value at every instant in the time range being considered.
 
 A **system** maps an input signal to an output signal. A circuit can also store energy that affects its output.
 
@@ -24,9 +24,9 @@ Use separate tests for each system property.
 | Memoryless | The present input alone determines the present output. | An ideal resistor has no stored state. |
 | Stable | Every bounded input produces a bounded output. | A resistor-capacitor low-pass network with positive resistance and capacitance meets this condition. |
 
-The linearity test uses zero initial conditions. A fixed nonzero initial condition can add an output that does not scale with the input.
+Test linearity with the initial stored state set to zero. Otherwise, something such as an already charged capacitor can add its own output, which does not scale when you scale the input.
 
-An integrator is linear and causal. It has memory. A constant nonzero input produces an unbounded ramp, so the ideal integrator fails the bounded-output test.
+An ideal integrator is linear, depends only on present and past inputs (causal), and remembers its input history. A constant nonzero input makes its output ramp without limit, so it fails the bounded-output stability test.
 
 ## 2. Impulse response and convolution
 
@@ -34,11 +34,11 @@ A **unit impulse** has unit area and zero duration in the ideal mathematical mod
 
 The **impulse response**, h(t), is the output of a system at initial rest when its input is a unit impulse.
 
-For a **linear time-invariant (LTI)** system, scaled and shifted impulses form the input. Their scaled and shifted responses form the output.
+For a **linear time-invariant (LTI)** system, you can think of the input as many impulses, each scaled and placed at a different time. Add the correspondingly scaled and shifted impulse responses to get the output.
 
 <LearningEquation tex={String.raw`y_{zs}(t)=\int_{-\infty}^{\infty}x(\lambda)h(t-\lambda)\,d\lambda`} />
 
-This integral is **convolution**. The subscript zs identifies the zero-state response. The variable lambda is an integration variable, not the output time.
+This integral is **convolution**. The subscript zs means zero-state: there is no stored energy at the start. Lambda is the variable used while adding up contributions inside the integral; t is the time at which you want the output.
 
 For a causal system and an input that starts at zero, the limits reduce to zero and t.
 
@@ -50,7 +50,7 @@ For a causal system and an input that starts at zero, the limits reduce to zero 
 4. Integrate the product over their overlap.
 5. Repeat for other values of t.
 
-The integration gives one output value for each shift. It does not multiply two signals at the same time coordinate without reversal.
+Each shift gives one output value after integration. Convolution is not simply multiplying the original signals at matching times: one response is reversed and shifted before the multiplication and integration.
 
 ### Worked example: two rectangular pulses
 
@@ -90,9 +90,9 @@ The time constant is RC = 1 millisecond. For t greater than or equal to zero:
 
 <LearningEquation tex={String.raw`v_C(t)=\underbrace{V_0e^{-t/(RC)}}_{\text{zero input}}+\underbrace{V(1-e^{-t/(RC)})}_{\text{zero state}}`} />
 
-At one time constant, the zero-input part is approximately 0.368 volts. The zero-state part is approximately 1.896 volts.
+At one time constant, the zero-input part is about 0.368 volts. The zero-state part is about 1.896 volts.
 
-The total is approximately 2.264 volts. At t = 0, the equation gives 1 volt. At long times, it approaches 3 volts.
+The total is about 2.264 volts. At t = 0, the equation gives 1 volt. At long times, it approaches 3 volts.
 
 These endpoint checks detect an incorrect sign or an omitted initial condition.
 
@@ -100,7 +100,7 @@ These endpoint checks detect an incorrect sign or an omitted initial condition.
 
 A linear circuit with constant component values often gives a differential equation with constant coefficients.
 
-Set the input to zero to obtain the **homogeneous equation**. Its characteristic roots determine the natural response forms.
+Setting the input to zero gives the **homogeneous equation**. Its characteristic roots tell you the forms the circuit's own response can take, such as decaying exponentials or oscillations.
 
 | Characteristic root | Response form |
 | --- | --- |
@@ -126,11 +126,11 @@ These equations give C1 = -5 and C2 = 5. Substitution verifies both initial cond
 
 The **Laplace transform** replaces time derivatives with algebraic expressions. The complex variable s has real and imaginary parts.
 
-Use the unilateral transform for initial-value problems. The convention here includes behavior at the start time from 0 minus.
+For a problem with known starting conditions, use the unilateral Laplace transform. The convention here starts at 0 minus, just before t = 0, so it includes what happens at the starting instant.
 
 <LearningEquation tex={String.raw`\mathcal{L}\{y'(t)\}=sY(s)-y(0^-),\qquad \mathcal{L}\{y''(t)\}=s^2Y(s)-sy(0^-)-y'(0^-)`} />
 
-The initial-condition terms matter. Replacing each derivative with s alone silently assumes initial rest.
+Keep the terms that describe the initial conditions. Replacing a derivative with just multiplication by s drops those terms and assumes the system started with no stored state.
 
 ### Transfer function
 
@@ -154,11 +154,11 @@ Factor the denominator before inversion. For example:
 
 For a causal response, the inverse is exp(-t) minus exp(-2t), for t greater than or equal to zero.
 
-Repeated poles require additional terms with higher denominator powers. A pole of order two produces a time factor in the inverse.
+A repeated pole needs more terms in the partial-fraction expansion, with higher powers in the denominator. For a pole of order two, the inverse transform includes a factor of time multiplying the exponential.
 
 ## 6. Convergence, causality, and stability
 
-The **region of convergence (ROC)** specifies which values of s make the bilateral transform integral converge.
+The **region of convergence (ROC)** is the set of s values for which the bilateral Laplace-transform integral approaches a finite result.
 
 An algebraic transform without its ROC can represent different signals. For example, 1/(s + a) represents a right-sided or a left-sided exponential.
 
@@ -166,11 +166,11 @@ For a positive real a, exp(-at) times the unit step has ROC Re(s) greater than -
 
 The left-sided signal -exp(-at) for negative t has the same algebraic transform. Its ROC is Re(s) less than -a.
 
-A causal rational system has its ROC to the right of its rightmost pole. A stable impulse response must have a convergent Fourier transform.
+For a causal system with a rational transform, the ROC lies to the right of the rightmost pole. A stable impulse response must also have a Fourier transform that converges.
 
-For a causal proper rational transfer function, bounded-input bounded-output stability requires all transfer-function poles in the open left half-plane.
+For a causal system with a proper rational transfer function, a bounded input produces a bounded output only when all transfer-function poles have negative real parts. On the s-plane, that means they are strictly in the left half-plane.
 
-An exact pole-zero cancellation can hide an internal mode. Input-output stability alone does not prove that every internal state is stable.
+A pole and zero that cancel exactly can hide a pattern of internal behavior, called a mode. A stable measured output does not necessarily mean every internal state is stable.
 
 ### Final-value check
 
@@ -182,7 +182,7 @@ For the stable capacitor step response, the limit gives V. A numerical limit wit
 
 ## 7. Fourier analysis and transforms
 
-A Fourier series represents a periodic signal with harmonics of its fundamental frequency. A Fourier transform also represents many nonperiodic signals.
+A Fourier series builds a repeating signal from sinusoids at multiples of its fundamental frequency. These multiples are its harmonics. A Fourier transform also describes many signals that do not repeat.
 
 Use one frequency convention consistently. Angular frequency omega has units of radians per second. Frequency f has units of hertz, with omega = 2 pi f.
 
@@ -190,9 +190,9 @@ For the angular-frequency convention:
 
 <LearningEquation tex={String.raw`X(j\omega)=\int_{-\infty}^{\infty}x(t)e^{-j\omega t}\,dt,\qquad x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(j\omega)e^{j\omega t}\,d\omega`} />
 
-Time convolution becomes frequency multiplication. A time delay changes spectral phase and preserves spectral magnitude.
+Convolution in time becomes multiplication in frequency. Delaying a signal changes the phase of its frequency components, but not their magnitudes.
 
-For a real signal, positive and negative frequency components have conjugate symmetry. An ideal impulse has a constant Fourier transform.
+For a real signal, positive and negative frequency components are complex conjugates: they have equal magnitudes and opposite phases. An ideal impulse has the same Fourier-transform value at every frequency.
 
 Use the existing [digital frequency](<./Filters/Digital-filters.md#2-digital-frequency>) explanation when a sample rate converts physical frequency to radians per sample.
 
@@ -208,7 +208,7 @@ An even real signal has cosine terms. An odd real signal has sine terms. A signa
 
 <LearningEquation tex={String.raw`x_e(t)=\frac{x(t)+x(-t)}{2},\qquad x_o(t)=\frac{x(t)-x(-t)}{2}`} />
 
-At a jump, a convergent Fourier series takes the midpoint of the two one-sided limits under the usual piecewise-smooth conditions.
+At a sudden jump, the Fourier series approaches the midpoint between the values on either side, provided the signal meets the usual piecewise-smooth conditions. Adding more terms does not make the series choose one side of the jump.
 
 ### Signal energy and average power
 
@@ -218,7 +218,7 @@ Signal energy integrates squared magnitude over all time. Average power divides 
 
 A nonzero finite-energy signal has zero average power under this definition. A nonzero periodic signal with finite average power has infinite total energy.
 
-Some signals have neither finite energy nor finite average power. Signal energy also needs impedance information before it represents electrical energy in joules.
+Some mathematical signals have neither finite total energy nor finite average power. Also, the signal-energy calculation is not automatically an electrical energy in joules: you need the circuit impedance to make that conversion.
 
 For a finite-energy signal, Parseval's relation gives the same energy in either domain.
 
@@ -244,5 +244,5 @@ For a voltage across a resistor R, the average electrical power is 2/R watts in 
 
 The junior notes supply the lesson topics and the two-mode initial-condition example. The other numerical examples are original examples.
 
-* [MIT OpenCourseWare: continuous signals and systems](https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/pages/signals-systems/) provides lectures on convolution, transforms, initial conditions, and convergence.
+* [MIT OpenCourseWare: continuous signals and systems](https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/pages/signals-systems/) gives lectures on convolution, transforms, initial conditions, and convergence.
 * [MIT OpenCourseWare: Fourier transform properties](https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-9-fourier-transform-properties/) covers symmetry and Parseval's relation.

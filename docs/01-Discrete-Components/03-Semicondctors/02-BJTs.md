@@ -39,7 +39,7 @@ Use the general rule for most simple analyses.
 
 * <i>V<sub>B</sub> &asymp; V<sub>E</sub> + 0.7 V</i>
 
-  This relationship applies approximately when the transistor conducts. It applies in active mode and saturation. Otherwise, the transistor is in cutoff.
+  This relationship applies about when the transistor conducts. It applies in active mode and saturation. Otherwise, the transistor is in cutoff.
 
 * More base current causes more collector current. Sufficient base drive makes the collector-emitter path operate like a short circuit. This condition is saturation.
 * With no base current, the collector-emitter path operates like an open circuit. This condition is cutoff.
@@ -52,18 +52,18 @@ Use the general rule for most simple analyses.
 
 **Active Mode**
 
-Active mode occurs when:
+Active mode happens when:
 
-* <i>V<sub>B</sub></i> is approximately 0.7 V higher than <i>V<sub>E</sub></i>.
+* <i>V<sub>B</sub></i> is about 0.7 V higher than <i>V<sub>E</sub></i>.
 * <i>V<sub>C</sub> &gt; V<sub>B</sub></i>.
 
-You can bias the transistor at a selected operating point. This point is the **quiescent point (Q-point)**.
+Biasing sets the transistor's current and voltage before a signal is applied. This resting condition is its **quiescent point (Q-point)**.
 
 The circuit operates around the Q-point.
 
 **Saturation**
 
-Saturation occurs when the base drive requests more collector current than the circuit can supply:
+Saturation happens when the base drive requests more collector current than the circuit can supply:
 
 <i>I<sub>B</sub> &times; &beta; &gt; I<sub>C(maximum allowed by the circuit)</sub></i>
 
@@ -89,7 +89,7 @@ The base-collector junction becomes forward biased. The base-collector diode the
 
 **Cutoff**
 
-Cutoff occurs when <i>V<sub>BE</sub></i> is not forward biased or <i>I<sub>B</sub> &asymp; 0</i>.
+Cutoff happens when <i>V<sub>BE</sub></i> is not forward biased or <i>I<sub>B</sub> &asymp; 0</i>.
 
 For an NPN transistor, ground the base or make <i>V<sub>E</sub> &gt; V<sub>B</sub></i> to get cutoff.
 
@@ -123,9 +123,9 @@ For an NPN transistor, ground the base or make <i>V<sub>E</sub> &gt; V<sub>B</su
   In this formula:
 
   * <i>I<sub>S</sub></i> is the saturation current. It is very temperature dependent.
-  * <i>V<sub>T</sub> = kT/q</i> is the thermal voltage. It is approximately 25 mV at room temperature.
+  * <i>V<sub>T</sub> = kT/q</i> is the thermal voltage. It is about 25 mV at room temperature.
 
-This formula shows that **V<sub>BE</sub> fundamentally sets I<sub>C</sub>**. Base current does not fundamentally set it.
+This formula shows the exponential relationship between **V<sub>BE</sub> and I<sub>C</sub>**. The familiar current-gain model is useful, but the device does not fundamentally set collector current by multiplying an independently fixed base current.
 
 The relationship <i>I<sub>C</sub> = &beta; &times; I<sub>B</sub></i> is a result of this exponential behavior.
 
@@ -226,19 +226,19 @@ This is another bias method:
 
 * The current from the collector node, <i>V<sub>C</sub></i>, sets <i>V<sub>BE</sub></i>.
 * A resistor connects the collector to the base and supplies **DC feedback**. An example resistor value is 10 k&Omega;.
-* You can calculate the circuit so that the base settles approximately 0.7 V above the emitter. This action keeps <i>I<sub>C</sub></i> approximately constant.
+* You can calculate the circuit so that the base settles about 0.7 V above the emitter. This action keeps <i>I<sub>C</sub></i> about constant.
 * Select the 10 k&Omega; resistor so that its current supplies the necessary base current for Q1.
 * Matched transistors with the same <i>V<sub>BE</sub></i> operate similarly at the same bias.
 
 For example, a collector voltage can put 0.8 V across a 10 k&Omega; resistor. This voltage sets base current.
 
-The base current sets <i>I<sub>C</sub></i>. The collector current then sets <i>V<sub>C</sub></i> and closes the feedback loop.
+In the current-gain model, this base current sets <i>I<sub>C</sub></i>. That collector current changes <i>V<sub>C</sub></i>, which changes the base drive again and closes the feedback loop.
 
 </div>
 
 **[KVL](<../../00-Foundations/00-Foundations.md#circuit-theorems-analysis-tools>) with BJTs**
 
-When you calculate voltages and currents, include the approximate 0.7 V connection between base and emitter.
+Include the base-emitter voltage when calculating the bias. About 0.7 V is a useful first estimate.
 
 * **NPN:** <i>V<sub>B</sub> &asymp; V<sub>E</sub> + 0.7 V</i>.
 * **PNP:** <i>V<sub>E</sub> &asymp; V<sub>B</sub> + 0.7 V</i>.
@@ -277,7 +277,7 @@ Basic DC and AC analysis shows the cause:
 
 The emitter follower has **high input impedance** and **low output impedance**.
 
-As a result, it can drive a relatively low-impedance load from a high-impedance source. It does not load the source excessively.
+This lets a source that cannot supply much current drive a load that needs more current, without the load pulling the source voltage down as much.
 
 **Key Relationships:**
 
@@ -301,7 +301,7 @@ As a result, it can drive a relatively low-impedance load from a high-impedance 
 * When a divider biases an emitter follower, do not use an extremely high divider impedance.
 * If divider impedance is too high relative to base input impedance, the bias becomes unstable.
 * **Bootstrapping** feeds part of the output back to the bias network. It can greatly increase **AC input impedance** without loading the signal.
-* The AC voltage at one resistor terminal moves with the output. Very little AC voltage then occurs across the resistor.
+* The AC voltage at one resistor terminal moves with the output. Very little AC voltage then happens across the resistor.
 * As a result, the effective AC resistance becomes very large.
 
 <div data-ltspice-placement="emitter-follower">
@@ -345,7 +345,7 @@ As a result, it can drive a relatively low-impedance load from a high-impedance 
 * **Transconductance** is the output-current change for an input-voltage change.
 * <i>g<sub>m</sub> = &Delta;I / &Delta;V</i>
 
-To describe circuit transconductance, ask: "How does the current change with respect to the input voltage?"
+Circuit transconductance answers a practical question: how much does the output current change when the input voltage changes?
 
 For a BJT in the active region:
 
@@ -379,7 +379,7 @@ Add a collector load and an emitter resistor to make a transistor current source
 * For large <i>&beta;</i>, <i>I<sub>E</sub> &asymp; I<sub>C</sub></i>.
 * As a result, <i>I<sub>C</sub> &asymp; (V<sub>B</sub> - 0.7 V) / R<sub>E</sub></i>.
 
-The current remains relatively constant while the transistor stays in active mode. This statement applies within the load limits.
+The current stays fairly constant as the load changes, provided the transistor still has enough voltage across it to stay in active mode.
 
 You can supply <i>V<sub>B</sub></i> with a voltage divider. Make the divider impedance much less than <i>&beta; &times; R<sub>E</sub></i>.
 
@@ -399,10 +399,10 @@ Changing <i>V<sub>B</sub></i> produces a **voltage-controlled current source**.
 
 **Basic BJT Current-Mirror Example:**
 
-* Q1 has its emitter at <i>+15 V</i>. Its base is approximately 14.4 V, depending on the circuit.
+* Q1 has its emitter at <i>+15 V</i>. Its base is about 14.4 V, depending on the circuit.
 * Adjust the collector of Q1 to make its collector current the reference current. An example reference current is 1 mA.
 * Connect the bases and emitters of Q1 and Q2 together. The transistors then have the same <i>V<sub>BE</sub></i>.
-* If Q1 and Q2 are matched, Q2 conducts approximately the same collector current. It supplies approximately 1 mA to its load.
+* If Q1 and Q2 are matched, Q2 conducts about the same collector current. It supplies about 1 mA to its load.
 
 **Real Behavior:**
 
@@ -494,7 +494,7 @@ The current can also change if the load tries to draw too much current.
 
 * Two cascaded transistors operate like one transistor with **very high beta**.
 * <i>&beta;<sub>total</sub> &asymp; &beta;<sub>1</sub> &times; &beta;<sub>2</sub></i>
-* The base-emitter voltage is approximately twice the normal value. It is approximately 1.2 V to 1.4 V.
+* The base-emitter voltage is about twice the normal value. It is about 1.2 V to 1.4 V.
 * **Disadvantage:** The configuration operates **slowly**. Q1 must turn off Q2, and stored charge can be large.
 * A resistor from the base of Q2 to its emitter can increase turn-off speed.
 
@@ -505,7 +505,7 @@ The current can also change if the load tries to draw too much current.
 This stage gives an output swing near the full positive-to-negative supply range.
 
 * **Positive half-cycle:** The NPN transistor, Q1, turns on. It supplies current to the load, such as a speaker.
-* **Negative half-cycle:** The PNP transistor, Q2, turns on. Its base is approximately 0.7 V below its emitter.
+* **Negative half-cycle:** The PNP transistor, Q2, turns on. Its base is about 0.7 V below its emitter.
 * The PNP transistor lets current flow through the load in the opposite direction.
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
@@ -522,13 +522,13 @@ This stage gives an output swing near the full positive-to-negative supply range
 
 **Crossover Distortion:**
 
-* Near 0 V, **both transistors are off**. Each transistor needs approximately 0.7 V of <i>V<sub>BE</sub></i> to turn on.
+* Near 0 V, **both transistors are off**. Each transistor needs about 0.7 V of <i>V<sub>BE</sub></i> to turn on.
 * This dead zone causes crossover distortion in the output waveform.
 
 **Correction for Crossover Distortion (Class AB):**
 
 * Add diodes D1 and D2 between the bases. Keep the diodes forward biased.
-* Each diode supplies approximately 0.6 V to 0.7 V.
+* Each diode supplies about 0.6 V to 0.7 V.
 * This voltage pre-biases the transistors. At least one transistor is always slightly on.
 * This is a **Class AB amplifier** because both transistors conduct during a significant part of the cycle.
 * **Trade-off:** The transistors dissipate more power at idle because they are always partially on.
@@ -549,7 +549,7 @@ This stage gives an output swing near the full positive-to-negative supply range
 
 * These **switching amplifiers** drive the output with high-frequency pulses.
 * Efficiency is very high because the transistors are usually fully on or fully off.
-* High-frequency switching causes more electromagnetic-interference (**[EMI](<../../05-PCB-Layout/High-Speed.md#eye-diagrams-and-interference>)**) emissions and requires filtering.
+* High-frequency switching causes more electromagnetic-interference (**[EMI](<../../05-PCB-Layout/High-Speed.md#eye-diagrams-and-interference>)**) emissions and needs filtering.
 
 </div>
 
@@ -609,8 +609,8 @@ Stable resistors produce more stable gain than temperature-sensitive transistors
 
 * Subtract part of the **output voltage** from the input.
 * This action makes the voltage across the actual amplifier input very small.
-* The small input voltage requires very little current. As a result, **input impedance increases**.
-* The increase is often approximately the product of gain and feedback.
+* The small input voltage needs very little current. As a result, **input impedance increases**.
+* The increase is often about the product of gain and feedback.
 
 **Current Feedback:**
 
@@ -673,19 +673,19 @@ The transconductance is gm = Ic / Vt = 38.6 mS. The base-emitter resistance is r
 
 Assume a 2 kΩ collector resistor and a 2 kΩ load. Their parallel resistance is 1 kΩ.
 
-With the emitter at signal ground, the gain from base voltage to collector voltage is approximately −gm × 1 kΩ = −38.6.
+With the emitter at signal ground, the gain from base voltage to collector voltage is about −gm × 1 kΩ = −38.6.
 
 A source resistance changes the voltage that reaches the base. Assume 1 kΩ source resistance and a bias network with negligible additional loading.
 
-The input divider gives 2.59 / (1 + 2.59) = 0.721. The gain from source voltage to output is approximately −27.9.
+The input divider gives 2.59 / (1 + 2.59) = 0.721. The gain from source voltage to output is about −27.9.
 
 ### Add emitter degeneration
 
 Now assume a 100 Ω emitter resistor remains unbypassed at the signal frequency. Keep the same collector current for comparison by adjusting the bias network.
 
-The resistance seen at the base becomes approximately rπ + (beta + 1) × Re = 12.69 kΩ. The collector load remains 1 kΩ.
+The resistance seen at the base becomes about rπ + (beta + 1) × Re = 12.69 kΩ. The collector load remains 1 kΩ.
 
-The base-to-output gain becomes approximately −beta × 1 kΩ / 12.69 kΩ = −7.88. Including the source resistance gives approximately −7.30.
+The base-to-output gain becomes about −beta × 1 kΩ / 12.69 kΩ = −7.88. Including the source resistance gives about −7.30.
 
 Degeneration reduces gain and increases input resistance. It also reduces sensitivity to transistor parameters within the model's valid range.
 
@@ -710,7 +710,7 @@ The reference resistor feeds Q1's joined collector and base. Q2 shares the base 
 
 The reference current supplies Q1's collector current and both base currents. Q2 therefore does not copy the complete reference current exactly.
 
-With a 4.3 kΩ reference resistor, the simulated output current is approximately 0.9941 mA at 1 V. It rises to 1.0337 mA at 5 V.
+With a 4.3 kΩ reference resistor, the simulated output current is about 0.9941 mA at 1 V. It rises to 1.0337 mA at 5 V.
 
 This rise illustrates the **Early effect**. The transistor's collector current depends on collector voltage as well as base-emitter voltage.
 
@@ -747,9 +747,9 @@ The emitter has a 100-ohm resistor in series with a 900-ohm resistor. Both resis
 
 The bypass capacitor connects across only the 900-ohm resistor. It changes the alternating-current path while the total DC emitter resistance stays at 1 kilohm.
 
-With a 1 pF bypass, the capacitor has negligible effect at 1 kHz. The gain magnitude is approximately 3.00 V/V.
+With a 1 pF bypass, the capacitor has negligible effect at 1 kHz. The gain magnitude is about 3.00 V/V.
 
-With a 100-microfarad bypass, the capacitor bypasses most of the 900-ohm resistance at 1 kHz. The gain magnitude increases to approximately 25.53 V/V.
+With a 100-microfarad bypass, the capacitor bypasses most of the 900-ohm resistance at 1 kHz. The gain magnitude increases to about 25.53 V/V.
 
 The 100-ohm resistor remains in the signal path. This remaining [emitter degeneration](#add-emitter-degeneration) limits gain and reduces sensitivity to transistor parameters.
 
@@ -757,13 +757,13 @@ The 100-ohm resistor remains in the signal path. This remaining [emitter degener
 
 The 1-microfarad capacitor does not provide a complete bypass at 1 kHz. Its impedance changes both gain and phase.
 
-The simulated gain magnitude is approximately 14.35 V/V. The output phase is approximately −133.56 degrees relative to the input.
+The simulated gain magnitude is about 14.35 V/V. The output phase is about −133.56 degrees relative to the input.
 
-For the large capacitor, output phase is approximately −179.12 degrees. The result is close to the familiar inverted output of a common-emitter stage.
+For the large capacitor, output phase is about −179.12 degrees. The result is close to the familiar inverted output of a common-emitter stage.
 
 ### Check the operating point
 
-The mean collector voltage remains approximately 7.57 V for all three capacitor values. The transistor remains in its forward-active region throughout these runs.
+The mean collector voltage remains about 7.57 V for all three capacitor values. The transistor remains in its forward-active region throughout these runs.
 
 A larger input can cause clipping, but these runs use a small signal. They isolate the effect of emitter bypass on gain and phase.
 
@@ -798,7 +798,7 @@ The emitter follows the base voltage with a base to emitter voltage difference.
 
 The collector connects to the supply. The emitter supplies current to the load.
 
-The voltage gain is slightly below one. The transistor provides current gain, which reduces loading at the input.
+The voltage gain is slightly below one. The transistor gives current gain, which reduces loading at the input.
 
 The base to emitter voltage changes with current. It is not a fixed voltage drop for every load.
 
@@ -824,7 +824,7 @@ Both paths use the same DC emitter resistance and bias network. The partially by
 
 The stepped forward current gain changes the transistor parameters in both paths.
 
-Emitter degeneration reduces signal gain. It also reduces dependence on the transistor and the bias network.
+Emitter degeneration trades some signal gain for more predictable behavior. The emitter resistor gives feedback, making the gain and bias less sensitive to the transistor and bias network.
 
 [Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-emitter-degeneration>).
 
@@ -860,7 +860,7 @@ The reference current enters the collector of Q2 and the base of Q3. Q3 supplies
 
 This feedback reduces base-current error and increases output resistance.
 
-The additional transistor requires more output voltage than a basic two-transistor mirror. Examine the low-voltage portion of the sweep.
+The additional transistor needs more output voltage than a basic two-transistor mirror. Examine the low-voltage portion of the sweep.
 
 [Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-wilson-current-mirror>).
 
@@ -870,7 +870,7 @@ A second transistor above each mirror branch holds the lower collector voltage n
 
 The reference branch establishes two base voltage levels. The upper output transistor uses the higher level.
 
-Changes at the output then have less effect on the lower transistor collector voltage. This reduces the Early-effect current change.
+Changes in output voltage then cause less change at the lower transistor's collector. This reduces the current variation caused by the Early effect.
 
 The stacked transistors need additional voltage headroom. High output resistance does not remove this requirement.
 
@@ -882,7 +882,7 @@ A common-base transistor sits above a common-emitter transistor.
 
 The upper base stays at 3 V. Its emitter holds the lower collector near a fixed voltage.
 
-This reduces the voltage swing across the lower transistor collector junction and limits Miller feedback.
+Keeping this collector voltage nearly fixed reduces the signal fed back through the lower transistor's collector junction capacitance. That limits the Miller effect.
 
 The collector resistor converts current to output voltage. Both transistors still require suitable DC voltage headroom.
 
@@ -948,10 +948,10 @@ A differential pair, voltage-gain transistor, and emitter follower form a feedba
 
 Q1 and Q2 compare the input with a divided output voltage. Their shared current source fixes the available tail current.
 
-Q3 adds voltage gain. Q4 supplies output current while its emitter follows the preceding stage.
+Q3 adds voltage gain. Q4 supplies output current while its emitter follows the previous stage.
 
 The output divider requests a gain of ten. The compensation capacitor controls high-frequency loop behavior.
 
-Identify each block separately before following the complete feedback path. The AC sweep examines the linear response around the bias point.
+Identify the input, gain, and output blocks before tracing the full feedback path. The AC sweep shows how small signals behave around the DC bias point.
 
 [Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/BJTs#circuit-discrete-feedback-amplifier>).

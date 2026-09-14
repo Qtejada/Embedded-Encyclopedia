@@ -1,6 +1,5 @@
 # Memory
 
-Notes coming soon...
 
 
 ## 1. Select the Storage Function
@@ -19,11 +18,11 @@ Memory choice depends on retention, access time, capacity, and write behavior.
 
 ## 2. Read, Program, and Erase
 
-A nonvolatile write can continue internally after the bus transaction ends. Check the device's busy indication before starting a dependent operation.
+A nonvolatile memory can still be writing internally after the bus transfer has finished. Check its busy indication before starting an operation that depends on the new data being stored.
 
 Flash generally needs an erase before bits can return to their erased state. EEPROM has its own page and write-cycle rules.
 
-Do not assume that a write can cross a page boundary. Some devices wrap the internal address within the page.
+Do not assume a write continues into the next page. Some memories wrap back to the beginning of the current page instead, which can overwrite data you meant to keep.
 
 ## 3. Worked Example: Split a Page Write
 
@@ -38,19 +37,19 @@ The [Microchip 24LC256](https://ww1.microchip.com/downloads/en/devicedoc/21203r.
 
 ## 4. Endurance and Power Loss
 
-Repeated writes consume endurance. Avoid writing an unchanged value repeatedly. Distribute frequently updated records when the storage design permits it.
+Repeated writes consume endurance. Avoid writing an unchanged value repeatedly. Distribute often updated records when the storage design permits it.
 
-**Illustrative calculation:** An assumed one-million-cycle location written once per second reaches one million writes in approximately **11.6 days**.
+**Illustrative calculation:** An assumed one-million-cycle location written once per second reaches one million writes in about **11.6 days**.
 
 This arithmetic is not a lifetime guarantee. Temperature, retention requirements, and the manufacturer's endurance conditions also apply.
 
-For critical records, store a sequence number and a data check. Use a commit scheme that preserves the previous valid record during an interrupted write.
+For important records, store a sequence number and a check value for the data. Finish and verify the replacement before marking it as the committed version, so an interrupted write still leaves the previous valid record available.
 
 ## 5. Board and Firmware Checks
 
 Check [supply sequencing](<../02-Power/Measurment/Power-good-Seq.md#1-rail-dependencies>), pin voltage, write protection, address width, and interface timing. Test startup after power removal during each write phase.
 
-For DRAM, use the controller's exact topology and timing constraints. Matching only the total trace lengths is insufficient.
+For DRAM, follow the controller's required wiring layout and timing rules. Making the traces equal in total length is not enough by itself.
 
 
 ## Processor access and address translation

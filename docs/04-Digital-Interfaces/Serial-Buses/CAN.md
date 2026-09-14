@@ -1,6 +1,5 @@
 # CAN
 
-Notes coming soon...
 
 ## 1. Controller and Transceiver
 
@@ -38,9 +37,9 @@ This example excludes extended identifiers, remote frames, and bit stuffing. Equ
 
 Use a trunk with short node branches. For a conventional 120 Ω cable, install matching [termination](<../../05-PCB-Layout/03-trace-impedance.md#distributed-loss-and-termination>) at both physical ends.
 
-Do not add one termination at every node. Two 120 Ω terminators appear as approximately **60 Ω** across an unpowered bus.
+Do not add one termination at every node. Two 120 Ω terminators appear as about **60 Ω** across an unpowered bus.
 
-The bit timing must accommodate cable delay, transceiver delay, and [clock tolerance](<../../03-Signal-Modulation/Timing/Crystal-oscillators.md#9-frequency-accuracy-and-time-error>). Cable length and bit rate cannot be selected independently.
+The bit timing must leave room for cable travel time, transceiver delay, and [clock tolerance](<../../03-Signal-Modulation/Timing/Crystal-oscillators.md#9-frequency-accuracy-and-time-error>). A longer cable can therefore limit the bit rate you can use.
 
 ## 5. Error Handling and Verification
 

@@ -11,7 +11,7 @@ sidebar_position: 28
 
 A VHDL **entity** defines ports and parameters. An **architecture** describes the implementation.
 
-Concurrent statements describe hardware that operates together. Statements inside a process execute sequentially when that process resumes.
+Concurrent VHDL statements describe hardware that works at the same time. Inside a process, statements run in order whenever the simulator resumes that process.
 
 Statement order does not imply one clock cycle per statement. Registers appear from the described storage behavior.
 
@@ -21,7 +21,7 @@ Statement order does not imply one clock cycle per statement. Registers appear f
 
 A clocked process can describe edge-triggered registers. In a combinational process, assign each output on every possible path.
 
-An incomplete combinational assignment can infer a latch. An omitted assignment in a clocked process can describe a register enable.
+If a combinational process leaves an output unassigned on some path, the tool may infer a latch to retain its old value. In a clocked process, leaving a register unassigned can instead mean it keeps its value on that clock edge, using a register enable.
 
 VHDL-2008 permits `process(all)` for a combinational process. Earlier language versions require an explicit sensitivity list.
 
@@ -29,7 +29,7 @@ A **signal assignment** schedules a signal update. A **variable assignment** imm
 
 In a clocked process, `a <= b` followed by `c <= a` gives c the previous value of a. Both registers update after the process suspends.
 
-A **delta cycle** advances simulation scheduling without advancing physical simulation time. It does not represent a hardware clock cycle.
+A **delta cycle** lets the simulator process scheduled updates without moving forward in simulated time. It is part of simulation bookkeeping, not an extra hardware clock cycle.
 
 ## 3. State, transitions, and outputs
 
@@ -115,21 +115,21 @@ Binary encoding uses enough bits to identify every state. Three states require a
 
 One-hot encoding uses one bit per state, with one active bit. It can simplify transition logic but uses more registers.
 
-Synthesis can change an enumerated state's encoding. Inspect the implementation when encoding affects timing, power, or fault recovery.
+The synthesis tool may choose different binary values for states declared with an enumerated type. Inspect what it built if that choice affects timing, power, or recovery from a fault.
 
 An unused binary pattern does not automatically have a safe recovery path. Check tool support and the required fault response.
 
 ## 5. Simulation and synthesis limits
 
-An `after` delay can model simulation timing. It does not generally create a corresponding physical delay element during synthesis.
+An `after` delay tells the simulator when to update a value. Synthesis does not generally turn it into a physical component with that delay.
 
 **Inertial delay** can reject short pulses in simulation. **Transport delay** schedules every modeled transition.
 
-Neither model replaces static timing analysis. Real pulse propagation depends on the cells, loads, and routing.
+These simulation models do not replace static timing analysis. The time a real pulse takes to travel depends on the logic cells, their loads, and the routing.
 
 Use clock enables instead of ordinary logic gates on a clock path. Dedicated clock-control resources require their specified connection and timing rules.
 
-Check [setup and hold constraints](<./CMOS-Design.md#7-register-timing-and-clock-skew>) after implementation. A correct functional simulation does not establish timing closure.
+Check [setup and hold constraints](<./CMOS-Design.md#7-register-timing-and-clock-skew>) after implementation. A correct functional simulation does not prove timing closure.
 
 ## 6. Control and datapath
 

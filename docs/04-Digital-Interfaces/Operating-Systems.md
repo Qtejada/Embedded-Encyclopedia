@@ -7,15 +7,15 @@ sidebar_position: 26
 
 ## 1. Processes and threads
 
-An **operating system (OS)** manages processor time, memory, and device access. Its kernel performs privileged operations and enforces the available protection rules.
+An **operating system (OS)** manages processor time, memory, and access to devices. Its kernel runs operations that ordinary programs cannot perform directly and applies the protection rules supported by the system.
 
-A **process** is a running program with resources and an execution context. A protected OS usually gives each process a separate virtual address space.
+A **process** is a running program together with its resources and current execution state. In an OS with memory protection, each process usually has its own virtual address space.
 
 A **thread** is an execution sequence within a process. Threads in one process share memory and many resources, but each has its own execution state.
 
 A thread normally has its own stack and saved registers. Shared memory permits efficient communication but also permits accidental interference.
 
-A **context switch** saves one execution context and restores another. A switch between threads does not necessarily change the address space.
+A **context switch** saves the state of one running thread or process and restores another so it can continue. Switching between threads in the same process does not necessarily change the address space.
 
 Small embedded systems can run without an OS. An embedded scheduler may use tasks that share one address space without process isolation.
 
@@ -35,13 +35,13 @@ A parent uses a wait operation to collect a child's termination status. Handle c
 
 A **pipe** carries bytes between a write end and a read end. A read can return fewer bytes than requested.
 
-An empty pipe with active writers can block a reader. End-of-file occurs after all write ends close and buffered data has been read.
+An empty pipe with active writers can block a reader. End-of-file happens after all write ends close and buffered data has been read.
 
-Close unused pipe ends in each process. An accidentally retained write end can keep a reader waiting for end-of-file.
+Each process should close the pipe ends it does not use. If any process accidentally leaves a write end open, the reader may keep waiting because it has not received an end-of-file indication.
 
-For two-way communication, use two pipes or a suitable socket interface. Define message lengths or delimiters because a byte stream does not preserve application records.
+For two-way communication, use two pipes or a suitable socket. Define message lengths or separators: a stream of bytes does not automatically preserve the boundaries between your messages.
 
-With **Transmission Control Protocol (TCP)** sockets, one send does not guarantee one matching receive. Reassemble complete application messages and handle disconnects and partial transfers.
+With **Transmission Control Protocol (TCP)** sockets, a single send may be received in several pieces, or combined with other sends. Reassemble complete messages and handle partial transfers and disconnects.
 
 ## 3. Shared updates and critical sections
 
@@ -68,19 +68,19 @@ A **condition variable** lets a thread wait for a shared condition. Check the co
 
 Wait in a loop because a wakeup does not guarantee that the condition is true. The wait operation releases the mutex and reacquires it before returning.
 
-A bounded producer-consumer queue has two useful conditions: space available and data available. Protect its indices and element ownership with a consistent protocol.
+A producer-consumer queue with a fixed capacity commonly waits on two conditions: space for a producer to add data, and data for a consumer to remove. Protect the indices and define who owns each element while it moves through the queue.
 
 A **semaphore** maintains a count of available permits. Its ownership rules differ from a mutex, so the two objects are not interchangeable in every design.
 
 ## 4. Deadlock and lock ordering
 
-**Deadlock** occurs when blocked participants each need an event that another blocked participant must cause.
+**Deadlock** happens when blocked participants each need an event that another blocked participant must cause.
 
 For example, thread A holds lock R and waits for lock S. Thread B holds S and waits for R.
 
 Neither can finish its protected operation. A faster processor does not remove this dependency cycle.
 
-The classic resource conditions are mutual exclusion, hold-and-wait, no forced resource removal, and circular wait. Break a required condition to prevent this deadlock pattern.
+This deadlock pattern needs exclusive access to resources, threads holding one resource while waiting for another, no forced removal of held resources, and a circular chain of waiting. Preventing any one of those conditions breaks the pattern.
 
 Assign a global lock order and require every path to follow it. For example, acquire R before S in both threads.
 
@@ -88,11 +88,11 @@ Release locks on every error path. Include callbacks and nested function calls w
 
 A cycle proves deadlock in a resource graph with one instance of each resource type. Multiple instances require additional analysis.
 
-**Starvation** means a participant repeatedly fails to obtain service. **Livelock** means participants keep changing state without useful progress. Neither requires the same blocked cycle.
+**Starvation** means a participant repeatedly fails to obtain service. **Livelock** means participants keep changing state without useful progress. Neither needs the same blocked cycle.
 
 ## 5. Virtual pages and physical frames
 
-A **virtual page** is a fixed-size part of a virtual address space. A **physical frame** is a corresponding unit of physical memory.
+A **virtual page** is a fixed-size block in the address space a program uses. A **physical frame** is a block of the corresponding size in physical memory, where that page can be stored.
 
 A page table records mappings and access permissions. A **translation lookaside buffer (TLB)** caches recent translations.
 
@@ -110,27 +110,27 @@ A **page fault** transfers control to the OS because the translation or access c
 
 The OS checks whether the access is valid. It can provide a missing page, perform copy-on-write, or reject an invalid access.
 
-Not every page fault requires a storage-device read. A new zero-filled page or a resident shared page can be handled without one.
+Not every page fault needs a storage-device read. A new zero-filled page or a resident shared page can be handled without one.
 
-The architecture must preserve enough fault information to resume correctly when recovery is possible. Do not repeat partially completed device operations without their documented restart rules.
+To recover and resume correctly, the processor and OS must keep enough information about what failed. A device operation may already be partly complete, so retry it only according to its documented restart rules.
 
 ### Working sets and replacement
 
-A **working set** contains pages that a process actively uses over an interval. Insufficient resident memory can cause repeated page faults called **thrashing**.
+A **working set** is the group of pages a process actively uses during a period of time. If too few of them fit in physical memory, the system can spend its time repeatedly moving pages instead of doing useful work. This is **thrashing**.
 
-Local replacement selects a victim from the faulting process's allocation. Global replacement can select a victim from a broader pool.
+When a page must be replaced, local replacement chooses one from the process that caused the fault. Global replacement can choose one from a wider pool, including pages used by other processes.
 
 Global policies can adapt allocation across processes. They can also let one workload disturb another workload's resident pages.
 
 Smaller pages reduce wasted space within partly used pages. Larger pages can reduce page-table overhead and increase TLB coverage.
 
-The processor defines supported page sizes. The OS selects among supported configurations rather than choosing any arbitrary size.
+The processor supports specific page sizes. The OS can choose among those sizes, but it cannot use any size it likes.
 
 ## 6. Shared pages, dirty pages, and device transfers
 
 Processes can share read-only code pages. They can also explicitly share writable data pages when their synchronization rules permit it.
 
-**Copy-on-write** delays a private copy until a process writes a shared page that requires private modifications.
+**Copy-on-write** delays a private copy until a process writes a shared page that needs private modifications.
 
 A **dirty page** contains changes that its backing copy does not contain. A clean file-backed page can often be discarded and read again later.
 
@@ -138,7 +138,7 @@ Preserving a dirty page can require a write to its backing file or swap storage.
 
 Device transfers need stable buffer mappings for their duration. Drivers can pin pages or use suitable kernel buffers, according to the OS interface.
 
-Pinning does not itself establish cache coherence, device access permissions, or correct memory ordering. Follow the platform's direct-memory-access mapping interface.
+Pinning keeps a buffer's memory in place, but does not automatically keep caches consistent, give a device permission to access it, or order memory operations correctly. Use the platform's direct-memory-access mapping interface for those requirements.
 
 ## 7. Files, directories, and metadata
 
@@ -146,7 +146,7 @@ A **file system** maps names and logical file positions to stored data. It also 
 
 A directory maps names to file objects. In an inode-based system, an **inode** records metadata and how to locate file data.
 
-Traditional layouts use direct and indirect block pointers. Other layouts use extents or trees. These are implementation choices, not universal file rules.
+Some file systems locate data with direct block pointers and additional layers of indirect pointers. Others use contiguous block ranges called extents, or tree structures. The choice depends on the file-system implementation.
 
 A pathname lookup resolves each directory component. Access checks and symbolic links can affect the result.
 
@@ -158,7 +158,7 @@ Updating a file can require several data and metadata writes. Power loss between
 
 **Journaling** records selected updates before applying them to their final locations. Recovery can replay committed transactions according to the file system's rules.
 
-Metadata journaling does not guarantee that every recent data byte survives. Application durability also depends on synchronization calls, write ordering, and storage-device guarantees.
+Metadata journaling helps recover file-system structure, but does not guarantee that every recently written data byte survives. Applications also depend on synchronization calls, write ordering, and what the storage device guarantees about completed writes.
 
 A successful buffered write does not necessarily mean that data reached nonvolatile media. Test the complete storage stack under interrupted writes.
 
@@ -170,5 +170,5 @@ For embedded configuration records, preserve the previous valid version until th
 
 The junior notes supply paging, file-system, pipe, thread, and deadlock topics. The counter and address calculations are original examples.
 
-* [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/) provides the authors' chapters on virtualization, concurrency, and persistence.
+* [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/) gives the authors' chapters on virtualization, concurrency, and persistence.
 * [University of Wisconsin: deadlock](https://pages.cs.wisc.edu/~solomon/cs537/html/deadlock.html) explains resource graphs and prevention.

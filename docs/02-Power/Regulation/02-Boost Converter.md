@@ -1,6 +1,5 @@
 # Boost
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -33,10 +32,10 @@ import SwitchingConverterExplorer from '@site/src/components/SwitchingConverterE
 
 1. Duty cycle is **58.3%**.
 2. Average inductor current is **0.48 A**.
-3. Ripple is approximately **0.265 A peak to peak**.
-4. Peak inductor current is approximately **0.613 A**.
+3. Ripple is about **0.265 A peak to peak**.
+4. Peak inductor current is about **0.613 A**.
 
-If the real converter has 90% efficiency, input power is approximately **2.67 W**. The corresponding average input current is approximately **0.533 A**.
+If the real converter has 90% efficiency, input power is about **2.67 W**. The corresponding average input current is about **0.533 A**.
 
 The efficiency calculation estimates input current separately. It does not replace a loss model for the switching waveform.
 
@@ -49,7 +48,7 @@ A conventional diode boost has an input-to-output path through the inductor and 
 * Check switch and diode voltage stress, including overshoot.
 * Check output-capacitor ripple current.
 
-A CCM boost also has a **right-half-plane zero** in its control response. This effect limits the usable feedback bandwidth.
+A CCM boost has a **right-half-plane zero** in its control response. Increasing duty cycle initially leaves less time to deliver energy to the output, even though the final output voltage will be higher. This initial response in the opposite direction limits how fast the feedback loop can safely react.
 
 ## 5. Verification
 

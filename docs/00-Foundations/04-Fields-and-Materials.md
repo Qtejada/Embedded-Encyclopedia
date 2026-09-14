@@ -13,13 +13,13 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 An electric field exerts force on charge. A source supplies energy that a circuit transfers into heat, motion, light, or stored field energy.
 
-Electron drift in a metal is usually slow compared with signal propagation. The electromagnetic field transfers the signal through the circuit structure.
+The signal travels through a circuit much faster than individual electrons drift along a wire. The electromagnetic field carries the change through the circuit.
 
-A **conductor** has mobile charge carriers. An **insulator** strongly limits carrier motion under normal conditions. A **semiconductor** has conductivity that depends strongly on material conditions.
+A **conductor** lets charge carriers move easily. An **insulator** makes that movement very difficult under normal conditions. A **semiconductor** falls between them, and its conductivity changes greatly with factors such as doping, temperature, and light.
 
 ## Energy bands and doping
 
-In a solid, allowed electron energies form **bands**. The **valence band** contains bonding states. The **conduction band** supports mobile electrons.
+Electrons in a solid can occupy certain ranges of energy, called **bands**. Electrons in the **valence band** take part in bonding. Electrons in the **conduction band** can move through the material and carry current.
 
 A **band gap** separates these bands in an ideal semiconductor or insulator. Temperature and light can supply energy that creates mobile electrons and holes.
 
@@ -45,9 +45,9 @@ See [MIT semiconductor fundamentals](https://ocw.mit.edu/courses/3-091sc-introdu
 
 ## Junctions and light
 
-When P-type and N-type regions meet, carriers diffuse across the junction and recombine. Fixed ionized dopants remain near the junction.
+When P-type and N-type regions meet, electrons and holes spread across the junction and recombine. This leaves charged dopant atoms near the junction. These atoms stay fixed in the material.
 
-This **depletion region** contains few mobile carriers. Its electric field opposes further diffusion. Forward bias lowers the barrier and increases injection.
+The area left with few mobile carriers is the **depletion region**. Its electric field opposes further spreading of carriers. Forward bias lowers this barrier, allowing more carriers to cross the junction.
 
 Reverse bias widens the depletion region and limits current until leakage or breakdown dominates. Junction capacitance changes with the depletion width.
 
@@ -67,7 +67,7 @@ A **dielectric** polarizes in an electric field and normally limits conduction. 
 
 This parallel-plate approximation uses permittivity epsilon, overlap area A, and separation d. Fringing fields and the actual structure change the result.
 
-Polarization can lag an alternating field and dissipate energy. Leakage also causes loss. The **loss tangent** describes the ratio of loss to reactive response.
+In an alternating field, the dielectric's polarization may lag behind the field, which wastes some energy as heat. Leakage adds more loss. The **loss tangent** compares this energy loss with the material's energy-storage response.
 
 The **skin effect** concentrates alternating current near a conductor's surface. **Proximity effect** changes the distribution because of nearby conductors.
 
@@ -77,7 +77,7 @@ Both effects can increase [winding resistance](<../01-Discrete-Components/01-Pas
 
 A strong electric field can make an insulating path conductive. Geometry, pressure, contamination, and material properties affect the breakdown condition.
 
-In a thunderstorm, collisions and air motion separate charge. A sufficiently strong field forms an ionized path. A discharge transfers charge through that path.
+During a thunderstorm, collisions and moving air separate electric charge. If the electric field becomes strong enough, it turns part of the air into a conducting path. Charge then flows through that path as a discharge.
 
 Lightning demonstrates electrical breakdown on a large scale. A component's small-signal protection rating does not imply protection against a direct lightning strike.
 

@@ -9,7 +9,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 ## 1. Locality and cache lines
 
-A **cache** keeps copies of selected memory blocks near the processor. A matching resident block gives a hit. An absent block gives a miss.
+A **cache** keeps copies of memory blocks close to the processor. Finding the requested block there is a hit. Having to look beyond that cache is a miss.
 
 **Temporal locality** means recently used data is likely to be used again. **Spatial locality** means nearby addresses are likely to be used.
 
@@ -21,7 +21,7 @@ The [five-stage processor](<./RISC-V-Pipeline.md#teaching-model-assumptions>) as
 
 ## 2. Placement and associativity
 
-| Organization | Permitted placement for a memory block |
+| Organization | Allowed placement for a memory block |
 | --- | --- |
 | Direct mapped | One cache line selected by the index. |
 | Set associative | Any way within one selected set. |
@@ -29,7 +29,7 @@ The [five-stage processor](<./RISC-V-Pipeline.md#teaching-model-assumptions>) as
 
 A **way** is one possible line position within a set. A two-way cache has two positions per set.
 
-More ways can reduce conflicts between blocks that share an index. They also require more comparisons and a replacement decision.
+More ways give competing blocks more places to go within a set, which can reduce conflicts. The hardware must also compare more tags and choose which line to replace when the set is full.
 
 Capacity, associativity, line size, and access time are separate design choices. More associativity does not guarantee a faster complete processor.
 
@@ -57,7 +57,7 @@ Reconstruction verifies the split: ((2 times 128) + 35) times 16 + 4 = 4660, whi
 
 Addresses 0x1234 and 0x123C share one line. Address 0x1A34 uses the same set with a different tag.
 
-A valid bit distinguishes real content from an unused line. Matching a tag alone is insufficient when the valid bit is clear.
+A valid bit tells the cache whether a line actually contains usable data. A matching tag is not enough if that bit is clear.
 
 ## 4. Conflict trace
 
@@ -78,13 +78,13 @@ The first two reads miss and the next two hit. This example isolates a placement
 
 ## 5. Miss classes and replacement
 
-A **compulsory miss** occurs on the first access to a block. A **capacity miss** occurs because the active data exceeds available cache capacity.
+A **compulsory miss** happens on the first access to a block. A **capacity miss** happens because the active data exceeds available cache capacity.
 
-A **conflict miss** results from placement restrictions. A fully associative cache of the same capacity can avoid such placement conflicts under an appropriate comparison policy.
+A **conflict miss** happens because the cache restricts where a block can go, even though there would otherwise be room. A fully associative cache lets any block occupy any line, avoiding this placement restriction when compared using a suitable replacement policy.
 
 Replacement policies include least recently used, approximations to that policy, and random selection. A direct-mapped cache has no choice of victim within its set.
 
-Larger lines can exploit spatial locality. They also transfer more unused bytes and leave fewer lines for a fixed data capacity.
+Larger lines take advantage of spatial locality: after using one address, a program often uses nearby addresses. But a larger line can also bring in more bytes that are never used, and fewer lines fit in the same cache capacity.
 
 ## 6. Write policies
 
@@ -115,7 +115,7 @@ Assume a 1-nanosecond hit time, a 5-percent miss rate, and a 40-nanosecond addit
 
 The average access time is 1 + 0.05 times 40 = 3 nanoseconds.
 
-For two levels, use the second-level miss rate conditional on a first-level miss when evaluating the nested penalty.
+With two cache levels, the second-level miss rate in the nested calculation means the fraction of first-level misses that also miss in the second level. It is not the fraction of all processor accesses.
 
 <LearningEquation tex={String.raw`T_{avg}=T_1+r_1(T_2+r_2P_{memory})`} />
 
@@ -125,11 +125,11 @@ This simplified model excludes overlapping misses, prefetches, write-buffer stal
 
 Two processors can hold copies of the same memory line. A coherence protocol coordinates which copies may supply or modify data.
 
-**False sharing** occurs when independent variables occupy one line and different processors modify them. Ownership traffic can slow otherwise independent operations.
+**False sharing** happens when independent variables occupy one line and different processors modify them. Ownership traffic can slow otherwise independent operations.
 
 Some direct-memory-access devices do not participate in processor cache coherence. Drivers must use the platform's documented buffer mapping and maintenance rules.
 
-Before a device reads a buffer, dirty processor data may need cleaning. Before the processor consumes device-written data, stale cache content may need invalidation.
+Before a device reads a buffer, the processor may need to write modified cache data back to memory, called cleaning. Before the processor reads data written by the device, it may need to discard old cached copies, called invalidation.
 
 Do not invalidate dirty unrelated data accidentally. Cache-line alignment, ownership, and the correct operation order all matter.
 
@@ -139,6 +139,6 @@ See [virtual pages and physical frames](<./Operating-Systems.md#5-virtual-pages-
 
 ## References
 
-The junior architecture notes supply locality, cache mapping, write policies, and performance topics. Address and conflict traces use original assumed cache configurations.
+This chapter covers locality, cache mapping, write policies, and performance from the junior-year architecture notes. The address and conflict examples use explicitly assumed cache setups.
 
 * [Cornell CS 3410: caches](https://www.cs.cornell.edu/courses/cs3410/2025fa/notes/caches.html).

@@ -1,6 +1,5 @@
 # LDOs
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -11,7 +10,7 @@ A **low-dropout regulator (LDO)** controls a series pass device to hold its outp
 
 **Dropout voltage** is the required input-to-output difference under specified conditions. It depends on load current, temperature, and the device.
 
-Below the required headroom, the regulator cannot maintain the specified output accuracy.
+If the input voltage gets too close to the output voltage, the regulator runs out of room to adjust and can no longer maintain its specified accuracy.
 
 ## 2. Power and Temperature
 
@@ -19,7 +18,7 @@ For output current **Iout** and ground current **IG**:
 
 <LearningEquation tex={"P_D\\approx(V_{in}-V_{out})I_{out}+V_{in}I_G"} />
 
-If ground current is small, efficiency is approximately **Vout/Vin**.
+If ground current is small, efficiency is about **Vout/Vin**.
 
 A first thermal estimate is:
 
@@ -27,7 +26,7 @@ A first thermal estimate is:
 
 **TJ** is [junction temperature](<../Entry%20Protection/fuses.md#junction-temperature-equation>). **TA** is ambient temperature. **θJA** is junction-to-ambient [thermal resistance](<../Entry%20Protection/fuses.md#thermal-resistance-chain>) for the specified board conditions.
 
-Do not treat a data-sheet thermal resistance as independent of the printed circuit board.
+A datasheet's thermal resistance was measured or calculated for a particular board setup. Your copper area and PCB construction affect the actual temperature rise.
 
 import PowerBudgetExplorer from '@site/src/components/PowerBudgetExplorer';
 
@@ -42,7 +41,7 @@ import PowerBudgetExplorer from '@site/src/components/PowerBudgetExplorer';
 3. With an assumed 100 °C/W thermal resistance, junction rise is **34 °C**.
 4. At 50 °C ambient, the estimated junction temperature is **84 °C**.
 
-The result needs confirmation with the actual package, copper area, and airflow. It does not establish a safe limit by itself.
+The result needs confirmation with the actual package, copper area, and airflow. It does not prove a safe limit by itself.
 
 ## 4. Capacitors and Noise
 
@@ -50,7 +49,7 @@ Use the input and output capacitance range specified for stability. Include cera
 
 **Power-supply rejection ratio (PSRR)** describes rejection of input ripple at a specified frequency. Output noise is a separate specification.
 
-Check PSRR at the relevant frequency, current, and headroom. A low dropout specification does not guarantee good ripple rejection near dropout.
+Check power-supply rejection ratio (PSRR) at your noise frequency, load current, and input-to-output voltage difference. An LDO may keep regulating near dropout while doing a poor job of removing input ripple.
 
 ## 5. Startup and Reverse Current
 
@@ -67,6 +66,6 @@ That local model does not make the regulator a fixed resistor. Dropout, current 
 
 <LearningEquation tex={"\\eta=\\frac{V_{out}I_{out}}{V_{in}(I_{out}+I_q)}"} />
 
-This approximation assumes the ground current is Iq and excludes other loads. At very light load, quiescent current can dominate.
+This estimate treats the ground current as Iq and leaves out other loads. When the useful load draws very little current, the regulator's own operating current can become the largest part of the total.
 
 A low-quiescent-current LDO can outperform a switching converter when input and output voltages are close. Compare actual efficiency curves at the intended load.

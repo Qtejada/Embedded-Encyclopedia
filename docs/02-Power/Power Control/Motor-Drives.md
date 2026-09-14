@@ -14,7 +14,7 @@ A **motor** converts electrical energy into motion. A generator converts mechani
 
 A **solenoid** uses a coil to move an armature. Its force depends on current, magnetic geometry, and armature position.
 
-Coil turns combine magnetic fields. More turns can produce greater magnetomotive force for the same current. Wire resistance, inductance, and available space constrain the design.
+The magnetic effects of the coil turns add together. More turns can produce a stronger magnetizing effect, called magnetomotive force, at the same current. The trade-off is the winding's resistance, inductance, and space requirement.
 
 The **stator** remains fixed. The **rotor** rotates. A linear motor produces translation instead of rotation.
 
@@ -26,7 +26,7 @@ Here, R is [winding resistance](<../../01-Discrete-Components/01-Passives/03-Ind
 
 **Back electromotive force (back EMF)** opposes applied voltage as the motor rotates. It increases with speed in this model.
 
-At startup, current cannot jump instantly through the inductance. It can still rise rapidly because back EMF is initially small.
+Inductance prevents motor current from jumping instantly at startup. But it can still rise quickly because the motor is not yet spinning fast enough to generate much opposing voltage, or back EMF.
 
 For an assumed 12 V supply and 1 ohm winding, the steady stall current is 12 A. It is not the instantaneous startup current.
 
@@ -56,15 +56,15 @@ The stall point is a limit, not a continuous operating recommendation. See [Maxo
 
 Brushes commonly use carbon-based or metal-containing materials. Springs maintain commutator contact. Friction and arcing cause wear.
 
-An **arc** is current through ionized gas across a gap. Commutation can create arcs, noise, and surface damage. Suppression and maintenance depend on the motor design.
+An **arc** carries current across a gap through ionized gas. Switching current between commutator contacts can create arcs, electrical noise, and surface damage. The motor design determines how to suppress these effects and what maintenance is needed.
 
 Replace serviceable brushes according to the manufacturer's limits. Replace the motor when the commutator, bearings, or sealed construction prevent a reliable repair.
 
-A BLDC driver uses rotor position to select phase currents. Hall sensors, an encoder, or estimated back EMF can provide position information.
+A BLDC driver needs rotor position to decide which phases to energize. It can obtain that information from Hall sensors, an encoder, or an estimate based on back EMF.
 
 Back EMF is weak near zero speed. Sensorless startup needs another method until reliable estimation becomes possible.
 
-More magnetic pole pairs produce more electrical cycles per mechanical revolution. Pole count alone does not establish torque or efficiency.
+More magnetic pole pairs produce more electrical cycles per mechanical revolution. Pole count alone does not prove torque or efficiency.
 
 An **electronic speed controller (ESC)** combines phase switching with commutation and control. It can include current sensing, fault protection, and communication.
 
@@ -72,11 +72,11 @@ An ESC commonly uses three half bridges, [gate drivers](<./Gate-Drivers.md#1-gat
 
 Select an ESC from bus voltage, continuous and peak phase current, commutation method, braking needs, cooling, and command protocol. Battery current and phase current can differ.
 
-A stepper driver regulates winding current and sequences phases. Microstepping varies phase currents to reduce step size and torque ripple.
+A stepper driver controls the winding currents in sequence. Microstepping varies their relative values between full-step positions, producing smaller steps and reducing torque ripple.
 
 Holding current produces holding torque and heat. Open-loop step counts do not prove that the shaft reached its target. An encoder can detect missed motion.
 
-A servo can use several motor types. Feedback and control make it a servo system. Gear backlash, sensor resolution, stiffness, and loop tuning limit accuracy.
+A servo is defined by its feedback and control, rather than by one particular motor type. Accuracy is limited by gear backlash, sensor resolution, mechanical stiffness, and how the control loop is tuned.
 
 A hobby servo often contains its own driver and position loop. Its pulse command format is device-specific and differs from direct winding [PWM](<../../03-Signal-Modulation/Filters/Digital-filters.md#pulse-width-modulation-pwm>).
 
@@ -113,7 +113,7 @@ Never enable the upper and lower switches in one leg together. **Dead time** pre
 
 **Plug braking** applies opposing drive and can create large current. Braking speed depends on current limits, inertia, bus handling, and mechanical load.
 
-A half bridge can support braking with a suitable [return path](<../../05-PCB-Layout/02-Return-Paths.md#1-a-signal-needs-a-return>). An H bridge provides more control of voltage polarity. Neither guarantees a shorter safe stop.
+A half bridge can support braking with a suitable [return path](<../../05-PCB-Layout/02-Return-Paths.md#1-a-signal-needs-a-return>). An H bridge gives more control of voltage polarity. Neither guarantees a shorter safe stop.
 
 ## Gate drive and isolation
 
@@ -129,7 +129,7 @@ A gate pulldown gives a low-side MOSFET a defined off state during reset. A seri
 
 One simple isolated control path uses a GPIO, an LED resistor, an optocoupler, and a motor-side gate driver. Define the off state if either side loses power.
 
-Check propagation delay, common-mode transient immunity, insulation rating, and channel matching. An optocoupler's current transfer ratio varies with operating conditions and age.
+Check signal delay, insulation rating, how well channels match, and common-mode transient immunity: whether a rapid voltage change across the isolation barrier disturbs the output. An optocoupler's current transfer ratio also changes with operating conditions and age.
 
 Relays suit slow switching and can provide contact isolation. MOSFETs suit frequent low-voltage switching. Insulated-gate bipolar transistors (IGBTs) suit some higher-voltage power stages.
 
@@ -137,7 +137,7 @@ A solid-state relay can have leakage and limited turnoff behavior. Select the ac
 
 ## Sensing and protection
 
-Measure winding or phase current with a shunt or magnetic sensor. Sample at a valid point in the switching cycle and account for blanking intervals.
+Measure winding or phase current with a shunt or magnetic sensor. Choose a point in the switching cycle when the reading is valid. Account for blanking intervals, when measurements are ignored to avoid switching disturbances.
 
 Use encoders or Hall sensors for speed and position. Encoder counts over a known interval give average speed. Edge spacing gives period information.
 

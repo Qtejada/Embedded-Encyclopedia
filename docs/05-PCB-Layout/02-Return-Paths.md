@@ -1,21 +1,20 @@
 # Return Paths
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
 
 ## 1. A Signal Needs a Return
 
-Signal current flows in a complete loop. The forward conductor and return structure together determine the circuit's behavior.
+Signal current needs a complete loop. Both the outgoing conductor and the path back to the source affect how the circuit behaves.
 
-At low frequency, resistance strongly influences the current distribution. At high frequency, inductance and [field coupling](<../01-Discrete-Components/01-Passives/03-Inductors.md#2-physics-and-operation>) become important.
+At low frequency, resistance has a strong influence on where current flows. At high frequency, inductance and [field coupling](<../01-Discrete-Components/01-Passives/03-Inductors.md#2-physics-and-operation>) become important too.
 
 On a trace above a nearby continuous plane, high-frequency return current concentrates near the trace. It is not confined to an infinitely thin line.
 
 ## 2. Plane Gaps and Detours
 
-A slot in the reference plane can force return current around the slot. The larger loop can increase coupling and radiated interference.
+A slot in the reference plane can force return current to take a detour. That makes the current loop larger, increasing its chance of coupling into nearby circuits or radiating interference.
 
 Do not route a fast signal across a plane gap without an analyzed return path.
 
@@ -27,7 +26,7 @@ The drawing shows an intact plane and a plane with a slot. It illustrates the cu
 
 ## 3. Layer Transitions
 
-When a signal changes layers, its return current also needs a path between the reference structures.
+When a signal moves to another layer, its return current also needs a way to reach the new reference plane or conductor.
 
 * Between ground-reference planes, a nearby [ground stitching via](<./01-Overview.md#62-via-technology-guide>) can shorten the return transition.
 * Between different reference nets, a ground via alone does not connect those nets.
@@ -43,7 +42,7 @@ Prefer a layer assignment that avoids unnecessary reference changes. Never conne
 
 The simplified inductive voltage is **0.5 V**. This voltage can disturb the other circuit's reference.
 
-The example excludes resistance and capacitance. It shows why a connection labeled ground can still move during a fast transient.
+This example leaves out resistance and capacitance. It shows why a point labeled ground can still change voltage when current changes quickly.
 
 ## 5. Mixed-Signal Placement
 

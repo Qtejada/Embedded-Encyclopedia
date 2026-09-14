@@ -27,7 +27,7 @@ A real gate has small leakage current and capacitance. Current flows briefly whe
 * **Threshold voltage, V<sub>th</sub>:** This is the specified <i>V<sub>GS</sub></i> where an enhancement channel starts to form.
 * **Zero-gate drain current, I<sub>DSS</sub>:** This is the specified JFET or depletion-device current at <i>V<sub>GS</sub> = 0</i>.
 
-The original notes describe <i>I<sub>DSS</sub></i> as the maximum zero-bias current. A depletion MOSFET can conduct more current when positive gate drive is permitted.
+The original description of <i>I<sub>DSS</sub></i> as a maximum applies to zero gate bias. A depletion MOSFET can carry more current when its operating limits allow a positive gate voltage.
 
 **Core Equations**
 
@@ -100,14 +100,14 @@ The following boundaries use the ideal long-channel model.
 2. **Ohmic or Linear Region (Resistor)**
 
    * **Condition:** <i>V<sub>GS</sub> &gt; V<sub>th</sub></i> and <i>V<sub>DS</sub> &lt; V<sub>GS</sub> - V<sub>th</sub></i>.
-   * **Behavior:** The device operates as a voltage-controlled resistor.
-   * For small <i>V<sub>DS</sub></i>, drain current increases approximately linearly with <i>V<sub>DS</sub></i>. The basic relationship is <i>I = V/R</i>.
+   * **Behavior:** The device acts as a voltage-controlled resistor.
+   * For small <i>V<sub>DS</sub></i>, drain current increases about linearly with <i>V<sub>DS</sub></i>. The basic relationship is <i>I = V/R</i>.
    * **Uses:** Variable resistance and low-loss power switching.
 
 3. **Active or Saturation Region (Current Source)**
 
    * **Condition:** <i>V<sub>DS</sub> &ge; V<sub>GS</sub> - V<sub>th</sub></i>.
-   * **Behavior:** The device operates approximately as a constant-current source.
+   * **Behavior:** The device operates about as a constant-current source.
    * The channel is pinched off near the drain.
    * In the ideal model, a further increase in <i>V<sub>DS</sub></i> does not increase current.
    * Gate drive, <i>V<sub>GS</sub></i>, primarily sets the current.
@@ -115,12 +115,12 @@ The following boundaries use the ideal long-channel model.
 
 ### Source and Drain Design Intuition
 
-Some small-signal FET structures are approximately symmetrical. In those devices, terminal voltage can determine the effective source and drain.
+Some small-signal FET structures are about symmetrical. In those devices, terminal voltage can determine the effective source and drain.
 
 * **N-channel source:** The lower-voltage channel terminal operates as the source.
 * **P-channel source:** The higher-voltage channel terminal operates as the source.
 
-Power MOSFETs are not fully symmetrical. Their body connection and intrinsic body diode give the terminals a fixed practical orientation.
+Power MOSFETs cannot generally be reversed without changing the circuit's behavior. Their internal body connection and body diode give source and drain different practical roles.
 
 ### Negative-Drain Trap
 
@@ -145,7 +145,7 @@ Junction field-effect transistors (**JFETs**) are **normally on**. Their zero-bi
 
 **How an N-Channel JFET Operates**
 
-* At 0 V gate bias, current is approximately <i>I<sub>DSS</sub></i>.
+* At 0 V gate bias, current is about <i>I<sub>DSS</sub></i>.
 * A more-negative gate voltage narrows the channel and eventually pinches it off.
 * The gate is a diode junction to the channel.
 * **Do not forward bias the gate.** For an N-channel JFET, do not make the gate positive relative to the source.
@@ -204,7 +204,7 @@ The approximate source-follower gain is:
 
 The approximate output impedance is <i>1/g<sub>m</sub></i>.
 
-Because <i>g<sub>m</sub></i> changes with signal current, output impedance also changes. The original notes call this change a "wobble." It can cause distortion.
+As the signal current changes, <i>g<sub>m</sub></i> changes too. That makes the output impedance vary with the signal, which can distort the waveform. This is the "wobble" described in the original notes.
 
 Use a constant-current-source load or a negative supply to stabilize the operating point.
 
@@ -316,7 +316,7 @@ A complementary metal-oxide-semiconductor (**CMOS**) transmission gate uses two 
 
 A **current sink** draws a specified current. A **current source** supplies a specified current.
 
-An ideal circuit keeps this current constant for all node voltages. A real circuit does this only within its compliance-voltage range.
+An ideal circuit keeps that current constant at any output voltage. A real circuit can do so only within its **compliance-voltage range**: the output voltages where it has enough room to regulate without exceeding its limits.
 
 ### Why Use a Current Sink?
 
@@ -327,7 +327,7 @@ Assume that an [emitter follower](<./02-BJTs.md#5-amplifier-configurations>) mus
 
 ### JFET Current-Sink Example
 
-A JFET is a normally-on depletion device. As a result, you can use source resistance for self-bias.
+A JFET conducts with zero gate-to-source voltage. A source resistor can therefore set up its own bias: current raises the source voltage, which makes the gate more negative relative to the source and limits the current.
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
   <img
@@ -386,7 +386,7 @@ A JFET sink is usually not consistent enough for a tight tolerance. Use a BJT si
 </figure>
 
 * **Concept:** Set collector current by setting a fixed emitter current.
-* **Benefit:** The circuit does not require an exact <i>V<sub>BE</sub></i> bias. Collector current is approximately equal to the selected emitter current.
+* **Benefit:** The circuit does not require an exact <i>V<sub>BE</sub></i> bias. Collector current is about equal to the selected emitter current.
 * **Common-emitter application:** An emitter current sink keeps <i>I<sub>E</sub></i> almost constant. As a result, <i>I<sub>C</sub></i> is also almost constant.
 * The collector DC voltage is:
 
@@ -398,7 +398,7 @@ This method decreases bias dependence on transistor <i>&beta;</i> and <i>V<sub>B
 
 ### JFET-BJT Series-Feedback Pair
 
-This circuit combines a **JFET** high-input-impedance stage with **BJT** gain and output stages.
+This circuit uses a **JFET** input to draw very little current from the signal source, with **BJT** stages to add gain and supply output current.
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
   <img
@@ -482,7 +482,7 @@ This circuit combines a **JFET** high-input-impedance stage with **BJT** gain an
 7. Gate and source voltages then increase together.
 8. As a result, <i>V<sub>GS</sub></i> remains almost constant.
 
-The feedback-resistor ratio, <i>R<sub>f</sub> / R<sub>g</sub></i>, sets the closed-loop gain. Transistor parameters no longer set it directly.
+With enough feedback, the resistor ratio <i>R<sub>f</sub> / R<sub>g</sub></i> sets the closed-loop gain, so the gain depends much less directly on transistor parameters.
 
 <div data-ltspice-placement="jfet-opamp-feedback">
 
@@ -596,7 +596,7 @@ During gate charging, gate voltage first increases, then becomes almost constant
 
 1. **Region 1: Charge C<sub>GS</sub>**
 
-   * Gate voltage increases approximately linearly.
+   * Gate voltage increases about linearly.
    * The MOSFET is off.
 
 2. **Region 2: Miller Plateau**
@@ -612,7 +612,7 @@ During gate charging, gate voltage first increases, then becomes almost constant
    * The device moves toward the fully enhanced ohmic on-state.
    * Gate voltage increases to the driver level.
 
-During the plateau, the MOSFET is partially on and operates as a resistor. It dissipates heat.
+During the plateau, the MOSFET is switching between its off and on states. It can carry current while a substantial drain-to-source voltage remains, so it dissipates heat.
 
 Supply sufficient gate current to move through the plateau quickly.
 
@@ -649,7 +649,7 @@ This sharing benefit does not remove the linear-mode hot-spot risk described lat
 * This path can prevent damaging drain-source overvoltage.
 * The body diode can have slow reverse recovery.
 * Slow diode turn-off can cause [shoot-through](<../../02-Power/Power%20Control/Gate-Drivers.md#4-high-side-drive-and-dead-time>) current in an [H-bridge](<../../02-Power/Power%20Control/Motor-Drives.md#drive-paths-and-braking>).
-* Select a device with suitable fast-recovery behavior when the application requires it.
+* Select a device with suitable fast-recovery behavior when the application needs it.
 
 ### Safe Operating Area
 
@@ -663,7 +663,7 @@ Designers sometimes call this graph the datasheet "map of death."
 
 1. **Resistive Heating from Insufficient Gate Voltage**
 
-   * **Cause:** Apply 3.3 V to a gate that requires 10 V for low <i>R<sub>DS(on)</sub></i>.
+   * **Cause:** Apply 3.3 V to a gate that needs 10 V for low <i>R<sub>DS(on)</sub></i>.
    * **Result:** The FET does not turn fully on.
    * <i>R<sub>DS</sub></i> stays high, and <i>I<sup>2</sup>R</i> heating can destroy the device.
 
@@ -700,7 +700,7 @@ The original notes call the BJT output "stiff" and the FET output "soft."
 
 * MOSFET <i>V<sub>GS(th)</sub></i> can differ by as much as 3 V between devices in the same batch.
 * As a result, a fixed gate voltage cannot set an accurate drain current.
-* BJT <i>V<sub>BE</sub></i> at a specified current is more predictable, but approximately 0.7 V is not an exact constant.
+* BJT <i>V<sub>BE</sub></i> at a specified current is more predictable, but about 0.7 V is not an exact constant.
 * BJTs usually give better results in high-precision discrete current mirrors and sources.
 
 ### Miller Effect and Bandwidth
@@ -719,7 +719,7 @@ The original notes call the BJT output "stiff" and the FET output "soft."
 
 ## 11. Linear Examples and the Danger Zone
 
-The original Art of Electronics note gives this guidance: discrete MOSFETs can make linear amplifiers, but they are frequently not the best choice.
+The original Art of Electronics note gives this guidance: discrete MOSFETs can make linear amplifiers, but they are often not the best choice.
 
 ### Discrete-MOSFET Variability and Noise
 
@@ -774,13 +774,13 @@ This is an unconventional low-cost method. The original notes call it a "MacGyve
 
 ### Linear-Power Hot Spots
 
-This problem occurs when a MOSFET operates as a variable resistor in a linear regulator or Class A amplifier.
+This problem happens when a MOSFET operates as a variable resistor in a linear regulator or Class A amplifier.
 
 * Modern switching MOSFETs are optimized for high cell density.
 * With high voltage and high current at the same time, current can concentrate in a small die area.
 * This concentration causes localized thermal runaway.
 * The MOSFET can fail below its total power rating.
-* Use a linear-rated MOSFET, frequently made with older planar technology.
+* Use a linear-rated MOSFET, often made with older planar technology.
 * Also check the **DC line** on the SOA graph.
 
 
@@ -792,7 +792,7 @@ A shorter channel can increase current for the same bias in a long-channel appro
 
 Discrete power MOSFETs usually connect the body to the source internally. This controls body potential and helps suppress unwanted parasitic transistor operation.
 
-Integrated MOSFET bodies can use a shared well connection. Their body voltage can change threshold through the body effect. Do not assume every body is separately accessible.
+In an integrated circuit, several MOSFET bodies may share a well connection. A change in body voltage can change the threshold voltage; this is the body effect. Do not assume you can connect to each body separately.
 
 Gate oxide is thin and tolerates limited electric field. Check gate-to-source limits even when drain voltage remains within its rating.
 
@@ -805,7 +805,7 @@ import TransistorCurves from '@site/src/components/learning/TransistorCurves';
 
 These curves use an ideal long-channel model with a 1 V threshold and a 1 mA/V² model factor. They exclude channel-length modulation and breakdown.
 
-The linear region ends when drain-to-source voltage equals gate overdrive. The saturation current then remains constant in this simplified model.
+In this model, the linear region ends when drain-to-source voltage equals the gate overdrive, meaning the gate-to-source voltage above threshold. Beyond that point, saturation current stays constant in the simplified model.
 
 See [MIT MOSFET and CMOS operation](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c3/c3s1/) for the model's circuit context.
 
@@ -830,9 +830,9 @@ In the saturation region, its drain current follows:
 
 **ID = IDSS × (1 − VGS / VGS(off))².**
 
-The source resistor and the device equation must agree at the bias point. With 1 kilohm and a 12 V supply, current is approximately 1.131 mA.
+The source resistor and the device equation must agree at the bias point. With 1 kilohm and a 12 V supply, current is about 1.131 mA.
 
-The gate to source voltage is approximately −1.131 V. A larger source resistor produces a smaller current in this example.
+The gate to source voltage is about −1.131 V. A larger source resistor produces a smaller current in this example.
 
 ### Supply voltage and operating region
 
@@ -842,7 +842,7 @@ The current then depends strongly on the supply voltage. This is different from 
 
 JFET saturation does not have the same meaning as BJT saturation. The JFET saturation region is the useful region for this current-source example.
 
-This model sets channel-length modulation to zero. Its flat current plateau excludes the finite output resistance of a physical JFET.
+This model leaves out channel-length modulation, the small current change caused by drain voltage even in saturation. Its current plateau is therefore flat, unlike the finite output resistance of a physical JFET.
 
 JFET parameters can vary between devices. Check the bias point across the specified parameter range.
 
@@ -870,7 +870,7 @@ A 5 V gate voltage gives the P-channel device **VGS = 0 V** and turns it off. Ga
 
 For an ideal switch, load current is **5 V / load resistance**. With a 100-ohm load, the ideal current is 50 mA.
 
-The simulated on current is approximately 49.07 mA. Channel resistance and model series resistance account for the difference.
+The simulated on current is about 49.07 mA. Channel resistance and model series resistance account for the difference.
 
 These circuits demonstrate polarity and load placement. They do not form a half bridge because their drains connect to separate loads.
 
@@ -895,9 +895,9 @@ These examples show component behavior and reusable circuit blocks. Each example
 
 A drain resistor converts channel-current changes into an inverted output voltage.
 
-The gate source voltage sets channel current. The source resistor provides feedback through the source voltage.
+The gate source voltage sets channel current. The source resistor gives feedback through the source voltage.
 
-This frequency sweep linearizes the circuit at its DC operating point. The AC source value of one makes the output equal to voltage gain.
+The frequency sweep uses a linear approximation around the DC bias point. Setting the AC input to one means the plotted output directly gives voltage gain.
 
 The drain needs enough voltage to keep the transistor in saturation. This region supports voltage amplification.
 
@@ -911,7 +911,7 @@ The source resistor establishes the operating current. The gate to source voltag
 
 The small-signal voltage gain is below one. Source feedback limits changes in gate to source voltage.
 
-This circuit requires voltage headroom. The source cannot reach the gate voltage while the transistor supplies load current.
+This circuit needs voltage headroom. The source cannot reach the gate voltage while the transistor supplies load current.
 
 [Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-source-follower>).
 
@@ -983,7 +983,7 @@ A JFET and source resistor form a current sink between the drain and ground.
 
 The gate connects to ground. Source resistance creates the negative gate to source voltage that sets current.
 
-The current becomes nearly constant after the drain voltage provides sufficient headroom.
+The current becomes nearly constant after the drain voltage gives sufficient headroom.
 
 The finite slope above this point represents output conductance. The resistor changes both current and required voltage.
 
@@ -997,7 +997,7 @@ The reference transistor connects its drain to its gate. The reference current s
 
 The output transistor needs enough drain voltage to remain in saturation. Below that voltage, the current falls.
 
-Channel-length modulation gives the output curve a slope. Equal gate voltage alone does not guarantee identical current at different drain voltages.
+Channel-length modulation makes current rise slightly with drain voltage, giving the output curve a slope. Matching the gate voltages alone therefore does not guarantee equal currents if the drain voltages differ.
 
 [Open this circuit beside its topic](</docs/Discrete-Components/Semicondctors/MOSFETs#circuit-mosfet-current-mirror>).
 
@@ -1021,7 +1021,7 @@ A fixed drain voltage and drain resistor establish nearly constant drain current
 
 The source must then follow input changes to keep the gate to source voltage nearly constant.
 
-The output supplies the required source correction through the feedback resistor. The resulting gain is approximately one plus the resistor ratio.
+The output supplies the required source correction through the feedback resistor. The resulting gain is about one plus the resistor ratio.
 
 A small capacitor adds a direct high-frequency feedback path around the op-amp.
 
@@ -1035,7 +1035,7 @@ The first gate receives the input. A divided output voltage drives the second ga
 
 The op-amp senses the difference between the two drain voltages. Its output moves until the gate voltages nearly agree.
 
-The resistor divider sets the closed-loop gain. The JFET pair provides high input resistance at the signal input.
+The resistor divider sets the closed-loop gain. The JFET pair gives high input resistance at the signal input.
 
 The compensation capacitor connects the output to the drain at the op-amp negative input. This supplies a direct negative-feedback path at high frequency.
 

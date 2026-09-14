@@ -93,7 +93,7 @@ Like an RC circuit, an RL circuit has a time constant. The circuit contains an i
 
 **Key takeaway:**
 
-Current takes time to increase. Lower resistance gives a larger time constant and a slower exponential rise.
+Current takes time to rise. A lower resistance increases the time constant, so reaching the same fraction of the final current takes longer.
 
 * **Contrast with capacitors:** Higher resistance makes a capacitor charge more slowly.
 * **Contrast with inductors:** Lower resistance makes an inductor current rise more slowly because <i>&tau; = L/R</i>.
@@ -119,7 +119,7 @@ It can increase or decrease voltage. It can also isolate grounds.
 
 ## 6. Core Types and Selection
 
-The coil-core material determines how much energy the inductor can store before it **saturates**. At saturation, the core stops operating correctly.
+The core material affects how much magnetic field the coil can support before it **saturates**. As the core saturates, inductance falls and current can rise faster than the circuit was designed to allow.
 
 | Type | Material | Advantages and Disadvantages | Best Application |
 | :--- | :--- | :--- | :--- |
@@ -179,7 +179,7 @@ This circuit is the primary inductor application in digital hardware.
 **Saturation current** is the most dangerous inductor specification.
 
 * **Concept:** The magnetic core can hold only a limited magnetic flux. When the core is full, it acts like an air core.
-* **Danger:** Inductance decreases to almost zero immediately. A very large current spike can destroy the metal-oxide-semiconductor field-effect transistor (**[MOSFET](<../03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**).
+* **Overcurrent risk:** Saturation can sharply reduce inductance, allowing current to rise much faster. The resulting peak can destroy the metal-oxide-semiconductor field-effect transistor (**[MOSFET](<../03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**). The drop depends on the core; it is not always an instantaneous fall to zero.
 * **Rule:** Never exceed <i>I<sub>sat</sub></i>, even for one microsecond.
 
 ### B. Audible Noise (Coil Whine)
@@ -200,7 +200,7 @@ Never route a sensitive signal trace under an inductor. The inductor acts like a
 
 ## Data-Sheet Qualification: Saturation Is a Curve
 
-The saturation description above needs a component-specific qualification. **Isat** is commonly the current at a specified percentage decrease in inductance.
+Check how the manufacturer defines saturation current. **Isat** usually means the current at which inductance has dropped by a stated percentage, rather than one exact point where every inductor suddenly saturates.
 
 It is not a universal point at which inductance instantly becomes zero. Different cores have different saturation curves.
 
@@ -223,11 +223,11 @@ import PassiveModels from '@site/src/components/learning/PassiveModels';
 
 **Alternating-current resistance (ACR)** includes frequency-dependent winding loss. [Skin effect](<../../00-Foundations/04-Fields-and-Materials.md#dielectrics-and-conductor-losses>) and proximity effect redistribute current and increase this loss.
 
-Core hysteresis and eddy currents add magnetic loss. Core material, frequency, flux swing, and temperature affect it. Winding ACR and core loss are separate contributions.
+The core loses energy as its magnetization repeatedly changes (hysteresis) and as circulating currents form within it (eddy currents). These losses depend on material, frequency, flux swing, and temperature. Keep them separate from losses in the winding's AC resistance, or ACR.
 
 Insulation damage can short turns. Overheating can damage wire or terminations. A cracked core can change inductance and loss.
 
-An ideal inductor's impedance increases without bound with frequency. A real inductor reaches self resonance and then its [parasitic capacitance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>) can dominate.
+An ideal inductor's impedance keeps rising with frequency. A real one eventually reaches self resonance, where its inductance and [parasitic capacitance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>) interact. Above that region, the capacitance can dominate its behavior.
 
 For a series resistor and inductor, output across the resistor gives a low-pass response. Output across the inductor gives a high-pass response.
 

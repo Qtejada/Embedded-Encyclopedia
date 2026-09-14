@@ -1,0 +1,2675 @@
+{
+  "description": "Structural baseline before the authorized September 2026 readability rewrite. The full original source is stored separately in the local review folder. Historical snapshots are unchanged.",
+  "patterns": {
+    "headings": "^#{1,6} .*$",
+    "frontmatter": "\\A---\\n[\\s\\S]*?\\n---",
+    "imports": "^import .*$",
+    "code": "^```[^\\n]*\\n[\\s\\S]*?^```[^\\n]*$",
+    "equations": "^\\s*>[^\\n]*$",
+    "linkDestinations": "\\]\\((?:<[^>]*>|[^\\n)]*)\\)",
+    "componentTags": "<(?:[A-Z][A-Za-z0-9.]*\\b|[a-z]+\\s)[^>]*>",
+    "staticPaths": "useBaseUrl\\([^)]*\\)"
+  },
+  "files": [
+    {
+      "path": "docs/00-Foundations/00-Foundations.md",
+      "beforeSha256": "39d8bb8ac096931d73159fde8ad1bf62eeaab8ae3ad194618ea19d838677ea0f",
+      "checks": {
+        "headings": {
+          "count": 23,
+          "sha256": "7bde67bc26af97d401478f06db76d3893dc6a114866ea4346cb4d8437506b34e"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "097f59f51a98a6fd948c26ebd7feb164132e77627d31c10d4049ca889347699b"
+        },
+        "imports": {
+          "count": 5,
+          "sha256": "33015e6fa468dd209ac801170bdb4775a63f05bf5ed1227e691ed8bb856c715e"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 2,
+          "sha256": "096c61ddc077a0e88928b68ab98e23437f51fca54e9ce3484be89dcb73f8bd76"
+        },
+        "linkDestinations": {
+          "count": 12,
+          "sha256": "2c024adf481110f835b8f84e0636095ef255dd7be163227e8218552c47000628"
+        },
+        "componentTags": {
+          "count": 20,
+          "sha256": "8de2ccfc24eebb43c1aa684640cf9e0391e63e48d753205169c20aa641bb4267"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/00-Foundations/03-Precision-Design.md",
+      "beforeSha256": "a74d951854c47acb008eae629f925844a2571bbb644ed1d9c72583f8ac0ee878",
+      "checks": {
+        "headings": {
+          "count": 53,
+          "sha256": "bc7d5c4308ba7100e48131daa6c2be518f3ce404416bbe7be2ac9ba9b56797a8"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "2c2d53ba594c1560fe0050b0ae006ba12482c0bb32e287076f8503e0afb1f67f"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "525b8b2312712428bc4371d0430fd8dd7dae4dcbf61a788a66cdc9b4ba0d4cbf"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 11,
+          "sha256": "3d56e5f02647261af77acca095141ef960af4d3854573d1fe564ef8a6face18a"
+        },
+        "linkDestinations": {
+          "count": 27,
+          "sha256": "a54612bc37c24da25e206ccc9ec8df71a67a7b946ef45496d4e5e7e6d2b85261"
+        },
+        "componentTags": {
+          "count": 7,
+          "sha256": "9b23a4adf1ce7bbff0567e3b12023c55f5a64cdb8c0d82e25c7223c28cc6f5f0"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/00-Foundations/04-Fields-and-Materials.md",
+      "beforeSha256": "d09fcfaf10f5b7023896f070f85d9c01d89154a161e21c8cf88d424870a316cc",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "d95b25c03ce703bc51ede876e262fda730e61d904cb9f8168726f6128ea4e987"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "9ef4d21b1628ff88fa4c3bd99e05c9c2a29470be82d99d491cfae174a5e8a068"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "b2480264d7a37e785a9a49289d2eb67841b87502eed2a95c5a6690d98f27ec3e"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "afa5fb2adac607ce9ecb6e1603ecf71b83fd7cc98aa24fbb21648550c62e73d4"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/00-Foundations/05-Measurement-and-Debug.md",
+      "beforeSha256": "7347069c60f4a909edebb86b7fe9cd36c77be0da4cca937797260ac68d6d9b07",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "6fa1c3a401a10ca2f1e4daca602ca6631f272c29c57a91446d12caca7ff6b281"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "e255de3d90a6d03e648f63286c0e731d3eed2062f1d6db0778de33ec5691581d"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 6,
+          "sha256": "ffab8ce4a7a17ceae1835f240c9362e88f5301acca2ad79946be28dfd9162c9e"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/00-Foundations/06-System-Design.md",
+      "beforeSha256": "713f695c0b6387005ff7243bb3b5151516b079baf0cb24d8d5b9da1374526f90",
+      "checks": {
+        "headings": {
+          "count": 4,
+          "sha256": "4ef039deced06a5dc68f4e11990cb0ce100d2d62fd585a6bdaa8fe53921bed39"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "2214d55af72545aa4d1294534e245122569a6fc2dec11267ef469a1e853f133f"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 2,
+          "sha256": "11c79404813b0a74d09ace9bd4e313784d4018bbc5c80f3d6c4e152c5f4b3efe"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Sensors.md",
+      "beforeSha256": "8f4593b5fca2ccd0a24023c7806075fb9f2fe68fb1c5ebd6d6a447236d777020",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "571278db854c1dfb668e004b4b1e92dd4a6ac7a968a62fd115ac8a36eb368428"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "7e62294cc2e06eb639318253ee4cd26169404c58f2ef5a80790587cb19b20178"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "a2283f0c3a82a8f6ca6f09c92f58b322f64ec9a8facff76aec9dc8d8f897432e"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "9bfb6f91519f2c763897c5ecc6e2a59ab54e99c9db0d89b1896758c262f0a12e"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Signals-and-Systems.md",
+      "beforeSha256": "b652ce6ddad509083aade6a3447d734b94eb6e665e4b9a528d125077fc4a9ec7",
+      "checks": {
+        "headings": {
+          "count": 19,
+          "sha256": "6f76ffd70106633de3f2d8c07a209564d36c5c08ee79111b0e65e1448452df8e"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "a0a4f161065bdd7f08d84ed3aa982fa21e9e14107589d9e05d6efb3b61fdc4b3"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "c4bc457d9d2e7cd1af7948b9189b6156435c4c6fc2d4b77b5924590b94ebc485"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 4,
+          "sha256": "f6af37f1947d84c34bb49b56622405a21fc1e15d2c894c5cf07adfcf3c396c35"
+        },
+        "componentTags": {
+          "count": 15,
+          "sha256": "b65ec765a51219eaaa324e4d36888074a90b66194b50a6d110538663e6ace74e"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/State-Space.md",
+      "beforeSha256": "50e55e1bc7310c0abfbd07abc887bc627fa5535da5f9db69f86daf294c7e2021",
+      "checks": {
+        "headings": {
+          "count": 13,
+          "sha256": "a482fd02968010b8b7b119dce260c5c151704d4a5e0ee0014b93a735bd708223"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "efc2b57656069de7e5956181eccd9d0f2d47c565dff839dd0c4ab10126d40da2"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "3ee05d3de43afef5b12305060665a701177c37f2d96a789ddeca9feb5c901bed"
+        },
+        "componentTags": {
+          "count": 12,
+          "sha256": "fe6779544d27acb5491eb074547c3e333ae0e5b77be35d8d6fcb4106851cf640"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/bridges.md",
+      "beforeSha256": "d13a9ed6748746c0580283e058f11840dfd042f6d6e3957113a9c35997d17b0c",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "758871dd2e54ec6844a02feb0ab0e09360e6ca646c6ce652f26907819e92f38d"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "14ca694dc8e29795447028eb4a8cbf0440e6991311ffc0a720ff90546d12be91"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 4,
+          "sha256": "0f405f1129248ab1a74ec5b994877e453baae0aa73179490f1150cf3131ebd13"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "95512986c67bb526cb5ed4f8ad331cd40d95c329130107876d8d421d1b34526b"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/CMOS-Design.md",
+      "beforeSha256": "50d3a691b39593c2678df2287c88dc97ed1c359b8204caf1cee0bebb0ac609ad",
+      "checks": {
+        "headings": {
+          "count": 12,
+          "sha256": "e785c8ac23054dbc0cbf35b083fc80bf71807c29f76fd2810307dffec460fe42"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "3b0968a91d51bd10ca53e0b68bc3b128dc86f92ebca3ba7895d9815fdbd29b11"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 6,
+          "sha256": "43603eff9c65fedc785fe03ca4a8984d383f64c44b5031ca7b55419f166c330e"
+        },
+        "componentTags": {
+          "count": 5,
+          "sha256": "5083bda0cb2f8b0fbd26aaeeb75620645bd9cc88e2223acef7a579eefb5dd879"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Computer-Architecture.md",
+      "beforeSha256": "2d0c81a7a28d46f3aff40e1e77a7e3a10e0251c97f49098e0789533a7d3042b6",
+      "checks": {
+        "headings": {
+          "count": 9,
+          "sha256": "47a9a5fbf465197eeff4ac7f8b17b467ee18c951a9383fb4e71b31cd08af74aa"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "1135d500737e3faab5e0d3cfc813ddb9653f617fb1314232bae37cca29b7905d"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 14,
+          "sha256": "fc5f6198248afaceb0b63afc4fcac3ca55c6b5f994c57b36218d751b21217490"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "df04956438377588ce61b261260ee49e256af87a02a411663281f4c57d67c338"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/DigitalGeneral.md",
+      "beforeSha256": "c8b690c070dfa934cf382f1f3792079bc992f51e3ce916056a1c26f2507f417c",
+      "checks": {
+        "headings": {
+          "count": 51,
+          "sha256": "ed5151c66cc28c44167e64d95712aaf9fc9fd487e13b46d65376091de22dab4f"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "701a826f440680790a15c12dc552c2e885d1b1a45a2e02e2191d09dd20a0c048"
+        },
+        "imports": {
+          "count": 4,
+          "sha256": "a364f843dad2382997371f9dcb101ae3679bc08c6d6433f6ebf6daf02fc6091a"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 11,
+          "sha256": "6ee1280be0f31b9aab13955978663ef591721be14bac553f1074c742e2e77d47"
+        },
+        "linkDestinations": {
+          "count": 37,
+          "sha256": "c9c5ce0677ddd10cf970fe5c06cee54e33b55b6500243aa94828b93f0e7d2696"
+        },
+        "componentTags": {
+          "count": 6,
+          "sha256": "90e9b8525ac8389946f8f15fe026c0e9490c73afbcf548f3835f1277245f0592"
+        },
+        "staticPaths": {
+          "count": 1,
+          "sha256": "596d371315fa262c01f757145fedd371994e82966e4bfa2336002f8ff39e1b9c"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Embedded-Systems.md",
+      "beforeSha256": "71581d15d8ec7fe42811b359db15cbdb526218967c91d80fd486b25bc3d55539",
+      "checks": {
+        "headings": {
+          "count": 8,
+          "sha256": "9cf5605954b14261d05c162cc7a655d0c4203227728ab2923e8baae6c84f94db"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "6dd235f23d72797d022238c247113d233b977f773124f79190527dadae6df90b"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "5352a32921fdc1123ab8d0afe0521844362152021cc0a98a7fdd272ab6f2ccdd"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 14,
+          "sha256": "b561cd0a353a2e28275b60027568ae21c4a8d88ff4ab68313cbf6d8a738df968"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "a8cfac92bb95d51c3c99d0a779045a40873338ccd413f7b58f95e72440c7c613"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Ethernet.md",
+      "beforeSha256": "7c8169797c3d33877aa963f32782ef60513b5a0003f1590e84a0defe6910b21d",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "f5ac4a1bd95aa370e9cdca2a139f7a36609d64434eafc091aa173bef05221480"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "14ca694dc8e29795447028eb4a8cbf0440e6991311ffc0a720ff90546d12be91"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 4,
+          "sha256": "85e4853700fc539eaf239db4bf515634c66ee47e57067ee81d6145214e3f5647"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "c8656dfa2f687a310bb3984a7a74bcc0cc6fd79d4a70f1b0b7e426d42576fe07"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Firmware.md",
+      "beforeSha256": "61d37bb660321d0ce2924e7f89dcb6b8a3cbdd01edbc8fae2991c969e01cfbd6",
+      "checks": {
+        "headings": {
+          "count": 10,
+          "sha256": "8cbbf498779450353ae0b3084fbed04ca5fcfad8b48b229b2b90efcd6f2d9013"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "de7ec8b2f62f5447a82c75b7d87886d01c1b2bd10a2233b20bd4d841b1196af5"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "6dd57bc877af85503ae5ea11ec418cfe58b6052c95b24577cc268167d5cdb03d"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 8,
+          "sha256": "204df76dbca7c477abd1eef0144104950f497af680a53b746635d9286968d089"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "bebe5e275ddc0b10ef76b750c8c935024a67ebfec9d8489daccedb7d1dbde938"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/io-expanders.md",
+      "beforeSha256": "5aedff6f96ae353b0a99c86e0a6c38bd6312f69bcf1a8e6c1a55534f21d59ef8",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "2ab09cac5691495e23d08752f19320994d036849774f6bde94bceda7a6c82fe9"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 3,
+          "sha256": "e5f540b5db76514680feafa12adf9763ecd5b30e72e365779109527600e74c78"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "b049e171c8068079f14a79fcb93424a53e3289b03a8e88496528897c961bd46c"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Memory.md",
+      "beforeSha256": "dfcb1dda5516b25fa70d81522461e2333b73c1a9e03e0fee60f1ffc5705ac70c",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "31a8e673d56cd2b42c0f945a72f997a9d9cc591282839c011d823b121b36ac03"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 6,
+          "sha256": "2d1a8c071a89f4c124fd1d5a33d1df717a6ef93c1b9ae128229158b7515b0023"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Operating-Systems.md",
+      "beforeSha256": "e32dcc24eda185401c8c9914069c54c29c8945b5d00e513153e8d5fa2fc29b1e",
+      "checks": {
+        "headings": {
+          "count": 14,
+          "sha256": "c4c99e4d2029b034deffe4a54982882ff35442633fc115d528f49c13a77d0484"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "93d23e2a7e1e479ac3d51277bad92857eeb9dda38645137e7fa02e65b25337b6"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 4,
+          "sha256": "342ed811fb0fe27e40b778458760d224162802d97e8916eaffd7673606c8f6d9"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Processor-Memory.md",
+      "beforeSha256": "4f8759175c1a611ab6f306aa81ef6359b301ac47f0071226d9dab1e1fdb083d8",
+      "checks": {
+        "headings": {
+          "count": 11,
+          "sha256": "a6090ed6cdd861405f09e673959f8ba348dcb81732056d5afe710dc5152d7068"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "b58d0343556d3644f552a7aec9f11975561187b3458f08fc110152fc6a388ed1"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 3,
+          "sha256": "467ba26ad6f8ead9563f1397e3cd68a89842fbe365893d054264bdcce54c5721"
+        },
+        "componentTags": {
+          "count": 3,
+          "sha256": "2952b98a2c7fb0f5a12628c83ec35dc18f1a6b59d519dbbed0f5924be861185b"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/RISC-V-Assembly.md",
+      "beforeSha256": "fa9fbdce7e15e4f53a6350073e510032ceecc2f6fb6a3adebbfff83ccc87bde2",
+      "checks": {
+        "headings": {
+          "count": 10,
+          "sha256": "73e93177f0f2148d948f6880bab1377e1e68e2be9b6cece1eb116a6ff3b24876"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "b91936cb68c31224f77814a2f0eda53d931555c3a8c88cd96ff963396ba8553e"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 2,
+          "sha256": "f691239aa41bd209c67c688b08f13654d519ff86fe23e462412a6de67fe05c0b"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "ff311b710d5c7136b96d62bfd9d3b8095d1d13a4193f7d8eb21331cebb531cf7"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/RISC-V-Pipeline.md",
+      "beforeSha256": "113930088f77ba6016362c1cbc48a094e39affff52724a3e13aa977271934b05",
+      "checks": {
+        "headings": {
+          "count": 29,
+          "sha256": "4b52d21869303f959bcb304f4852561aba95131d6a0eea602b152e3acc9a3c35"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "435e17c51dea4c77e26e1a1b2342931979856939174c65d2df7ba3d2a7ff66f1"
+        },
+        "imports": {
+          "count": 3,
+          "sha256": "ca1592c20865c355f542474d175d02710b0c27a67fe367a17e40529bd225d367"
+        },
+        "code": {
+          "count": 4,
+          "sha256": "472fc85a61d74c037ba6d12b8f7e610799b35ffdfd1d81fa1768cf06ca6b3472"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 7,
+          "sha256": "42bdfcbec822765870ba5905112045f61f2a9acbf8356531d48233eb7069e338"
+        },
+        "componentTags": {
+          "count": 4,
+          "sha256": "450029dbe16ed5d10c547e5f5d7d1e179cda24ac5108b715b3d091ada423e66f"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Sequential-Design.md",
+      "beforeSha256": "bd36c5ddfc2abf279a545b36d7ef23b1ee7c27308fdc2753c22fffe412eaf1ba",
+      "checks": {
+        "headings": {
+          "count": 10,
+          "sha256": "c9cc149e02d2a34bac291af73679503a8075280380e66b125edb67a21fba2f3e"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "9104be5b58bdc7ab2d9c98b26a044024d7fdfabe2ef3a433f261d3fa344af2f1"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 1,
+          "sha256": "abb8c578a9b874e1d2a5a13da0227436bca88e3389975c71f95e747fa303f116"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "5569c4c0365f70c4dc8b380f03889fd9dcb8377b9060379af79fb6b37478fe14"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/USB.md",
+      "beforeSha256": "73c08d20c45268ab99c77e946f43b3ee649ccb591ab82dc5a329e538d87a7318",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "4de519d36d604f4d74f7f08169e265da3ef07c4a997d653a4141dd3c2c16a734"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 3,
+          "sha256": "8d46844b435204bacc367fe1573630a969e6366635c9fdc3762b5feea446ae10"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/05-PCB-Layout/01-Overview.md",
+      "beforeSha256": "2cb08fedc5daa3ffe0f2f6161a54c4aa130a00e9c4f23987dfaea3a9da10a3fb",
+      "checks": {
+        "headings": {
+          "count": 40,
+          "sha256": "13a54097ca719c1330d67dca379dd671ccaf1e169faf4ef38aaeb3a63b334d0e"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "9dde14e7992bc949dcb321aa200e61555099ca27fd7cf22c67fdd6f62274e3d1"
+        },
+        "imports": {
+          "count": 3,
+          "sha256": "a1776318a9a2656846cdbc75131ef55632c8eb92c3b72a37544dbf9f25f9f338"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 34,
+          "sha256": "f95f257e76920e44f38e4b28cb694da37cd39dbb895f728f9bb03e7e598e4f6c"
+        },
+        "componentTags": {
+          "count": 5,
+          "sha256": "a179f667698e13f7f1451f09a45059aaec2398387370f3cc2a09b298c4ad7e0a"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/05-PCB-Layout/02-Return-Paths.md",
+      "beforeSha256": "f5f08c3f242b62ac02ee420207f0c51d2ed48f86ab7af762e08d62b0c172414d",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "bf09b91fd195862875f39a768c4f3edf7c301f7b1d84fa624776b491aa57e6f9"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "d1ebbada76dbbff4ba8cba5ea93427e9a7b0de5650efd3cb81a0429a16f7e112"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "ac4e18f8c1ad7b299f19d1df547b37cbd50dfbf226e7b2c82fad288eabc43023"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "caea5adcb30e623ceb4a13203326f798a5862a31700a8da7937134090a480115"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/05-PCB-Layout/03-trace-impedance.md",
+      "beforeSha256": "0d9a7c666384b43580491e39a4dedefa937eecbfd693ba447f83ef9d38c2761c",
+      "checks": {
+        "headings": {
+          "count": 8,
+          "sha256": "48fcd597caf9c3fe623b1c8c48700ebb0e163db9cf319a0da0696ae026bc97ec"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "4d887df7e0ef5a58c2b54785d4177479227f204211ef9e98751fc683854071d2"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 7,
+          "sha256": "4fa7727659109649d178c38a0abe584248b1bbf4f8a59b1ee9129616c745e8b9"
+        },
+        "componentTags": {
+          "count": 5,
+          "sha256": "01d041d9721ab2bee3830a29b05be7feef7a82be5d71dca98e84cf40138bdfd2"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/05-PCB-Layout/04-Manufacturing-and-Test.md",
+      "beforeSha256": "723fc001d2b1bf1d21248504347b5c1e3ab85cf2dc961ea8c49ddb1ca364e4a3",
+      "checks": {
+        "headings": {
+          "count": 9,
+          "sha256": "f5905b59425e20b0d9421df58b435e807ef5918b792f307f0eef32ae86c6bb6a"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "7a991cbb883fb53821e6ea2995d93650161a675058a055ecc98c5298a34f2dfb"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 11,
+          "sha256": "6f9344dfce7c1eeb039d240bf18a1b9fecb7bfd13ca46ffcbb1a505248e811df"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/05-PCB-Layout/05-Packaging.md",
+      "beforeSha256": "041156b2588948e9c267c5d3e80c9e613fa80bb07098ef5445abc3a753efa43e",
+      "checks": {
+        "headings": {
+          "count": 5,
+          "sha256": "2d7145112f31062157f8685702d45dbdc47bc743d1caa1a811e5515542369b47"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "e93379691109a95ed4ed45460ba4d65deb5369684ea44d16a37cf86222c72d8f"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "dbd4134dc7a304339e854eb046a407cc34dafe244e96a5ed6a3c6db93e7b59cd"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/05-PCB-Layout/High-Speed.md",
+      "beforeSha256": "f3da90b450b58e062161ee37d7f4c900084949090ee17158a459a46c0a30df0d",
+      "checks": {
+        "headings": {
+          "count": 9,
+          "sha256": "11c15819fa877f7708c8f175995d7d4d9b8a0aa3ae201c6e101760241532e4d6"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "178507adf4611c10a51d7cb2f2d884eec133495133760ddd9e39099c59fe739d"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 9,
+          "sha256": "61a94751fe9d4f3a0252ce47e636feb95c09c437023ac7d143d22ea15209be6d"
+        },
+        "componentTags": {
+          "count": 4,
+          "sha256": "0cb86e236e48eb7473caea1dd03898a78cf4e0e8e546aff91dec08d77845fbb9"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/05-PCB-Layout/Phils-lab.md",
+      "beforeSha256": "db63dc0b9867cdd68eac9f5b3ab7970cdd7eed3af4c50a5f6d2d32d26aa016ff",
+      "checks": {
+        "headings": {
+          "count": 1,
+          "sha256": "a917ea0f685bb1e531384299df141ed3360057ca4f28321396366846213b67ff"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/01-Discrete-Components/01-Passives/01-Resistors.md",
+      "beforeSha256": "468cfade1738402464961d3cfc746ac00260019b4128c33570e6a5a926d89e1c",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "578ce32b10ed2050e9c8b154d048760f9f44f7495c0090a2a3de8d8375eb2bec"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 3,
+          "sha256": "c831bcd2fe532a84d4d5dbe2dc02ceb1ca1c244ce28baaebfe2c203fabbb2be1"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 3,
+          "sha256": "9f848523a74778dbd8e2d40f2afc5c3aadff9f91bd8e0ee49636801a97e8fd2c"
+        },
+        "componentTags": {
+          "count": 6,
+          "sha256": "498042cf69d85f9982b55cab1ba38df9eb9b569dbba217d3bbedb20031ed2eda"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/01-Discrete-Components/01-Passives/02-Capacitors.md",
+      "beforeSha256": "3144ee2b3f54a290f1c6ba2d908fbce8ce095e6c84e96de7a15fe4120f3ccffd",
+      "checks": {
+        "headings": {
+          "count": 27,
+          "sha256": "5596e74d1c58a2524ddc1395017ca09230bcdf4898119998cbf9fc12ac564463"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "12fba4592f8eaf24f4fb45fff432ca005b85255561831f8c423c444a07f40364"
+        },
+        "imports": {
+          "count": 8,
+          "sha256": "790f52a8e0d99744ae33f9ba2782e9535e269cb1f3495055c9d8904bf11b54c8"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 10,
+          "sha256": "6f288c8cc7e2bbd0229c8741ad11e59640051139a32828ea4ac041a7f9846a62"
+        },
+        "componentTags": {
+          "count": 14,
+          "sha256": "d7a71a6b54cac40878fe6e059461f4da474ab9f830bbeb3bab327739f450bb7a"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/01-Discrete-Components/01-Passives/03-Inductors.md",
+      "beforeSha256": "86b96c1cd4c06b084d828e5dd1814bea70dd1a255d9357d7d37c010a89802d77",
+      "checks": {
+        "headings": {
+          "count": 20,
+          "sha256": "9d0cd026826b7e8a8b8a64562ecbf1ab747a7f9b4c11d21115a38dcc066db780"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "9343296e6fc02163f487f35541bb77d5c849bd24c3245545e2c7001b1d80061b"
+        },
+        "imports": {
+          "count": 4,
+          "sha256": "f06b8f3d8d471c7e47e411cfc9a914870e793cf0633c58979f2246ecf137783f"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 8,
+          "sha256": "d9bd5bd855f0e3176fb2bb10f4f1d5929c76861bb99ee465cbe9171ab39f669d"
+        },
+        "componentTags": {
+          "count": 17,
+          "sha256": "989d3646d8fd0cafdf16040206aed336406880af1671cf2820355600a9ec6a1b"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/01-Discrete-Components/02-Magnetics/01-Transformers.md",
+      "beforeSha256": "9d235c383e2090609ce274e15d8aeb6f819e17d789f4881d905d34abff8f2fba",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "5e11e669eab09f9de61fb79310def31d32d2d53f2b9bfa0031d19e50d03b38fb"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "8bb58fb7910696b29a0110fbdde0055fcde46569befd3bf25f6fa22f1271a5b1"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 2,
+          "sha256": "5fa7ea3b14928ad2345427df37eddd7d567e2b88df320f6463a52694c2102709"
+        },
+        "componentTags": {
+          "count": 4,
+          "sha256": "d2adfaa86181463a357a280d207e66908089cf2fd5363f6588e1c97042391008"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/01-Discrete-Components/02-Magnetics/02-Common-Mode-Chokes.md",
+      "beforeSha256": "709f0c238d7f2f8ffa6e3f3fdd8534b7da419fa1ef3f8190525a74028b78d2f2",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "e2b588bb09563e9190d98b01f63f8113625fa1840984e154dba51bbd9fe98e60"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "8bb58fb7910696b29a0110fbdde0055fcde46569befd3bf25f6fa22f1271a5b1"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "e8e6544aa141694a3b0b584c4dd8e320b9e1d6b7c87c535f895c66456a4b8fec"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "e8b2272cab6d295e3f68c7c0361d58860146ba2114707869d63d16294fee3125"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/01-Discrete-Components/03-Semicondctors/01-Diodes.md",
+      "beforeSha256": "0c502b9926dc181b2b11ecb5d0fd3f616a2d9528b49c76b987839340af4e228c",
+      "checks": {
+        "headings": {
+          "count": 22,
+          "sha256": "106ea8df6b39812f7b57411df0919e8fce85972569ecb2ee248b383eaf5da835"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "bbd64f5eb5f52056b9f7b50915c33ccee2e37318765e7bf05c5427b29185433b"
+        },
+        "imports": {
+          "count": 11,
+          "sha256": "d14a00e3f389b8a5f50267fcaa8ae505e6248baee439bd37e2a4a102fd613392"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 18,
+          "sha256": "92253ea92ec1a410e2fc809a0b49db134a3b9763d2a36c15fe45014635063be1"
+        },
+        "componentTags": {
+          "count": 22,
+          "sha256": "e8da3b081420f80018c96241009a55e732715d82a451e94379980e975e16e936"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/01-Discrete-Components/03-Semicondctors/02-BJTs.md",
+      "beforeSha256": "675bdcb1e241427154f7d27974e820a8eb9795899b742d10acce6637fed1b456",
+      "checks": {
+        "headings": {
+          "count": 36,
+          "sha256": "43e4e85edc6dd4d342493b0a745cbe583124ca874564f830b41f7df5e82bf378"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "33ec0d8463215e48d07eb0b20eb5b2913bd690f660a6473d600695ff198e64c9"
+        },
+        "imports": {
+          "count": 7,
+          "sha256": "05c48e2b6af7f73bde53adb9f40c99a54a20f4620c3f8b9b68f2f68de7bfe66e"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 32,
+          "sha256": "0239edefdb80036e4123e4bdceda2c278145e7e65727a29bffab61b835b70bb3"
+        },
+        "componentTags": {
+          "count": 60,
+          "sha256": "523379d52095d5f7105db6a2772cfbf21e3a82770fd98f581df55a4554950b8f"
+        },
+        "staticPaths": {
+          "count": 3,
+          "sha256": "5f98d03b2109fe0981a640beeaea5a28708ccb23b4055dfbd196281a5c197938"
+        }
+      }
+    },
+    {
+      "path": "docs/01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx",
+      "beforeSha256": "1741301755c819f0d0aa314d421ab6294afb315950b1c875360c367a52318129",
+      "checks": {
+        "headings": {
+          "count": 68,
+          "sha256": "75cfc148a133dc39ff12d23c4c196583fe54d6e4af8ad5820962665ecde9445d"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "89555f609765242914f9a3482d83d2389b13869813326c60d9646d4721b4ffd9"
+        },
+        "imports": {
+          "count": 5,
+          "sha256": "999b45e8840c1919eb969968e63f52b1c5432016d96d52e320295ed650ee599b"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 36,
+          "sha256": "1f193e4483cd97b5e6594cae9c2b9e0b2a5617f86a5c1196bab01d01263290f7"
+        },
+        "componentTags": {
+          "count": 68,
+          "sha256": "1317e3fa11e5097a1b0c04c16932ebea892b1e2ab7df648dec30580a0b890dcc"
+        },
+        "staticPaths": {
+          "count": 8,
+          "sha256": "33578dc1f7dc20ca03f4745c73d6c71fd625d743a34e7475b3d13bc029501ebe"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Entry Protection/fuses.md",
+      "beforeSha256": "8ec75af7ae82d5c69c9fb712cebe9543f3d9786c90ff83b947a5d78e2025a0d0",
+      "checks": {
+        "headings": {
+          "count": 100,
+          "sha256": "a5fef5644a9e85e936fcdaa1e43b5fb289a4a5176e47ef414dd6095db97a4db1"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "29264ca1bc7f6702c170ac5c8fe34f037b6267c98de068fcd8699771f2f1002b"
+        },
+        "imports": {
+          "count": 3,
+          "sha256": "d99d48516187d6db51d35f7e581448a9d5a1b705c1d52510ec72d4603ac98b62"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 20,
+          "sha256": "2cab0351ac5e5053c22b5ddb1542c58cf62f6cad1481c15a4d01aeb2d79792c0"
+        },
+        "linkDestinations": {
+          "count": 39,
+          "sha256": "ac01b6c18c896d14dc540b126ea99f88945196eee7d607e3fc9b4fca79305641"
+        },
+        "componentTags": {
+          "count": 6,
+          "sha256": "7c93f6580c3e22e4e4bdb337f30a5376e4cfc597687bada18d096b332462281c"
+        },
+        "staticPaths": {
+          "count": 1,
+          "sha256": "db4d453226e2c784be773f689e958b7b43b71c0cee727a0c94554a82895567a5"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Entry Protection/ideal-diodes.md",
+      "beforeSha256": "97a711b808ceb5f56a53a45c98e1230f180125be33f9a560bc9f975c8e757bed",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "9c630352251545a6a9876a1ed1dfed2145cf6e464eda60a579c741c15717b1bd"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "45734284f8ecb4e3b57411dee649250da86e032419350fe4ad29bce26bc77318"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "7db2445ca3e014bd7093d39f886c24eb9d36009e07b72312349a9d4f0ae5c57f"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Entry Protection/tvs-surge.md",
+      "beforeSha256": "223bbcc0c58188f35fb81c673b3b9787c1b68b744d5675b50f33faae3be6ed77",
+      "checks": {
+        "headings": {
+          "count": 5,
+          "sha256": "2fb932cd2c8b489e69d0c7c897eac9ed48b795674a40221512a0b8f58084942d"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "e3fad49206ed617c239f62682d581b35ed0495deb9d9e0202ca14d040c1d67ea"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 6,
+          "sha256": "860e7f0148ce04d76d2b76bdc6ffed379a53808b81bf1212d18111c77351bc81"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "45e048c410e3b04615430175753b204dcd68be112a385e0c251864549ebe6b22"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Measurment/Current-sense.md",
+      "beforeSha256": "a77b4a8e7723ee9b530733e770502faaef44496eca41e69b78cd1e8c437f2eeb",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "388c68e4c1c30fb04cce279497ca216df47eabb359bb8ee900b2f21278ec8bc1"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "397d34c0db310be93eab0b78f3b967f0125ffe3e5d0544538d71486e5382b63a"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 10,
+          "sha256": "6ca6dcf87be3297bb54e329227be5632d6338a72ed745194d682a64d2e274661"
+        },
+        "componentTags": {
+          "count": 3,
+          "sha256": "07bfd0b870ec6b2ef43048c8782abdda2ffb1f7dd36c4ba4296cee630b0561c5"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Measurment/Power-good-Seq.md",
+      "beforeSha256": "fce5a4c4ad079739cf3c396426c123d5e3d02d1d2aebc6322037cff6c03cdb73",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "ada2c9ca74cfc9635a047dd16dd5dd617bb43c701e82e9d417149e3eb5ec940e"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "723b9f7cefaf5c7337a9e485c43e39f413812e989becf2a2638db241417df988"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 4,
+          "sha256": "1ee09813d7d216f2489470f0090446555993f16f55dee8c36044e889f8e0fba1"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "f0b2d2eaba67ed5af0b20b5ceebba83746066a2b0ad458b4ba3609b0de901794"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Measurment/Supervisors.md",
+      "beforeSha256": "b03e17a43d71743b81e9613c35184b41014414256366b21d89002e6eaf8ba7be",
+      "checks": {
+        "headings": {
+          "count": 5,
+          "sha256": "3ceec3020be1ed31f35d49f1417b3fce7dada0e6177e4011fdd2441756839607"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "723b9f7cefaf5c7337a9e485c43e39f413812e989becf2a2638db241417df988"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 3,
+          "sha256": "655384f70744ef132a9450d7b75da54c1a07185bd963d2d252f04d89c09c1387"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "17cb446d2c7daab2d4f2600467d548b5ad6077d5813ae3a3c672d91e6b7479b6"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Power Control/Gate-Drivers.md",
+      "beforeSha256": "7cc3689e31061d5c4ee2b939f222c2722a4b5a5f60c82b2ab04c407673710dad",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "9db02f78fe12362d390aa11cf35f02f4ed0abe4eaf5d2bec6e8631a6f5342e48"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "9b8bba74d0b056c4ba75337b6e949a896b5bd22528b00ca3b9174a9b9d4f8511"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 4,
+          "sha256": "d7e76e4e0693627c6f951e521c51851a546b62937998faace4dd5cf6f3db5cef"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "bf539b9b61a9d1177cea1f0990707845f9d3e01656afff2e94366bb085a94ef6"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Power Control/Load-Switches.md",
+      "beforeSha256": "44925ee31a6477c2d6a368131cdaf2bd7b8fb17a5c7cf14416d99ab6d79275cf",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "b38e4902a186c60ab9bd817da4f7b49a481e5532269454e9b45fac8a4985da90"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "5f08168d267185d2fb1e0e4ca7ab8900f31a2f1a30cb6d4077cd90c280263bd9"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 4,
+          "sha256": "57df9aa7307c7473f9c46a39e0acab2a9620df081ac5831811a733322adc7fe1"
+        },
+        "componentTags": {
+          "count": 4,
+          "sha256": "db2658bd836af5a3104a825768144bb00e7021650f5b29032355964ef18531e6"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Power Control/Motor-Drives.md",
+      "beforeSha256": "ca83d6a163bdacbe5291d9c331c5b214b162d0e98e038c173616ae37f932ab6a",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "37d4e81d1f7b3198f97e4de8648569038decd5875e0c0fce8955fd9fa98aec68"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "3203b248910330397d3ede6b5a0cc1daa1cd98dca896caf0383b36712ae8f770"
+        },
+        "imports": {
+          "count": 3,
+          "sha256": "a70eff1c7e5775cf1425222a0e729e4cbb85072af78f34d5b103d4e1d19b88cd"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 14,
+          "sha256": "38b3bd00e516ddcc5241549cc0f953cbd0f73e7dae4c63e3c14a08443e9593cb"
+        },
+        "componentTags": {
+          "count": 3,
+          "sha256": "54462820d957fee59312bdb57de2590ba102a74ba626a98985771e6efec80382"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Regulation/01-Buck Converter.md",
+      "beforeSha256": "3f3364667bbefec5b342ffefede5edd14bb5435e7d34078033d47c49f4c71e12",
+      "checks": {
+        "headings": {
+          "count": 11,
+          "sha256": "ea7262b6188d4a3f3c2307c5d3c7b3f89916c28ca36d577340f119a1df0cdba9"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 4,
+          "sha256": "f108d3197fde0103ab9e87321851ef32925f54d942d228048fd06f4cff050b9f"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 12,
+          "sha256": "9a2140b1c0eef040e7bb290d6629aceb0354431b2fd70dc8d08dcdd5407cf65f"
+        },
+        "componentTags": {
+          "count": 8,
+          "sha256": "6a70dbccf2fa9eec36645441bdd3377db0a20eb64b9f2317b8e47de81e73f3a5"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Regulation/02-Boost Converter.md",
+      "beforeSha256": "7964a066bdd53d915532c8f06ce3a0b9c304f0e08b5f02386f8cb7dacb308653",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "b916a86ae35d5fd93936fdd170a27cb5ae3087ae543af17f3b97d77f3307666c"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 3,
+          "sha256": "9119e7d34889a4f3ceff83ad0bb53212f06a9157a998b79b482a11aaab131525"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 2,
+          "sha256": "bb94f43ecd398d77c9221d46efd67ee62f818b0d64e3ae780fb893ad9e36ddaf"
+        },
+        "componentTags": {
+          "count": 4,
+          "sha256": "90ab5de15dbc0a164a708c09929ebe4162b3be68df1feb33785e76e826d74ed5"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Regulation/03-Buck-Boost Converter.md",
+      "beforeSha256": "b0b26a9c4e85b4b19220d252600de3d1f5fc3a506c0acd09d61a4b11271150c1",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "830774cb1cdd4fd7870f1c452654b38db4eac6f2ba07d6bde87cadb33beee86f"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "20a167d9e3e5567ead0bfc3c1376845433bed1c862b7fcc53417bd2ba6b05610"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 3,
+          "sha256": "4bdfa6738dde63d875aa5b77db69f266891cddeafac236e603a8ad6fff41ea1f"
+        },
+        "componentTags": {
+          "count": 3,
+          "sha256": "57f079a8b6d305c0f227d6e9dea5ab88699aa5f874e810e4ca14589c8ed1ca38"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Regulation/04-LDOs.md",
+      "beforeSha256": "ede2760f2c45334a3967641e6624443fb294965d4050c87575a44c3c726c4347",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "1a899a8352749456cd1c29a936c4f9c23d060f0f487ce9ef6b3df9b76d456db3"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "5f08168d267185d2fb1e0e4ca7ab8900f31a2f1a30cb6d4077cd90c280263bd9"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "e8bba30259d35b1466acd4596fc032a73a5df9b8b78d9b97782352293c846ace"
+        },
+        "componentTags": {
+          "count": 4,
+          "sha256": "858595484dd97d77b9829460c3037a8958d405713e819903eda9c50079aa23e1"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Regulation/05-AC-to-DC-Converters.md",
+      "beforeSha256": "292e39e04c4f02fb81e1f90ef8df360fdd72f831e99dfd164321d34522720d3e",
+      "checks": {
+        "headings": {
+          "count": 5,
+          "sha256": "b0c87e238084a0234f77968878f437eadea9a26e38997aa5ae5e8d355a221dd2"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "5f08168d267185d2fb1e0e4ca7ab8900f31a2f1a30cb6d4077cd90c280263bd9"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "c928d34ea807e97a7e4eb91795cb3dc5e03fbf1c9f4891826418393229501170"
+        },
+        "componentTags": {
+          "count": 3,
+          "sha256": "a3b3a138d159b4b18cfed8238b86e62287b58441cfc5e34b0a8b7023f5874400"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Regulation/06-Charge-Pumps.md",
+      "beforeSha256": "59b85f23dc96e31c5b8f3c7b70108d694febc714429fa74ca51f59f2eb19b115",
+      "checks": {
+        "headings": {
+          "count": 3,
+          "sha256": "558285fd4f159694406d21a373e1d721fb3f406e3f50c99f4059699ef1796be1"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "5816409024d6946426cdd08b851ea4d792a36d70d90f5787f2d38819bb83c2a2"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "a212f0ddefe152b8fbaae6038adf4b8e05ed116900dc26e6fef3768678fbfa48"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 2,
+          "sha256": "ec85ebcf53ff13f1dbd536c2a28e9fa3fecd9b5756b3434f26204d07e3e878cc"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "726b0df6351f06ebb23453a4fb90bee46a4ca53837926ac9ff2692f81e257b2e"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/02-Power/Regulation/Battery-Charging.md",
+      "beforeSha256": "880ce95e125e402038a8e1fe1d9a01741923445288b6e35e080dbd335b7f464a",
+      "checks": {
+        "headings": {
+          "count": 9,
+          "sha256": "4e3bd133ff83cbfc45e835f882dcbc5fb6f34eb99752cf87580b0ac83ee93f2c"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "8bf2ffccf60081fa34086c12aab9e4e83184151d1b6f3e2e2cb1f58504325b08"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 4,
+          "sha256": "b7c32f3c33ed0f66c25fec7ea7d6c338d71970c2e88b3f98c302947e44241d9a"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "cd6d7075b60255c7c8074f754de8fdb646786aae0324dc0bd77498ba34f3ac56"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Amplifiers/01-op-amps.md",
+      "beforeSha256": "ef362e20a6a757ca6a2456286e9d2f5c29010abc4e87708450a697759444c10b",
+      "checks": {
+        "headings": {
+          "count": 141,
+          "sha256": "4a0c163f31a88e3e1779fc56d8cdf0524275b20fc6ba4fce1c261a60825a95ca"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "c1a50217509decb553352389f59471081220c6de98716a8a89afb06911088aad"
+        },
+        "imports": {
+          "count": 7,
+          "sha256": "70b456d27ab6637af3a4c27ce68c0fa4d59361614241fa57212fbfe38db0dde3"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 23,
+          "sha256": "7ab4edf1b7056fad527ece4ff26773fe31a75eb331e5c4803795a1a01dcfe6b6"
+        },
+        "linkDestinations": {
+          "count": 45,
+          "sha256": "7348e4cc320be97e189037bfa8cf7b5975f575ecf75605be439098ee641b2ad3"
+        },
+        "componentTags": {
+          "count": 98,
+          "sha256": "4c3d9da5d0ccca3242a3a23a265dda6b32c570350c4d8e63d7264782cf833bc6"
+        },
+        "staticPaths": {
+          "count": 20,
+          "sha256": "59cc7ae375250cf37120a4f92405a16d7eb5fab0b55f5fa97ca799c557caa6f3"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Amplifiers/02-differential-amps.md",
+      "beforeSha256": "a103b2beedce8e2530e817ba314d369ae71ac4236ac8e71c8a1ff4650839b745",
+      "checks": {
+        "headings": {
+          "count": 48,
+          "sha256": "fc9a32cbfdf9197f24c35b14a5a577e67a681a1e760996a01b18e77e5808245a"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "23425fe9bc21213bf05ff00a7be45e03585ef962a8796119743fc8a99d85b724"
+        },
+        "imports": {
+          "count": 3,
+          "sha256": "ee7bc83069428cd4b1080db2e022d597ee28ffd1d4c397f09c80458a9faa0cfe"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 15,
+          "sha256": "96468baedceb6bb5c7bd0b6f76a22a7a98d326cf117e4834dcede9771d96212f"
+        },
+        "linkDestinations": {
+          "count": 16,
+          "sha256": "6a2aacdd2d62846ee87f12e2704636a836a3306cd8a9cbb97daeb38d53067942"
+        },
+        "componentTags": {
+          "count": 22,
+          "sha256": "4108f874617bdc528cbfe46c60417bd811acb2bce33ef5f48aebf30e251aedc5"
+        },
+        "staticPaths": {
+          "count": 3,
+          "sha256": "3e9a9d5c1231c50890d2386c11654344cf1f4356734429f2efa1df1e54bf8883"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Amplifiers/03-instrumentation-amps.md",
+      "beforeSha256": "e27a1919f851c8a19684df2a4961737bffb3f008cbd40a1db9be7a264948470d",
+      "checks": {
+        "headings": {
+          "count": 55,
+          "sha256": "7418e97e6b790c5294aaba86dca5fa02a3a4fa64c4c5bc334d5e4b68b386a6f6"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "13a3ec50690a69f79ea84378e017db18fe50cb261c04a8fc4ff9edd0f5576ab3"
+        },
+        "imports": {
+          "count": 4,
+          "sha256": "586946e510b366a549fd2981598e0800263121e0565f3b6fba06ab56b3679d6c"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 15,
+          "sha256": "f7d9a05d445d388816549758ab75ccab5c2b9c1c94be34a1f201ca3cd5059505"
+        },
+        "linkDestinations": {
+          "count": 17,
+          "sha256": "eefa0ac082bd737f3bdec9b71f8dcf17487c5f0a2d9b25f71698212f94556a5a"
+        },
+        "componentTags": {
+          "count": 6,
+          "sha256": "6e9661af23545feaeea1c5d2983bad8245e3ae364e3d2a3dece94c47a8e89e98"
+        },
+        "staticPaths": {
+          "count": 1,
+          "sha256": "87aaa1618509da47767818d25296686b2f2cafb27e20774ce754a4a768b98f7a"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Amplifiers/comparators.md",
+      "beforeSha256": "691417ac34e731dad19918435161822814450d2c36bb31ea6ad3bf03e414ed98",
+      "checks": {
+        "headings": {
+          "count": 63,
+          "sha256": "a0916c9920b8ecfae8794fa31810376f8b2919c84ec7d3d7bfdccdde11522bd8"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "6188a74e9e6e33652c97bab4275b0fdeb6119134ba3ce107c346d96221171e1f"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "3eacc9724167ff37999741e1d9fa96e53468518ab006803cb61eb940db493640"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 14,
+          "sha256": "fe236a2c792fc77c3fcbc712dd5f3efb2b0fa5c5c0473ecf0e9f17303a1b0ebd"
+        },
+        "linkDestinations": {
+          "count": 27,
+          "sha256": "e893812b53decac455c9a7e2aabf5e36076b10b534dbec9ad5a18928e6bd14d0"
+        },
+        "componentTags": {
+          "count": 13,
+          "sha256": "63065a606769f8893b69edcf7f3047143795e254a94ccbfa35a036a72da73736"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Data-convertes/DACs.md",
+      "beforeSha256": "ff136ffd5f4c6089ca990cef6cb91bd4a6ac89cf7474332939c7d5a740ab0291",
+      "checks": {
+        "headings": {
+          "count": 138,
+          "sha256": "0fc6495bff738e6e58f6a1a312cb28c507bc586f2f3bb974deee274853f184be"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "be2604e98daaddc62cb3de718ffc48561fa07e8c8f737e20da59f23e07fb0024"
+        },
+        "imports": {
+          "count": 4,
+          "sha256": "08226fa8769355350492e7730e9afb48458641f2437ba22e9264c0a46c1fa290"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 26,
+          "sha256": "c786286c7c55fdc1b995e535150525a215bd5a29ff774592a9f3762ddb2fdcb8"
+        },
+        "linkDestinations": {
+          "count": 36,
+          "sha256": "b3a6ebff45084ae1b451c022cafdb8e1ca4b4c132c7e3ff512359c7265a7f368"
+        },
+        "componentTags": {
+          "count": 12,
+          "sha256": "c677b12b441e0db61e92261c95822abd094b1586cf691f0ce20e820cbb9c56b6"
+        },
+        "staticPaths": {
+          "count": 3,
+          "sha256": "6cc51abbcfa650f47a5e61cec412b7ce993e4dd50dafadcd0d7f0748ad358b50"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Data-convertes/Sample-holding.md",
+      "beforeSha256": "23753d2f7ff223d5b86e970cfdd2fc174e9ea8e88d7a04dba233e52b35e752b5",
+      "checks": {
+        "headings": {
+          "count": 60,
+          "sha256": "339162c8af1f837ee6a421967f6212e2f93acbc339a36b8919e82148525b6376"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "2c632c3f97f86bdb8c128b670d9da3d08e345205b41d084db9da54545755333f"
+        },
+        "imports": {
+          "count": 5,
+          "sha256": "297f23952c59355d25c5befa1d772d978604758adfb9b522ff92189282607be7"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 26,
+          "sha256": "451feda19baccb051900dbf8af2b03e67547dea10979162c765dd91dcf957761"
+        },
+        "linkDestinations": {
+          "count": 36,
+          "sha256": "d82bbaa26d4d2cba32ce0be7f4c6fe9b8968f364f22078dc0abb83d3b0642504"
+        },
+        "componentTags": {
+          "count": 8,
+          "sha256": "6d47f22abf89808391ae5c53e4c03f1c94b3fbd123139ffc84b63d563cc244f8"
+        },
+        "staticPaths": {
+          "count": 1,
+          "sha256": "c464aa4afd6aa772d5d7e63bbe348a79e74e7989c5692bd505c711ecb51466b4"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Filters/Active-filters.md",
+      "beforeSha256": "4d07c6ef02230ac167226cc56b44c6ac2f153bd1c3d792d4c8e1fa2c69a2b9ce",
+      "checks": {
+        "headings": {
+          "count": 109,
+          "sha256": "d0d91f6c58def28fb5d52d86e4d9037137ea4bbe47a16cf708012381258448dd"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "981ac8f11ec3a941a9c80aa2e65b1a7191169e100656b6c4216202119df096a5"
+        },
+        "imports": {
+          "count": 6,
+          "sha256": "d637028991506d1f966cfa9f987d2e30c6382ae34d246ddc92c1acbecf04237a"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 61,
+          "sha256": "6e2d354b53fa296c348220ccd5431f3fb2e67162d88c9de65fcefef21dae2a72"
+        },
+        "linkDestinations": {
+          "count": 46,
+          "sha256": "39cc1fac1f968e090a423cdc78f5aa7eb5d89cb574e1c146c7e1dc7494185e0d"
+        },
+        "componentTags": {
+          "count": 27,
+          "sha256": "e42fe0b20c1a372dba78ab9341c2a3ec47f5e1d42bb9c6691a73c09093b92397"
+        },
+        "staticPaths": {
+          "count": 3,
+          "sha256": "44a762ee23ac915e07f51856a0d714ecec06da87446f38bdcbb717e723608315"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Filters/Digital-filters.md",
+      "beforeSha256": "ab58c42ab5825554437b583e59a04d0412de7cb7bb3c39b77b463db3ae933e66",
+      "checks": {
+        "headings": {
+          "count": 82,
+          "sha256": "c5409d66c88c1eddf85854f97c888b9ede0802559e63ad6c7a1322583adaaafb"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "2d85590e17f8509d353b05cf0ed8e574282c0318354b1a89d936333d97f0f6c8"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "bd4a9af741a1115b5cd8075ddf2fc31ab645ba6a2202f5670b2a52524e1751ac"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 64,
+          "sha256": "faa73f91fd6f73500c43de2138240fd056f594d93e12f835aef73ec960d650de"
+        },
+        "linkDestinations": {
+          "count": 21,
+          "sha256": "dbf3ad3ab69b7b3e02e1dafed45fb2b02d1cc89de75f8f75c798a8b8561cf082"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "3dceebf759fcf7362d739194e54fc4df7162f7b3b333f2927fc04de2a262c850"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Timing/Crystal-oscillators.md",
+      "beforeSha256": "92dae4a3a5c760e843dc419e165850febba05640329ae258e6fc900f5882327d",
+      "checks": {
+        "headings": {
+          "count": 40,
+          "sha256": "9a8905e5ba5b37febd4d4f055d937b0d492f91a6053feab5008d5887ccaaa47d"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "cbf82d6bfc89414f3418abe3b2d2b7423d8d85ba3dd12b82e805478186841b20"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "5dfddfc2082fd28dab676a6943b6a8225b20a246f9745c2e707c366b352dde63"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 18,
+          "sha256": "9c557e7bd1f704e1d728716c4d33bc5a6e97c2327d29ef1b989814263a464ffe"
+        },
+        "linkDestinations": {
+          "count": 21,
+          "sha256": "51362b2e7b56d329cafbeff8697f7e702429e3867f50bc1166a17428b631d36c"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "0a089f2dcbb33fb80abd39319c5b6ec8ae4b46701fb48e8c8b4590670b6c5c5e"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Timing/PLL.md",
+      "beforeSha256": "2df450648604a0fe450cb94b47c0edebafceb570abdc24e034a494e7e7eaf8ff",
+      "checks": {
+        "headings": {
+          "count": 63,
+          "sha256": "9bf66030fee642e58c256ce42816eddbe706d6576b84645da61e6ede25d5390a"
+        },
+        "frontmatter": {
+          "count": 1,
+          "sha256": "e96c25c462afcf6e73618ef16309b0dfe6e09d5c8e410cc831966a59cc936ca0"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "d0f5fb34e55584704ee975a5742e912ef189a08976b6aea8db1012748842c38a"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 24,
+          "sha256": "380073fffa028f8a476bb42215087d0bc1f1ba5f71f8ef71cb4a9e67a7af6b11"
+        },
+        "linkDestinations": {
+          "count": 26,
+          "sha256": "e19d2adb036714b6a02b1a4ee4ae51303e96fce031e30a727866b41a27191692"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "f80097fd414eb62259e4741a3a86a80bf54295de3f491ba59b4fa295971f077e"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/03-Signal-Modulation/Timing/RTCs.md",
+      "beforeSha256": "ec683036082af69853373cfd526ae4db5a753eebe12f2023f8ecfeedc26a01b4",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "b8071cb2f5a15388f0e6bd3c5ebc37847880cb5d36a7ada42fc6802157bbccc9"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "4db6b7157f221a4de1f0cc643602c18a9c3e6acd16144ec905065315b45d8814"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 6,
+          "sha256": "f97cf6757f0dc368157f31741c3249f0d0913081159dc18e65256a3073a8b61d"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "e9dbd9f3451c3d054a09db661c21a9821b5b4e5aaf495c73ad80ec9134f4790f"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/01-UART.md",
+      "beforeSha256": "c8f7865eb941cfb43b302e72e1e0095a3db2def4842b7a9285cd63112fc91b14",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "c3b065c6e91f5afe2c6e2269ebfaf894e0d49af076e489d07a09e92d25801e3c"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "888d3e4136a585e3a636246db7736eea56135924204b0b2a0e24a98a480d2c16"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 3,
+          "sha256": "b7c491d578d25681fb1db8cfcbb8228a731713a507e03f14e353b2c7c5155633"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "aef1bdfa72520a586728b42507a7250d58901bb6c285ea92d6c72933e26725c8"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/02-SPI.md",
+      "beforeSha256": "40a8717b2111e5fe31c1f9e97a59ab3eef76309c2d60df2caa1b2b542bc104b5",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "fd88cf482d7ce82c6ba7e7e64802fe86ccfecc28fa4f8465f02ccf14fe1b14e5"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "888d3e4136a585e3a636246db7736eea56135924204b0b2a0e24a98a480d2c16"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 2,
+          "sha256": "e061e597c8bb182b419c9712b137981ebbccc327a56e1bfda0e64ee90dc29f92"
+        },
+        "componentTags": {
+          "count": 2,
+          "sha256": "b6ae9373ace60c0de94d3f761c60fb66f2189bd8122fe9091ab545c1eae5eab4"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/03-I2C.md",
+      "beforeSha256": "5ad21283446a0649dee126ff0823a0262004a9ff7278759e59c0374086aa853e",
+      "checks": {
+        "headings": {
+          "count": 7,
+          "sha256": "c25d9a9f651ccc67e4b6986e600802dca99531695c04e05704dbca96e6c25ae2"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 2,
+          "sha256": "73ece52bd4a81c9308a97a92b1936a088786d591c64e75bd25adf3966b4ef206"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "8e529f60f425c8b114036129942e78b8af96ae925fe62fd76ae2b9ce6a452cba"
+        },
+        "componentTags": {
+          "count": 3,
+          "sha256": "9fa2bc4c451f0e4bf461455efb67fa52d81f3dd9023b79989474eba4982c16d1"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/CAN.md",
+      "beforeSha256": "a823669f1805b18e8253653210fb50fa75a0e58220aea28a401b77dc4b8e0d97",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "29d82224e6ec2acce08b1e7227faf6613c4325cf5de4a64e50529e491d724cb4"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 1,
+          "sha256": "7837c3eed0f638b65c3d8e02d804d6419bf1bb44cb5fec287aebc41ead039e62"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 5,
+          "sha256": "803d4b9742e70f30fcc98f5c71b29c72e0ec86e5f928d3c1d14f056244a3ceeb"
+        },
+        "componentTags": {
+          "count": 1,
+          "sha256": "b0d02f844f44106424d6873f5c358342b45cf8b51de3dd5a2021d281a415f794"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "path": "docs/04-Digital-Interfaces/Serial-Buses/rs232-rs485.md",
+      "beforeSha256": "5a946af20c54600408bcf60f43c555229b50586c089f9abdb3e8e1aa22ec6620",
+      "checks": {
+        "headings": {
+          "count": 6,
+          "sha256": "b28b01738895e728fc53dacc90145cc69e704ace7a43388f1b265ac907e57d3e"
+        },
+        "frontmatter": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "imports": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "code": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "equations": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "linkDestinations": {
+          "count": 7,
+          "sha256": "e7a51122f9385ec51396405c334092d19d98385c1fa7df85985b96df279e600a"
+        },
+        "componentTags": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "staticPaths": {
+          "count": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 ## Select the measurement
 
-Define the quantity, range, bandwidth, uncertainty, and connection before selecting an instrument. The instrument becomes part of the circuit during measurement.
+Before choosing an instrument, decide what you need to measure, over what range and bandwidth, and with how much uncertainty. Also decide how to connect it: the instrument becomes part of the circuit and can change the result.
 
 | Instrument | Main use | Important limit |
 | --- | --- | --- |
@@ -24,13 +24,13 @@ A four-quadrant SMU can source or absorb power with either polarity within its r
 
 ## Multimeter measurements
 
-A DMM converts an input into a numerical value. Its integration and display rates differ. A slow display does not describe all internal sampling behavior.
+A DMM converts its input into a number. The time it spends averaging each measurement is not necessarily the same as the time between display updates. A slow display therefore does not tell you everything about how the meter samples internally.
 
-Long integration can reduce noise and reject power-line interference. It also hides short disturbances. Use an oscilloscope for startup pulses and transient faults.
+Averaging a measurement over a longer time can reduce noise and power-line interference, but it can hide brief disturbances. Use an oscilloscope when you need to see startup pulses or faults that last only a short time.
 
-Measure voltage across two nodes. Measure current through a suitable series path or a current sensor. A current input has low impedance and can short a voltage source.
+Measure voltage between two points. To measure current, put the meter in series with the current path or use a current sensor. A meter's current input has very low resistance, so connecting it directly across a voltage source can create a short circuit.
 
-An ammeter's **burden voltage** changes the circuit. A shunt also adds loss. Use a suitable current probe when interruption is unacceptable.
+An ammeter introduces a voltage drop called its **burden voltage**, which can change the current you are trying to measure. A current-sense shunt also wastes some power. If you cannot break the circuit to insert a meter, use a suitable current probe.
 
 Measure resistance with the circuit unpowered and stored energy discharged. Parallel circuit paths can corrupt the reading. Four-wire sensing reduces lead resistance error.
 
@@ -38,35 +38,35 @@ For capacitance and inductance, specify test frequency, amplitude, and equivalen
 
 ## Oscilloscope bandwidth and sampling
 
-An oscilloscope samples a conditioned input and displays stored samples against time. A **trigger** selects a defined event for acquisition or display alignment.
+An oscilloscope conditions and samples its input, then plots the stored samples against time. A **trigger** tells it which event to capture or where to align the waveform on the display.
 
 Edge triggers suit repetitive transitions. Pulse-width and protocol triggers can isolate rare faults. Use pretrigger memory to see events before the fault.
 
 **Bandwidth** describes the analog frequency response. **Sample rate** describes the number of samples acquired per second. Neither replaces the other.
 
-For a roughly Gaussian response, rise time is approximately 0.35 divided by bandwidth. This approximation depends on response shape.
+For a roughly Gaussian response, rise time is about 0.35 divided by bandwidth. This approximation depends on response shape.
 
 For an assumed 10 ns edge, a 35 MHz scope has a comparable rise time and causes substantial measurement error. More bandwidth reduces that error.
 
-Use enough samples to describe the relevant waveform and acquisition interval. Nyquist is a reconstruction limit for band-limited signals, not a complete scope selection rule.
+Choose a sample rate and record length that capture the waveform and the time interval you need. The Nyquist rule assumes the signal's frequency range is limited; that rule alone does not tell you whether a scope can capture the edges or brief events you want to see.
 
 Check record length, active channel count, interpolation, and [aliasing](<../03-Signal-Modulation/Filters/Digital-filters.md#18-aliasing-at-the-initial-adc>). See [Tektronix oscilloscope evaluation](https://www.tek.com/en/documents/primer/evaluating-oscilloscopes).
 
 ## Probe selection
 
-A passive **10× probe** attenuates the signal by ten at the scope input. It usually reduces input capacitance relative to a direct cable connection.
+A passive **10× probe** sends one-tenth of the measured voltage to the scope. It usually loads the circuit with less capacitance than a direct cable connection.
 
 Set the scope's probe factor correctly. Adjust compensation with the calibration waveform. The probe and scope input form one measurement system.
 
 A high input resistance helps at low frequency. Probe capacitance can dominate at high frequency. Short ground connections reduce inductive ringing.
 
-An **active probe** uses an amplifier near the tip. It can provide low capacitance but has limited voltage range and requires power.
+An **active probe** uses an amplifier near the tip. It can provide low capacitance but has limited voltage range and needs power.
 
 A **differential probe** measures the difference between two nodes. Check differential range, common-mode range, bandwidth, and [common-mode rejection](<../03-Signal-Modulation/Amplifiers/02-differential-amps.md#2-common-mode-rejection-ratio>).
 
 Do not move a grounded scope reference onto a switching node. Select a rated differential or isolated measurement method for floating voltages.
 
-A 50 ohm input provides a controlled termination for a matching source. It can severely load a high-impedance circuit. Verify its voltage and power limits.
+A 50 ohm input gives a controlled termination for a matching source. It can severely load a high-impedance circuit. Verify its voltage and power limits.
 
 See [Tektronix probe principles](https://www.tek.com/en/documents/whitepaper/abcs-probes-primer) for loading and compensation examples.
 
@@ -78,7 +78,7 @@ A VNA measures amplitude and phase ratios for reflected and transmitted waves. *
 
 The reference impedance is commonly 50 ohms. It is not necessarily the circuit's input impedance. Calibrate at the intended connection plane.
 
-Open, short, load, and through standards can characterize systematic errors. Fixture removal requires an appropriate de-embedding model.
+Calibration with open, short, load, and through standards measures repeatable errors in the setup. Removing the fixture's effects from the result, called de-embedding, also needs a model that accurately represents the fixture.
 
 See [Keysight VNA basics](https://www.keysight.com/au/en/learn/course.vector-network-analyzer-basics.html) for network measurement methods.
 
@@ -93,7 +93,7 @@ See [Keysight VNA basics](https://www.keysight.com/au/en/learn/course.vector-net
 
 A low rail resistance can be normal for a large processor. A suspected short needs comparison with the circuit and device behavior.
 
-Use a bounded injection voltage only on a suitable isolated rail. Thermal imaging or voltage-drop mapping can locate loss without exceeding component ratings.
+On an isolated rail that allows this test, inject a carefully limited voltage and look for where power is being lost. Thermal imaging or measurements of voltage drop can help locate a short. Keep the test within every connected component's ratings.
 
 For validation, define pass limits before testing. Sweep input voltage, load, temperature, and relevant timing. Include startup, shutdown, and fault recovery.
 
@@ -101,4 +101,4 @@ Record instrument settings, fixture revision, software version, and calibration 
 
 For long tests, log timestamps and health signals. Use recoverable files, storage limits, watchdogs, and explicit restart behavior.
 
-An uninterruptible power supply can bridge a defined outage. Verify its runtime with the complete test load. Mark interrupted measurements instead of treating them as continuous data.
+An uninterruptible power supply can keep a test running through an outage. Check how long it lasts with the full test load. If a measurement was interrupted, mark the gap instead of treating the data as continuous.

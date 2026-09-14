@@ -1,6 +1,5 @@
 # Supervisors
 
-Notes coming soon...
 
 ## 1. Reset Control
 
@@ -10,11 +9,11 @@ A **voltage supervisor** monitors a supply and controls a reset output. It keeps
 * **Release:** The reset signal returns to its inactive state.
 * **[Hysteresis](<../../03-Signal-Modulation/Amplifiers/comparators.md#6-schmitt-trigger-and-hysteresis>):** Different falling and rising thresholds prevent repeated transitions near one voltage.
 
-An active-low reset output is low during reset. An [open-drain](<../../04-Digital-Interfaces/DigitalGeneral.md#output-architectures>) output requires a pull-up to a permitted supply.
+An active-low reset output is low during reset. An [open-drain](<../../04-Digital-Interfaces/DigitalGeneral.md#output-architectures>) output needs a pull-up to a allowed supply.
 
 ## 2. Threshold and Delay
 
-Select the falling threshold above the processor's minimum operating voltage, with sufficient margin for supervisor tolerance and response delay.
+Choose a reset threshold above the processor's minimum operating voltage. Leave enough margin for the supervisor's threshold error and the time it takes to respond.
 
 After the supply recovers, a **reset delay** gives the system time to stabilize. A brief dip can restart that delay, depending on the device.
 
@@ -26,7 +25,7 @@ import RailSequenceExplorer from '@site/src/components/RailSequenceExplorer';
 
 ## 3. Worked Example: Threshold Window
 
-**Assumptions:** A processor requires at least 2.7 V. Its supply remains above 3.1 V during normal operation.
+**Assumptions:** A processor needs at least 2.7 V. Its supply remains above 3.1 V during normal operation.
 
 Consider a supervisor with a nominal 2.9 V falling threshold and an assumed ±1% threshold tolerance.
 
@@ -34,7 +33,7 @@ Consider a supervisor with a nominal 2.9 V falling threshold and an assumed ±1%
 2. The lowest threshold gives **171 mV** above the processor minimum.
 3. The highest threshold remains **171 mV** below the normal supply minimum.
 
-Now include the supply fall rate and supervisor propagation delay. The processor voltage must remain valid until reset takes effect.
+Then account for how fast the supply falls and how long the supervisor takes to assert reset. The voltage must stay high enough for the processor to operate correctly until reset takes effect.
 
 ## 4. Limits and Test Cases
 

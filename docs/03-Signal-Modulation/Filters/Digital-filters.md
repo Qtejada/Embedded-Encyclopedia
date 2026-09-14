@@ -7,15 +7,12 @@ import DigitalFilterExplorer from '@site/src/components/DigitalFilterExplorer';
 
 # Digital Filters
 
-A **digital filter** calculates a new sample sequence from an input sample sequence.
-The calculation changes magnitude, phase, noise bandwidth, or sample rate.
+A **digital filter** takes a sequence of samples and calculates a new sequence from it. Depending on the filter, this can change the signal's amplitude, shift its phase, reduce the frequency range of the noise, or change the sample rate.
 
 Digital filters operate after an [analog-to-digital converter](<../Data-convertes/DACs.md#3-sampling-and-resolution>) (**ADC**) or inside a digital system.
 They can also prepare samples for a [digital-to-analog converter](<../Data-convertes/DACs.md#1-dac-fundamentals>) (**DAC**).
 
-A digital filter does not replace all analog filtering.
-An analog [anti-alias filter](<./Active-filters.md#18-anti-alias-filters-for-adcs>) must act before the ADC.
-An analog reconstruction filter must remove unwanted DAC output images and switching content.
+Digital filtering still leaves work for analog filters. An [anti-alias filter](<./Active-filters.md#18-anti-alias-filters-for-adcs>) must act before the ADC samples, and a reconstruction filter after the DAC reduces the extra frequency copies and switching content produced at its output.
 
 This page explains sampled signals, finite impulse response filters, infinite impulse response filters, frequency response, multirate processing, numerical limits, and converter applications.
 
@@ -23,8 +20,7 @@ This page explains sampled signals, finite impulse response filters, infinite im
 
 ### 1. Sampled Signals
 
-An ADC measures an analog input at discrete times.
-The result is a sequence of numbers.
+An ADC measures the input at separate moments rather than continuously. Each measurement becomes a number, so the output is a sequence of samples.
 
 Let the **sample rate** be <i>f<sub>sample</sub></i>.
 The interval between samples is:
@@ -35,14 +31,11 @@ For an analog signal <i>x(t)</i>, the sampled sequence is:
 
 > **x[n] = x(nT<sub>s</sub>)**
 
-The integer <i>n</i> is the **sample index**.
-It does not have a unit.
+The integer <i>n</i> counts the samples. It is called the **sample index** and has no unit.
 
 #### Time and Amplitude
 
-Digitization has two separate operations.
-**Sampling** discretizes time.
-**Quantization** discretizes amplitude.
+Digitizing a signal involves two separate choices. **Sampling** chooses the moments when you measure it. **Quantization** rounds each measurement to one of the voltage levels the converter can represent.
 
 * **Sample rate:** Sets the time interval between samples.
 * **Bit depth:** Sets the number of available amplitude codes.
@@ -59,16 +52,14 @@ These terms do not have the same meaning.
 * **Throughput:** Number of completed results for each second.
 * **Latency:** Delay from an input sample to its available output result.
 
-A pipeline can accept one new sample during each clock interval.
-The first result can still arrive many clock intervals later.
+A pipeline can accept a new sample every clock cycle even though each sample takes several cycles to reach the output. The rate of completed results and the delay for one result are different things.
 
-One converter example has a pipeline latency of approximately 10 sample intervals.
+One converter example has a pipeline latency of about 10 sample intervals.
 This delay does not decrease its steady-state throughput.
 
 ### 2. Digital Frequency
 
-A digital filter uses frequency relative to the sample rate.
-The normalized angular frequency is:
+In a digital filter, a frequency is described relative to the sample rate. Normalized angular frequency tells you how far the signal's phase advances with each sample:
 
 > **&Omega; = 2&pi;f / f<sub>sample</sub>**
 
@@ -80,25 +71,22 @@ Important values are:
 * **[Nyquist frequency](<../Data-convertes/DACs.md#nyquist-criterion>):** <i>&Omega; = &pi;</i>, or <i>f = f<sub>sample</sub>/2</i>.
 * **One complete digital-frequency period:** <i>2&pi;</i> radians per sample.
 
-Digital frequency repeats every <i>2&pi;</i>.
-Do not use an analog angular frequency in rad/s as if it were a digital frequency in rad/sample.
+Digital frequency repeats every <i>2&pi;</i>. Keep the units straight: analog angular frequency uses rad/s, while digital angular frequency uses rad/sample. They are not interchangeable.
 
 #### Nyquist Terms
 
 The **Nyquist frequency** is one-half of the sample rate.
-The **Nyquist rate** is twice the highest frequency in an ideal band-limited baseband signal.
+The **Nyquist rate** is twice the highest frequency in a signal that extends from DC to a known upper frequency, with nothing above that limit.
 
 For baseband sampling:
 
 > **f<sub>sample</sub> &gt; 2f<sub>max</sub>**
 
-A practical design also needs a transition band.
-For this reason, the sample rate is usually higher than the theoretical minimum.
+A real filter needs some frequency space to go from passing the signal to rejecting unwanted frequencies. This **transition band** is why practical designs usually sample faster than the theoretical minimum.
 
 ### 3. Discrete-Time Linear Systems
 
-A linear time-invariant (**LTI**) digital filter has the same response at every sample index.
-Its output obeys superposition.
+A **linear time-invariant (LTI)** digital filter follows two rules. Adding inputs or multiplying them by a constant has the same effect on their outputs; this is **superposition**. Also, delaying the input simply delays the same output response, rather than changing how the filter behaves.
 
 An LTI filter can be described in four related ways:
 
@@ -115,17 +103,15 @@ The discrete unit impulse, <i>&delta;[n]</i>, has these values:
 * <i>&delta;[n] = 0</i> for all other sample indices.
 
 The output caused by this impulse is the **impulse response**, <i>h[n]</i>.
-The impulse response completely describes an LTI filter.
+For an LTI filter starting with zero stored state, the impulse response contains everything needed to calculate its response to any input.
 
 #### Convolution
 
-The output of an LTI filter is the convolution of the input and impulse response:
+To calculate an LTI filter's output, multiply input samples by the corresponding impulse-response values and add the results. This weighted sum is called **convolution**:
 
 > **y[n] = &Sigma;<sub>k=-&infin;</sub><sup>&infin;</sup> h[k]x[n-k]**
 
-In the general convolution sum, each output sample is a weighted sum of shifted input samples.
-For a causal filter, this sum uses only present and past input samples.
-A causal filter does not use future input samples.
+Each output is a weighted sum of input samples taken at different time offsets. A causal filter uses only the present and past, since future samples are not yet available.
 
 #### Difference Equation
 
@@ -133,8 +119,7 @@ A general causal digital filter can use input samples and prior output samples:
 
 > **y[n] = &Sigma;<sub>k=0</sub><sup>M</sup> b<sub>k</sub>x[n-k] - &Sigma;<sub>k=1</sub><sup>N</sup> a<sub>k</sub>y[n-k]**
 
-This page uses a denominator leading coefficient of 1.
-It also uses the minus sign shown before the feedback sum.
+In these equations, the first denominator coefficient is 1, and the feedback sum is subtracted with the minus sign shown.
 
 Some software libraries store the feedback coefficients with the opposite sign.
 Always check the coefficient convention before implementation.
@@ -165,18 +150,15 @@ The phase is the angle of <i>H(e<sup>j&Omega;</sup>)</i>.
 The numerator roots are **zeros**.
 The denominator roots are **poles**.
 
-Pole and zero locations control magnitude and phase.
-They also control stability and transient response.
+Pole and zero positions determine which frequencies are amplified or reduced and how their phase shifts. They also determine stability and how the filter responds to a sudden change.
 
-For a causal rational filter, all implemented poles must be strictly inside the unit circle for bounded-input, bounded-output stability.
-Do not rely on an exact cancellation of an unstable pole.
+A causal rational filter is bounded-input, bounded-output stable when all its implemented poles lie strictly inside the unit circle, with magnitude less than one. Do not rely on an exact zero to cancel an unstable internal pole.
 
 ## Filter Structures
 
 ### 5. Finite Impulse Response Filters
 
-A **finite impulse response (FIR) filter** uses a finite set of coefficients.
-It normally uses no prior output samples.
+A **finite impulse response (FIR) filter** uses a fixed, finite set of coefficients, normally applied only to input samples. With no feedback from earlier outputs, an impulse eventually moves out of the filter and its response ends.
 
 For a filter with <i>L</i> coefficients:
 
@@ -189,7 +171,7 @@ An <i>L</i>-tap FIR filter normally has order <i>L - 1</i>.
 
 * A finite-coefficient FIR filter is bounded-input, bounded-output stable.
 * An FIR filter can have exactly linear phase.
-* Linear phase requires the applicable coefficient symmetry or antisymmetry.
+* Linear phase needs the relevant coefficient symmetry or antisymmetry.
 * A general FIR filter does not automatically have linear phase.
 * A narrow transition band can require many taps.
 * More taps require more memory and multiply-accumulate operations.
@@ -202,8 +184,7 @@ The delay in seconds is:
 
 > **Delay = (L - 1) / (2f<sub>sample</sub>)**
 
-An even tap count can give a half-sample group delay.
-This result is valid for the linear-phase passband.
+With an even number of taps, group delay can be a half-integer number of samples. That is a valid delay for the filter's linear-phase passband; it does not mean the processor must receive half a sample.
 
 ### 6. Moving-Average FIR Filter
 
@@ -221,7 +202,7 @@ Its frequency response is:
 
 At DC, use the limiting value <i>H(e<sup>j0</sup>) = 1</i>.
 
-The first response null occurs at:
+The first response null happens at:
 
 > **f<sub>null,1</sub> = f<sub>sample</sub> / L**
 
@@ -278,16 +259,14 @@ Step 6: Calculate the ideal white-noise change.
 
 > **&sigma;<sub>out</sub> / &sigma;<sub>in</sub> = 1/&radic;5 &asymp; 0.447**
 
-The filter decreases independent white-noise RMS amplitude by approximately 55.3%.
-It does not give the same attenuation for all noise spectra.
+The filter decreases independent white-noise RMS amplitude by about 55.3%.
+How much noise it removes depends on which frequencies contain the noise.
 
 ### 7. Infinite Impulse Response Filters
 
-An **infinite impulse response (IIR) filter** uses feedback.
-Its output depends on one or more prior output samples.
+An **infinite impulse response (IIR) filter** feeds earlier output samples back into the next calculation. Its output therefore depends on both the input and its previous results.
 
-The feedback makes its theoretical impulse response continue without a finite end.
-Finite arithmetic can also cause residual limit cycles.
+Because of that feedback, the theoretical response to one impulse can keep going indefinitely. Rounding in finite arithmetic can also leave small repeating outputs, called limit cycles, even after the input stops.
 
 #### IIR Properties
 
@@ -298,8 +277,7 @@ Finite arithmetic can also cause residual limit cycles.
 * Feedback can magnify rounding and overflow errors.
 * A high-order direct implementation can have poor numerical behavior.
 
-Use cascaded **second-order sections (SOS)** for a high-order IIR filter.
-Scale each section to prevent internal overflow.
+Build a high-order IIR filter from cascaded **second-order sections (SOS)** rather than one large section. Scale each section so its internal values stay within the available number range and do not overflow.
 
 ### 8. One-Pole IIR Low-Pass Filter
 
@@ -385,8 +363,7 @@ The corresponding difference equation is:
 A biquad can make a low-pass, high-pass, band-pass, notch, peaking, or all-pass response.
 The coefficient calculation must use the actual sample rate.
 
-For a higher-order response, cascade multiple biquads.
-Verify pole locations after coefficient quantization.
+For a higher-order filter, connect several biquads in sequence. Round the coefficients to the format you will actually use, then check the poles again: coefficient rounding can move them.
 
 ### 10. FIR and IIR Comparison
 
@@ -447,7 +424,7 @@ The symbol <i>f<sub>s</sub></i> can otherwise have two meanings.
 #### Cutoff Definition
 
 A digital-filter cutoff is not always a -3 dB point.
-Use the definition from the applicable requirement.
+Use the definition from the relevant requirement.
 
 Possible definitions include:
 
@@ -465,8 +442,7 @@ The transition width is the distance between passband and stopband edges:
 
 > **&Delta;f = |f<sub>stop</sub> - f<sub>pass</sub>|**
 
-A narrow transition usually requires a higher order or more FIR taps.
-It can also increase delay, arithmetic load, and coefficient sensitivity.
+A narrower transition usually needs a higher order or more FIR taps. That can mean more delay and computation, and greater sensitivity to coefficient errors.
 
 ### 14. Phase and Group Delay
 
@@ -481,16 +457,14 @@ The group delay is:
 This result is in samples.
 Divide it by <i>f<sub>sample</sub></i> to get seconds.
 
-A constant group delay preserves the relative timing of frequency components.
-A varying group delay can change pulse shape and modulation timing.
+Constant group delay means the signal's frequency components all experience the same delay, preserving their relative timing. If the delay varies with frequency, pulse shape and modulation timing can change.
 
 #### Zero-Phase Processing
 
 Some offline software filters data once forward and once backward.
 This method can cancel phase shift.
 
-The method is noncausal.
-It needs future samples and cannot operate as a live streaming filter.
+A backward pass needs samples that lie in the future relative to the point being filtered. This is noncausal, so the method works on recorded data rather than as a live streaming filter.
 
 The second pass also squares the magnitude response.
 Account for this change during design.
@@ -499,8 +473,7 @@ Account for this change during design.
 
 #### Windowed-Sinc Design
 
-An ideal frequency-selective response has an impulse response of infinite length.
-It is also centered around zero and is not causal.
+An ideal brick-wall frequency response needs an infinitely long impulse response extending on both sides of zero. It therefore cannot be implemented directly by a finite causal filter.
 
 A windowed-sinc design performs these operations:
 
@@ -521,16 +494,13 @@ The tap count and exact window definition also affect the result.
 
 #### Equiripple Design
 
-An **equiripple FIR filter** minimizes the largest weighted error across specified bands.
-It can meet a narrow-transition specification with fewer taps than some windowed designs.
+An **equiripple FIR filter** chooses coefficients to make the largest weighted error as small as possible across the specified bands. This can meet a narrow-transition requirement with fewer taps than some window-based designs.
 
-Its passband and stopband errors have controlled ripple.
-The design still has a finite transition band.
+The remaining error forms controlled ripples in the passband and stopband. There is still a finite transition between them; it is not a perfect cutoff.
 
 ### 16. IIR Design Methods
 
-Many IIR filters start from an analog prototype.
-A transform maps the analog poles and zeros into the z-plane.
+Many IIR designs begin with an analog filter response. A mathematical transform moves its poles and zeros from the analog s-plane into the digital z-plane.
 
 Common response families include:
 
@@ -540,7 +510,7 @@ Common response families include:
 | **Chebyshev type I** | Passband ripple and monotonic stopband |
 | **Chebyshev type II** | Monotonic passband and stopband ripple |
 | **Elliptic** | Ripple in both bands and a narrow transition for a specified order |
-| **Bessel or Thomson** | Smooth group delay in its applicable design form |
+| **Bessel or Thomson** | Smooth group delay in its relevant design form |
 
 These names describe mathematical response families.
 They do not identify one circuit or software structure.
@@ -554,8 +524,7 @@ The bilinear transform is:
 It maps the analog left half-plane inside the digital unit circle.
 It does not create frequency-domain aliasing.
 
-The mapping warps frequency.
-Prewarp critical frequencies before the transform when the design requires an exact match.
+The mapping is nonlinear in frequency, so a frequency that is correct in the analog design may move in the digital result. Prewarping adjusts important frequencies beforehand so they land where required after the transform.
 
 #### Impulse Invariance
 
@@ -584,14 +553,11 @@ An FFT is not a filter by itself.
 
 #### Spectral Leakage
 
-A finite record is equivalent to multiplication by a time window.
-This operation spreads energy when a tone does not fit the record coherently.
+Recording a finite length of data is equivalent to applying a time window. If a tone does not fit an integer number of cycles in that record, its energy spreads into other DFT bins instead of staying in one.
 
-An analysis window can decrease distant sidelobes.
-It also widens the main lobe.
+An analysis window reduces the distant sidelobes, the smaller responses around a tone's main peak. The trade-off is a wider main peak, making nearby tones harder to separate.
 
-Correct the window coherent gain when amplitude accuracy is necessary.
-Use the window equivalent noise bandwidth for noise measurements.
+For accurate amplitude, correct for the window's coherent gain, which describes how it scales a tone. For noise, use its equivalent noise bandwidth instead; the tone correction and noise correction are different.
 
 #### Zero Padding
 
@@ -603,8 +569,7 @@ It does not add frequency-resolution information.
 
 #### FFT Convolution
 
-Frequency-domain multiplication can implement long convolution efficiently.
-The DFT performs circular convolution for an unpadded block.
+Multiplying in the frequency domain can calculate a long convolution efficiently. But an unpadded DFT block wraps around at its ends, giving circular convolution instead of the linear convolution you usually want.
 
 Use zero padding with **overlap-add** or **overlap-save** processing.
 These methods prevent one block end from wrapping into the next block.
@@ -616,8 +581,7 @@ Include this latency in the system timing budget.
 
 ### 18. Aliasing at the Initial ADC
 
-Sampling repeats the analog spectrum around multiples of the sample rate.
-Different analog frequencies can then produce the same digital sequence.
+Sampling creates frequency copies around multiples of the sample rate. As a result, different analog frequencies can produce exactly the same sequence of samples.
 
 For one analog input tone with frequency <i>f<sub>signal</sub></i>:
 
@@ -673,7 +637,7 @@ Its information bandwidth is 10 MHz.
 Do not use the 200 Msps plan for this exact band.
 
 The ADC [track-and-hold](<../Data-convertes/Sample-holding.md#1-basic-circuit>) must still acquire the original carrier.
-The source example uses an ADC08200 with a 200 Msps sample rate and approximately 500 MHz analog input bandwidth.
+The source example uses an ADC08200 with a 200 Msps sample rate and about 500 MHz analog input bandwidth.
 
 Analog input bandwidth does not guarantee the specified resolution, distortion, or **signal-to-noise ratio (SNR)** at every input frequency.
 
@@ -687,15 +651,14 @@ The new sample rate is:
 
 > **f<sub>sample,out</sub> = f<sub>sample,in</sub> / M**
 
-Downsampling alone can cause aliasing.
-Frequencies above the new Nyquist limit can map into the retained band.
+Simply keeping fewer samples can cause new aliasing. Frequencies too high for the reduced sample rate may appear in the lower band you keep.
 
 **Decimation** includes two operations:
 
 1. Apply a digital low-pass filter.
 2. Retain every <i>M</i>th filtered sample.
 
-The decimation filter must attenuate every spectral band that can alias after downsampling.
+Before downsampling, the decimation filter must reduce every frequency band that could fold into the retained band at the new sample rate.
 
 #### Keep-One-in-100 Example
 
@@ -717,8 +680,7 @@ This operation increases the sample rate:
 
 > **f<sub>sample,out</sub> = Lf<sub>sample,in</sub>**
 
-Zero insertion creates spectral images.
-An interpolation low-pass filter removes these images.
+Inserting zeros between samples creates extra copies of the signal's frequency content, called images. An interpolation low-pass filter removes the unwanted copies.
 
 Some coefficient conventions use a passband gain of <i>L</i> after zero insertion.
 Apply the gain convention required by the implementation.
@@ -729,14 +691,14 @@ For a rational rate change by <i>L/M</i>:
 2. Apply one low-pass rate-conversion filter.
 3. Downsample by <i>M</i>.
 
-A **polyphase** structure avoids calculations for samples that will be zero or discarded.
+A **polyphase** implementation rearranges the calculation to skip work on inserted zeros or output samples that would be discarded. It produces the required rate conversion more efficiently.
 
 ### 22. Efficient Multirate Filters
 
 #### Half-Band Filters
 
 A half-band low-pass filter is useful for a factor-of-two rate change.
-Many coefficients are zero in an applicable linear-phase design.
+Many coefficients are zero in an relevant linear-phase design.
 
 This property decreases the operation count.
 The transition is centered around one-quarter of the input sample rate.
@@ -753,8 +715,7 @@ A CIC filter has these limits:
 * Large internal word growth.
 * Null locations set by the rate change and differential delay.
 
-Use a compensation FIR filter when the passband droop exceeds the requirement.
-Calculate register growth before fixed-point implementation.
+If the CIC filter reduces wanted passband frequencies too much, use a compensation FIR filter to flatten the response. Also calculate how large internal sums can become before choosing fixed-point register widths.
 
 ### 23. Oversampling
 
@@ -801,9 +762,7 @@ A basic first-order 1-bit modulator loop operates as follows:
 4. The feedback path sends this 1-bit state through an internal 1-bit digital-to-analog converter.
 5. The converter output becomes the feedback level for the next input-minus-feedback operation.
 
-This closed feedback path makes the average state density follow the analog input.
-It also shapes much quantization noise toward high frequency.
-Higher-order and multibit modulators use more complex loop structures.
+Feedback makes the long-term proportion of output states follow the analog input. It also pushes much of the quantization noise toward high frequencies, away from the wanted band. Higher-order and multibit modulators use more involved versions of this loop.
 
 The complete ADC conversion sequence continues as follows:
 
@@ -812,8 +771,7 @@ The complete ADC conversion sequence continues as follows:
 3. A decimator decreases the sample rate.
 4. The converter supplies the final multibit output.
 
-The digital filter adds latency and settling time.
-A channel change can require multiple output periods before valid settled data appears.
+The digital filter takes time to respond, adding latency and settling time. After changing channels, several output periods may pass before the result represents only the new channel.
 
 Higher-order noise shaping does not follow the basic 3 dB-per-doubling rule.
 Use the converter datasheet response and output-data-rate tables.
@@ -838,7 +796,7 @@ A digital filter cannot remove content produced after the digital-to-analog conv
 
 The Analog Devices AD1955 is a multibit delta-sigma DAC example.
 It supports 24-bit pulse-code modulation at sample rates as high as 192 kHz.
-Its specified stereo dynamic range is 120 dB for the applicable test conditions.
+Its specified stereo dynamic range is 120 dB for the relevant test conditions.
 
 Do not call its multibit output stage a 1-bit DAC.
 
@@ -869,15 +827,15 @@ For an ideal full-scale sine wave:
 > **SNR<sub>ideal</sub> &asymp; 6.02N + 1.76 dB**
 
 The common 6 dB-per-bit rule is an engineering approximation.
-A 16-bit code span is approximately 96 dB from full scale to one LSB.
-The ideal full-scale-sine quantization SNR is approximately 98.1 dB.
+A 16-bit code span is about 96 dB from full scale to one LSB.
+The ideal full-scale-sine quantization SNR is about 98.1 dB.
 
 In many 12-bit through 14-bit converter systems, quantization noise can be a major part of the total noise.
 In many converters with 16 bits or more, [thermal noise](<../../00-Foundations/00-Foundations.md#thermal-noise>) from the converter and analog front end can exceed the ideal quantization noise.
 Thermal-noise power increases with absolute temperature and measurement bandwidth.
 At these higher resolutions, a temperature change can have a larger effect on total noise than the ideal LSB calculation suggests.
 These statements are common design tendencies and not universal limits.
-Use the converter noise specifications at the applicable temperature and bandwidth.
+Use the converter noise specifications at the relevant temperature and bandwidth.
 
 #### Noise, Distortion, and Effective Resolution
 
@@ -885,7 +843,7 @@ Use the converter noise specifications at the applicable temperature and bandwid
 * **Signal-to-noise-and-distortion ratio (SINAD):** Includes noise and harmonic distortion.
 * **[Effective number of bits](<../Data-convertes/DACs.md#effective-number-of-bits>) (ENOB):** Converts measured SINAD into an equivalent ideal bit count.
 
-For the applicable full-scale sine-wave convention:
+For the relevant full-scale sine-wave convention:
 
 > **ENOB = (SINAD - 1.76 dB) / 6.02**
 
@@ -897,15 +855,14 @@ For white input-noise variance <i>&sigma;<sub>x</sub><sup>2</sup></i> and an FIR
 
 > **&sigma;<sub>y</sub><sup>2</sup> = &sigma;<sub>x</sub><sup>2</sup>&Sigma;<sub>k</sub>h<sup>2</sup>[k]**
 
-For colored noise, integrate the input noise spectrum through the squared filter magnitude over one Nyquist interval:
+For colored noise, whose power varies with frequency, apply the filter's squared magnitude response to the input noise spectrum and integrate over one Nyquist interval:
 
 > **P<sub>out</sub> = &int;<sub>-f&#x209B;/2</sub><sup>f&#x209B;/2</sup> S<sub>x,2</sub>(f)|H(e<sup>j2&pi;f/f&#x209B;</sup>)|<sup>2</sup>df**
 
 Here, <i>f&#x209B;</i> is the sample rate, and <i>S<sub>x,2</sub>(f)</i> is the two-sided input power spectral density.
 For a one-sided power spectral density, integrate from 0 through <i>f<sub>sample</sub>/2</i> and use the matching one-sided normalization.
 
-A digital filter attenuates noise only according to its transfer function.
-It does not remove in-band noise that overlaps the wanted signal.
+A digital filter reduces noise according to the same frequency response it applies to the signal. Noise at the same frequencies as the wanted signal cannot be removed without affecting that signal too.
 
 It also cannot correct:
 
@@ -921,8 +878,7 @@ Calibration is a separate operation from filtering.
 
 ### 27. Fixed-Point Arithmetic
 
-A mathematical filter uses exact numbers.
-A fixed-point implementation uses limited word lengths.
+Filter equations assume exact numbers. A fixed-point implementation has only a set number of bits for each value, so rounding and range limits become part of the design.
 
 Check these effects:
 
@@ -935,12 +891,9 @@ Check these effects:
 7. **State scaling:** IIR internal states can exceed input and output amplitudes.
 8. **Limit cycles:** IIR feedback can produce a nonzero repeating output with zero input.
 
-Use guard bits in accumulators.
-Scale cascaded second-order sections.
-Test maximum and minimum input sequences.
+Leave extra bits in accumulators for growing sums. Scale cascaded second-order sections, and test input sequences that exercise both positive and negative limits.
 
-Quantize the final coefficients before pole analysis.
-Do not verify stability only with the unquantized design coefficients.
+Check pole locations using the rounded coefficients that the implementation will store. Stability with ideal, unrounded coefficients is not enough.
 
 Floating-point arithmetic also has finite precision.
 It usually decreases scaling risk but does not remove all numerical error.
@@ -957,10 +910,7 @@ The jitter must be sufficiently random and uncorrelated with the input signal fo
 
 > **SNR<sub>jitter</sub> &asymp; 20 log<sub>10</sub>[1 / (2&pi;f<sub>signal</sub>&sigma;<sub>t</sub>)]**
 
-Here, <i>f<sub>signal</sub></i> is the analog sine-wave frequency.
-A higher analog signal frequency gives a lower jitter-limited SNR for the same timing jitter.
-Deterministic or correlated timing modulation can produce spurs.
-Do not treat this modulation as ordinary random noise.
+Here, <i>f<sub>signal</sub></i> is the analog sine-wave frequency. With the same RMS timing jitter, a higher-frequency signal has worse jitter-limited SNR. Repeating or signal-related timing errors can instead create distinct unwanted tones, called spurs, and should not be modeled as ordinary random noise.
 
 Include:
 
@@ -977,7 +927,7 @@ Do not use **aperture time**, **aperture delay**, **aperture jitter**, and **ape
 * **Aperture jitter:** Sample-to-sample timing uncertainty.
 * **Aperture skew:** Sampling-time difference between channels.
 
-A known fixed delay can frequently be compensated.
+A known fixed delay can often be compensated.
 Random jitter cannot be removed by an ordinary post-conversion filter.
 
 ### 29. Real-Time Processing
@@ -1012,8 +962,7 @@ Do not process these channels as simultaneous measurements when phase relation i
 A simultaneous-sampling system has a specified aperture skew.
 Include this skew in phase and timing calculations.
 
-Digital filters normally assume a uniform sample interval for each sequence.
-Use time stamps or resampling when samples are not uniform.
+A normal digital filter assumes equally spaced samples within each sequence. If sample timing varies, use timestamps or resample the data before applying a model that assumes uniform timing.
 
 ## Applications
 
@@ -1071,18 +1020,13 @@ It cannot remove the physical PWM carrier from the output pin.
 
 ### 32. Modulation and Demodulation
 
-A digital channel filter can select one modulated band.
-A demodulator can move the selected band to baseband.
-A digital low-pass filter can then remove the unwanted sum-frequency term.
+A digital channel filter can select one modulated frequency band. A demodulator moves it down toward zero frequency, or baseband, and a low-pass filter removes the unwanted sum-frequency component produced by that operation.
 
-Complex in-phase and quadrature (**I/Q**) samples preserve positive and negative frequency information.
-A complex filter can select one spectral side without the symmetry required for a real filter.
+Complex in-phase and quadrature (**I/Q**) samples distinguish positive from negative frequency. This lets a complex filter select one side of the spectrum independently, unlike the symmetric response required of a real-coefficient filter.
 
-A **matched filter** is designed for a known pulse shape.
-Under its stated noise model, it maximizes the sample-time SNR.
+A **matched filter** uses the expected pulse shape to make that pulse stand out from noise. Under the assumed noise model, it gives the highest SNR at the chosen sampling instant.
 
-Pulse-shaping and matched-filter responses also control intersymbol interference.
-Include their combined group delay in link timing.
+Pulse shaping and matched filtering also control how much one symbol affects the next, called intersymbol interference. Include the delay of both filters when setting link timing.
 
 ### 33. Phase-Locked-Loop Timing Filters
 
@@ -1097,8 +1041,7 @@ Its bandwidth creates a timing trade:
 A narrow loop does not remove all output jitter.
 The [voltage-controlled oscillator](<../Timing/PLL.md#voltage-controlled-oscillator>) and other PLL stages also add noise.
 
-Filter delay changes PLL [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>).
-Analyze the complete loop and not only the standalone filter response.
+Delay in the filter changes the PLL's [phase margin](<../Amplifiers/01-op-amps.md#phase-margin>). Check the filter as part of the complete feedback loop, not only by its standalone frequency response.
 
 ### 34. Digital Power Control
 
@@ -1119,8 +1062,7 @@ It is not an LTI FIR or IIR filter.
 Software can also calibrate for capacitor aging across 10 years.
 Calibration is not the same operation as filtering.
 
-Every digital filter adds delay to a feedback loop.
-Include computation, sampling, PWM update, and zero-order-hold delay in the stability analysis.
+Account for the delay through the entire digital control path: sampling, computation, the PWM update, and holding each output value until the next update (the zero-order hold). These delays affect feedback stability.
 
 ### 35. Threshold and Event Processing
 
@@ -1128,7 +1070,7 @@ A digital low-pass filter can decrease measurement noise before a threshold deci
 It does not guarantee one clean transition for a slow input.
 
 Noise near a threshold can still make repeated output events.
-Use [hysteresis](<../Amplifiers/comparators.md#6-schmitt-trigger-and-hysteresis>), a state machine, or a qualified debounce interval when the application requires one event.
+Use [hysteresis](<../Amplifiers/comparators.md#6-schmitt-trigger-and-hysteresis>), a state machine, or a qualified debounce interval when the application needs one event.
 
 Do not drive a clock decision from an unqualified slow signal.
 
@@ -1215,12 +1157,12 @@ Before release, confirm:
 
 The **Fourier series** represents a periodic waveform with discrete harmonics. The **Fourier transform** represents a more general waveform through its frequency content.
 
-A periodic signal's transform contains spectral lines in the ideal infinite-duration model. A finite observation window broadens measured spectral features.
+In the ideal model of a signal repeating forever, its Fourier transform contains distinct frequency lines. Measuring only a finite time window spreads those lines into wider features.
 
-An ideal symmetric square wave contains odd harmonics whose amplitudes decrease in proportion to harmonic number. Different duty cycles change the harmonic amplitudes and nulls.
+An ideal symmetric square wave contains odd multiples of its fundamental frequency. Their amplitudes decrease as harmonic number increases. Changing duty cycle changes both the harmonic amplitudes and which harmonics are absent.
 
-An ideal instantaneous edge requires unlimited bandwidth. A real edge reduces high-frequency content but does not usually establish an exact highest nonzero frequency.
+A perfectly instantaneous edge would need unlimited bandwidth. A real edge has less high-frequency content, but usually no single frequency above which the content is exactly zero.
 
-A rule such as bandwidth approximately equal to 0.35 divided by rise time assumes a particular response shape. It is not a universal spectral cutoff.
+A rule such as bandwidth about equal to 0.35 divided by rise time assumes a particular response shape. It is not a universal spectral cutoff.
 
 Slower edges can reduce unwanted high-frequency energy. They also reduce timing margin in some receivers. Filtering a selected frequency can change both waveform shape and phase.

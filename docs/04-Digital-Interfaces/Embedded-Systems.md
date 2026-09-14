@@ -24,11 +24,11 @@ Examples include STM32 and AVR microcontrollers, and application processors with
 
 Select the device from measured requirements. Check processing time, memory, interfaces, timer channels, analog performance, operating temperature, supply current, and available development tools.
 
-Count peripheral instances as well as pins. Two signals can share one pin function and prevent simultaneous use. Check package availability and the complete pin assignment.
+Check how many independent peripherals are available, not just how many pins the chip has. If two functions need the same pin, you may not be able to use them together. Check the full pin assignment in a package you can actually obtain.
 
 ## Pins and external circuits
 
-A **general-purpose input/output (GPIO)** pin provides a configurable digital input or output. Its pin multiplexer can also connect an internal peripheral.
+A **general-purpose input/output (GPIO)** pin gives a configurable digital input or output. Its pin multiplexer can also connect an internal peripheral.
 
 Typical settings include input enable, output value, pull resistance, output type, edge interrupt, drive strength, and slew rate. Some pins lack some settings.
 
@@ -96,9 +96,9 @@ Reset can follow power application, a watchdog event, a reset pin, or a software
 
 **Bare-metal software** runs without a general task scheduler or operating system. A main loop with interrupts can suit a small control system.
 
-An **operating system (OS)** manages execution and resources. Linux supports large applications and process isolation. It usually needs more memory than a small MCU provides.
+An **operating system (OS)** manages execution and resources. Linux supports large applications and process isolation. It usually needs more memory than a small MCU gives.
 
-A **real-time operating system (RTOS)** provides scheduling and synchronization for tasks with timing requirements. FreeRTOS is one example.
+A **real-time operating system (RTOS)** gives scheduling and synchronization for tasks with timing requirements. FreeRTOS is one example.
 
 Real time means a result meets its deadline. It does not mean every operation is fast. Check worst-case execution, blocking, priorities, and interrupt load.
 

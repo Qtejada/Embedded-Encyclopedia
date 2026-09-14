@@ -16,7 +16,7 @@ A **charge pump** moves charge through switched capacitors. It can invert, multi
 
 In phase one, switches charge the flying capacitor to the input voltage. In phase two, switches place its lower terminal at the input voltage.
 
-The upper terminal then approaches twice the input voltage. Another switch transfers charge to the output capacitor. Nonoverlap prevents incompatible switch connections.
+The upper terminal then approaches twice the input voltage, and another switch transfers charge to the output capacitor. The two phases must not overlap in a way that connects incompatible nodes together.
 
 The ideal no-load conversion ratio is two. Load current, switch resistance, capacitor resistance, and incomplete charging reduce the output.
 
@@ -28,15 +28,15 @@ This equivalent output resistance model applies around a defined operating condi
 
 Transferred charge follows Q = C times the capacitor voltage change. Increasing switching frequency or flying capacitance can reduce charge-transfer voltage loss.
 
-Switch resistance eventually limits the benefit. Capacitor voltage bias can reduce effective capacitance. Check pulse current and startup surge as well as nominal capacitance.
+Increasing capacitance or switching frequency eventually gives less benefit because switch resistance still limits current flow. Some capacitors also lose capacitance when a DC voltage is applied. Check their pulse-current and startup-surge ratings, not just the capacitance printed on the part.
 
 The output capacitor supplies the load between transfer intervals. Its voltage ripple depends on current, interval length, capacitance, and [equivalent series resistance](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#equivalent-series-resistance>).
 
-For an ideal-ratio doubler, input current is approximately twice output current before additional losses. Efficiency is approximately output voltage divided by twice input voltage.
+For an ideal-ratio doubler, input current is about twice output current before additional losses. Efficiency is about output voltage divided by twice input voltage.
 
 For an assumed 3 V input and 5 V output, that approximation gives 83%. Switching and control losses reduce the result further.
 
-A regulated charge pump can waste headroom when its conversion ratio poorly matches the required output. Some devices change ratios to reduce this loss.
+A regulated charge pump wastes extra voltage as heat if its conversion ratio gives much more output than needed. Some devices switch between ratios to reduce that loss.
 
 Charge pumps suit bias rails, gate drive, and selected battery-charging architectures. Their pulsed currents require compact loops and appropriate filtering.
 

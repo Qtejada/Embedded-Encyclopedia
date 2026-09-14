@@ -1,6 +1,5 @@
 # IO-Expanders
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -9,7 +8,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 An **input/output (I/O) expander** adds digital pins through a serial bus. It is useful for switches, status signals, and moderate-speed control.
 
-The host reads or writes device registers. Bus access adds delay, so an expander is not equivalent to a direct processor pin.
+The host controls an expander by reading and writing its registers over the bus. Those transactions take time, so an expanded pin does not respond as quickly as a direct processor pin.
 
 ## 2. Register Functions
 
@@ -22,7 +21,7 @@ Common register functions include:
 
 The exact register map and reset values depend on the device. Read those values before defining the startup sequence.
 
-The [TI PCA9534 data sheet](https://www.ti.com/lit/ds/symlink/pca9534.pdf) provides one register-based implementation.
+The [TI PCA9534 data sheet](https://www.ti.com/lit/ds/symlink/pca9534.pdf) gives one register-based implementation.
 
 ## 3. Startup Without an Output Pulse
 
@@ -34,11 +33,11 @@ External resistors must hold critical signals in their required state before the
 
 **Assumptions:** An [I²C](<./Serial-Buses/03-I2C.md#1-shared-clock-and-data>) write sends an address byte, a register byte, and one data byte. The bus clock is 100 kHz.
 
-Each byte requires eight data clocks and one acknowledgment clock.
+Each byte needs eight data clocks and one acknowledgment clock.
 
 <LearningEquation tex={"t\\approx\\frac{3\\times9}{100000}=270\\ \\mu s"} />
 
-The wire transfer alone takes approximately **270 µs**. START, STOP, software delay, and bus contention add time.
+The wire transfer alone takes about **270 µs**. START, STOP, software delay, and bus contention add time.
 
 An application that needs a 10 µs output response cannot meet that requirement with this transaction.
 

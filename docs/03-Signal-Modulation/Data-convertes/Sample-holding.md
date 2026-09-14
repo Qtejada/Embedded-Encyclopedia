@@ -11,14 +11,12 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 # Sample-and-Hold and Track-and-Hold Circuits
 
-A **sample-and-hold circuit** acquires an analog voltage and then keeps a copy of that voltage constant for a specified time.
+A **sample-and-hold circuit** captures the input voltage at one moment and holds that value for a set time, even if the input changes afterward.
 A **track-and-hold circuit** follows the input during its track interval and keeps the last acquired value during its hold interval.
-Datasheets frequently use the two names for the same basic circuit.
+Datasheets often use the two names for the same basic circuit.
 The term **track-and-hold** makes the continuous tracking action clear.
 
-Many [analog-to-digital converter](<./DACs.md#3-sampling-and-resolution>) (**ADC**) cores require a stable sampled value during conversion.
-An internal or external sample-and-hold function supplies this value.
-The external input must meet the acquisition-interval requirements in the ADC datasheet.
+Many [analog-to-digital converter](<./DACs.md#3-sampling-and-resolution>) (**ADC**) cores need the sampled voltage to stay steady while they convert it. An internal or external sample-and-hold circuit gives that value. The source must still charge it accurately during the acquisition time allowed by the ADC datasheet.
 
 Sample-and-hold circuits also store reference or baseline voltages.
 For example, an autonulling amplifier stores an input baseline and subtracts it from later measurements.
@@ -43,10 +41,7 @@ In this relation:
 * <i>C<sub>H</sub></i> is the hold capacitance.
 * <i>V<sub>H</sub></i> is the held voltage.
 
-During track operation, the switch is closed.
-The capacitor voltage moves toward the input voltage.
-During hold operation, the switch is open.
-The capacitor keeps the stored charge and the output buffer reproduces the stored voltage.
+In track mode, the closed switch lets the capacitor follow the input. In hold mode, the switch opens, leaving the capacitor's charge stored. The output buffer reads that voltage without significantly discharging it into the load.
 
 An ideal circuit has zero switch resistance, infinite off resistance, zero leakage, zero switching charge, infinite bandwidth, and no timing uncertainty.
 A real circuit has errors in each of these areas.
@@ -76,33 +71,28 @@ The complete resistance can include:
 * An intentional isolation resistor.
 * PCB and package resistance.
 
-The output follows the input only after the acquisition network settles.
-The track interval must be long enough for the maximum input step and the required accuracy.
+The output follows accurately only after the acquisition circuit has settled. Allow enough track time for the largest input change you expect and the accuracy you need.
 
 ### Track-to-Hold Transition
 
 The control signal opens the switch.
 The circuit stops tracking at its effective **sampling instant**.
 
-The switch does not change state with perfect timing.
-Control-path delay, switch transition time, and device mismatch change the exact sampling instant.
-Switch charge and control-clock coupling can also change the stored voltage at this transition.
+The actual sampling instant varies with control-path delay, the time the switch takes to open, and device mismatch. Charge from the switch and coupling from the control clock can also disturb the voltage as it enters hold.
 
 ### Hold Phase
 
 The open switch isolates the hold capacitor from the input.
 The output buffer reads the stored voltage.
 
-Leakage current slowly changes the stored charge.
-[Dielectric absorption](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#a-dielectric-absorption>) can make the capacitor move toward an earlier voltage.
-Off-state switch capacitance can couple part of a changing input or clock signal into the held node.
+Leakage slowly changes the stored charge. [Dielectric absorption](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#a-dielectric-absorption>) can pull the voltage toward an earlier stored value. Even an open switch has capacitance, so some of a changing input or clock signal can still couple into the held node.
 
 ### Return to Track
 
 When the switch closes again, the stored voltage can differ from the new input voltage.
 Charge flows until the hold capacitor reaches the new value.
-This current can make a transient voltage glitch at the source or driver output.
-The driver must settle the transient before the next sampling instant.
+This brief current pulse can produce a voltage spike at the source or driver output.
+The driver must bring the voltage back within the allowed error before the next sample is taken.
 
 ## 3. Timing Terms
 
@@ -117,9 +107,7 @@ Acquisition can include:
 * Input-buffer and output-buffer settling.
 * Recovery from charge transfer or kickback.
 
-Do not use only small-signal bandwidth to estimate acquisition time.
-A large step can put the driver into [slew-rate](<../Amplifiers/01-op-amps.md#slew-rate>) limiting.
-The circuit enters linear settling only after the large-signal transition is complete.
+Small-signal bandwidth alone does not tell you acquisition time. A large voltage step can hit the driver's [slew-rate](<../Amplifiers/01-op-amps.md#slew-rate>) limit first. Only after that large movement does the circuit enter the final linear settling toward its target.
 
 Datasheets can specify acquisition at the hold capacitor or at the buffered output.
 Read the datasheet definition before you compare two devices.
@@ -134,7 +122,7 @@ Do not use aperture time as another name for aperture delay or aperture jitter.
 
 **Aperture delay** is the delay from the control-command edge to the effective sampling instant.
 A constant aperture delay shifts all samples in time.
-The system can frequently compensate a known constant delay.
+The system can often compensate a known constant delay.
 
 ### Aperture Jitter
 
@@ -200,7 +188,7 @@ For an ideal <i>N</i>-bit converter with full-scale span <i>V<sub>FS</sub></i>, 
 
 > **1 LSB = V<sub>FS</sub> / 2<sup>N</sup>**
 
-If the permitted settling error is one-half LSB:
+If the allowed settling error is one-half LSB:
 
 > **V<sub>allow</sub> = V<sub>FS</sub> / 2<sup>N+1</sup>**
 
@@ -220,7 +208,7 @@ One LSB is:
 
 > **1 LSB = 20 V / 65,536 &asymp; 305 &micro;V**
 
-One-half LSB is approximately 152.6 &micro;V.
+One-half LSB is about 152.6 &micro;V.
 Assume that a channel change makes a full 20 V step.
 
 The required error ratio is:
@@ -247,13 +235,7 @@ Use this conservative relation:
 
 Acquisition, conversion, and readout can overlap only when the ADC timing permits this operation.
 
-The existing DAQ notes give an 80 ns break-before-make dead time.
-They also give a design that waits more than 2 &micro;s after the channel and gain change.
-The 2 &micro;s delay can already include the 80 ns internal switch interval when the delay starts at the channel-select command.
-It can also include part or all of ADC acquisition when the sampling switch is closed during this time.
-Do not add these example intervals until the multiplexer and converter timing diagrams prove that the intervals occur in sequence.
-Use the symbolic relation above and add only the independent, nonoverlapping intervals.
-If the system switches too quickly, the next result can contain a **ghost** of the previous channel.
+The DAQ example includes 80 ns of break-before-make dead time and a wait of more than 2 &micro;s after changing channel and gain. Do not automatically add them: a delay measured from the channel-select command may already include the 80 ns. If the ADC sampling switch is closed during that wait, it may also include some or all of acquisition. Check both timing diagrams and add only intervals that happen one after another without overlap. Switching too early leaves a **ghost** of the previous channel in the next result.
 
 ## 5. Hold Accuracy
 
@@ -278,8 +260,7 @@ If capacitor leakage is represented only by a parallel resistance, <i>R<sub>leak
 
 > **V<sub>H</sub>(t) = V<sub>H</sub>(0)e<sup>-t/(R<sub>leak</sub>C<sub>H</sub>)</sup>**
 
-A larger hold capacitor decreases droop.
-It also increases acquisition time and the charge that the driver must move.
+A larger capacitor loses less voltage for the same leakage current and hold time, reducing droop. But it also needs more charge to reach a new input voltage, which increases acquisition time and driver demand.
 
 ### Leakage-Resistance Example
 
@@ -293,12 +274,12 @@ The leakage current is:
 
 > **I<sub>leak</sub> = 10 V / 100 G&Omega; = 100 pA**
 
-The stated 3 mV/min result corresponds to an effective hold capacitance of approximately:
+The stated 3 mV/min result corresponds to an effective hold capacitance of about:
 
 > **C<sub>H</sub> = I<sub>leak</sub>t / &Delta;V = (100 pA &times; 60 s) / 3 mV = 2 &micro;F**
 
 The actual droop rate changes inversely with capacitance.
-The autonulling example requires less than 1 &micro;V/min of null drift.
+The autonulling example needs less than 1 &micro;V/min of null drift.
 A drift of 3 mV/min is 3000 times larger than this limit.
 The original design identifies hold-capacitor discharge as the principal source of null drift.
 
@@ -306,7 +287,7 @@ The original design identifies hold-capacitor discharge as the principal source 
 
 **Dielectric absorption**, also called **soakage** or the **memory effect**, makes a capacitor move toward an earlier voltage after it is discharged.
 
-The effect occurs in this sequence:
+The effect happens in this sequence:
 
 1. Charge the capacitor to one voltage.
 2. Short the capacitor to 0 V for one second in this demonstration.
@@ -314,9 +295,7 @@ The effect occurs in this sequence:
 4. Trapped charge inside the dielectric is released slowly.
 5. The capacitor voltage creeps away from 0 V.
 
-In a sample-and-hold circuit, acquisition can move the hold capacitor from one stored value to a new value.
-After the switch opens, trapped dielectric charge can make the capacitor move slightly toward the earlier value.
-This voltage movement adds a memory-dependent error.
+After a new sample replaces an old one, charge retained within the dielectric can make the held voltage drift slightly back toward the old value. The resulting error depends on the capacitor's voltage history.
 
 Dielectric absorption can prevent a precision sample-and-hold circuit or a long-period integrator from meeting its error limit.
 
@@ -350,9 +329,7 @@ Select a buffer with:
 
 ### Charge Injection and Pedestal Error
 
-The analog-switch gate stores charge.
-When the switch opens, part of this charge can enter the hold node.
-The added charge makes a sudden output step.
+The analog switch stores charge at its gate. When it opens, some of that charge can enter the hold capacitor, making the output jump slightly.
 
 This step is called **hold step**, **pedestal error**, or a charge-injection step.
 For a first estimate:
@@ -362,8 +339,7 @@ For a first estimate:
 A larger hold capacitor decreases the voltage step for a given injected charge.
 It also makes acquisition slower.
 
-Charge injection can depend on input voltage, control-signal amplitude, switch type, temperature, and source impedance.
-Signal-dependent injection produces distortion, not only a constant offset.
+Charge injection changes with input voltage, control amplitude, switch type, temperature, and source impedance. If the error changes with the signal, it distorts the waveform rather than acting as a fixed offset you can simply subtract.
 
 Use an analog-switch IC that specifies low charge injection.
 Matched or complementary switching structures can cancel part of the injected charge.
@@ -371,23 +347,20 @@ Use the datasheet test circuit because the specified result depends on the conne
 
 ### Clock Feedthrough
 
-Control-to-signal capacitance couples part of the clock edge into the hold node.
-This effect is **clock feedthrough**.
+Stray capacitance between the control and signal paths lets part of a clock edge reach the hold node. This is **clock feedthrough**.
 
 Clock feedthrough can make a narrow output spike or a step in the held value.
 Internal switching in [auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) and chopper-stabilized amplifiers can cause a related feedthrough error.
 A low-pass filter can decrease feedthrough when the required signal bandwidth permits the filter.
 
 An auto-zero or chopper-stabilized amplifier uses internal switching to correct input-offset voltage, offset drift, and [1/f noise](<../../00-Foundations/00-Foundations.md#1f-noise>).
-The precision notes identify approximately 6 V as a typical maximum supply for some of these amplifiers.
-These devices are applicable to slow, accurate transducer measurements and normal-bandwidth circuits.
+The precision notes identify about 6 V as a typical maximum supply for some of these amplifiers.
+These devices are relevant to slow, accurate transducer measurements and normal-bandwidth circuits.
 Include their clock feedthrough in the signal-chain error budget.
 
 ### Off-State Signal Feedthrough
 
-An open [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) is not a perfect air gap.
-Drain-source capacitance, <i>C<sub>ds</sub></i>, lets a high-frequency input cross the open switch.
-The held output can then contain part of the changing input.
+An open [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) is not a perfect gap. Its drain-source capacitance, <i>C<sub>ds</sub></i>, can pass part of a high-frequency input, leaving some of that changing signal on the supposedly held output.
 
 A T-switch or a single-pole, double-throw (**SPDT**) arrangement can ground the unused signal path.
 This connection decreases off-state feedthrough.
@@ -401,9 +374,7 @@ An active grounding switch is usually the better solution when the topology perm
 
 ### Switch On-Resistance and Distortion
 
-A FET in the **ohmic region** operates as a low-resistance analog switch.
-Its on-resistance changes with signal voltage because the effective gate-source voltage changes.
-This nonlinear resistance can cause total harmonic distortion (**THD**).
+In the **ohmic region**, a FET acts as a low-resistance switch. But its resistance changes as the signal changes the gate-to-source voltage. That nonlinear resistance can distort the waveform, measured as total harmonic distortion (**THD**).
 
 Do not select a switch only because it has the lowest <i>R<sub>on</sub></i>.
 For example, a 0.5 &Omega; switch can require large internal transistors.
@@ -433,7 +404,7 @@ The pair permits rail-to-rail signal switching within its specified supply and s
     style={{width: '100%', maxWidth: '355px', height: 'auto', margin: '0 auto'}}
   />
   <figcaption style={{fontSize: '0.9rem', color: 'var(--ifm-color-emphasis-600)'}}>
-    A MOSFET used as an analog signal switch. A complete sample-and-hold circuit also requires a hold capacitor and an output buffer. The shown load resistor is not a hold capacitor. The &plusmn;15 V gate commands are an example, not universal logic levels. Image source: <i>The Art of Electronics</i>, Figure 3.4.
+    A MOSFET used as an analog signal switch. A complete sample-and-hold circuit also needs a hold capacitor and an output buffer. The shown load resistor is not a hold capacitor. The &plusmn;15 V gate commands are an example, not universal logic levels. Image source: <i>The Art of Electronics</i>, Figure 3.4.
   </figcaption>
 </figure>
 
@@ -505,7 +476,7 @@ Verify leakage across the complete temperature and humidity range.
 
 ## 8. Sample-and-Hold Function in a SAR ADC
 
-A **successive-approximation-register ADC** frequently has an internal sample-and-hold capacitor, <i>C<sub>SH</sub></i>.
+A **successive-approximation-register ADC** often has an internal sample-and-hold capacitor, <i>C<sub>SH</sub></i>.
 The capacitor can also be part of the internal capacitive [digital-to-analog converter](<./DACs.md#1-dac-fundamentals>).
 The ADC input is a switching load and does not always look like a high, constant input impedance.
 
@@ -553,14 +524,11 @@ The corresponding first-order external-node movement is:
 
 The original ratio examples are:
 
-* **C<sub>ext</sub> = 20C<sub>SH</sub>:** The movement is 1/21, or approximately 4.8%.
-  The source notes round this result to approximately 5%.
-* **C<sub>ext</sub> = 100C<sub>SH</sub>:** The movement is 1/101, or approximately 1%.
+* **C<sub>ext</sub> = 20C<sub>SH</sub>:** The movement is 1/21, or about 4.8%.
+  The source notes round this result to about 5%.
+* **C<sub>ext</sub> = 100C<sub>SH</sub>:** The movement is 1/101, or about 1%.
 
-This result predicts the initial kick.
-It does not guarantee the final acquisition error.
-The external capacitor is a local charge reservoir and isolation capacitor.
-It is not the ADC's internal hold capacitor.
+This predicts the initial charge-sharing glitch, not the error remaining at the end of acquisition. The external capacitor supplies local charge and helps with isolation; it is separate from the ADC's internal hold capacitor.
 
 The original design target keeps the kickback glitch below 100 mV.
 This limit can keep the [op-amp](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) in its small-signal response region.
@@ -577,10 +545,7 @@ Do not remove these requirements without analysis and measurement.
 A large external capacitor can supply charge to <i>C<sub>SH</sub></i>.
 However, a capacitor connected directly to an op-amp output can make the amplifier unstable.
 
-Open-loop gain decreases as frequency increases.
-Closed-loop output impedance then rises and can have an inductive characteristic.
-This effective inductance and the load capacitance make a resonant network.
-The circuit can ring or oscillate.
+At higher frequencies, falling open-loop gain leaves less feedback to lower the output impedance. The resulting impedance can behave like an inductance, which resonates with load capacitance and can cause ringing or oscillation.
 
 ### RC Isolation
 
@@ -618,18 +583,13 @@ Higher peak current can also increase power dissipation.
 
 ### Op-Amp Bandwidth
 
-A higher-bandwidth op-amp frequently has lower closed-loop output impedance at high frequency.
-This behavior can decrease the effective inductive output characteristic.
-The design can then use a smaller isolation resistor and a shorter RC time constant.
+A higher-bandwidth op-amp often maintains lower output impedance at high frequency. This can reduce its effective inductive behavior, allowing a smaller isolation resistor and a shorter RC settling time.
 
-More amplifier bandwidth also passes more noise.
-For example, a 100 MHz driver can pass noise far above a 100 kHz signal band.
-Balance acquisition settling against integrated noise and power.
+More bandwidth also lets through more noise. A 100 MHz driver, for example, can pass noise far above a 100 kHz signal band. Balance settling speed against total noise in the measurement bandwidth and power consumption.
 
 ### High-Speed Differential ADC Interface
 
-A high-speed ADC input can have wide analog bandwidth and dynamic input impedance.
-Do not connect it directly to an arbitrary op-amp output.
+A high-speed ADC may accept a wide range of analog frequencies while its input loading changes during sampling. It needs a suitable driver and input network, not just any op-amp connected directly.
 
 A differential **2R + C** network can:
 
@@ -641,12 +601,9 @@ An 80 Msps ADC has a [Nyquist frequency](<./DACs.md#nyquist-criterion>) of 40 MH
 Its input circuit can still have 700 MHz of analog bandwidth.
 Without an external filter, wideband noise can fold into the baseband and reduce SNR.
 
-Do not put a real filter corner at <i>f<sub>s</sub></i>/2 without a transition-band analysis.
-Use a guard band and meet the required stopband attenuation.
-A sample-and-hold circuit does not replace the anti-alias filter.
+A real filter needs room to roll off. Before choosing a corner at <i>f<sub>s</sub></i>/2, check whether it can reduce unwanted frequencies enough; normally you need a transition region or guard band. A sample-and-hold circuit does not replace this anti-alias filtering.
 
-Use a differential driver for a high-performance differential ADC unless the datasheet gives acceptable performance for a single-ended connection.
-Single-ended drive can prevent cancellation of even-order distortion and can reduce the full-scale differential range by one-half.
+Use a differential driver for a high-performance differential ADC unless its datasheet shows acceptable single-ended performance. Driving only one side can lose cancellation of distortion at even multiples of the signal frequency, and can halve the full-scale differential range compared with moving both inputs in opposite directions.
 
 ## 10. Analog-Switch and Multiplexer Design
 
@@ -697,8 +654,7 @@ During operation:
 3. It waits more than 2 &micro;s for the signal chain to settle.
 4. It starts the ADC conversion.
 
-The high amplifier input impedance prevents DC loading.
-It does not remove the need to calculate the RC acquisition time or charge injection.
+High amplifier input impedance prevents significant DC loading, but sampling still needs moving charge. You must still calculate RC acquisition time and charge-injection error.
 
 ## 11. Multiplexed and Simultaneous Sampling
 
@@ -707,9 +663,7 @@ It does not remove the need to calculate the RC acquisition time or charge injec
 A multiplexed DAQ uses one high-quality ADC for many sensor channels.
 The multiplexer connects each channel to the shared signal chain in sequence.
 
-The channels are not sampled at the same instant.
-Each channel change also forces the sample-and-hold circuit to acquire a new voltage.
-Large channel-to-channel voltage steps give the most difficult settling condition.
+The channels are sampled one after another, not at the same instant. Each change also needs the hold capacitor to reach a new voltage. Large differences between consecutive channel voltages make settling most demanding.
 
 Use multiplexed sampling for slowly changing signals when channel-to-channel phase is not important.
 Temperature and battery monitoring are common examples.
@@ -746,16 +700,13 @@ A [flash ADC](<./DACs.md#flash-adc>) has a short aperture interval.
 The input changes little during its fast conversion interval.
 For this reason, some flash applications do not need a separate external sample-and-hold circuit.
 
-Pipelined and other multistage ADCs store and transfer analog residues between stages.
-Different samples can move through different stages at the same time.
-These converters can have high throughput and a latency of several clock cycles.
-Latency is not the same as sample rate.
+Pipelined and other multistage ADCs pass the remaining analog error, or residue, from one stage to the next. Different stages can work on different samples at once. This gives high throughput even though any one sample may take several clock cycles to produce its result.
 
 For **undersampling**, the sample rate can be lower than the carrier frequency.
 The internal track-and-hold circuit must still acquire the high-frequency carrier accurately.
 
 The existing example uses the **ADC08200**.
-It samples at 200 Msps and has approximately 500 MHz of analog input bandwidth.
+It samples at 200 Msps and has about 500 MHz of analog input bandwidth.
 This bandwidth lets its track-and-hold circuit respond to an input near 500 MHz.
 Analog input bandwidth does not guarantee full resolution, specified distortion, or rated SNR at every frequency in that range.
 The frequency plan must still prevent overlap between aliased bands.
@@ -764,7 +715,7 @@ The frequency plan must still prevent overlap between aliased bands.
 
 The precision-design notes include an autonulling DC laboratory amplifier.
 The circuit stores an input value and subtracts it from later samples.
-It then amplifies subsequent input changes with selectable gains of 1, 10, or 100.
+It then amplifies later input changes with selectable gains of 1, 10, or 100.
 
 U1 is an [instrumentation amplifier](<../Amplifiers/03-instrumentation-amps.md#2-classic-three-op-amp-architecture>) with configurable gain.
 U2 is a non-inverting stage with a fixed gain of 10.
@@ -790,14 +741,11 @@ The tolerance of R5 through R13 does not control the precision performance becau
 Polypropylene and Teflon are the low-leakage examples in the original notes.
 The notes also use the informal term **poly-stuff** for these materials.
 
-The hold capacitor stores the baseline.
-Capacitor discharge causes most of the null drift.
-Dielectric absorption can move the stored value toward an earlier state after the switch opens.
-Both effects must be smaller than the referred-to-input error limit after the selected system gain.
+The hold capacitor stores the baseline voltage. Leakage causes most of its null drift, while dielectric absorption can pull it toward an earlier value after the switch opens. Convert both errors through the selected system gain and compare them with the input-referred error limit.
 
 ## 14. Error Budget
 
-Compare each sample-and-hold error with the permitted system error.
+Compare each sample-and-hold error with the allowed system error.
 For an ADC interface, compare the error with one LSB or the selected fraction of one LSB.
 
 Include:
@@ -823,7 +771,7 @@ Include:
 * Multiplexer dead time.
 * ADC kickback and incomplete recovery.
 
-A 16-bit code is approximately 15 ppm of full scale.
+A 16-bit code is about 15 ppm of full scale.
 The existing DAQ example uses an amplifier gain drift of 40 ppm/&deg;C.
 At or near full scale, a 1 &deg;C temperature change can cause more than one LSB of gain error.
 High nominal resolution does not correct analog drift.
@@ -835,7 +783,7 @@ Use this sequence for a new sample-and-hold design.
 1. **Define the signal.**
    Specify input range, source impedance, highest frequency, largest channel-to-channel step, and required bandwidth.
 2. **Define the accuracy.**
-   Convert the ADC resolution or system tolerance into a permitted voltage error.
+   Convert the ADC resolution or system tolerance into a allowed voltage error.
 3. **Define the timing.**
    Specify acquisition time, hold time, sample rate, aperture jitter, and channel skew.
 4. **Select the switch.**

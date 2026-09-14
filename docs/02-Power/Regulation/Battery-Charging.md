@@ -1,6 +1,5 @@
 # Battery Charging
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -43,13 +42,13 @@ Actual charging takes longer if the current decreases during voltage regulation 
 
 A **power-path circuit** supplies the system while it controls battery charging. It can reduce charge current when the input source reaches its limit.
 
-Without a separate system path, load current can interfere with termination detection. Check the charger architecture before powering a load from the battery node.
+If the system load draws current from the same path as the battery, the charger can mistake load current for continued charging current and fail to detect when charging should end. Check the charger architecture before connecting a load directly to the battery node.
 
 [TI, BQ24075-Q1](https://www.ti.com/lit/ds/symlink/bq24075-q1.pdf) illustrates precharge, current regulation, voltage regulation, and power-path management for its supported cells.
 
 ## 5. Design and Test Record
 
-Record the exact cell specification. Include charge voltage tolerance, current, permitted temperature range, timer settings, and restart conditions.
+Record the exact cell specification. Include charge voltage tolerance, current, allowed temperature range, timer settings, and restart conditions.
 
 For a series pack, also check each cell voltage and the [balancing system](<../Entry%20Protection/fuses.md#cell-balancing>). Pack voltage alone cannot identify an overcharged individual cell.
 
@@ -64,7 +63,7 @@ Test input removal, load changes, temperature faults, and an absent battery with
 | Primary lithium | Long storage and selected low-power loads | Chemistry-specific pulse and temperature limits |
 | Nickel-metal hydride | Rechargeable consumer cells | Lower cell voltage and a different charge method |
 | Lead-acid | Backup and starting applications | High mass and chemistry-specific maintenance |
-| Lithium-ion | Portable rechargeable equipment | Requires matched charge and protection limits |
+| Lithium-ion | Portable rechargeable equipment | Needs matched charge and protection limits |
 | Lithium iron phosphate | Selected rechargeable power systems | Different voltage curve and charger limits from many other lithium-ion cells |
 
 **Lithium polymer (LiPo)** commonly describes a lithium-ion pouch cell with a polymer-related electrolyte structure. The label alone does not define its full chemistry.
@@ -75,7 +74,7 @@ Many consumer lithium-ion cells have a nominal voltage near 3.6 or 3.7 V and a 4
 
 Use the exact cell specification for charge voltage, cutoff voltage, current, and temperature. A nominal voltage is not a safe charging setpoint.
 
-Capacity measures charge, commonly in ampere-hours. Energy measures the integral of voltage times current over time, commonly in watt-hours.
+Capacity tells you how much charge a cell can supply, commonly in ampere-hours. Energy also includes the voltage: it is voltage times current added up over time, commonly expressed in watt-hours.
 
 For an assumed 2 Ah cell at 3.7 V nominal, approximate energy is 7.4 Wh. Actual usable energy depends on load, temperature, and cutoff.
 
@@ -83,9 +82,9 @@ For an assumed 2 Ah cell at 3.7 V nominal, approximate energy is 7.4 Wh. Actual 
 
 **State of charge (SoC)** estimates remaining charge relative to a defined full capacity. **State of health (SoH)** describes degradation against a reference condition.
 
-Voltage alone gives an uncertain SoC estimate under load. Internal impedance, temperature, hysteresis, and chemistry change the voltage relation.
+Cell voltage alone is an uncertain measure of state of charge (SoC), especially under load. Internal impedance, temperature, chemistry, and whether the cell was recently charging or discharging all affect the reading.
 
-Coulomb counting integrates current but accumulates offset error. A fuel gauge combines measurements with a cell model and correction opportunities.
+Coulomb counting estimates charge by adding up current over time. A small current-measurement offset accumulates into a large charge error, so a fuel gauge combines measurements with a cell model and corrects the estimate when it can.
 
 See [TI fuel-gauge modeling](https://www.ti.com/lit/wp/slpy002/slpy002.pdf) for impedance and capacity estimation.
 
@@ -99,7 +98,7 @@ Accurate SoC helps prevent unexpected shutdown and improves runtime prediction. 
 
 Monitor cell voltage, current, and temperature. A battery management system can coordinate protection, measurement, balancing, and communication.
 
-Charge acceptance usually decreases during the constant-voltage phase. The permitted maximum charge current comes from the cell specification, not from the charger rating alone.
+Charge acceptance usually decreases during the constant-voltage phase. The allowed maximum charge current comes from the cell specification, not from the charger rating alone.
 
 Overcharge can cause internal reactions, gas, and excessive heat. Deep overdischarge can damage a cell and make later charging unsafe.
 

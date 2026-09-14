@@ -7,15 +7,12 @@ import PllExplorer from '@site/src/components/PllExplorer'
 
 # Phase-Locked Loops
 
-A **phase-locked loop (PLL)** is a feedback system that makes an adjustable oscillator follow a reference signal.
-The loop compares phase, makes an error signal, filters the error, and corrects the oscillator.
+A **phase-locked loop (PLL)** adjusts an oscillator to follow a reference signal. It compares their phase, filters the resulting error, and uses that correction to speed up or slow down the oscillator.
 
 A PLL can combine analog and digital functions.
 It can generate a clock, multiply frequency, recover a clock from data, clean jitter, demodulate frequency modulation, or align two periodic signals.
 
-The word **lock** means that the reference and feedback signals have the same average frequency and a bounded phase difference.
-The phase difference does not need to be zero.
-The required phase offset depends on the detector, the loop filter, and nonideal circuit behavior.
+A PLL is in **lock** when the reference and feedback signals have the same average frequency and their phase difference stays within a bounded range. They do not have to line up exactly. The remaining phase offset depends on the detector, loop filter, and real circuit errors.
 
 ## 1. Core PLL Architecture
 
@@ -39,9 +36,7 @@ The main signals are:
 * **Tuning voltage, <i>V<sub>tune</sub></i>:** The loop-filter output that controls an analog oscillator.
 * **Phase error, <i>θ<sub>e</sub></i>:** The reference phase minus the feedback phase under the selected sign convention.
 
-The detector observes the reference and feedback signals.
-It does not compare the undivided output directly when a feedback divider is present.
-The loop changes the oscillator until the two detector inputs have the required relationship.
+The detector compares the reference with the feedback signal. If there is a divider in the feedback path, it sees the divided signal, not the oscillator output directly. The loop adjusts the oscillator until those two detector inputs have the required relationship.
 
 ### Phase Detector and Phase-Frequency Detector
 
@@ -49,15 +44,9 @@ A **phase detector** measures phase difference.
 An analog multiplier, mixer, or exclusive-OR gate can operate as a phase detector.
 Its average output depends on phase while both inputs are in the valid operating range.
 
-A phase detector alone can have an ambiguous response when the frequencies are far apart.
-It can also have a limited pull-in range.
-Its output can contain sum-frequency and difference-frequency terms.
-The loop filter must reject the unwanted terms.
+When the input frequencies are far apart, a phase-only detector may not give a clear correction direction and may fail to pull the loop into lock. Its output can also contain both sum and difference frequencies, so the loop filter must remove the unwanted terms.
 
-A **phase-frequency detector** detects both phase order and frequency order.
-It identifies which edge arrives first.
-It can continue to command the correct direction while the input frequencies differ.
-This behavior gives many PFD PLLs a larger acquisition range than a phase-only detector gives.
+A **phase-frequency detector** checks which signal's edge arrives first and can keep indicating the right correction direction while their frequencies differ. This often lets a PFD-based PLL acquire lock over a wider range than a phase-only detector.
 
 ### Charge-Pump Operation
 
@@ -65,34 +54,23 @@ A digital PFD commonly controls a **charge pump**.
 The PFD produces an **UP** pulse when the feedback edge is late.
 It produces a **DOWN** pulse when the feedback edge is early.
 
-The charge pump sources current during an UP pulse.
-It sinks current during a DOWN pulse.
-The loop filter integrates these current pulses.
-The resulting voltage changes the oscillator frequency.
+During an UP pulse, the charge pump adds current to the loop filter. During a DOWN pulse, it removes current. The filter accumulates these charge changes into a control voltage that adjusts oscillator frequency.
 
-When the loop is near lock, the UP and DOWN pulses become short.
-Small pulse-width differences correct the remaining phase and frequency errors.
-Mismatch between the source and sink currents can create a static phase offset and reference spurs.
-Leakage, dead zone, reset delay, and finite pulse width can also affect the locked result.
+Near lock, the UP and DOWN pulses become short, and small differences in their widths correct the remaining error. Unequal source and sink currents can leave a fixed phase offset and unwanted reference-related tones, or spurs. Leakage, a detector dead zone, reset delay, and finite pulse widths also affect the result.
 
 ### Loop Filter
 
-The **loop filter** has two jobs.
-It makes the required control law and removes much of the PFD switching content.
+The **loop filter** determines how the loop responds to error and removes much of the switching ripple from the PFD.
 
-A passive charge-pump filter can contain an integrating capacitor, a resistor that makes a stabilizing zero, and one or more extra capacitors that attenuate high-frequency pulses.
-An active filter can add voltage gain or [level translation](<../../04-Digital-Interfaces/DigitalGeneral.md#4-logic-interfacing-guide>).
-It can also increase noise and add amplifier limits.
+A passive charge-pump filter can use a capacitor to accumulate charge, a resistor to add a stabilizing zero, and extra capacitors to reduce high-frequency pulses. An active filter can add voltage gain or [level translation](<../../04-Digital-Interfaces/DigitalGeneral.md#4-logic-interfacing-guide>), but adds noise and amplifier limitations too.
 
 The loop filter is part of the feedback controller.
 It is not only a ripple filter.
-Its poles and zeros set acquisition response, stability, jitter transfer, VCO-noise suppression, and spur attenuation.
+The filter's poles and zeros affect how quickly the PLL locks, whether it stays stable, and which timing errors pass through. They also affect how much VCO noise and unwanted discrete tones, called spurs, reach the output.
 
 ## 2. How the Loop Acquires Lock
 
-A frequency difference creates a phase difference that changes with time.
-The detector converts this moving phase difference into a correction.
-The controlled oscillator moves toward the reference relationship.
+If the oscillator frequency is wrong, its phase keeps moving relative to the reference. The detector turns that changing phase difference into a correction, moving the oscillator toward the required relationship.
 
 ### Detailed 100 Hz and 90 Hz Example
 
@@ -141,27 +119,16 @@ The locked VCO operates at 100 Hz for a divide-by-1 loop.
 The input and feedback keep a fixed average phase relationship.
 For example, the reference can stay **5 degrees ahead** of the feedback signal.
 
-The detector can require this nonzero phase error to make a DC tuning correction.
-A modern ideal PFD and charge pump can approach zero static phase error.
-Current mismatch, leakage, delay, and required tuning current can make the practical error nonzero.
+Some detectors need a nonzero phase difference to maintain the required DC correction. An ideal PFD and charge pump can approach zero static phase error, but current mismatch, leakage, delays, and required tuning current leave some error in practice.
 
 ### Capture Range, Hold Range, and Tuning Range
 
-The loop cannot lock from every starting condition.
-The **capture range** is the range of initial frequency offsets from which the loop can acquire lock under stated conditions.
-The **hold range** or **lock range** is the range across which an already locked loop can remain locked.
-Manufacturers do not always use these terms in the same way.
-Read the definition and test conditions in the applicable datasheet.
+A PLL cannot acquire lock from every starting frequency. **Capture range** describes the initial frequency offsets from which it can reach lock under stated conditions. **Hold range**, or **lock range**, describes how far an already locked loop can track without losing lock. Manufacturers use these names differently, so check the datasheet's definitions and test conditions.
 
-Consider one signal at 1 MHz and the other signal at 10 Hz.
-The frequency difference is extremely large.
-A phase-only detector can make a beat signal that is too fast or unsuitable for the loop filter.
-The filter can average the detector signal to almost zero.
-The VCO then receives too little useful correction.
-The loop does not acquire lock.
+With one signal at 1 MHz and another at 10 Hz, the phase-only detector sees a very large frequency difference. Its beat signal may be too fast or otherwise unsuitable for the loop filter. If filtering leaves almost no useful average correction, the VCO never moves into lock.
 
 A PFD can give a consistent frequency-direction command over a wider range.
-Acquisition still requires all of these conditions:
+Acquisition still needs all of these conditions:
 
 * The controlled oscillator must be able to reach the target frequency.
 * The tuning command must stay inside its valid range.
@@ -178,23 +145,15 @@ Loop bandwidth, detector type, oscillator tuning range, divider settings, signal
 **Settling time** is the time required to enter and remain inside a stated frequency or phase-error band after a disturbance.
 These two terms do not always use the same limits.
 
-A large frequency or phase step can make the phase error pass through a complete cycle.
-This event is a **cycle slip**.
-One or more cycle slips can occur before lock.
-Cycle slipping increases settling time and can make a simple linear model inaccurate during acquisition.
+After a large frequency or phase change, the phase error may go through a full cycle before settling. This is a **cycle slip**. Several slips can occur before lock, increasing settling time and making a small-signal linear model inaccurate during acquisition.
 
-The linear locked model later on this page applies to small changes near lock.
-Use a nonlinear or event-driven simulation for large steps, saturation, cycle slips, and digital acquisition logic.
+The linear model later in this page describes small changes near lock. Large steps, saturation, cycle slips, and digital acquisition logic need a nonlinear or event-driven simulation.
 
 ### Lock Detection
 
-A **lock detector** estimates whether the PLL is locked.
-A digital lock detector can count consecutive PFD comparisons that occur inside a phase-error window.
-An analog lock detector can filter detector activity.
+A **lock detector** estimates whether lock has been reached. A digital one may count successive comparisons whose phase errors fall inside a chosen window. An analog one may filter the detector's activity.
 
-A lock indication is not a complete performance test.
-The loop can assert lock while output phase noise, spurs, or frequency error still fail the system requirement.
-The lock detector can also chatter near its threshold.
+A lock indication does not prove that output noise, spurs, or frequency error meet your requirements. The indication can also toggle repeatedly near its threshold, so check the actual output as well.
 
 Define these lock conditions:
 
@@ -217,10 +176,7 @@ A local linear approximation is:
 
 > **f<sub>out</sub> ≈ f<sub>0</sub> + K<sub>VCO</sub>V<sub>tune</sub>**
 
-In this frequency-domain form, <i>K<sub>VCO</sub></i> has units of hertz per volt.
-The approximation is valid only across the stated tuning region.
-A real tuning curve can be nonlinear.
-Its gain can change with frequency, temperature, supply voltage, and process.
+Here, <i>K<sub>VCO</sub></i> is in hertz per volt: how much frequency changes for a small voltage change. This straight-line approximation applies only over the stated tuning region. A real curve is nonlinear, and its slope changes with frequency, temperature, supply, and manufacturing variation.
 
 For one illustrative relationship:
 
@@ -245,19 +201,13 @@ The loop gives two useful signals:
 
 ### VCXO, DCO, and NCO
 
-A **voltage-controlled [crystal oscillator](<./Crystal-oscillators.md#4-the-pierce-oscillator>) (VCXO)** uses a quartz resonator and a voltage-controlled pulling network.
-It usually has a smaller tuning range than a wide-range LC or ring VCO.
-It can give low phase noise and good short-term stability.
-This behavior is useful for jitter cleaning.
+A **voltage-controlled [crystal oscillator](<./Crystal-oscillators.md#4-the-pierce-oscillator>) (VCXO)** shifts a quartz crystal's frequency using a voltage-controlled pulling circuit. Its tuning range is usually smaller than that of an LC or ring VCO, but its low phase noise and good short-term stability can make it useful for cleaning jitter.
 
 A **digitally controlled oscillator (DCO)** accepts a digital tuning word.
 The word can select delay elements, capacitors, current, or another frequency-setting quantity.
 A digital PLL can use a DCO without a continuously variable analog tuning voltage.
 
-A **numerically controlled oscillator (NCO)** uses a digital phase accumulator and a waveform mapping process.
-Its output is a digital phase or waveform sequence.
-An NCO is not a physical resonator.
-It can be the controlled source in a software or digital phase-locked loop.
+A **numerically controlled oscillator (NCO)** repeatedly adds a phase increment to a digital accumulator, then maps the phase to a waveform if needed. It produces digital phase or waveform samples rather than using a physical resonator, and can be the controlled source in a software or digital PLL.
 
 The selected oscillator must cover the complete target range with margin.
 It must also meet phase-noise, power, startup, output-level, and tuning-resolution requirements.
@@ -330,20 +280,15 @@ Its channel spacing is related to the PFD frequency and output divider.
 A high PFD frequency can permit a lower <i>N</i> value.
 This choice can reduce some in-band noise contributions.
 
-The requested VCO frequency, divider limits, PFD limit, reference quality, and required channel spacing constrain the frequency plan.
+Choose the frequencies together: the desired VCO output must work with the divider limits, phase-frequency detector (PFD) limit, reference quality, and required spacing between channels.
 Do not select divider values from the output ratio alone.
 Check every internal frequency and divider rule in the device datasheet.
 
 ### Fractional-N Synthesis
 
-A **fractional-N PLL** makes the average feedback divide value noninteger.
-For example, a modulator can alternate divider values so that the long-term average is 100.25.
-This method gives fine frequency resolution while the PFD operates at a relatively high rate.
+A **fractional-N PLL** alternates between integer divider settings so their long-term average can be noninteger, such as 100.25. This gives fine output-frequency steps while allowing the PFD to run relatively fast.
 
-A fractional-N modulator shapes divider quantization error.
-It can reduce close-in noise by permitting a lower average <i>N</i>.
-It can also make fractional spurs and shaped quantization noise.
-Frequency planning, modulator order, seed, dither, loop bandwidth, and device-specific calibration affect the result.
+The fractional-N modulator controls the pattern of divider changes to shape their quantization error. A lower average <i>N</i> can reduce noise close to the carrier, but the pattern can also create fractional spurs and shaped noise. Results depend on the frequency plan, modulator order and seed, added dither, loop bandwidth, and device calibration.
 
 Do not assume that fractional-N operation is always noisier or always quieter than integer-N operation.
 Compare the complete phase-noise and spur requirements at the required frequencies.
@@ -352,9 +297,7 @@ Compare the complete phase-noise and spur requirements at the required frequenci
 
 ## 5. Linear Locked-Loop Model
 
-This section uses a **continuous-time, averaged, small-signal model**.
-It describes small phase changes near a stable locked state.
-It does not describe cycle slips, charge-pump saturation, divider changes, rail limits, or nonlinear acquisition.
+This section averages the switching behavior into a **continuous-time, small-signal model**. It describes small phase changes near stable lock. It leaves out cycle slips, charge-pump saturation, divider changes, rail limits, and the nonlinear process of first acquiring lock.
 
 ### Model Quantities and Units
 
@@ -377,9 +320,7 @@ This gain has units of amperes per radian.
 Another reference can define detector gain differently.
 Convert the units before using its equations.
 
-The VCO converts tuning voltage to angular frequency.
-Phase is the time integral of angular frequency.
-Its phase-domain gain is:
+The VCO turns tuning voltage into angular frequency. Phase then accumulates that frequency over time, so the VCO appears as an integrator when the loop is expressed in phase:
 
 > **θ<sub>out</sub>(s) / V<sub>tune</sub>(s) = K<sub>v</sub> / s**
 
@@ -403,8 +344,7 @@ An additive free-running VCO phase disturbance has this output transfer function
 The loop suppresses slow VCO phase changes when loop gain is high.
 Fast VCO phase changes pass to the output when loop gain is low.
 
-These equations describe two injection points.
-Charge-pump noise, divider noise, loop-filter noise, reference noise, and supply noise each need the transfer function from their own injection point.
+These equations cover noise entering at two particular points. Noise from the charge pump, divider, loop filter, reference, or supply needs the transfer function from its own entry point to the output.
 
 ### Ideal Type-II Second-Order Example
 
@@ -429,7 +369,7 @@ The dimensionless value <i>ζ</i> is the [damping ratio](<../Filters/Active-filt
 
 These formulas do not apply unchanged to every PLL.
 An extra filter capacitor, an active filter, a digital delay, a sampled PFD, or an oscillator pole changes the model.
-Use the exact loop topology and the applicable vendor design method.
+Use the exact loop topology and the relevant vendor design method.
 
 ### Loop Type and Loop Order
 
@@ -441,9 +381,7 @@ A type-II loop has two.
 The ideal example above is type II and second order.
 A practical charge-pump PLL with an additional filter pole can be type II and third order.
 
-Do not use the words type and order as synonyms.
-Type controls steady-state tracking error for polynomial phase inputs.
-Order describes the number of dynamic energy-storage states in the linear model.
+Loop type and order describe different things. Type determines how much steady tracking error remains for phase inputs such as a constant, ramp, or higher-order polynomial. Order counts the independent dynamic states in the linear model. Do not use the two terms interchangeably.
 
 ### Bandwidth, Damping, and Phase Margin
 
@@ -459,9 +397,7 @@ Extra high-frequency poles reduce phase margin.
 Time delay also reduces phase margin.
 Low phase margin can cause peaking, ringing, or instability.
 
-A wide loop commonly settles faster and follows faster reference changes.
-A narrow loop commonly rejects more high-frequency reference jitter and attenuates reference spurs more strongly.
-The narrow loop also leaves more VCO noise unsuppressed at lower offset frequencies.
+A wider loop usually settles faster and follows faster reference changes. A narrower loop rejects more rapid reference jitter and reduces reference spurs, but also leaves more of the VCO's own noise uncorrected at lower offset frequencies.
 
 Select loop bandwidth and phase margin from the full noise, spur, modulation, and settling requirements.
 Do not apply one damping ratio or one bandwidth ratio to every PLL.
@@ -474,20 +410,14 @@ Frequency accuracy describes the long-term or average rate.
 
 ### Reference and VCO Noise Shaping
 
-The locked PLL acts approximately as a low-pass path for reference phase noise.
-It acts approximately as a high-pass path for free-running VCO phase noise.
+The locked PLL generally passes slow phase changes from the reference like a low-pass filter. For the VCO's own phase noise, it does the opposite: feedback corrects slow changes, leaving faster changes to pass like a high-pass response.
 
-Inside the effective loop bandwidth, output phase follows the divided reference relationship.
-Reference noise, PFD noise, charge-pump noise, and divider noise can dominate this region.
-The reference-phase contribution is also affected by the multiplication ratio.
+Within the loop bandwidth, output phase tracks the divided reference relationship. Reference, PFD, charge-pump, and divider noise may dominate there. Frequency multiplication also scales the reference's phase-noise contribution.
 
 Outside the effective loop bandwidth, the loop cannot correct the oscillator quickly.
 Free-running VCO phase noise commonly dominates this region.
 
-The best bandwidth for low integrated jitter is often near a crossover between the multiplied in-band noise and the VCO noise.
-This point depends on the actual noise spectra.
-A narrower loop is not automatically better.
-A wider loop is not automatically better.
+The lowest total jitter often comes from a bandwidth near where the multiplied in-band noise and VCO noise become comparable. Use the actual noise-versus-frequency curves to find that trade-off; neither narrower nor wider is always better.
 
 ### Jitter Cleaning and the Flywheel Effect
 
@@ -498,15 +428,11 @@ A narrow-band PLL averages fast phase changes at the detector.
 The controlled oscillator follows the average input frequency but does not follow input changes that are much faster than the loop response.
 Its output can have cleaner timing than the input.
 
-This behavior is the **flywheel effect**.
-The oscillator continues from its own short-term phase trajectory while the loop corrects slower error.
-The narrow bandwidth increases lock and settling time.
-It also makes oscillator quality more important across a wider offset range.
+This is the **flywheel effect**: the oscillator maintains its short-term timing while the loop corrects slower errors. A narrow loop takes longer to lock and settle, and leaves oscillator quality responsible for more of the offset-frequency range.
 
 ### Convert Phase Noise to RMS Jitter
 
-Single-sideband phase noise <i>L(f)</i> is commonly stated in dBc/Hz at an offset <i>f</i> from the carrier.
-For small random phase modulation, an approximate integrated RMS phase is:
+Single-sideband phase noise <i>L(f)</i> describes noise near one side of the carrier, at offset frequency <i>f</i>. The usual unit, dBc/Hz, compares noise power in a 1 Hz bandwidth with carrier power. For small random phase modulation, integrate it to estimate RMS phase variation:
 
 > **σ<sub>φ</sub> = √[2∫<sub>f1</sub><sup>f2</sup>10<sup>L(f)/10</sup>df]**
 
@@ -515,10 +441,7 @@ Convert RMS phase to RMS time jitter at output carrier frequency <i>f<sub>0</sub
 
 > **σ<sub>t</sub> = σ<sub>φ</sub> / (2πf<sub>0</sub>)**
 
-State <i>f<sub>1</sub></i>, <i>f<sub>2</sub></i>, carrier frequency, and treatment of spurs with every result.
-The factor of 2 assumes a single-sideband phase-noise representation and symmetric sidebands.
-The approximation applies to small phase noise.
-It does not convert deterministic jitter or large phase modulation by itself.
+Give <i>f<sub>1</sub></i>, <i>f<sub>2</sub></i>, carrier frequency, and whether spurs are included with every result. The factor of 2 accounts for both sides when using a single-sideband noise value with symmetric sidebands. This approximation applies to small phase noise; it does not by itself convert deterministic jitter or large phase modulation.
 
 Do not compare two RMS-jitter values that use different integration limits.
 Do not silently include spurs in one result and exclude them in another.
@@ -547,14 +470,9 @@ Use clean supplies, compact layout, isolation, frequency planning, and device-sp
 
 ### VCO Supply and Tuning-Node Noise
 
-Noise on the VCO supply can modulate frequency.
-This modulation makes sidebands and jitter.
-The sensitivity from supply voltage to frequency is sometimes called **VCO pushing**.
+Supply noise can change VCO frequency, adding sidebands and timing jitter. The amount of frequency change caused by supply-voltage change is called **VCO pushing**.
 
-Use strong supply filtering when oscillator sensitivity requires it.
-An LC filter can isolate regulator and digital noise.
-It can also resonate or interact with the regulator.
-Use damping and decoupling that agree with the regulator and VCO requirements.
+Use enough supply filtering for the VCO's sensitivity. An LC filter can reduce regulator and digital noise, but may also resonate or interact with the regulator. Choose damping and decoupling that suit both devices.
 
 Keep the tuning node away from switching signals.
 Use low-leakage filter components when leakage causes a significant tuning error.
@@ -579,9 +497,7 @@ Use a post-filter when the demodulated bandwidth permits it.
 
 ### Clock and Data Recovery
 
-A **clock and data recovery (CDR)** loop extracts timing from data transitions.
-It aligns a recovered clock so that a decision circuit samples the data in a valid part of the eye opening.
-A CDR can use a PLL or another timing-recovery architecture.
+A **clock and data recovery (CDR)** loop derives timing from transitions in the data. It aligns a recovered clock so the receiver samples where the eye diagram has a reliable opening. A CDR may use a PLL or another timing-recovery design.
 
 Three jitter terms are important:
 
@@ -589,9 +505,7 @@ Three jitter terms are important:
 * **Jitter tolerance:** The input-jitter amplitude and frequency that the receiver can accept while it meets its error requirement.
 * **Jitter generation:** The jitter made by the CDR under the defined input conditions.
 
-Jitter transfer is a closed-loop tracking property.
-Jitter tolerance also depends on eye opening, detector behavior, [equalization](<../../05-PCB-Layout/03-trace-impedance.md#preemphasis-and-equalization>), data pattern, and cycle-slip limits.
-Jitter generation includes oscillator, detector, supply, and circuit noise.
+Jitter transfer describes how much input timing variation the loop follows. Jitter tolerance also depends on the eye opening, detector, [equalization](<../../05-PCB-Layout/03-trace-impedance.md#preemphasis-and-equalization>), bit pattern, and when cycle slips begin. Jitter generation measures timing noise added by the oscillator, detector, supply, and other circuits.
 
 A narrower CDR bandwidth can reduce high-frequency jitter transfer.
 It can also reduce tolerance to low-frequency wander or fast frequency offset if the rest of the acquisition system cannot compensate.
@@ -605,17 +519,13 @@ Processors and interfaces use PLLs for internal clocks.
 Data converters use low-jitter PLL clocks for sampling.
 
 The frequency plan must avoid prohibited divider values, VCO gaps, excessive <i>N</i>, unwanted spurs, and downstream bandwidth limits.
-Fast frequency hopping also requires a settling-time limit after each divider change.
+Fast frequency hopping also needs a settling-time limit after each divider change.
 
 ### Phase Alignment and Zero Delay
 
-A feedback path can include the clock distribution path.
-The PLL then corrects delay so that a selected output edge aligns with the reference edge.
-This configuration is commonly called **zero-delay** operation.
+Put the clock distribution path inside the feedback path and the PLL can compensate for its delay, aligning a selected output edge with the reference. This is commonly called **zero-delay** operation.
 
-The name does not mean that physical delay is zero.
-It means that the closed loop controls the phase at the selected feedback point.
-Other outputs can have package, buffer, and trace skew.
+Physical propagation still takes time. The loop aligns phase only at the selected feedback point; other outputs can still differ because of package, buffer, and trace delays.
 
 ### Motor, Grid, and Measurement Loops
 
@@ -630,9 +540,7 @@ Select the architecture for the input waveform and dynamic range.
 
 ## 8. Information That a PLL Does Not Preserve
 
-A PLL does not behave like a linear [op-amp](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) chain.
-It controls timing and phase.
-It does not automatically copy every input property.
+A PLL controls timing and phase. Unlike a linear [op-amp](<../Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) chain, it does not reproduce every property of the input signal.
 
 ### Amplitude Is Not Preserved
 
@@ -648,8 +556,7 @@ Use an amplitude detector or a complete demodulator when amplitude carries infor
 
 ### Response Is Not Instantaneous
 
-An op-amp can respond in nanoseconds when its bandwidth and slew rate permit this response.
-A PLL has loop-filter state and finite correction speed.
+An op-amp may respond in nanoseconds if its bandwidth and slew rate allow it. A PLL must change the stored state of its loop filter and correct the oscillator over time.
 
 If an input changes from 100 Hz to 200 Hz, the VCO can sweep to the new frequency over milliseconds in one illustrative design.
 The exact time depends on loop parameters and tuning limits.
@@ -671,7 +578,7 @@ It made a faster signal that the downstream circuit cannot process correctly.
 | --- | --- | --- |
 | **Controlled quantity** | Voltage or current | Phase and frequency |
 | **Amplitude** | Can preserve proportional amplitude | Output amplitude is usually set by the oscillator buffer |
-| **Response** | Can respond in nanoseconds | Requires acquisition and tracking time |
+| **Response** | Can respond in nanoseconds | Needs acquisition and tracking time |
 | **Noise behavior** | Adds analog voltage and current noise | Shapes phase noise and can clean timing jitter |
 | **Steady state** | Uses a bounded voltage error | Uses a bounded phase error |
 | **Next-stage bandwidth** | Must support the signal bandwidth | Must support the multiplied output frequency |
@@ -718,19 +625,14 @@ The loop gain changes with detector gain, oscillator gain, and divide ratio.
 
 ### Verify Frequency and Tuning Range
 
-Measure output frequency across every programmed channel.
-Record tuning voltage at the low, middle, and high ends of the VCO range.
-Keep margin from the tuning rails.
-A loop can report lock near a rail but have little correction range.
+Check output frequency for every programmed channel and record tuning voltage at the low, middle, and high ends of the VCO range. Keep room between that voltage and the tuning limits. A loop can indicate lock near a rail yet have almost no remaining correction range.
 
 Test voltage, temperature, and power-cycle limits.
-Verify calibration after the fastest and slowest permitted supply ramps.
+Verify calibration after the fastest and slowest allowed supply ramps.
 
 ### Measure Lock and Settling Time
 
-Apply the defined frequency step.
-Measure from the stated trigger event to the stated error band.
-Require the signal to remain inside the band for the specified observation interval.
+Apply the specified frequency step and time the response from a clearly defined trigger. Settling is complete only when the output enters the required error band and stays there for the stated observation interval.
 
 Record:
 
@@ -745,9 +647,7 @@ Measure both events.
 
 ### Measure Loop Response
 
-Some systems permit a small phase-modulation injection at the reference.
-Sweep the modulation frequency and measure output phase.
-This test estimates jitter transfer, bandwidth, and peaking.
+Some PLLs allow a small phase modulation to be added to the reference. Sweep its frequency and measure the output phase response to estimate jitter transfer, loop bandwidth, and peaking.
 
 Keep the modulation small enough for the linear locked model.
 A large modulation can cause cycle slips or nonlinear detector operation.
@@ -778,10 +678,7 @@ Use the required data patterns and equalizer settings.
 
 ### Avoid Measurement Disturbance
 
-The tuning node can have high impedance.
-A probe can add capacitance, leakage, or coupled noise.
-Use a high-impedance, low-capacitance method.
-Do not leave a large [test pad](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#design-for-access>) on the final tuning node without including its parasitics.
+The tuning node can be sensitive to a probe's capacitance, leakage, and picked-up noise. Use a high-impedance, low-capacitance measurement method. Include the parasitics of any large [test pad](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#design-for-access>) left on the final board.
 
 Use a clean instrument reference.
 A frequency counter or analyzer with a poor time base can make the PLL appear worse than it is.

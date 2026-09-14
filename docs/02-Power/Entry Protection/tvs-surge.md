@@ -1,13 +1,12 @@
 # TVS Surge
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
 
 ## 1. Transient Protection
 
-A **transient-voltage suppressor (TVS)** diverts transient current away from a protected input. It does not regulate a continuous overvoltage.
+A **transient-voltage suppressor (TVS)** gives a brief surge of current a path away from the input you want to protect. It handles short voltage spikes, not a supply that stays too high continuously.
 
 Three voltage specifications have different meanings:
 
@@ -25,7 +24,7 @@ Place the TVS near the entry point. Keep the path from the connector through the
 
 <LearningEquation tex={"V_L=L\\frac{di}{dt}"} />
 
-A low clamping voltage at the component does not guarantee the same voltage at a distant input.
+Even if the TVS clamps to a low voltage at its own terminals, the protected input can see more voltage if it is far away. The connecting path matters too.
 
 import ProtectionPathDiagram from '@site/src/components/ProtectionPathDiagram';
 

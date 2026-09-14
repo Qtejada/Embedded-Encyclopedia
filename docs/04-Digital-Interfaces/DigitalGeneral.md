@@ -14,16 +14,16 @@ import LogicLevelExplorer from '@site/src/components/LogicLevelExplorer'
 
 **Pulse-code modulation (PCM)** represents information with digital values. A digital receiver does not have to reproduce each small change in the transmitted waveform. It must identify each received value as a logic **0** or a logic **1**.
 
-This property gives digital transmission good resistance to noise. The receiver can recover the data if the two logic states remain different and each signal stays inside its permitted input range. Digital transmission is not immune to noise. Sufficient noise can move a signal across a logic threshold and cause a bit error.
+Digital transmission resists noise because the receiver only has to distinguish the logic states, rather than preserve every small voltage change. The signal must still stay within the input limits and on the correct side of the logic threshold. Enough noise can cross that threshold and change a bit.
 
-Noise, attenuation, jitter, [crosstalk](<../05-PCB-Layout/01-Overview.md#53-crosstalk-and-separation>), and intersymbol interference can all cause errors. Regeneration restores logic levels only while voltage and timing margins remain valid. PCM also introduces sampling and quantization effects.
+Noise, signal loss, jitter, [crosstalk](<../05-PCB-Layout/01-Overview.md#53-crosstalk-and-separation>), and the influence of one symbol on the next (intersymbol interference) can all cause errors. A receiver can restore clean logic levels only if it still has enough voltage and timing margin to identify the bits. PCM also has the limits introduced by sampling and quantization.
 
 ### Noise immunity
 
 **Noise immunity** is the ability of a circuit to tolerate unwanted voltage without a logic error. The available **noise margin** is the difference between a guaranteed output level and the related input threshold.
 
-* Classic **transistor-transistor logic (TTL)** has a worst-case DC noise margin of approximately **0.4 V**.
-* A typical **5 V complementary metal-oxide-semiconductor (CMOS)** interface has a much larger noise margin, often approximately **1.5 V**. The exact value depends on the logic family and load.
+* Classic **transistor-transistor logic (TTL)** has a worst-case DC noise margin of about **0.4 V**.
+* A typical **5 V complementary metal-oxide-semiconductor (CMOS)** interface has a much larger noise margin, often about **1.5 V**. The exact value depends on the logic family and load.
 
 Calculate the two margins from guaranteed datasheet limits:
 
@@ -31,7 +31,7 @@ Calculate the two margins from guaranteed datasheet limits:
 
 > **Low-level noise margin:** N<sub>ML</sub> = V<sub>IL(max)</sub> - V<sub>OL(max)</sub>
 
-Use the output limits for the actual load and the input limits for the actual supply voltage and temperature. The V<sub>IL(max)</sub> and V<sub>IH(min)</sub> values are guaranteed input limits. They are not the exact internal switching thresholds.
+Compare output limits at the load you will actually drive with input limits at the receiver's supply voltage and temperature. V<sub>IL(max)</sub> and V<sub>IH(min)</sub> tell you which input levels are guaranteed to be recognized. They do not identify the exact voltage where the input switches internally.
 
 The logic-level notation is as follows:
 
@@ -44,14 +44,14 @@ The logic-level notation is as follows:
 
 A voltage between the guaranteed LOW and HIGH input limits is not a valid steady logic level. Do not design a circuit to operate in this undefined region.
 
-* **5 V CMOS:** A common specification identifies **1.5 V and less** as LOW and **3.5 V and more** as HIGH. These guaranteed input limits equal approximately 0.3 and 0.7 times the supply voltage. Always use the limits in the applicable datasheet.
+* **5 V CMOS:** A common specification identifies **1.5 V and less** as LOW and **3.5 V and more** as HIGH. These guaranteed input limits equal about 0.3 and 0.7 times the supply voltage. Always use the limits in the relevant datasheet.
 * **5 V TTL:** An input of **0.8 V and less** is LOW. An input of **2.0 V and more** is HIGH.
 
 The principal differences between CMOS and TTL are as follows:
 
-* **Supply voltage:** Many CMOS families can operate across a specified supply range. Classic TTL normally requires a regulated **+5 V** supply.
-* **Input current:** A CMOS input is voltage-controlled and draws almost no steady input current. Leakage current still flows. A bipolar-TTL input requires input current.
-* **Output swing:** A CMOS output usually goes close to both supply rails when the load is light. A classic TTL output does not go to the positive rail. Its HIGH output is commonly approximately **3.5 V**.
+* **Supply voltage:** Many CMOS families can operate across a specified supply range. Classic TTL normally needs a regulated **+5 V** supply.
+* **Input current:** A CMOS input is voltage-controlled and draws almost no steady input current. Leakage current still flows. A bipolar-TTL input needs input current.
+* **Output swing:** A CMOS output usually goes close to both supply rails when the load is light. A classic TTL output does not go to the positive rail. Its HIGH output is commonly about **3.5 V**.
 * **Power:** CMOS power is principally dynamic and increases with switching frequency. CMOS also has leakage and short-circuit current. TTL has substantial quiescent power consumption.
 
 Use these first-order power relations when the required parameters are available:
@@ -69,9 +69,9 @@ Many CMOS families have **TTL-threshold** variants. The letter **T** commonly id
 * HC becomes **HCT**.
 * VHC becomes **VHCT**.
 
-These variants specify a maximum LOW input threshold of **+0.8 V** and a minimum HIGH input threshold of **+2.0 V**. These limits reproduce the bipolar-TTL input specification. The switching threshold of a bipolar-TTL input is approximately two diode drops above ground, or approximately **1.3 V**.
+These variants specify a maximum LOW input threshold of **+0.8 V** and a minimum HIGH input threshold of **+2.0 V**. These limits reproduce the bipolar-TTL input specification. The switching threshold of a bipolar-TTL input is about two diode drops above ground, or about **1.3 V**.
 
-The **1.3 V** value is an illustrative internal switching point. Do not use it as a compatibility limit. Use the guaranteed **0.8 V** and **2.0 V** input limits and the applicable output limits.
+The **1.3 V** value is an illustrative internal switching point. Do not use it as a compatibility limit. Use the guaranteed **0.8 V** and **2.0 V** input limits and the relevant output limits.
 
 <LogicLevelExplorer />
 
@@ -96,7 +96,7 @@ In ordinary 8421 BCD, the codes from **1010** through **1111** do not represent 
 ### Negative numbers
 
 * **Sign-and-magnitude:** The most significant bit (**MSB**) is the sign bit. The remaining bits contain the magnitude. This representation makes addition and subtraction awkward.
-* **[Two’s complement](<./Firmware.md#types-and-representation>):** This is the most frequently used signed-integer representation. Use a fixed bit width. To form the negative value, write the absolute value in binary, **invert all bits**, and then **add 1**. This representation makes binary addition and subtraction easier.
+* **[Two’s complement](<./Firmware.md#types-and-representation>):** This is the most often used signed-integer representation. Use a fixed bit width. To form the negative value, write the absolute value in binary, **invert all bits**, and then **add 1**. This representation makes binary addition and subtraction easier.
 
 For an <i>n</i>-bit two’s-complement number, the range is:
 
@@ -106,7 +106,7 @@ For an <i>n</i>-bit two’s-complement number, the range is:
 
 In a **Gray-code** sequence, only one bit changes between adjacent values. Position encoders use Gray code to reduce transition glitches.
 
-Gray code reduces ambiguity when several binary bits would otherwise change together. It does not remove electrical noise, synchronization errors, or metastability by itself.
+Gray code avoids the ambiguity that can occur when several binary bits change at once and do not arrive at exactly the same time. It does not, by itself, remove electrical noise, synchronization errors, or metastability.
 
 ---
 
@@ -121,13 +121,13 @@ Datasheets commonly specify two delays:
 * **t<sub>PLH</sub>:** Delay for an output transition from LOW to HIGH.
 * **t<sub>PHL</sub>:** Delay for an output transition from HIGH to LOW.
 
-The manufacturer measures these delays between specified input and output waveform reference points. Supply voltage, load capacitance, temperature, and input edge rate affect the result. Most modern standard logic uses CMOS MOSFET circuits and usually has lower quiescent power than bipolar TTL. The device technology alone does not set propagation delay.
+Propagation delay is measured between particular points on the input and output waveforms. It changes with supply voltage, load capacitance, temperature, and how fast the input edge changes. Most modern standard logic uses CMOS MOSFET circuits, usually with lower idle power than bipolar TTL. CMOS technology alone does not tell you the delay of a part.
 
 ### Datasheet checks, fan-out, and unused inputs
 
 Use this procedure before you connect two logic devices:
 
-1. Use **Recommended Operating Conditions** for the permitted design range. **Absolute Maximum Ratings** are damage limits, not operating targets.
+1. Use **Recommended Operating Conditions** for the allowed design range. **Absolute Maximum Ratings** are damage limits, not operating targets.
 2. Use minimum and maximum **Electrical Characteristics** for guaranteed behavior. Use typical values only for estimates.
 3. Keep each test condition with its value. Check supply voltage, temperature, output current, load capacitance, and input transition time.
 4. Check input clamp current, powered-off behavior, I<sub>off</sub>, enable and disable delay, setup time, hold time, clock-to-output delay, and thermal limits when they apply.
@@ -138,7 +138,7 @@ For DC fan-out, the total receiver input current must stay inside the driver rat
 
 > **LOW state:** Sum of |I<sub>IL</sub>| must not exceed I<sub>OL</sub>
 
-Modern CMOS systems are frequently limited first by total input, trace, connector, and [probe capacitance](<../00-Foundations/05-Measurement-and-Debug.md#probe-selection>). This capacitance affects rise time, fall time, delay, and transient current even when DC leakage is small.
+Modern CMOS systems are often limited first by total input, trace, connector, and [probe capacitance](<../00-Foundations/05-Measurement-and-Debug.md#probe-selection>). This capacitance affects rise time, fall time, delay, and transient current even when DC leakage is small.
 
 Do not leave an ordinary CMOS input floating. Connect an unused input to a valid logic rail directly or through a resistor as the datasheet permits. A specified internal bias or bus-hold circuit is an exception. Use a pull resistor or keeper when a bus can otherwise leave a receiver input undriven. An unused push-pull output can usually remain open. Do not connect it directly to a supply rail.
 
@@ -146,7 +146,7 @@ Do not leave an ordinary CMOS input floating. Connect an unused input to a valid
 
 A system can contain many devices that communicate with each other. A separate wire from every device to every other device is not practical. A **data bus** lets multiple devices use a common set of conductors.
 
-A tri-state push-pull bus permits only one enabled writer at a time. Other devices can read the bus. An open-drain bus can permit several devices to pull the signal LOW at the same time. The system must control or define which devices can affect each shared signal during each interval. If two push-pull outputs drive opposite levels at the same time, **bus contention** occurs and a large current can flow.
+On a tri-state push-pull bus, only one device can drive at a time; the others can read or leave their outputs disconnected. An open-drain bus can allow several devices to pull LOW together. The bus rules must define who can drive each signal and when. If two push-pull outputs drive opposite levels, they fight each other. This is **bus contention**, and it can cause a large current.
 
 ### Output architectures
 
@@ -172,14 +172,14 @@ A tri-state push-pull bus permits only one enabled writer at a time. Other devic
    * **Operation:** A transmission gate connects two nodes through a low resistance or disconnects them with an open circuit.
    * **Direction:** It is bidirectional. Either terminal can operate as the input or the output.
    * **Use:** Transmission gates are common in CMOS multiplexers, switches, and internal logic.
-   * **Limits:** On-resistance changes with signal voltage and supply voltage. Check permitted signal range, leakage, resistance, and capacitance.
+   * **Limits:** On-resistance changes with signal voltage and supply voltage. Check allowed signal range, leakage, resistance, and capacitance.
 
 :::info Future Study: Sequential Logic Refresher
 
 The following topics are useful for future designs:
 
 * **Flip-flops**
-  * **D-type:** A data-storage element. The output accepts the input value at the applicable clock edge.
+  * **D-type:** A data-storage element. The output accepts the input value at the relevant clock edge.
   * **JK-type:** A configurable element with hold, set, reset, and toggle operations.
 * **State machines**
   * **Moore machine:** The output depends only on the current state.
@@ -207,7 +207,7 @@ For each interface, compare the guaranteed output limits of the driver with the 
 * **CMOS devices on the same supply:** CMOS devices on the same supply can usually connect directly when their guaranteed input and output levels are compatible. Do not assume compatibility from the supply voltage alone.
 * **5 V CMOS and 5 V-tolerant devices:** A 5 V CMOS output can connect directly to a 5 V-tolerant input when the receiver accepts the driver’s LOW and HIGH levels and the driver supplies the required current.
 
-The term **5 V tolerant** only describes pin stress capability under specified conditions. It does not guarantee logic recognition, timing, current drive, or safe behavior while one device is powered off.
+A **5 V tolerant** pin can withstand 5 V under the conditions listed in its datasheet. That does not automatically mean it will recognize the logic correctly, meet timing, drive enough current, or behave safely when its device is powered off.
 
 ### Interfacing scenarios
 
@@ -222,7 +222,7 @@ This method applies to true bipolar-TTL parts. It also applies to the TTL-thresh
 * 74AHC becomes **74AHCT**.
 * 74VHC becomes **74VHCT**.
 
-The **74LV1T** family also provides level translation.
+The **74LV1T** family also gives level translation.
 
 #### D. 2.5 V CMOS drives 3.3 V CMOS
 
@@ -230,13 +230,13 @@ Many **3.3 V low-voltage TTL (LVTTL)-compatible** receivers identify less than *
 
 #### E. 5 V TTL outputs drive reduced-threshold 5 V logic
 
-A 5 V TTL output has a LOW level close to **0 V**. Its HIGH level is commonly approximately **3.4 V to 3.5 V**, but the guaranteed minimum can be only **2.4 V to 2.5 V**, depending on the family and load.
+A 5 V TTL output has a LOW level close to **0 V**. Its HIGH level is commonly about **3.4 V to 3.5 V**, but the guaranteed minimum can be only **2.4 V to 2.5 V**, depending on the family and load.
 
 Pair this output with a TTL-compatible input. Suitable receivers include true 5 V bipolar TTL, such as **74F**, and 5 V CMOS families with TTL-compatible inputs, such as **74ACT**, **74HCT**, and **74AHCT**.
 
 #### F. 5 V TTL outputs drive incompatible 5 V logic
 
-The actual switching point of normal-threshold 5 V CMOS can be near one-half of V<sub>DD</sub>, or approximately **2.5 V**. This midpoint is not a guaranteed interface limit. A representative 5 V HC input can specify V<sub>IL(max)</sub> = **1.5 V** and V<sub>IH(min)</sub> = **3.5 V**. A TTL output might not give sufficient HIGH-level margin for this input.
+The actual switching point of normal-threshold 5 V CMOS can be near one-half of V<sub>DD</sub>, or about **2.5 V**. This midpoint is not a guaranteed interface limit. A representative 5 V HC input can specify V<sub>IL(max)</sub> = **1.5 V** and V<sub>IH(min)</sub> = **3.5 V**. A TTL output might not give sufficient HIGH-level margin for this input.
 
 Use a CMOS buffer or inverter with TTL thresholds, such as **74HCT**, to convert the TTL swing to a full-swing 5 V signal. A dedicated level translator, such as the **74LVC1T45**, is another option.
 
@@ -262,13 +262,13 @@ Every connected pin must permit the selected pull-up voltage. Use these relation
 
 > **Approximate 10% to 90% rise time:** t<sub>r</sub> ≈ 2.2 R<sub>PU</sub>C<sub>bus</sub>
 
-Use the permitted sink current for which the datasheet guarantees V<sub>OL(max)</sub>. Include all other LOW-state currents. Do not use the absolute-maximum pin current as the design current. The required rise time, total capacitance, leakage current, and receiver V<sub>IH</sub> set the maximum useful pull-up resistance.
+Use the sink current at which the datasheet guarantees V<sub>OL(max)</sub>, and include any other current the output must sink while LOW. The absolute-maximum pin current is a damage limit, not a normal design current. The largest usable pull-up resistance also depends on rise time, total capacitance, leakage, and the receiver's V<sub>IH</sub> requirement.
 
 #### K. Low-voltage CMOS drives 2.5 V to 5 V logic with TXB0101
 
-The **TXB0101** is a dual-supply, bidirectional translator. It does not have a DIR input. It senses a transition on either port and briefly turns on the CMOS driver at the opposite port. It then holds the state weakly, with an output structure that behaves approximately like a **4 kΩ series resistance**.
+The **TXB0101** is a dual-supply, bidirectional translator. It does not have a DIR input. It senses a transition on either port and briefly turns on the CMOS driver at the opposite port. It then holds the state weakly, with an output structure that behaves about like a **4 kΩ series resistance**.
 
-This automatic-direction operation has restrictions. It is intended for push-pull CMOS signals. It does not support open-drain buses. An external driver must have sufficient current capability, and TI specifies at least **±2 mA** for the connected driver. External pull-up or pull-down resistors should be more than **50 kΩ**. Bus capacitance and slow edges can interfere with direction sensing. V<sub>CCA</sub> is **1.2 V to 3.6 V**, V<sub>CCB</sub> is **1.65 V to 5.5 V**, and V<sub>CCA</sub> must not exceed V<sub>CCB</sub> for this device.
+This automatic-direction operation has restrictions. It is intended for push-pull CMOS signals. It does not support open-drain buses. An external driver must have enough current capability, and TI specifies at least **±2 mA** for the connected driver. External pull-up or pull-down resistors should be more than **50 kΩ**. Bus capacitance and slow edges can interfere with direction sensing. V<sub>CCA</sub> is **1.2 V to 3.6 V**, V<sub>CCB</sub> is **1.65 V to 5.5 V**, and V<sub>CCA</sub> must not exceed V<sub>CCB</sub> for this device.
 
 #### L. Very-low-voltage CMOS drives 3.3 V or 5 V logic with an LVDS receiver
 
@@ -276,7 +276,7 @@ A **low-voltage differential signaling (LVDS) receiver** can operate as a specia
 
 The **DS90LV012A** gives a traceable example. At V<sub>DD</sub> = 3.0 V to 3.6 V, its specified common-mode range extends from **0.05 V** to V<sub>DD</sub> - 0.3 V for V<sub>ID</sub> = 100 mV. Its application guidance gives **0 V to 2.4 V** as the recommended input-pin range for AC performance. Its receiver threshold region is **-100 mV to 0 V**, and TI tests propagation delay with a **200 mV** differential input. A **0.5 V** logic swing around a midpoint reference gives differential states of +0.25 V and -0.25 V, which exceed this threshold region.
 
-At the datasheet test conditions, the propagation delay is approximately **1.7 ns to 1.8 ns typical**, which is less than the **2 ns** value in this example. The guaranteed maximum is **3.5 ns**. Confirm common-mode range, differential threshold, absolute-maximum limits, reference noise, fail-safe behavior, and maximum delay for the selected receiver.
+At the datasheet test conditions, the propagation delay is about **1.7 ns to 1.8 ns typical**, which is less than the **2 ns** value in this example. The guaranteed maximum is **3.5 ns**. Confirm common-mode range, differential threshold, absolute-maximum limits, reference noise, fail-safe behavior, and maximum delay for the selected receiver.
 
 #### M. Configurable logic translators
 
@@ -284,7 +284,7 @@ Some **universal or configurable translator gates** can perform a logic function
 
 :::tip Signal Warnings
 
-* **Slow inputs:** A signal with a very low slew rate can remain near an input threshold for a long time. Noise can then cause many false state changes, oscillation, or excess supply current before the input completes its transition. A **[Schmitt trigger](<../03-Signal-Modulation/Amplifiers/comparators.md#6-schmitt-trigger-and-hysteresis>)** adds hysteresis and makes a clean output transition. It does not make the physical input edge faster. Check the permitted input transition time.
+* **Slow inputs:** A signal with a very low slew rate can remain near an input threshold for a long time. Noise can then cause many false state changes, oscillation, or excess supply current before the input completes its transition. A **[Schmitt trigger](<../03-Signal-Modulation/Amplifiers/comparators.md#6-schmitt-trigger-and-hysteresis>)** adds hysteresis and makes a clean output transition. It does not make the physical input edge faster. Check the allowed input transition time.
 * **Switch debounce:** A mechanical switch can make and break contact many times during one operation. Debounce the input when one mechanical operation must produce one logic event. A downstream circuit can provide the debounce function.
 * **Clock inputs:** Do not normally drive a clock input directly from an ordinary [op-amp](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#1-op-amp-fundamentals>) interface. Slew rate, saturation recovery, output levels, and jitter can be unsuitable and can cause false clock events. Use a [comparator](<../03-Signal-Modulation/Amplifiers/comparators.md#1-comparator-decision>) with hysteresis or a **Schmitt-trigger inverter** unless a selected amplifier is proven to meet every clock requirement.
 
@@ -302,11 +302,11 @@ Digital signals can have problems when they travel through long conductors or ca
 * **Common-mode interference**
 * **[Transmission-line](<../05-PCB-Layout/03-trace-impedance.md#1-characteristic-impedance>) [reflections](<../05-PCB-Layout/03-trace-impedance.md#3-reflections>)** caused by an impedance mismatch
 
-The electrical length of an interconnection depends on signal rise time, not only on clock frequency. A low-frequency signal with a fast edge can require transmission-line treatment.
+Whether a connection is electrically long depends on the signal's rise time, not just its clock frequency. Even a slow clock may need transmission-line analysis if its edges are fast.
 
 ### Switching transients and ground bounce
 
-Push-pull outputs produce short current pulses when they change state. Package and connection inductance convert these current changes into voltage transients. These transients can cause **ground bounce** and supply noise.
+Push-pull outputs draw brief current pulses when they switch. Inductance in the package and connections turns these fast current changes into voltage spikes. The local ground voltage can move, causing **ground bounce**, and the supply can become noisy too.
 
 The approximate transient voltage is proportional to inductance and current-change rate:
 
@@ -333,24 +333,24 @@ Include receiver inputs, traces, connectors, cables, and measurement probes in t
 
 ### Transmission lines
 
-Do not treat a long conductor as an ideal wire when the signal transition time is short compared with the propagation delay of the conductor. As a practical test, analyze transmission-line behavior when the interconnection round-trip delay is comparable to or longer than the driver rise or fall time. The interconnection then behaves as a **transmission line**, and an impedance discontinuity causes a reflection.
+A long connection cannot be treated as an ideal wire if the signal changes significantly before a wave can travel along it and back. As a practical check, compare the round-trip travel time with the driver's rise or fall time. If the times are comparable, or travel takes longer, analyze the connection as a **transmission line**. A change in impedance along that line sends part of the wave back as a reflection.
 
-For a point-to-point link, a termination can match the source or load to the line’s characteristic impedance, Z<sub>0</sub>. A typical coaxial cable or single-ended PCB trace can be approximately **50 Ω**, but **75 Ω** coaxial cables and **90 Ω or 100 Ω** differential links are also common. Use the actual specified impedance. Correct termination reduces reflections. It does not remove all loss, crosstalk, or waveform distortion.
+For a point-to-point link, a termination can match the source or load to the line’s characteristic impedance, Z<sub>0</sub>. A typical coaxial cable or single-ended PCB trace can be about **50 Ω**, but **75 Ω** coaxial cables and **90 Ω or 100 Ω** differential links are also common. Use the actual specified impedance. Correct termination reduces reflections. It does not remove all loss, crosstalk, or waveform distortion.
 
 :::info Deep Dive: Termination Types
 
 The principal termination arrangements are as follows:
 
 1. **[Series termination](<../05-PCB-Layout/03-trace-impedance.md#distributed-loss-and-termination>) at the source:** Put a resistor in series with the driver. Use R<sub>series</sub> ≈ Z<sub>0</sub> - R<sub>driver</sub>. For a **50 Ω** line, the resistor is less than 50 Ω when the driver already has output resistance. The first wave travels to the high-impedance load, the load reflection completes the voltage step, and the source termination absorbs the returning reflection. This method is useful for a point-to-point connection with the receiver at the end of the line and has low DC power consumption.
-2. **Parallel termination at the load:** Put a resistor equal to the line impedance at the receiver. Connect it to ground or to the applicable termination voltage. This arrangement absorbs the incident wave at the load, but it can consume continuous DC power.
+2. **Parallel termination at the load:** Put a resistor equal to the line impedance at the receiver. Connect it to ground or to the relevant termination voltage. This arrangement absorbs the incident wave at the load, but it can consume continuous DC power.
 3. **[Thevenin](<../00-Foundations/00-Foundations.md#circuit-theorems-analysis-tools>) termination:** Put one resistor from the receiver node to V<sub>CC</sub> and another resistor from the node to ground. Their parallel value matches the line impedance, and their ratio sets a DC bias. This arrangement also consumes DC power.
-4. **Double termination:** Use designed impedances at both the source and the load. A correctly designed double termination can give high signal quality. If equal source and load resistances form a [voltage divider](<../01-Discrete-Components/01-Passives/01-Resistors.md#3-voltage-divider-and-loading>), the received amplitude is one-half of the unloaded source amplitude. Double-ended termination is common in some video and RF systems. High-speed serial physical layers, including PCIe, use controlled source and receiver impedances by design. Follow the applicable interface standard instead of adding two arbitrary resistors.
+4. **Double termination:** Use designed impedances at both the source and the load. A correctly designed double termination can give high signal quality. If equal source and load resistances form a [voltage divider](<../01-Discrete-Components/01-Passives/01-Resistors.md#3-voltage-divider-and-loading>), the received amplitude is one-half of the unloaded source amplitude. Double-ended termination is common in some video and RF systems. High-speed serial physical layers, including PCIe, use controlled source and receiver impedances by design. Follow the relevant interface standard instead of adding two arbitrary resistors.
 
 :::
 
 ### Electrostatic discharge and exposed connections
 
-Logic-device **human-body model (HBM)** and **charged-device model (CDM)** electrostatic-discharge (**ESD**) ratings describe component-handling tests. They do not prove system-level immunity to an IEC 61000-4-2 discharge at an exposed connector.
+Logic-device **human-body model (HBM)** and **charged-device model (CDM)** electrostatic-discharge (**ESD**) ratings cover tests associated with handling individual components. Passing those tests does not prove that a complete product will survive an IEC 61000-4-2 discharge at an exposed connector.
 
 An exposed interface can require a low-capacitance **transient-voltage-suppression (TVS)** device or another protection network. Verify clamping voltage, capacitance, leakage, surge current, and the target product standard. Put the protection close to the entry point and provide a short discharge path to the intended chassis or ground node. Do not rely on internal input-clamp diodes or exceed their specified current.
 
@@ -360,7 +360,7 @@ An exposed interface can require a low-capacitance **transient-voltage-suppressi
 
 ### I. Emitters
 
-* **LEDs:** LEDs emit visible or infrared (**IR**) light. A common illustrative forward-voltage V<sub>F</sub> range is approximately **1 V to 3.5 V**. The actual value depends on color, construction, current, and temperature, and some devices are outside this range.
+* **LEDs:** LEDs emit visible or infrared (**IR**) light. A common illustrative forward-voltage V<sub>F</sub> range is about **1 V to 3.5 V**. The actual value depends on color, construction, current, and temperature, and some devices are outside this range.
 * **Laser diodes:** Laser diodes can emit IR, red, or blue light. Applications include fiber-optic transmitters, laser pointers, and CD or DVD players.
 * **Electroluminescent devices:** Applications include night lights and low-power backlights such as **Indiglo**.
 
@@ -379,8 +379,8 @@ An exposed interface can require a low-capacitance **transient-voltage-suppressi
 * **Photoresistor:** A photoresistor is a light-sensitive resistor. Cadmium-sulfide (**CdS**) is a common material. Its response is slow.
 * **Bolometric detector:** A bolometer senses radiation through a temperature-dependent electrical property.
 * **Pyroelectric detector:** A pyroelectric material responds to a change in incident thermal radiation. A **PIR motion detector** commonly uses this effect.
-* **APD:** An **avalanche photodiode** operates with reverse bias near avalanche breakdown to multiply charge internally. A bias of approximately **100 V** is a useful example. Device requirements range from tens to hundreds of volts.
-* **PMT:** A **photomultiplier tube** is a vacuum-tube detector. It commonly has a gain from approximately 10<sup>5</sup> to **10<sup>6</sup>** and can detect single photons when the tube, readout, and noise conditions permit it.
+* **APD:** An **avalanche photodiode** operates with reverse bias near avalanche breakdown to multiply charge internally. A bias of about **100 V** is a useful example. Device requirements range from tens to hundreds of volts.
+* **PMT:** A **photomultiplier tube** is a vacuum-tube detector. It commonly has a gain from about 10<sup>5</sup> to **10<sup>6</sup>** and can detect single photons when the tube, readout, and noise conditions permit it.
 
 <figure style={{textAlign: 'center', margin: '1.5rem 0'}}>
   <img
@@ -398,7 +398,7 @@ An exposed interface can require a low-capacitance **transient-voltage-suppressi
 
 **Optocouplers** send digital signals, and sometimes analog signals, between circuits that have separate grounds. For example, an optocoupler can isolate an analog front end from digital circuitry.
 
-These seven types are useful representative categories. They are not a formal exhaustive taxonomy:
+These seven types cover useful examples, but they are not a complete or formally defined list:
 
 1. **Phototransistor-output optocoupler**
 2. **Logic-output optocoupler**
@@ -408,7 +408,7 @@ These seven types are useful representative categories. They are not a formal ex
 6. **Solid-state relay with a triac or silicon-controlled-rectifier (SCR) output**
 7. **AC-input optocoupler**
 
-Isolation also requires the correct working-voltage rating, transient rating, creepage, clearance, insulation class, and safety standard. Current-transfer ratio and analog transfer accuracy change with device, current, temperature, and age. Many solid-state relays use MOSFET outputs. AC-output versions can use triacs or SCRs.
+Isolation also needs the correct working-voltage rating, transient rating, creepage, clearance, insulation class, and safety standard. Current-transfer ratio and analog transfer accuracy change with device, current, temperature, and age. Many solid-state relays use MOSFET outputs. AC-output versions can use triacs or SCRs.
 
 ---
 
@@ -468,7 +468,7 @@ An input that changes near a sampling edge can cause **metastability**. The flip
 
 A synchronizer gives a sampled signal additional settling time. It reduces failure probability but does not guarantee zero failures.
 
-Do not synchronize each bit of an arbitrary data word independently. Use a suitable handshake or asynchronous first-in, first-out buffer for coherent transfer.
+Do not put a separate synchronizer on each bit of an arbitrary data word: the bits can arrive in different cycles and form a value that was never sent. Use a handshake or an asynchronous first-in, first-out buffer that keeps the word together.
 
 **Reference:** [TI, metastability in clocked buffers](https://www.ti.com/lit/an/scza004a/scza004a.pdf).
 
@@ -476,7 +476,7 @@ Do not synchronize each bit of an arbitrary data word independently. Use a suita
 
 Define the state encoding, next-state equations, output equations, reset state, and clock constraints before implementation.
 
-After synthesis, check timing and clock-domain crossings. A correct logic simulation does not establish physical timing margin.
+After synthesis, check timing and clock-domain crossings. A correct logic simulation does not prove physical timing margin.
 
 
 ## CMOS gate construction and Boolean reduction
@@ -501,7 +501,7 @@ Reducing drive resistance or load capacitance speeds the edge. Faster edges can 
 
 A **truth table** lists the output for every input combination. A **Karnaugh map** arranges combinations so adjacent cells differ in one input bit.
 
-Group adjacent ones in powers of two to form a sum-of-products expression. Include wraparound adjacency. Use unspecified conditions only when the design truly permits them.
+Group adjacent ones in powers of two to obtain a sum-of-products expression. Cells on opposite edges of the map can also be adjacent. Treat an unspecified input combination as a don't-care only if the design really allows either output for it.
 
 For F(A,B,C) = 1 at binary inputs 001, 011, 101, and 111, one four-cell group gives F = C. A and B vary within the group.
 
@@ -509,19 +509,19 @@ For F(A,B,C) = 1 at binary inputs 001, 011, 101, and 111, one four-cell group gi
 
 A **latch** follows its input while enabled and holds the value while disabled. An edge-triggered **flip-flop** samples around a clock edge.
 
-Cross-coupled inverters can retain a bit. Access transistors let a static memory cell read and write that state. Read stability and write strength constrain sizing.
+Two cross-coupled inverters can hold a bit. Access transistors connect a static memory cell for reading and writing. Choose their sizes so a read does not disturb the stored bit and a write is strong enough to change it.
 
 A **multiplexer (mux)** selects one input. A two-input mux implements output = A when select is zero and output = B when select is one.
 
 **Register-transfer level (RTL)** describes registered state and the combinational logic between registers. A module groups logic behind defined ports.
 
-Parameters and verified interfaces support module reuse. Reuse reduces repeated design work but still requires checking timing, reset, and clock-domain assumptions.
+Parameters and verified interfaces support module reuse. Reuse reduces repeated design work but still needs checking timing, reset, and clock-domain assumptions.
 
 A modulo-N counter can produce one enable pulse every N input clocks. Prefer a clock enable for internal logic when the [FPGA](<./Embedded-Systems.md#select-a-processor>) architecture supports it.
 
 For an even clock division ratio, toggling an output every N/2 cycles gives a nominal 50% duty cycle. Route generated clocks through supported clock resources.
 
-A fixed-priority **arbiter** grants the highest-priority pending request. It is simple but can starve lower priorities.
+A fixed-priority **arbiter** always grants the highest-priority waiting request. It is simple, but a lower-priority request may wait indefinitely if higher-priority requests keep arriving.
 
 A round-robin arbiter rotates priority after a grant. It improves fairness but needs state. Define whether a grant lasts one cycle or the complete transaction.
 

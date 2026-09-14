@@ -1,101 +1,53 @@
 # Embedded Encyclopedia Content Standard
 
-This project uses the writing rules in [ASD-STE100 Issue 9](https://www.asd-ste100.org/) for technical content.
+Use clear, natural engineering prose at the level of a recent engineering graduate refreshing their notes. Keep the technical depth, but explain the idea before relying on specialist shorthand.
 
-The encyclopedia contains descriptive technical text. Each page must keep all technical meaning from the source notes.
+This standard replaces the previous ASD-STE100 wording rules at the owner's request. Historical review documents describe earlier work; they do not define the current voice.
 
-## Page Workflow
+## Voice and explanations
 
-Use this sequence for each page:
+- Explain what a component or system does, how it does it, and what the result means in practice.
+- Prefer familiar words and direct sentences. Use natural contractions when they fit; do not force them.
+- Keep necessary engineering terms, then explain them at their first substantive use. A term such as phase margin should connect to circuit behavior, not stand in for the explanation.
+- Define abbreviations before relying on them. Keep established symbols, units, part names, and technical distinctions.
+- Connect sentences into readable paragraphs. Do not turn every sentence into a command or fragment.
+- Use concrete examples to clarify an existing idea. Keep assumptions and limits with each example.
+- Avoid canned labels such as “The problem,” “The fix,” and “Why it matters.” Let the paragraph explain the relationship.
+- Avoid grand claims, decorative jargon, and repeated reminders that a passage is important.
+- Do not use “thus.” Use American English spelling.
+- Do not impose a fixed sentence length or an approved-word dictionary at the expense of natural explanation.
 
-1. Record every technical statement, formula, example, qualification, and design rule in the source page.
-2. Put related information in a logical learning order.
-3. Remove duplicate text only after the retained text contains the complete meaning.
-4. Rewrite the text with the rules in this file.
-5. Preserve the visual hierarchy and scan pattern of the source page.
-6. Add a diagram only when it makes the technical relation easier to understand.
-7. Build the site and examine the page on desktop and mobile screens.
+## Organization and presentation
 
-Do not delete source content to make a rewrite fit in one work session. If the complete page cannot be rewritten safely, stop and report the limit.
+Keep the current textbook structure: headings, explanatory paragraphs, equations, useful lists, tables, examples, and diagrams. A prose rewrite is not permission to redesign the page.
 
-## Standard Page Order
+- Preserve heading text and explicit IDs so existing subsection links keep working.
+- Use lists for genuine comparisons, choices, and ordered procedures. Do not turn every explanation into a labeled list.
+- Keep bold emphasis selective, especially for newly defined terms and important results.
+- Preserve image references, captions, source attribution, component embeds, and downloadable circuits.
+- Link to the relevant subsection when a concept depends on another topic.
+- Do not add card layouts or new UI patterns without a separate reason or request.
 
-Use the parts that apply to the topic:
+## Preserve technical meaning
 
-1. Purpose and scope
-2. Terms and basic principles
-3. Circuit or system operation
-4. Equations and analysis
-5. Nonideal behavior and limits
-6. Design rules and trade-offs
-7. Applications and examples
+Before editing, save the original text. Compare each changed passage with it afterward.
 
-## ASD-STE100 Rules for This Project
+Retain definitions, cause-and-effect relationships, equations, values and units, examples, assumptions, exceptions, consequences, and design trade-offs. Do not remove a qualification or turn “can” into “always” to shorten an explanation.
 
-- Use an approved dictionary word, an electronics technical noun, or an electronics technical verb.
-- Use one technical term for one item or concept.
-- Define each abbreviation at its first use.
-- Use American English spelling.
-- Use the active voice when the agent is known.
-- Use simple verb tenses.
-- Do not use a contraction.
-- Do not use a semicolon.
-- Do not use a phrasal verb when a direct verb gives the same meaning.
-- Use a multi-word noun of three words or fewer when possible.
-- Use a maximum of 25 words in a descriptive sentence.
-- Put only one topic in each sentence.
-- Put only one topic in each paragraph.
-- Use a maximum of six sentences in each paragraph.
-- Use a vertical list when it makes complex information easier to read.
-- Give information gradually. Put prerequisite information before results and design rules.
+Simplifying wording does not mean simplifying away the subject. Explain unfamiliar ideas instead of removing them. If an existing technical claim is wrong or too absolute, verify it against a primary source and record the correction separately from ordinary wording changes.
 
-Electronics terms can be technical nouns. Examples include *source resistance*, *power factor*, *transfer function*, and *noise spectral density*.
+Do not remove content to finish within a work session. Do not overwrite historical preservation snapshots to make an old exact-wording test pass.
 
-Equations, variable names, units, and standard component names keep their accepted engineering forms.
+## Review and verification
 
-## Visual Hierarchy
+1. Review the changed prose against the saved version for technical meaning and readability.
+2. Check that formulas, code, figures, interactive components, and subsection destinations remain intact.
+3. Build the site and validate rendered routes, anchors, and assets.
+4. Check desktop and mobile presentation when markup or layout changes affect it.
+5. Summarize changes and any technical corrections for review.
 
-The rewrite must preserve useful presentation patterns from the source page.
+The older append-only and STE audits record previous acceptance conditions. They are not proof of this rewrite, and their exact-prose checks will intentionally differ after an authorized rewrite. Keep those records intact and use the readability preservation audit for this update.
 
-- Keep bold emphasis on technical terms, design variables, conditions, results, and trade-offs.
-- Keep card grids only when the source page already uses card grids.
-- Keep paragraphs and standard lists when the source page uses paragraphs and standard lists.
-- Keep numbered lists when the sequence or number of reasons is important.
-- Keep definition blocks when they help the reader scan a group of technical terms.
-- Keep nested bullets when they connect a result, example, or qualification to a parent concept.
-- Do not replace a useful visual structure with plain paragraphs only to simplify the language.
-- Do not convert paragraphs or standard lists into cards as a design enhancement.
-- Add a new card layout only when the user specifically requests that UI change.
+## Visuals
 
-Use bold emphasis consistently. Do not use bold emphasis for complete paragraphs.
-
-## Meaning-Preservation Check
-
-Before a rewrite is complete, compare it with the source notes.
-
-Confirm that the rewrite keeps:
-
-- Each definition
-- Each causal relation
-- Each equation
-- Each numerical value and unit
-- Each example
-- Each condition and exception
-- Each consequence
-- Each design trade-off
-
-Do not add certainty when the source gives a possibility. Do not remove a qualification to make a sentence shorter.
-
-Reorganization does not give permission to omit content. Confirm each source heading and each nested list against the completed rewrite.
-
-## Visual Standard
-
-Use a visual when it explains a circuit, sequence, waveform, or trade-off better than text alone.
-
-- Use the supplied original image when it is available.
-- Store site images in `static/img`.
-- Use a base-URL-safe path for each static image.
-- Use an original React and SVG diagram when a source image is not available.
-- Give each diagram an accessible name and description.
-- Make each diagram responsive.
-- Do not copy an external image only to fill a gap.
+Use a visual when it explains a circuit, sequence, waveform, or trade-off more clearly than text. Prefer the supplied source image or an original React/SVG diagram when appropriate. Keep static image paths base-URL-safe, provide accessible descriptions, and preserve responsive sizing. Do not copy an unrelated external image merely to fill a gap.

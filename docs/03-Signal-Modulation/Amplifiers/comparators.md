@@ -45,9 +45,7 @@ For a non-inverting decision:
 
 The output polarity reverses if the signal and reference connections are reversed.
 
-An ideal comparator has infinite gain.
-An actual comparator has a large open-loop gain.
-A very small input difference can cause a full output-state change.
+The ideal model switches for any input difference, however small, because its gain is infinite. A real comparator has large but finite open-loop gain, so a very small difference can still produce a full output-state change.
 
 ### Step-by-Step Operation
 
@@ -62,9 +60,7 @@ The later stages and output stage make a dedicated comparator suitable for switc
 
 ### Equal Input Voltages
 
-The ideal decision is undefined when both inputs have exactly the same voltage.
-An actual comparator has [input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>) and noise.
-These errors decide the exact switching point.
+With exactly equal inputs, the ideal model cannot choose an output. In a real comparator, [input offset voltage](<../../00-Foundations/03-Precision-Design.md#input-offset-voltage-and-trim>) and noise shift the switching point and determine what happens near equality.
 
 Do not expect repeatable switching at one exact voltage without an error allowance.
 
@@ -96,9 +92,7 @@ For a divider with <i>R<sub>TOP</sub></i> connected to <i>V<sub>S</sub></i> and 
 
 > **V<sub>ref</sub> = V<sub>S</sub> R<sub>BOTTOM</sub> / (R<sub>TOP</sub> + R<sub>BOTTOM</sub>)**
 
-The [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) and other loads can change the divider voltage.
-Use a sufficiently low divider impedance.
-Add a [bypass capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>) when the reference must have low noise.
+The divider must supply [input bias current](<../../00-Foundations/03-Precision-Design.md#input-bias-current>) and any other load current without its voltage changing too much. Choose low enough resistance for that requirement, and add a [bypass capacitor](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#bypass--decoupling>) if the reference needs less noise.
 
 ### Threshold-Error Budget
 
@@ -140,8 +134,7 @@ An op-amp and a comparator can use similar input stages, but they are not interc
 
 ### Do Not Apply the Linear Golden Rules
 
-For a linear op-amp circuit with negative feedback, the two input voltages can be almost equal.
-That rule does not apply to a comparator.
+In a linear op-amp circuit, negative feedback can hold the inputs at nearly equal voltages. A comparator is making a decision about their difference, so that equal-input rule does not apply.
 
 Use this circuit-analysis check:
 
@@ -161,7 +154,7 @@ Before you use an op-amp as a comparator, check:
 * Phase-reversal behavior.
 * Saturation-recovery time.
 * Output swing and output current.
-* The permitted input voltage when the supply is off.
+* The allowed input voltage when the supply is off.
 * The datasheet statement that permits comparator operation.
 
 A dedicated comparator usually switches faster.
@@ -207,9 +200,7 @@ The pull-up resistor and total load capacitance set the rising-edge time:
 
 > **t<sub>r,10-90%</sub> &asymp; 2.2 R<sub>PU</sub>C<sub>LOAD</sub>**
 
-A smaller pull-up resistor gives a faster rising edge.
-It also increases LOW-state current and power.
-A large pull-up resistor decreases current but makes the rising edge slower and more sensitive to coupled noise.
+A smaller pull-up resistor charges the output capacitance faster, giving a faster rising edge, but draws more current while the output is LOW. A larger resistor saves current at the cost of a slower edge that is more easily disturbed by coupled noise.
 
 Open outputs permit wired logic when all connected devices permit the connection.
 Check the required logic polarity before you use this feature.
@@ -245,7 +236,7 @@ This unwanted sequence is **output chatter**.
 3. The comparator changes state.
 4. Noise moves the input below the threshold.
 5. The comparator changes state again.
-6. The sequence continues until the input moves sufficiently far from the threshold.
+6. The sequence continues until the input moves far enough from the threshold.
 
 A digital circuit can interpret each transition as a separate event.
 A clock input can count false pulses.
@@ -288,8 +279,7 @@ For the non-inverting convention used in the explorer:
 * An input below <i>V<sub>T-</sub></i> makes the output LOW.
 * An input between the thresholds does not change the output.
 
-The output in the hysteresis band depends on the recent output state.
-This state dependence prevents repeated transitions near one threshold.
+Between the two thresholds, the output keeps its previous state. Small input movements within that band therefore do not repeatedly switch the output.
 
 <ComparatorHysteresisExplorer />
 
@@ -352,7 +342,7 @@ The required feedback fraction is:
 Select <i>R<sub>REF</sub> = 10 k&ohm;</i> and <i>R<sub>FB</sub> = 240 k&ohm;</i>.
 The feedback fraction is 10 / (10 + 240), or 0.04.
 
-The thresholds are approximately:
+The thresholds are about:
 
 * **Upper threshold:** 2.6 V.
 * **Lower threshold:** 2.4 V.
@@ -403,9 +393,7 @@ This error is important when the input amplitude changes.
 
 ### Input Slew Rate
 
-The **input slew rate** is the rate at which the input crosses the threshold.
-A very slow crossing gives noise more time to affect the switching instant.
-Use hysteresis when the input slew rate is low.
+**Input slew rate** describes how quickly the signal crosses the threshold. A slow crossing gives noise more time to change the exact switching instant, which is one reason to add hysteresis.
 
 ### Output Edge Time
 
@@ -441,9 +429,7 @@ Check these datasheet limits:
 
 ### Common-Mode Input Range
 
-Both input voltages must stay inside the permitted common-mode range.
-The range can exclude one or both supply rails.
-Some devices specify a different range for correct operation and for survival.
+Keep both input voltages within the operating common-mode range. That range may exclude one or both supply rails. A voltage the device can survive is not necessarily one where it makes a correct comparison.
 
 ### Source Resistance
 
@@ -511,8 +497,7 @@ Use this circuit for:
 * Noisy digital signals.
 * Clock restoration.
 
-Debounce a mechanical switch when one physical operation can make multiple electrical transitions.
-Hysteresis and switch debouncing solve different problems.
+A mechanical switch may bounce between open and closed several times during one operation. Debouncing makes that count as one event. Hysteresis helps with noise near a voltage threshold, but is not automatically a substitute for debouncing.
 
 <div data-ltspice-placement="short-pulse-generator">
 
@@ -555,11 +540,7 @@ Use a driver when the controlled load needs more current than the comparator can
 
 ### Relaxation Oscillator
 
-A relaxation oscillator combines a Schmitt trigger with an RC network.
-The capacitor charges toward one output state.
-The output changes when the capacitor reaches one threshold.
-The capacitor then charges toward the other output state.
-The sequence repeats.
+A relaxation oscillator combines an RC network with a Schmitt trigger. The capacitor charges toward the current output voltage until it crosses a threshold. The output then switches, sending the capacitor toward the other level until it reaches the other threshold. This repeats to make an oscillation.
 
 The two thresholds and the [RC time constant](<../../01-Discrete-Components/01-Passives/02-Capacitors.md#4-rc-time-constants>) set the frequency.
 
@@ -571,14 +552,11 @@ Comparators are decision elements in many data-conversion circuits.
 
 ### Flash ADC
 
-A **[flash ADC](<../Data-convertes/DACs.md#flash-adc>)** compares the analog input with many fixed reference voltages at the same time.
-A resistor ladder supplies the reference voltages.
-A comparator bank produces a **thermometer code**.
-A priority encoder converts the thermometer code into a binary result.
+A **[flash ADC](<../Data-convertes/DACs.md#flash-adc>)** uses many comparators to compare one input with a ladder of reference voltages at the same time. Their outputs form a **thermometer code**, with a boundary between thresholds the input has crossed and those it has not. A priority encoder converts that boundary into a binary result.
 
 An ideal <i>n</i>-bit flash ADC uses <i>2<sup>n</sup> - 1</i> decision levels.
-The comparator count grows approximately as <i>2<sup>n</sup></i>.
-This fast increase in component count usually limits practical flash resolution to approximately 8 bits.
+The comparator count grows about as <i>2<sup>n</sup></i>.
+This fast increase in component count usually limits practical flash resolution to about 8 bits.
 
 Half-flash, pipelined, and folding architectures reduce the number of comparators.
 They divide the conversion into coarse and fine decisions or reuse intermediate information.
@@ -598,10 +576,7 @@ It measures the time at which the ramp crosses the input.
 This ramp-and-comparator method is also a basic PWM method.
 The threshold-crossing time sets the pulse width.
 
-Dual-slope conversion uses the same integrator components for the up and down slopes.
-This operation cancels errors from the integrator resistor and capacitor.
-An [auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) phase can measure and compensate amplifier and comparator offset.
-Multislope conversion uses additional integration cycles to increase speed or resolution.
+A dual-slope converter uses the same integrator resistor and capacitor for its up and down slopes, so their errors cancel in the ratio. An [auto-zero](<../../00-Foundations/03-Precision-Design.md#auto-zero-and-chopper-stabilized-amplifiers>) phase measures and compensates amplifier and comparator offset. Multislope converters add more integration cycles to improve speed or resolution.
 
 ### 555 Timer
 
@@ -678,7 +653,7 @@ Before you select a comparator, specify:
 * **Input range:** Include both input pins and all operating conditions.
 * **Threshold accuracy:** Include offset, drift, bias current, and reference error.
 * **Hysteresis:** Specify internal or external hysteresis.
-* **Propagation delay:** Specify the applicable overdrive.
+* **Propagation delay:** Specify the relevant overdrive.
 * **Input slew rate:** Check operation for the slowest crossing.
 * **Output type:** Select push-pull, open-collector, or open-drain.
 * **Logic levels:** Check the next device at worst-case current.

@@ -10,10 +10,7 @@ import CrystalOscillatorExplorer from '@site/src/components/CrystalOscillatorExp
 A **clock source** gives a circuit a periodic timing reference.
 A quartz crystal can make this reference accurate and stable.
 
-A crystal does not generate energy.
-It is a passive **resonator**.
-An amplifier and a feedback network supply energy and make the resonator oscillate.
-The complete circuit is a **crystal oscillator**.
+A crystal does not supply energy by itself. It is a passive **resonator**, which favors oscillation at particular frequencies. An amplifier and feedback network replace the energy it loses and keep it oscillating. Together, these form a **crystal oscillator**.
 
 This distinction is important:
 
@@ -27,15 +24,12 @@ Quartz is a **piezoelectric** material.
 It converts electrical energy to mechanical motion.
 It also converts mechanical motion back to electrical energy.
 
-The conversion occurs in two directions:
+The conversion happens in two directions:
 
 1. An applied voltage changes the shape of the quartz.
 2. Mechanical motion creates charge on the crystal electrodes.
 
-The crystal blank has mechanical resonant modes.
-At a resonant mode, energy moves between elastic deformation and mechanical motion.
-The resonator loses only a small part of this energy during each cycle.
-This behavior gives a crystal a high **quality factor**, or **Q**.
+The crystal can vibrate in particular patterns called mechanical resonant modes. Energy moves back and forth between elastic deformation and motion, with little lost each cycle. This low loss gives the crystal a high **quality factor**, or **Q**.
 
 A high Q produces a narrow frequency response.
 The oscillator circuit uses this narrow response to reject most other frequencies.
@@ -61,14 +55,11 @@ The startup sequence is:
 For startup, the loop gain magnitude must be greater than 1 at the selected frequency.
 The total loop phase must also be an integer multiple of 360 degrees.
 
-At steady state, the loop gain magnitude becomes 1.
-The energy that the amplifier adds during one cycle equals the energy that the resonator loses.
+Once the amplitude settles, loop gain becomes 1. The amplifier adds just enough energy each cycle to replace what the crystal loses.
 
 ### Fundamental and Overtone Modes
 
-The lowest intended resonant mode is the **fundamental mode**.
-Higher mechanical modes are **overtone modes**.
-They occur near odd multiples of the fundamental frequency, but they are not exact harmonics.
+The lowest intended resonant mode is the **fundamental mode**. Higher mechanical modes are called **overtone modes**. Their frequencies are near odd multiples of the fundamental, but are not exact harmonics.
 
 An overtone crystal is cut and specified for operation on a selected overtone.
 The oscillator circuit must suppress the fundamental mode and unwanted modes.
@@ -99,8 +90,7 @@ The motional branch is in parallel with:
 
 * **Shunt capacitance, C<sub>0</sub>:** Represents electrode, package, and terminal capacitance.
 
-These values are model parameters.
-They are not discrete components that are visible inside the package.
+These four components are an electrical model of the crystal's behavior. They are not four discrete parts hidden inside its package.
 
 ### Series Resonance
 
@@ -108,15 +98,11 @@ If loss is small, the **series-resonant frequency** is:
 
 > **f<sub>s</sub> = 1 / (2&pi;&radic;(L<sub>m</sub>C<sub>m</sub>))**
 
-At <i>f<sub>s</sub></i>, the reactances of <i>L<sub>m</sub></i> and <i>C<sub>m</sub></i> cancel.
-The motional branch impedance is approximately <i>R<sub>m</sub></i>.
-The crystal impedance is low.
+At <i>f<sub>s</sub></i>, the inductive and capacitive reactances of <i>L<sub>m</sub></i> and <i>C<sub>m</sub></i> cancel. The motional branch is then left with about <i>R<sub>m</sub></i>, giving a low crystal impedance.
 
 ### Parallel Resonance
 
-Above <i>f<sub>s</sub></i>, the motional branch becomes inductive.
-It can resonate with <i>C<sub>0</sub></i>.
-The crystal impedance becomes high at the **parallel-resonant**, or **antiresonant**, frequency.
+Just above <i>f<sub>s</sub></i>, the motional branch behaves inductively and can resonate with <i>C<sub>0</sub></i>. At this **parallel-resonant**, or **antiresonant**, frequency, the crystal presents a high impedance.
 
 For a lossless model:
 
@@ -171,8 +157,7 @@ Select a crystal from guaranteed limits, not only from typical values.
 | **Operating temperature** | Temperature range for guaranteed operation | Must include all powered-use conditions |
 | **Package and mounting** | Mechanical and land-pattern requirements | Affects layout, assembly, and parasitics |
 
-Some datasheets also specify **activity dips**, unwanted modes, shock, vibration, and [reflow](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#assembly>) limits.
-Check these limits for a product that operates in a severe environment.
+Some datasheets also limit **activity dips**, where interaction with an unwanted mode weakens oscillation, as well as other unwanted modes, shock, vibration, and [reflow](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#assembly>) conditions. Check these for harsh environments.
 
 ### Quality Factor
 
@@ -184,8 +169,7 @@ An equivalent expression is:
 
 > **Q &asymp; 1 / (2&pi;f<sub>s</sub>C<sub>m</sub>R<sub>m</sub>)**
 
-A high Q gives strong frequency selection.
-It can also increase startup time because resonator energy can increase slowly.
+High Q makes the crystal selective about frequency, but can also mean a long startup while energy builds up in the resonator.
 
 ## 4. The Pierce Oscillator
 
@@ -220,9 +204,7 @@ The Pierce circuit starts and reaches steady state in these steps:
 11. The resonator filters much of the generated harmonic energy.
 12. A stable periodic waveform remains.
 
-The waveform at a crystal pin is not always a clean logic-level square wave.
-The oscillator output buffer converts the internal waveform to a logic signal.
-Do not connect a large digital load directly to a crystal pin.
+The voltage at a crystal pin is not necessarily a clean digital square wave. A separate output buffer turns it into a logic signal. A large digital load connected directly to the crystal pin can disturb oscillation.
 
 ## 5. Load Capacitance and Frequency Pulling
 
@@ -254,7 +236,7 @@ Use equal external capacitors.
 2. Multiply by 2 for equal capacitors: <i>C = 2(10.5 pF)</i>.
 3. The calculated value is <i>C = 21 pF</i>.
 
-Start with approximately **21 pF on each pin**.
+Start with about **21 pF on each pin**.
 If 22 pF parts are used, the estimated load is 13 pF.
 Verify the assembled frequency and startup margin before production release.
 
@@ -285,8 +267,7 @@ High-K ceramic capacitance can change with voltage and temperature.
 
 ## 6. Startup Margin and Negative Resistance
 
-The active oscillator network can appear as a **negative resistance** at the crystal terminals.
-This negative resistance supplies the energy that the crystal loses in its ESR.
+Seen from the crystal terminals, the active circuit can behave like a **negative resistance**. Instead of dissipating energy, it supplies energy to replace the loss in the crystal's ESR.
 
 For reliable startup:
 
@@ -296,8 +277,7 @@ Define a startup margin ratio as:
 
 > **Margin ratio = |R<sub>negative</sub>| / R<sub>loss,max</sub>**
 
-Use maximum ESR at the applicable temperature and production conditions.
-Startup can fail if the amplifier transconductance is too small or the load capacitance is too large.
+Check startup against maximum ESR at the required temperature and production limits. Too little amplifier transconductance means too little current response to sustain the oscillation; too much load capacitance can also prevent startup.
 
 There is no universal negative-resistance ratio for every oscillator.
 Some vendors specify a required margin or a test method.
@@ -329,9 +309,7 @@ Excessive drive can cause:
 * Faster aging.
 * Permanent crystal damage.
 
-An optional series resistor can reduce drive.
-This resistor also changes loop gain and startup margin.
-Select it with the oscillator and crystal vendor procedures.
+A series resistor can reduce how hard the crystal is driven, but also reduces loop gain and startup margin. Choose it using the oscillator and crystal vendors' procedures.
 
 A voltage measurement at one pin does not directly give motional current.
 Use the specified measurement model, a current probe method, or a calibrated network method.
@@ -355,9 +333,7 @@ The oscillator amplifier limits amplitude after startup.
 Some circuits limit by amplifier saturation.
 Other circuits control current or gain.
 
-The output can toggle before its frequency and amplitude meet their limits.
-Use the device **clock-ready** indication or the specified startup delay.
-Hold dependent logic in reset until the clock is valid.
+A clock may start toggling before its frequency and amplitude are valid. Wait for the **clock-ready** signal or the specified startup delay, keeping dependent logic in reset until then.
 
 ## 9. Frequency Accuracy and Time Error
 
@@ -382,7 +358,7 @@ A clock has a constant error of 20 ppm.
 
 > **20 &times; 0.0864 = 1.728 seconds/day**
 
-A clock that is 20 ppm fast gains approximately **1.728 seconds each day**.
+A clock that is 20 ppm fast gains about **1.728 seconds each day**.
 A clock that is 20 ppm slow loses the same amount.
 
 This result does not include temperature change or aging.
@@ -407,9 +383,7 @@ Use a [root-sum-square](<../../00-Foundations/03-Precision-Design.md#separate-er
 
 > **Error<sub>RSS</sub> = &radic;(&Sigma;Error<sub>i</sub><sup>2</sup>)**
 
-Do not use RSS to replace guaranteed worst-case limits.
-Do not add a per-year aging value without the specified time model.
-Read whether aging is a first-year limit, a yearly limit, or a lifetime model.
+RSS is not a substitute for guaranteed worst-case limits. Likewise, an aging value may describe the first year, each year, or a lifetime model. Check which one applies before adding drift over several years.
 
 ## 10. Temperature, Aging, and Mechanical Stress
 
@@ -429,9 +403,7 @@ Follow the package handling and reflow limits.
 
 ## 11. Phase Noise and Jitter
 
-Frequency accuracy describes the average clock rate.
-**Jitter** describes short-term edge-time variation.
-These quantities are different.
+Frequency accuracy tells you whether the clock runs fast or slow on average. **Jitter** tells you how much individual edges move around their expected times. A clock can be accurate on average and still have poor edge timing.
 
 Important jitter terms are:
 
@@ -444,7 +416,7 @@ Important jitter terms are:
 **[Phase noise](<./PLL.md#6-noise-jitter-and-spurs>)** describes noise power around the carrier in the frequency domain.
 It is commonly stated as single-sideband noise in dBc/Hz at an offset from the carrier.
 
-For small phase noise, the RMS phase variation for a specified integration band is approximately:
+For small phase noise, the RMS phase variation for a specified integration band is about:
 
 > **&sigma;<sub>&phi;</sub> = &radic;(2&int;<sub>f1</sub><sup>f2</sup>10<sup>L(f)/10</sup>df)**
 
@@ -458,9 +430,7 @@ In these equations:
 * <i>f<sub>1</sub></i> and <i>f<sub>2</sub></i> are integration limits.
 * <i>f<sub>0</sub></i> is the carrier frequency.
 
-Always state the integration limits.
-Different limits give different jitter results.
-Spurs can require separate treatment.
+Always give the frequency limits used for integration, because changing them changes the reported jitter. Distinct unwanted tones, called spurs, may need to be treated separately from the noise.
 
 The crystal is only one noise source.
 The amplifier, power supply, output buffer, and clock distribution network can add jitter.
@@ -507,7 +477,7 @@ Use this sequence for a new clock design.
 7. **Check startup margin.**
    Use worst-case ESR and the device-vendor method.
 8. **Check crystal drive.**
-   Add or adjust a series resistor only when the analysis requires it.
+   Add or adjust a series resistor only when the analysis needs it.
 9. **Make the layout compact.**
    Keep the oscillator loop away from switching and high-current paths.
 10. **Build prototypes.**
@@ -534,15 +504,11 @@ Use these layout practices:
 * Do not add [test pads](<../../05-PCB-Layout/04-Manufacturing-and-Test.md#design-for-access>) to crystal pins unless their capacitance is included.
 * Keep the oscillator area away from board-flex and mounting stress.
 
-Ground pours, guards, and layer keepouts have device-specific effects.
-Some manufacturers recommend a grounded guard.
-Other manufacturers specify a copper keepout below the crystal.
-Use the active-device and crystal layout recommendations.
+Copper near the crystal changes capacitance and coupling. A grounded guard helps some designs, while others require no copper below the crystal. Follow the recommendations for the actual oscillator device and crystal.
 
 ## 15. Measurement Without Circuit Disturbance
 
-A normal passive [oscilloscope](<../../00-Foundations/05-Measurement-and-Debug.md#oscilloscope-bandwidth-and-sampling>) probe can add several picofarads.
-This capacitance can pull the frequency, reduce startup margin, or stop oscillation.
+An ordinary passive [oscilloscope](<../../00-Foundations/05-Measurement-and-Debug.md#oscilloscope-bandwidth-and-sampling>) probe can add several picofarads. That is enough to shift the frequency, weaken startup margin, or stop oscillation altogether.
 
 Use one of these methods:
 
@@ -563,9 +529,7 @@ Do not connect a frequency counter directly to a high-impedance crystal node.
 
 ### Frequency Measurement
 
-Use enough counter gate time to resolve the required ppm.
-Reference the counter to a source that is more accurate than the device under test.
-Allow the board and reference to reach the specified temperature.
+Use a long enough counter measurement interval to resolve the required ppm difference. The counter's reference must be more accurate than the clock being tested. Let both the board and reference reach the specified temperature first.
 
 For a module, also measure output duty cycle, rise time, overshoot, and [logic levels](<../../04-Digital-Interfaces/DigitalGeneral.md#logic-levels>).
 These properties affect the clock receiver even when the average frequency is correct.

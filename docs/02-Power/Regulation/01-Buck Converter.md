@@ -1,6 +1,5 @@
 # Buck Converter
 
-Notes coming soon...
 
 
 import LearningEquation from '@site/src/components/LearningEquation';
@@ -8,11 +7,11 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 ## 1. Step-Down Conversion
 
-A **buck converter** produces a lower positive voltage from a positive input. A switch applies pulses to an inductor and output capacitor.
+A **buck converter** steps a positive input voltage down to a lower positive output voltage. Its switch feeds pulses into an inductor and output capacitor, which turn the pulses into a smoother output.
 
 During the main switch on-time, the inductor current increases. During the off-time, current continues through a diode or synchronous switch.
 
-**Continuous conduction mode (CCM)** means that inductor current does not reach zero during the cycle. The equations below assume ideal components and steady CCM operation.
+In **continuous conduction mode (CCM)**, current keeps flowing through the inductor for the whole switching cycle; it never reaches zero. The equations below assume ideal components and a repeating, steady CCM waveform.
 
 ## 2. Duty Cycle and Ripple
 
@@ -35,11 +34,11 @@ import SwitchingConverterExplorer from '@site/src/components/SwitchingConverterE
 **Assumptions:** Input is 12 V. Output is 5 V at 1 A. Inductance is 22 µH. Frequency is 500 kHz.
 
 1. Duty cycle is **41.7%**.
-2. Inductor ripple is approximately **0.265 A peak to peak**.
-3. Peak current is approximately **1.133 A**.
-4. Valley current is approximately **0.867 A**.
+2. Inductor ripple is about **0.265 A peak to peak**.
+3. Peak current is about **1.133 A**.
+4. Valley current is about **0.867 A**.
 
-The positive valley supports the CCM assumption. Select the current rating with additional margin for tolerance, startup, and transients.
+The lowest current is still positive, so the inductor current never reaches zero in this example. That agrees with the CCM assumption. Choose a current rating with extra margin for component variation, startup, and sudden load changes.
 
 ## 4. Output Ripple and Component Limits
 
@@ -72,29 +71,29 @@ import BuckWaveforms from '@site/src/components/learning/BuckWaveforms';
 
 <BuckWaveforms />
 
-The diagram assumes an ideal synchronous buck in continuous conduction. The load current is constant during one cycle. Output ripple is small relative to output voltage.
+The diagram shows an ideal synchronous buck whose inductor current never reaches zero. It treats the load current as constant within each cycle and assumes the output ripple is small compared with the output voltage.
 
 With the upper switch on, the switch node approaches the input voltage. Inductor voltage is positive when input voltage exceeds output voltage.
 
 With the lower switch on, the switch node approaches ground. Inductor voltage is negative, but positive inductor current still flows toward the load.
 
-Capacitor current equals inductor current minus load current. The capacitor charges when this difference is positive and discharges when it is negative.
+The load takes the current it needs from the inductor. Any extra inductor current charges the capacitor. When the inductor supplies less than the load needs, the capacitor supplies the difference and discharges.
 
-Capacitor voltage is the integral of capacitor current. A triangular current produces curved voltage segments, not an exactly linear ramp.
+Capacitor voltage depends on how much charge has accumulated, found by integrating its current over time. That is why a triangular capacitor current produces curved voltage segments rather than a straight voltage ramp.
 
-In an asynchronous buck, the diode carries the off-state current from ground toward the switch node. Its forward drop puts that node slightly below ground.
+In an asynchronous buck, a diode carries the inductor current during the switch's off-time. Current flows from ground through the diode toward the switch node, placing that node slightly below ground by the diode's forward drop.
 
-During the on state, that diode blocks approximately the input voltage. During the off state, it carries approximately the inductor current.
+During the on state, that diode blocks about the input voltage. During the off state, it carries about the inductor current.
 
-A synchronous lower [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) replaces most diode conduction. Its channel carries reverse drain-to-source current during the usual positive-current off interval.
+A synchronous buck uses a lower [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) for most of that conduction instead. During the usual off interval with positive inductor current, current flows through its channel from source to drain.
 
 [Dead time](<../Power%20Control/Gate-Drivers.md#4-high-side-drive-and-dead-time>) still permits body-diode conduction. Reverse recovery, output capacitance, and [parasitic inductance](<../../00-Foundations/00-Foundations.md#5-parasitic-effects>) can produce current spikes and ringing.
 
-Gate voltage must be measured relative to each MOSFET's source. The upper gate's ground-referenced waveform includes the moving switch-node voltage.
+Measure each gate voltage relative to that MOSFET's source. The upper MOSFET's source moves with the switch node, so measuring its gate relative to ground also includes that large moving voltage.
 
-The input switch current is pulsed. A nearby input capacitor supplies much of its alternating component. The upstream source supplies the average and residual ripple current.
+The input switch draws pulses of current. A nearby input capacitor supplies much of the rapidly changing part, while the upstream source supplies the average current and whatever ripple the capacitor does not absorb.
 
-For small inductor ripple and an approximately constant source current:
+For small inductor ripple and an about constant source current:
 
 <LearningEquation tex={"I_{Cin,rms}\\approx I_{out}\\sqrt{D(1-D)}"} />
 
@@ -106,13 +105,13 @@ See [TI capacitor selection](https://www.ti.com/document-viewer/lit/html/SSZTAL7
 
 Ideal zero duty supplies no input energy. Ideal full duty connects the input through the upper switch and inductor. Real losses prevent exact equality with input voltage.
 
-Minimum on time limits small duty cycles at high frequency. Minimum off time or bootstrap refresh limits maximum duty. Some controllers support a separate full-duty mode.
+At high switching frequencies, the minimum on-time limits how small the duty cycle can be. The minimum off-time, or the time needed to recharge a bootstrap supply, limits the maximum duty cycle. Some controllers have a separate mode for full-duty operation.
 
 **Pulse-frequency modulation (PFM)** changes pulse timing with load. Pulse skipping or burst operation can reduce light-load switching loss.
 
 These modes can increase low-frequency ripple or audible noise. Forced continuous operation keeps switching regular but can allow negative inductor current and greater light-load loss.
 
-A diode-emulation mode stops reverse inductor current. In discontinuous conduction, a zero-current interval appears and the ideal continuous-mode duty relation no longer fully describes operation.
+Diode emulation turns off the lower switch before inductor current reverses. In discontinuous conduction, current reaches zero and stays there for part of the cycle, so the ideal continuous-mode duty-cycle equation no longer fully describes the converter.
 
 See [TI light-load mode operation](https://www.ti.com/document-viewer/lit/html/SLVAFC3) for a device-specific example.
 
@@ -122,15 +121,15 @@ A **DC load line** intentionally reduces regulated voltage as load current incre
 
 <LearningEquation tex={"V_{target}=V_0-R_{LL}I_{out}"} />
 
-Use a load line only when the load specification permits it. It trades steady-state voltage variation for a controlled transient envelope.
+Use a load line only if the load allows its supply voltage to vary this way. It accepts some steady voltage change with current to better control the voltage excursions when load is added or removed.
 
 A **single-input multiple-output (SIMO)** converter supplies several rails from one input. A single-inductor implementation allocates energy among outputs through controlled switches.
 
-This arrangement can save magnetic components. Cross-regulation and simultaneous transient demands constrain its use. Other multi-output architectures use separate inductors.
+Sharing the inductor can reduce the number of magnetic components. However, a load change on one output can disturb another output, and the circuit must handle changes on several outputs at once. Other multi-output designs use a separate inductor for each output.
 
 A **multiphase buck** interleaves several inductor phases into one output. Current sharing distributes conduction loss and heat.
 
-Interleaving can reduce combined ripple and improve transient capability. It adds control and layout complexity. Phase shedding can improve light-load efficiency.
+Staggering the phases can reduce total ripple and help the output handle load changes. It also makes control and layout more complex. Turning off unneeded phases, called phase shedding, can improve efficiency at light load.
 
 The ripple cancellation depends on duty and phase count. More phases do not automatically increase efficiency at every load.
 
@@ -142,7 +141,7 @@ The output LC network is a second-order energy-storage system. A load increase i
 
 The controller must increase inductor current to restore balance. Record peak deviation, settling time, and ringing during a specified load step.
 
-A stable loop reduces small disturbances with time. A marginal loop sustains them. An unstable loop increases them until nonlinear limits change the behavior.
+In a stable loop, small disturbances shrink over time. In a marginal loop, they persist. In an unstable loop, they grow until a limit such as saturation changes the behavior.
 
 A **feedforward capacitor** across the upper feedback resistor adds a zero and a higher-frequency pole to the feedback network. It changes loop gain and phase.
 
@@ -171,4 +170,4 @@ An output short, open feedback path, saturated inductor, or failed switch can pr
 
 Do not bypass a protection function to force regulation. Identify the condition that activates it.
 
-Capacitor aging, solder fatigue, and thermal stress can change ripple or resistance. Component tolerance and temperature also change limits before any aging occurs.
+Capacitor aging, solder fatigue, and thermal stress can change ripple or resistance. Component tolerance and temperature also change limits before any aging happens.

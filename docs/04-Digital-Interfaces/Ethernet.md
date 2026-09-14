@@ -1,6 +1,5 @@
 # Ethernet
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -19,7 +18,7 @@ The processor-to-PHY interface can use a parallel or serial connection. Examples
 
 The cable side has separate [differential pairs](<../05-PCB-Layout/01-Overview.md#52-length-matching-skew-control>) and termination requirements. A rule for the processor side does not automatically apply to the cable side.
 
-The management interface configures and reads the PHY. Verify its address, reset state, and configuration straps.
+The management interface lets the controller set up the PHY and read its status. Check its address, reset state, and the pins that select its startup settings, called configuration straps.
 
 import InterfacePathDiagram from '@site/src/components/InterfacePathDiagram';
 
@@ -41,9 +40,9 @@ Check the connector shield and chassis connection as part of the complete enclos
 
 <LearningEquation tex={"Efficiency=\\frac{1500}{1538}\\approx97.5\\%"} />
 
-The ideal payload rate is approximately **97.5 Mbit/s**. Higher-layer headers, shorter frames, and software delays reduce application throughput.
+The ideal payload rate is about **97.5 Mbit/s**. Higher-layer headers, shorter frames, and software delays reduce application throughput.
 
-This calculation concerns link occupancy. It does not set the required processor-interface clock.
+This calculation shows how much time the frame occupies on the link. It does not tell you the clock frequency needed on the processor-to-PHY interface.
 
 ## 5. Verification
 

@@ -27,15 +27,15 @@ During an input transition, both networks can conduct briefly. Slow input edges 
 
 ## 2. Capacitance and delay
 
-The output load includes wire capacitance, drain capacitance, and input capacitance from subsequent gates. These capacitances require charge during each transition.
+Each output must charge or discharge the wire capacitance, its own drain capacitance, and the input capacitance of the gates that follow it. These together make up its output load.
 
-A first-order model replaces the conducting network with an effective resistance. For a step input, the output reaches half its final change after approximately 0.69 RC.
+A first-order model replaces the conducting network with an effective resistance. For a step input, the output reaches half its final change after about 0.69 RC.
 
 <LearningEquation tex={String.raw`t_{pHL}\approx0.69R_nC_L,\qquad t_{pLH}\approx0.69R_pC_L`} />
 
 These estimates assume a lumped load and a constant effective resistance. Real transistor resistance changes during the transition.
 
-**Propagation delay** and **rise time** use different measurement points. A first-order 10% to 90% rise time is approximately 2.2 RC.
+**Propagation delay** and **rise time** use different measurement points. A first-order 10% to 90% rise time is about 2.2 RC.
 
 ### Worked example: load increase
 
@@ -45,17 +45,17 @@ If the load increases to 60 fF, the estimate becomes 82.8 ps. These assumed valu
 
 ### Transistor width
 
-A wider transistor generally reduces channel resistance at the same operating point. It also increases input and diffusion capacitance.
+Making a transistor wider usually lowers its channel resistance at the same bias point. It also adds input capacitance and capacitance at the source and drain regions, often called diffusion capacitance.
 
 Increasing one gate's width can slow the previous gate. Gate sizing must consider the complete path.
 
-Two equal series transistors have approximately twice one transistor's resistance in a simple model. Wider devices can compensate, but internal node capacitance also changes.
+Two equal series transistors have about twice one transistor's resistance in a simple model. Wider devices can compensate, but internal node capacitance also changes.
 
 ## 3. Distributed wire resistance
 
 A long wire has resistance and capacitance along its length. One capacitor at the endpoint cannot represent every internal voltage.
 
-For a resistance-capacitance tree, the **Elmore time constant** weights each capacitor by the resistance shared with the observation path.
+In a network of resistors and capacitors with branching paths, the **Elmore time constant** estimates how long the response takes. Each capacitor contributes according to the resistance that its charging path shares with the path to the node you are measuring.
 
 Consider a ladder with R1, then C1 to ground, then R2, then C2 to ground. Observe the voltage across C2.
 
@@ -63,9 +63,9 @@ Consider a ladder with R1, then C1 to ground, then R2, then C2 to ground. Observ
 
 Assume R1 = R2 = 1 kΩ and C1 = C2 = 10 fF. The Elmore time constant is 30 ps.
 
-This is a first-moment estimate. It is not an exact 50% delay for every network.
+This estimate uses the first moment of the response, a measure of how that response is spread over time. It is useful for comparing delays, but is not the exact time to reach 50% for every network.
 
-Wire delay can grow approximately with length squared when both resistance and capacitance grow with length. Buffers can divide a long path into shorter sections.
+Wire delay can grow about with length squared when both resistance and capacitance grow with length. Buffers can divide a long path into shorter sections.
 
 ## 4. Buffer chains
 
@@ -73,7 +73,7 @@ A small gate can drive a large capacitance through a sequence of larger gates. E
 
 Assume the final load is 64 times the first stage's input capacitance. Three stages with size ratios of four give sizes 1, 4, and 16.
 
-The last stage drives the load of 64. Each stage has an electrical effort of four.
+The last stage drives the load of 64. Each stage drives four times its own input capacitance; this ratio is called its electrical effort.
 
 Adding stages also adds intrinsic delay and power. The best stage count depends on gate type, parasitic delay, branching loads, and output polarity.
 
@@ -95,13 +95,13 @@ Doubling frequency doubles this estimate. Reducing voltage to 0.8 V multiplies i
 
 Lower voltage can increase delay. A valid design must still satisfy timing.
 
-Input probabilities alone do not describe correlated transitions or glitches. Include internal node activity, clock loads, short-circuit current, and leakage in a complete power estimate.
+Knowing how often an input is high does not tell you how often related inputs switch together or create glitches. A complete power estimate also includes switching inside the gate, clock loads, brief supply-to-ground current during transitions, and leakage.
 
 ## 6. Pass gates and dynamic nodes
 
-An n-channel pass transistor passes a strong low level. Its high level can stop below the supply because its gate overdrive decreases.
+An n-channel pass transistor passes a low voltage well. As it passes a rising voltage, however, the gate-to-source voltage gets smaller. It can stop conducting strongly before the output reaches the supply voltage.
 
-A p-channel pass transistor has the complementary limitation. A **transmission gate** places both device types in parallel with complementary controls.
+A p-channel pass transistor has the opposite limitation: it passes a high voltage well but struggles near the low rail. A **transmission gate** puts both types in parallel and drives their gates with opposite control signals, so they cover each other's weak end of the range.
 
 Transmission gates still have finite resistance and parasitic capacitance. They do not provide voltage gain.
 

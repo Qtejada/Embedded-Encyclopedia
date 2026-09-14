@@ -1,6 +1,5 @@
 # UART
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -30,17 +29,17 @@ import SerialTimingExplorer from '@site/src/components/SerialTimingExplorer';
 <LearningEquation tex={"t_{bit}=\\frac{1}{115200}\\approx8.681\\ \\mu s"} />
 
 1. Each frame has **10 bits**.
-2. One frame takes approximately **86.81 µs**.
-3. The 100-byte transfer takes approximately **8.681 ms**.
+2. One frame takes about **86.81 µs**.
+3. The 100-byte transfer takes about **8.681 ms**.
 4. Maximum payload rate is **11520 bytes/s**, before protocol overhead.
 
-A 16-byte receive buffer fills in approximately **1.389 ms** at this continuous rate. Software must service it sooner or use flow control.
+A 16-byte receive buffer fills in about **1.389 ms** at this continuous rate. Software must service it sooner or use flow control.
 
 ## 4. Clock Error and Data Integrity
 
-The receiver estimates sample positions after the start edge. Transmitter and receiver clock errors accumulate across a frame.
+The receiver uses the start edge to estimate when each later bit should be sampled. Any difference between transmitter and receiver clocks accumulates across the frame.
 
-Check the device's permitted clock mismatch. Do not assume one universal percentage for all UART implementations.
+Check how much clock mismatch the device allows. The acceptable percentage is not the same for every UART.
 
 Parity detects some bit errors. It does not replace a packet checksum or a cyclic redundancy check when the application needs stronger error detection.
 
@@ -57,10 +56,10 @@ Use the [oscilloscope](<../../00-Foundations/05-Measurement-and-Debug.md#oscillo
 
 A UART receiver detects the start edge and then samples near each bit center. It uses its local clock because the data link carries no separate clock.
 
-Receivers commonly use 8× or 16× oversampling. Some use several nearby samples for a majority decision. The implementation determines noise tolerance and baud error limits.
+Receivers often sample at 8× or 16× the bit rate. Some take several nearby readings and use a majority vote. The particular implementation determines how much noise and baud-rate mismatch it can tolerate.
 
 Clock mismatch accumulates through the frame. Oversampling improves sample placement but does not remove the need for compatible baud rates.
 
 Common configured rates include 9600, 19200, 38400, 57600, and 115200 bit/s. Both ends must support the chosen rate and frame format.
 
-A basic TX/RX connection supports two endpoints and full-duplex data with a shared reference. Multidrop operation needs an appropriate physical layer and access protocol.
+A basic TX/RX connection joins two endpoints and can send in both directions at once, called full duplex, with a shared reference. Connecting more endpoints needs a suitable physical layer and rules for sharing access.

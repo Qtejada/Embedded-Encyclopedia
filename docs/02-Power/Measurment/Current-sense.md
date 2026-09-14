@@ -1,6 +1,5 @@
 # Current Sense
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -26,9 +25,9 @@ Check the common-mode range during startup and faults, not only during normal op
 
 ## 3. Kelvin Connections
 
-Use separate **Kelvin sense traces** from the shunt terminals. Keep load current out of these sense traces.
+Run separate **Kelvin sense traces** from the shunt terminals to the amplifier. These traces measure voltage; the load current must use a different path.
 
-Otherwise, copper resistance becomes part of the measured resistance. Input filters must also preserve the differential measurement.
+Otherwise, the voltage drop in the copper gets added to the shunt's voltage and becomes a measurement error. Any input filter must preserve the difference between the two sense voltages too.
 
 import ShuntExplorer from '@site/src/components/ShuntExplorer';
 
@@ -66,7 +65,7 @@ For switching loads, distinguish the instantaneous waveform from its average. Se
 | [MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>) voltage | Uses the conducting switch as a sense element | On-resistance varies with gate drive and temperature |
 | Inductor [winding resistance](<../../01-Discrete-Components/01-Passives/03-Inductors.md#winding-losses-and-a-practical-model>) | Avoids another series power resistor | Needs a matched sensing network and temperature correction |
 
-A **current-sense amplifier (CSA)** amplifies a small differential voltage across a shunt. Some devices tolerate common-mode voltages outside their own supply range.
+A **current-sense amplifier (CSA)** amplifies the small voltage difference across a shunt. Some can do this even when both shunt terminals sit at a voltage outside the amplifier's own supply rails. That shared voltage is the common-mode voltage.
 
 An ordinary op amp might not tolerate those inputs. Check common-mode range, input offset, gain error, bandwidth, [PWM](<../../03-Signal-Modulation/Filters/Digital-filters.md#pulse-width-modulation-pwm>) rejection, and recovery after switching edges.
 

@@ -1,15 +1,14 @@
 # Trace Impedance
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
 
 ## 1. Characteristic Impedance
 
-A trace and its reference form a **transmission line**. Its **characteristic impedance Z0** relates voltage and current in a traveling wave.
+A trace and its nearby reference conductor form a **transmission line**. A changing signal travels along them as a wave. **Characteristic impedance Z0** is the voltage-to-current ratio of that traveling wave.
 
-Characteristic impedance differs from the trace's direct-current resistance. For a low-loss line:
+Characteristic impedance is not the resistance you would measure along the copper with a DC meter. For a line with small losses:
 
 <LearningEquation tex={"Z_0\\approx\\sqrt{\\frac{L'}{C'}}\\qquad v\\approx\\frac{1}{\\sqrt{L'C'}}"} />
 
@@ -23,7 +22,7 @@ Trace width, copper thickness, plane spacing, and dielectric properties affect i
 * **Stripline:** An internal trace lies between reference planes.
 * **[Differential pair](<./01-Overview.md#52-length-matching-skew-control>):** Coupling between the two traces also affects differential impedance.
 
-A single trace width cannot guarantee one impedance on every board. Obtain the approved stackup before assigning widths.
+The same trace width can have different impedance on different boards because the layer spacing and materials differ. Get the final approved stackup before choosing trace widths.
 
 ## 3. Reflections
 
@@ -43,8 +42,8 @@ import TraceReflectionExplorer from '@site/src/components/TraceReflectionExplore
 
 1. The launched wave is **0.5 V**.
 2. The load reflection coefficient is **1/3**.
-3. The reflected wave is approximately **0.167 V**.
-4. The first load voltage is approximately **0.667 V**.
+3. The reflected wave is about **0.167 V**.
+4. The first load voltage is about **0.667 V**.
 
 The matched source absorbs the returning wave. These results exclude line loss, load capacitance, and finite edge time.
 
@@ -54,26 +53,26 @@ The matched source absorbs the returning wave. These results exclude line loss, 
 2. Enter the fabricator's dielectric and copper dimensions in a suitable calculator.
 3. Obtain fabricator confirmation of width, spacing, and tolerance.
 4. Apply those dimensions to routing rules.
-5. Specify an impedance coupon when the build requires verification.
+5. Specify an impedance coupon when the build needs verification.
 
-A **time-domain reflectometer (TDR)** can locate impedance changes. Measure the actual structure when the interface margin requires it.
+A **time-domain reflectometer (TDR)** can locate impedance changes. Measure the actual structure when the interface margin needs it.
 
 **References:** [TI, transmission-line guidance](https://www.ti.com/lit/an/sdya018/sdya018.pdf), [KiCad, transmission-line calculator](https://docs.kicad.org/9.0/en/pcb_calculator/pcb_calculator.html#transline).
 
 
 ## Distributed loss and termination
 
-A real transmission line has series resistance R and inductance L per unit length. It also has shunt conductance G and capacitance C per unit length.
+A real transmission line has resistance R and inductance L spread along its conductors. It also has conductance G, which represents leakage and dielectric loss, and capacitance C between the conductors. Each value is specified per unit length.
 
 <LearningEquation tex={"Z_0(\\omega)=\\sqrt{\\frac{R+j\\omega L}{G+j\\omega C}}"} />
 
 The lossless approximation neglects R and G. Microstrip and coaxial lines obey the same distributed principle, but their geometry determines different parameter values.
 
-[Skin effect](<../00-Foundations/04-Fields-and-Materials.md#dielectrics-and-conductor-losses>) raises conductor loss at high frequency. Dielectric loss contributes through G. Dispersion changes propagation delay with frequency and can distort a pulse.
+[Skin effect](<../00-Foundations/04-Fields-and-Materials.md#dielectrics-and-conductor-losses>) increases conductor loss at high frequency, while G accounts for dielectric loss. Different frequencies can also travel with different delays. This is called dispersion, and it can change the shape of a pulse.
 
 **Characteristic impedance**, **input impedance**, and **insertion loss** describe different properties. Input impedance also depends on line length and termination.
 
-Insertion loss describes reduced transmission between defined reference planes. It generally increases with frequency in a lossy channel, but resonances can add local variation.
+Insertion loss describes how much less signal is transmitted between two specified measurement locations. It usually rises with frequency in a lossy channel, although resonances can create local peaks and dips.
 
 | Termination | Placement | Main trade-off |
 | --- | --- | --- |
@@ -100,7 +99,7 @@ For a constant symbol sequence, the output equals the input. At a transition, th
 
 The frequency response has greater gain near the upper end of the symbol band than at DC. This can counter part of a channel's high-frequency loss.
 
-Receiver equalization changes the received spectrum or uses past symbol decisions. Equalization can amplify noise or propagate decision errors. Validate the complete channel and receiver.
+Receiver equalization compensates for the channel by adjusting the received frequency content or using decisions about previous symbols. It can also boost noise or let one wrong decision affect later ones, so test the complete channel and receiver together.
 
 
 See [TI logic design considerations](https://www.ti.com/lit/an/sdya002/sdya002.pdf) for transmission-line and termination examples.

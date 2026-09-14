@@ -1,6 +1,5 @@
 # Gate Drivers
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -9,7 +8,7 @@ import LearningEquation from '@site/src/components/LearningEquation';
 
 A **gate driver** charges and discharges a power transistor gate. A metal-oxide-semiconductor field-effect transistor (**[MOSFET](<../../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#2-mosfet-operation-and-terminal-roles>)**) needs transient gate current during switching.
 
-The average gate-charge current is approximately:
+The average gate-charge current is about:
 
 <LearningEquation tex={"I_{avg}=Q_g f_s\\qquad P_{drive}\\approx Q_g V_{drive}f_s"} />
 
@@ -23,7 +22,7 @@ For a selected gate-charge interval **ΔQ** and transition time **Δt**:
 
 <LearningEquation tex={"I_g\\approx\\frac{\\Delta Q}{\\Delta t}"} />
 
-Use the Miller charge for an approximate drain-voltage transition calculation. Total gate charge includes other parts of the gate waveform.
+To estimate how long the drain voltage takes to change, use the Miller charge, which is associated with that part of the transition. Total gate charge also includes charge moved before and after it.
 
 Gate resistance, driver resistance, and layout inductance limit the actual current.
 
@@ -32,14 +31,14 @@ Gate resistance, driver resistance, and layout inductance limit the actual curre
 **Assumptions:** Total gate charge is 30 nC. The drive voltage is 10 V. The switching frequency is 200 kHz.
 
 1. Average charge current is **6 mA**.
-2. Gate-drive power is approximately **60 mW**.
-3. An assumed 10 nC Miller interval completed in 50 ns requires approximately **0.2 A** during that interval.
+2. Gate-drive power is about **60 mW**.
+3. An assumed 10 nC Miller interval completed in 50 ns needs about **0.2 A** during that interval.
 
-The driver needs a transient current capability much higher than 6 mA. Check the charge data at the intended drain voltage and current.
+Although the average is 6 mA, the driver must deliver much larger, brief pulses of current to switch the gate quickly. Check the gate-charge data at the drain voltage and current your circuit will use.
 
 ## 4. High-Side Drive and Dead Time
 
-A high-side N-channel MOSFET needs gate voltage above its moving source voltage. A **bootstrap supply** can provide that voltage after a recharge interval.
+A high-side N-channel MOSFET needs its gate above its source, even as that source moves with the switching node. A **bootstrap supply** stores charge during a recharge interval and uses it to provide this higher gate voltage.
 
 Check bootstrap capacitance, leakage, maximum on-time, and recharge time. A bootstrap circuit does not automatically support continuous high-side conduction.
 

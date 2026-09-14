@@ -35,11 +35,11 @@ A pipeline has five stages:
 
 **Pipelining** overlaps different instructions in different stages. It improves throughput after the pipeline fills. It does not remove an instruction's dependencies.
 
-Data hazards can need forwarding or stalls. A branch can require a pipeline flush. Shared resources can cause structural hazards.
+If an instruction needs a result that is still being calculated, the processor may forward that result directly or pause until it is ready. A branch may require it to discard instructions already in the pipeline. Two instructions needing the same hardware at once cause a structural hazard.
 
 **Branch prediction** selects a likely next path before the branch result is known. A static predictor uses a fixed rule.
 
-A one-bit predictor remembers the last result. A two-bit saturating counter resists a single unusual result. History-based predictors use patterns from earlier branches.
+A one-bit branch predictor guesses that a branch will do what it did last time. A two-bit saturating counter adds some persistence, so one unusual result does not immediately reverse a strong prediction. History-based predictors look for patterns across earlier branches.
 
 Wrong predictions waste work. Measure execution time with representative programs rather than clock frequency alone.
 
@@ -55,9 +55,9 @@ For an assumed one million instructions, CPI = 1.5, and a 100 MHz clock, executi
 
 A **graphics processing unit (GPU)** runs many similar operations across large data sets. Its arithmetic capacity suits images, matrix operations, and some scientific calculations.
 
-A simplified graphics path transforms vertices, assembles primitives, rasterizes fragments, shades them, and writes pixels. Actual pipelines include additional stages and memory operations.
+A simplified graphics pipeline transforms the vertices, groups them into shapes called primitives, converts the shapes into candidate pixel contributions called fragments, shades them, and writes the pixels. Real pipelines add more stages and memory operations.
 
-GPU throughput depends on parallel work, memory bandwidth, and active execution lanes. Divergent branches and data transfers can reduce the benefit.
+A GPU needs enough parallel work, memory bandwidth, and active execution lanes to reach its expected throughput. When different lanes take different branches, or when moving data takes too long, some of that advantage is lost.
 
 A CPU usually favors low latency for diverse control work. A GPU usually favors throughput across many operations. Compare complete workload time and energy.
 
@@ -82,9 +82,9 @@ An SoC can still need memory, storage, clocks, power conversion, connectors, and
 
 **Random access** means the address selects a location directly. It does not mean all accesses have equal timing.
 
-A unified memory system stores instructions and data in one address space. A Harvard organization separates instruction and data paths or stores.
+A unified memory system uses one address space for instructions and data. A **Harvard** organization keeps instruction and data storage or access paths separate.
 
-A **memory management unit (MMU)** translates virtual addresses and enforces access permissions. Translation caches reduce the translation cost.
+A **memory management unit (MMU)** converts the addresses used by software into physical memory addresses and checks access permissions. It caches recent translations so the processor does not have to work them out again on every access.
 
 Interrupts let an OS respond to devices and schedule work. User programs usually access those devices through drivers instead of direct register access.
 
@@ -94,7 +94,7 @@ Dynamic switching power increases with activity, capacitance, frequency, and the
 
 Lower voltage can reduce power, but it also reduces timing margin. A lower clock can restore margin. Validate the supported voltage and frequency pairs.
 
-Separate power and clock domains let inactive blocks stop. Domain crossings need synchronization, isolation, or level conversion as applicable.
+Separate power and clock domains let unused blocks stop running. Signals crossing between those domains may need synchronization, isolation when a block is off, or voltage-level conversion.
 
 **Process, voltage, and temperature (PVT)** describe operating variation. Process corners model combinations such as fast or slow transistors. They are analysis conditions, not operating modes.
 
@@ -110,7 +110,7 @@ Thermal control can reduce clock speed, voltage, or workload. [Hysteresis](<../0
 
 Radiation can change a stored bit without permanent damage. It can also cause permanent damage or destructive latch-up in susceptible devices.
 
-Error-correcting code (ECC) memory can correct defined error patterns. Periodic scrubbing repairs correctable errors before another error accumulates.
+Error-correcting code (ECC) memory can correct the error patterns it was designed to handle. Periodic scrubbing reads and repairs correctable errors, reducing the chance that another error builds up in the same data before it is checked.
 
 Use fault detection, [current limiting](<../02-Power/Entry%20Protection/fuses.md#overcurrent-protection>), watchdogs, and recovery where required. Redundant copies need protection against shared power, clock, and environmental failures.
 

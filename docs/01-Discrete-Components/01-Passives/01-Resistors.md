@@ -1,6 +1,5 @@
 # Resistors
 
-Notes coming soon...
 
 import LearningEquation from '@site/src/components/LearningEquation';
 
@@ -20,7 +19,7 @@ Here, **V** is voltage, **I** is current, **R** is resistance, and **P** is powe
 
 ## 2. Tolerance and Temperature
 
-**Tolerance** gives the permitted initial resistance range. The **temperature coefficient of resistance (TCR)** describes resistance change with temperature.
+**Tolerance** gives the allowed initial resistance range. The **temperature coefficient of resistance (TCR)** describes resistance change with temperature.
 
 For a small temperature interval, use this linear estimate:
 
@@ -28,7 +27,7 @@ For a small temperature interval, use this linear estimate:
 
 **α** is the TCR in inverse degrees Celsius. Divide a value in **parts per million (ppm)** by one million before this calculation.
 
-Self-heating changes the resistor temperature. A small initial tolerance does not remove temperature drift, voltage dependence, or aging.
+A resistor warms up as it dissipates power, and its resistance changes with that temperature. A tight initial tolerance does not remove drift with temperature or age, or changes caused by applied voltage.
 
 See [Vishay, resistor temperature and power coefficients](https://www.vishay.com/docs/60108/nonlinea.pdf) for these separate effects.
 
@@ -38,7 +37,7 @@ For an upper resistor **R1**, a lower resistor **R2**, and an output load **RL**
 
 <LearningEquation tex={"R_B=R_2\\parallel R_L \\qquad V_{out}=V_{in}\\frac{R_B}{R_1+R_B}"} />
 
-The load decreases the output voltage. A high divider resistance reduces supply current, but it increases sensitivity to input current and interference.
+Connecting the load lowers the divider's output voltage. Larger divider resistors save supply current, but make the output more sensitive to current drawn by the next circuit and to interference.
 
 import PassiveDesignExplorer from '@site/src/components/PassiveDesignExplorer';
 
@@ -51,7 +50,7 @@ import PassiveDesignExplorer from '@site/src/components/PassiveDesignExplorer';
 1. The lower equivalent resistance is **9.091 kΩ**.
 2. The loaded output is **2.381 V**.
 3. The unloaded output is **2.500 V**.
-4. Loading causes a **119 mV decrease**, or approximately **4.76%** of the unloaded output.
+4. Loading causes a **119 mV decrease**, or about **4.76%** of the unloaded output.
 
 For two independent 1% resistors without a load, the extreme outputs are **2.475 V** and **2.525 V**.
 
@@ -68,7 +67,7 @@ For example, 12 V across 1 kΩ gives **144 mW**. A nominal 125 mW resistor does 
 
 ## Construction, preferred values, and failure
 
-For a uniform conductor, resistance is approximately resistivity times length divided by cross-sectional area. Material, geometry, and temperature all affect the result.
+For a uniform conductor, resistance is about resistivity times length divided by cross-sectional area. Material, geometry, and temperature all affect the result.
 
 A real resistor includes connection inductance and stray capacitance. A wirewound structure can have substantial inductance. A low-inductance layout reduces loop area.
 
@@ -76,13 +75,13 @@ import PassiveModels from '@site/src/components/learning/PassiveModels';
 
 <PassiveModels kind="resistor" />
 
-Preferred-value series distribute values approximately logarithmically within each decade. E12 includes 1.0, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, and 8.2.
+Preferred-value series space resistor values by roughly equal ratios, rather than equal differences, within each factor of ten. E12 includes 1.0, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, and 8.2.
 
 Multiply those values by powers of ten. E24, E96, and other series provide more choices. See [Vishay preferred values](https://www.vishay.com/docs/28372/e-series.pdf).
 
 Common imperial surface-mount codes include 0402, 0603, and 0805. Their approximate bodies are 1.0 × 0.5, 1.6 × 0.8, and 2.0 × 1.25 mm.
 
-Confirm the coding system and footprint drawing. Metric codes can look similar. Package size alone does not establish power or pulse capability.
+Confirm the coding system and footprint drawing. Metric codes can look similar. Package size alone does not prove power or pulse capability.
 
 Overload can change resistance or open the resistive element. Board flex and solder fatigue can break connections. Contamination can create an unintended parallel leakage path.
 

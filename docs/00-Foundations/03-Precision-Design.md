@@ -8,15 +8,15 @@ import PrecisionVoltmeterDiagram from '@site/src/components/PrecisionVoltmeterDi
 
 # Precision Design and Instrumentation Amplifiers
 
-Precision design requires a complete error budget. It also requires the correct amplifier technology for the signal source and operating conditions.
+A precision circuit needs an error budget: an estimate of how much error each part adds and whether the total is acceptable. The amplifier's input type must also suit the signal source and operating conditions.
 
 ## 1. Precision Design Method
 
-Do not use only typical error values for a precision design. Use maximum values when the datasheet supplies them.
+Typical datasheet values describe a representative part. For a precision design, use the guaranteed maximum errors when the datasheet lists them.
 
 * **Accumulation problem:** A 1% error in one stage can be acceptable.
   * Errors from the input buffer, gain stage, filter, and [ADC](<../03-Signal-Modulation/Data-convertes/DACs.md#3-sampling-and-resolution>) driver add together.
-  * Repeated 1% errors add to a failed system specification.
+  * Several stages with 1% error can add up to more error than the complete system allows.
 * **Error budget:** The error budget gives the maximum total error, *V<sub>err</sub>*.
   * The basic budget includes input-offset voltage and the voltage caused by input-bias current.
 
@@ -29,14 +29,14 @@ Do not use only typical error values for a precision design. Use maximum values 
 
 ## 2. BJT and FET Input Trade-Offs
 
-The primary amplifier-selection decision is the input technology. The main options are bipolar junction transistor (BJT), [JFET](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>), and CMOS inputs.
+Start by choosing the amplifier's input technology. The main options are bipolar junction transistor (BJT), [JFET](<../01-Discrete-Components/03-Semicondctors/03-MOSFETs.mdx#3-jfet-and-depletion-mode-operation>), and CMOS inputs.
 
 ### BJT Inputs
 
 * **Primary advantage:** BJT inputs have extremely low voltage noise, *e<sub>n</sub>*.
-  * This property is essential for audio circuits and low-impedance sensors.
+  * This matters in audio circuits and low-impedance sensors.
 * **Primary disadvantage:** BJT inputs have high current noise, *i<sub>n</sub>*, and input-bias current, *I<sub>B</sub>*, relative to FET inputs.
-  * A BJT requires base current and takes current from the signal source.
+  * A BJT needs base current and takes current from the signal source.
 * **Temperature behavior:** The bias current is relatively stable with temperature.
   * The bias current decreases slightly when the temperature increases.
 * **Offset voltage:** BJT inputs usually have less offset voltage than JFET or CMOS inputs.
@@ -44,7 +44,7 @@ The primary amplifier-selection decision is the input technology. The main optio
 ### JFET and CMOS Inputs
 
 * **Primary advantage:** FET inputs have extremely low bias current and current noise.
-  * This property is essential for [photodiodes](<../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>), pH probes, ECG electrodes, and other high-impedance sources.
+  * This matters in [photodiodes](<../04-Digital-Interfaces/DigitalGeneral.md#iii-detectors>), pH probes, ECG electrodes, and other high-impedance sources.
 * **Primary disadvantage:** FET inputs usually have more voltage noise.
   * FET inputs often have more offset voltage.
   * Modern trim methods continue to decrease the offset voltage.
@@ -88,7 +88,7 @@ The BJT current noise swamps the ECG signal in this example. This requirement ex
 * **Source-impedance interaction:** Input-bias current produces a voltage error when it flows through source resistance.
   * **Example:** A 1 k&Omega; source and a nanoampere-level bias current produce a microvolt-level error.
 * **FET amplifiers:** FET inputs take very little current, but they do have increased voltage offset.
-* **Bipolar super-beta amplifiers:** These BJT amplifiers can also be applicable to low-bias-current designs.
+* **Bipolar super-beta amplifiers:** These BJT amplifiers can also be relevant to low-bias-current designs.
 * **Common-mode variation:** The input current of some amplifiers changes with input [common-mode voltage](<../03-Signal-Modulation/Amplifiers/02-differential-amps.md#common-mode-voltage>).
   * Compare the input-current specification across the required input-voltage range.
 
@@ -99,8 +99,8 @@ The BJT current noise swamps the ECG signal in this example. This requirement ex
 * **Maximum specification:** Do not design a precision instrument with only the typical input-offset specification.
   * Typical offset is often less than 10 &micro;V. Use the maximum specified value for the error budget.
 * **Temperature drift:** Temperature drift is important for stability, but manufacturers rarely test each production part for this parameter.
-* **Time drift:** Modern datasheets frequently do not specify time drift.
-  * A specified drift can behave like a random walk in nV/&radic;month.
+* **Time drift:** Modern datasheets often do not specify time drift.
+  * Drift may behave like a random walk, accumulating irregular changes rather than moving steadily in one direction. It can be specified in nV/&radic;month.
   * This behavior is different from a predictable linear drift in nV/month.
 * **Internal trim:** The manufacturer usually trims the amplifier accurately.
   * Additional external trim can be difficult and can give only a small improvement.
@@ -112,13 +112,13 @@ The BJT current noise swamps the ECG signal in this example. This requirement ex
 * **[Common-mode rejection ratio](<../03-Signal-Modulation/Amplifiers/02-differential-amps.md#2-common-mode-rejection-ratio>) (CMRR):** Insufficient CMRR produces an offset that changes with the DC input level.
   * **RRIO risk:** An RRIO amplifier can have a large offset change when its input common-mode voltage changes.
   * This behavior acts like poor CMRR.
-  * This offset shift occurs unless the amplifier uses an internal [charge pump](<../02-Power/Regulation/06-Charge-Pumps.md#two-phase-voltage-doubler>).
+  * This offset shift happens unless the amplifier uses an internal [charge pump](<../02-Power/Regulation/06-Charge-Pumps.md#two-phase-voltage-doubler>).
   * The OPA364 is an example of an amplifier that uses this exception.
 * **Power-supply rejection ratio (PSRR):** A supply-voltage change produces a small operational-amplifier error.
   * Use the PSRR specification to estimate this error.
   * PSRR decreases when frequency increases.
 * **Gain across frequency:** Amplifier gain changes with frequency.
-  * Check the gain at the applicable signal frequency.
+  * Check the gain at the relevant signal frequency.
 
 ## 4. Noise Characteristics
 
@@ -126,12 +126,12 @@ The BJT current noise swamps the ECG signal in this example. This requirement ex
 
 ### Voltage-Noise Density
 
-The **voltage-noise density**, *e<sub>n</sub>*, is the noise in a 1 Hz bandwidth. Its unit is nV/&radic;Hz.
+The **voltage-noise density**, *e<sub>n</sub>*, describes the noise contribution near a particular frequency, in nV/&radic;Hz. Numerically, it gives the RMS noise in a 1 Hz bandwidth when the density is flat over that interval.
 
 The noise-density curve has two important regions:
 
 * **High-frequency region:** The density is usually flat and is called white noise.
-  * Datasheets frequently give this value at 1 kHz.
+  * Datasheets often give this value at 1 kHz.
 * **Low-frequency region:** The density increases when frequency decreases.
   * This region contains [1/f noise](<./00-Foundations.md#1f-noise>), which is also called pink noise.
   * Standard operational amplifiers become noisy near DC.
@@ -139,9 +139,9 @@ The noise-density curve has two important regions:
 
 ### Integrated Noise
 
-**Why you cannot ignore it**
+**Total noise across the bandwidth**
 
-A small density value can produce a large total noise across a wide bandwidth. The listener or measurement system receives the integrated noise.
+A small noise-density number can still add up to substantial noise when the circuit passes a wide range of frequencies. The total across that range, called integrated noise, is what you hear or measure.
 
 > **Formula:** *V<sub>total</sub> = e<sub>n</sub> &times; &radic;BW*
 
@@ -155,7 +155,7 @@ The 3.16 &micro;V noise is a substantial fraction of a 10 &micro;V EEG signal. O
 
 ### Transimpedance-Amplifier Risk
 
-**Specific danger**
+**Input capacitance and noise**
 
 This effect is important for photodiode and other [transimpedance amplifiers](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#7-transimpedance-amplifier>).
 
@@ -170,15 +170,15 @@ Ignore noise density for a simple LED blink circuit. It is critical for these ap
 * **ECG measurements:** Low-frequency 1/f noise is important.
 * **Photodiode measurements:** High-frequency voltage noise is important.
 
-The selected noise parameter determines if the device measures a signal or produces only noise.
+Check the noise parameter that matters for your source and frequency range; the wrong choice can leave the signal buried in noise.
 
 ### 1/f Noise
 
-[Noise spectral density](<./00-Foundations.md#noise-spectral-density>) increases below the **1/f corner frequency**. Calculate the total RMS noise by integrating the density squared across the applicable band:
+[Noise spectral density](<./00-Foundations.md#noise-spectral-density>) increases below the **1/f corner frequency**. Calculate the total RMS noise by integrating the density squared across the relevant band:
 
 > *v<sub>n</sub><sup>2</sup> = &int; e<sub>n</sub><sup>2</sup> df*
 
-* **Bandwidth factor:** Low-frequency noise density is high, but the low-frequency span is frequently small.
+* **Bandwidth factor:** Low-frequency noise density is high, but the low-frequency span is often small.
   * As a result, the total low-frequency noise can remain acceptable.
 * **Corner frequency:** The 1 kHz white-noise value can give an incorrect comparison for low-frequency applications.
   * The LT1012 has 14 nV/&radic;Hz white noise and a 2.5 Hz corner.
@@ -192,7 +192,7 @@ The selected noise parameter determines if the device measures a signal or produ
   * This value is a proxy for DC noise and is a strong indicator of long-term drift stability.
 * **Scaling rule:** For a lower start frequency, multiply *V<sub>npp</sub>* by the square root of the additional frequency decades.
   * For example, the lower band edge can change from 0.1 Hz to 0.01 Hz.
-  * Equal noise power occurs in each decade. As a result, the total noise increases with &radic;decades.
+  * Equal noise power happens in each decade. As a result, the total noise increases with &radic;decades.
 * **ECG relevance:** Diagnostic ECG bandwidth extends to 0.05 Hz.
   * The 0.1 Hz to 10 Hz *V<sub>npp</sub>* value is the primary noise value for baseline stability.
   * A high 1/f corner causes the ECG baseline to move.
@@ -209,7 +209,7 @@ Compare *Z<sub>n</sub>* with the signal-source impedance, *Z<sub>s</sub>*:
   * Typical applications include audio circuits, power supplies, and strain gauges.
 * **Z<sub>s</sub> &gg; Z<sub>n</sub>:** Operational-amplifier current noise is dominant.
   * Typical applications include ECG electrodes, pH probes, and photodiodes.
-* **Selection rule:** A high-impedance sensor requires low current noise.
+* **Selection rule:** A high-impedance sensor needs low current noise.
   * High-impedance sensors typically require FET inputs, even when their voltage-noise value is higher.
 
 ### Current Noise and Bias Cancellation
@@ -228,8 +228,8 @@ These are the critical failure mechanisms for the medical applications in these 
 
 #### ECG: 1/f Noise and Bias Current
 
-* **Signal:** Approximately 1 mV, from 0.05 Hz to 100 Hz.
-  * Skin source impedance is approximately 500 k&Omega;.
+* **Signal:** About 1 mV, from 0.05 Hz to 100 Hz.
+  * Skin source impedance is about 500 k&Omega;.
 * **1/f-noise risk:** The signal band is in the low-frequency noise region.
   * A high 1/f corner causes baseline movement that can look like a breathing artifact.
 * **Bias-current risk:** A 100 nA BJT bias current through 500 k&Omega; produces a **50 mV offset**.
@@ -259,9 +259,9 @@ These are the critical failure mechanisms for the medical applications in these 
 #### Respiration: Dynamic Range
 
 * **Signal:** Impedance pneumography injects a carrier sine wave.
-  * It measures an amplitude change of approximately 1% when the chest expands.
-* **Dynamic-range risk:** The baseline impedance is approximately 500 &Omega;.
-  * The breath-related change is approximately 1 &Omega;.
+  * It measures an amplitude change of about 1% when the chest expands.
+* **Dynamic-range risk:** The baseline impedance is about 500 &Omega;.
+  * The breath-related change is about 1 &Omega;.
 * **Offset risk:** A large offset uses gain and output range for the 500 &Omega; baseline error.
   * Less dynamic range remains for the 1 &Omega; respiration signal.
 
@@ -273,7 +273,7 @@ High [gain-bandwidth product](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#
 
 * **Loop gain:** A high gain-bandwidth product (GBW) gives spare loop gain at lower frequencies.
   * More loop gain improves linearity and decreases distortion.
-* **Decompensated amplifiers:** Manufacturers decompensate some amplifiers to achieve very high speed.
+* **Decompensated amplifiers:** Reducing internal compensation makes some amplifiers faster, but means they need a minimum closed-loop noise gain to remain stable.
   * These amplifiers are not stable at a closed-loop gain of one.
   * These amplifiers require a minimum closed-loop gain.
   * For example, an amplifier can require *A<sub>V</sub> &ge; 10* to prevent oscillation.
@@ -298,7 +298,7 @@ When an operational amplifier reaches its slew-rate limit, two precision problem
 1. **Frequency and amplitude limit:** The output cannot have high frequency and high voltage at the same time.
    > *V<sub>pp</sub> = S / &pi;f*
 2. **Input-error pulse:** The differential input voltage is normally almost zero.
-   * A fast output change requires a large differential input voltage.
+   * A fast output change needs a large differential input voltage.
    * During a pacemaker spike in this slew-limited condition, the feedback loop temporarily breaks.
 
 ### Slew-Rate Enhancement
@@ -310,7 +310,7 @@ A standard BJT amplifier has this approximate relation:
 Different input-stage designs increase slew rate without a very large bandwidth and its related power:
 
 * **JFET inputs:** Lower transconductance gives more slew rate for a specified bandwidth.
-  * The LF411 has an enhancement factor of approximately *m = 12*.
+  * The LF411 has an enhancement factor of about *m = 12*.
 * **[Emitter degeneration](<../01-Discrete-Components/03-Semicondctors/02-BJTs.md#4-biasing-techniques>):** Adding resistance to the input transistors decreases gain but increases speed.
 * **Cross-coupled or Butler stages:** These designs increase the current available to the compensation capacitor.
   * The TLE2142 and OP275 are examples.
@@ -330,7 +330,7 @@ Manufacturers do not use one standardized distortion test. Do not directly compa
    * The amplifier can perform better than the graph shows.
    * The measurement equipment noise floor can hide the actual performance.
 
-2. **Input-capacitance distortion:** This problem occurs with a high-impedance source and some JFET amplifiers.
+2. **Input-capacitance distortion:** This problem happens with a high-impedance source and some JFET amplifiers.
    * **Example part:** The OPA1641 can show this effect.
    * **Cause:** JFET input capacitance, *C<sub>in</sub>*, changes with common-mode voltage, *V<sub>cm</sub>*.
    * **Result:** The changing capacitance changes the filter cutoff and signal phase.
@@ -346,7 +346,7 @@ Manufacturers do not use one standardized distortion test. Do not directly compa
 
 **Phase error** identifies the phase difference, or lag, between the input and output.
 
-For good phase accuracy, select an amplifier bandwidth 50 to 100 times higher than the signal frequency. Video circuits frequently require this accuracy.
+For good phase accuracy, select an amplifier bandwidth 50 to 100 times higher than the signal frequency. Video circuits often require this accuracy.
 
 For amplitude accuracy without strict phase accuracy, a bandwidth 10 times higher than the signal frequency can be sufficient.
 
@@ -357,7 +357,7 @@ For amplitude accuracy without strict phase accuracy, a bandwidth 10 times highe
 Some older or low-power operational amplifiers use a Class-B output stage to save power. The LM324 and LM358 are examples.
 
 * **Cause:** The output transistors do not have a continuous bias current.
-  * Approximately 1.2 V separates the NPN source-current action from the PNP sink-current action.
+  * About 1.2 V separates the NPN source-current action from the PNP sink-current action.
   * This voltage is two base-emitter voltage drops, *2V<sub>BE</sub>*.
 * **Zero-crossing effect:** The output stage changes from source current to sink current when the signal crosses zero.
   * For a short time, the output is disconnected and stays at zero.
@@ -388,7 +388,7 @@ An ideal operational amplifier has zero output impedance. A real open-loop outpu
 * Do not use an old LM358 for high-quality audio because its output stage has a dead zone.
 * Do not assume that an operational amplifier can drive a capacitor directly.
   * The internal output resistance can cause oscillation.
-  * Oscillation occurs when the added phase lag reaches the instability condition.
+  * Oscillation happens when the added phase lag reaches the instability condition.
 
 :::
 
@@ -421,7 +421,7 @@ Rail-to-rail operation is useful in low-voltage systems, but it introduces addit
 * **Output stage:** The RRO mechanism in these notes uses a common-source output instead of a complementary [push-pull](<../03-Signal-Modulation/Amplifiers/01-op-amps.md#complementary-push-pull-output>) output.
 * **Output impedance:** This stage has high output impedance that changes with load resistance.
 * **Capacitive load:** A load capacitor causes a large phase shift in this output stage.
-* **Distortion:** These rail-to-rail output amplifiers frequently have much worse distortion than standard output stages.
+* **Distortion:** These rail-to-rail output amplifiers often have much worse distortion than standard output stages.
 
 ## 8. Amplifier Topologies
 
@@ -430,7 +430,7 @@ Rail-to-rail operation is useful in low-voltage systems, but it introduces addit
 * **Operation:** An internal circuit monitors the inputs and corrects *V<sub>os</sub>* toward its ideal value of zero.
 * **Performance:** This topology gives the best input-offset performance.
   * It corrects input-offset voltage, offset drift, and 1/f noise.
-* **Supply limit:** These amplifiers frequently have a low maximum supply voltage.
+* **Supply limit:** These amplifiers often have a low maximum supply voltage.
   * A typical maximum value is 6 V.
 * **[Clock feedthrough](<../03-Signal-Modulation/Data-convertes/Sample-holding.md#clock-feedthrough>):** Internal switching can add noise and cause small output changes.
   * A low-pass filter can decrease this clock feedthrough.
@@ -454,7 +454,7 @@ Rail-to-rail operation is useful in low-voltage systems, but it introduces addit
 * **Gain:** The user can set the gain across a wide range.
 * **CMRR:** Very high CMRR rejects common-mode noise.
 * **CMRR example:**
-  * The circuit must amplify a millivolt differential signal on a common-mode voltage of approximately 2.5 V.
+  * The circuit must amplify a millivolt differential signal on a common-mode voltage of about 2.5 V.
   * The maximum error is 0.1% of full scale.
   * This limit equals &plusmn;0.01 mV of error on 2500 mV of common-mode voltage.
   * The required CMRR is 250,000:1, or **108 dB**.
@@ -463,7 +463,7 @@ Rail-to-rail operation is useful in low-voltage systems, but it introduces addit
 ### Differential-Output Amplifiers
 
 * **Function:** This amplifier accepts a differential or single-ended input and gives a differential output.
-* **Application:** This topology frequently drives a differential ADC.
+* **Application:** This topology often drives a differential ADC.
 
 ## 9. Design Example: High-Precision Voltmeter
 
@@ -498,7 +498,7 @@ This example applies a complete precision-design method to a high-performance an
 * **R3 (10 k&Omega;): Meter-protection resistor**
   * **Role:** Current limit for the physical meter coil.
   * **Operation:** R3 limits current if the amplifier output moves to the full battery voltage during startup or saturation.
-  * The limited current is a safe value of approximately 0.3 mA.
+  * The limited current is a safe value of about 0.3 mA.
 
 * **R2 (10 k&Omega;): Input-[current limiter](<../02-Power/Entry%20Protection/fuses.md#overcurrent-protection>)**
   * **Role:** Input-protection current limit.
@@ -508,7 +508,7 @@ This example applies a complete precision-design method to a high-performance an
 
 * **PN4117 diodes: Input-voltage clamps**
   * **Role:** Input overvoltage protection.
-  * **Operation:** The diodes clamp a dangerous input to approximately 0.6 V.
+  * **Operation:** The diodes clamp a dangerous input to about 0.6 V.
   * This action prevents damage to the sensitive operational-amplifier inputs during an incorrect connection.
 
 * **R1 (10 M&Omega;): Input-impedance and bias-return resistor**
@@ -529,7 +529,7 @@ This example applies a complete precision-design method to a high-performance an
 
 ## 10. Design Example: Autonulling DC Laboratory Amplifier
 
-This circuit stores an input value. It then amplifies subsequent input changes with selectable gains of 1, 10, or 100.
+This circuit stores an input value. It then amplifies later input changes with selectable gains of 1, 10, or 100.
 
 <AutonullingAmplifierDiagram />
 
@@ -544,7 +544,7 @@ This circuit stores an input value. It then amplifies subsequent input changes w
 * **Total system gain:** The maximum system gain is 1000.
 * **Output range:** The output range is &plusmn;10 V.
 * **U3, U4, and U5:** These devices form the nulling circuit.
-  * The nulling circuit stores the input value and subtracts it from subsequent samples.
+  * The nulling circuit stores the input value and subtracts it from later samples.
 
 ### Drift Requirements
 
@@ -559,7 +559,7 @@ This circuit stores an input value. It then amplifies subsequent input changes w
   * These resistors are used for bias and logic functions.
   * Their tolerance does not control the precision performance.
 * **Hold-capacitor material:** Use a material with the lowest possible leakage.
-  * Polypropylene and Teflon are examples of applicable low-leakage materials.
+  * Polypropylene and Teflon are examples of relevant low-leakage materials.
   * The original notes call these materials **poly-stuff**.
 * **Leakage example:** The capacitor leakage resistance is 100 G&Omega;, and the output is 10 V.
   * The leakage current produces **3 mV/min** of drift.
@@ -581,7 +581,7 @@ This circuit stores an input value. It then amplifies subsequent input changes w
 * **Precision BJT amplifier:** Find if the part uses bias cancellation.
   * If it does, assume that current noise is much higher than the DC bias current suggests.
 * **High-frequency respiration or gating signal:** Check CMRR at the signal frequency, not only at DC.
-* **High-speed or audio signal:** Examine the applicable THD+N graphs.
+* **High-speed or audio signal:** Examine the relevant THD+N graphs.
   * Treat a flat low-frequency line skeptically.
   * It can show the measurement-system noise floor instead of the amplifier limit.
 
