@@ -97,6 +97,39 @@ A DAC can have a **voltage output** or a **current output**.
 A voltage-output DAC usually includes an output amplifier.
 A current-output DAC usually requires an external resistor or a current-to-voltage amplifier.
 
+#### Output Impedance and Loading
+
+**Output impedance describes how much the output voltage changes when the load draws current.**
+For a voltage-output DAC, lower output impedance helps keep the voltage close to the value requested by the digital code.
+
+At DC, a simple model is an ideal voltage source with a resistor in series with its output.
+This **output resistance** and the load resistance form a voltage divider.
+More load current produces more voltage drop inside the source.
+
+**Example:** Assume a DAC produces 2 V with no load and has a 1 k&Omega; output resistance.
+Connecting a 9 k&Omega; load to ground gives:
+
+> **V<sub>load</sub> = 2 V &times; 9 k&Omega; / (1 k&Omega; + 9 k&Omega;) = 1.8 V**
+
+The code did not change, but the load reduced the voltage by 10%.
+For accurate voltage transfer, the load resistance should be much larger than the output resistance.
+
+A **[voltage buffer](<../Amplifiers/01-op-amps.md#voltage-follower>)** helps by drawing very little current from the DAC and supplying the load current from its own power supply.
+Its low output impedance reduces the load-dependent voltage drop.
+Some DACs include this buffer; others need an external one.
+Check its output-current, voltage-swing, and capacitive-load limits.
+
+Output impedance can change with frequency, so the DC resistor model does not describe every fast signal.
+It also affects how quickly the output can charge a [load capacitance](<#why-load-capacitance-matters>).
+
+This low-impedance goal applies to a **voltage output**.
+A current-output DAC instead benefits from high output impedance, so its current changes little with load voltage inside its compliance range.
+
+At an ADC's analog input, the relevant output impedance belongs to the **source or amplifier driving the ADC**.
+It must be low enough for the ADC input to settle during acquisition; see [Driving High-Speed ADCs](<#6-driving-high-speed-adcs>).
+
+Further reading: Analog Devices, [CN0079: Precision DAC Output Buffering](https://www.analog.com/en/resources/reference-designs/circuits-from-the-lab/cn0079.html).
+
 #### Output Scaling
 
 The output range can be:
