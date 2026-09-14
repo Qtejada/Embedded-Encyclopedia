@@ -758,66 +758,34 @@ Calculate register growth before fixed-point implementation.
 
 ### 23. Oversampling
 
-The **oversampling ratio (OSR)** for a baseband width <i>B</i> is:
+**Oversampling means taking samples at a rate higher than twice the highest frequency you want to keep in a baseband signal.**
+You take more samples than the theoretical minimum, then use a digital filter to keep the useful signal and remove unwanted high-frequency content.
 
-> **OSR = f<sub>sample</sub> / (2B)**
+**Example:** To measure signals from DC to 20 kHz, the theoretical sample-rate boundary is 40 kS/s.
+A practical design needs margin above that boundary for filtering.
+Sampling at 160 kS/s gives an **oversampling ratio (OSR) of 4**:
 
-Oversampling helps for four related reasons:
+> **OSR = sample rate / (2 &times; signal bandwidth) = 160 kS/s / (2 &times; 20 kHz) = 4**
 
-1. For the same quantizer step, a sufficiently uncorrelated quantization-noise model distributes the noise across a wider Nyquist interval.
-   The quantization-noise density decreases.
-2. A digital low-pass filter keeps the required baseband and rejects more of this out-of-band noise.
-   The retained in-band quantization-noise power decreases.
-3. The higher sample rate moves the first Nyquist boundary to a higher frequency.
-   This change gives more frequency separation between the wanted baseband and the first alias boundary.
-4. The larger transition range can permit a less complex analog anti-alias filter for some magnitude specifications.
+#### Why It Helps
 
-Oversampling does not remove the need for the analog anti-alias filter.
+* **Less noise in the useful band:** When quantization error behaves like independent random noise, a higher sample rate spreads the same total quantization-noise power over a wider frequency range. A digital low-pass filter removes the part outside the required signal band.
+* **Easier analog filtering:** The higher sample rate gives the analog anti-alias filter more frequency space to attenuate unwanted signals before they fold into the useful band.
 
-For suitable uncorrelated white quantization error:
+For plain oversampling with suitable random quantization error, **4 times the sample rate can give about 6 dB better SNR, equivalent to one extra bit**.
+This comparison assumes the same quantizer step and retained signal bandwidth, with digital filtering.
+It is not a guaranteed increase in accuracy: offset, distortion, and other errors can remain.
+Taking more copies of the same unchanged ADC code does not reveal extra detail.
 
-> **SNR improvement = 10 log<sub>10</sub>(OSR)**
+#### What Happens to the Extra Samples?
 
-The equivalent ideal bit improvement is:
+After filtering, you can reduce the sample rate through **[decimation](<./Digital-filters.md#20-downsampling-and-decimation>)** if you do not need every output sample.
+Keep the final rate high enough for the signal bandwidth and the filter's transition band.
+Do not simply discard samples before filtering.
 
-> **Bit improvement = (1/2)log<sub>2</sub>(OSR)**
+Oversampling still needs an **[analog anti-alias filter](<./Digital-filters.md#18-aliasing-at-the-initial-adc>)**. A digital filter cannot undo aliasing that already occurred at the ADC.
 
-These equations need these conditions:
-
-* The retained signal bandwidth stays constant.
-* The quantization error is sufficiently uncorrelated.
-* A digital low-pass filter removes out-of-band quantization noise.
-* The system decimates only after the filter.
-
-Clock jitter, distortion, correlated quantization error, analog noise, and reference noise can prevent the ideal improvement.
-Dither can decorrelate quantization error, but it also adds noise.
-
-#### 15 MHz and 100 kHz Example
-
-Assume:
-
-* Sample rate: 15 MHz.
-* Required baseband: 100 kHz.
-
-The OSR is:
-
-> **OSR = 15 MHz / (2 &times; 100 kHz) = 75**
-
-The ideal SNR improvement is:
-
-> **10 log<sub>10</sub>(75) &asymp; 18.75 dB**
-
-The ideal bit improvement is:
-
-> **(1/2)log<sub>2</sub>(75) &asymp; 3.11 bits**
-
-These values are theoretical limits under the stated assumptions.
-
-Do not combine this example with decimation by 100.
-A 15 MHz rate divided by 100 is 150 kS/s.
-This output rate cannot retain a 100 kHz baseband.
-
-A practical decimation ratio must leave a transition band above 100 kHz and below the new Nyquist frequency.
+Further reading: Analog Devices, [On-Chip Oversampling for the AD7380 Family of SAR ADCs](https://www.analog.com/en/resources/app-notes/an-2003.html).
 
 ### 24. Delta-Sigma Conversion
 
