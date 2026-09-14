@@ -278,10 +278,64 @@ Ohm's law gives the output voltage:
 The resistor value sets the current-to-voltage scale.
 The DAC output must remain inside its compliance-voltage range.
 
+##### Why Load Capacitance Matters
+
+Here, **load capacitance** means the total capacitance from the DAC output node to its reference node.
+It includes the DAC output capacitance, PCB and cable capacitance, and the input capacitance of the next circuit.
+For a simple resistor connection, this capacitance is in parallel with the resistor.
+
+A capacitor needs charge before its voltage can change.
+When the DAC current changes, part of that current charges or discharges the capacitance instead of flowing through the resistor.
+The output voltage takes time to reach its new value.
+The relation **V = I &times; R** gives the final DC value, not the voltage at every instant during a transition.
+
+For an ideal current source, a resistor **R**, and a parallel capacitance **C**, Kirchhoff's current law gives:
+
+> **I = V / R + C &times; dV/dt**
+
+The resistor and capacitance form a first-order low-pass response:
+
+* **Time constant:** &tau; = R &times; C.
+* **Cutoff frequency:** f<sub>c</sub> = 1 / (2&pi;RC).
+* **Step settling:** After one time constant, the voltage has completed approximately 63% of its change. About 6.9 time constants are necessary to settle within 0.1% of the step size.
+
+**Example:** Assume a DAC current step from 0 to 1 mA, a 1 k&Omega; resistor, and an initially discharged capacitance.
+The final voltage is 1 V, if this voltage is inside the DAC compliance range.
+
+| Total capacitance | Time constant | Cutoff frequency | Time to settle within 0.1% |
+| --- | --- | --- | --- |
+| 100 pF | 0.1 &micro;s | Approximately 1.59 MHz | Approximately 0.69 &micro;s |
+| 10 nF | 10 &micro;s | Approximately 15.9 kHz | Approximately 69 &micro;s |
+
+These values describe only the ideal resistor-capacitor response.
+The DAC's own settling time and other circuit effects can add error.
+If another code update occurs before the voltage settles, the previous transition still affects the output.
+For a sine wave, the same response reduces amplitude and adds phase lag as frequency increases.
+
+A larger resistor gives more voltage for the same current, but it also increases the time constant for a fixed capacitance.
+A smaller resistor improves this response speed, but gives less output voltage.
+Therefore, "low capacitance" depends on the resistor value, signal bandwidth, and permitted settling error. It is not one fixed capacitance limit.
+
 #### Transimpedance Amplifier
 
 Use an op-amp **[transimpedance amplifier](<../Amplifiers/01-op-amps.md#7-transimpedance-amplifier>) (TIA)** for a large load capacitance or a large output-voltage swing.
 The op-amp operates in a transresistance configuration and converts the DAC current into voltage.
+
+With stable negative feedback, the TIA keeps the DAC node close to a fixed reference voltage.
+The capacitance at that node then needs much less change in charge during a code transition.
+The feedback resistor sets the current-to-voltage scale while the op-amp output provides the voltage swing.
+
+**Capacitance still matters in a TIA.** Capacitance at the DAC node changes the feedback response and can cause ringing or oscillation.
+A voltage-feedback op-amp may need a small capacitor across its feedback resistor for [stability correction](<../Amplifiers/01-op-amps.md#stability-correction>).
+Select that capacitor with the amplifier bandwidth and total input capacitance in mind; excessive compensation slows the response.
+Do not omit necessary compensation only to reduce phase lag.
+
+Capacitance connected to the **op-amp output** is a separate load.
+The op-amp must supply its charging current, **I = C &times; dV/dt**, and remain stable with that load.
+Check the amplifier's [capacitive-load requirements](<../Amplifiers/01-op-amps.md#capacitive-loading>); an output isolation resistor may be necessary.
+A TIA does not make an arbitrarily large capacitor easy to drive.
+
+Further reading: Analog Devices, [Stabilize Your Transimpedance Amplifier](https://www.analog.com/en/resources/technical-articles/stabilize-transimpedance-amplifier-circuit-design.html) and [Op Amps Driving Capacitive Loads](https://www.analog.com/en/resources/analog-dialogue/articles/ask-the-applications-engineer-25.html).
 
 #### Phase Lag and Settling
 
